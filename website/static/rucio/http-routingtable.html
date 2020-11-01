@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: HTTP Routing Table</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+
+  <link rel="stylesheet" href="_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="index.html"><img src="_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>HTTP Routing Table</h1>
+        </div>
+        <div id="main-content">
+          
+
+   <h1>HTTP Routing Table</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-/accountlimits"><strong>/accountlimits</strong></a> | 
+   <a href="#cap-/accounts"><strong>/accounts</strong></a> | 
+   <a href="#cap-/archives"><strong>/archives</strong></a> | 
+   <a href="#cap-/auth"><strong>/auth</strong></a> | 
+   <a href="#cap-/config"><strong>/config</strong></a> | 
+   <a href="#cap-/credential"><strong>/credential</strong></a> | 
+   <a href="#cap-/dids"><strong>/dids</strong></a> | 
+   <a href="#cap-/export"><strong>/export</strong></a> | 
+   <a href="#cap-/heartbeats"><strong>/heartbeats</strong></a> | 
+   <a href="#cap-/identities"><strong>/identities</strong></a> | 
+   <a href="#cap-/import"><strong>/import</strong></a> | 
+   <a href="#cap-/lifetime_exceptions"><strong>/lifetime_exceptions</strong></a> | 
+   <a href="#cap-/locks"><strong>/locks</strong></a> | 
+   <a href="#cap-/meta"><strong>/meta</strong></a> | 
+   <a href="#cap-/nongrid_traces"><strong>/nongrid_traces</strong></a> | 
+   <a href="#cap-/ping"><strong>/ping</strong></a> | 
+   <a href="#cap-/redirect"><strong>/redirect</strong></a> | 
+   <a href="#cap-/replicas"><strong>/replicas</strong></a> | 
+   <a href="#cap-/requests"><strong>/requests</strong></a> | 
+   <a href="#cap-/rses"><strong>/rses</strong></a> | 
+   <a href="#cap-/rules"><strong>/rules</strong></a> | 
+   <a href="#cap-/scopes"><strong>/scopes</strong></a> | 
+   <a href="#cap-/subscriptions"><strong>/subscriptions</strong></a> | 
+   <a href="#cap-/tmp_dids"><strong>/tmp_dids</strong></a> | 
+   <a href="#cap-/traces"><strong>/traces</strong></a> | 
+   <a href="#cap-/vos"><strong>/vos</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/accountlimits"><td></td><td>
+       <strong>/accountlimits</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account_limit.html#post--accountlimits-(account)-(rse)"><code class="xref">POST /accountlimits/(account)/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account_limit.html#delete--accountlimits-(account)-(rse)"><code class="xref">DELETE /accountlimits/(account)/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/accounts"><td></td><td>
+       <strong>/accounts</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-"><code class="xref">GET /accounts/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)"><code class="xref">GET /accounts/(account)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-attr"><code class="xref">GET /accounts/(account)/attr</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-identities"><code class="xref">GET /accounts/(account)/identities</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-limits-global"><code class="xref">GET /accounts/(account)/limits/global</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-limits-global-(rse_expression)"><code class="xref">GET /accounts/(account)/limits/global/(rse_expression)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-limits-local"><code class="xref">GET /accounts/(account)/limits/local</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-limits-local-(rse)"><code class="xref">GET /accounts/(account)/limits/local/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-rules"><code class="xref">GET /accounts/(account)/rules</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-scopes"><code class="xref">GET /accounts/(account)/scopes</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-usage"><code class="xref">GET /accounts/(account)/usage</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-usage-(rse)"><code class="xref">GET /accounts/(account)/usage/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-usage-(rse_expression)"><code class="xref">GET /accounts/(account)/usage/(rse_expression)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#get--accounts-(account)-usage-history-(rse)"><code class="xref">GET /accounts/(account)/usage/history/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#post--accounts-(account)"><code class="xref">POST /accounts/(account)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#post--accounts-(account)-attr-(key)"><code class="xref">POST /accounts/(account)/attr/(key)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#post--accounts-(account)-identities"><code class="xref">POST /accounts/(account)/identities</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#post--accounts-(account)-scopes-(scope)"><code class="xref">POST /accounts/(account)/scopes/(scope)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#put--accounts-(account)"><code class="xref">PUT /accounts/(account)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#delete--accounts-(account)"><code class="xref">DELETE /accounts/(account)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#delete--accounts-(account)-attr-(key)"><code class="xref">DELETE /accounts/(account)/attr/(key)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/account.html#delete--accounts-(account)-identities"><code class="xref">DELETE /accounts/(account)/identities</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/archives"><td></td><td>
+       <strong>/archives</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/archive.html#get--archives-(scope)-(name)"><code class="xref">GET /archives/(scope)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/auth"><td></td><td>
+       <strong>/auth</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/authentication.html#get--auth-gss"><code class="xref">GET /auth/gss</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/authentication.html#get--auth-ssh"><code class="xref">GET /auth/ssh</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/authentication.html#get--auth-ssh_challenge_token"><code class="xref">GET /auth/ssh_challenge_token</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/authentication.html#get--auth-userpass"><code class="xref">GET /auth/userpass</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/authentication.html#get--auth-validate"><code class="xref">GET /auth/validate</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/authentication.html#get--auth-x509"><code class="xref">GET /auth/x509</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/authentication.html#get--auth-x509_proxy"><code class="xref">GET /auth/x509_proxy</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/config"><td></td><td>
+       <strong>/config</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/config.html#get--config-(section)"><code class="xref">GET /config/(section)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/config.html#get--config-(section)-(option)"><code class="xref">GET /config/(section)/(option)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/config.html#put--config-(section)-(option)-(value)"><code class="xref">PUT /config/(section)/(option)/(value)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/config.html#delete--config-(section)-(option)"><code class="xref">DELETE /config/(section)/(option)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/credential"><td></td><td>
+       <strong>/credential</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/credentials.html#get--credential-signurl"><code class="xref">GET /credential/signurl</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/dids"><td></td><td>
+       <strong>/dids</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(guid)-guid"><code class="xref">GET /dids/(guid)/guid</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-"><code class="xref">GET /dids/(scope)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-(name)"><code class="xref">GET /dids/(scope)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-(name)-associated_rules"><code class="xref">GET /dids/(scope)/(name)/associated_rules</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-(name)-dids"><code class="xref">GET /dids/(scope)/(name)/dids</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-(name)-dids-history"><code class="xref">GET /dids/(scope)/(name)/dids/history</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-(name)-files"><code class="xref">GET /dids/(scope)/(name)/files</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-(name)-meta"><code class="xref">GET /dids/(scope)/(name)/meta</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-(name)-parents"><code class="xref">GET /dids/(scope)/(name)/parents</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-(name)-rules"><code class="xref">GET /dids/(scope)/(name)/rules</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-dids-search"><code class="xref">GET /dids/(scope)/dids/search</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-(scope)-dids-search_extended"><code class="xref">GET /dids/(scope)/dids/search_extended</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#get--dids-new"><code class="xref">GET /dids/new</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#post--dids-"><code class="xref">POST /dids/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#post--dids-(input_scope)-(input_name)-(output_scope)-(output_name)-(nbfiles)-sample"><code class="xref">POST /dids/(input_scope)/(input_name)/(output_scope)/(output_name)/(nbfiles)/sample</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#post--dids-(scope)-(name)"><code class="xref">POST /dids/(scope)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#post--dids-(scope)-(name)-dids"><code class="xref">POST /dids/(scope)/(name)/dids</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#post--dids-(scope)-(name)-meta-(key)"><code class="xref">POST /dids/(scope)/(name)/meta/(key)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#post--dids-attachments"><code class="xref">POST /dids/attachments</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#post--dids-bulkmeta"><code class="xref">POST /dids/bulkmeta</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#post--dids-resurrect"><code class="xref">POST /dids/resurrect</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#put--dids-(scope)-(name)-status"><code class="xref">PUT /dids/(scope)/(name)/status</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/did.html#delete--dids-(scope)-(name)-dids"><code class="xref">DELETE /dids/(scope)/(name)/dids</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/export"><td></td><td>
+       <strong>/export</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/exporter.html#get--export-"><code class="xref">GET /export/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/heartbeats"><td></td><td>
+       <strong>/heartbeats</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/heartbeat.html#get--heartbeats-"><code class="xref">GET /heartbeats/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/identities"><td></td><td>
+       <strong>/identities</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/identity.html#get--identities-(identity_key)-(type)"><code class="xref">GET /identities/(identity_key)/(type)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/identity.html#put--identities-(account)-gss"><code class="xref">PUT /identities/(account)/gss</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/identity.html#put--identities-(account)-userpass"><code class="xref">PUT /identities/(account)/userpass</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/identity.html#put--identities-(account)-x509"><code class="xref">PUT /identities/(account)/x509</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/import"><td></td><td>
+       <strong>/import</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/importer.html#post--import-"><code class="xref">POST /import/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/lifetime_exceptions"><td></td><td>
+       <strong>/lifetime_exceptions</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/lifetime_exception.html#get--lifetime_exceptions-"><code class="xref">GET /lifetime_exceptions/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/lifetime_exception.html#get--lifetime_exceptions-(exception_id)"><code class="xref">GET /lifetime_exceptions/(exception_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/lifetime_exception.html#post--lifetime_exceptions-"><code class="xref">POST /lifetime_exceptions/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/lifetime_exception.html#put--lifetime_exceptions-(exception_id)"><code class="xref">PUT /lifetime_exceptions/(exception_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/locks"><td></td><td>
+       <strong>/locks</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/lock.html#get--locks-(rse)"><code class="xref">GET /locks/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/lock.html#get--locks-(scope)-(name)"><code class="xref">GET /locks/(scope)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/meta"><td></td><td>
+       <strong>/meta</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/meta.html#get--meta-"><code class="xref">GET /meta/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/meta.html#get--meta-(key)-"><code class="xref">GET /meta/(key)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/meta.html#post--meta-(key)"><code class="xref">POST /meta/(key)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/meta.html#post--meta-(key)-"><code class="xref">POST /meta/(key)/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/nongrid_traces"><td></td><td>
+       <strong>/nongrid_traces</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/nongrid_trace.html#post--nongrid_traces-"><code class="xref">POST /nongrid_traces/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/ping"><td></td><td>
+       <strong>/ping</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/ping.html#get--ping-"><code class="xref">GET /ping/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/redirect"><td></td><td>
+       <strong>/redirect</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/redirect.html#get--redirect-(scope)-(name)"><code class="xref">GET /redirect/(scope)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/redirect.html#get--redirect-(scope)-(name)-metalink"><code class="xref">GET /redirect/(scope)/(name)/metalink</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/replicas"><td></td><td>
+       <strong>/replicas</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#get--replicas-(scope)-(name)"><code class="xref">GET /replicas/(scope)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#get--replicas-(scope)-(name)-datasets"><code class="xref">GET /replicas/(scope)/(name)/datasets</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#get--replicas-bad-states"><code class="xref">GET /replicas/bad/states</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#get--replicas-bad-summary"><code class="xref">GET /replicas/bad/summary</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#get--replicas-rse-(rse)"><code class="xref">GET /replicas/rse/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#post--replicas-"><code class="xref">POST /replicas/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#post--replicas-bad"><code class="xref">POST /replicas/bad</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#post--replicas-bad-pfns"><code class="xref">POST /replicas/bad/pfns</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#post--replicas-datasets_bulk"><code class="xref">POST /replicas/datasets_bulk</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#post--replicas-dids"><code class="xref">POST /replicas/dids</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#post--replicas-list"><code class="xref">POST /replicas/list</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#post--replicas-suspicious"><code class="xref">POST /replicas/suspicious</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#post--replicas-tombstone"><code class="xref">POST /replicas/tombstone</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#put--replicas-"><code class="xref">PUT /replicas/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/replica.html#delete--replicas-"><code class="xref">DELETE /replicas/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/requests"><td></td><td>
+       <strong>/requests</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/request.html#get--requests-(scope)-(name)-(rse)"><code class="xref">GET /requests/(scope)/(name)/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/request.html#get--requests-list"><code class="xref">GET /requests/list</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/rses"><td></td><td>
+       <strong>/rses</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-"><code class="xref">GET /rses/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)"><code class="xref">GET /rses/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-accounts-usage"><code class="xref">GET /rses/(rse)/accounts/usage</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-attr"><code class="xref">GET /rses/(rse)/attr</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-lfns2pfns"><code class="xref">GET /rses/(rse)/lfns2pfns</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-limits"><code class="xref">GET /rses/(rse)/limits</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-protocols"><code class="xref">GET /rses/(rse)/protocols</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-protocols-(scheme)"><code class="xref">GET /rses/(rse)/protocols/(scheme)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-qos_policy"><code class="xref">GET /rses/(rse)/qos_policy</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-usage"><code class="xref">GET /rses/(rse)/usage</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(rse)-usage-history"><code class="xref">GET /rses/(rse)/usage/history</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#get--rses-(source)-attr-(destination)"><code class="xref">GET /rses/(source)/attr/(destination)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#post--rses-(rse)"><code class="xref">POST /rses/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#post--rses-(rse)-attr-(key)"><code class="xref">POST /rses/(rse)/attr/(key)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#post--rses-(rse)-protocols-(scheme)"><code class="xref">POST /rses/(rse)/protocols/(scheme)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#post--rses-(rse)-qos_policy-(policy)"><code class="xref">POST /rses/(rse)/qos_policy/(policy)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#post--rses-(source)-attr-(destination)"><code class="xref">POST /rses/(source)/attr/(destination)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#put--rses-(rse)"><code class="xref">PUT /rses/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#put--rses-(rse)-limits"><code class="xref">PUT /rses/(rse)/limits</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#put--rses-(rse)-protocols-(scheme)-(hostname)-(port)"><code class="xref">PUT /rses/(rse)/protocols/(scheme)/(hostname)/(port)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#put--rses-(rse)-usage"><code class="xref">PUT /rses/(rse)/usage</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#put--rses-(source)-attr-(destination)"><code class="xref">PUT /rses/(source)/attr/(destination)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#delete--rses-(rse)"><code class="xref">DELETE /rses/(rse)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#delete--rses-(rse)-attr-(key)"><code class="xref">DELETE /rses/(rse)/attr/(key)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#delete--rses-(rse)-protocols-(scheme)-(hostname)-(port)"><code class="xref">DELETE /rses/(rse)/protocols/(scheme)/(hostname)/(port)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rse.html#delete--rses-(rse)-qos_policy-(policy)"><code class="xref">DELETE /rses/(rse)/qos_policy/(policy)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/rules"><td></td><td>
+       <strong>/rules</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#get--rules-"><code class="xref">GET /rules/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#get--rules-(rule_id)"><code class="xref">GET /rules/(rule_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#get--rules-(rule_id)-analysis"><code class="xref">GET /rules/(rule_id)/analysis</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#get--rules-(rule_id)-history"><code class="xref">GET /rules/(rule_id)/history</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#get--rules-(rule_id)-locks"><code class="xref">GET /rules/(rule_id)/locks</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#get--rules-(scope)-(name)-history"><code class="xref">GET /rules/(scope)/(name)/history</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#post--rules-"><code class="xref">POST /rules/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#post--rules-(rule_id)-mode"><code class="xref">POST /rules/(rule_id)/mode</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#post--rules-(rule_id)-reduce"><code class="xref">POST /rules/(rule_id)/reduce</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#put--rules-(rule_id)"><code class="xref">PUT /rules/(rule_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/rule.html#delete--rules-(rule_id)"><code class="xref">DELETE /rules/(rule_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/scopes"><td></td><td>
+       <strong>/scopes</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/scope.html#get--scopes-"><code class="xref">GET /scopes/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/scope.html#post--scopes-(account)-(scope)"><code class="xref">POST /scopes/(account)/(scope)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/subscriptions"><td></td><td>
+       <strong>/subscriptions</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#get--subscriptions-"><code class="xref">GET /subscriptions/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#get--subscriptions-(account)"><code class="xref">GET /subscriptions/(account)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#get--subscriptions-(account)-(name)"><code class="xref">GET /subscriptions/(account)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#get--subscriptions-(account)-(name)-Rules"><code class="xref">GET /subscriptions/(account)/(name)/Rules</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#get--subscriptions-(account)-(name)-Rules-States"><code class="xref">GET /subscriptions/(account)/(name)/Rules/States</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#get--subscriptions-(account)-Rules-States"><code class="xref">GET /subscriptions/(account)/Rules/States</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#get--subscriptions-Id-(subscription_id)"><code class="xref">GET /subscriptions/Id/(subscription_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#get--subscriptions-Name-(name)"><code class="xref">GET /subscriptions/Name/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#post--subscriptions-(account)-(name)"><code class="xref">POST /subscriptions/(account)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/subscription.html#put--subscriptions-(account)-(name)"><code class="xref">PUT /subscriptions/(account)/(name)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/tmp_dids"><td></td><td>
+       <strong>/tmp_dids</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/temporary_did.html#post--tmp_dids-"><code class="xref">POST /tmp_dids/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/traces"><td></td><td>
+       <strong>/traces</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/trace.html#post--traces-"><code class="xref">POST /traces/</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/vos"><td></td><td>
+       <strong>/vos</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/vo.html#get--vos-"><code class="xref">GET /vos/</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/vo.html#post--vos-(vo)"><code class="xref">POST /vos/(vo)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/vo.html#post--vos-(vo)-recover"><code class="xref">POST /vos/(vo)/recover</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="restapi/vo.html#put--vos-(vo)"><code class="xref">PUT /vos/(vo)</code></a></td><td>
+       <em></em></td></tr>
+   </table>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">RESTful APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="restapi/account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/archive.html">Archive Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/authentication.html">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/replica.html">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restapi/vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The Client API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/scope.html">Scope Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/did.html">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/replica.html">Replica Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/rule.html">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/lifetime.html">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/config.html">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/exception.html">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>

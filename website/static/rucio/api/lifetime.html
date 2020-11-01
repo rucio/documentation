@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: Lifetime Methods</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+
+  <link rel="stylesheet" href="../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../index.html"><img src="../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>Lifetime Methods</h1>
+        </div>
+        <div id="main-content">
+          
+  <div class="section" id="lifetime-methods">
+<h1>Lifetime Methods<a class="headerlink" href="#lifetime-methods" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-rucio.client.lifetimeclient"><span id="lifetime"></span></span><dl class="py class">
+<dt id="rucio.client.lifetimeclient.LifetimeClient">
+<em class="property">class </em><code class="sig-prename descclassname">rucio.client.lifetimeclient.</code><code class="sig-name descname">LifetimeClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rucio_host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auth_host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">account</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ca_cert</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auth_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">creds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">600</span></em>, <em class="sig-param"><span class="n">user_agent</span><span class="o">=</span><span class="default_value">'rucio-clients'</span></em>, <em class="sig-param"><span class="n">vo</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.lifetimeclient.LifetimeClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.client.baseclient.BaseClient</span></code></p>
+<p>Lifetime client class for working with Lifetime Model exceptions</p>
+<dl class="py attribute">
+<dt id="rucio.client.lifetimeclient.LifetimeClient.LIFETIME_BASEURL">
+<code class="sig-name descname">LIFETIME_BASEURL</code><em class="property"> = 'lifetime_exceptions'</em><a class="headerlink" href="#rucio.client.lifetimeclient.LifetimeClient.LIFETIME_BASEURL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.lifetimeclient.LifetimeClient.add_exception">
+<code class="sig-name descname">add_exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dids</span></em>, <em class="sig-param"><span class="n">account</span></em>, <em class="sig-param"><span class="n">pattern</span></em>, <em class="sig-param"><span class="n">comments</span></em>, <em class="sig-param"><span class="n">expires_at</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.lifetimeclient.LifetimeClient.add_exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add exceptions to Lifetime Model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dids</strong> – The list of dids</p></li>
+<li><p><strong>account</strong> – The account of the requester.</p></li>
+<li><p><strong>pattern</strong> – The account.</p></li>
+<li><p><strong>comments</strong> – The comments associated to the exception.</p></li>
+<li><p><strong>expires_at</strong> – The expiration date of the exception.</p></li>
+</ul>
+</dd>
+</dl>
+<p>returns:            The id of the exception.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.lifetimeclient.LifetimeClient.list_exceptions">
+<code class="sig-name descname">list_exceptions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exception_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">states</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.lifetimeclient.LifetimeClient.list_exceptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>List exceptions to Lifetime Model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – The id of the exception</p></li>
+<li><p><strong>states</strong> – The states to filter</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/archive.html">Archive Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/authentication.html">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/replica.html">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">The Client API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">Scope Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="did.html">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="replica.html">Replica Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+                <li class="footer-element">
+                    
+                        <a href="../_sources/api/lifetime.rst.txt" rel="nofollow"> source</a>
+                    
+                </li>
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>

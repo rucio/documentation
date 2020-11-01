@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: Replication Rule Methods</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+
+  <link rel="stylesheet" href="../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../index.html"><img src="../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>Replication Rule Methods</h1>
+        </div>
+        <div id="main-content">
+          
+  <div class="section" id="replication-rule-methods">
+<h1>Replication Rule Methods<a class="headerlink" href="#replication-rule-methods" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-rucio.client.ruleclient"><span id="rule"></span></span><dl class="py class">
+<dt id="rucio.client.ruleclient.RuleClient">
+<em class="property">class </em><code class="sig-prename descclassname">rucio.client.ruleclient.</code><code class="sig-name descname">RuleClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rucio_host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auth_host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">account</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ca_cert</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auth_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">creds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">600</span></em>, <em class="sig-param"><span class="n">dq2_wrapper</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">vo</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.client.baseclient.BaseClient</span></code></p>
+<p>RuleClient class for working with replication rules</p>
+<dl class="py attribute">
+<dt id="rucio.client.ruleclient.RuleClient.RULE_BASEURL">
+<code class="sig-name descname">RULE_BASEURL</code><em class="property"> = 'rules'</em><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.RULE_BASEURL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.add_replication_rule">
+<code class="sig-name descname">add_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dids</span></em>, <em class="sig-param"><span class="n">copies</span></em>, <em class="sig-param"><span class="n">rse_expression</span></em>, <em class="sig-param"><span class="n">weight</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lifetime</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">grouping</span><span class="o">=</span><span class="default_value">'DATASET'</span></em>, <em class="sig-param"><span class="n">account</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">locked</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">source_replica_expression</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">activity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">notify</span><span class="o">=</span><span class="default_value">'N'</span></em>, <em class="sig-param"><span class="n">purge_replicas</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ignore_availability</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">comment</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ask_approval</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">asynchronous</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">priority</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">meta</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.add_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dids</strong> – The data identifier set.</p></li>
+<li><p><strong>copies</strong> – The number of replicas.</p></li>
+<li><p><strong>rse_expression</strong> – Boolean string expression to give the list of RSEs.</p></li>
+<li><p><strong>weight</strong> – If the weighting option of the replication rule is used, the choice of RSEs takes their weight into account.</p></li>
+<li><p><strong>lifetime</strong> – The lifetime of the replication rules (in seconds).</p></li>
+<li><p><strong>grouping</strong> – ALL -  All files will be replicated to the same RSE.
+DATASET - All files in the same dataset will be replicated to the same RSE.
+NONE - Files will be completely spread over all allowed RSEs without any grouping considerations at all.</p></li>
+<li><p><strong>account</strong> – The account owning the rule.</p></li>
+<li><p><strong>locked</strong> – If the rule is locked, it cannot be deleted.</p></li>
+<li><p><strong>source_replica_expression</strong> – RSE Expression for RSEs to be considered for source replicas.</p></li>
+<li><p><strong>activity</strong> – Transfer Activity to be passed to FTS.</p></li>
+<li><p><strong>notify</strong> – Notification setting for the rule (Y, N, C).</p></li>
+<li><p><strong>purge_replicas</strong> – When the rule gets deleted purge the associated replicas immediately.</p></li>
+<li><p><strong>ignore_availability</strong> – Option to ignore the availability of RSEs.</p></li>
+<li><p><strong>ask_approval</strong> – Ask for approval of this replication rule.</p></li>
+<li><p><strong>asynchronous</strong> – Create rule asynchronously by judge-injector.</p></li>
+<li><p><strong>priority</strong> – Priority of the transfers.</p></li>
+<li><p><strong>comment</strong> – Comment about the rule.</p></li>
+<li><p><strong>meta</strong> – Metadata, as dictionary.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.approve_replication_rule">
+<code class="sig-name descname">approve_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.approve_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rule_id</strong> – Rule to be approved.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleNotFound</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.delete_replication_rule">
+<code class="sig-name descname">delete_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em>, <em class="sig-param"><span class="n">purge_replicas</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.delete_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes a replication rule and all associated locks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule_id</strong> – The id of the rule to be deleted</p></li>
+<li><p><strong>purge_replicas</strong> – Immediately delete the replicas.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleNotFound, AccessDenied</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.deny_replication_rule">
+<code class="sig-name descname">deny_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.deny_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rule_id</strong> – Rule to be denied.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleNotFound</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.examine_replication_rule">
+<code class="sig-name descname">examine_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.examine_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Examine a replication rule for errors during transfer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rule_id</strong> – Rule to be denied.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleNotFound</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.get_replication_rule">
+<code class="sig-name descname">get_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em>, <em class="sig-param"><span class="n">estimate_ttc</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.get_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a replication rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule_id</strong> – The id of the rule to be retrieved.</p></li>
+<li><p><strong>estimate_ttc</strong> – bool, if rule_info should return ttc information</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleNotFound</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.list_replica_locks">
+<code class="sig-name descname">list_replica_locks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.list_replica_locks" title="Permalink to this definition">¶</a></dt>
+<dd><p>List details of all replica locks for a rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rule_id</strong> – Rule to be denied.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleNotFound</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.list_replication_rule_full_history">
+<code class="sig-name descname">list_replication_rule_full_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.list_replication_rule_full_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the rule history of a DID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope of the DID.</p></li>
+<li><p><strong>name</strong> – The name of the DID.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.list_replication_rules">
+<code class="sig-name descname">list_replication_rules</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filters</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.list_replication_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all replication rules which match a filter
+:param filters: dictionary of attributes by which the rules should be filtered</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if successful, otherwise false.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.move_replication_rule">
+<code class="sig-name descname">move_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em>, <em class="sig-param"><span class="n">rse_expression</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.move_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move a replication rule to another RSE and, once done, delete the original one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule_id</strong> – Rule to be moved.</p></li>
+<li><p><strong>rse_expression</strong> – RSE expression of the new rule.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleNotFound, RuleReplaceFailed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.reduce_replication_rule">
+<code class="sig-name descname">reduce_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em>, <em class="sig-param"><span class="n">copies</span></em>, <em class="sig-param"><span class="n">exclude_expression</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.reduce_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule_id</strong> – Rule to be reduced.</p></li>
+<li><p><strong>copies</strong> – Number of copies of the new rule.</p></li>
+<li><p><strong>exclude_expression</strong> – RSE Expression of RSEs to exclude.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleReplaceFailed, RuleNotFound</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.ruleclient.RuleClient.update_replication_rule">
+<code class="sig-name descname">update_replication_rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule_id</span></em>, <em class="sig-param"><span class="n">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.ruleclient.RuleClient.update_replication_rule" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule_id</strong> – The id of the rule to be retrieved.</p></li>
+<li><p><strong>options</strong> – Options dictionary.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>RuleNotFound</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/archive.html">Archive Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/authentication.html">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/replica.html">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">The Client API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">Scope Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="did.html">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="replica.html">Replica Methods</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifetime.html">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+                <li class="footer-element">
+                    
+                        <a href="../_sources/api/rule.rst.txt" rel="nofollow"> source</a>
+                    
+                </li>
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>

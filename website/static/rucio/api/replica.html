@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: Replica Methods</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+
+  <link rel="stylesheet" href="../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../index.html"><img src="../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>Replica Methods</h1>
+        </div>
+        <div id="main-content">
+          
+  <div class="section" id="replica-methods">
+<h1>Replica Methods<a class="headerlink" href="#replica-methods" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-rucio.client.replicaclient"><span id="replicas"></span></span><dl class="py class">
+<dt id="rucio.client.replicaclient.ReplicaClient">
+<em class="property">class </em><code class="sig-prename descclassname">rucio.client.replicaclient.</code><code class="sig-name descname">ReplicaClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rucio_host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auth_host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">account</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ca_cert</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auth_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">creds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">600</span></em>, <em class="sig-param"><span class="n">user_agent</span><span class="o">=</span><span class="default_value">'rucio-clients'</span></em>, <em class="sig-param"><span class="n">vo</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.client.baseclient.BaseClient</span></code></p>
+<p>Replica client class for working with replicas</p>
+<dl class="py attribute">
+<dt id="rucio.client.replicaclient.ReplicaClient.REPLICAS_BASEURL">
+<code class="sig-name descname">REPLICAS_BASEURL</code><em class="property"> = 'replicas'</em><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.REPLICAS_BASEURL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.add_bad_pfns">
+<code class="sig-name descname">add_bad_pfns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pfns</span></em>, <em class="sig-param"><span class="n">reason</span></em>, <em class="sig-param"><span class="n">state</span></em>, <em class="sig-param"><span class="n">expires_at</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.add_bad_pfns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a list of bad replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> – The list of PFNs.</p></li>
+<li><p><strong>reason</strong> – The reason of the loss.</p></li>
+<li><p><strong>state</strong> – The state of the replica. Either BAD, SUSPICIOUS, TEMPORARY_UNAVAILABLE</p></li>
+<li><p><strong>expires_at</strong> – Specify a timeout for the TEMPORARY_UNAVAILABLE replicas. None for BAD files.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if PFNs were created successfully.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.add_replica">
+<code class="sig-name descname">add_replica</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rse</span></em>, <em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">bytes</span></em>, <em class="sig-param"><span class="n">adler32</span></em>, <em class="sig-param"><span class="n">pfn</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">md5</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">meta</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.add_replica" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add file replicas to a RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> – the RSE name.</p></li>
+<li><p><strong>scope</strong> – The scope of the file.</p></li>
+<li><p><strong>name</strong> – The name of the file.</p></li>
+<li><p><strong>bytes</strong> – The size in bytes.</p></li>
+<li><p><strong>adler32</strong> – adler32 checksum.</p></li>
+<li><p><strong>pfn</strong> – PFN of the file for non deterministic RSE.</p></li>
+<li><p><strong>md5</strong> – md5 checksum.</p></li>
+<li><p><strong>meta</strong> – Metadata attributes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if files were created successfully.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.add_replicas">
+<code class="sig-name descname">add_replicas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rse</span></em>, <em class="sig-param"><span class="n">files</span></em>, <em class="sig-param"><span class="n">ignore_availability</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.add_replicas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bulk add file replicas to a RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> – the RSE name.</p></li>
+<li><p><strong>files</strong> – The list of files. This is a list of DIDs like :
+[{‘scope’: &lt;scope1&gt;, ‘name’: &lt;name1&gt;}, {‘scope’: &lt;scope2&gt;, ‘name’: &lt;name2&gt;}, …]</p></li>
+<li><p><strong>ignore_availability</strong> – Ignore the RSE blacklisting.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if files were created successfully.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.declare_bad_file_replicas">
+<code class="sig-name descname">declare_bad_file_replicas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pfns</span></em>, <em class="sig-param"><span class="n">reason</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.declare_bad_file_replicas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a list of bad replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> – The list of PFNs.</p></li>
+<li><p><strong>reason</strong> – The reason of the loss.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.declare_suspicious_file_replicas">
+<code class="sig-name descname">declare_suspicious_file_replicas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pfns</span></em>, <em class="sig-param"><span class="n">reason</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.declare_suspicious_file_replicas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a list of bad replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> – The list of PFNs.</p></li>
+<li><p><strong>reason</strong> – The reason of the loss.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.delete_replicas">
+<code class="sig-name descname">delete_replicas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rse</span></em>, <em class="sig-param"><span class="n">files</span></em>, <em class="sig-param"><span class="n">ignore_availability</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.delete_replicas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bulk delete file replicas from a RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> – the RSE name.</p></li>
+<li><p><strong>files</strong> – The list of files. This is a list of DIDs like :
+[{‘scope’: &lt;scope1&gt;, ‘name’: &lt;name1&gt;}, {‘scope’: &lt;scope2&gt;, ‘name’: &lt;name2&gt;}, …]</p></li>
+<li><p><strong>ignore_availability</strong> – Ignore the RSE blacklisting.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if files have been deleted successfully.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.get_did_from_pfns">
+<code class="sig-name descname">get_did_from_pfns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pfns</span></em>, <em class="sig-param"><span class="n">rse</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.get_did_from_pfns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the DIDs associated to a PFN on one given RSE</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> – The list of PFNs.</p></li>
+<li><p><strong>rse</strong> – The RSE name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dictionaries {pfn: {‘scope’: scope, ‘name’: name}}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.list_dataset_replicas">
+<code class="sig-name descname">list_dataset_replicas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">deep</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.list_dataset_replicas" title="Permalink to this definition">¶</a></dt>
+<dd><p>List dataset replicas for a did (scope:name).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope of the dataset.</p></li>
+<li><p><strong>name</strong> – The name of the dataset.</p></li>
+<li><p><strong>deep</strong> – Lookup at the file level.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dict dataset replicas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.list_dataset_replicas_bulk">
+<code class="sig-name descname">list_dataset_replicas_bulk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.list_dataset_replicas_bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>List dataset replicas for a did (scope:name).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dids</strong> – The list of DIDs of the datasets.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dict dataset replicas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.list_dataset_replicas_vp">
+<code class="sig-name descname">list_dataset_replicas_vp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">deep</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.list_dataset_replicas_vp" title="Permalink to this definition">¶</a></dt>
+<dd><p>List dataset replicas for a DID (scope:name) using the
+Virtual Placement service.</p>
+<p>NOTICE: This is an RnD function and might change or go away at any time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope of the dataset.</p></li>
+<li><p><strong>name</strong> – The name of the dataset.</p></li>
+<li><p><strong>deep</strong> – Lookup at the file level.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If VP exists a list of dicts of sites</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.list_datasets_per_rse">
+<code class="sig-name descname">list_datasets_per_rse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rse</span></em>, <em class="sig-param"><span class="n">filters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.list_datasets_per_rse" title="Permalink to this definition">¶</a></dt>
+<dd><p>List datasets at a RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> – the rse name.</p></li>
+<li><p><strong>filters</strong> – dictionary of attributes by which the results should be filtered.</p></li>
+<li><p><strong>limit</strong> – limit number.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dict dataset replicas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.list_replicas">
+<code class="sig-name descname">list_replicas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dids</span></em>, <em class="sig-param"><span class="n">schemes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">unavailable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">all_states</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">metalink</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">rse_expression</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">client_location</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">domain</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">resolve_archives</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">resolve_parents</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">updated_after</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.list_replicas" title="Permalink to this definition">¶</a></dt>
+<dd><p>List file replicas for a list of data identifiers (DIDs).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dids</strong> – The list of data identifiers (DIDs) like :
+[{‘scope’: &lt;scope1&gt;, ‘name’: &lt;name1&gt;}, {‘scope’: &lt;scope2&gt;, ‘name’: &lt;name2&gt;}, …]</p></li>
+<li><p><strong>schemes</strong> – A list of schemes to filter the replicas. (e.g. file, http, …)</p></li>
+<li><p><strong>unavailable</strong> – Also include unavailable replicas in the list.</p></li>
+<li><p><strong>metalink</strong> – <code class="docutils literal notranslate"><span class="pre">False</span></code> (default) retrieves as JSON,
+<code class="docutils literal notranslate"><span class="pre">True</span></code> retrieves as metalink4+xml.</p></li>
+<li><p><strong>rse_expression</strong> – The RSE expression to restrict replicas on a set of RSEs.</p></li>
+<li><p><strong>client_location</strong> – Client location dictionary for PFN modification {‘ip’, ‘fqdn’, ‘site’}</p></li>
+<li><p><strong>sort</strong> – Sort the replicas: <code class="docutils literal notranslate"><span class="pre">geoip</span></code> - based on src/dst IP topographical distance
+<code class="docutils literal notranslate"><span class="pre">closeness</span></code> - based on src/dst closeness
+<code class="docutils literal notranslate"><span class="pre">dynamic</span></code> - Rucio Dynamic Smart Sort (tm)</p></li>
+<li><p><strong>domain</strong> – Define the domain. None is fallback to ‘wan’, otherwise ‘wan, ‘lan’, or ‘all’</p></li>
+<li><p><strong>resolve_archives</strong> – When set to True, find archives which contain the replicas.</p></li>
+<li><p><strong>resolve_parents</strong> – When set to True, find all parent datasets which contain the replicas.</p></li>
+<li><p><strong>updated_after</strong> – epoch timestamp or datetime object (UTC time), only return replicas updated after this time</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dictionaries with replica information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.set_tombstone">
+<code class="sig-name descname">set_tombstone</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">replicas</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.set_tombstone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a tombstone on a list of replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>replicas</strong> – list of replicas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.replicaclient.ReplicaClient.update_replicas_states">
+<code class="sig-name descname">update_replicas_states</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rse</span></em>, <em class="sig-param"><span class="n">files</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.replicaclient.ReplicaClient.update_replicas_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bulk update the file replicas states from a RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> – the RSE name.</p></li>
+<li><p><strong>files</strong> – The list of files. This is a list of DIDs like :
+[{‘scope’: &lt;scope1&gt;, ‘name’: &lt;name1&gt;, ‘state’: &lt;state1&gt;}, {‘scope’: &lt;scope2&gt;, ‘name’: &lt;name2&gt;, ‘state’: &lt;state2&gt;}, …],
+where a state value can be either of:
+‘A’ (available)
+‘S’ (suspicious)
+‘U’ (unavailable)
+‘R’ (recovered)
+‘B’ (bad)
+‘L’ (lost)
+‘D’ (deleted)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if replica states have been updated successfully, otherwise an exception is raised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/archive.html">Archive Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/authentication.html">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/replica.html">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">The Client API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">Scope Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="did.html">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Replica Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifetime.html">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+                <li class="footer-element">
+                    
+                        <a href="../_sources/api/replica.rst.txt" rel="nofollow"> source</a>
+                    
+                </li>
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>

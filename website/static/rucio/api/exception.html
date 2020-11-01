@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: Rucio Exceptions</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+
+  <link rel="stylesheet" href="../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../index.html"><img src="../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>Rucio Exceptions</h1>
+        </div>
+        <div id="main-content">
+          
+  <div class="section" id="module-rucio.common.exception">
+<span id="rucio-exceptions"></span><span id="exceptions"></span><h1>Rucio Exceptions<a class="headerlink" href="#module-rucio.common.exception" title="Permalink to this headline">¶</a></h1>
+<p>Exceptions used with Rucio.</p>
+<p>The base exception class is <code class="xref py py-class docutils literal notranslate"> <span class="pre">RucioException</span></code>.
+Exceptions which are raised are all subclasses of it.</p>
+<dl class="py exception">
+<dt id="rucio.common.exception.AccessDenied">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">AccessDenied</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.AccessDenied" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.AccountNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">AccountNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.AccountNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.CannotAuthenticate">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">CannotAuthenticate</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.CannotAuthenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.CannotAuthorize">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">CannotAuthorize</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.CannotAuthorize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Failed to authorize an operation.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ClientParameterMismatch">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ClientParameterMismatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ClientParameterMismatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ClientProtocolNotSupported">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ClientProtocolNotSupported</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ClientProtocolNotSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ConfigNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ConfigNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ConfigNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ConfigurationError">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ConfigurationError</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ConfigurationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.CounterNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">CounterNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.CounterNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.DIDTypeError">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">DIDTypeError</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.DIDTypeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>An operation related to DIDType went wrong</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.DataIdentifierAlreadyExists">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">DataIdentifierAlreadyExists</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.DataIdentifierAlreadyExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.DataIdentifierNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">DataIdentifierNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.DataIdentifierNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.DatabaseException">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">DatabaseException</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.DatabaseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.DestinationNotAccessible">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">DestinationNotAccessible</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.DestinationNotAccessible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.Duplicate">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">Duplicate</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.Duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.DuplicateContent">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">DuplicateContent</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.DuplicateContent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.DuplicateFileTransferSubmission">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">DuplicateFileTransferSubmission</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.DuplicateFileTransferSubmission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>A transfer for the same file is already submitted to the Transfer Tool.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.DuplicateRule">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">DuplicateRule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.DuplicateRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ErrorLoadingCredentials">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ErrorLoadingCredentials</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ErrorLoadingCredentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.FileAlreadyExists">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">FileAlreadyExists</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.FileAlreadyExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.FileConsistencyMismatch">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">FileConsistencyMismatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.FileConsistencyMismatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.FileReplicaAlreadyExists">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">FileReplicaAlreadyExists</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.FileReplicaAlreadyExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.FullStorage">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">FullStorage</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.FullStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.IdentityError">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">IdentityError</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.IdentityError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.IdentityNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">IdentityNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.IdentityNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InputValidationError">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InputValidationError</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InputValidationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InsufficientAccountLimit">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InsufficientAccountLimit</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InsufficientAccountLimit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InsufficientTargetRSEs">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InsufficientTargetRSEs</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InsufficientTargetRSEs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidMetadata">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidMetadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidObject">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidObject</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidPath">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidPath</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidRSEExpression">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidRSEExpression</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidRSEExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidReplicationRule">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidReplicationRule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidReplicationRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidRequest">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidRuleWeight">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidRuleWeight</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidRuleWeight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidType">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidType</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.InvalidValueForKey">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">InvalidValueForKey</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.InvalidValueForKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.KeyNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">KeyNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.KeyNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.LifetimeExceptionDuplicate">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">LifetimeExceptionDuplicate</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.LifetimeExceptionDuplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.LifetimeExceptionNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">LifetimeExceptionNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.LifetimeExceptionNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ManualRuleApprovalBlocked">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ManualRuleApprovalBlocked</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ManualRuleApprovalBlocked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.MetalinkJsonParsingError">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">MetalinkJsonParsingError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">metalink_err</span></em>, <em class="sig-param"><span class="n">json_err</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.MetalinkJsonParsingError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Failed to parse input with metalink and json</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.MissingClientParameter">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">MissingClientParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.MissingClientParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.MissingDependency">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">MissingDependency</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.MissingDependency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.MissingModuleException">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">MissingModuleException</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.MissingModuleException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.MissingSourceReplica">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">MissingSourceReplica</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.MissingSourceReplica" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.NameTypeError">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">NameTypeError</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.NameTypeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.NoAuthInformation">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">NoAuthInformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.NoAuthInformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.NoDistance">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">NoDistance</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.NoDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>No distance can be found between 2 RSEs</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.NoFilesDownloaded">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">NoFilesDownloaded</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.NoFilesDownloaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.NoFilesUploaded">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">NoFilesUploaded</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.NoFilesUploaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.NotAllFilesDownloaded">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">NotAllFilesDownloaded</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.NotAllFilesDownloaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.NotAllFilesUploaded">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">NotAllFilesUploaded</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.NotAllFilesUploaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.PolicyPackageNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">PolicyPackageNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.PolicyPackageNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>The policy package specified in the config file cannot be loaded.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEAccessDenied">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEAccessDenied</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEAccessDenied" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEAttributeNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEAttributeNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEAttributeNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>RSE attribute not found.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEBlacklisted">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEBlacklisted</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEBlacklisted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEChecksumUnavailable">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEChecksumUnavailable</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEChecksumUnavailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Cannot retrieve checksum from RSE</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEFileNameNotSupported">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEFileNameNotSupported</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEFileNameNotSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSENotConnected">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSENotConnected</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSENotConnected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSENotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSENotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSENotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEOperationNotSupported">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEOperationNotSupported</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEOperationNotSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEOverQuota">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEOverQuota</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEOverQuota" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEProtocolDomainNotSupported">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEProtocolDomainNotSupported</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEProtocolDomainNotSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEProtocolNotSupported">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEProtocolNotSupported</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEProtocolNotSupported" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RSEProtocolPriorityError">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RSEProtocolPriorityError</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RSEProtocolPriorityError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ReplicaIsLocked">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ReplicaIsLocked</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ReplicaIsLocked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Replica has one or more locks.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ReplicaNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ReplicaNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ReplicaNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ReplicaUnAvailable">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ReplicaUnAvailable</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ReplicaUnAvailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ReplicationRuleCreationTemporaryFailed">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ReplicationRuleCreationTemporaryFailed</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ReplicationRuleCreationTemporaryFailed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RequestNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RequestNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RequestNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ResourceTemporaryUnavailable">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ResourceTemporaryUnavailable</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ResourceTemporaryUnavailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RucioException">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RucioException</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RucioException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>To correctly use this class, inherit from it and define
+a ‘message’ property. That message will get printf’d
+with the keyword arguments provided to the constructor.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RuleNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RuleNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RuleNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.RuleReplaceFailed">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">RuleReplaceFailed</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.RuleReplaceFailed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ScopeAccessDenied">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ScopeAccessDenied</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ScopeAccessDenied" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ScopeNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ScopeNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ScopeNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ScratchDiskLifetimeConflict">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ScratchDiskLifetimeConflict</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ScratchDiskLifetimeConflict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ServerConnectionException">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ServerConnectionException</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ServerConnectionException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.ServiceUnavailable">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">ServiceUnavailable</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.ServiceUnavailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.SourceAccessDenied">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">SourceAccessDenied</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.SourceAccessDenied" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.SourceNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">SourceNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.SourceNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.StagingAreaRuleRequiresLifetime">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">StagingAreaRuleRequiresLifetime</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.StagingAreaRuleRequiresLifetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.SubscriptionDuplicate">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">SubscriptionDuplicate</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.SubscriptionDuplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.SubscriptionNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">SubscriptionNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.SubscriptionNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.SubscriptionWrongParameter">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">SubscriptionWrongParameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.SubscriptionWrongParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.TransferToolTimeout">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">TransferToolTimeout</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.TransferToolTimeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Timeout from the transfer tool</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.TransferToolWrongAnswer">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">TransferToolWrongAnswer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.TransferToolWrongAnswer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Wrong answer returned by the transfer tool</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.UndefinedPolicy">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">UndefinedPolicy</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.UndefinedPolicy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Cannot find a defined policy in the Rucio config</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.UnsupportedAccountName">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">UnsupportedAccountName</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.UnsupportedAccountName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Requested account name is not supported for users.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.UnsupportedDIDType">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">UnsupportedDIDType</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.UnsupportedDIDType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.UnsupportedKeyType">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">UnsupportedKeyType</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.UnsupportedKeyType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.UnsupportedOperation">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">UnsupportedOperation</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.UnsupportedOperation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.UnsupportedRequestedContentType">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">UnsupportedRequestedContentType</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.UnsupportedRequestedContentType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>The requested content type is not supported by the API endpoint.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.UnsupportedStatus">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">UnsupportedStatus</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.UnsupportedStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.UnsupportedValueType">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">UnsupportedValueType</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.UnsupportedValueType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="rucio.common.exception.VONotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">rucio.common.exception.</code><code class="sig-name descname">VONotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.common.exception.VONotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.common.exception.RucioException</span></code></a></p>
+<p>Requested VO does not exist.</p>
+</dd></dl>
+
+</div>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/archive.html">Archive Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/authentication.html">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/replica.html">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">The Client API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">Scope Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="did.html">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="replica.html">Replica Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifetime.html">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configuration Methods</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+                <li class="footer-element">
+                    
+                        <a href="../_sources/api/exception.rst.txt" rel="nofollow"> source</a>
+                    
+                </li>
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>
