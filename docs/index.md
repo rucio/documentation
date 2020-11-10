@@ -63,6 +63,11 @@ documentation will help you get started. Peruse some common REST API & Client AP
 references that are directly derived from [Rucio's python libraries](). We also
 have a contribution guide for those who wish to pitch in.
 
-- [API Documentation - both REST & Client](/rucio-doc/rucio/index.html)
+- [API Documentation - both REST & Client](/rucio/index.html)
 - [Database](database)
 - [Contributing guide](contributing)
+
+## [Contributing to the Documentation](Contributing)
+- [Types of pages](page-types)
+- [Contributing Improvements](contributing-improvements)
+- [New Content Contribution Guide](new-content-contribution-guide)

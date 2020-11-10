@@ -51,7 +51,7 @@ The following figure might help you with an overview:
 
 
 
-![image](https://raw.githubusercontent.com/rucio/rucio/master/doc/source/images/branching_strategy.svg)
+![image](/documentation/img/branching_strategy.svg)
 
 ## Getting started
 

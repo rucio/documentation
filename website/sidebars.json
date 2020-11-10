@@ -26,6 +26,12 @@
       "database",
       "contributing"
     ],
+    "Contribution":[
+      "Contributing",
+      "page-types",
+      "contributing-improvements",
+      "new-content-contribution-guide"
+    ],
     "Release Notes": [
       "1.13.3",
       "1.14.0",
