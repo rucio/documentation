@@ -1,5 +1,5 @@
 ---
-title: 'Meta-data attributes'
+title: Metadata attributes
 ---
 
 Meta-data associated with a dataset/file is represented using
