@@ -34,8 +34,7 @@ used:
 
 > **username@host:~$ rucio list-rses --expression 'tier=1'**
 
-Example 2
-=========
+## Example 2
 
 *I want to have 2 replicas on whatever T2 RSEs in the UK but it
 shouldn\'t be Glasgow*:
