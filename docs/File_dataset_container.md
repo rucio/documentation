@@ -1,5 +1,5 @@
 ---
-title: 'Files, Datasets and Containers'
+title: 'Files, Datasets ,and Containers'
 ---
 
 As data is physically stored in files, files are also the smallest
@@ -14,8 +14,7 @@ identifier' (DID) is used to represent any set of file, dataset or
 container identifier. A data identifier is just the name of a single
 file, dataset or container.
 
-Data identifiers and scope
-==========================
+## Data identifiers and scope
 
 Files, datasets and containers follow an identical naming scheme which
 is composed of two strings: the scope and a name. The combination of
@@ -37,11 +36,9 @@ This means that a data identifier, once used, can never be reused to
 refer to anything else at all, not even if the data it referred to has
 been deleted from the system.
 
-File, dataset and container status
-==================================
+## File, dataset, and container status
 
-File status
------------
+### File status
 
 The following status attributes are supported for files:
 
@@ -60,8 +57,7 @@ suppressed (by default) do not show up in search and list operations on
 the scope. Note however that this flag will be ignored when explicitly
 listing contents of datasets/containers.
 
-Dataset/Container status
-------------------------
+### Dataset/Container status
 
 The dataset/container status is reflected by a set of attributes:
 
@@ -83,7 +79,7 @@ A dataset/container where all files have replicas available is complete.
 Any dataset/container which contains files without replicas is
 incomplete. This is a derived attribute.
 
-**Footnotes**
+## Footnotes
 
 [^1]: Datasets from which files have been lost can be repaired when
     replacement files are available, even if Open=False. The
