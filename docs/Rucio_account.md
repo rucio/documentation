@@ -17,5 +17,4 @@ the used credentials are authorized to use the supplied Rucio account.
 The figure below gives an example of the mapping between credentials and
 Rucio accounts:
 
-![Figure 1](/documentation/img/accounts.png){.align-center width="400px"
-height="400px"}
+![Figure 1](/documentation/img/accounts.png)
