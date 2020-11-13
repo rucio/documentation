@@ -19,42 +19,42 @@ particular RSE.
 
 1)  The following expression returns all RSEs:
 
->       **jbogadog@lxplus0058:~$ rucio list-rses --expression '*'**
+> **jbogadog@lxplus0058:~$ rucio list-rses --expression '*'**
 >
->        **IFIC-LCG2_LOCALGROUPDISK**
+> **IFIC-LCG2_LOCALGROUPDISK**
 >
->        **IFAE_PRODDISK**
+> **IFAE_PRODDISK**
 >
->        **PIC_SCRATCHDISK**
+> **PIC_SCRATCHDISK**
 >
->        **EELA-UNLP_SCRATCHDISK**
+> **EELA-UNLP_SCRATCHDISK**
 >
->        **CERN-PROD_TZDISK**
+> **CERN-PROD_TZDISK**
 >
->        **BNL-OSG2_MCTAPE**
+> **BNL-OSG2_MCTAPE**
 >
->        **BNL-OSG2_DATADISK**
+> **BNL-OSG2_DATADISK**
 >
->        **IN2P3-CC_MCTAPE**
+> **IN2P3-CC_MCTAPE**
 >
->        **CERN-PROD_DERIVED**
+> **CERN-PROD_DERIVED**
 >
->        **CERN-PROD_DATADISK**
+> **CERN-PROD_DATADISK**
 >
->        **EELA-UNLP_DATADISK**
+> **EELA-UNLP_DATADISK**
 >
->        **UAM-LCG2_SCRATCHDISK**
+> **UAM-LCG2_SCRATCHDISK**
 >
->        **IFIC-LCG2_DATADISK**
+> **IFIC-LCG2_DATADISK**
 >
->        **LIP-COIMBRA_LOCALGROUPDISK**
+> **LIP-COIMBRA_LOCALGROUPDISK**
 
 2)  Whereas the next expression only returns a set containing a single
     RSE:
 
- >      **jbogadog@lxplus0058:~$ rucio list-rses --expression EELA-UNLP_SCRATCHDISK**
+ > **jbogadog@lxplus0058:~$ rucio list-rses --expression EELA-UNLP_SCRATCHDISK**
  >
- >       **ELA-UNLP_SCRATCHDISK**
+ > **ELA-UNLP_SCRATCHDISK**
 
 3)  Another simple RSE Expression allows to list the set of all the RSEs
     in a particular site:
@@ -106,19 +106,19 @@ particular RSE.
 
 6)  Also numerical comparisons with \< and \> are possible:
 
-   >   **jbogadog@lxplus0058:~$ rucio list-rses --expression "freespace>3000"
+   >   **jbogadog@lxplus0058:~$ rucio list-rses --expression "freespace>3000"**
    >
-   >   **CERN-PROD_TZDISK
+   >   **CERN-PROD_TZDISK**
    >
-   >   **BNL-OSG2_MCTAPE
+   >   **BNL-OSG2_MCTAPE**
    >
-   >   **BNL-OSG2_DATADISK
+   >   **BNL-OSG2_DATADISK**
    >
-   >   **IN2P3-CC_MCTAPE
+   >   **IN2P3-CC_MCTAPE**
    >
-   >   **CERN-PROD_DERIVED
+   >   **CERN-PROD_DERIVED**
    >
-   >   **CERN-PROD_DATADISK
+   >   **CERN-PROD_DATADISK**
 
 Note that if the RSE Expression returns an empty set, Rucio returns an
 error as an RSE Expression must resolve to at least one RSE. Thus, an
@@ -132,41 +132,41 @@ numerical term is used to resolve all RSEs with more than 3000 TB free
 space. It is possible to see the list of attributes for a particular RSE
 with Rucio:
 
-   > **jbogadog@lxplus0100:~$ rucio list-rse-attributes EELA-UNLP_SCRATCHDISK
+   > **jbogadog@lxplus0100:~$ rucio list-rse-attributes EELA-UNLP_SCRATCHDISK**
    >
-   > **ftstesting: https://fts3-pilot.cern.ch:8446
+   > **ftstesting: https://fts3-pilot.cern.ch:8446**
    >
-   > **ALL: True
+   > **ALL: True**
    >
-   > **ESTIER2S: True
+   > **ESTIER2S: True**
    >
-   > **physgroup: None
+   > **physgroup: None**
    >
-   > **spacetoken: ATLASSCRATCHDISK
+   > **spacetoken: ATLASSCRATCHDISK**
    >
-   > **fts: https://fts3.cern.ch:8446,https://lcgfts3.gridpp.rl.ac.uk:8446,https://fts.usatlas.bnl.gov:8446
+   > **fts: https://fts3.cern.ch:8446,https://lcgfts3.gridpp.rl.ac.uk:8446,https://fts.usatlas.bnl.gov:8446**
    >
-   > **site: EELA-UNLP
+   > **site: EELA-UNLP**
    >
-   > **EELA-UNLP_SCRATCHDISK: True
+   > **EELA-UNLP_SCRATCHDISK: True**
    >
-   > **datapolicyt0disk: False
+   > **datapolicyt0disk: False**
    >
-   > **cloud: ES
+   > **cloud: ES**
    >
-   > **SPAINSITES: True
+   > **SPAINSITES: True**
    >
-   > **datapolicyt0taskoutput: False
+   > **datapolicyt0taskoutput: False**
    >
-   > **fts_testing: https://fts3-pilot.cern.ch:8446
+   > **fts_testing: https://fts3-pilot.cern.ch:8446**
    >
-   > **tier: 3
+   > **tier: 3**
    >
-   > **datapolicyt0tape: False
+   > **datapolicyt0tape: False**
    >
-   > **type: SCRATCHDISK
+   > **type: SCRATCHDISK**
    >
-   > **istape: False
+   > **istape: False**
 
 Most of the RSEs share the same set of attributes, and is possible to
 create RSE Expressions based on all of them.
@@ -197,17 +197,17 @@ following list of examples to build your own RSE Expressions.
 
 All Tier 2 sites in DE cloud:
 
->   **jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=2&cloud=DE'
+>   **jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=2&cloud=DE'**
 >
->   **PRAGUELCG2_PPSLOCALGROUPDISK
+>   **PRAGUELCG2_PPSLOCALGROUPDISK**
 >
->   **FMPHI-UNIBA_LOCALGROUPDISK
+>   **FMPHI-UNIBA_LOCALGROUPDISK**
 >
 >    ...
 >
->   **UNI-FREIBURG_DATADISK
+>   **UNI-FREIBURG_DATADISK**
 >
->   **DESY-HH_PRODDISK
+>   **DESY-HH_PRODDISK**
 
 Note the use of the single quotes. Single quotes are needed to avoid the
 shell interpret the **&**, the **\|** or the **\\** as commands.
