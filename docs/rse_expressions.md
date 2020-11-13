@@ -48,7 +48,6 @@ particular RSE.
 >        **IFIC-LCG2_DATADISK**
 >
 >        **LIP-COIMBRA_LOCALGROUPDISK**
-        ...
 
 2)  Whereas the next expression only returns a set containing a single
     RSE:
@@ -78,7 +77,6 @@ particular RSE.
   >
   >    **EELA-UNLP_SCRATCHDISK**
   >
-  >     ...
   >    **INFN-T1_SCRATCHDISK**
   >
   >    **FMPHI-UNIBA_SCRATCHDISK**
@@ -97,7 +95,6 @@ particular RSE.
   >
   >    **EELA-UNLP_SCRATCHDISK**
   >
-  >      ...
   >
   >    **EELA-UNLP_DATADISK**
   >
@@ -223,7 +220,7 @@ All tier 1 but not the ones in country=us:
  >
  >  **BNL-OSG2_DATATAPE
  >
- >   ...
+ >
  >  **BNL-OSG2_DDMTEST
  >
  >  **NIKHEF-ELPROD_PHYS-SUSY
