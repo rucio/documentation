@@ -20,8 +20,7 @@ RSE tags are expanded at transfer time to enumerate target sites.
 Post-facto changes to the sites in an RSE tag list will not affect
 currently replicated files.
 
-Rucio Cache RSE
-===============
+## Rucio Cache RSE
 
 A cache is storage service which keeps additional copies of files to
 reduce response time and bandwidth usage. In Rucio, a cache is an RSE,
