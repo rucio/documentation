@@ -90,100 +90,64 @@ class Index extends React.Component {
       </Container>
     );
 
-    const Section1 = () => (
-      <Block background="light">
+    const Features = () => (
+      <Block id="features">
         {[
           {
-            content:
-              'Learn more about Rucio & the motivations behind developing a new-age scalable data management system.',
-            image: `${baseUrl}img/bright.png`,
-            imageAlign: 'right',
+            content: 'Learn more about Rucio & the motivations behind developing a new-age scalable data management system.',
+            image: `${baseUrl}img/getting-started.svg`,
+            imageAlign: 'top',
             imageLink: siteConfig.baseUrl + 'docs/index.html',
-            title: 'Getting started',
+            title: 'Getting Started',
           },
-        ]}
-      </Block>
-    );
-    const Section2 = () => (
-      <Block background="dark">
-        {[
           {
-            content:
-              'Get your hands dirty by setting up your very own Rucio environment on a local laptop/desktop.',
-            image: `${baseUrl}img/computer.png`,
-            imageAlign: 'left',
+            content: 'Get your hands dirty by setting up your very own Rucio environment on a local laptop/desktop.',
+            image: `${baseUrl}img/try-rucio.svg`,
+            imageAlign: 'top',
             imageLink: siteConfig.baseUrl + 'docs/Try-rucio.html',
-            title: 'Try Rucio!',
+            title: 'Try Rucio',
           },
-        ]}
-      </Block>
-    );
-    const Section3 = () => (
-      <Block background="light">
-        {[
           {
-            content:
-              'Install the Rucio client & try out some common CLI commands while learning a bit more about the user interface.',
-            image: `${baseUrl}img/inspector.png`,
-            imageAlign: 'right',
+            content: 'Install the Rucio client & try out some common CLI commands while learning a bit more about the user interface.',
+            image: `${baseUrl}img/user-playground.svg`,
+            imageAlign: 'top',
             imageLink: siteConfig.baseUrl + 'docs/Clients.html',
             title: 'Rucio User Playground',
           },
-        ]}
-      </Block>
-    );
-    const Section4 = () => (
-      <Block background="dark">
-        {[
           {
-            content:
-              'Dive deep by setting up a Rucio server & working with the administrative CLI, tasks that will be helping you gain operator/administrator-level proficiency.',
-            image: `${baseUrl}img/stick-man.png`,
-            imageAlign: 'left',
+            content: 'Dive deep by setting up a Rucio server & working with the administrative CLI, tasks that will be helping you gain operator/administrator-level proficiency.',
+            image: `${baseUrl}img/operator.svg`,
+            imageAlign: 'top',
             imageLink: siteConfig.baseUrl + 'docs/installing-rucio-server.html',
             title: 'Rucio Operator Documentation',
           },
-        ]}
-      </Block>
-    );
-    const Section5 = () => (
-      <Block background="light">
-        {[
           {
-            content:
-              'Along with the API references - both Client & REST, peruse the list of some development tips & tricks that are sure to come in handy!',
-            image: `${baseUrl}img/hero.png`,
-            imageAlign: 'right',
+            content: 'Along with the API references - both Client & REST, peruse the list of some development tips & tricks that are sure to come in handy!',
+            image: `${baseUrl}img/developer.svg`,
+            imageAlign: 'top',
             imageLink: `${baseUrl}rucio/index.html`,
             title: 'Developer Documentation',
           },
-        ]}
-      </Block>
-    );
-    const Section6 = () => (
-      <Block background="dark">
-        {[
           {
-            content:
-              'If you are installing Rucio or upgrading to the newest version, refer to the current release notes.',
-            image: `${baseUrl}img/scan.png`,
-            imageAlign: 'left',
+            content: 'If you are installing Rucio or upgrading to the newest version, refer to the current release notes.',
+            image: `${baseUrl}img/notes.svg`,
+            imageAlign: 'top',
             imageLink: siteConfig.baseUrl + 'docs/1.23.5.html',
             title: 'Release Notes',
           },
-        ]}
-      </Block>
-    );
-    const Section7 = () => (
-      <Block id="section7">
-        {[
           {
-            content:
-              'As a community-driven Open Source project, everybody is welcome to contribute. Do read the contribution guide before you start, though!',
-            image: `${baseUrl}img/mechanics.png`,
-            imageAlign: 'right',
+            content: 'As a community-driven Open Source project, everybody is welcome to contribute. Do read the contribution guide before you start, though!',
+            image: `${baseUrl}img/community.svg`,
+            imageAlign: 'top',
             imageLink: siteConfig.baseUrl + 'docs/Contributing.html',
-            title: 'Contribute to the Documentation!',
+            title: 'Contribute to the docs!',
+          },
+          {
+            content: 'Rucio is a community-driven project. Learn more about the bright minds powering Rucio & their contributions to the source code in this section.',
+            image: `${baseUrl}img/about.svg`,
+            imageAlign: 'top',
+            imageLink: siteConfig.baseUrl + 'docs/about-our-contributors.html',
+            title: 'About Us',
           },
         ]}
       </Block>
@@ -222,13 +186,7 @@ class Index extends React.Component {
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
         <div className="mainContainer">
-          <Section1 />
-          <Section2 />
-          <Section3 />
-          <Section4 />
-          <Section5 />
-          <Section6 />
-          <Section7 />
+        <Features />
         </div>
       </div>
     );

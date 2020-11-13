@@ -7,7 +7,7 @@ sidebar_label: Contributing Guide
 * Thank you for participating!
 
 
-* Please ensure that an [issue](https://github.com/rucio/rucio/issues/new) exists before submitting your contribution as a pull request.
+* Please ensure that an [__issue__](https://github.com/rucio/rucio/issues/new) exists before submitting your contribution as a pull request.
 
 
 * The issue should contain the motivation, modification and expected results (discussions usually happen there).
@@ -16,10 +16,10 @@ sidebar_label: Contributing Guide
 * No pull request will be merged without an associated issue (release notes are generated from issues).
 
 
-* You should make sure to add your name (and organisation) to [AUTHORS](AUTHORS.rst).
+* Ensure you add your name (and organisation) to our [__list of contributors__](about-our-contributors).
 
 
-* If you have questions, you can reach the core development team on our [Slack](https://rucio.slack.com/) channel, or send an email to our development mailing list [rucio-dev@cern.ch](mailto:rucio-dev@cern.ch).
+* If you have questions, you can reach the core development team on our [__Slack__](https://rucio.slack.com/) channel, or send an email to our development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
 
 A contribution can be either be a **patch**, **feature**, or **hotfix**:
 
@@ -32,7 +32,7 @@ A contribution can be either be a **patch**, **feature**, or **hotfix**:
 
     * **Hotfix** are specific patch releases happening due to the necessity of important fixes.
 
-The [repository](https://github.com/rucio/rucio/)  consists of different branches:
+The [__repository__](https://github.com/rucio/rucio/)  consists of different branches:
 
     
     * the **master** branch includes the development for the next major version.
@@ -45,7 +45,7 @@ The [repository](https://github.com/rucio/rucio/)  consists of different branche
 
 On release day both master and the related release branch are essentially the same. Release branches only exist for the currently maintained release versions. Hotfix branches are created on demand. Please communicate to the Rucio maintainers, if you wish to hotfix a previous release.
 
-Generally all [pull requests](https://github.com/rucio/rucio/pulls) are to be created against the Rucio **master** branch. Features will end up in the upstream **master** only and patches are cherry-picked to the maintained releases if applicable. Release-specific changes are excluded from that rule and might be needed if e.g. cherry-picking to the last release was not successful.
+Generally all [__pull requests__](https://github.com/rucio/rucio/pulls) are to be created against the Rucio **master** branch. Features will end up in the upstream **master** only and patches are cherry-picked to the maintained releases if applicable. Release-specific changes are excluded from that rule and might be needed if e.g. cherry-picking to the last release was not successful.
 
 The following figure might help you with an overview:
 
@@ -55,7 +55,7 @@ The following figure might help you with an overview:
 
 ## Getting started
 
-**Step 1**: Fork the [repository](https://github.com/rucio/rucio/) on Github.
+**Step 1**: Fork the [__repository__](https://github.com/rucio/rucio/) on Github.
 
 **Step 2**: Clone the repository to your development machine and configure it:
 
@@ -75,7 +75,7 @@ $ ./tools/configure_git.sh
 
 ## Contributing
 
-**Step 1**: If not exist, create an [issue](https://github.com/rucio/rucio/issues/new) with the description of the contribution (motivation, modification and expected results). Every issue will get a **unique issue number**.
+**Step 1**: If not exist, create an [__issue__](https://github.com/rucio/rucio/issues/new) with the description of the contribution (motivation, modification and expected results). Every issue will get a **unique issue number**.
 
 **Step 2**: Create a local branch that corresponds to the issue. To easily identify the purpose of branches different keywords must be used:
 
@@ -102,11 +102,11 @@ $ ./tools/create-hotfix-branch <release tag/release branch> <unique issue number
 $ git commit -m "<component>: <change_message> #<issue number>"
 ```
 
-Valid component names are listed in the [label list](https://github.com/rucio/rucio/labels) and are usually specified on the issue of the change.
+Valid component names are listed in the [__label list__](https://github.com/rucio/rucio/labels) and are usually specified on the issue of the change.
 
 If you use the default commit message template, make sure you edit it.
 
-If you add a [github-recognised keyword](https://help.github.com/articles/closing-issues-using-keywords/) then the associated issue can be closed automatically once the pull request is merged, e.g.:
+If you add a [__github-recognised keyword__](https://help.github.com/articles/closing-issues-using-keywords/) then the associated issue can be closed automatically once the pull request is merged, e.g.:
 
 ```
 <component>: <change_message> Fix #<issue number>
@@ -114,7 +114,7 @@ If you add a [github-recognised keyword](https://help.github.com/articles/closin
 
 **Step 4**: Push the commit to your forked repository and create the pull request.
 
-While using the [github interface](https://help.github.com/articles/creating-a-pull-request/) is the default interface to create pull requests, you could also use GitHub’s command-line wrapper [hub](https://hub.github.com) or the [GitHub CLI](https://cli.github.com/).
+While using the [__github interface__](https://help.github.com/articles/creating-a-pull-request/) is the default interface to create pull requests, you could also use GitHub’s command-line wrapper [__hub__](https://hub.github.com) or the [__GitHub CLI__](https://cli.github.com/).
 
 The format of the pull request title must be:
 
@@ -130,7 +130,7 @@ Every submitted pull request will automatically be run through automated testing
 
 **Local automatic testing**
 
-There is also a local shell script to run the same autotests: `tools/run_autotests.sh`. For manual local testing within containers, please see [the docker README](etc/docker/dev/README.rst).
+There is also a local shell script to run the same autotests: `tools/run_autotests.sh`. For manual local testing within containers, please see [__the docker README__](https://github.com/rucio/rucio/blob/master/etc/docker/dev/README.rst).
 
 **WARNING:** Because of the nature of using the same scripts as continuous integration, some containers may be left running after a test run or when aborting the test run. This is especially the case for running this script without podman.
 

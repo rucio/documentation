@@ -71,3 +71,6 @@ have a contribution guide for those who wish to pitch in.
 - [Types of pages](page-types)
 - [Contributing Improvements](contributing-improvements)
 - [New Content Contribution Guide](new-content-contribution-guide)
+
+## Documentation Contribution Guide (Contribution)
+

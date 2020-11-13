@@ -16,10 +16,10 @@ section) as it will configure many things for you automatically. Only
 use the pip-based install if you have a good reason and know how to
 configure your web service manually:
 
-`pip install rucio`
+> **pip install rucio**
 
 This will pull the latest release from
-[PyPi](https://pypi.python.org/pypi/rucio/). The Rucio server also needs
+[__PyPi__](https://pypi.python.org/pypi/rucio/). The Rucio server also needs
 several Python dependencies. These are all listed in the file
 `tools/pip-requires` and will be pulled in as necessary.
 
@@ -30,28 +30,28 @@ separate container. It supports MySQL, PostgreSQL, Oracle, and SQLite as
 database backends.
 
 This image expects that there is an already initialised Rucio DB. To
-start a simple [judge-cleaner]{.title-ref} daemon using a database on
-[mysql.db]{.title-ref} without an additional parameters just run this:
+start a simple `judge-cleaner` daemon using a database on
+`mysql.db` without any additional parameters just run this:
 
-`` `docker run --name=rucio-judge-cleaner -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" -e RUCIO_DAEMON=judge-cleaner  rucio/rucio-daemons ``\`
+> **docker run --name=rucio-judge-cleaner -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" -e RUCIO_DAEMON=judge-cleaner  rucio/rucio-daemons**
 
-The [RUCIO_DAEMON]{.title-ref} environment variable gives the name of
+The `RUCIO_DAEMON` environment variable gives the name of
 the rucio daemon.
 
 Rucio can be configured fully using environment variables like
-[RUCIO_CFG_DATABASE_DEFAULT]{.title-ref}. If you want to instead use a
+`RUCIO_CFG_DATABASE_DEFAULT`. If you want to instead use a
 complete rucio.cfg it can also be mounted. This will then ignore the
-[RUCIO_CFG]{.title-ref} environment variables:
+`RUCIO_CFG` environment variables:
 
 The rucio.cfg is used to configure the database backend and the daemons:
 
-`` `docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -e RUCIO_DAEMON=judge-cleaner  rucio/rucio-daemons ``\`
+> **docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -e RUCIO_DAEMON=judge-cleaner  rucio/rucio-daemons**
 
 By default the daemon logs are written to stdout and stderr if you want
-to write to a file you can use [RUCIO_ENABLE_LOGS]{.title-ref} like
+to write to a file you can use `RUCIO_ENABLE_LOGS` like
 this:
 
-`` `docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/rucio -e RUCIO_DAEMON=judge-cleaner  -e RUCIO_ENABLE_LOGS=True rucio/rucio-daemons ``\`
+> **docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/rucio -e RUCIO_DAEMON=judge-cleaner  -e RUCIO_ENABLE_LOGS=True rucio/rucio-daemons**
 
 ## Environment Variables
 
@@ -60,35 +60,31 @@ using environment variables that are passed with [docker
 run]{.title-ref}. Below is a list of all available variables and their
 behaviour:
 
-[RUCIO_DAEMON]{.title-ref}
---------------------------
+### RUCIO_DAEMON
 
 This variable is mandatory and it specifies the name of the daemon,
-e.g., [hermes]{.title-ref}, [kronos]{.title-ref},
-[judge-evaluator]{.title-ref}, etc.
+e.g., `hermes`, `kronos`,
+`judge-evaluator`, etc.
 
-[RUCIO_DAEMON_ARGS]{.title-ref}
--------------------------------
+### RUCIO_DAEMON_ARGS
 
 Any additional command line parameter can be specified here, e.g.,
-[\--run-once]{.title-ref}. This field is optional.
+`\--run-once` This field is optional.
 
-[RUCIO_ENABLE_LOGFILE]{.title-ref}
-----------------------------------
+### RUCIO_ENABLE_LOGFILE
 
 By default, the log output of the daemon is written to stdout and
-stderr. If you set this variable to [True]{.title-ref} the output will
-be written to [access_log]{.title-ref} and [error_log]{.title-ref} under
-[/var/log/rucio]{.title-ref}.
+stderr. If you set this variable to `True` the output will
+be written to `access_log` and `error_log` under
+`/var/log/rucio`
 
-[RUCIO_CFG]{.title-ref} configuration parameters:
-=================================================
+### RUCIO_CFG configuration parameters:
 
 Environment variables can be used to set values for the auto-generated
 rucio.cfg. The names are derived from the actual names in the
-configuration file prefixed by [RUCIO_CFG]{.title-ref}, e.g., the
-[default]{.title-ref} value in the [database]{.title-ref} section
-becomes [RUCIO_CFG_DATABASE_DEFAULT]{.title-ref}. All available
+configuration file prefixed by `RUCIO_CFG`, e.g., the
+`default` value in the `database` section
+becomes `RUCIO_CFG_DATABASE_DEFAULT`. All available
 environment variables are:
 
 -   RUCIO_CFG_ACCOUNTS_SPECIAL_ACCOUNTS

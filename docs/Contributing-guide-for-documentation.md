@@ -9,21 +9,21 @@ sidebar_label: Contributing Guide for Documentation
 ## Getting started
 
 Everyone is welcome to open an issue about documentation or contribute a 
-change with a pull request (PR) to the ``rucio/documentation`` GitHub 
+change with a pull request (PR) to the [``rucio/documentation``](https://github.com/rucio/rucio) GitHub 
 repository. You need to be comfortable with git & GitHub to effectively 
 make contributions in the Rucio community.
 
 Start getting involved with the Rucio documentation in three easy steps:
 
-- Familiarize yourself with the [static site generator](https://docusaurus.io/) & the [API documentation generator](https://www.sphinx-doc.org/en/master/index.html).
+- Familiarize yourself with the [__static site generator__](https://docusaurus.io/) & the [__API documentation generator__](https://www.sphinx-doc.org/en/master/index.html).
 - Fork a local copy of the Rucio documentation repository.
 - Ensure you understand the basics of opening a pull request & submitting an issue.
 
 ## Making your first contribution!
 
-- Understand the different [types of pages](page-types)
-- If you're suggesting improvements, head over to the [Contributing Improvements](contributing-improvements) 
+- Understand the different [__types of pages__](page-types)
+- If you're suggesting improvements, head over to the [__Contributing Improvements__](contributing-improvements) 
 section. 
-- For contributing new content, read through the [New Content Contribution Guide](new-content-contribution-guide)
+- For contributing new content, read through the [__New Content Contribution Guide__](new-content-contribution-guide)
 to know more.
-- Check ``rucio/documentation`` repository for issues labelled "good first issues".
+- Check [``rucio/documentation``](https://github.com/rucio/rucio) repository for issues labelled "good first issues".

@@ -18,10 +18,10 @@ section) as it will configure many things for you automatically. Only
 use the pip-based install if you have a good reason and know how to
 configure your webservices manually:
 
-`pip install rucio`
+> **pip install rucio**
 
 This will pull the latest release from
-[PyPi](https://pypi.python.org/pypi/rucio/). The Rucio server also needs
+[__PyPi__](https://pypi.python.org/pypi/rucio/). The Rucio server also needs
 several Python dependencies. These are all listed in the file
 `tools/pip-requires` and will be pulled in as necessary.
 
@@ -30,11 +30,13 @@ Install via Docker
 
 A simple server without SSL can be started like this:
 
-`docker run --name=rucio-server -p 80:80 -d rucio/rucio-server`
+> **docker run --name=rucio-server -p 80:80 -d rucio/rucio-server**
 
 This will start up a simple server using sqlite based on an
 automatically generated configuration. You can check if the server is
-running with [curl http://localhost/ping]{.title-ref}
+running with 
+
+> **curl http://localhost/ping**
 
 This should return the Rucio version used in the container. Any other
 curl requests will not work as the database backend is not initialized
@@ -44,11 +46,11 @@ correct database. There are two ways to manage the Rucio configuration:
 using environment variables or by mounting a full rucio.cfg.
 
 If you want to set the connection string for the database it can be done
-using the [RUCIO_CFG_DATABASE_DEFAULT]{.title-ref} environment variable,
+using the `RUCIO_CFG_DATABASE_DEFAULT` environment variable,
 e.g., to start a container connecting to a MySQL DB running at
-[mysql.db]{.title-ref} you could use something like this:
+`mysql.db` you could use something like this:
 
-`docker run --name=rucio-server -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" -p 80:80 -d rucio/rucio-server`
+> **docker run --name=rucio-server -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" -p 80:80 -d rucio/rucio-server**
 
 The are much more configuration parameters available that will be listed
 at the end of this readme.
@@ -56,100 +58,90 @@ at the end of this readme.
 Another way to configure Rucio is to directly mount a complete rucio.cfg
 into the container. This will then be used instead of the auto-generated
 one, e.g., if you have a rucio.cfg ready on your host system under
-[/tmp/rucio.cfg]{.title-ref} you could start a container like this:
+`/tmp/rucio.cfg` you could start a container like this:
 
-`docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -p 80:80 -d rucio/rucio-server`
+> **docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -p 80:80 -d rucio/rucio-server**
 
 The rucio.cfg is used to configure the database backend.
 
 If you want to enable SSL you would need to set the
-[RUCIO_ENABLE_SSL]{.title-ref} variable and also need to include the
+`RUCIO_ENABLE_SSL` variable and also need to include the
 host certificate, key and the the CA certificate as volumes. E.g.,:
 
-`docker run --name=rucio-server -v /tmp/ca.pem:/etc/grid-security/ca.pem -v /tmp/hostcert.pem:/etc/grid-security/hostcert.pem -v /tmp/hostkey.pem:/etc/grid-security/hostkey.pem -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -p 443:443 -e RUCIO_ENABLE_SSL=True -d rucio/rucio-server`
+> **docker run --name=rucio-server -v /tmp/ca.pem:/etc/grid-security/ca.pem -v /tmp/hostcert.pem:/etc/grid-security/hostcert.pem -v /tmp/hostkey.pem:/etc/grid-security/hostkey.pem -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -p 443:443 -e RUCIO_ENABLE_SSL=True -d rucio/rucio-server**
 
 By default the output of the Apache web server is written directly to
 stdout and stderr. If you would rather direct them into separate files
-it can be done using the [RUCIO_ENABLE_LOGS]{.title-ref} variable. The
+it can be done using the `RUCIO_ENABLE_LOGS` variable. The
 storage folder of the logs can be used as a volume:
 
-`docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/httpd -p 80:80 -e RUCIO_ENABLE_LOGFILE=True -d rucio/rucio-server`
+> **docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/httpd -p 80:80 -e RUCIO_ENABLE_LOGFILE=True -d rucio/rucio-server**
 
-Environment Variables
-=====================
+## Environment Variables
 
 As shown in the examples above the rucio-server image can be configured
-using environment variables that are passed with [docker
-run]{.title-ref}. Below is a list of all available variables and their
+using environment variables that are passed with `docker
+run`. Below is a list of all available variables and their
 behaviour:
 
-[RUCIO_ENABLE_SSL]{.title-ref}
-------------------------------
+### RUCIO_ENABLE_SSL
 
 By default, the rucio server runs without SSL on port 80. If you want to
-enable SSL set this variable to [True]{.title-ref}. If you enable SSL
+enable SSL set this variable to `True`. If you enable SSL
 you will also have to provide the host certificate and key and the
 certificate authority file. The server will look for
-[hostcert.pem]{.title-ref}, [hostkey.pem]{.title-ref} and
-[ca.pem]{.title-ref} under [/etc/grid-security]{.title-ref} so you will
+`hostcert.pem`, `hostkey.pem` and
+`ca.pem` under `/etc/grid-security` so you will
 have to mount them as volumes. Furthermore you will also have to expose
 port 443.
 
-[RUCIO_CA_PATH]{.title-ref}
----------------------------
+### RUCIO_CA_PATH
 
-If you are using SSL and want use [SSLCACertificatePath]{.title-ref} and
-[SSLCARevocationPath]{.title-ref} you can do so by specifying the path
+If you are using SSL and want use `SSLCACertificatePath` and
+`SSLCARevocationPath` you can do so by specifying the path
 in this variable.
 
-[RUCIO_DEFINE_ALIASES]{.title-ref}
-----------------------------------
+### RUCIO_DEFINE_ALIASES
 
 By default, the web server is configured with all common rest endpoints
 except the authentication endpoint. If you want to specify your own set
-of aliases you can set this variable to [True]{.title-ref}. The web
+of aliases you can set this variable to `True`. The web
 server then expects an alias file under
-[/opt/rucio/etc/aliases.conf]{.title-ref}
+`/opt/rucio/etc/aliases.conf`
 
-[RUCIO_ENABLE_LOGFILE]{.title-ref}
-----------------------------------
+### RUCIO_ENABLE_LOGFILE
 
 By default, the log output of the web server is written to stdout and
-stderr. If you set this variable to [True]{.title-ref} the output will
-be written to [access_log]{.title-ref} and [error_log]{.title-ref} under
-[/var/log/httpd]{.title-ref}.
+stderr. If you set this variable to `True` the output will
+be written to `access_log` and `error_log` under
+`/var/log/httpd`.
 
-[RUCIO_LOG_LEVEL]{.title-ref}
------------------------------
+### RUCIO_LOG_LEVEL
 
 The default log level is [info]{.title-ref}. You can change it using
 this variable.
 
-[RUCIO_LOG_FORMAT]{.title-ref}
-------------------------------
+### RUCIO_LOG_FORMAT
 
 The default rucio log format is
-[%ht%tt%{X-Rucio-Forwarded-For}it%Tt%Dt\"%{X-Rucio-Auth-Token}i\"t%{X-Rucio-RequestId}it%{X-Rucio-Client-Ref}it\"%r\"t%\>st%b]{.title-ref}
+`%ht%tt%{X-Rucio-Forwarded-For}it%Tt%Dt\"%{X-Rucio-Auth-Token}i\"t%{X-Rucio-RequestId}it%{X-Rucio-Client-Ref}it\"%r\"t%\>st%b`
 You can set your own format using this variable.
 
-[RUCIO_HOSTNAME]{.title-ref}
-----------------------------
+### RUCIO_HOSTNAME
 
 This variable sets the server name in the apache config.
 
-[RUCIO_SERVER_ADMIN]{.title-ref}
---------------------------------
+### RUCIO_SERVER_ADMIN
 
 This variable sets the server admin in the apache config.
 
-[RUCIO_CFG]{.title-ref} configuration parameters:
-=================================================
+## RUCIO_CFG configuration parameters:
 
 Environment variables can be used to set values for the auto-generated
 rucio.cfg. The names are derived from the actual names in the
-configuration file prefixed by [RUCIO_CFG]{.title-ref}, e.g., the
-[default]{.title-ref} value in the [database]{.title-ref} section
-becomes [RUCIO_CFG_DATABASE_DEFAULT]{.title-ref}. All available
+configuration file prefixed by `RUCIO_CFG`, e.g., the
+`default` value in the `database` section
+becomes `RUCIO_CFG_DATABASE_DEFAULT`. All available
 environment variables are:
 
 -   RUCIO_CFG_COMMON_LOGDIR
@@ -181,27 +173,25 @@ environment variables are:
 -   RUCIO_CFG_PERMISSION_SUPPORT_RUCIO
 -   RUCIO_CFG_WEBUI_USERCERT
 
-Server Configuration for Open ID Connect AuthN/Z
-================================================
+## Server Configuration for Open ID Connect AuthN/Z
 
 In order to be able to use JSON web tokens (JWTs) and related OAuth2.0
 authentication and authorization with Rucio, one first needs to have an
 account with the Identity Provider (IdP) which will act as Rucio Admin
 account representing the Rucio Application. Currently supported IdPs use
 Identity Access Management (IAM) system. Once, you have got your Rucio
-Admin IAM account (and its [sub]{.title-ref} claim identifier), you will
-need to [register two IAM Rucio
-clients](https://indigo-iam.github.io/docs/v/current/user-guide/client-registration.html)
+Admin IAM account (and its subclaim identifier), you will
+need to [__register two IAM Rucio clients__](https://indigo-iam.github.io/docs/v/current/user-guide/client-registration.html)
 linked to this account. Once it is done, please save the relevant
-client_id, client_secret and registration access token (RAT some place
+client_id, client_secret, and registration access token (RAT) some place
 safe, you will be needing them. In both clients, one needs to setup the
 redirect_uris to include both
-[https://\<your_server_name\>/auth/oidc_token]{.title-ref} and
-[https://\<your_server_name\>/auth/oidc_code]{.title-ref} paths. We will
+**https://\<your_server_name\>/auth/oidc_token** and
+**https://\<your_server_name\>/auth/oidc_code** paths. We will
 use one client as Rucio Auth IAM client (i.e. client for the
 authentication and authorization on the Rucio server). This client needs
-to have [token exchange]{.title-ref}, [token refresh]{.title-ref} and
-[authorization code grant]{.title-ref} enabled. For the former two you
+to have __token exchange__, __token refresh__, and
+__authorization code grant__ enabled. For the former two you
 might need to contact the IAM admin as such settings are usually not
 accessible to IAM users. In addition, you will need to request your IAM
 admin to allow your client returning refresh tokens with lifetime being
@@ -209,11 +199,11 @@ visible in their unverified header. In addition Rucio assumes refresh
 tokens to expire immediatelly after their first use, which has to be
 also confirmed by your IAM admin. Second client, let\'s call it Rucio
 Admin IAM client, will be used by a Rucio probe script
-[check_voms]{.title-ref} in order to synchronize existing Rucio accounts
+__check_voms__ in order to synchronize existing Rucio accounts
 with Rucio identities. Rucio will also use this client\'s credentials in
 order to request token for itself. The IAM administrator must include
-the [scim:read]{.title-ref} scope and allow [client
-credentials]{.title-ref} grant type for the Rucio Admin IAM client in
+the __scim:read__ scope and allow __client
+credentials__ grant type for the Rucio Admin IAM client in
 order to grant you rights to pre-provision IAM users for Rucio. Examples
 of the configuration of these two clients follow below:
 
@@ -324,7 +314,7 @@ Example of the Rucio Admin IAM client configuration:
     }
 
 To make the Rucio server aware of the two clients above, one has to
-exchange the empty dictionary in [etc/idpsecrets.json]{.title-ref} file
+exchange the empty dictionary in __etc/idpsecrets.json__ file
 with one containing the relevant information. Example of such dictionary
 (for multiple IdPs) follows:
 
@@ -362,7 +352,7 @@ with one containing the relevant information. Example of such dictionary
      "xdc": { ... },
     }
 
-After this is done, please make sure your [rucio.cfg]{.title-ref} file
+After this is done, please make sure your __rucio.cfg__ file
 contains the following section:
 
     [oidc]
@@ -387,7 +377,7 @@ relevant Rucio admin_account_name (e.g. \'root\', \'ddmadmin\'). This
 identity ID is composed of the IAM account sub claim and issuer url such
 as demonstrated below:
 
-    rucio-admin identity add --account admin_account_name --type OIDC --id "SUB=b3127dc7-2be3-417b-9647-6bf61238ad01, ISS=https://wlcg.cloud.cnaf.infn.it/" --email "wlcg-doma-rucio@cern.ch"
+> **rucio-admin identity add --account admin_account_name --type OIDC --id "SUB=b3127dc7-2be3-417b-9647-6bf61238ad01, ISS=https://wlcg.cloud.cnaf.infn.it/" --email "wlcg-doma-rucio@cern.ch"**
 
 A second identity has to be added to the same admin_account_name
 representing the client_credentials flow of the Rucio application, i.e.
@@ -397,7 +387,7 @@ obtained via the client credentials flow using the Rucio Admin IAM
 client will contain in the SUB claim the client_id instead of the IAM
 account SUB claim):
 
-    rucio-admin identity add --account admin_account_name --type OIDC --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, ISS=https://wlcg.cloud.cnaf.infn.it/" --email "wlcg-doma-rucio@cern.ch"
+> **rucio-admin identity add --account admin_account_name --type OIDC --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, ISS=https://wlcg.cloud.cnaf.infn.it/" --email "wlcg-doma-rucio@cern.ch"**
 
 Note: In case you can not/will not run the Rucio check_scim probe script
 in order to sync Rucio accounts with their IAM identities, you should
@@ -406,13 +396,13 @@ to each Rucio account which is meant to use the OIDC authN/Z.
 
 In case you wish to use OIDC by default in order to login to the Rucio
 WebUI, one has to configure also another block in the
-[rucio.cfg]{.title-ref} file:
+`rucio.cfg` file:
 
     [webui]
     auth_type = oidc
     auth_issuer = <IdP nickname from the idpsecrets.json file>
 
-This is not obligatory section, if not filled a user will get directed
+This is not a mandatory section, if not filled a user will get directed
 to a page with login choices.
 
 In order to ensure the correct lifetime management of the tokens and
