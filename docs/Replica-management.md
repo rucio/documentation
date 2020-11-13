@@ -39,7 +39,7 @@ of any file which is declared obsolete.
 Some examples of replication rules are listed
 [here](replication_rules_examples.html).
 
-**Footnotes**
+## Footnotes
 
 [^1]: The system may reject rules if these violate other policies, e.g.,
     only specific accounts are allowed to request replication rules for
