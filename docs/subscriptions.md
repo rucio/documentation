@@ -11,18 +11,9 @@ which they will expire.
 
 An example of a subscription is given below:
 
->--------------------------------------------------------------------
->             |                                                     |
->  Attribute  | Value                                               |
->             |                                                     |
->  -----------|-----------------------------------------------------
->             |                                                     |
->  Owner      | tzero                                               |
->             |                                                     |
->  match      | project=data11 7TeV, dataType=RAW, stream=physics\* |
->             |                                                     |
->  rule       | 1\@CERNTAPE, 1\@T1TAPE                              | 
->             |                                                     |
->  lifetime   | 2012-01-01 00:00                                    |
->                                                                   |
->-------------------------------------------------------------------
+| Attribute | Value                                               |
+|-----------|-----------------------------------------------------|
+| Owner     | tzero                                               |
+| match     | project=data11 7TeV, dataType=RAW, stream=physics\* |
+| rule      | 1\@CERNTAPE, 1\@T1TAPE                              |
+| lifetime  | 2012-01-01 00:00                                    |
