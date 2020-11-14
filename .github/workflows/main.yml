@@ -1,0 +1,32 @@
+name: "Pull Request Docs Check"
+on: 
+- push:
+    branches: [ main ]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        pre-build-command: "pip install -r requirements.sphinx.txt"
+        build-command: "sphinx-build -b html . _build"
+        docs-folder: "source/"
+    
+    -name: Commit documentation changes
+     run: |
+        git clone https://github.com/rucio/documentation.git --branch master --single-branch master
+        cp -r source/_html/* master/website/static/rucio/
+        cd website
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Update Rucio Documentation"
+    
+    -name: Push changes
+     uses: ad-m/github-push-action@master
+     with:
+     branch: master
+     directory: website
+     github_token: ${{secrets.GITHUB_TOKEN}}
