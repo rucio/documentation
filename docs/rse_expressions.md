@@ -171,8 +171,7 @@ with Rucio:
 Most of the RSEs share the same set of attributes, and is possible to
 create RSE Expressions based on all of them.
 
-Operators
-=========
+## Operators
 
 Operators are used to connect terms in order to get more complex RSE
 Expressions/terms. The syntactic functionality of the Rucio RSE
@@ -188,8 +187,7 @@ The symbols **A** and **B** in this table stand for a term.
   A&B        INTERSECT    A intersect B    tier=1&country=us
   A\\B       COMPLEMENT   A complement B   cloud=ES\\type=SCRATCHDISK
 
-Composing RSE Expressions
-=========================
+## Composing RSE Expressions
 
 Using the operators described above, it\'s possible to create
 expressions to select whatever RSE you need to put your data in. Use the
