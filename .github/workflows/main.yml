@@ -11,39 +11,60 @@ jobs:
     runs-on: ubuntu-latest
     steps:
   
-    - uses: actions/checkout@v1
-      with:
-        repository: rucio/documentation
-        path: ./documentation
+    - name: Clone Documentation repository main branch
+      run: |
+        git clone https://git clone https://github.com/rucio/documentation.git --branch main --single-branch main
+
+    - name: Clone Documentation repository master branch
+      run: |
+        git clone https://git clone https://github.com/rucio/documentation.git --branch master --single-branch master
       
-    - uses: actions/checkout@v1
-      with:
-        repository: rucio/rucio
-        path: ./rucio  
-        
-    - uses: ammaraskar/sphinx-action@master
-      with:
-        pre-build-command: "pip install -r requirements.sphinx.txt"
-        build-command: "sphinx-build -b html . _build"
-        docs-folder: "source/"
+    - name: Clone Rucio library repository
+      run: |      
+        git clone https://git clone https://github.com/rucio/rucio.git --branch master --single-branch master
+    
+    - name: Install the requirements
+      run: |
+        pip install -R main/requirements.sphinx.txt
+
+    - name: Build the documentation
+      run: |
+        cd rucio/doc
+        mv source source_copy
+        cp -R /main/source .
+        cd ..
+        sphinx-build -b html rucio/doc/source/ /master/website/static/rucio/
 
 #Committing Documentation Changes
 
-    - name: Commit documentation changes
+    - name: Commit documentation changes for Rucio Master 
       run: |
-        git clone https://github.com/rucio/documentation.git --branch master --single-branch master
-        cp -r source/_html/* master/website/static/rucio/
-        cd website
+        cd /master/website
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
-        git commit -m "Update documentation" -a || true
+        git commit -m "Update master branch documentation" -a || true
+        
+    - name: Commit documentation changes for Rucio Main
+      run: |
+        cd /main/website
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Update main branch documentation" -a || true
 
 # Pushing changes into the Master branch
 
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        branch: gh-pages
-        directory: gh-pages
+        branch: master
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        
+# Pushing changes into the Master branch
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
