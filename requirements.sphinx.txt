@@ -1,4 +1,4 @@
-All dependencies needed to develop/test rucio should be defined here
+# All dependencies needed to develop/test rucio should be defined here
 
 pytest==4.6.11; python_version < '3.6'            # Used for testing
 pytest==6.0.1; python_version >= '3.6'
