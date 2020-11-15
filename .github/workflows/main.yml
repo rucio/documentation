@@ -25,7 +25,7 @@ jobs:
     
     - name: Install the requirements
       run: |
-        pip install -R main/requirements.sphinx.txt
+        pip install -r main/requirements.sphinx.txt
 
     - name: Build the documentation
       run: |
