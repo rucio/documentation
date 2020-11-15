@@ -10,7 +10,17 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
+  
     - uses: actions/checkout@v1
+      with:
+        repository: rucio/documentation
+        path: ./documentation
+      
+    - uses: actions/checkout@v1
+      with:
+        repository: rucio/rucio
+        path: ./rucio  
+        
     - uses: ammaraskar/sphinx-action@master
       with:
         pre-build-command: "pip install -r requirements.sphinx.txt"
