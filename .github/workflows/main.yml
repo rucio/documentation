@@ -13,15 +13,15 @@ jobs:
   
     - name: Clone Documentation repository main branch
       run: |
-        git clone https://git clone https://github.com/rucio/documentation.git --branch main --single-branch main
+        git clone https://github.com/rucio/documentation.git --branch main --single-branch main
 
     - name: Clone Documentation repository master branch
       run: |
-        git clone https://git clone https://github.com/rucio/documentation.git --branch master --single-branch master
+        git clone https://github.com/rucio/documentation.git --branch master --single-branch master
       
     - name: Clone Rucio library repository
       run: |      
-        git clone https://git clone https://github.com/rucio/rucio.git --branch master --single-branch master
+        git clone https://github.com/rucio/rucio.git --branch master --single-branch master
     
     - name: Install the requirements
       run: |
