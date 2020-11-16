@@ -25,6 +25,7 @@ jobs:
     
     - name: Install the requirements
       run: |
+        sudo apt-get install python3-setuptools
         pip3 install -r main/requirements.sphinx.txt
 
     - name: Build the documentation
