@@ -32,16 +32,16 @@ jobs:
       run: |
         cd rucio/doc
         mv source source_copy
-        cd ..
-        cp -R main/source .
-        cd ..
+        cd ../..
+        cp -R main/source rucio/doc/
+        cd rucio
         sphinx-build -b html rucio/doc/source/ /master/website/static/rucio/
 
 #Committing Documentation Changes
 
     - name: Commit documentation changes for Rucio Master 
       run: |
-        cd master/website
+        cd master
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
@@ -49,7 +49,7 @@ jobs:
         
     - name: Commit documentation changes for Rucio Main
       run: |
-        cd main/website
+        cd main
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
@@ -63,7 +63,7 @@ jobs:
         branch: master
         github_token: ${{ secrets.GITHUB_TOKEN }}
         
-# Pushing changes into the Master branch
+# Pushing changes into the Main branch
 
     - name: Push changes
       uses: ad-m/github-push-action@master
