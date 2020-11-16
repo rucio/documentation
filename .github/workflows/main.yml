@@ -36,7 +36,7 @@ jobs:
         cd ../..
         cp -R main/source rucio/doc/
         cd rucio
-        sphinx-build -b html rucio/doc/source/ /master/website/static/rucio/
+        /usr/bin/sphinx-build -b html rucio/doc/source/ /master/website/static/rucio/
 
 #Committing Documentation Changes
 
