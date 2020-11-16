@@ -26,7 +26,7 @@ jobs:
     - name: Install the requirements
       run: |
         sudo apt-get install python3-setuptools
-        sudo apt install python3-pip
+        python3 -m pip install package
         sudo apt-get install python3-sphinx
         pip3 install -r main/requirements.sphinx.txt
         
