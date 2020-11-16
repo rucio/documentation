@@ -2,6 +2,7 @@
 
 pytest==4.6.11; python_version < '3.6'            # Used for testing
 pytest==6.0.1; python_version >= '3.6'
+sphinx
 sphinxcontrib-httpdomain==1.7.0                   # Provides a Sphinx domain for describing RESTful HTTP APIs
 # Pygments==2.5.2; python_version < '3.5'           # Python Syntax highlighter (2.5.2 last Py27 compatible version)
 Pygments==2.6.1; python_version >= '3.5'
