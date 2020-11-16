@@ -27,9 +27,9 @@ jobs:
       run: |
         sudo apt-get install python3-setuptools
         sudo apt install python3-pip
-        sudo apt install mlocate
+        sudo apt-get install python3-sphinx
         pip3 install -r main/requirements.sphinx.txt
-        locate sphinx-build
+        
 
     - name: Build the documentation
       run: |
@@ -37,8 +37,8 @@ jobs:
         mv source source_copy
         cd ../..
         cp -R main/source rucio/doc/
-        cd rucio
-        /home/runner/.local/lib/python3.6/tools/Scripts/sphinx-build -b html rucio/doc/source/ /master/website/static/rucio/
+        cd rucio/doc/source/
+        sphinx-build -b html . /master/website/static/rucio/
 
 #Committing Documentation Changes
 
