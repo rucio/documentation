@@ -35,7 +35,7 @@ jobs:
         
     - name: Install the requirements required for build
       run: |
-        python3 -m pip install /home/runner/work/documentation/documentation/main/requirements.sphinx.txt
+        python3 -m pip install -r /home/runner/work/documentation/documentation/main/requirements.sphinx.txt
         
 
     - name: Build the documentation
