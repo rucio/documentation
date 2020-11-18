@@ -23,6 +23,7 @@ jobs:
     - name: Clone Documentation repository main branch
       run: |
         git clone https://github.com/rucio/documentation.git --branch main --single-branch main
+        pwd
 
     - name: Clone Documentation repository master branch
       run: |
