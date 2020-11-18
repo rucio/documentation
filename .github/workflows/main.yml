@@ -26,8 +26,10 @@ jobs:
     - name: Install the requirements
       run: |
         sudo apt-get install python3-setuptools
-        sudo python3 -m pip uninstall pip
-        python3 -m install --user pip
+        python3 -m pip install virtualenv
+        virtualenv venv1
+        source venv1/bin/activate
+        python3 -m pip uninstall pip && python3 -m pip install --user pip
         python3 -m pip install sphinx
         python3 -m pip install -r main/requirements.sphinx.txt
         python3 -m pip install flask
@@ -76,3 +78,10 @@ jobs:
       with:
         branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+# Deactivating & Removing Virtual Environment
+
+    - name: Install the requirements
+      run: |
+        deactivate
+        rm -rf venv1
