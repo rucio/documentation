@@ -14,10 +14,10 @@ jobs:
     - name: Setting up the environment
       run: |
         sudo apt-get install python3-setuptools
-        python3 -m pip3 install --user virtualenv
+        pip3 install --user virtualenv
         python3 -m virtualenv venv1
         source venv1/bin/activate
-        python3 -m pip3 install --upgrade pip3
+        pip3 install --upgrade pip3
         sudo apt-get install python3-sphinx
 
     - name: Clone Documentation repository main branch
@@ -34,7 +34,7 @@ jobs:
         
     - name: Install the requirements required for build
       run: |
-        python3 -m pip3 install -r /home/runner/work/documentation/documentation/main/requirements.sphinx.txt
+        pip3 install -r /home/runner/work/documentation/documentation/main/requirements.sphinx.txt
         
 
     - name: Build the documentation
