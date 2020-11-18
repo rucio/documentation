@@ -27,7 +27,7 @@ jobs:
       run: |
         sudo apt-get install python3-setuptools
         python3 -m pip install virtualenv
-        virtualenv venv1
+        python3 -m virtualenv venv1
         source venv1/bin/activate
         python3 -m pip uninstall pip && python3 -m pip install --user pip
         python3 -m pip install sphinx
