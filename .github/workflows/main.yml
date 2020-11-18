@@ -34,35 +34,27 @@ jobs:
         
     - name: Install the requirements required for build
       run: |
-        python3 -m pip install ~/main/requirements.sphinx.txt
+        python3 -m pip install /home/runner/work/documentation/documentation/main/requirements.sphinx.txt
         
 
     - name: Build the documentation
       run: |
-        cd ~/rucio/doc
+        cd /home/runner/work/documentation/documentation/rucio/doc
         mv source source_copy
         cd ../..
-        cp -R ~/main/source ~/rucio/doc/
-        cd ~/rucio/doc/source/
-        sphinx-build -b html . ~/master/website/static/rucio/
+        cp -R /home/runner/work/documentation/documentation//main/source /home/runner/work/documentation/documentation/rucio/doc/
+        cd /home/runner/work/documentation/documentation/rucio/doc/source/
+        sphinx-build -b html . /home/runner/work/documentation/documentation/master/website/static/rucio/
 
-#Committing Documentation Changes
+# Committing Documentation Changes for master
 
     - name: Commit documentation changes for Rucio Master 
       run: |
-        cd ~/master
+        cd /home/runner/work/documentation/documentation/master
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
         git commit -m "Update master branch documentation" -a || true
-        
-    - name: Commit documentation changes for Rucio Main
-      run: |
-        cd ~/main
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Update main branch documentation" -a || true
 
 # Pushing changes into the Master branch
 
@@ -71,7 +63,18 @@ jobs:
       with:
         branch: master
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+# Committing Documentation Changes for main branc
         
+    - name: Commit documentation changes for Rucio Main
+      run: |
+        cd /home/runner/work/documentation/documentation/main
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Update main branch documentation" -a || true
+
+      
 # Pushing changes into the Main branch
 
     - name: Push changes
