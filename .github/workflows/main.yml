@@ -26,8 +26,12 @@ jobs:
     - name: Install the requirements
       run: |
         sudo apt-get install python3-setuptools
+        python3 -m pip uninstall pip
+        python3 -m install --user pip
         python3 -m pip install sphinx
         python3 -m pip install -r main/requirements.sphinx.txt
+        python3 -m pip install flask
+        python3 -m pip install sphinxcontrib-fulltoc
         
 
     - name: Build the documentation
