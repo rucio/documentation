@@ -64,8 +64,8 @@ jobs:
     - name: Push changes
       run: |
         cd /home/runner/work/documentation/documentation/master
-        git remote add origin https://github.com/divya-mohan0209/documentation.git
-        git push origin master
+        git remote add master_venv https://github.com/divya-mohan0209/documentation.git
+        git push master_venv master
 
 # Committing Documentation Changes for main branc
         
@@ -84,8 +84,8 @@ jobs:
     - name: Push changes
       run: |
         cd /home/runner/work/documentation/documentation/main
-        git remote add origin https://github.com/divya-mohan0209/documentation.git
-        git push origin main
+        git remote add main_venv https://github.com/divya-mohan0209/documentation.git
+        git push main_venv main
 
 # Deactivating & Removing Virtual Environment
 
