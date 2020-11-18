@@ -54,10 +54,8 @@ jobs:
       run: |
         cd /home/runner/work/documentation/documentation/master
         git init
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
         git add .
-        git commit -m "Update master branch documentation" -a || true
+        git commit -m "Update master branch documentation"
 
 # Pushing changes into the Master branch
 
@@ -65,6 +63,8 @@ jobs:
       run: |
         cd /home/runner/work/documentation/documentation/master
         git remote add master_venv https://github.com/divya-mohan0209/documentation.git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
         git push master_venv master
 
 # Committing Documentation Changes for main branc
@@ -73,8 +73,6 @@ jobs:
       run: |
         cd /home/runner/work/documentation/documentation/main
         git init
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
         git add .
         git commit -m "Update main branch documentation" -a || true
 
@@ -85,6 +83,8 @@ jobs:
       run: |
         cd /home/runner/work/documentation/documentation/main
         git remote add main_venv https://github.com/divya-mohan0209/documentation.git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
         git push main_venv main
 
 # Deactivating & Removing Virtual Environment
