@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
    
-    - name: Install the requirements
+    - name: Setting up the environment
       run: |
         sudo apt-get install python3-setuptools
         python3 -m pip install virtualenv
@@ -19,9 +19,6 @@ jobs:
         source venv1/bin/activate
         python3 -m pip uninstall pip && python3 -m pip install --user pip
         sudo apt-get install python3-sphinx
-        python3 -m pip install -r main/requirements.sphinx.txt
-        python3 -m pip install flask
-        python3 -m pip install sphinxcontrib-fulltoc
 
     - name: Clone Documentation repository main branch
       run: |
@@ -34,6 +31,10 @@ jobs:
     - name: Clone Rucio library repository
       run: |      
         git clone https://github.com/rucio/rucio.git
+        
+    - name: Install the requirements required for build
+      run: |
+        python3 -m pip install main/requirements.sphinx.txt
         
 
     - name: Build the documentation
