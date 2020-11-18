@@ -10,19 +10,7 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-  
-    - name: Clone Documentation repository main branch
-      run: |
-        git clone https://github.com/rucio/documentation.git --branch main --single-branch main
-
-    - name: Clone Documentation repository master branch
-      run: |
-        git clone https://github.com/rucio/documentation.git --branch master --single-branch master
-      
-    - name: Clone Rucio library repository
-      run: |      
-        git clone https://github.com/rucio/rucio.git
-    
+   
     - name: Install the requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -34,6 +22,18 @@ jobs:
         python3 -m pip install -r main/requirements.sphinx.txt
         python3 -m pip install flask
         python3 -m pip install sphinxcontrib-fulltoc
+
+    - name: Clone Documentation repository main branch
+      run: |
+        git clone https://github.com/rucio/documentation.git --branch main --single-branch main
+
+    - name: Clone Documentation repository master branch
+      run: |
+        git clone https://github.com/rucio/documentation.git --branch master --single-branch master
+      
+    - name: Clone Rucio library repository
+      run: |      
+        git clone https://github.com/rucio/rucio.git
         
 
     - name: Build the documentation
@@ -81,7 +81,7 @@ jobs:
 
 # Deactivating & Removing Virtual Environment
 
-    - name: Install the requirements
+    - name: Deactivating & removing the virtual environment
       run: |
         deactivate
         rm -rf venv1
