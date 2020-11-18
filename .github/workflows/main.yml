@@ -17,14 +17,12 @@ jobs:
         python3 -m pip install --user virtualenv
         python3 -m virtualenv venv1
         source venv1/bin/activate
-        sudo python3 -m pip uninstall pip && sudo apt install python3-pip --reinstall
-        which pip
+        python3 -m pip upgrade pip
         sudo apt-get install python3-sphinx
 
     - name: Clone Documentation repository main branch
       run: |
         git clone https://github.com/divya-mohan0209/documentation.git --branch main --single-branch main
-        pwd
 
     - name: Clone Documentation repository master branch
       run: |
