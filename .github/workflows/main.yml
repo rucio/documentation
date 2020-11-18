@@ -34,15 +34,15 @@ jobs:
         
     - name: Install the requirements required for build
       run: |
-        python3 -m pip install main/requirements.sphinx.txt
+        python3 -m pip install /main/requirements.sphinx.txt
         
 
     - name: Build the documentation
       run: |
-        cd rucio/doc
+        cd /rucio/doc
         mv source source_copy
         cd ../..
-        cp -R main/source rucio/doc/
+        cp -R /main/source rucio/doc/
         cd rucio/doc/source/
         sphinx-build -b html . /master/website/static/rucio/
 
@@ -50,7 +50,7 @@ jobs:
 
     - name: Commit documentation changes for Rucio Master 
       run: |
-        cd master
+        cd /master
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
@@ -58,7 +58,7 @@ jobs:
         
     - name: Commit documentation changes for Rucio Main
       run: |
-        cd main
+        cd /main
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
