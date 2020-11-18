@@ -63,6 +63,7 @@ jobs:
 
     - name: Push changes
       run: |
+        cd /home/runner/work/documentation/documentation/master
         git remote add origin https://github.com/divya-mohan0209/documentation.git
         git push origin master
 
@@ -82,6 +83,7 @@ jobs:
 
     - name: Push changes
       run: |
+        cd /home/runner/work/documentation/documentation/main
         git remote add origin https://github.com/divya-mohan0209/documentation.git
         git push origin main
 
