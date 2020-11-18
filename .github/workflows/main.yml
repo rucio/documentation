@@ -30,7 +30,7 @@ jobs:
         python3 -m virtualenv venv1
         source venv1/bin/activate
         python3 -m pip uninstall pip && python3 -m pip install --user pip
-        python3 -m pip install sphinx
+        sudo apt-get install python3-sphinx
         python3 -m pip install -r main/requirements.sphinx.txt
         python3 -m pip install flask
         python3 -m pip install sphinxcontrib-fulltoc
