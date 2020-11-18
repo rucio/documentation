@@ -44,7 +44,7 @@ jobs:
         cd ../..
         cp -R /home/runner/work/documentation/documentation//main/source /home/runner/work/documentation/documentation/rucio/doc/
         cd /home/runner/work/documentation/documentation/rucio/doc/source/
-        sphinx-build -b html . /home/runner/work/documentation/documentation/master/website/static/rucio/
+        python3 -m sphinx.cmd.build -b html . /home/runner/work/documentation/documentation/master/website/static/rucio/
 
 # Committing Documentation Changes for master
 
