@@ -17,7 +17,7 @@ jobs:
         pip3 install --user virtualenv
         python3 -m virtualenv venv1
         source venv1/bin/activate
-        pip3 install --upgrade pip3
+        pip3 install --upgrade pip
         sudo apt-get install python3-sphinx
 
     - name: Clone Documentation repository main branch
