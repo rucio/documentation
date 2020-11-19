@@ -64,8 +64,8 @@ jobs:
     - name: Push changes
       run: |
         cd /home/runner/work/documentation/documentation/master
-        git remote add master_venv https://github.com/divya-mohan0209/documentation.git
-        git push master_venv master
+        remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+        git push remote_repo master
 
 # Committing Documentation Changes for main branch
         
@@ -84,8 +84,7 @@ jobs:
     - name: Push changes
       run: |
         cd /home/runner/work/documentation/documentation/main
-        git remote add main_venv https://github.com/divya-mohan0209/documentation.git
-        git push main_venv main
+        git push remote_repo main
 
 # Deactivating & Removing Virtual Environment
 
