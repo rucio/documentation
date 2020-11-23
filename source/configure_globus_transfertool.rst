@@ -12,7 +12,7 @@ Using Globus Online as a transfer tool requires `registering <https://developers
 
 There is a `helpful walk-through <https://globus-sdk-python.readthedocs.io/en/stable/tutorial/>`_ that goes into more detail around OAuth and token retrieval.
 
-Obtain a refresh token to access Globus resources::
+Obtain a refresh token to access the Globus resources::
 
   # obtain authorization code
   import globus_sdk
@@ -29,7 +29,7 @@ Obtain a refresh token to access Globus resources::
 
 RSE Setup
 ---------
-Below shows a typical setup for a test RSE.  Options for CLI given when supported.
+Below shows a typical setup for a test RSE.  Options for CLI are given when supported.
 
 The following code will create a non-determinisic RSE.
 
