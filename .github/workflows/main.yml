@@ -65,6 +65,7 @@ jobs:
         git config --global user.name "GitHub Action"
         git add .
         git commit -m "Update master branch documentation"
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
         git push -f origin master
 
 # Deactivating & Removing Virtual Environment
