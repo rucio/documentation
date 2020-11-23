@@ -29,8 +29,8 @@ jobs:
         run: |
           pip install -r main/requirements.sphinx.txt
       - name: Build docs
-        run:
-        cd main
-        chmod 755 build-shinx-docs.sh 
-        build-sphinx-docs.sh
+        run: |
+          cd main
+          chmod 755 build-sphinx-docs.sh 
+          ./build-sphinx-docs.sh
     
