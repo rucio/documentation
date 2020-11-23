@@ -18,7 +18,7 @@ mv source source_copy
 cp -R "$docs_conf_dir" .
 
 # Regenerate docs.
-sphinx-build - html . "${out_dir}" -W --keep-going $CPUS
+sphinx-build -b html . "${out_dir}" -W --keep-going $CPUS
 
 echo
 echo Index Page:
