@@ -58,7 +58,6 @@ jobs:
     - name: Commit documentation changes for Rucio Master 
       run: |
         cd master
-        git init
         git add .
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
@@ -68,8 +67,6 @@ jobs:
 
     - name: Push changes
       run: |
-        cd master
-        git remote rm origin
         git remote add origin https://github.com/divya-mohan0209/documentation.git
         git push origin master
 
