@@ -4,7 +4,7 @@ Welcome!
 
 There are 3 branches in this repository:
 
-- main: Containing the build files for API-related documentation
+- sphinx: Containing the build files for API-related documentation
 - master: Containing the build files for Docusaurus
 - gh-pages: Hosting the website
 
