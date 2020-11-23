@@ -58,7 +58,7 @@ jobs:
     - name: Commit documentation changes for Rucio Master 
       uses: actions/checkout@v2
     - run: |
-        cd /home/runner/work/documentation/documentation/master
+        cd master
         rm -rf .git/
         git init
         git remote add origin https://github.com/divya-mohan0209/documentation.git
