@@ -63,6 +63,7 @@ jobs:
         git remote add origin https://github.com/divya-mohan0209/documentation.git
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
+        git add .
         git commit -m "Update master branch documentation"
         git push -f origin master
 
