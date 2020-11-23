@@ -32,6 +32,7 @@ const siteConfig = {
     {href: 'https://rucio.readthedocs.io/_/downloads/en/next/pdf/', label: 'Downloads'},
     {href: 'https://twiki.cern.ch/twiki/bin/view/AtlasComputing/AtlasDistributedComputing', label: 'Wiki'},
     {href: 'https://arxiv.org/abs/1902.09857', label: 'Scientific articles'},
+    { search: true }
   ],
   
   //Algolia search enablement
@@ -39,7 +40,8 @@ const siteConfig = {
     algolia: {
     apiKey: '04e5d623b96121df11ac440e51fc8956',
     indexName: 'rucio-cern',
-    algoliaOptions: {} 
+    algoliaOptions: {},
+    placeholder: 'Ask me something'
   },
   
   //Disabling header title
