@@ -33,7 +33,15 @@ const siteConfig = {
     {href: 'https://twiki.cern.ch/twiki/bin/view/AtlasComputing/AtlasDistributedComputing', label: 'Wiki'},
     {href: 'https://arxiv.org/abs/1902.09857', label: 'Scientific articles'},
   ],
-
+  
+  //Algolia search enablement
+  
+    algolia: {
+    apiKey: '04e5d623b96121df11ac440e51fc8956',
+    indexName: 'rucio-cern',
+    algoliaOptions: {} 
+  },
+  
   //Disabling header title
 
   disableHeaderTitle: true,
