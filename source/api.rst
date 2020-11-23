@@ -12,7 +12,7 @@ example of using Rucio Client class::
    >>> CLIENT.ping()
 
 
-The methods are separated per resource type.
+The methods are separated per resource type. "Adding a test message for commit"
 
 .. toctree::
     :maxdepth: 1
