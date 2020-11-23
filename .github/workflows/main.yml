@@ -58,18 +58,13 @@ jobs:
     - name: Commit documentation changes for Rucio Master 
       run: |
         cd /home/runner/work/documentation/documentation/master
-        git add .
+        rm -rf .git/
+        git init
+        git remote add origin https://github.com/divya-mohan0209/documentation.git
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git commit -m "Update master branch documentation"
-
-# Pushing changes into the Master branch
-
-    - name: Push changes
-      run: |
-        git remote add origin https://github.com/divya-mohan0209/documentation.git
-        git push origin master
-
+        git push -f origin master
 
 # Deactivating & Removing Virtual Environment
 
