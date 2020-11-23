@@ -20,8 +20,3 @@ cp -R "$docs_conf_dir" .
 # Regenerate docs.
 cd source
 sphinx-build -b html . "${out_dir}" -W --keep-going $CPUS
-
-echo
-echo Index Page:
-echo "file://${out_dir}/html/index.html"
-echo
