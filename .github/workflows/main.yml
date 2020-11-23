@@ -20,9 +20,15 @@ jobs:
         pip3 install --upgrade pip
         sudo apt-get install python3-sphinx
 
-    - name: Clone Documentation repository main branch
-      run: |
-        git clone https://github.com/divya-mohan0209/documentation.git --branch main --single-branch main
+    - name: Checkout main branch
+      uses: actions/checkout@v2
+      with:
+        ref: main
+    
+    - name: Checkout master branch
+      uses: actions/checkout@v2
+      with:
+        ref: master
 
     - name: Clone Documentation repository master branch
       run: |
