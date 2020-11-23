@@ -74,21 +74,20 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Archive</p></td>
-<td><p><a class="reference external" href="#get--archives-(scope)-(name)">GET /archives/(scope)/(name)</a></p></td>
-<td><p>List keys for archived content.</p></td>
+<td><p><a class="reference external" href="#get--archives-(path-scope_name)-files">GET /archives/(path:scope_name)/files</a></p></td>
+<td><p>list archive content keys.</p></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Details</strong></p>
 <dl class="http get">
-<dt id="get--archives-(scope)-(name)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/archives/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--archives-(scope)-(name)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists keys for archived content.</p>
+<dt id="get--archives-(path-scope_name)-files">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archives/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/files</code><a class="headerlink" href="#get--archives-(path-scope_name)-files" title="Permalink to this definition">¶</a></dt>
+<dd><p>List archive content keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – data identifier scope.</p></li>
-<li><p><strong>name</strong> – data identifier name.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Response Headers</dt>
@@ -99,6 +98,7 @@
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Invalid value.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
 </ul>

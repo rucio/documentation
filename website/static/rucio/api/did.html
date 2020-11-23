@@ -501,7 +501,7 @@ dids is: [{‘scope’: scope, ‘name’: name}, …]
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scope</strong> – The scope name.</p></li>
-<li><p><strong>filters</strong> – A dictionary of key/value pairs like {‘name’: ‘file_name’,’rse-expression’: ‘tier0’}.</p></li>
+<li><p><strong>filters</strong> – A dictionary of key/value pairs like {‘type’: ‘dataset’, ‘scope’: ‘test’}.</p></li>
 <li><p><strong>type</strong> – The type of the did: ‘all’(container, dataset or file)|’collection’(dataset or container)|’dataset’|’container’|’file’</p></li>
 <li><p><strong>long</strong> – Long format option to display more information for each DID.</p></li>
 <li><p><strong>recursive</strong> – Recursively list DIDs content.</p></li>
@@ -526,7 +526,7 @@ dids is: [{‘scope’: scope, ‘name’: name}, …]
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scope</strong> – The scope name.</p></li>
-<li><p><strong>filters</strong> – A dictionary of key/value pairs like {‘name’: ‘file_name’,’rse-expression’: ‘tier0’}.</p></li>
+<li><p><strong>filters</strong> – A dictionary of key/value pairs like {‘type’: ‘dataset’, ‘scope’: ‘test’}.</p></li>
 <li><p><strong>type</strong> – The type of the did: ‘all’(container, dataset or file)|’collection’(dataset or container)|’dataset’|’container’|’file’</p></li>
 <li><p><strong>long</strong> – Long format option to display more information for each DID.</p></li>
 <li><p><strong>recursive</strong> – Recursively list DIDs content.</p></li>
@@ -601,6 +601,22 @@ dids is: [{‘scope’: scope, ‘name’: name}, …]
 <li><p><strong>name</strong> – The data identifier name.</p></li>
 <li><p><strong>key</strong> – the key.</p></li>
 <li><p><strong>value</strong> – the value.</p></li>
+<li><p><strong>recursive</strong> – Option to propagate the metadata change to content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.set_metadata_bulk">
+<code class="sig-name descname">set_metadata_bulk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">meta</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.set_metadata_bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set data identifier metadata in bulk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>meta</strong> (<em>dict</em>) – the metadata key-values.</p></li>
 <li><p><strong>recursive</strong> – Option to propagate the metadata change to content.</p></li>
 </ul>
 </dd>

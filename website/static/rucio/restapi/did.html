@@ -73,64 +73,80 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#post--dids-bulkmeta">POST /dids/bulkmeta</a></p></td>
-<td></td>
+<tr class="row-even"><td><p>AssociatedRules</p></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-associated_rules">GET /dids/(path:scope_name)/associated_rules</a></p></td>
+<td><p>List associated rules of DID.</p></td>
 </tr>
-<tr class="row-odd"><td><p>AssociatedRules</p></td>
-<td><p><a class="reference external" href="#get--dids-(scope)-(name)-associated_rules">GET /dids/(scope)/(name)/associated_rules</a></p></td>
-<td><p>List associated rules for a DID.</p></td>
-</tr>
-<tr class="row-even"><td><p>Attachement</p></td>
-<td><p><a class="reference external" href="#get--dids-(scope)-(name)-dids">GET /dids/(scope)/(name)/dids</a></p></td>
+<tr class="row-odd"><td><p>Attachement</p></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-dids">GET /dids/(path:scope_name)/dids</a></p></td>
 <td><p>Get DID contents.</p></td>
 </tr>
-<tr class="row-odd"><td><p>AttachementHistory</p></td>
-<td><p><a class="reference external" href="#get--dids-(scope)-(name)-dids-history">GET /dids/(scope)/(name)/dids/history</a></p></td>
+<tr class="row-even"><td><p>AttachementHistory</p></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-dids-history">GET /dids/(path:scope_name)/dids/history</a></p></td>
 <td><p>List the content history of a DID.</p></td>
 </tr>
-<tr class="row-even"><td><p>Attachements</p></td>
+<tr class="row-odd"><td><p>Attachements</p></td>
 <td><p><a class="reference external" href="#post--dids-attachments">POST /dids/attachments</a></p></td>
 <td><p>Attach DIDs to DIDs.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Attachment</p></td>
-<td><p><a class="reference external" href="#post--dids-(scope)-(name)-dids">POST /dids/(scope)/(name)/dids</a></p></td>
+<tr class="row-even"><td><p>Attachment</p></td>
+<td><p><a class="reference external" href="#post--dids-(path-scope_name)-dids">POST /dids/(path:scope_name)/dids</a></p></td>
 <td><p>Append DID to DID.</p></td>
 </tr>
-<tr class="row-even"><td><p>BulkDID</p></td>
-<td><p><a class="reference external" href="#post--dids-">POST /dids/</a></p></td>
+<tr class="row-odd"><td><p>BulkDID</p></td>
+<td><p><a class="reference external" href="#post--dids">POST /dids</a></p></td>
 <td><p>Bulk add DIDs.</p></td>
 </tr>
-<tr class="row-odd"><td><p>DIDs</p></td>
-<td><p><a class="reference external" href="#post--dids-(scope)-(name)">POST /dids/(scope)/(name)</a></p></td>
+<tr class="row-even"><td><p>DIDs</p></td>
+<td><p><a class="reference external" href="#put--dids-(path-scope_name)-status">PUT /dids/(path:scope_name)/status</a></p></td>
+<td><p>Update DID status.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#post--dids-(path-scope_name)">POST /dids/(path:scope_name)</a></p></td>
 <td><p>Create a new DID.</p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#get--dids-(scope)-(name)">GET /dids/(scope)/(name)</a></p></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)">GET /dids/(path:scope_name)</a></p></td>
 <td><p>Retrieve a single DID.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#put--dids-(scope)-(name)-status">PUT /dids/(scope)/(name)/status</a></p></td>
-<td><p>Update DID status.</p></td>
-</tr>
-<tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#delete--dids-(scope)-(name)-dids">DELETE /dids/(scope)/(name)/dids</a></p></td>
+<td><p><a class="reference external" href="#delete--dids-(path-scope_name)-dids">DELETE /dids/(path:scope_name)/dids</a></p></td>
 <td><p>Detach DID from DID.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Files</p></td>
-<td><p><a class="reference external" href="#get--dids-(scope)-(name)-files">GET /dids/(scope)/(name)/files</a></p></td>
+<tr class="row-even"><td><p>Files</p></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-files">GET /dids/(path:scope_name)/files</a></p></td>
 <td><p>List replicas of DID.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Follow</p></td>
+<td><p><a class="reference external" href="#delete--dids-(path-scope_name)-follow">DELETE /dids/(path:scope_name)/follow</a></p></td>
+<td><p>Unfollow DID.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#post--dids-(path-scope_name)-follow">POST /dids/(path:scope_name)/follow</a></p></td>
+<td><p>Follow DID.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-follow">GET /dids/(path:scope_name)/follow</a></p></td>
+<td><p>List users following DID.</p></td>
 </tr>
 <tr class="row-even"><td><p>GUIDLookup</p></td>
 <td><p><a class="reference external" href="#get--dids-(guid)-guid">GET /dids/(guid)/guid</a></p></td>
 <td><p>List file by GUID.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Meta</p></td>
-<td><p><a class="reference external" href="#post--dids-(scope)-(name)-meta-(key)">POST /dids/(scope)/(name)/meta/(key)</a></p></td>
+<td><p><a class="reference external" href="#post--dids-bulkmeta">POST /dids/bulkmeta</a></p></td>
+<td><p>List metadata of multiple DIDs</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#delete--dids-(path-scope_name)-meta">DELETE /dids/(path:scope_name)/meta</a></p></td>
+<td><p>Delete DID metadata.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#post--dids-(path-scope_name)-meta">POST /dids/(path:scope_name)/meta</a></p></td>
 <td><p>Add DID metadata.</p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#get--dids-(scope)-(name)-meta">GET /dids/(scope)/(name)/meta</a></p></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-meta">GET /dids/(path:scope_name)/meta</a></p></td>
 <td><p>List DID metadata.</p></td>
 </tr>
 <tr class="row-odd"><td><p>NewDIDs</p></td>
@@ -138,7 +154,7 @@
 <td><p>List recent DIDs.</p></td>
 </tr>
 <tr class="row-even"><td><p>Parents</p></td>
-<td><p><a class="reference external" href="#get--dids-(scope)-(name)-parents">GET /dids/(scope)/(name)/parents</a></p></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-parents">GET /dids/(path:scope_name)/parents</a></p></td>
 <td><p>List parents of DID.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Resurrect</p></td>
@@ -146,8 +162,8 @@
 <td><p>Resurrect DID.</p></td>
 </tr>
 <tr class="row-even"><td><p>Rules</p></td>
-<td><p><a class="reference external" href="#get--dids-(scope)-(name)-rules">GET /dids/(scope)/(name)/rules</a></p></td>
-<td><p>List rules for a given DID.</p></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-rules">GET /dids/(path:scope_name)/rules</a></p></td>
+<td><p>List rules of DID.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Sample</p></td>
 <td><p><a class="reference external" href="#post--dids-(input_scope)-(input_name)-(output_scope)-(output_name)-(nbfiles)-sample">POST /dids/(input_scope)/(input_name)/(output_scope)/(output_name)/(nbfiles)/sample</a></p></td>
@@ -164,6 +180,10 @@
 <tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--dids-(scope)-dids-search">GET /dids/(scope)/dids/search</a></p></td>
 <td></td>
+</tr>
+<tr class="row-odd"><td><p>SingleMeta</p></td>
+<td><p><a class="reference external" href="#post--dids-(path-scope_name)-meta-(key)">POST /dids/(path:scope_name)/meta/(key)</a></p></td>
+<td><p>Add DID metadata.</p></td>
 </tr>
 </tbody>
 </table>
@@ -192,19 +212,24 @@
 <dl class="http post">
 <dt id="post--dids-bulkmeta">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/dids/bulkmeta</code><a class="headerlink" href="#post--dids-bulkmeta" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all metadata for a list of data identifiers.</p>
-<dl class="simple">
-<dt>HTTP Success:</dt><dd><p>200 OK</p>
-</dd>
-<dt>HTTP Error:</dt><dd><p>400 Bad Request
-401 Unauthorized
-404 DataIdentifierNotFound
-500 InternalError</p>
-</dd>
-</dl>
+<dd><p>List all meta of a list of data identifiers.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Bad Request</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DataIdentifierNotFound</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – InternalError</p></li>
+</ul>
+</dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A list of dictionaries containing all metadata.</p>
+<dd class="field-odd"><p>A list of dictionaries containing all meta.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -212,7 +237,7 @@
 <dl class="http get">
 <dt id="get--dids-new">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/dids/new</code><a class="headerlink" href="#get--dids-new" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns list of recently created DIDs.</p>
+<dd><p>Returns list of recent identifiers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -239,9 +264,9 @@
 </dd></dl>
 
 <dl class="http post">
-<dt id="post--dids-">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><a class="headerlink" href="#post--dids-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds new DIDs in bulk.</p>
+<dt id="post--dids">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/dids</code><a class="headerlink" href="#post--dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new DIDs in bulk.</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/dids/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
 
@@ -269,7 +294,7 @@
 <li><p><strong>scope</strong> (<em>string</em>) – the new DID scope</p></li>
 <li><p><strong>name</strong> (<em>string</em>) – the new DID name</p></li>
 <li><p><strong>type</strong> (<em>string</em>) – the new DID type</p></li>
-<li><p><strong>account</strong> (<em>string</em>) – the account owner of the new DID</p></li>
+<li><p><strong>account</strong> (<em>string</em>) – the owner account of the new DID</p></li>
 <li><p><strong>statuses</strong> (<em>string</em>) – monotonic</p></li>
 </ul>
 </dd>
@@ -288,7 +313,7 @@
 <dl class="http get">
 <dt id="get--dids-(scope)-dids-search_extended">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/dids/search_extended</code><a class="headerlink" href="#get--dids-(scope)-dids-search_extended" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all data identifiers in a scope matching a given metadata.
+<dd><p>List all data identifiers in a scope which match a given metadata.
 Extended Version to included meteadata from various plugins.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/dids/scope1/dids/search_extended?type=collection&amp;long=True&amp;length.lt=10</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -344,9 +369,39 @@ Extended Version to included meteadata from various plugins.</p>
 </dd></dl>
 
 <dl class="http get">
+<dt id="get--dids-(path-scope_name)-dids-history">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids/history</code><a class="headerlink" href="#get--dids-(path-scope_name)-dids-history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the contents history of a data identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DID found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Stream of dictionarys with DIDs</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
 <dt id="get--dids-(scope)-dids-search">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/dids/search</code><a class="headerlink" href="#get--dids-(scope)-dids-search" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all data identifiers in a scope matching a given metadata.</p>
+<dd><p>List all data identifiers in a scope which match a given metadata.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/dids/scope1/dids/search?type=collection&amp;long=True&amp;length.lt=10</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
@@ -366,10 +421,10 @@ Extended Version to included meteadata from various plugins.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Query Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>type</strong> – Specify a DID type to search for</p></li>
-<li><p><strong>limit</strong> – The maximum number of DIDs that can be returned.</p></li>
-<li><p><strong>long</strong> – Set to True for long output, otherwise only name</p></li>
-<li><p><strong>recursive</strong> – Set to True to recursively list DIDs content</p></li>
+<li><p><strong>type</strong> – specify a DID type to search for</p></li>
+<li><p><strong>limit</strong> – The maximum number of DIDs returned.</p></li>
+<li><p><strong>long</strong> – set to True for long output, otherwise only name</p></li>
+<li><p><strong>recursive</strong> – set to True to recursively list DIDs content</p></li>
 <li><p><strong>created_before</strong> – Date string in RFC-1123 format where the creation date was earlier</p></li>
 <li><p><strong>created_after</strong> – Date string in RFC-1123 format where the creation date was later</p></li>
 <li><p><strong>length</strong> – Exact number of attached DIDs</p></li>
@@ -401,9 +456,9 @@ Extended Version to included meteadata from various plugins.</p>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--dids-(scope)-(name)-dids-history">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids/history</code><a class="headerlink" href="#get--dids-(scope)-(name)-dids-history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the contents history of a data identifier.</p>
+<dt id="get--dids-(path-scope_name)-associated_rules">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/associated_rules</code><a class="headerlink" href="#get--dids-(path-scope_name)-associated_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all associated rules of a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -412,69 +467,7 @@ Extended Version to included meteadata from various plugins.</p>
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>scope</strong> – The scope of the data identifier.</p></li>
-<li><p><strong>name</strong> – The name of the data identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DID found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Stream of dictionarys with DIDs</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http get">
-<dt id="get--dids-(guid)-guid">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">guid</em><span class="sig-paren">)</span><code class="sig-name descname">/guid</code><a class="headerlink" href="#get--dids-(guid)-guid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the file associated to a GUID.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Response Headers</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
-</ul>
-</dd>
-<dt class="field-even">Parameters</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>guid</strong> – the GUID to query by.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DID found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>List of files for given GUID</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http get">
-<dt id="get--dids-(scope)-(name)-associated_rules">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/associated_rules</code><a class="headerlink" href="#get--dids-(scope)-(name)-associated_rules" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all associated for a DID.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Response Headers</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
-</ul>
-</dd>
-<dt class="field-even">Parameters</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>scope</strong> – The scope of the data identifier.</p></li>
-<li><p><strong>name</strong> – The name of the data identifier.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
@@ -493,9 +486,9 @@ Extended Version to included meteadata from various plugins.</p>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--dids-(scope)-(name)-parents">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/parents</code><a class="headerlink" href="#get--dids-(scope)-(name)-parents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all parents of a data identifier.</p>
+<dt id="get--dids-(path-scope_name)-parents">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/parents</code><a class="headerlink" href="#get--dids-(path-scope_name)-parents" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all parents of a data identifier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -504,8 +497,7 @@ Extended Version to included meteadata from various plugins.</p>
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>scope</strong> – The scope of the data identifier.</p></li>
-<li><p><strong>name</strong> – The name of the data identifier.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
@@ -518,15 +510,53 @@ Extended Version to included meteadata from various plugins.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of dictionary containing all information about a dataset.</p>
+<dd class="field-even"><p>A list of dictionary containing all dataset information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http put">
+<dt id="put--dids-(path-scope_name)-status">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/status</code><a class="headerlink" href="#put--dids-(path-scope_name)-status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update data identifier status.</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">PUT</span> <span class="nn">/dids/scope1/container1</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
+
+{&quot;open&quot;: False},
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>open</strong> (<em>bool</em>) – open or close did</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DIDs successfully updated</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Wrong status</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http post">
-<dt id="post--dids-(scope)-(name)">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#post--dids-(scope)-(name)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new data identifier.</p>
+<dt id="post--dids-(path-scope_name)">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><a class="headerlink" href="#post--dids-(path-scope_name)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new data identifier.</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/dids/scope1/container1</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
 
@@ -546,8 +576,7 @@ Extended Version to included meteadata from various plugins.</p>
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>scope</strong> – data identifier scope.</p></li>
-<li><p><strong>name</strong> – data identifier name.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Request JSON Object</dt>
@@ -555,8 +584,8 @@ Extended Version to included meteadata from various plugins.</p>
 <li><p><strong>type</strong> (<em>string</em>) – the new DID type</p></li>
 <li><p><strong>statuses</strong> (<em>dict</em>) – Dictionary with statuses, e.g. {‘monotonic’:True}</p></li>
 <li><p><strong>meta</strong> (<em>dict</em>) – Dictionary with metadata, e.g. {‘length’:1234}</p></li>
-<li><p><strong>rules</strong> (<em>dict</em>) – Replication rules associated with the DID. e.g., [{‘copies’: 2, ‘rse_expression’: ‘TIERS1’}, ]</p></li>
-<li><p><strong>lifetime</strong> (<em>int</em>) – The lifetime of a DID in seconds.</p></li>
+<li><p><strong>rules</strong> (<em>dict</em>) – Replication rules associated with the did. e.g., [{‘copies’: 2, ‘rse_expression’: ‘TIERS1’}, ]</p></li>
+<li><p><strong>lifetime</strong> (<em>int</em>) – DID’s liftime in seconds.</p></li>
 <li><p><strong>dids</strong> (<em>list</em>) – The content.</p></li>
 <li><p><strong>rse</strong> (<em>string</em>) – The RSE name when registering replicas.</p></li>
 </ul>
@@ -573,9 +602,9 @@ Extended Version to included meteadata from various plugins.</p>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--dids-(scope)-(name)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--dids-(scope)-(name)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves a single data identifier.</p>
+<dt id="get--dids-(path-scope_name)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--dids-(path-scope_name)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a single data identifier.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/dids/scope1/dataset1?dynamic</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
@@ -616,49 +645,68 @@ Content-Type: application/json
 </dl>
 </dd></dl>
 
-<dl class="http put">
-<dt id="put--dids-(scope)-(name)-status">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/status</code><a class="headerlink" href="#put--dids-(scope)-(name)-status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates data identifier status.</p>
-<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">PUT</span> <span class="nn">/dids/scope1/container1</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
-
-{&quot;open&quot;: False},
-</pre></div>
-</div>
-<p><strong>Example response</strong>:</p>
-<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept</span>
-</pre></div>
-</div>
+<dl class="http delete">
+<dt id="delete--dids-(path-scope_name)-follow">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/follow</code><a class="headerlink" href="#delete--dids-(path-scope_name)-follow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the input DID as not followed</p>
+<dl class="simple">
+<dt>HTTP Success:</dt><dd><p>200 OK</p>
+</dd>
+<dt>HTTP Error:</dt><dd><p>401 Unauthorized
+500 InternalError</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – data identifier scope.</p></li>
-<li><p><strong>name</strong> – data identifier name.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Request JSON Object</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>open</strong> (<em>bool</em>) – open or close did</p></li>
-</ul>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--dids-(path-scope_name)-follow">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/follow</code><a class="headerlink" href="#post--dids-(path-scope_name)-follow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the input DID as being followed by the given account.</p>
+<dl class="simple">
+<dt>HTTP Success:</dt><dd><p>201 Created</p>
 </dd>
-<dt class="field-odd">Status Codes</dt>
+<dt>HTTP Error:</dt><dd><p>401 Unauthorized
+404 Not Found
+500 Internal Error</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DIDs successfully updated</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Wrong status</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--dids-(scope)-(name)-files">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/files</code><a class="headerlink" href="#get--dids-(scope)-(name)-files" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all replicas of a data identifier.</p>
+<dt id="get--dids-(path-scope_name)-follow">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/follow</code><a class="headerlink" href="#get--dids-(path-scope_name)-follow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all users following a specific DID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – ValueError</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DataIdentifierNotFound</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--dids-(path-scope_name)-files">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/files</code><a class="headerlink" href="#get--dids-(path-scope_name)-files" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all replicas of a data identifier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -667,8 +715,7 @@ Content-Type: application/json
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>scope</strong> – The scope of the data identifier.</p></li>
-<li><p><strong>name</strong> – The name of the data identifier.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Query Parameters</dt>
@@ -686,15 +733,15 @@ Content-Type: application/json
 </ul>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A dictionary containing information about all replicas.</p>
+<dd class="field-odd"><p>A dictionary containing all replicas information.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--dids-(scope)-(name)-rules">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/rules</code><a class="headerlink" href="#get--dids-(scope)-(name)-rules" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns replication rules for a given DID.</p>
+<dt id="get--dids-(path-scope_name)-rules">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/rules</code><a class="headerlink" href="#get--dids-(path-scope_name)-rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all rules of a given DID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -703,8 +750,7 @@ Content-Type: application/json
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>scope</strong> – The scope of the data identifier.</p></li>
-<li><p><strong>name</strong> – The name of the data identifier.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
@@ -723,8 +769,8 @@ Content-Type: application/json
 </dd></dl>
 
 <dl class="http post">
-<dt id="post--dids-(scope)-(name)-meta-(key)">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta/</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#post--dids-(scope)-(name)-meta-(key)" title="Permalink to this definition">¶</a></dt>
+<dt id="post--dids-(path-scope_name)-meta-(key)">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta/</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#post--dids-(path-scope_name)-meta-(key)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add metadata to a data identifier.</p>
 <dl class="simple">
 <dt>HTTP Success:</dt><dd><p>201 Created</p>
@@ -739,8 +785,7 @@ Content-Type: application/json
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – The scope name.</p></li>
-<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 <li><p><strong>key</strong> – the key.</p></li>
 </ul>
 </dd>
@@ -748,19 +793,18 @@ Content-Type: application/json
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--dids-(scope)-(name)-meta">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta</code><a class="headerlink" href="#get--dids-(scope)-(name)-meta" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all metadata of a data identifier.</p>
+<dt id="get--dids-(guid)-guid">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">guid</em><span class="sig-paren">)</span><code class="sig-name descname">/guid</code><a class="headerlink" href="#get--dids-(guid)-guid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the file associated to a GUID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>scope</strong> – The scope of the data identifier.</p></li>
-<li><p><strong>name</strong> – The name of the data identifier.</p></li>
+<li><p><strong>guid</strong> – the GUID to query by.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
@@ -773,20 +817,19 @@ Content-Type: application/json
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A dictionary containing all metadata.</p>
+<dd class="field-even"><p>List of files for given GUID</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http delete">
-<dt id="delete--dids-(scope)-(name)-dids">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#delete--dids-(scope)-(name)-dids" title="Permalink to this definition">¶</a></dt>
-<dd><p>Detaches data identifiers from data identifiers.</p>
+<dt id="delete--dids-(path-scope_name)-dids">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#delete--dids-(path-scope_name)-dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detach data identifiers from data identifiers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – Scope of the DID to detach from.</p></li>
-<li><p><strong>name</strong> – Name of the DID to detach from.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Request JSON Object</dt>
@@ -806,9 +849,9 @@ Content-Type: application/json
 </dd></dl>
 
 <dl class="http post">
-<dt id="post--dids-(scope)-(name)-dids">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#post--dids-(scope)-(name)-dids" title="Permalink to this definition">¶</a></dt>
-<dd><p>Appends data identifiers to data identifiers.</p>
+<dt id="post--dids-(path-scope_name)-dids">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#post--dids-(path-scope_name)-dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append data identifiers to data identifiers.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/dids/scope1/datasets1/dids</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
@@ -826,8 +869,7 @@ Content-Type: application/json
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – The scope of the DID to attach to.</p></li>
-<li><p><strong>name</strong> – The name of the DID to attach to.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Request JSON Object</dt>
@@ -848,8 +890,8 @@ Content-Type: application/json
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--dids-(scope)-(name)-dids">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#get--dids-(scope)-(name)-dids" title="Permalink to this definition">¶</a></dt>
+<dt id="get--dids-(path-scope_name)-dids">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#get--dids-(path-scope_name)-dids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the contents of a data identifier.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/dids/scope1/dataset1?dynamic</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -891,10 +933,78 @@ Content-Type: application/json
 </dl>
 </dd></dl>
 
+<dl class="http delete">
+<dt id="delete--dids-(path-scope_name)-meta">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta</code><a class="headerlink" href="#delete--dids-(path-scope_name)-meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the specified metadata from the DID</p>
+<dl class="simple">
+<dt>HTTP Success:</dt><dd><p>200 OK</p>
+</dd>
+<dt>HTTP Error:</dt><dd><p>401 Unauthorized
+404 KeyNotFound</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--dids-(path-scope_name)-meta">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta</code><a class="headerlink" href="#post--dids-(path-scope_name)-meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add metadata to a data identifier in bulk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Metadata created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Invalid input data.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Duplicate.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal error.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--dids-(path-scope_name)-meta">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta</code><a class="headerlink" href="#get--dids-(path-scope_name)-meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all meta of a data identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DID found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary containing all meta.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http post">
 <dt id="post--dids-(input_scope)-(input_name)-(output_scope)-(output_name)-(nbfiles)-sample">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">input_scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">input_name</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">output_scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">output_name</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">nbfiles</em><span class="sig-paren">)</span><code class="sig-name descname">/sample</code><a class="headerlink" href="#post--dids-(input_scope)-(input_name)-(output_scope)-(output_name)-(nbfiles)-sample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a Sample DID</p>
+<dd><p>Return the file associated to a GUID.</p>
 <dl class="simple">
 <dt>HTTP Success:</dt><dd><p>201 Created</p>
 </dd>
@@ -920,7 +1030,7 @@ Content-Type: application/json
 <dl class="http get">
 <dt id="get--dids-(scope)-">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><a class="headerlink" href="#get--dids-(scope)-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns all data identifiers in the given scope.</p>
+<dd><p>Return all data identifiers in the given scope.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/dids/scope1/?name=container1&amp;recursive</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
@@ -942,8 +1052,8 @@ Content-Type: application/json
 <dl class="field-list simple">
 <dt class="field-odd">Query Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Specify a DID name</p></li>
-<li><p><strong>recursive</strong> – Flag to perform a recursive search</p></li>
+<li><p><strong>name</strong> – specify a DID name</p></li>
+<li><p><strong>recursive</strong> – flag to do a recursive search</p></li>
 </ul>
 </dd>
 <dt class="field-even">Response Headers</dt>

@@ -274,6 +274,23 @@ distinguished by hostname and port.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="rucio.client.rseclient.RSEClient.delete_rse_limits">
+<code class="sig-name descname">delete_rse_limits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rse</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.rseclient.RSEClient.delete_rse_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete RSE limit information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> – The RSE name.</p></li>
+<li><p><strong>name</strong> – The name of the limit.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if successful, otherwise false.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="rucio.client.rseclient.RSEClient.get_distance">
 <code class="sig-name descname">get_distance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source</span></em>, <em class="sig-param"><span class="n">destination</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.rseclient.RSEClient.get_distance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get distances between rses.</p>
@@ -469,7 +486,7 @@ operation could be found.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rse</strong> – The RSE name.</p></li>
 <li><p><strong>name</strong> – The name of the limit.</p></li>
-<li><p><strong>value</strong> – The feature value. Set to -1 to remove the limit.</p></li>
+<li><p><strong>value</strong> – The feature value.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

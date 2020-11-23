@@ -62,6 +62,7 @@
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -171,6 +172,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/download.html#rucio.client.downloadclient.BaseExtractionTool">BaseExtractionTool (class in rucio.client.downloadclient)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -248,19 +257,21 @@
 </li>
       <li><a href="api/did.html#rucio.client.didclient.DIDClient.delete_metadata">delete_metadata() (rucio.client.didclient.DIDClient method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/rse.html#rucio.client.rseclient.RSEClient.delete_protocols">delete_protocols() (rucio.client.rseclient.RSEClient method)</a>
 </li>
       <li><a href="api/rse.html#rucio.client.rseclient.RSEClient.delete_qos_policy">delete_qos_policy() (rucio.client.rseclient.RSEClient method)</a>
 </li>
       <li><a href="api/replica.html#rucio.client.replicaclient.ReplicaClient.delete_replicas">delete_replicas() (rucio.client.replicaclient.ReplicaClient method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/rule.html#rucio.client.ruleclient.RuleClient.delete_replication_rule">delete_replication_rule() (rucio.client.ruleclient.RuleClient method)</a>
 </li>
       <li><a href="api/rse.html#rucio.client.rseclient.RSEClient.delete_rse">delete_rse() (rucio.client.rseclient.RSEClient method)</a>
 </li>
       <li><a href="api/rse.html#rucio.client.rseclient.RSEClient.delete_rse_attribute">delete_rse_attribute() (rucio.client.rseclient.RSEClient method)</a>
+</li>
+      <li><a href="api/rse.html#rucio.client.rseclient.RSEClient.delete_rse_limits">delete_rse_limits() (rucio.client.rseclient.RSEClient method)</a>
 </li>
       <li><a href="api/rule.html#rucio.client.ruleclient.RuleClient.deny_replication_rule">deny_replication_rule() (rucio.client.ruleclient.RuleClient method)</a>
 </li>
@@ -277,6 +288,16 @@
 </li>
       </ul></li>
       <li><a href="api/exception.html#rucio.common.exception.DIDTypeError">DIDTypeError</a>
+</li>
+      <li><a href="api/download.html#rucio.client.downloadclient.DownloadClient.download_aria2c">download_aria2c() (rucio.client.downloadclient.DownloadClient method)</a>
+</li>
+      <li><a href="api/download.html#rucio.client.downloadclient.DownloadClient.download_dids">download_dids() (rucio.client.downloadclient.DownloadClient method)</a>
+</li>
+      <li><a href="api/download.html#rucio.client.downloadclient.DownloadClient.download_from_metalink_file">download_from_metalink_file() (rucio.client.downloadclient.DownloadClient method)</a>
+</li>
+      <li><a href="api/download.html#rucio.client.downloadclient.DownloadClient.download_pfns">download_pfns() (rucio.client.downloadclient.DownloadClient method)</a>
+</li>
+      <li><a href="api/download.html#rucio.client.downloadclient.DownloadClient">DownloadClient (class in rucio.client.downloadclient)</a>
 </li>
       <li><a href="api/exception.html#rucio.common.exception.Duplicate">Duplicate</a>
 </li>
@@ -424,6 +445,8 @@
 </li>
       <li><a href="api/exception.html#rucio.common.exception.InvalidValueForKey">InvalidValueForKey</a>
 </li>
+      <li><a href="api/download.html#rucio.client.downloadclient.BaseExtractionTool.is_useable">is_useable() (rucio.client.downloadclient.BaseExtractionTool method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -559,6 +582,8 @@
         <li><a href="api/config.html#module-rucio.client.configclient">rucio.client.configclient</a>
 </li>
         <li><a href="api/did.html#module-rucio.client.didclient">rucio.client.didclient</a>
+</li>
+        <li><a href="api/download.html#module-rucio.client.downloadclient">rucio.client.downloadclient</a>
 </li>
         <li><a href="api/lifetime.html#module-rucio.client.lifetimeclient">rucio.client.lifetimeclient</a>
 </li>
@@ -697,6 +722,8 @@
 </li>
       <li><a href="api/exception.html#rucio.common.exception.RSEProtocolPriorityError">RSEProtocolPriorityError</a>
 </li>
+      <li><a href="api/exception.html#rucio.common.exception.RSEWriteBlocked">RSEWriteBlocked</a>
+</li>
       <li>
     rucio.client.accountclient
 
@@ -725,6 +752,13 @@
 
       <ul>
         <li><a href="api/did.html#module-rucio.client.didclient">module</a>
+</li>
+      </ul></li>
+      <li>
+    rucio.client.downloadclient
+
+      <ul>
+        <li><a href="api/download.html#module-rucio.client.downloadclient">module</a>
 </li>
       </ul></li>
       <li>
@@ -864,6 +898,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/did.html#rucio.client.didclient.DIDClient.set_metadata_bulk">set_metadata_bulk() (rucio.client.didclient.DIDClient method)</a>
+</li>
       <li><a href="api/rse.html#rucio.client.rseclient.RSEClient.set_rse_limits">set_rse_limits() (rucio.client.rseclient.RSEClient method)</a>
 </li>
       <li><a href="api/rse.html#rucio.client.rseclient.RSEClient.set_rse_usage">set_rse_usage() (rucio.client.rseclient.RSEClient method)</a>
@@ -902,13 +938,15 @@
 </li>
       <li><a href="api/touch.html#rucio.client.touchclient.TouchClient">TouchClient (class in rucio.client.touchclient)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/touch.html#rucio.client.touchclient.TouchClient.TRACES_BASEURL">TRACES_BASEURL (rucio.client.touchclient.TouchClient attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/exception.html#rucio.common.exception.TransferToolTimeout">TransferToolTimeout</a>
 </li>
       <li><a href="api/exception.html#rucio.common.exception.TransferToolWrongAnswer">TransferToolWrongAnswer</a>
+</li>
+      <li><a href="api/download.html#rucio.client.downloadclient.BaseExtractionTool.try_extraction">try_extraction() (rucio.client.downloadclient.BaseExtractionTool method)</a>
 </li>
   </ul></td>
 </tr></table>

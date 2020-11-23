@@ -78,16 +78,16 @@
 <td><p>List all accounts.</p></td>
 </tr>
 <tr class="row-odd"><td><p>AccountParameter</p></td>
-<td><p><a class="reference external" href="#put--accounts-(account)">PUT /accounts/(account)</a></p></td>
-<td><p>Update account information.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#delete--accounts-(account)">DELETE /accounts/(account)</a></p></td>
 <td><p>Delete account information.</p></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#post--accounts-(account)">POST /accounts/(account)</a></p></td>
-<td><p>Create account.</p></td>
+<td><p>Add account.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#put--accounts-(account)">PUT /accounts/(account)</a></p></td>
+<td><p>Update account information.</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--accounts-(account)">GET /accounts/(account)</a></p></td>
@@ -102,8 +102,8 @@
 <td><p>Add account attribute</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#get--accounts-(account)-attr">GET /accounts/(account)/attr</a></p></td>
-<td><p>List account attributes.</p></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-attr-">GET /accounts/(account)/attr/</a></p></td>
+<td><p>list account attributes.</p></td>
 </tr>
 <tr class="row-even"><td><p>GlobalAccountLimits</p></td>
 <td><p><a class="reference external" href="#get--accounts-(account)-limits-global-(rse_expression)">GET /accounts/(account)/limits/global/(rse_expression)</a></p></td>
@@ -114,11 +114,11 @@
 <td></td>
 </tr>
 <tr class="row-even"><td><p>GlobalUsage</p></td>
-<td><p><a class="reference external" href="#get--accounts-(account)-usage-(rse_expression)">GET /accounts/(account)/usage/(rse_expression)</a></p></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-usage-global-(rse_expression)">GET /accounts/(account)/usage/global/(rse_expression)</a></p></td>
 <td><p>Get global account usage.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#get--accounts-(account)-usage">GET /accounts/(account)/usage</a></p></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-usage-global">GET /accounts/(account)/usage/global</a></p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>Identities</p></td>
@@ -138,12 +138,28 @@
 <td><p>Get local account limits.</p></td>
 </tr>
 <tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-limits-(rse)">GET /accounts/(account)/limits/(rse)</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#get--accounts-(account)-limits-local">GET /accounts/(account)/limits/local</a></p></td>
 <td></td>
 </tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-limits">GET /accounts/(account)/limits</a></p></td>
+<td></td>
+</tr>
 <tr class="row-odd"><td><p>LocalUsage</p></td>
-<td><p><a class="reference external" href="#get--accounts-(account)-usage-(rse)">GET /accounts/(account)/usage/(rse)</a></p></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-usage-local-(rse)">GET /accounts/(account)/usage/local/(rse)</a></p></td>
 <td><p>Get local account usage.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-usage-(rse)">GET /accounts/(account)/usage/(rse)</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-usage-local">GET /accounts/(account)/usage/local</a></p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--accounts-(account)-usage">GET /accounts/(account)/usage</a></p></td>
@@ -158,7 +174,7 @@
 <td><p>Add to account.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Scopes</p></td>
-<td><p><a class="reference external" href="#get--accounts-(account)-scopes">GET /accounts/(account)/scopes</a></p></td>
+<td><p><a class="reference external" href="#get--accounts-(account)-scopes-">GET /accounts/(account)/scopes/</a></p></td>
 <td><p>List scope for account.</p></td>
 </tr>
 <tr class="row-even"><td><p>UsageHistory</p></td>
@@ -171,7 +187,7 @@
 <dl class="http get">
 <dt id="get--accounts-">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><a class="headerlink" href="#get--accounts-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all rucio accounts.</p>
+<dd><p>list all rucio accounts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -200,11 +216,11 @@
 <dl class="http get">
 <dt id="get--accounts-(account)-limits-global">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/limits/global</code><a class="headerlink" href="#get--accounts-(account)-limits-global" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the current global limits for an account on a specific RSE expression</p>
+<dd><p>get the current global limits for an account on a specific RSE expression</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
+<li><p><strong>account</strong> – The account name.</p></li>
 <li><p><strong>rse_expression</strong> – The rse expression.</p></li>
 </ul>
 </dd>
@@ -234,13 +250,23 @@
 <dd></dd></dl>
 
 <dl class="http get">
+<dt id="get--accounts-(account)-limits-(rse)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/limits/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)-limits-(rse)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="http get">
 <dt id="get--accounts-(account)-limits-local">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/limits/local</code><a class="headerlink" href="#get--accounts-(account)-limits-local" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the current local limits for an account on a specific RSE</p>
+<dd></dd></dl>
+
+<dl class="http get">
+<dt id="get--accounts-(account)-limits">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/limits</code><a class="headerlink" href="#get--accounts-(account)-limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the current local limits for an account on a specific RSE</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
+<li><p><strong>account</strong> – The account name.</p></li>
 <li><p><strong>rse</strong> – The rse name.</p></li>
 </ul>
 </dd>
@@ -267,12 +293,12 @@
 <dl class="http get">
 <dt id="get--accounts-(account)-usage-history-(rse)">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage/history/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)-usage-history-(rse)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the usage history for the account.</p>
+<dd><p>Return the account usage of the account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>account</strong> – The account name.</p></li>
-<li><p><strong>rse</strong> – The rse name.</p></li>
+<li><p><strong>rse</strong> – The RSE.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Response Headers</dt>
@@ -296,10 +322,92 @@
 <p>Return the account usage of the account.</p>
 </dd></dl>
 
+<dl class="http get">
+<dt id="get--accounts-(account)-usage-global-(rse_expression)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage/global/</code><span class="sig-paren">(</span><em class="sig-param">rse_expression</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)-usage-global-(rse_expression)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="http get">
+<dt id="get--accounts-(account)-usage-global">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage/global</code><a class="headerlink" href="#get--accounts-(account)-usage-global" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the global account usage of the account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – The account name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Line separated list of account usages.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--accounts-(account)-usage-local-(rse)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage/local/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)-usage-local-(rse)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="http get">
+<dt id="get--accounts-(account)-usage-(rse)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)-usage-(rse)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="http get">
+<dt id="get--accounts-(account)-usage-local">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage/local</code><a class="headerlink" href="#get--accounts-(account)-usage-local" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="http get">
+<dt id="get--accounts-(account)-usage">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage</code><a class="headerlink" href="#get--accounts-(account)-usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the local account usage of the account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – The account name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Line separated list of account usages.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http delete">
 <dt id="delete--accounts-(account)-identities">
 <code class="sig-name descname">DELETE </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/identities</code><a class="headerlink" href="#delete--accounts-(account)-identities" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete identity mapping associated with account.</p>
+<dd><p>Delete an account’s identity mapping.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -327,11 +435,11 @@
 <dl class="http post">
 <dt id="post--accounts-(account)-identities">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/identities</code><a class="headerlink" href="#post--accounts-(account)-identities" title="Permalink to this definition">¶</a></dt>
-<dd><p>Grants identity access to an account.</p>
+<dd><p>Grant an identity access to an account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
+<li><p><strong>account</strong> – Account identifier.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Request JSON Object</dt>
@@ -357,7 +465,7 @@
 <dl class="http get">
 <dt id="get--accounts-(account)-identities">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/identities</code><a class="headerlink" href="#get--accounts-(account)-identities" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets all identities mapped to an account.</p>
+<dd><p>Get all identities mapped to an account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -389,7 +497,7 @@
 <dl class="http post">
 <dt id="post--accounts-(account)-scopes-(scope)">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/scopes/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><a class="headerlink" href="#post--accounts-(account)-scopes-(scope)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a scope with given scope name.</p>
+<dd><p>create scope with given scope name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -410,9 +518,9 @@
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--accounts-(account)-scopes">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/scopes</code><a class="headerlink" href="#get--accounts-(account)-scopes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all scopes for an account.</p>
+<dt id="get--accounts-(account)-scopes-">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/scopes/</code><a class="headerlink" href="#get--accounts-(account)-scopes-" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all scopes for an account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -443,85 +551,13 @@
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--accounts-(account)-usage-(rse)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)-usage-(rse)" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="http get">
-<dt id="get--accounts-(account)-usage">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage</code><a class="headerlink" href="#get--accounts-(account)-usage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the local account usage for a given identifier.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Response Headers</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Line separated list of account usages.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http get">
-<dt id="get--accounts-(account)-usage-(rse_expression)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage/</code><span class="sig-paren">(</span><em class="sig-param">rse_expression</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)-usage-(rse_expression)" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="http get">
-<dt id="get--accounts-(account)-usage">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/usage</code><a class="headerlink" href="#get--accounts-(account)-usage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the global account usage for a given identifier.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Response Headers</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Line separated list of account usages.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http get">
 <dt id="get--accounts-(account)-rules">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/rules</code><a class="headerlink" href="#get--accounts-(account)-rules" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets line-separated list of rules for a given account.</p>
+<dd><p>Return all rules of a given account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>account</strong> – The account name.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Response Headers</dt>
@@ -551,7 +587,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
+<li><p><strong>account</strong> – Account identifier.</p></li>
 <li><p><strong>key</strong> – The attribute key.</p></li>
 </ul>
 </dd>
@@ -573,7 +609,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
+<li><p><strong>account</strong> – Account identifier.</p></li>
 <li><p><strong>key</strong> – The attribute key.</p></li>
 </ul>
 </dd>
@@ -596,9 +632,9 @@
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--accounts-(account)-attr">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/attr</code><a class="headerlink" href="#get--accounts-(account)-attr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all attributes for an account.</p>
+<dt id="get--accounts-(account)-attr-">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/attr/</code><a class="headerlink" href="#get--accounts-(account)-attr-" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all attributes for an account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -625,32 +661,10 @@
 </dl>
 </dd></dl>
 
-<dl class="http put">
-<dt id="put--accounts-(account)">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#put--accounts-(account)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates a parameter for a given account name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unknown status.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http delete">
 <dt id="delete--accounts-(account)">
 <code class="sig-name descname">DELETE </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accounts-(account)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disables account with given account name.</p>
+<dd><p>disable account with given account name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -671,7 +685,7 @@
 <dl class="http post">
 <dt id="post--accounts-(account)">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#post--accounts-(account)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates account with the given account name.</p>
+<dd><p>create account with given account name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -695,10 +709,32 @@
 </dl>
 </dd></dl>
 
+<dl class="http put">
+<dt id="put--accounts-(account)">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#put--accounts-(account)" title="Permalink to this definition">¶</a></dt>
+<dd><p>update a parameter for a given account name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – The account identifier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unknown status.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http get">
 <dt id="get--accounts-(account)">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets account parameters for given account name.</p>
+<dd><p>get account parameters for given account name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

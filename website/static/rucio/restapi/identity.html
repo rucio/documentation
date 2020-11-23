@@ -74,7 +74,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Accounts</p></td>
-<td><p><a class="reference external" href="#get--identities-(identity_key)-(type)">GET /identities/(identity_key)/(type)</a></p></td>
+<td><p><a class="reference external" href="#get--identities-(identity_key)-(type)-accounts">GET /identities/(identity_key)/(type)/accounts</a></p></td>
 <td><p>list account identities.</p></td>
 </tr>
 <tr class="row-odd"><td><p>GSS</p></td>
@@ -95,7 +95,7 @@
 <dl class="http put">
 <dt id="put--identities-(account)-userpass">
 <code class="sig-name descname">PUT </code><code class="sig-name descname">/identities/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/userpass</code><a class="headerlink" href="#put--identities-(account)-userpass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new identity and maps it to an account.</p>
+<dd><p>Create a new identity and map it to an account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -123,7 +123,7 @@
 <dl class="http put">
 <dt id="put--identities-(account)-x509">
 <code class="sig-name descname">PUT </code><code class="sig-name descname">/identities/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/x509</code><a class="headerlink" href="#put--identities-(account)-x509" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new identity and map it to an account.</p>
+<dd><p>Create a new identity and map it to an account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -148,7 +148,7 @@
 <dl class="http put">
 <dt id="put--identities-(account)-gss">
 <code class="sig-name descname">PUT </code><code class="sig-name descname">/identities/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/gss</code><a class="headerlink" href="#put--identities-(account)-gss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new identity and map it to an account.</p>
+<dd><p>Create a new identity and map it to an account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -171,13 +171,13 @@
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--identities-(identity_key)-(type)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/identities/</code><span class="sig-paren">(</span><em class="sig-param">identity_key</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">type</em><span class="sig-paren">)</span><a class="headerlink" href="#get--identities-(identity_key)-(type)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns all identities mapped to an account.</p>
+<dt id="get--identities-(identity_key)-(type)-accounts">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/identities/</code><span class="sig-paren">(</span><em class="sig-param">identity_key</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">type</em><span class="sig-paren">)</span><code class="sig-name descname">/accounts</code><a class="headerlink" href="#get--identities-(identity_key)-(type)-accounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all identities mapped to an account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>identify_key</strong> – Identity string.</p></li>
+<li><p><strong>identity_key</strong> – Identity string.</p></li>
 <li><p><strong>type</strong> – Identity type.</p></li>
 </ul>
 </dd>

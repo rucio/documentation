@@ -75,47 +75,47 @@
 <tbody>
 <tr class="row-even"><td><p>AllRule</p></td>
 <td><p><a class="reference external" href="#post--rules-">POST /rules/</a></p></td>
-<td><p>Create new rule</p></td>
+<td><p>create new rule</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#get--rules-">GET /rules/</a></p></td>
-<td><p>Gets all rules for account</p></td>
+<td><p>get all rules for account</p></td>
 </tr>
 <tr class="row-even"><td><p>MoveRule</p></td>
-<td><p><a class="reference external" href="#post--rules-(rule_id)-mode">POST /rules/(rule_id)/mode</a></p></td>
-<td><p>Move rule</p></td>
+<td><p><a class="reference external" href="#post--rules-(rule_id)-move">POST /rules/(rule_id)/move</a></p></td>
+<td><p>move rule</p></td>
 </tr>
 <tr class="row-odd"><td><p>ReduceRule</p></td>
 <td><p><a class="reference external" href="#post--rules-(rule_id)-reduce">POST /rules/(rule_id)/reduce</a></p></td>
-<td><p>Reduce rule</p></td>
+<td><p>reduce rule</p></td>
 </tr>
 <tr class="row-even"><td><p>ReplicaLocks</p></td>
 <td><p><a class="reference external" href="#get--rules-(rule_id)-locks">GET /rules/(rule_id)/locks</a></p></td>
-<td><p>Get locks by rule id</p></td>
+<td><p>get locks by rule id</p></td>
 </tr>
 <tr class="row-odd"><td><p>Rule</p></td>
-<td><p><a class="reference external" href="#put--rules-(rule_id)">PUT /rules/(rule_id)</a></p></td>
-<td><p>Update rule</p></td>
+<td><p><a class="reference external" href="#delete--rules-(rule_id)">DELETE /rules/(rule_id)</a></p></td>
+<td><p>delete rule</p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#delete--rules-(rule_id)">DELETE /rules/(rule_id)</a></p></td>
-<td><p>Delete rule</p></td>
+<td><p><a class="reference external" href="#put--rules-(rule_id)">PUT /rules/(rule_id)</a></p></td>
+<td><p>update rule</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#get--rules-(rule_id)">GET /rules/(rule_id)</a></p></td>
-<td><p>Get rule info</p></td>
+<td><p>get rule info</p></td>
 </tr>
 <tr class="row-even"><td><p>RuleAnalysis</p></td>
 <td><p><a class="reference external" href="#get--rules-(rule_id)-analysis">GET /rules/(rule_id)/analysis</a></p></td>
-<td><p>Retrieve analysis for a given rule,</p></td>
+<td><p>analyse rule,</p></td>
 </tr>
 <tr class="row-odd"><td><p>RuleHistory</p></td>
 <td><p><a class="reference external" href="#get--rules-(rule_id)-history">GET /rules/(rule_id)/history</a></p></td>
-<td><p>Get rule history by id</p></td>
+<td><p>get rule history by id</p></td>
 </tr>
 <tr class="row-even"><td><p>RuleHistoryFull</p></td>
-<td><p><a class="reference external" href="#get--rules-(scope)-(name)-history">GET /rules/(scope)/(name)/history</a></p></td>
-<td><p>Get rule history for DID</p></td>
+<td><p><a class="reference external" href="#get--rules-(path-scope_name)-history">GET /rules/(path:scope_name)/history</a></p></td>
+<td><p>get rule history for DID</p></td>
 </tr>
 </tbody>
 </table>
@@ -123,7 +123,7 @@
 <dl class="http post">
 <dt id="post--rules-">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/rules/</code><a class="headerlink" href="#post--rules-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new replication rule.</p>
+<dd><p>Create a new replication rule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request JSON Object</dt>
 <dd class="field-odd"><ul class="simple">
@@ -178,7 +178,7 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 <dl class="http get">
 <dt id="get--rules-">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/rules/</code><a class="headerlink" href="#get--rules-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns all rules for a given account.</p>
+<dd><p>Return all rules of a given account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -204,11 +204,11 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 <dl class="http get">
 <dt id="get--rules-(rule_id)-analysis">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><code class="sig-name descname">/analysis</code><a class="headerlink" href="#get--rules-(rule_id)-analysis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets analysis for given rule.</p>
+<dd><p>get analysis for given rule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
 </ul>
 </dd>
 <dt class="field-even">Status Codes</dt>
@@ -219,7 +219,7 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 </ul>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>JSON dict containing informations about the requested rule.</p>
+<dd class="field-odd"><p>JSON dict containing informations about the requested user.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -227,7 +227,7 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 <dl class="http get">
 <dt id="get--rules-(rule_id)-history">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><code class="sig-name descname">/history</code><a class="headerlink" href="#get--rules-(rule_id)-history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get history for a given rule_id.</p>
+<dd><p>get history for a given rule_id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -247,10 +247,38 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 </dl>
 </dd></dl>
 
+<dl class="http get">
+<dt id="get--rules-(path-scope_name)-history">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/history</code><a class="headerlink" href="#get--rules-(path-scope_name)-history" title="Permalink to this definition">¶</a></dt>
+<dd><p>get history for a given DID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Rule found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>JSON dict containing informations about the requested user.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http post">
 <dt id="post--rules-(rule_id)-reduce">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><code class="sig-name descname">/reduce</code><a class="headerlink" href="#post--rules-(rule_id)-reduce" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reduces a replication rule.</p>
+<dd><p>Reduce a replication rule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
@@ -269,7 +297,7 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 <dl class="http get">
 <dt id="get--rules-(rule_id)-locks">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><code class="sig-name descname">/locks</code><a class="headerlink" href="#get--rules-(rule_id)-locks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets locks for a given rule_id.</p>
+<dd><p>get locks for a given rule_id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
@@ -285,9 +313,9 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 </dd></dl>
 
 <dl class="http post">
-<dt id="post--rules-(rule_id)-mode">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><code class="sig-name descname">/mode</code><a class="headerlink" href="#post--rules-(rule_id)-mode" title="Permalink to this definition">¶</a></dt>
-<dd><p>Moves a replication rule.</p>
+<dt id="post--rules-(rule_id)-move">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><code class="sig-name descname">/move</code><a class="headerlink" href="#post--rules-(rule_id)-move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move a replication rule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
@@ -303,25 +331,17 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 </dl>
 </dd></dl>
 
-<dl class="http get">
-<dt id="get--rules-(scope)-(name)-history">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/history</code><a class="headerlink" href="#get--rules-(scope)-(name)-history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets history for a given DID.</p>
+<dl class="http delete">
+<dt id="delete--rules-(rule_id)">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--rules-(rule_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a new replication rule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Response Headers</dt>
+<dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DIDs found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – no rule found for id</p></li>
 </ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Rule found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>JSON dict containing informations about the requested user.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -329,7 +349,7 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 <dl class="http put">
 <dt id="put--rules-(rule_id)">
 <code class="sig-name descname">PUT </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><a class="headerlink" href="#put--rules-(rule_id)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the replication rules locked flag .</p>
+<dd><p>Update the replication rules locked flag .</p>
 <dl class="field-list simple">
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
@@ -341,25 +361,10 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 </dl>
 </dd></dl>
 
-<dl class="http delete">
-<dt id="delete--rules-(rule_id)">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--rules-(rule_id)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deletes a new replication rule.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DIDs found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – No rule found for id</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http get">
 <dt id="get--rules-(rule_id)">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--rules-(rule_id)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves rule information for given rule id.</p>
+<dd><p>get rule information for given rule id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>JSON dict containing informations about the requested user.</p>

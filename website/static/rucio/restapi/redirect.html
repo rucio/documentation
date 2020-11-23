@@ -74,33 +74,24 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>HeaderRedirector</p></td>
-<td><p><a class="reference external" href="#get--redirect-(scope)-(name)">GET /redirect/(scope)/(name)</a></p></td>
+<td><p><a class="reference external" href="#get--redirect-(path-scope_name)">GET /redirect/(path:scope_name)</a></p></td>
 <td><p>Header redirect.</p></td>
 </tr>
 <tr class="row-odd"><td><p>MetaLinkRedirector</p></td>
-<td><p><a class="reference external" href="#get--redirect-(scope)-(name)-metalink">GET /redirect/(scope)/(name)/metalink</a></p></td>
+<td><p><a class="reference external" href="#get--redirect-(path-scope_name)-metalink">GET /redirect/(path:scope_name)/metalink</a></p></td>
 <td><p>Metalink redirect.</p></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Details</strong></p>
 <dl class="http get">
-<dt id="get--redirect-(scope)-(name)-metalink">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/redirect/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/metalink</code><a class="headerlink" href="#get--redirect-(scope)-(name)-metalink" title="Permalink to this definition">¶</a></dt>
+<dt id="get--redirect-(path-scope_name)-metalink">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/redirect/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/metalink</code><a class="headerlink" href="#get--redirect-(path-scope_name)-metalink" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metalink redirect</p>
-<dl class="simple">
-<dt>HTTP Success:</dt><dd><p>200 OK</p>
-</dd>
-<dt>HTTP Error:</dt><dd><p>401 Unauthorized
-500 InternalError
-404 Notfound</p>
-</dd>
-</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – The scope name of the file.</p></li>
-<li><p><strong>name</strong> – The name of the file.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Response Headers</dt>
@@ -125,14 +116,13 @@
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--redirect-(scope)-(name)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/redirect/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--redirect-(scope)-(name)" title="Permalink to this definition">¶</a></dt>
+<dt id="get--redirect-(path-scope_name)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/redirect/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--redirect-(path-scope_name)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Header Redirect</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – The scope name of the file.</p></li>
-<li><p><strong>name</strong> – The name of the file.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Response Headers</dt>

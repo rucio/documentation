@@ -74,12 +74,12 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>RequestGet</p></td>
-<td><p><a class="reference external" href="#get--requests-(scope)-(name)-(rse)">GET /requests/(scope)/(name)/(rse)</a></p></td>
+<td><p><a class="reference external" href="#get--requests-(path-scope_name)-(rse)">GET /requests/(path:scope_name)/(rse)</a></p></td>
 <td><p>list requests</p></td>
 </tr>
 <tr class="row-odd"><td><p>RequestsGet</p></td>
 <td><p><a class="reference external" href="#get--requests-list">GET /requests/list</a></p></td>
-<td><p>List requests</p></td>
+<td><p>list requests</p></td>
 </tr>
 </tbody>
 </table>
@@ -87,7 +87,7 @@
 <dl class="http get">
 <dt id="get--requests-list">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/requests/list</code><a class="headerlink" href="#get--requests-list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists requests for a given source and destination RSE or site.</p>
+<dd><p>List requests for a given source and destination RSE or site.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -105,14 +105,13 @@
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--requests-(scope)-(name)-(rse)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/requests/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--requests-(scope)-(name)-(rse)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists request for given DID to a destination RSE.</p>
+<dt id="get--requests-(path-scope_name)-(rse)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/requests/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--requests-(path-scope_name)-(rse)" title="Permalink to this definition">¶</a></dt>
+<dd><p>List request for given DID to a destination RSE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scope</strong> – data identifier scope.</p></li>
-<li><p><strong>name</strong> – data identifier name.</p></li>
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
 <li><p><strong>rse</strong> – destination RSE.</p></li>
 </ul>
 </dd>

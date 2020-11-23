@@ -77,27 +77,55 @@
 <td><p><a class="reference external" href="#get--auth-gss">GET /auth/gss</a></p></td>
 <td><p>Authenticate with GSS token</p></td>
 </tr>
-<tr class="row-odd"><td><p>SSH</p></td>
-<td><p><a class="reference external" href="#get--auth-ssh">GET /auth/ssh</a></p></td>
-<td><p>Authenticate with SSH key exchange.</p></td>
+<tr class="row-odd"><td><p>OIDC</p></td>
+<td><p><a class="reference external" href="#get--auth-oidc_redirect">GET /auth/oidc_redirect</a></p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p>SSHChallengeToken</p></td>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--auth-oidc_refresh">GET /auth/oidc_refresh</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-oidc_token">GET /auth/oidc_token</a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--auth-oidc_code">GET /auth/oidc_code</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-oidc">GET /auth/oidc</a></p></td>
+<td><p>Authenticate with OIDC</p></td>
+</tr>
+<tr class="row-even"><td><p>SAML</p></td>
+<td><p><a class="reference external" href="#post--auth-saml">POST /auth/saml</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-saml">GET /auth/saml</a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>SSH</p></td>
 <td><p><a class="reference external" href="#get--auth-ssh_challenge_token">GET /auth/ssh_challenge_token</a></p></td>
 <td><p>Request SSH Challenge Token</p></td>
 </tr>
-<tr class="row-odd"><td><p>UserPass</p></td>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-ssh">GET /auth/ssh</a></p></td>
+<td><p>Authenticate with SSH key exchange.</p></td>
+</tr>
+<tr class="row-even"><td><p>UserPass</p></td>
 <td><p><a class="reference external" href="#get--auth-userpass">GET /auth/userpass</a></p></td>
 <td><p>Authenticate with username/password</p></td>
 </tr>
-<tr class="row-even"><td><p>Validate</p></td>
+<tr class="row-odd"><td><p>Validate</p></td>
 <td><p><a class="reference external" href="#get--auth-validate">GET /auth/validate</a></p></td>
 <td><p>Validate a Rucio Auth Token.</p></td>
 </tr>
-<tr class="row-odd"><td><p>x509</p></td>
+<tr class="row-even"><td><p>x509</p></td>
 <td><p><a class="reference external" href="#get--auth-x509">GET /auth/x509</a></p></td>
 <td><p>Authenticate with x509 certificate.</p></td>
 </tr>
-<tr class="row-even"><td></td>
+<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#get--auth-x509_proxy">GET /auth/x509_proxy</a></p></td>
 <td></td>
 </tr>
@@ -107,7 +135,7 @@
 <dl class="http get">
 <dt id="get--auth-ssh_challenge_token">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/auth/ssh_challenge_token</code><a class="headerlink" href="#get--auth-ssh_challenge_token" title="Permalink to this definition">¶</a></dt>
-<dd><p>Requests a challenge token for SSH authentication</p>
+<dd><p>Request a challenge token for SSH authentication</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -123,13 +151,51 @@
 <li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-methods-response-header">Access-Control-Allow-Methods</a> – </p></li>
 <li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-credentials-response-header">Access-Control-Allow-Credentials</a> – </p></li>
 <li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-expose-headers-response-header">Access-Control-Expose-Headers</a> – </p></li>
-<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+<li><p><em>X-Rucio-SSH-Challenge-Token</em> – The SSH challenge token</p></li>
+<li><p><em>X-Rucio-SSH-Challenge-Token-Expires</em> – The expiry time of the token</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully authenticated</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Invalid credentials</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc_redirect">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc_redirect</code><a class="headerlink" href="#get--auth-oidc_redirect" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.4">303 See Other</a> – Redirect</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc_refresh">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc_refresh</code><a class="headerlink" href="#get--auth-oidc_refresh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
 </ul>
 </dd>
 </dl>
@@ -143,7 +209,7 @@
 <dl class="http get">
 <dt id="get--auth-x509_proxy">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/auth/x509_proxy</code><a class="headerlink" href="#get--auth-x509_proxy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Authenticates a Rucio account temporarily via an x509 certificate.</p>
+<dd><p>Authenticate a Rucio account temporarily via an x509 certificate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -173,9 +239,41 @@
 </dd></dl>
 
 <dl class="http get">
+<dt id="get--auth-oidc_token">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc_token</code><a class="headerlink" href="#get--auth-oidc_token" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+<li><p><em>X-Rucio-Auth-Token-Expires</em> – The time when the token expires</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc_code">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc_code</code><a class="headerlink" href="#get--auth-oidc_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
 <dt id="get--auth-userpass">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/auth/userpass</code><a class="headerlink" href="#get--auth-userpass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Authenticates a Rucio account temporarily via username and password.</p>
+<dd><p>Authenticate a Rucio account temporarily via username and password.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -208,7 +306,7 @@
 <dl class="http get">
 <dt id="get--auth-validate">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/auth/validate</code><a class="headerlink" href="#get--auth-validate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Validates a Rucio Auth Token.</p>
+<dd><p>Validate a Rucio Auth Token.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -226,10 +324,67 @@
 </dl>
 </dd></dl>
 
+<dl class="http post">
+<dt id="post--auth-saml">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/auth/saml</code><a class="headerlink" href="#post--auth-saml" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-saml">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/saml</code><a class="headerlink" href="#get--auth-saml" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>Rucio-VO</em> – VO name as a string (Multi-VO only)</p></li>
+<li><p><em>Rucio-Account</em> – Account identifier as a string.</p></li>
+<li><p><em>Rucio-Username</em> – Username as a string.</p></li>
+<li><p><em>Rucio-Password</em> – Password as a string.</p></li>
+<li><p><em>Rucio-AppID</em> – Application identifier as a string.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>X-Rucio-SAML-Auth-URL</em> – as a variable-length string header.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc</code><a class="headerlink" href="#get--auth-oidc" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>X-Rucio-OIDC-Auth-URL</em> – User &amp; Rucio OIDC Client specific Authorization URL</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http get">
 <dt id="get--auth-gss">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/auth/gss</code><a class="headerlink" href="#get--auth-gss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Authenticates a Rucio account temporarily via a GSS token.</p>
+<dd><p>Authenticate a Rucio account temporarily via a GSS token.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -261,7 +416,7 @@
 <dl class="http get">
 <dt id="get--auth-ssh">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/auth/ssh</code><a class="headerlink" href="#get--auth-ssh" title="Permalink to this definition">¶</a></dt>
-<dd><p>Authenticates a Rucio account temporarily via SSH key exchange.</p>
+<dd><p>Authenticate a Rucio account temporarily via SSH key exchange.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers</dt>
 <dd class="field-odd"><ul class="simple">

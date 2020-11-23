@@ -74,30 +74,24 @@
 </thead>
 <tbody>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#get--locks-(scope)-(name)">GET /locks/(scope)/(name)</a></p></td>
+<td><p><a class="reference external" href="#get--locks-(rse)">GET /locks/(rse)</a></p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#get--locks-(rse)">GET /locks/(rse)</a></p></td>
+<td><p><a class="reference external" href="#get--locks-(path-scope_name)">GET /locks/(path:scope_name)</a></p></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Details</strong></p>
 <dl class="http get">
-<dt id="get--locks-(scope)-(name)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/locks/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--locks-(scope)-(name)" title="Permalink to this definition">¶</a></dt>
-<dd><p>REST APIs for dataset locks.</p>
-</dd></dl>
-
-<dl class="http get">
 <dt id="get--locks-(rse)">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/locks/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--locks-(rse)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves locks for a given rse.</p>
+<dd><p>get locks for a given rse.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rse</strong> – The rse name.</p></li>
+<li><p><strong>rse</strong> – The RSE name.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Query Parameters</dt>
@@ -120,6 +114,40 @@
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Line separated list of dictionaries with lock information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--locks-(path-scope_name)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/locks/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--locks-(path-scope_name)" title="Permalink to this definition">¶</a></dt>
+<dd><p>get locks for a given scope, name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>did_type</strong> – The type used to filter, e.g., DATASET, CONTAINER.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Line separated list of dictionary with lock information.</p>
 </dd>
 </dl>
 </dd></dl>

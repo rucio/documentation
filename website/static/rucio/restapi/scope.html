@@ -81,13 +81,17 @@
 <td><p><a class="reference external" href="#get--scopes-">GET /scopes/</a></p></td>
 <td><p>Get all scopes.</p></td>
 </tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--scopes-(account)-scopes">GET /scopes/(account)/scopes</a></p></td>
+<td><p>Get scopes for account.</p></td>
+</tr>
 </tbody>
 </table>
 <p><strong>Details</strong></p>
 <dl class="http post">
 <dt id="post--scopes-(account)-(scope)">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/scopes/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">scope</em><span class="sig-paren">)</span><a class="headerlink" href="#post--scopes-(account)-(scope)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new scope.</p>
+<dd><p>Add a new scope.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
@@ -109,7 +113,7 @@
 <dl class="http get">
 <dt id="get--scopes-">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/scopes/</code><a class="headerlink" href="#get--scopes-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lists all scopes.</p>
+<dd><p>List all scopes.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/posts/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">rucio.com</span>
@@ -137,6 +141,30 @@
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--scopes-(account)-scopes">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/scopes/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/scopes</code><a class="headerlink" href="#get--scopes-(account)-scopes" title="Permalink to this definition">¶</a></dt>
+<dd><p>List account scopes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Scopes found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – No scopes for this account</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list containing all scope names for an account.</p>
 </dd>
 </dl>
 </dd></dl>
