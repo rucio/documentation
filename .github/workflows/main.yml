@@ -1,88 +1,46 @@
-# This workflow will copy the files from Sphinx build repository to the Master branch.
+name: Continuous Integration
 
-name: Publish content to master repository
-
-on:
-  push:
-    branches: [ main ]
+on: [pull_request]
 
 jobs:
-  docs:
+  build_docs:
+    name: Build docs
     runs-on: ubuntu-latest
     steps:
-   
-    - name: Setting up the environment
-      run: |
-        sudo apt-get install python3-setuptools
-        python3 -m pip install virtualenv
-        python3 -m virtualenv venv1
-        source venv1/bin/activate
-        python3 -m pip uninstall pip && python3 -m pip install --user pip
-        sudo apt-get install python3-sphinx
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+          path: master
+      - uses: actions/checkout@v2
+        with:
+          ref: sphinx
+          path: sphinx
+      - uses: actions/checkout@v2
+        with:
+          repository: rucio/rucio
+          path: rucio
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+          architecture: 'x64'
+      - name: Install requirements
+        run: |
+          pip install -r sphinx/requirements.sphinx.txt
+      - name: Build docs
+        run: |
+          cd sphinx
+          chmod 755 build-sphinx-docs.sh 
+          ./build-sphinx-docs.sh
+      - name: Push content
+        run: |
+          cd master
+          git init
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Push to Github Pages"
 
-    - name: Clone Documentation repository main branch
-      run: |
-        git clone https://github.com/rucio/documentation.git --branch main --single-branch main
-
-    - name: Clone Documentation repository master branch
-      run: |
-        git clone https://github.com/rucio/documentation.git --branch master --single-branch master
-      
-    - name: Clone Rucio library repository
-      run: |      
-        git clone https://github.com/rucio/rucio.git
-        
-    - name: Install the requirements required for build
-      run: |
-        python3 -m pip install /main/requirements.sphinx.txt
-        
-
-    - name: Build the documentation
-      run: |
-        cd /rucio/doc
-        mv source source_copy
-        cd ../..
-        cp -R /main/source rucio/doc/
-        cd rucio/doc/source/
-        sphinx-build -b html . /master/website/static/rucio/
-
-#Committing Documentation Changes
-
-    - name: Commit documentation changes for Rucio Master 
-      run: |
-        cd /master
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Update master branch documentation" -a || true
-        
-    - name: Commit documentation changes for Rucio Main
-      run: |
-        cd /main
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Update main branch documentation" -a || true
-
-# Pushing changes into the Master branch
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: master
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        
-# Pushing changes into the Main branch
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: main
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-
-# Deactivating & Removing Virtual Environment
-
-    - name: Deactivating & removing the virtual environment
-      run: |
-        deactivate
-        rm -rf venv1
+          remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          INPUT_BRANCH=${INPUT_BRANCH:-master}
+          git push "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags --force
+       
