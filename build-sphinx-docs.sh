@@ -3,11 +3,11 @@ trap "{ echo -e '\033[31mFAILED\033[0m'; }" ERR
 
 [[ $1 == 'fast' ]] && CPUS='-j auto' || CPUS=''
 
-docs_conf_dir="main/source"
-out_dir="master/website/static/rucio"
+docs_conf_dir="/home/runner/work/documentation/documentation/main/source"
+out_dir="/home/runner/work/documentation/documentation/master/website/static/rucio"
 
 # Cleanup pre-existing temporary generated files.
-rm -rf "master/website/static/rucio"
+rm -rf "/home/runner/work/documentation/documentation/master/website/static/rucio"
 
 # Cleanup previous output.
 rm -rf "${out_dir}"
