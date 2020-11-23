@@ -19,4 +19,4 @@ cp -R "$docs_conf_dir" .
 
 # Regenerate docs.
 cd source
-sphinx-build -b html . "${out_dir}" -W --keep-going $CPUS
+sphinx-build -b html . "${out_dir}"
