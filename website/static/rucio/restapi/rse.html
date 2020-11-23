@@ -102,12 +102,12 @@
 <td><p>Get RSE distance.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Limits</p></td>
-<td><p><a class="reference external" href="#put--rses-(rse)-limits">PUT /rses/(rse)/limits</a></p></td>
-<td><p>Update RSE limits.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--rses-(rse)-limits">GET /rses/(rse)/limits</a></p></td>
 <td><p>Get RSE limits.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#put--rses-(rse)-limits">PUT /rses/(rse)/limits</a></p></td>
+<td><p>Update RSE limits.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Protocol</p></td>
 <td><p><a class="reference external" href="#delete--rses-(rse)-protocols-(scheme)-(hostname)-(port)">DELETE /rses/(rse)/protocols/(scheme)/(hostname)/(port)</a></p></td>
@@ -182,12 +182,12 @@
 <td><p>List all RSEs.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Usage</p></td>
-<td><p><a class="reference external" href="#put--rses-(rse)-usage">PUT /rses/(rse)/usage</a></p></td>
-<td><p>Update RSE usage.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--rses-(rse)-usage">GET /rses/(rse)/usage</a></p></td>
 <td><p>Get RSE usage.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#put--rses-(rse)-usage">PUT /rses/(rse)/usage</a></p></td>
+<td><p>Update RSE usage.</p></td>
 </tr>
 <tr class="row-odd"><td><p>UsageHistory</p></td>
 <td><p><a class="reference external" href="#get--rses-(rse)-usage-history">GET /rses/(rse)/usage/history</a></p></td>
@@ -650,28 +650,6 @@ value is the corresponding PFN.</p>
 </dl>
 </dd></dl>
 
-<dl class="http put">
-<dt id="put--rses-(rse)-limits">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/rses/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><code class="sig-name descname">/limits</code><a class="headerlink" href="#put--rses-(rse)-limits" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update RSE limits.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rse</strong> – The RSE name.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter dictionary.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE Not Found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http get">
 <dt id="get--rses-(rse)-limits">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/rses/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><code class="sig-name descname">/limits</code><a class="headerlink" href="#get--rses-(rse)-limits" title="Permalink to this definition">¶</a></dt>
@@ -703,26 +681,21 @@ value is the corresponding PFN.</p>
 </dd></dl>
 
 <dl class="http put">
-<dt id="put--rses-(rse)-usage">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/rses/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><code class="sig-name descname">/usage</code><a class="headerlink" href="#put--rses-(rse)-usage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update RSE usage information.</p>
+<dt id="put--rses-(rse)-limits">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/rses/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><code class="sig-name descname">/limits</code><a class="headerlink" href="#put--rses-(rse)-limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update RSE limits.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rse</strong> – The RSE name.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Request JSON Object</dt>
+<dt class="field-even">Status Codes</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>parameter</strong> (<em>dict</em>) – Dictionary with ‘source’, ‘used’, ‘free’ values to update.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter dictionary.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE Not Found.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
 </ul>
 </dd>
@@ -761,6 +734,33 @@ value is the corresponding PFN.</p>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A list of dictionaries with the usage information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http put">
+<dt id="put--rses-(rse)-usage">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/rses/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><code class="sig-name descname">/usage</code><a class="headerlink" href="#put--rses-(rse)-usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update RSE usage information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> – The RSE name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>parameter</strong> (<em>dict</em>) – Dictionary with ‘source’, ‘used’, ‘free’ values to update.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter dictionary.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
