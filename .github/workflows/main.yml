@@ -1,76 +1,31 @@
-# This workflow will copy the files from Sphinx build repository to the Master branch.
+name: Continuous Integration
 
-name: Publish content to master repository
-
-on:
-  push:
-    branches: [ main ]
+on: [pull_request]
 
 jobs:
-  docs:
+  build_docs:
+    name: Build docs
     runs-on: ubuntu-latest
     steps:
-   
-    - name: Setting up the environment
-      run: |
-        sudo apt-get install python3-setuptools
-        pip3 install --user virtualenv
-        python3 -m virtualenv venv1
-        source venv1/bin/activate
-        pip3 install --upgrade pip
-        sudo apt-get install python3-sphinx
-
-
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+          path: master
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+          path: main
+      - uses: actions/checkout@v2
+        with:
+          repository: rucio/rucio
+          path: rucio
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+          architecture: 'x64'
+      - name: Install requirements
+        run: |
+          pip install -r main/requirements.sphinx.txt
+      - name: Build docs
+        run: main/build-sphinx-docs.sh
     
-    - name: Checkout master branch
-      uses: actions/checkout@v2
-      with:
-        ref: master
-        path: master
-    
-    - name: Clone Documentation repository main branch
-      run: |
-        git clone https://github.com/divya-mohan0209/documentation.git --branch main --single-branch main
-        
-      
-    - name: Clone Rucio library repository
-      run: |      
-        git clone https://github.com/rucio/rucio.git
-        
-    - name: Install the requirements required for build
-      run: |
-        pip3 install -r main/requirements.sphinx.txt
-        pip3 install flask
-        pip3 install sphinxcontrib-fulltoc
-        
-
-    - name: Build the documentation
-      run: |
-        cd /home/runner/work/documentation/documentation/rucio/doc
-        mv source source_copy
-        cd ../..
-        cp -R /home/runner/work/documentation/documentation/main/source /home/runner/work/documentation/documentation/rucio/doc/
-        cd /home/runner/work/documentation/documentation/rucio/doc/source/
-        python3 -m sphinx.cmd.build -b html . /home/runner/work/documentation/documentation/master/website/static/rucio/
-
-# Committing Documentation Changes for master
-
-    - name: Commit documentation changes for Rucio Master 
-      uses: actions/checkout@v2
-    - run: |
-        cd master
-        rm -rf .git/
-        git init
-        git remote add origin https://github.com/divya-mohan0209/documentation.git
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
-        git add .
-        git commit -m "Update master branch documentation"
-        git push -f origin master
-
-# Deactivating & Removing Virtual Environment
-
-    - name: Deactivating & removing the virtual environment
-      run: |
-        deactivate
-        rm -rf venv1
