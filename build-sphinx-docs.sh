@@ -13,7 +13,7 @@ rm -rf "master/website/static/rucio"
 rm -rf "${out_dir}"
 
 # Navigate to the checked out rucio repository & backup
-cd /home/runner/work/documentation/documentation/rucio
+cd /home/runner/work/documentation/documentation/rucio/doc/
 mv source source_copy
 cp -R "$docs_conf_dir" .
 
