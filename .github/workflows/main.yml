@@ -20,19 +20,18 @@ jobs:
         pip3 install --upgrade pip
         sudo apt-get install python3-sphinx
 
-    - name: Checkout main branch
-      uses: actions/checkout@v2
-      with:
-        ref: main
+
     
     - name: Checkout master branch
       uses: actions/checkout@v2
       with:
         ref: master
-
-    - name: Clone Documentation repository master branch
+        path: master
+    
+    - name: Clone Documentation repository main branch
       run: |
-        git clone https://github.com/divya-mohan0209/documentation.git --branch master --single-branch master
+        git clone https://github.com/divya-mohan0209/documentation.git --branch main --single-branch main
+        
       
     - name: Clone Rucio library repository
       run: |      
@@ -40,7 +39,7 @@ jobs:
         
     - name: Install the requirements required for build
       run: |
-        pip3 install -r /home/runner/work/documentation/documentation/main/requirements.sphinx.txt
+        pip3 install -r main/requirements.sphinx.txt
         pip3 install flask
         pip3 install sphinxcontrib-fulltoc
         
@@ -50,15 +49,15 @@ jobs:
         cd /home/runner/work/documentation/documentation/rucio/doc
         mv source source_copy
         cd ../..
-        cp -R /home/runner/work/documentation/documentation//main/source /home/runner/work/documentation/documentation/rucio/doc/
+        cp -R /home/runner/work/documentation/documentation/main/source /home/runner/work/documentation/documentation/rucio/doc/
         cd /home/runner/work/documentation/documentation/rucio/doc/source/
-        python3 -m sphinx.cmd.build -b html . /home/runner/work/documentation/documentation/master/website/static/rucio/
+        python3 -m sphinx.cmd.build -b html . website/static/rucio/
 
 # Committing Documentation Changes for master
 
     - name: Commit documentation changes for Rucio Master 
       run: |
-        cd /home/runner/work/documentation/documentation/master
+        cd master
         git init
         git add .
         git config --global user.email "action@github.com"
@@ -69,29 +68,11 @@ jobs:
 
     - name: Push changes
       run: |
-        cd /home/runner/work/documentation/documentation/master
+        cd master
         git remote rm origin
         git remote add origin https://github.com/divya-mohan0209/documentation.git
         git push origin master
 
-# Committing Documentation Changes for main branch
-        
-    - name: Commit documentation changes for Rucio Main
-      run: |
-        cd /home/runner/work/documentation/documentation/main
-        git init
-        git add .
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
-        git commit -m "Update main branch documentation"
-
-      
-# Pushing changes into the Main branch
-
-    - name: Push changes
-      run: |
-        cd /home/runner/work/documentation/documentation/main
-        git push origin main
 
 # Deactivating & Removing Virtual Environment
 
