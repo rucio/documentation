@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set -e
+Updaset -e
 trap "{ echo -e '\033[31mFAILED\033[0m'; }" ERR
 
 [[ $1 == 'fast' ]] && CPUS='-j auto' || CPUS=''
