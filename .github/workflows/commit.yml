@@ -1,0 +1,75 @@
+# Commits the changed files by rebuilding them into HTML on the master branch & pushing them to GitHub pages once the rebuild is completed.
+
+name: Merging workflow
+
+on:
+  pull_request:
+    branches:
+      - sphinx
+    types: [closed]
+
+jobs:
+ Push_content:
+    if: github.event.pull_request.merged == true
+    name: Push_content
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+          path: master
+      - uses: actions/checkout@v2
+        with:
+          ref: sphinx
+          path: sphinx
+      - uses: actions/checkout@v2
+        with:
+          repository: rucio/rucio
+          path: rucio
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+          architecture: 'x64'
+      - name: Install requirements
+        run: |
+          pip install -r sphinx/requirements.sphinx.txt
+      - name: Build docs
+        run: |
+          cd sphinx
+          chmod 755 build-sphinx-docs.sh 
+          ./build-sphinx-docs.sh
+      - name: Push content
+        run: |
+          cd master
+          git init
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Sphinx build triggered"
+          remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          INPUT_BRANCH=${INPUT_BRANCH:-master}
+          git push "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags --force
+ 
+ 
+ Publish_to_GH-pages:
+    if: github.event.pull_request.merged == true
+    name: Publish_to_GH-pages
+    needs: Push_content
+    runs-on: ubuntu-latest
+    container:
+      image: joatmon08/tech-portfolio
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: master
+        path: master
+    - name: Install dependencies and static website
+      run: |
+        cd master/website
+        yarn install
+        yarn build
+    - name: Pushing website content to GitHub pages
+      run: |
+        cd master/website/build/documentation
+        touch .nojekyll
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} INPUT_DIRECTORY=$(pwd) publish.sh
