@@ -65,7 +65,7 @@
 <h2>Register Application with Globus<a class="headerlink" href="#register-application-with-globus" title="Permalink to this headline">¶</a></h2>
 <p>Using Globus Online as a transfer tool requires <a class="reference external" href="https://developers.globus.org">registering</a> the client application with Globus Online.  Be sure to select Native App and include a scope for <cite>urn:globus:auth:scope:transfer.api.globus.org:all</cite>.  Once you have the Client ID you’ll need to install the globus sdk and run the below Python code to obtain a refresh token.</p>
 <p>There is a <a class="reference external" href="https://globus-sdk-python.readthedocs.io/en/stable/tutorial/">helpful walk-through</a> that goes into more detail around OAuth and token retrieval.</p>
-<p>Obtain a refresh token to access Globus resources:</p>
+<p>Obtain a refresh token to access the Globus resources:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># obtain authorization code</span>
 <span class="kn">import</span> <span class="nn">globus_sdk</span>
 <span class="n">CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># your client ID obtained from registering application</span>
@@ -82,7 +82,7 @@
 </div>
 <div class="section" id="rse-setup">
 <h2>RSE Setup<a class="headerlink" href="#rse-setup" title="Permalink to this headline">¶</a></h2>
-<p>Below shows a typical setup for a test RSE.  Options for CLI given when supported.</p>
+<p>Below shows a typical setup for a test RSE.  Options for CLI are given when supported.</p>
 <p>The following code will create a non-determinisic RSE.</p>
 <p>Python:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># set up the target non-deterministic rse (TEST_RSE)</span>

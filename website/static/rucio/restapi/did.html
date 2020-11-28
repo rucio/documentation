@@ -102,12 +102,12 @@
 <td><p>Update DID status.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#get--dids-(path-scope_name)">GET /dids/(path:scope_name)</a></p></td>
-<td><p>Retrieve a single DID.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#post--dids-(path-scope_name)">POST /dids/(path:scope_name)</a></p></td>
 <td><p>Create a new DID.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)">GET /dids/(path:scope_name)</a></p></td>
+<td><p>Retrieve a single DID.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#delete--dids-(path-scope_name)-dids">DELETE /dids/(path:scope_name)/dids</a></p></td>
@@ -553,50 +553,6 @@ Extended Version to included meteadata from various plugins.</p>
 </dl>
 </dd></dl>
 
-<dl class="http get">
-<dt id="get--dids-(path-scope_name)">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--dids-(path-scope_name)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve a single data identifier.</p>
-<p><strong>Example request</strong>:</p>
-<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/dids/scope1/dataset1?dynamic</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
-</pre></div>
-</div>
-<p><strong>Example response</strong>:</p>
-<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 200 OK
-Vary: Accept
-Content-Type: application/json
-
-{&quot;scope&quot;: &quot;scope1&quot;, &quot;did_type&quot;: &quot;DATASET&quot;, &quot;name&quot;: &quot;dataset1&quot;,
- &quot;bytes&quot;: 234, &quot;length&quot;: 3, &quot;account&quot;: &quot;jdoe&quot;, &quot;open&quot;: True,
- &quot;monotonic&quot;: False, &quot;expired_at&quot;: null}
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Query Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dynamic</strong> – Flag to dynamically calculate size for open DIDs</p></li>
-</ul>
-</dd>
-<dt class="field-even">Response Headers</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DID found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Scope not found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Dictionary with DID metadata</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http post">
 <dt id="post--dids-(path-scope_name)">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><a class="headerlink" href="#post--dids-(path-scope_name)" title="Permalink to this definition">¶</a></dt>
@@ -641,6 +597,50 @@ Content-Type: application/json
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – DID already exists</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--dids-(path-scope_name)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--dids-(path-scope_name)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a single data identifier.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/dids/scope1/dataset1?dynamic</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">rucio.cern.ch</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 200 OK
+Vary: Accept
+Content-Type: application/json
+
+{&quot;scope&quot;: &quot;scope1&quot;, &quot;did_type&quot;: &quot;DATASET&quot;, &quot;name&quot;: &quot;dataset1&quot;,
+ &quot;bytes&quot;: 234, &quot;length&quot;: 3, &quot;account&quot;: &quot;jdoe&quot;, &quot;open&quot;: True,
+ &quot;monotonic&quot;: False, &quot;expired_at&quot;: null}
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dynamic</strong> – Flag to dynamically calculate size for open DIDs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DID found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Scope not found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary with DID metadata</p>
 </dd>
 </dl>
 </dd></dl>

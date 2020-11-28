@@ -98,11 +98,11 @@
 <td><p>Authenticate with OIDC</p></td>
 </tr>
 <tr class="row-even"><td><p>SAML</p></td>
-<td><p><a class="reference external" href="#get--auth-saml">GET /auth/saml</a></p></td>
+<td><p><a class="reference external" href="#post--auth-saml">POST /auth/saml</a></p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#post--auth-saml">POST /auth/saml</a></p></td>
+<td><p><a class="reference external" href="#get--auth-saml">GET /auth/saml</a></p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>SSH</p></td>
@@ -324,6 +324,18 @@
 </dl>
 </dd></dl>
 
+<dl class="http post">
+<dt id="post--auth-saml">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/auth/saml</code><a class="headerlink" href="#post--auth-saml" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http get">
 <dt id="get--auth-saml">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/auth/saml</code><a class="headerlink" href="#get--auth-saml" title="Permalink to this definition">¶</a></dt>
@@ -346,18 +358,6 @@
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><em>X-Rucio-SAML-Auth-URL</em> – as a variable-length string header.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http post">
-<dt id="post--auth-saml">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/auth/saml</code><a class="headerlink" href="#post--auth-saml" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
 </ul>
 </dd>
 </dl>

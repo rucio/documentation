@@ -74,46 +74,24 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>GlobalAccountLimit</p></td>
-<td><p><a class="reference external" href="#delete--accountlimits-global-(account)-(rse_expression)">DELETE /accountlimits/global/(account)/(rse_expression)</a></p></td>
-<td><p>Delete global account limits.</p></td>
-</tr>
-<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#post--accountlimits-global-(account)-(rse_expression)">POST /accountlimits/global/(account)/(rse_expression)</a></p></td>
 <td><p>Create/update global account limits.</p></td>
 </tr>
-<tr class="row-even"><td><p>LocalAccountLimit</p></td>
-<td><p><a class="reference external" href="#delete--accountlimits-local-(account)-(rse)">DELETE /accountlimits/local/(account)/(rse)</a></p></td>
-<td><p>Delete local account limits.</p></td>
-</tr>
 <tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#delete--accountlimits-global-(account)-(rse_expression)">DELETE /accountlimits/global/(account)/(rse_expression)</a></p></td>
+<td><p>Delete global account limits.</p></td>
+</tr>
+<tr class="row-even"><td><p>LocalAccountLimit</p></td>
 <td><p><a class="reference external" href="#post--accountlimits-local-(account)-(rse)">POST /accountlimits/local/(account)/(rse)</a></p></td>
 <td><p>Create/update local account limits.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#delete--accountlimits-local-(account)-(rse)">DELETE /accountlimits/local/(account)/(rse)</a></p></td>
+<td><p>Delete local account limits.</p></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Details</strong></p>
-<dl class="http delete">
-<dt id="delete--accountlimits-global-(account)-(rse_expression)">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accountlimits/global/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">rse_expression</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accountlimits-global-(account)-(rse_expression)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete an account limit.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – Account name.</p></li>
-<li><p><strong>rse_expression</strong> – RSE name.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully deleted.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http post">
 <dt id="post--accountlimits-global-(account)-(rse_expression)">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/accountlimits/global/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">rse_expression</em><span class="sig-paren">)</span><a class="headerlink" href="#post--accountlimits-global-(account)-(rse_expression)" title="Permalink to this definition">¶</a></dt>
@@ -137,14 +115,14 @@
 </dd></dl>
 
 <dl class="http delete">
-<dt id="delete--accountlimits-local-(account)-(rse)">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accountlimits/local/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accountlimits-local-(account)-(rse)" title="Permalink to this definition">¶</a></dt>
+<dt id="delete--accountlimits-global-(account)-(rse_expression)">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accountlimits/global/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">rse_expression</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accountlimits-global-(account)-(rse_expression)" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete an account limit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>account</strong> – Account name.</p></li>
-<li><p><strong>rse</strong> – RSE name.</p></li>
+<li><p><strong>rse_expression</strong> – RSE name.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Status Codes</dt>
@@ -172,6 +150,28 @@
 <dt class="field-even">Status Codes</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Successfully created or updated.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--accountlimits-local-(account)-(rse)">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accountlimits/local/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accountlimits-local-(account)-(rse)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an account limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – Account name.</p></li>
+<li><p><strong>rse</strong> – RSE name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully deleted.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found</p></li>

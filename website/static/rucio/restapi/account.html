@@ -78,28 +78,28 @@
 <td><p>List all accounts.</p></td>
 </tr>
 <tr class="row-odd"><td><p>AccountParameter</p></td>
+<td><p><a class="reference external" href="#put--accounts-(account)">PUT /accounts/(account)</a></p></td>
+<td><p>Update account information.</p></td>
+</tr>
+<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#delete--accounts-(account)">DELETE /accounts/(account)</a></p></td>
 <td><p>Delete account information.</p></td>
 </tr>
-<tr class="row-even"><td></td>
+<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#post--accounts-(account)">POST /accounts/(account)</a></p></td>
 <td><p>Add account.</p></td>
-</tr>
-<tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#put--accounts-(account)">PUT /accounts/(account)</a></p></td>
-<td><p>Update account information.</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--accounts-(account)">GET /accounts/(account)</a></p></td>
 <td><p>Get account parameters.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Attributes</p></td>
-<td><p><a class="reference external" href="#delete--accounts-(account)-attr-(key)">DELETE /accounts/(account)/attr/(key)</a></p></td>
-<td><p>Delete account attribute</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#post--accounts-(account)-attr-(key)">POST /accounts/(account)/attr/(key)</a></p></td>
 <td><p>Add account attribute</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#delete--accounts-(account)-attr-(key)">DELETE /accounts/(account)/attr/(key)</a></p></td>
+<td><p>Delete account attribute</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#get--accounts-(account)-attr-">GET /accounts/(account)/attr/</a></p></td>
@@ -580,28 +580,6 @@
 </dl>
 </dd></dl>
 
-<dl class="http delete">
-<dt id="delete--accounts-(account)-attr-(key)">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/attr/</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accounts-(account)-attr-(key)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove attribute from account.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – Account identifier.</p></li>
-<li><p><strong>key</strong> – The attribute key.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully deleted.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http post">
 <dt id="post--accounts-(account)-attr-(key)">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/attr/</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#post--accounts-(account)-attr-(key)" title="Permalink to this definition">¶</a></dt>
@@ -624,6 +602,28 @@
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Successfully created.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Attribute already exists.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--accounts-(account)-attr-(key)">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/attr/</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accounts-(account)-attr-(key)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove attribute from account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – Account identifier.</p></li>
+<li><p><strong>key</strong> – The attribute key.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully deleted.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception.</p></li>
 </ul>
@@ -657,6 +657,28 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>JSON dict containing informations about the requested account.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http put">
+<dt id="put--accounts-(account)">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#put--accounts-(account)" title="Permalink to this definition">¶</a></dt>
+<dd><p>update a parameter for a given account name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – The account identifier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unknown status.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -703,28 +725,6 @@
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Successfully created.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Account already exists.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http put">
-<dt id="put--accounts-(account)">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#put--accounts-(account)" title="Permalink to this definition">¶</a></dt>
-<dd><p>update a parameter for a given account name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unknown status.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
 </ul>
 </dd>
