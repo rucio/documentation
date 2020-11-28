@@ -24,4 +24,4 @@ jobs:
       run: |
         cd website/build/documentation
         touch .nojekyll
-        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} INPUT_DIRECTORY=$(pwd) publish.s
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} INPUT_DIRECTORY=$(pwd) publish.sh
