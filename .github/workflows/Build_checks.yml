@@ -1,3 +1,5 @@
+# Checks whether the content in the pull request can be merged by running the checks
+
 name: Continuous Integration
 
 on: [pull_request]
@@ -31,16 +33,3 @@ jobs:
           cd sphinx
           chmod 755 build-sphinx-docs.sh 
           ./build-sphinx-docs.sh
-      - name: Push content
-        run: |
-          cd master
-          git init
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Push to Github Pages"
-
-          remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          INPUT_BRANCH=${INPUT_BRANCH:-master}
-          git push "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags --force
-       
