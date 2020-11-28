@@ -54,7 +54,7 @@ const siteConfig = {
   /* path to images for header/footer */
   headerIcon: 'img/wide_logo2.png',
   footerIcon: 'img/wide_logo2.png',
-  favicon: 'img/wide_logo2.png',
+  favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
@@ -98,13 +98,6 @@ const siteConfig = {
 // Collapsible Side Navigation Bar
 
   docsSideNavCollapsible: true,
-
-// Social media handles in the footer
-
-  socialMedia: {
-    twitter: 'RucioData',
-    github: 'rucio',
-},
 
 //Separating Sphinx CSS from the rest of the documentation
 
