@@ -24,13 +24,15 @@ Sphinx, ensure you're incorporating the relevant information into
 the respective .``.py`` files. 
 Existing ``.py`` files in the directories should give you an idea of
 how this is done across the project.
-Once your pull-request with the requisite ``.py`` files has been approved,
-the build will be triggered via GitHub actions.
+Once the changes have been approved & pushed into the main branch, 
+you will need to submit a Pull Request to the **sphinx** branch of the 
+[``rucio\documentation``](https://github.com/rucio/rucio/documentation) repository so that the changes can be
+reflected on the website.
 
 ## Markdown documentation
 
 The source for this section lives in the ``docs`` folder within the 
-master branch of the [``rucio/documentation``](https://github.com/rucio/documentation) GitHub repository. Any
+**master** branch of the [``rucio/documentation``](https://github.com/rucio/documentation) GitHub repository. Any
 content that needs to be added should be written in Markdown and
 added to this folder. Should you wish to add it to the sidebar for
 ease of navigation, you will also need to modify [sidebars.json]().

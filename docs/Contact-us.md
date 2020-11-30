@@ -30,5 +30,10 @@ clicking [__here__](https://groups.google.com/forum/#!forum/rucio-users).
 
 ## Email us!
 
-We'd love to hear from you & should you wish to directly
-get in touch with us via [__email__](mailto:rucio-dev@cern.ch)
+We'd love to hear from you! Chat with our developers
+directly via[__email__](mailto:rucio-dev@cern.ch)
+
+## Social Media
+
+Follow us on [Twitter](https://twitter.com/RucioData) to stay updated
+with the latest on Rucio!
