@@ -24,6 +24,7 @@
     ],
     "Rucio Developer Documentation":[
       "database",
+      "configure-rucio-globus",
       "contributing"
     ],
     "Contribution":[
