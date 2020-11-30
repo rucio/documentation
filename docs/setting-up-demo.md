@@ -303,15 +303,15 @@ Some files are created. Let\'s add them to a new dataset:
 If you run the command below, the files are not in the RSE XRD3, but
 only in XRD1 and 2.:
 
->    **rucio list-file-replicas test:mynewdataset**
->
-
-| SCOPE | NAME  | FILESIZE  | ADLER32  | RSE: REPLICA                                   |
-|-------|-------|-----------|----------|------------------------------------------------|
-| test  | file1 | 10.486 MB | 141a641e | XRD1: root://xrd1:1094//rucio/test/80/25/file1 |
-| test  | file2 | 10.486 MB | fdfa7eea | XRD1: root://xrd1:1094//rucio/test/f3/14/file2 |
-| test  | file3 | 10.486 MB | c669167d | XRD2: root://xrd2:1095//rucio/test/a9/23/file3 |
-| test  | file4 | 10.486 MB | 65786e49 | XRD2: root://xrd2:1095//rucio/test/2b/c2/file4 |
+    $ **rucio list-file-replicas test:mynewdataset**
+    +-------+-------+-----------+----------+------------------------------------------------+
+    | SCOPE | NAME  | FILESIZE  | ADLER32  | RSE: REPLICA                                   |
+    |-------|-------|-----------|----------|------------------------------------------------|
+    | test  | file1 | 10.486 MB | 141a641e | XRD1: root://xrd1:1094//rucio/test/80/25/file1 |
+    | test  | file2 | 10.486 MB | fdfa7eea | XRD1: root://xrd1:1094//rucio/test/f3/14/file2 |
+    | test  | file3 | 10.486 MB | c669167d | XRD2: root://xrd2:1095//rucio/test/a9/23/file3 |
+    | test  | file4 | 10.486 MB | 65786e49 | XRD2: root://xrd2:1095//rucio/test/2b/c2/file4 |
+    +-------+-------+-----------+----------+------------------------------------------------+
 
 So let\'s add a new rule on our new dataset to oblige Rucio to create
 replicas also on XRD3:

@@ -31,7 +31,7 @@ clicking [__here__](https://groups.google.com/forum/#!forum/rucio-users).
 ## Email us!
 
 We'd love to hear from you! Chat with our developers
-directly via[__email__](mailto:rucio-dev@cern.ch)
+directly via [__email__](mailto:rucio-dev@cern.ch)
 
 ## Social Media
 

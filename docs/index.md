@@ -63,14 +63,26 @@ documentation will help you get started. Peruse some common REST API & Client AP
 references that are directly derived from [Rucio's python libraries](). We also
 have a contribution guide for those who wish to pitch in.
 
-- [API Documentation - both REST & Client](/rucio/index.html)
+- [API Documentation - both REST & Client](/documentation/rucio/index.html)
 - [Database](database)
+- [Configuring Rucio to use Globus as an Online Transfer Tool](configure-rucio-globus)
 - [Contributing guide](contributing)
 
 ## [Contributing to the Documentation](Contributing)
+
+Documentation is always a work in progress & we welcome both, qualitative and
+technical contributions from the community. Make sure you read through this section 
+& understand the pre-requisites before you submit your first PR!
+
 - [Types of pages](page-types)
 - [Contributing Improvements](contributing-improvements)
 - [New Content Contribution Guide](new-content-contribution-guide)
 
-## Documentation Contribution Guide (Contribution)
+## About Us
 
+Learn more about the brilliant minds pioneering the development & maintenance 
+of Rucio in this section. Should you wish to get in touch with us, we've also included
+several ways of doing so in the **Contact Us** section.
+
+- [About Our Contributors](about-our-contributors)
+- [Contact Us](how-to-reach-us)
