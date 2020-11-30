@@ -65,6 +65,7 @@ have a contribution guide for those who wish to pitch in.
 
 - [API Documentation - both REST & Client](/rucio/index.html)
 - [Database](database)
+- [Configuring Rucio to use Globus as an Online Transfer Tool](configure-rucio-globus)
 - [Contributing guide](contributing)
 
 ## [Contributing to the Documentation](Contributing)
