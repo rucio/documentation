@@ -63,7 +63,7 @@ documentation will help you get started. Peruse some common REST API & Client AP
 references that are directly derived from [Rucio's python libraries](). We also
 have a contribution guide for those who wish to pitch in.
 
-- [API Documentation - both REST & Client](/rucio/index.html)
+- [API Documentation - both REST & Client](/documentation/rucio/index.html)
 - [Database](database)
 - [Configuring Rucio to use Globus as an Online Transfer Tool](configure-rucio-globus)
 - [Contributing guide](contributing)
