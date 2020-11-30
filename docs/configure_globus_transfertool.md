@@ -1,4 +1,8 @@
-# Configure Rucio To Use Globus Online as a Transfer Tool
+---
+id: configure-rucio-globus
+title: Configure Rucio To Use Globus Online as a Transfer Tool
+sidebar_label: Configure Rucio To Use Globus Online as a Transfer Tool
+---
 
 This document walks through an example configuration of Rucio to use Globus Online as a transfer tool. There are four configuration points shown here: registration of your application with Globus, RSE setup (properties and parameters), the Rucio configuration file rucio.cfg and the Globus configuration file config.yml.
 
