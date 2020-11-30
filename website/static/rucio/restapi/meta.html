@@ -82,12 +82,12 @@
 <td><p>List all keys.</p></td>
 </tr>
 <tr class="row-even"><td><p>Values</p></td>
-<td><p><a class="reference external" href="#post--meta-(key)-">POST /meta/(key)/</a></p></td>
-<td><p>Create new value.</p></td>
-</tr>
-<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#get--meta-(key)-">GET /meta/(key)/</a></p></td>
 <td><p>List all key values.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#post--meta-(key)-">POST /meta/(key)/</a></p></td>
+<td><p>Create new value.</p></td>
 </tr>
 </tbody>
 </table>
@@ -139,30 +139,6 @@
 </dl>
 </dd></dl>
 
-<dl class="http post">
-<dt id="post--meta-(key)-">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/meta/</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><a class="headerlink" href="#post--meta-(key)-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new value for a key.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Request JSON Object</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>parameter</strong> (<em>dict</em>) – Dictionary with ‘value’.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Invalid Value For Key.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Key Not Found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Value already exists.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http get">
 <dt id="get--meta-(key)-">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/meta/</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><a class="headerlink" href="#get--meta-(key)-" title="Permalink to this definition">¶</a></dt>
@@ -183,6 +159,30 @@
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>List of all key values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--meta-(key)-">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/meta/</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><a class="headerlink" href="#post--meta-(key)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new value for a key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> (<em>dict</em>) – Dictionary with ‘value’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Invalid Value For Key.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Key Not Found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Value already exists.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
