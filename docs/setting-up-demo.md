@@ -352,28 +352,16 @@ If we see the state of the rule now, we see the locks are OK:
 And if we look at the replicas of the dataset, we see the there are
 replicas of the files also in XRD3:
 
->    **rucio list-file-replicas test:mynewdataset**
->
-    > **+---------+--------+------------+-----------+------------------------------------------------+**
-    >
-    >**| SCOPE   | NAME   | FILESIZE   | ADLER32   | RSE: REPLICA                                   |**
-    > 
-    >**|---------+--------+------------+-----------+------------------------------------------------|**
-    > 
-    >**| test    | file1  | 10.486 MB  | 141a641e  | XRD3: root://xrd3:1096//rucio/test/80/25/file1 |**
-    > 
-    >**| test    | file1  | 10.486 MB  | 141a641e  | XRD1: root://xrd1:1094//rucio/test/80/25/file1 |**
-    > 
-    >**| test    | file2  | 10.486 MB  | fdfa7eea  | XRD3: root://xrd3:1096//rucio/test/f3/14/file2 |**
-    > 
-    >**| test    | file2  | 10.486 MB  | fdfa7eea  | XRD1: root://xrd1:1094//rucio/test/f3/14/file2 |**
-    > 
-    >**| test    | file3  | 10.486 MB  | c669167d  | XRD2: root://xrd2:1095//rucio/test/a9/23/file3 |**
-    > 
-    >**| test    | file3  | 10.486 MB  | c669167d  | XRD3: root://xrd3:1096//rucio/test/a9/23/file3 |**
-    > 
-    >**| test    | file4  | 10.486 MB  | 65786e49  | XRD2: root://xrd2:1095//rucio/test/2b/c2/file4 |**
-    > 
-    >**| test    | file4  | 10.486 MB  | 65786e49  | XRD3: root://xrd3:1096//rucio/test/2b/c2/file4 |**
-    > 
-    >**+---------+--------+------------+-----------+------------------------------------------------+**
+    $**rucio list-file-replicas test:mynewdataset**
+    +---------+--------+------------+-----------+------------------------------------------------+
+    | SCOPE   | NAME   | FILESIZE   | ADLER32   | RSE: REPLICA                                   | 
+    |---------+--------+------------+-----------+------------------------------------------------|
+    | test    | file1  | 10.486 MB  | 141a641e  | XRD3: root://xrd3:1096//rucio/test/80/25/file1 |
+    | test    | file1  | 10.486 MB  | 141a641e  | XRD1: root://xrd1:1094//rucio/test/80/25/file1 |
+    | test    | file2  | 10.486 MB  | fdfa7eea  | XRD3: root://xrd3:1096//rucio/test/f3/14/file2 |
+    | test    | file2  | 10.486 MB  | fdfa7eea  | XRD1: root://xrd1:1094//rucio/test/f3/14/file2 |
+    | test    | file3  | 10.486 MB  | c669167d  | XRD2: root://xrd2:1095//rucio/test/a9/23/file3 |
+    | test    | file3  | 10.486 MB  | c669167d  | XRD3: root://xrd3:1096//rucio/test/a9/23/file3 |
+    | test    | file4  | 10.486 MB  | 65786e49  | XRD2: root://xrd2:1095//rucio/test/2b/c2/file4 |
+    | test    | file4  | 10.486 MB  | 65786e49  | XRD3: root://xrd3:1096//rucio/test/2b/c2/file4 |
+    +---------+--------+------------+-----------+------------------------------------------------+
