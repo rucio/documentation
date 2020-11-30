@@ -69,9 +69,20 @@ have a contribution guide for those who wish to pitch in.
 - [Contributing guide](contributing)
 
 ## [Contributing to the Documentation](Contributing)
+
+Documentation is always a work in progress & we welcome both, qualitative and
+technical contributions from the community. Make sure you read through this section 
+& understand the pre-requisites before you submit your first PR!
+
 - [Types of pages](page-types)
 - [Contributing Improvements](contributing-improvements)
 - [New Content Contribution Guide](new-content-contribution-guide)
 
-## Documentation Contribution Guide (Contribution)
+## About Us
 
+Learn more about the brilliant minds pioneering the development & maintenance 
+of Rucio in this section. Should you wish to get in touch with us, we've also included
+several ways of doing so in the **Contact Us** section.
+
+- [About Our Contributors](about-our-contributors)
+- [Contact Us](how-to-reach-us)
