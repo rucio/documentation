@@ -24,7 +24,7 @@ The daemons layer takes care of all the asynchronous & continuous workflows in t
 
 A diagrammatic representation of the 4 layers is as shown below 
 
-![image](\only-docusaurus\img\architecture.JPG)
+![image](\documentation\img\architecture.JPG)
 
 To learn more about each of these layers in detail, download our [peer reviewed scientific paper](https://link.springer.com/article/10.1007/s41781-019-0026-3).
 
