@@ -54,7 +54,7 @@ const siteConfig = {
   /* path to images for header/footer */
   headerIcon: 'img/wide_logo2.png',
   footerIcon: 'img/wide_logo2.png',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/android-chrome-512x512.png',
 
   /* Colors for website */
   colors: {
