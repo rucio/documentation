@@ -132,7 +132,7 @@ class Index extends React.Component {
             content: 'If you are installing Rucio or upgrading to the newest version, refer to the current release notes.',
             image: `${baseUrl}img/notes.svg`,
             imageAlign: 'top',
-            imageLink: siteConfig.baseUrl + 'docs/1.23.9.post4.html',
+            imageLink: siteConfig.baseUrl + 'docs/Release-Notes.html',
             title: 'Release Notes',
           },
           {
