@@ -16,7 +16,9 @@ section) as it will configure many things for you automatically. Only
 use the pip-based install if you have a good reason and know how to
 configure your web service manually:
 
-> **pip install rucio**
+```bash
+pip install rucio
+```
 
 This will pull the latest release from
 [__PyPi__](https://pypi.python.org/pypi/rucio/). The Rucio server also needs
@@ -32,8 +34,9 @@ database backends.
 This image expects that there is an already initialised Rucio DB. To
 start a simple `judge-cleaner` daemon using a database on
 `mysql.db` without any additional parameters just run this:
-
-> **docker run --name=rucio-judge-cleaner -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" -e RUCIO_DAEMON=judge-cleaner  rucio/rucio-daemons**
+```bash
+docker run --name=rucio-judge-cleaner -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" -e RUCIO_DAEMON=judge-cleaner  rucio/rucio-daemons
+```
 
 The `RUCIO_DAEMON` environment variable gives the name of
 the rucio daemon.
@@ -45,13 +48,17 @@ complete rucio.cfg it can also be mounted. This will then ignore the
 
 The rucio.cfg is used to configure the database backend and the daemons:
 
-> **docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -e RUCIO_DAEMON=judge-cleaner  rucio/rucio-daemons**
+```bash
+docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -e RUCIO_DAEMON=judge-cleaner  rucio/rucio-daemons
+```
 
 By default the daemon logs are written to stdout and stderr if you want
 to write to a file you can use `RUCIO_ENABLE_LOGS` like
 this:
 
-> **docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/rucio -e RUCIO_DAEMON=judge-cleaner  -e RUCIO_ENABLE_LOGS=True rucio/rucio-daemons**
+```bash
+docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/rucio -e RUCIO_DAEMON=judge-cleaner  -e RUCIO_ENABLE_LOGS=True rucio/rucio-daemons
+```
 
 ## Environment Variables
 
