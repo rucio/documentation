@@ -75,7 +75,6 @@ const siteConfig = {
     ]
   },
   */
-
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} CERN`,
 
@@ -106,6 +105,13 @@ separateCss: "static/rucio/",
 //Disabling the Tagline
 
 disableTitleTagline: true,
+
+preconnect:["https://fonts.gstatic.com"],
+ stylesheets: [
+  "/documentation/css/custom.css",
+  "https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap",
+  "https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap"
+],
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.

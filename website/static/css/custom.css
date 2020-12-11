@@ -7,6 +7,21 @@
 
 /* your custom css */
 
+h1,h2.projectTitle{
+  font-family: "Inter", sans-serif !important;
+  letter-spacing: 0.005rem !important;
+  font-weight: 700 !important;
+}
+h2,h3,h4,h5,h6{
+  font-family: "Inter", sans-serif !important;
+  letter-spacing: 0.005rem !important;
+  font-weight: 500 !important;
+}
+body{
+  font-family: "Rubik",sans-serif !important;
+  font-weight: 400 !important;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
