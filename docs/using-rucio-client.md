@@ -176,15 +176,15 @@ that:
 If so, one can directly present the token to the Rucio REST endpoint in
 the \'X-Rucio-Auth-Token\' header, e.g.:
 ```py
-$ python
-$ import requests
-$ s=requests.session()
-$ your_token=<your JWT access token string
-$ headers={'X-Rucio-Auth-Token': your_token}
-$ address='https://<Rucio Auth Server Name/accounts/guenther'
-$ result=s.get(address, headers=headers, verify=False)
-$ result.text
-u'{"status": "ACTIVE", "account": "guenther", "account_type": "USER", "created_at": "2019-11-13T13:01:58", "suspended_at": null, "updated_at": "2019-11-13T13:01:58", "deleted_at": null, "email": "jaroslav.guenther@gmail.com"}'
+ python
+ import requests
+ s=requests.session()
+ your_token=<your JWT access token string
+ headers={'X-Rucio-Auth-Token': your_token}
+ address='https://<Rucio Auth Server Name/accounts/guenther'
+ result=s.get(address, headers=headers, verify=False)
+ result.text
+ u'{"status": "ACTIVE", "account": "guenther", "account_type": "USER", "created_at": "2019-11-13T13:01:58", "suspended_at": null, "updated_at": "2019-11-13T13:01:58", "deleted_at": null, "email": "jaroslav.guenther@gmail.com"}'
 ```
 There is also an option to specify a `auth_token_file_path` in the
 `[client]` section of the rucio.cfg file. Rucio Client will then store
