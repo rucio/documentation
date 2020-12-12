@@ -1,14 +1,11 @@
 name: Merging Docusaurus Changes Workflow
 
 on:
-  pull_request:
-    branches:
-      - master
-    types: [closed]
+  push:
+    branches: [ master ]
 
 jobs:
   Merge_content:
-    if: github.event.pull_request.merged == true
     name: Rebuilding Docusaurus workflow
     runs-on: ubuntu-latest
     container:
