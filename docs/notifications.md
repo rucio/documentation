@@ -1,5 +1,7 @@
 ---
+id: notifications
 title: Notifications
+sidebar_label: Notifications
 ---
 
 External applications can require synchronisation on events relative to

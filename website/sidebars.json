@@ -27,6 +27,11 @@
       "configure-rucio-globus",
       "contributing"
     ],
+    "Miscellaneous":[
+    "policy-packages",
+    "notifications",
+    "metadata-attributes"
+    ],
     "Contribution":[
       "Contributing",
       "page-types",
