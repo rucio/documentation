@@ -415,7 +415,7 @@ to each Rucio account which is meant to use the OIDC authN/Z.
 In case you wish to use OIDC by default in order to login to the Rucio
 WebUI, one has to configure also another block in the
 `rucio.cfg` file:
-```bash
+```
   [webui]
   auth_type = oidc
   auth_issuer = <IdP nickname from the idpsecrets.json file>
@@ -443,7 +443,7 @@ beforehand, it will be used in the header of the transfer request to FTS
 and no new token demand will be made to IdP. The OIDC authentication
 mechanism shall be configured by the following parameters in the
 rucio.cfg file:
-```bash
+```
   [conveyor]
   allow_user_oidc_tokens = False
   request_oidc_scope = 'fts:submit-transfer'

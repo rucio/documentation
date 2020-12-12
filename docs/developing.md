@@ -84,11 +84,11 @@ tools/run_tests_docker.sh -ir
 This creates a few random files and uploads them, creates a few datasets and containers, and requests a replication rule for the container, which starts in state REPLICATING. To demonstrate the transfer capability, the daemons can be run in single-execution mode in order:
 
 ```bash
-rucio rule-info<rule-id>
-rucio-conveyor-submitter –run-once
-rucio-conveyor-poller –run-once –older-than 0
-rucio-conveyor-finisher –run-once
-rucio rule-info <rule-id>
+$rucio rule-info<rule-id>
+$rucio-conveyor-submitter –run-once
+$rucio-conveyor-poller –run-once –older-than 0
+$rucio-conveyor-finisher –run-once
+$rucio rule-info <rule-id>
 ```
 
 On the second display of the rule, its state has cleared to OK.

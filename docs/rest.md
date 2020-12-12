@@ -41,7 +41,7 @@ Content-Type: application/x-json-stream
 
 In the last case, it corresponds to JSON objects delimited by newlines(streaming JSON for large answer), e.g.:
 
-```bash
+```js
 { "id": 1, "foo": "bar" }
 { "id": 2, "foo": "baz" }
 ...

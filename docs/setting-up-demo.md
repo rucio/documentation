@@ -102,10 +102,10 @@ Alternatively, you can bootstrap the test environment once with the
 modules, test case groups, or even single test cases, for example:
 
 ```bash
-tools/run_tests_docker.sh -i
-pytest -v --full-trace lib/rucio/tests/test_replica.py
-pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore
-pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
+$ tools/run_tests_docker.sh -i
+$ pytest -v --full-trace lib/rucio/tests/test_replica.py
+$ pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore
+$ pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
 ```
 ## Using the environment including storage
 
@@ -133,10 +133,10 @@ starts in state REPLICATING. To demonstrate the transfer capability, the
 daemons can be run in single-execution mode in order:
 
 ```bash
-rucio rule-info \<rule-id\
-rucio-conveyor-submitter \--run-once rucio-conveyor-poller \--run-once
+$ rucio rule-info \<rule-id\
+$ rucio-conveyor-submitter \--run-once rucio-conveyor-poller \--run-once
 \--older-than 0 rucio-conveyor-finisher \--run-once
-rucio rule-info \<rule-id\>
+$ rucio rule-info \<rule-id\>
 ```
 On the second display of the rule, its state has cleared to OK.
 
@@ -315,8 +315,8 @@ tools/run_tests_docker.sh -ir
 Some files are created. Let\'s add them to a new dataset:
 
 ```bash
-rucio add-dataset test:mynewdataset
-rucio attach test:mynewdataset test:file1 test:file2 test:file3 test:file4
+$ rucio add-dataset test:mynewdataset
+$ rucio attach test:mynewdataset test:file1 test:file2 test:file3 test:file4
 ```
 If you run the command below, the files are not in the RSE XRD3, but
 only in XRD1 and 2.:
@@ -354,10 +354,10 @@ Finally, the transfer sign-off daemon (conveyor-finisher) updates the
 internal state of the Rucio catalogue to reflect the changes.:
 
 ```bash
-rucio-judge-evaluator --run-once**
-rucio-conveyor-submitter --run-once**
-rucio-conveyor-poller --run-once**
-rucio-conveyor-finisher --run-once**
+$ rucio-judge-evaluator --run-once**
+$ rucio-conveyor-submitter --run-once**
+$ rucio-conveyor-poller --run-once**
+$ rucio-conveyor-finisher --run-once**
 ```
 If we see the state of the rule now, we see the locks are OK:
 
