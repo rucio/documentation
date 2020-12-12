@@ -175,7 +175,7 @@ that:
 
 If so, one can directly present the token to the Rucio REST endpoint in
 the \'X-Rucio-Auth-Token\' header, e.g.:
-```bash
+```py
 $ python
 $ import requests
 $ s=requests.session()
