@@ -110,12 +110,12 @@
 <td><p>List replicas for DID.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#put--replicas-">PUT /replicas/</a></p></td>
-<td><p>update replicas state.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#post--replicas-">POST /replicas/</a></p></td>
 <td><p>create replicas at RSE</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#put--replicas-">PUT /replicas/</a></p></td>
+<td><p>update replicas state.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#delete--replicas-">DELETE /replicas/</a></p></td>
@@ -519,28 +519,6 @@
 </dl>
 </dd></dl>
 
-<dl class="http put">
-<dt id="put--replicas-">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#put--replicas-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a file replicas state at a given RSE.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Request JSON Object</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rse</strong> (<em>string</em>) – The RSE name.</p></li>
-<li><p><strong>files</strong> (<em>list</em>) – list of dicts with ‘scope’, ‘name’ and ‘state’.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Replica successfully updated.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http post">
 <dt id="post--replicas-">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#post--replicas-" title="Permalink to this definition">¶</a></dt>
@@ -563,6 +541,28 @@
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Replica already exists.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – DID already exists.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4">503 Service Unavailable</a> – Resource Temporary Unavailable.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http put">
+<dt id="put--replicas-">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#put--replicas-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a file replicas state at a given RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> (<em>string</em>) – The RSE name.</p></li>
+<li><p><strong>files</strong> (<em>list</em>) – list of dicts with ‘scope’, ‘name’ and ‘state’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Replica successfully updated.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
 </ul>
 </dd>
 </dl>

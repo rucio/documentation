@@ -98,12 +98,12 @@
 <td><p>update rule</p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#get--rules-(rule_id)">GET /rules/(rule_id)</a></p></td>
-<td><p>get rule info</p></td>
-</tr>
-<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#delete--rules-(rule_id)">DELETE /rules/(rule_id)</a></p></td>
 <td><p>delete rule</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--rules-(rule_id)">GET /rules/(rule_id)</a></p></td>
+<td><p>get rule info</p></td>
 </tr>
 <tr class="row-even"><td><p>RuleAnalysis</p></td>
 <td><p><a class="reference external" href="#get--rules-(rule_id)-analysis">GET /rules/(rule_id)/analysis</a></p></td>
@@ -346,6 +346,21 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 </dl>
 </dd></dl>
 
+<dl class="http delete">
+<dt id="delete--rules-(rule_id)">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--rules-(rule_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a new replication rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DIDs found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – no rule found for id</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http get">
 <dt id="get--rules-(rule_id)">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--rules-(rule_id)" title="Permalink to this definition">¶</a></dt>
@@ -359,21 +374,6 @@ NONE - Files will be completely spread over all allowed RSEs without any groupin
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Rule found</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.11">410 Gone</a> – Invalid Auth Token</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – no rule found for id</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http delete">
-<dt id="delete--rules-(rule_id)">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/rules/</code><span class="sig-paren">(</span><em class="sig-param">rule_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--rules-(rule_id)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete a new replication rule.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DIDs found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – no rule found for id</p></li>
 </ul>
 </dd>

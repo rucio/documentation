@@ -122,12 +122,12 @@
 <td><p>Follow DID.</p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#get--dids-(path-scope_name)-follow">GET /dids/(path:scope_name)/follow</a></p></td>
-<td><p>List users following DID.</p></td>
-</tr>
-<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#delete--dids-(path-scope_name)-follow">DELETE /dids/(path:scope_name)/follow</a></p></td>
 <td><p>Unfollow DID.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-follow">GET /dids/(path:scope_name)/follow</a></p></td>
+<td><p>List users following DID.</p></td>
 </tr>
 <tr class="row-even"><td><p>GUIDLookup</p></td>
 <td><p><a class="reference external" href="#get--dids-(guid)-guid">GET /dids/(guid)/guid</a></p></td>
@@ -142,12 +142,12 @@
 <td><p>Add DID metadata.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#get--dids-(path-scope_name)-meta">GET /dids/(path:scope_name)/meta</a></p></td>
-<td><p>List DID metadata.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#delete--dids-(path-scope_name)-meta">DELETE /dids/(path:scope_name)/meta</a></p></td>
 <td><p>Delete DID metadata.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--dids-(path-scope_name)-meta">GET /dids/(path:scope_name)/meta</a></p></td>
+<td><p>List DID metadata.</p></td>
 </tr>
 <tr class="row-odd"><td><p>NewDIDs</p></td>
 <td><p><a class="reference external" href="#get--dids-new">GET /dids/new</a></p></td>
@@ -666,23 +666,6 @@ Content-Type: application/json
 </dl>
 </dd></dl>
 
-<dl class="http get">
-<dt id="get--dids-(path-scope_name)-follow">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/follow</code><a class="headerlink" href="#get--dids-(path-scope_name)-follow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all users following a specific DID.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – ValueError</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DataIdentifierNotFound</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http delete">
 <dt id="delete--dids-(path-scope_name)-follow">
 <code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/follow</code><a class="headerlink" href="#delete--dids-(path-scope_name)-follow" title="Permalink to this definition">¶</a></dt>
@@ -698,6 +681,23 @@ Content-Type: application/json
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--dids-(path-scope_name)-follow">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/follow</code><a class="headerlink" href="#get--dids-(path-scope_name)-follow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all users following a specific DID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – ValueError</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DataIdentifierNotFound</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable</p></li>
 </ul>
 </dd>
 </dl>
@@ -863,6 +863,32 @@ Content-Type: application/json
 </dl>
 </dd></dl>
 
+<dl class="http delete">
+<dt id="delete--dids-(path-scope_name)-dids">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#delete--dids-(path-scope_name)-dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detach data identifiers from data identifiers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>data</strong> (<em>dicts</em>) – Must contain key ‘dids’ with list of dids to detach.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DIDs successfully detached</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http get">
 <dt id="get--dids-(path-scope_name)-dids">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#get--dids-(path-scope_name)-dids" title="Permalink to this definition">¶</a></dt>
@@ -907,32 +933,6 @@ Content-Type: application/json
 </dl>
 </dd></dl>
 
-<dl class="http delete">
-<dt id="delete--dids-(path-scope_name)-dids">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/dids</code><a class="headerlink" href="#delete--dids-(path-scope_name)-dids" title="Permalink to this definition">¶</a></dt>
-<dd><p>Detach data identifiers from data identifiers.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Request JSON Object</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>data</strong> (<em>dicts</em>) – Must contain key ‘dids’ with list of dids to detach.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – DIDs successfully detached</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database Exception</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http post">
 <dt id="post--dids-(path-scope_name)-meta">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta</code><a class="headerlink" href="#post--dids-(path-scope_name)-meta" title="Permalink to this definition">¶</a></dt>
@@ -954,6 +954,19 @@ Content-Type: application/json
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--dids-(path-scope_name)-meta">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta</code><a class="headerlink" href="#delete--dids-(path-scope_name)-meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the specified metadata from the DID</p>
+<dl class="simple">
+<dt>HTTP Success:</dt><dd><p>200 OK</p>
+</dd>
+<dt>HTTP Error:</dt><dd><p>401 Unauthorized
+404 KeyNotFound</p>
 </dd>
 </dl>
 </dd></dl>
@@ -984,19 +997,6 @@ Content-Type: application/json
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A dictionary containing all meta.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http delete">
-<dt id="delete--dids-(path-scope_name)-meta">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/dids/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/meta</code><a class="headerlink" href="#delete--dids-(path-scope_name)-meta" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deletes the specified metadata from the DID</p>
-<dl class="simple">
-<dt>HTTP Success:</dt><dd><p>200 OK</p>
-</dd>
-<dt>HTTP Error:</dt><dd><p>401 Unauthorized
-404 KeyNotFound</p>
 </dd>
 </dl>
 </dd></dl>

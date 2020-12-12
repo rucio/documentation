@@ -86,12 +86,12 @@
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>Subscription</p></td>
-<td><p><a class="reference external" href="#put--subscriptions-(account)-(name)">PUT /subscriptions/(account)/(name)</a></p></td>
-<td><p>Update a subscription.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#post--subscriptions-(account)-(name)">POST /subscriptions/(account)/(name)</a></p></td>
 <td><p>Create a subscription.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#put--subscriptions-(account)-(name)">PUT /subscriptions/(account)/(name)</a></p></td>
+<td><p>Update a subscription.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#get--subscriptions-(account)-(name)">GET /subscriptions/(account)/(name)</a></p></td>
@@ -116,29 +116,6 @@
 </tbody>
 </table>
 <p><strong>Details</strong></p>
-<dl class="http put">
-<dt id="put--subscriptions-(account)-(name)">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/subscriptions/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#put--subscriptions-(account)-(name)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update an existing subscription.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account name.</p></li>
-<li><p><strong>name</strong> – The subscription name.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Subscription Not Found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http post">
 <dt id="post--subscriptions-(account)-(name)">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/subscriptions/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#post--subscriptions-(account)-(name)" title="Permalink to this definition">¶</a></dt>
@@ -161,6 +138,29 @@
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>ID if newly created subscription.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http put">
+<dt id="put--subscriptions-(account)-(name)">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/subscriptions/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#put--subscriptions-(account)-(name)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update an existing subscription.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – The account name.</p></li>
+<li><p><strong>name</strong> – The subscription name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Subscription Not Found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
