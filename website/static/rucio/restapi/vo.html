@@ -78,12 +78,12 @@
 <td><p>Recover VO root identity.</p></td>
 </tr>
 <tr class="row-odd"><td><p>VO</p></td>
-<td><p><a class="reference external" href="#post--vos-(vo)">POST /vos/(vo)</a></p></td>
-<td><p>Add a VOs.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#put--vos-(vo)">PUT /vos/(vo)</a></p></td>
 <td><p>Update a VOs.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#post--vos-(vo)">POST /vos/(vo)</a></p></td>
+<td><p>Add a VOs.</p></td>
 </tr>
 <tr class="row-odd"><td><p>VOs</p></td>
 <td><p><a class="reference external" href="#get--vos-">GET /vos/</a></p></td>
@@ -147,33 +147,6 @@
 </dl>
 </dd></dl>
 
-<dl class="http post">
-<dt id="post--vos-(vo)">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/vos/</code><span class="sig-paren">(</span><em class="sig-param">vo</em><span class="sig-paren">)</span><a class="headerlink" href="#post--vos-(vo)" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a VO with a given name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vo</strong> – VO to be added.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Request JSON Object</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>description</strong> (<em>string</em>) – Desciption of VO.</p></li>
-<li><p><strong>email</strong> (<em>string</em>) – Admin email for VO.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – VO created successfully.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Unsupported operation.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http put">
 <dt id="put--vos-(vo)">
 <code class="sig-name descname">PUT </code><code class="sig-name descname">/vos/</code><span class="sig-paren">(</span><em class="sig-param">vo</em><span class="sig-paren">)</span><a class="headerlink" href="#put--vos-(vo)" title="Permalink to this definition">¶</a></dt>
@@ -195,6 +168,33 @@
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – VO updated successfully.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – VO not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Unsupported operation.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--vos-(vo)">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/vos/</code><span class="sig-paren">(</span><em class="sig-param">vo</em><span class="sig-paren">)</span><a class="headerlink" href="#post--vos-(vo)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a VO with a given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vo</strong> – VO to be added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>description</strong> (<em>string</em>) – Desciption of VO.</p></li>
+<li><p><strong>email</strong> (<em>string</em>) – Admin email for VO.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – VO created successfully.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid Auth Token.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Unsupported operation.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
 </ul>

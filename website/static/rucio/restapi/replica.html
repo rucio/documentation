@@ -73,37 +73,45 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>BadPFNs</p></td>
+<tr class="row-even"><td><p>BadDIDs</p></td>
+<td><p><a class="reference external" href="#post--replicas-bad-dids">POST /replicas/bad/dids</a></p></td>
+<td><p>Declare bad replicas by DID.</p></td>
+</tr>
+<tr class="row-odd"><td><p>BadPFNs</p></td>
 <td><p><a class="reference external" href="#post--replicas-bad-pfns">POST /replicas/bad/pfns</a></p></td>
 <td><p>Declare bad replicas.</p></td>
 </tr>
-<tr class="row-odd"><td><p>BadReplicasStates</p></td>
+<tr class="row-even"><td><p>BadReplicasStates</p></td>
 <td><p><a class="reference external" href="#get--replicas-bad-states">GET /replicas/bad/states</a></p></td>
 <td><p>List bad replicas.</p></td>
 </tr>
-<tr class="row-even"><td></td>
+<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#post--replicas-bad">POST /replicas/bad</a></p></td>
 <td><p>Declare bad replicas.</p></td>
 </tr>
-<tr class="row-odd"><td><p>BadReplicasSummary</p></td>
+<tr class="row-even"><td><p>BadReplicasSummary</p></td>
 <td><p><a class="reference external" href="#get--replicas-bad-summary">GET /replicas/bad/summary</a></p></td>
 <td><p>List bad replicas by incident.</p></td>
 </tr>
-<tr class="row-even"><td><p>DatasetReplicas</p></td>
+<tr class="row-odd"><td><p>DatasetReplicas</p></td>
 <td><p><a class="reference external" href="#post--replicas-datasets_bulk">POST /replicas/datasets_bulk</a></p></td>
 <td><p>List replicas for multiple DIDs.</p></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--replicas-(path-scope_name)-datasets">GET /replicas/(path:scope_name)/datasets</a></p></td>
 <td><p>List dataset replicas.</p></td>
 </tr>
-<tr class="row-even"><td><p>Replicas</p></td>
+<tr class="row-odd"><td><p>Replicas</p></td>
 <td><p><a class="reference external" href="#post--replicas-list">POST /replicas/list</a></p></td>
 <td><p>List replicas for multiple DIDs.</p></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--replicas-(path-scope_name)">GET /replicas/(path:scope_name)</a></p></td>
 <td><p>List replicas for DID.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#put--replicas-">PUT /replicas/</a></p></td>
+<td><p>update replicas state.</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#post--replicas-">POST /replicas/</a></p></td>
@@ -113,23 +121,19 @@
 <td><p><a class="reference external" href="#delete--replicas-">DELETE /replicas/</a></p></td>
 <td><p>Delete replica at RSE.</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#put--replicas-">PUT /replicas/</a></p></td>
-<td><p>update replicas state.</p></td>
-</tr>
-<tr class="row-odd"><td><p>ReplicasDIDs</p></td>
+<tr class="row-even"><td><p>ReplicasDIDs</p></td>
 <td><p><a class="reference external" href="#post--replicas-dids">POST /replicas/dids</a></p></td>
 <td><p>List DIDs for replicas.</p></td>
 </tr>
-<tr class="row-even"><td><p>ReplicasRSE</p></td>
+<tr class="row-odd"><td><p>ReplicasRSE</p></td>
 <td><p><a class="reference external" href="#get--replicas-rse-(rse)">GET /replicas/rse/(rse)</a></p></td>
 <td><p>List dataset replicas per RSE.</p></td>
 </tr>
-<tr class="row-odd"><td><p>SuspiciousReplicas</p></td>
+<tr class="row-even"><td><p>SuspiciousReplicas</p></td>
 <td><p><a class="reference external" href="#post--replicas-suspicious">POST /replicas/suspicious</a></p></td>
 <td><p>Declare suspicious replicas.</p></td>
 </tr>
-<tr class="row-even"><td><p>Tombstone</p></td>
+<tr class="row-odd"><td><p>Tombstone</p></td>
 <td><p><a class="reference external" href="#post--replicas-tombstone">POST /replicas/tombstone</a></p></td>
 <td><p>Set a tombstone on a list of replicas.</p></td>
 </tr>
@@ -205,6 +209,39 @@
 <dt id="post--replicas-bad-pfns">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/bad/pfns</code><a class="headerlink" href="#post--replicas-bad-pfns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Declare a list of bad PFNs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> (<em>string</em>) – The list of PFNs.</p></li>
+<li><p><strong>reason</strong> (<em>string</em>) – The reason of the loss.</p></li>
+<li><p><strong>state</strong> (<em>string</em>) – The state is eiher BAD, SUSPICIOUS or TEMPORARY_UNAVAILABLE.</p></li>
+<li><p><strong>expires_at</strong> (<em>string</em>) – The expiration date. Only apply to TEMPORARY_UNAVAILABLE.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-string</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Replica not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of not successfully declared files.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-bad-dids">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/bad/dids</code><a class="headerlink" href="#post--replicas-bad-dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a list of bad replicas by DID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request JSON Object</dt>
 <dd class="field-odd"><ul class="simple">
@@ -334,7 +371,7 @@
 <dt class="field-even">Query Parameters</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>schemes</strong> – A list of schemes to filter the replicas.</p></li>
-<li><p><strong>sort</strong> – Requested sorting of the result, e.g., ‘geoip’, ‘closeness’, ‘dynamic’, ‘ranking’.</p></li>
+<li><p><strong>sort</strong> – Requested sorting of the result, e.g., ‘geoip’, ‘closeness’, ‘dynamic’, ‘ranking’, ‘random’.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Request JSON Object</dt>
@@ -345,7 +382,7 @@
 <li><p><strong>all_states</strong> (<em>bool</em>) – Return all replicas whatever state they are in. Adds an extra ‘states’ entry in the result dictionary.</p></li>
 <li><p><strong>rse_expression</strong> (<em>string</em>) – The RSE expression to restrict on a list of RSEs.</p></li>
 <li><p><strong>client_location</strong> (<em>dict</em>) – Client location dictionary for PFN modification {‘ip’, ‘fqdn’, ‘site’}.</p></li>
-<li><p><strong>sort</strong> (<em>bool</em>) – Requested sorting of the result, e.g., ‘geoip’, ‘closeness’, ‘dynamic’, ‘ranking’.</p></li>
+<li><p><strong>sort</strong> (<em>bool</em>) – Requested sorting of the result, e.g., ‘geoip’, ‘closeness’, ‘dynamic’, ‘ranking’, ‘random’.</p></li>
 <li><p><strong>domain</strong> (<em>string</em>) – The network domain for the call, either None, ‘wan’ or ‘lan’. None is fallback to ‘wan’, ‘all’ is both [‘lan’,’wan’]</p></li>
 </ul>
 </dd>
@@ -482,6 +519,28 @@
 </dl>
 </dd></dl>
 
+<dl class="http put">
+<dt id="put--replicas-">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#put--replicas-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a file replicas state at a given RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> (<em>string</em>) – The RSE name.</p></li>
+<li><p><strong>files</strong> (<em>list</em>) – list of dicts with ‘scope’, ‘name’ and ‘state’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Replica successfully updated.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http post">
 <dt id="post--replicas-">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#post--replicas-" title="Permalink to this definition">¶</a></dt>
@@ -528,28 +587,6 @@
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Replica not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http put">
-<dt id="put--replicas-">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#put--replicas-" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a file replicas state at a given RSE.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Request JSON Object</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rse</strong> (<em>string</em>) – The RSE name.</p></li>
-<li><p><strong>files</strong> (<em>list</em>) – list of dicts with ‘scope’, ‘name’ and ‘state’.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Replica successfully updated.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
 <li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
 </ul>
 </dd>

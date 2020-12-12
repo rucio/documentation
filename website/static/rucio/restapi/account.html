@@ -78,20 +78,20 @@
 <td><p>List all accounts.</p></td>
 </tr>
 <tr class="row-odd"><td><p>AccountParameter</p></td>
-<td><p><a class="reference external" href="#post--accounts-(account)">POST /accounts/(account)</a></p></td>
-<td><p>Add account.</p></td>
-</tr>
-<tr class="row-even"><td></td>
-<td><p><a class="reference external" href="#delete--accounts-(account)">DELETE /accounts/(account)</a></p></td>
-<td><p>Delete account information.</p></td>
-</tr>
-<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#put--accounts-(account)">PUT /accounts/(account)</a></p></td>
 <td><p>Update account information.</p></td>
 </tr>
 <tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#post--accounts-(account)">POST /accounts/(account)</a></p></td>
+<td><p>Add account.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
 <td><p><a class="reference external" href="#get--accounts-(account)">GET /accounts/(account)</a></p></td>
 <td><p>Get account parameters.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#delete--accounts-(account)">DELETE /accounts/(account)</a></p></td>
+<td><p>Delete account information.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Attributes</p></td>
 <td><p><a class="reference external" href="#post--accounts-(account)-attr-(key)">POST /accounts/(account)/attr/(key)</a></p></td>
@@ -126,12 +126,12 @@
 <td><p>Add identity to account.</p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="#delete--accounts-(account)-identities">DELETE /accounts/(account)/identities</a></p></td>
-<td><p>Remove identity from account.</p></td>
-</tr>
-<tr class="row-even"><td></td>
 <td><p><a class="reference external" href="#get--accounts-(account)-identities">GET /accounts/(account)/identities</a></p></td>
 <td><p>Get account idenitity mapping.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#delete--accounts-(account)-identities">DELETE /accounts/(account)/identities</a></p></td>
+<td><p>Remove identity from account.</p></td>
 </tr>
 <tr class="row-odd"><td><p>LocalAccountLimits</p></td>
 <td><p><a class="reference external" href="#get--accounts-(account)-limits-local-(rse)">GET /accounts/(account)/limits/local/(rse)</a></p></td>
@@ -434,34 +434,6 @@
 </dl>
 </dd></dl>
 
-<dl class="http delete">
-<dt id="delete--accounts-(account)-identities">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/identities</code><a class="headerlink" href="#delete--accounts-(account)-identities" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete an account’s identity mapping.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – Account identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Request JSON Object</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>identity</strong> (<em>string</em>) – The identity name.</p></li>
-<li><p><strong>authtype</strong> (<em>string</em>) – The authentication type.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Status Codes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully deleted.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Identity not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http get">
 <dt id="get--accounts-(account)-identities">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/identities</code><a class="headerlink" href="#get--accounts-(account)-identities" title="Permalink to this definition">¶</a></dt>
@@ -490,6 +462,34 @@
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Line separated dicts of identities.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--accounts-(account)-identities">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><code class="sig-name descname">/identities</code><a class="headerlink" href="#delete--accounts-(account)-identities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an account’s identity mapping.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – Account identifier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>identity</strong> (<em>string</em>) – The identity name.</p></li>
+<li><p><strong>authtype</strong> (<em>string</em>) – The authentication type.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully deleted.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Identity not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -661,6 +661,28 @@
 </dl>
 </dd></dl>
 
+<dl class="http put">
+<dt id="put--accounts-(account)">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#put--accounts-(account)" title="Permalink to this definition">¶</a></dt>
+<dd><p>update a parameter for a given account name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – The account identifier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unknown status.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http post">
 <dt id="post--accounts-(account)">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#post--accounts-(account)" title="Permalink to this definition">¶</a></dt>
@@ -688,49 +710,6 @@
 </dl>
 </dd></dl>
 
-<dl class="http delete">
-<dt id="delete--accounts-(account)">
-<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accounts-(account)" title="Permalink to this definition">¶</a></dt>
-<dd><p>disable account with given account name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http put">
-<dt id="put--accounts-(account)">
-<code class="sig-name descname">PUT </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#put--accounts-(account)" title="Permalink to this definition">¶</a></dt>
-<dd><p>update a parameter for a given account name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>account</strong> – The account identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Unknown status.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="http get">
 <dt id="get--accounts-(account)">
 <code class="sig-name descname">GET </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#get--accounts-(account)" title="Permalink to this definition">¶</a></dt>
@@ -752,6 +731,27 @@
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>JSON dict containing informations about the requested user.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--accounts-(account)">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/accounts/</code><span class="sig-paren">(</span><em class="sig-param">account</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--accounts-(account)" title="Permalink to this definition">¶</a></dt>
+<dd><p>disable account with given account name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account</strong> – The account identifier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Account not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Database exception.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
