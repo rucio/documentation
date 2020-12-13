@@ -46,7 +46,7 @@ cannot get auth_token
 Details: x509 authentication failed
 2018-01-30 16:50:08,554 ERROR   Please verify that your proxy is still valid and renew it if needed.
 ```
-If you\'re running a multi-VO instance of Rucio, then the VO to
+If you're running a multi-VO instance of Rucio, then the VO to
 authenticate against is set in the configuration file. However you can
 specify a different VO as a CLI argument if your credentials map to an
 account there too:
@@ -78,7 +78,7 @@ There are 3 CLI login methods. Two were introduced in order to avoid
 typing the password in the Rucio CLI. The default Identity Provider
 (IdP)/issuer is configured on the side of Rucio server. In case multiple
 IdPs are supported, user can specify which one he desires to use by
-`--oidc-issuer=<IdP nickname` option (where IdP nickname is the key
+`--oidc-issuer=<IdP nickname>` option (where IdP nickname is the key
 under which issuers are configured on Rucio server side in the
 [idpsecrets.json]{.title-ref} file). In the following examples we assume
 that user does not want to use the rucio account name specified in the
@@ -88,12 +88,12 @@ file, ]{.title-ref}[-S]{.title-ref}\` can be omitted as well.
 Furthermore, we use the same default issuer as configured on Rucio
 server side.
 
-1.  Login via user\'s browser + fetch code:
+1.  Login via user's browser + fetch code:
 
 ```bash
 rucio -a=\<rucio_account_name\ -S=OIDC -v whoami
 ```
-2.  Login via user\'s browser + polling Rucio auth server:
+2.  Login via user's browser + polling Rucio auth server:
 
 ```bash
 rucio -a=\<rucio_account_name\ -S=OIDC \--oidc-polling -v whoami
@@ -112,13 +112,13 @@ refresh token and specify the time for which Rucio should act on behalf
 of the user (in hours) using the `--refresh-lifetime` option:
 
 ```bash
-rucio -a=<rucio_account_name -S=OIDC --oidc-scope="openid profile offline_access" --oidc-refresh-lifetime=24 -v whoami
+rucio -a=<rucio_account_name> -S=OIDC --oidc-scope="openid profile offline_access" --oidc-refresh-lifetime=24 -v whoami
 ```
 If Rucio Server is granted a user both valid access and refresh tokens,
 it is also possible to configure Rucio Client to ask Rucio Server for
 token refresh. Assuming user used one of the 3 CLI authentication
 methods above + requested offline_access in the scope, rucio.cfg file
-can be configured with the following parameters in the \[client\]
+can be configured with the following parameters in the client
 section:
 
 ```bash
@@ -139,7 +139,7 @@ invalid/expired/does not have refresh token in the DB, no refresh will
 be attempted.
 
 Example of rucio.cfg file configuration with automatic token refresh:
-```bash
+```
 [client]
 
 rucio_host = https://<rucio_host:443
@@ -171,7 +171,7 @@ that:
 - The token scope claim is no less than the minimum scope (e.g. 'openid profile') required by the Rucio Auth server (configured there in the rucio.cfg file).
 - same as above is true for the use of audience claim
 - token issuer is known to Rucio Authentication server
-- the identity of the token ("SUB=<user sub claim, ISS=<issuer url") is assigned to an existing Rucio account (pre-provisioned)
+- the identity of the token ("SUB=<user sub claim>, ISS=<issuer url>") is assigned to an existing Rucio account (pre-provisioned)
 
 If so, one can directly present the token to the Rucio REST endpoint in
 the \'X-Rucio-Auth-Token\' header, e.g.:
@@ -187,8 +187,8 @@ the \'X-Rucio-Auth-Token\' header, e.g.:
  u'{"status": "ACTIVE", "account": "guenther", "account_type": "USER", "created_at": "2019-11-13T13:01:58", "suspended_at": null, "updated_at": "2019-11-13T13:01:58", "deleted_at": null, "email": "jaroslav.guenther@gmail.com"}'
 ```
 There is also an option to specify a `auth_token_file_path` in the
-`[client]` section of the rucio.cfg file. Rucio Client will then store
-and search for user\'s token saved in such file:
+`client` section of the rucio.cfg file. Rucio Client will then store
+and search for user's token saved in such file:
 ```bash
     [client]
     auth_token_file_path = /path/to/token/file
