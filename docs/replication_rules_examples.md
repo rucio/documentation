@@ -27,16 +27,22 @@ The number 2 *second_dataset* is the number of copies expected. At the
 end, the RSE Expression select all the Tier 1 RSEs as possible targets
 to store the replicas.:
 
-> **username@host:~$ rucio add-rule scope:first_dataset scope:second_dataset 2 'tier=1'**
+```bash
+username@host:~$ rucio add-rule scope:first_dataset scope:second_dataset 2 'tier=1'
+```
 
 To see all the possible targets, **rucio list-rses** command can be
 used:
 
-> **username@host:~$ rucio list-rses --expression 'tier=1'**
+```bash
+username@host:~$ rucio list-rses --expression 'tier=1'
+```
 
 ## Example 2
 
 *I want to have 2 replicas on whatever T2 RSEs in the UK but it
 shouldn\'t be Glasgow*:
 
-> **username@host:~$ rucio add-rule scope:first_dataset scope:second_dataset 2 'country=uk\site=GLASGOW'**
+```bash
+username@host:~$ rucio add-rule scope:first_dataset scope:second_dataset 2 'country=uk\site=GLASGOW'
+```

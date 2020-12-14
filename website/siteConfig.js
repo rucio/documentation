@@ -12,38 +12,45 @@
 const users = [];
 
 const siteConfig = {
-  title: 'Rucio Documentation', // Title for your website.
-  url: 'https://rucio.github.io', // Your website URL
-  baseUrl: '/documentation/', // Base URL for your project */
+  title: "Rucio Documentation", // Title for your website.
+  url: "https://rucio.github.io", // Your website URL
+  baseUrl: "/documentation/", // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'documentation',
-  organizationName: 'rucio',
+  projectName: "documentation",
+  organizationName: "rucio",
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'index', label: 'Docs'},
-    {href: 'https://rucio.readthedocs.io/_/downloads/en/next/pdf/', label: 'Downloads'},
-    {href: 'https://twiki.cern.ch/twiki/bin/view/AtlasComputing/AtlasDistributedComputing', label: 'Wiki'},
-    {href: 'https://arxiv.org/abs/1902.09857', label: 'Scientific articles'},
-    { search: true }
+    { doc: "index", label: "Docs" },
+    {
+      href: "https://rucio.readthedocs.io/_/downloads/en/next/pdf/",
+      label: "Downloads",
+    },
+    {
+      href:
+        "https://twiki.cern.ch/twiki/bin/view/AtlasComputing/AtlasDistributedComputing",
+      label: "Wiki",
+    },
+    { href: "https://arxiv.org/abs/1902.09857", label: "Scientific articles" },
+    { search: true },
   ],
-  
+
   //Algolia search enablement
-  
-    algolia: {
-    apiKey: '04e5d623b96121df11ac440e51fc8956',
-    indexName: 'rucio-cern',
+
+  algolia: {
+    apiKey: "04e5d623b96121df11ac440e51fc8956",
+    indexName: "rucio-cern",
     algoliaOptions: {},
-    placeholder: 'Ask me something'
+    placeholder: "Ask me something",
   },
-  
+
   //Disabling header title
 
   disableHeaderTitle: true,
@@ -52,14 +59,14 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/wide_logo2.png',
-  footerIcon: 'img/wide_logo2.png',
-  favicon: 'img/android-chrome-512x512.png',
+  headerIcon: "img/wide_logo2.png",
+  footerIcon: "img/wide_logo2.png",
+  favicon: "img/android-chrome-512x512.png",
 
   /* Colors for website */
   colors: {
-    primaryColor: '#2C312E',
-    secondaryColor: '#72C3E7',
+    primaryColor: "#2C312E",
+    secondaryColor: "#72C3E7",
   },
 
   /* Custom fonts for website */
@@ -80,38 +87,43 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: "default",
   },
 
-// Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+  // Add custom scripts here that would be placed in <script> tags.
+  scripts: [
+    "https://buttons.github.io/buttons.js",
+    "/documentation/prism/prism.js",
+  ],
 
-// On page navigation for the current documentation page.
+  // On page navigation for the current documentation page.
 
-  onPageNav: 'separate',
+  onPageNav: "separate",
 
-// No .html extensions for paths.
+  // No .html extensions for paths.
 
   cleanUrl: true,
 
-// Collapsible Side Navigation Bar
+  // Collapsible Side Navigation Bar
 
   docsSideNavCollapsible: true,
 
-//Separating Sphinx CSS from the rest of the documentation
+  //Separating Sphinx CSS from the rest of the documentation
 
-separateCss: "static/rucio/",
+  separateCss: "static/rucio/",
 
-//Disabling the Tagline
+  //Disabling the Tagline
 
-disableTitleTagline: true,
+  disableTitleTagline: true,
 
-preconnect:["https://fonts.gstatic.com"],
- stylesheets: [
-  "/documentation/css/custom.css",
-  "https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap",
-  "https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap"
-],
+  preconnect: ["https://fonts.gstatic.com"],
+  stylesheets: [
+    "/documentation/css/custom.css",
+    "/documentation/prism/prism.css",
+    "https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap",
+    "https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap",
+    "https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+  ],
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.

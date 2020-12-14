@@ -18,7 +18,9 @@ section) as it will configure many things for you automatically. Only
 use the pip-based install if you have a good reason and know how to
 configure your webservices manually:
 
-> **pip install rucio**
+```bash
+pip install rucio
+```
 
 This will pull the latest release from
 [__PyPi__](https://pypi.python.org/pypi/rucio/). The Rucio server also needs
@@ -30,13 +32,17 @@ Install via Docker
 
 A simple server without SSL can be started like this:
 
-> **docker run --name=rucio-server -p 80:80 -d rucio/rucio-server**
+```bash
+docker run --name=rucio-server -p 80:80 -d rucio/rucio-server
+```
 
 This will start up a simple server using sqlite based on an
 automatically generated configuration. You can check if the server is
 running with 
 
-> **curl http://localhost/ping**
+```bash
+curl http://localhost/ping
+```
 
 This should return the Rucio version used in the container. Any other
 curl requests will not work as the database backend is not initialized
@@ -50,7 +56,9 @@ using the `RUCIO_CFG_DATABASE_DEFAULT` environment variable,
 e.g., to start a container connecting to a MySQL DB running at
 `mysql.db` you could use something like this:
 
-> **docker run --name=rucio-server -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" -p 80:80 -d rucio/rucio-server**
+```bash
+docker run --name=rucio-server -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" -p 80:80 -d rucio/rucio-server
+```
 
 The are much more configuration parameters available that will be listed
 at the end of this readme.
@@ -60,7 +68,9 @@ into the container. This will then be used instead of the auto-generated
 one, e.g., if you have a rucio.cfg ready on your host system under
 `/tmp/rucio.cfg` you could start a container like this:
 
-> **docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -p 80:80 -d rucio/rucio-server**
+```bash
+docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -p 80:80 -d rucio/rucio-server
+```
 
 The rucio.cfg is used to configure the database backend.
 
@@ -68,14 +78,18 @@ If you want to enable SSL you would need to set the
 `RUCIO_ENABLE_SSL` variable and also need to include the
 host certificate, key and the the CA certificate as volumes. E.g.,:
 
-> **docker run --name=rucio-server -v /tmp/ca.pem:/etc/grid-security/ca.pem -v /tmp/hostcert.pem:/etc/grid-security/hostcert.pem -v /tmp/hostkey.pem:/etc/grid-security/hostkey.pem -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -p 443:443 -e RUCIO_ENABLE_SSL=True -d rucio/rucio-server**
+```bash
+docker run --name=rucio-server -v /tmp/ca.pem:/etc/grid-security/ca.pem -v /tmp/hostcert.pem:/etc/grid-security/hostcert.pem -v /tmp/hostkey.pem:/etc/grid-security/hostkey.pem -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -p 443:443 -e RUCIO_ENABLE_SSL=True -d rucio/rucio-server
+```
 
 By default the output of the Apache web server is written directly to
 stdout and stderr. If you would rather direct them into separate files
 it can be done using the `RUCIO_ENABLE_LOGS` variable. The
 storage folder of the logs can be used as a volume:
 
-> **docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/httpd -p 80:80 -e RUCIO_ENABLE_LOGFILE=True -d rucio/rucio-server**
+```bash
+docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/httpd -p 80:80 -e RUCIO_ENABLE_LOGFILE=True -d rucio/rucio-server
+```
 
 ## Environment Variables
 
@@ -377,7 +391,9 @@ relevant Rucio admin_account_name (e.g. \'root\', \'ddmadmin\'). This
 identity ID is composed of the IAM account sub claim and issuer url such
 as demonstrated below:
 
-> **rucio-admin identity add --account admin_account_name --type OIDC --id "SUB=b3127dc7-2be3-417b-9647-6bf61238ad01, ISS=https://wlcg.cloud.cnaf.infn.it/" --email "wlcg-doma-rucio@cern.ch"**
+```bash
+rucio-admin identity add --account admin_account_name --type OIDC --id "SUB=b3127dc7-2be3-417b-9647-6bf61238ad01, ISS=https://wlcg.cloud.cnaf.infn.it/" --email "wlcg-doma-rucio@cern.ch"
+```
 
 A second identity has to be added to the same admin_account_name
 representing the client_credentials flow of the Rucio application, i.e.
@@ -387,7 +403,9 @@ obtained via the client credentials flow using the Rucio Admin IAM
 client will contain in the SUB claim the client_id instead of the IAM
 account SUB claim):
 
-> **rucio-admin identity add --account admin_account_name --type OIDC --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, ISS=https://wlcg.cloud.cnaf.infn.it/" --email "wlcg-doma-rucio@cern.ch"**
+```bash
+rucio-admin identity add --account admin_account_name --type OIDC --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, ISS=https://wlcg.cloud.cnaf.infn.it/" --email "wlcg-doma-rucio@cern.ch"
+```
 
 Note: In case you can not/will not run the Rucio check_scim probe script
 in order to sync Rucio accounts with their IAM identities, you should
@@ -397,11 +415,11 @@ to each Rucio account which is meant to use the OIDC authN/Z.
 In case you wish to use OIDC by default in order to login to the Rucio
 WebUI, one has to configure also another block in the
 `rucio.cfg` file:
-
-    [webui]
-    auth_type = oidc
-    auth_issuer = <IdP nickname from the idpsecrets.json file>
-
+```
+  [webui]
+  auth_type = oidc
+  auth_issuer = <IdP nickname from the idpsecrets.json file>
+```
 This is not a mandatory section, if not filled a user will get directed
 to a page with login choices.
 
@@ -425,12 +443,12 @@ beforehand, it will be used in the header of the transfer request to FTS
 and no new token demand will be made to IdP. The OIDC authentication
 mechanism shall be configured by the following parameters in the
 rucio.cfg file:
-
-    [conveyor]
-    allow_user_oidc_tokens = False
-    request_oidc_scope = 'fts:submit-transfer'
-    request_oidc_audience = 'fts'
-
+```
+  [conveyor]
+  allow_user_oidc_tokens = False
+  request_oidc_scope = 'fts:submit-transfer'
+  request_oidc_audience = 'fts'
+```
 If \'allow_user_oidc_tokens\' is set to True the system will attempt to
 exchange a valid OIDC token (if any) of the account that owns the
 rule/transfer for a token that has the \'request_oidc_scope\' and

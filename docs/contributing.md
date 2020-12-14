@@ -59,7 +59,7 @@ The following figure might help you with an overview:
 
 **Step 2**: Clone the repository to your development machine and configure it:
 
-```
+```bash
 $ git clone https://github.com/<YOUR_USER>/rucio/
 $ cd rucio
 $ git remote add upstream https://github.com/rucio/rucio.git
@@ -69,7 +69,7 @@ $ git remote add upstream https://github.com/rucio/rucio.git
 
 Some git hooks (pre-commit, prepare-commit-msg) can be installed by executing the script:
 
-```
+```bash
 $ ./tools/configure_git.sh
 ```
 
@@ -90,7 +90,7 @@ $ ./tools/configure_git.sh
 
 If you create these branches by hand please check the spelling because otherwise the test automation might misidentify your branch. There are utility scripts to fetch master and create these branches for you:
 
-```
+```bash
 $ ./tools/create-patch-branch <unique issue number> '<short_change_message>'
 $ ./tools/create-feature-branch <unique issue number> '<short_change_message>'
 $ ./tools/create-hotfix-branch <release tag/release branch> <unique issue number> '<short_change_message>'
@@ -98,7 +98,7 @@ $ ./tools/create-hotfix-branch <release tag/release branch> <unique issue number
 
 **Step 3**: Commit your change. The commit command must include a specific message format:
 
-```
+```bash
 $ git commit -m "<component>: <change_message> #<issue number>"
 ```
 
@@ -108,7 +108,7 @@ If you use the default commit message template, make sure you edit it.
 
 If you add a [__github-recognised keyword__](https://help.github.com/articles/closing-issues-using-keywords/) then the associated issue can be closed automatically once the pull request is merged, e.g.:
 
-```
+```bash
 <component>: <change_message> Fix #<issue number>
 ```
 
@@ -118,7 +118,7 @@ While using the [__github interface__](https://help.github.com/articles/creating
 
 The format of the pull request title must be:
 
-```
+```bash
 <component>: <short_change_message> #<issue number>
 ```
 
