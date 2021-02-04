@@ -9,7 +9,7 @@ sidebar_label: Contributing Guide for Documentation
 ## Getting started
 
 Everyone is welcome to open an issue about documentation or contribute a 
-change with a pull request (PR) to the [``rucio/documentation``](https://github.com/rucio/rucio) GitHub 
+change with a pull request (PR) to the [``rucio/documentation``](https://github.com/rucio/documentation) GitHub 
 repository. You need to be comfortable with git & GitHub to effectively 
 make contributions in the Rucio community.
 
@@ -26,4 +26,4 @@ Start getting involved with the Rucio documentation in three easy steps:
 section. 
 - For contributing new content, read through the [__New Content Contribution Guide__](new-content-contribution-guide)
 to know more.
-- Check [``rucio/documentation``](https://github.com/rucio/rucio) repository for issues labelled "good first issues".
+- Check [``rucio/documentation``](https://github.com/rucio/documentation) repository for issues labelled "good first issues".
