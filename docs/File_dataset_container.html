@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Files, Datasets ,and Containers · Rucio Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="As data is physically stored in files, files are also the smallest"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Files, Datasets ,and Containers · Rucio Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://rucio.github.io/documentation/"/><meta property="og:description" content="As data is physically stored in files, files are also the smallest"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/documentation/img/android-chrome-512x512.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="/documentation/css/custom.css"/><link rel="stylesheet" href="/documentation/prism/prism.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,700&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;display=swap"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/documentation/prism/prism.js"></script><script src="/documentation/js/scrollSpy.js"></script><link rel="stylesheet" href="/documentation/css/main.css"/><script src="/documentation/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/documentation/"><img class="logo" src="/documentation/img/wide_logo2.png" alt="Rucio Documentation"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/documentation/docs/" target="_self">Docs</a></li><li class=""><a href="https://rucio.readthedocs.io/_/downloads/en/next/pdf/" target="_self">Downloads</a></li><li class=""><a href="https://arxiv.org/abs/1902.09857" target="_self">Scientific articles</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Ask me something" title="Ask me something"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Files, Datasets ,and Containers</h1></header><article><div><span><p>As data is physically stored in files, files are also the smallest
+operational unit of data in Rucio. Sub-file operations are currently not
+possible. Rucio enables users to identify and access on any arbitrary
+set of files.</p>
+<p>Files can be grouped into datasets (a named set of files) and datasets
+can be grouped into containers (a named set of datasets or, recursively,
+containers). All three types of names refer to data so the term 'data
+identifier' (DID) is used to represent any set of file, dataset or
+container identifier. A data identifier is just the name of a single
+file, dataset or container.</p>
+<h2><a class="anchor" aria-hidden="true" id="data-identifiers-and-scope"></a><a href="#data-identifiers-and-scope" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Data identifiers and scope</h2>
+<p>Files, datasets and containers follow an identical naming scheme which
+is composed of two strings: the scope and a name. The combination of
+both is called a data identifier (DID). Thus for files, the Logical File
+Name (LFN), a term commonly used in DataGrid terminology to identify
+files is equivalent to the DID in Rucio.</p>
+<p>The scope string partitions the namespace into several sub namespaces.
+The primary use case for this is to easily separate centrally created
+data from individual user data.</p>
+<p>By default, accounts have read access to all scopes and write access
+only to their own scope. Privileged accounts have write access to
+multiple scopes, e.g., the Workload Management System is allowed to
+write into official data scopes.</p>
+<p>Files, datasets and containers are uniquely identified over all time.
+This means that a data identifier, once used, can never be reused to
+refer to anything else at all, not even if the data it referred to has
+been deleted from the system.</p>
+<h2><a class="anchor" aria-hidden="true" id="file-dataset-and-container-status"></a><a href="#file-dataset-and-container-status" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>File, dataset, and container status</h2>
+<h3><a class="anchor" aria-hidden="true" id="file-status"></a><a href="#file-status" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>File status</h3>
+<p>The following status attributes are supported for files:</p>
+<ul>
+<li><code>availability</code>: LOST/DELETED/AVAILABLE</li>
+</ul>
+<p>A file is LOST if there are no known replicas of the file in Rucio,
+while at the same time at least one account requested a replica; a file
+is DELETED if no account requested a replica; otherwise the file is
+AVAILABLE. This is a derived attribute.</p>
+<ul>
+<li><code>suppressed</code>: True/False</li>
+</ul>
+<p>This is a user settable flag. It indicates that the owner of the scope
+no longer needs the name to be present in the scope. Files that are
+suppressed (by default) do not show up in search and list operations on
+the scope. Note however that this flag will be ignored when explicitly
+listing contents of datasets/containers.</p>
+<h3><a class="anchor" aria-hidden="true" id="datasetcontainer-status"></a><a href="#datasetcontainer-status" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dataset/Container status</h3>
+<p>The dataset/container status is reflected by a set of attributes:</p>
+<ul>
+<li><code>open</code>: True/False</li>
+</ul>
+<p>If a dataset/container is open, content can be added to it.
+Datasets/containers are created open and once closed, they cannot be
+opened again<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+<ul>
+<li><code>monotonic</code>: True/False</li>
+</ul>
+<p>If the monotonic attribute is set, content cannot be removed from an
+open dataset/container. Datasets/containers are, by default, created
+non-monotonic. Once set to monotonic, this cannot be reversed.</p>
+<ul>
+<li><code>complete</code>: True/False</li>
+</ul>
+<p>A dataset/container where all files have replicas available is complete.
+Any dataset/container which contains files without replicas is
+incomplete. This is a derived attribute.</p>
+<h2><a class="anchor" aria-hidden="true" id="footnotes"></a><a href="#footnotes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Footnotes</h2>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p>Datasets from which files have been lost can be repaired when
+replacement files are available, even if Open=False. The
+replacements need not be binary identical to the lost files. <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#data-identifiers-and-scope">Data identifiers and scope</a></li><li><a href="#file-dataset-and-container-status">File, dataset, and container status</a><ul class="toc-headings"><li><a href="#file-status">File status</a></li><li><a href="#datasetcontainer-status">Dataset/Container status</a></li></ul></li><li><a href="#footnotes">Footnotes</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2021 CERN. Created with Docusaurus.</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '04e5d623b96121df11ac440e51fc8956',
+                indexName: 'rucio-cern',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

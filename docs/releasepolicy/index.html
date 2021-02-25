@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Release Policy · Rucio Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Rucio follows a release policy with **feature** (named) releases. Approximately every 4 months we produce a feature release with a version number like **1.x.0** (with x &gt; 0). A feature release marks the start of a release line. This release line is maintained with bi-weekly patch releases, containing bug fixes or minor enhancements, with version numbers like **1.19.y** (with y &gt; 0). Versions within one release line are always backwards compatible, thus they do not include database schema changes, API modifications, or other backward-compatibility breaking changes."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Release Policy · Rucio Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://rucio.github.io/documentation/"/><meta property="og:description" content="Rucio follows a release policy with **feature** (named) releases. Approximately every 4 months we produce a feature release with a version number like **1.x.0** (with x &gt; 0). A feature release marks the start of a release line. This release line is maintained with bi-weekly patch releases, containing bug fixes or minor enhancements, with version numbers like **1.19.y** (with y &gt; 0). Versions within one release line are always backwards compatible, thus they do not include database schema changes, API modifications, or other backward-compatibility breaking changes."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/documentation/img/android-chrome-512x512.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="/documentation/css/custom.css"/><link rel="stylesheet" href="/documentation/prism/prism.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,700&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;display=swap"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/documentation/prism/prism.js"></script><script src="/documentation/js/scrollSpy.js"></script><link rel="stylesheet" href="/documentation/css/main.css"/><script src="/documentation/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/documentation/"><img class="logo" src="/documentation/img/wide_logo2.png" alt="Rucio Documentation"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/documentation/docs/" target="_self">Docs</a></li><li class=""><a href="https://rucio.readthedocs.io/_/downloads/en/next/pdf/" target="_self">Downloads</a></li><li class=""><a href="https://arxiv.org/abs/1902.09857" target="_self">Scientific articles</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Ask me something" title="Ask me something"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Release Policy</h1></header><article><div><span><p>Rucio follows a release policy with <strong>feature</strong> (named) releases. Approximately every 4 months we produce a feature release with a version number like <strong>1.x.0</strong> (with x &gt; 0). A feature release marks the start of a release line. This release line is maintained with bi-weekly patch releases, containing bug fixes or minor enhancements, with version numbers like <strong>1.19.y</strong> (with y &gt; 0). Versions within one release line are always backwards compatible, thus they do not include database schema changes, API modifications, or other backward-compatibility breaking changes.</p>
+<h2><a class="anchor" aria-hidden="true" id="support-period"></a><a href="#support-period" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support period</h2>
+<p>A release line is only maintained with patch releases until the start of the next release line, thus approximately 4 months. Typically once a year we will designate a release line a <strong>Long-term Support</strong> (LTS) release line. This release line will be supported with <strong>security</strong> and <strong>critical</strong> patches for approximately two years. It is foreseen to have an overlap of at least 12 months between two LTS release lines, to give communities a comfortable time window to deploy the new LTS release.</p>
+<table>
+<thead>
+<tr><th>Version</th><th>Code name</th><th>Release date</th><th>Supported until</th></tr>
+</thead>
+<tbody>
+<tr><td>1.24</td><td>Aquadonkey</td><td>2020-11</td><td>~2021-02</td></tr>
+<tr><td><strong>1.23 LTS</strong></td><td>The incredible Donkey</td><td>2020-07</td><td>at least 2022-07</td></tr>
+<tr><td>1.22</td><td>Green Donkey</td><td>2020-02</td><td>2020-06</td></tr>
+<tr><td>1.21</td><td>Donkeys of the Galaxy</td><td>2019-11</td><td>2020-02</td></tr>
+<tr><td><strong>1.20 LTS</strong></td><td>Wonder Donkey</td><td>2019-06</td><td>2021-07-10</td></tr>
+<tr><td>1.19</td><td>Fantastic Donkeys</td><td>2019-02</td><td>2019-06</td></tr>
+<tr><td>1.18</td><td>Invisible Donkey</td><td>2018-09</td><td>2019-02</td></tr>
+<tr><td>1.17</td><td>Donkey Surfer</td><td>2018-06</td><td>2018-09</td></tr>
+<tr><td>1.16</td><td>Doctor Donkey</td><td>2018-04</td><td>2018-06</td></tr>
+<tr><td>1.15</td><td>Daredonkey</td><td>2018-02</td><td>2018-04</td></tr>
+<tr><td>1.14</td><td>Professor D</td><td>2017-11</td><td>2018-02</td></tr>
+<tr><td>1.13</td><td>Donkerine</td><td>2017-09</td><td>2017-11</td></tr>
+<tr><td>1.12</td><td>Captain Donkey</td><td>2017-07</td><td>2017-09</td></tr>
+<tr><td>1.11</td><td>Batdonkey</td><td>2017-05</td><td>2017-07</td></tr>
+<tr><td>1.10</td><td>Irondonkey</td><td>2017-02</td><td>2017-05</td></tr>
+<tr><td>1.9</td><td>Superdonkey</td><td>2016-10</td><td>2017-02</td></tr>
+<tr><td>1.8</td><td>Spiderdonkey</td><td>2016-09</td><td>2016-10</td></tr>
+<tr><td>1.7</td><td>Donkey One</td><td>2016-08</td><td>2016-09</td></tr>
+<tr><td>1.6</td><td>The Donkey awakens</td><td>2016-05</td><td>2016-08</td></tr>
+<tr><td>1.5</td><td>Return of the Donkey</td><td>2016-04</td><td>2016-05</td></tr>
+<tr><td>1.4</td><td>The Donkey strikes back</td><td>2016-02</td><td>2016-04</td></tr>
+<tr><td>1.3</td><td></td><td>2016-01</td><td>2016-02</td></tr>
+<tr><td>1.2</td><td></td><td>2015-10</td><td>2016-01</td></tr>
+<tr><td>1.1</td><td></td><td>2015-08</td><td>2016-10</td></tr>
+<tr><td>1.0</td><td></td><td>2015-07</td><td>2015-08</td></tr>
+<tr><td>(0.3)</td><td></td><td>2015-03</td><td>2015-07</td></tr>
+<tr><td>(0.2)</td><td></td><td>2014-10</td><td>2015-03</td></tr>
+<tr><td>(0.1.7)</td><td></td><td>2014-01</td><td>2014-10</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#support-period">Support period</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2021 CERN. Created with Docusaurus.</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '04e5d623b96121df11ac440e51fc8956',
+                indexName: 'rucio-cern',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

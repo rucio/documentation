@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: Download Methods</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+
+  <link rel="stylesheet" href="../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../index.html"><img src="../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>Download Methods</h1>
+        </div>
+        <div id="main-content">
+          
+  <div class="section" id="download-methods">
+<h1>Download Methods<a class="headerlink" href="#download-methods" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-rucio.client.downloadclient"><span id="download"></span></span><dl class="py class">
+<dt id="rucio.client.downloadclient.BaseExtractionTool">
+<em class="property">class </em><code class="sig-prename descclassname">rucio.client.downloadclient.</code><code class="sig-name descname">BaseExtractionTool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">program_name</span></em>, <em class="sig-param"><span class="n">useability_check_args</span></em>, <em class="sig-param"><span class="n">extract_args</span></em>, <em class="sig-param"><span class="n">logger</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.downloadclient.BaseExtractionTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="rucio.client.downloadclient.BaseExtractionTool.is_useable">
+<code class="sig-name descname">is_useable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.downloadclient.BaseExtractionTool.is_useable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the extraction tool is installed and usable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if it is usable otherwise False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.downloadclient.BaseExtractionTool.try_extraction">
+<code class="sig-name descname">try_extraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">archive_file_path</span></em>, <em class="sig-param"><span class="n">file_to_extract</span></em>, <em class="sig-param"><span class="n">dest_dir_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.downloadclient.BaseExtractionTool.try_extraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the extraction program to extract a file from an archive</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>archive_file_path</strong> – path to the archive</p></li>
+<li><p><strong>file_to_extract</strong> – file name to extract from the archive</p></li>
+<li><p><strong>dest_dir_path</strong> – destination directory where the extracted file will be stored</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True on success otherwise False</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="rucio.client.downloadclient.DownloadClient">
+<em class="property">class </em><code class="sig-prename descclassname">rucio.client.downloadclient.</code><code class="sig-name descname">DownloadClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">client</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">logger</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tracing</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">check_admin</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">check_pcache</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.downloadclient.DownloadClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="rucio.client.downloadclient.DownloadClient.download_aria2c">
+<code class="sig-name descname">download_aria2c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">items</span></em>, <em class="sig-param"><span class="n">trace_custom_fields</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">filters</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.downloadclient.DownloadClient.download_aria2c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses aria2c to download the items with given DIDs. This function can also download datasets and wildcarded DIDs.
+It only can download files that are available via https/davs.
+Aria2c needs to be installed and X509_USER_PROXY needs to be set!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> – List of dictionaries. Each dictionary describing an item to download. Keys:
+did                 - DID string of this file (e.g. ‘scope:file.name’). Wildcards are not allowed
+rse                 - Optional: rse name (e.g. ‘CERN-PROD_DATADISK’) or rse expression from where to download
+base_dir            - Optional: base directory where the downloaded files will be stored. (Default: ‘.’)
+no_subdir           - Optional: If true, files are written directly into base_dir and existing files are overwritten. (Default: False)
+nrandom             - Optional: if the DID addresses a dataset, nrandom files will be randomly choosen for download from the dataset
+ignore_checksum     - Optional: If true, skips the checksum validation between the downloaded file and the rucio catalouge. (Default: False)</p></li>
+<li><p><strong>trace_custom_fields</strong> – Custom key value pairs to send with the traces</p></li>
+<li><p><strong>filters</strong> – dictionary containing filter options</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list of dictionaries with an entry for each file, containing the input options, the did, and the clientState</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.InputValidationError" title="rucio.common.exception.InputValidationError"><strong>InputValidationError</strong></a> – if one of the input items is in the wrong format</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.NoFilesDownloaded" title="rucio.common.exception.NoFilesDownloaded"><strong>NoFilesDownloaded</strong></a> – if no files could be downloaded</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.NotAllFilesDownloaded" title="rucio.common.exception.NotAllFilesDownloaded"><strong>NotAllFilesDownloaded</strong></a> – if not all files could be downloaded</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><strong>RucioException</strong></a> – if something went wrong during the download (e.g. aria2c could not be started)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.downloadclient.DownloadClient.download_dids">
+<code class="sig-name descname">download_dids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">items</span></em>, <em class="sig-param"><span class="n">num_threads</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">trace_custom_fields</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">traces_copy_out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.downloadclient.DownloadClient.download_dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download items with given DIDs. This function can also download datasets and wildcarded DIDs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> – List of dictionaries. Each dictionary describing an item to download. Keys:
+did                 - DID string of this file (e.g. ‘scope:file.name’)
+filters             - Filter to select DIDs for download. Optional if DID is given
+rse                 - Optional: rse name (e.g. ‘CERN-PROD_DATADISK’) or rse expression from where to download
+no_resolve_archives - Optional: bool indicating whether archives should not be considered for download (Default: False)
+resolve_archives    - Deprecated: Use no_resolve_archives instead
+force_scheme        - Optional: force a specific scheme to download this item. (Default: None)
+base_dir            - Optional: base directory where the downloaded files will be stored. (Default: ‘.’)
+no_subdir           - Optional: If true, files are written directly into base_dir and existing files are overwritten. (Default: False)
+nrandom             - Optional: if the DID addresses a dataset, nrandom files will be randomly choosen for download from the dataset
+ignore_checksum     - Optional: If true, skips the checksum validation between the downloaded file and the rucio catalouge. (Default: False)
+transfer_timeout    - Optional: Timeout time for the download protocols. (Default: None)</p></li>
+<li><p><strong>num_threads</strong> – Suggestion of number of threads to use for the download. It will be lowered if it’s too high.</p></li>
+<li><p><strong>trace_custom_fields</strong> – Custom key value pairs to send with the traces.</p></li>
+<li><p><strong>traces_copy_out</strong> – reference to an external list, where the traces should be uploaded</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list of dictionaries with an entry for each file, containing the input options, the did, and the clientState</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.InputValidationError" title="rucio.common.exception.InputValidationError"><strong>InputValidationError</strong></a> – if one of the input items is in the wrong format</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.NoFilesDownloaded" title="rucio.common.exception.NoFilesDownloaded"><strong>NoFilesDownloaded</strong></a> – if no files could be downloaded</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.NotAllFilesDownloaded" title="rucio.common.exception.NotAllFilesDownloaded"><strong>NotAllFilesDownloaded</strong></a> – if not all files could be downloaded</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><strong>RucioException</strong></a> – if something unexpected went wrong during the download</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.downloadclient.DownloadClient.download_from_metalink_file">
+<code class="sig-name descname">download_from_metalink_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em>, <em class="sig-param"><span class="n">metalink_file_path</span></em>, <em class="sig-param"><span class="n">num_threads</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">trace_custom_fields</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">traces_copy_out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.downloadclient.DownloadClient.download_from_metalink_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download items using a given metalink file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item</strong> – dictionary describing an item to download. Keys:
+base_dir            - Optional: base directory where the downloaded files will be stored. (Default: ‘.’)
+no_subdir           - Optional: If true, files are written directly into base_dir and existing files are overwritten. (Default: False)
+ignore_checksum     - Optional: If true, skips the checksum validation between the downloaded file and the rucio catalouge. (Default: False)
+transfer_timeout    - Optional: Timeout time for the download protocols. (Default: None)</p></li>
+<li><p><strong>num_threads</strong> – Suggestion of number of threads to use for the download. It will be lowered if it’s too high.</p></li>
+<li><p><strong>trace_custom_fields</strong> – Custom key value pairs to send with the traces.</p></li>
+<li><p><strong>traces_copy_out</strong> – reference to an external list, where the traces should be uploaded</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list of dictionaries with an entry for each file, containing the input options, the did, and the clientState</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.InputValidationError" title="rucio.common.exception.InputValidationError"><strong>InputValidationError</strong></a> – if one of the input items is in the wrong format</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.NoFilesDownloaded" title="rucio.common.exception.NoFilesDownloaded"><strong>NoFilesDownloaded</strong></a> – if no files could be downloaded</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.NotAllFilesDownloaded" title="rucio.common.exception.NotAllFilesDownloaded"><strong>NotAllFilesDownloaded</strong></a> – if not all files could be downloaded</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><strong>RucioException</strong></a> – if something unexpected went wrong during the download</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.downloadclient.DownloadClient.download_pfns">
+<code class="sig-name descname">download_pfns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">items</span></em>, <em class="sig-param"><span class="n">num_threads</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">trace_custom_fields</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">traces_copy_out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.downloadclient.DownloadClient.download_pfns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download items with a given PFN. This function can only download files, no datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> – List of dictionaries. Each dictionary describing a file to download. Keys:
+pfn                 - PFN string of this file
+did                 - DID string of this file (e.g. ‘scope:file.name’). Wildcards are not allowed
+rse                 - rse name (e.g. ‘CERN-PROD_DATADISK’). RSE Expressions are not allowed
+base_dir            - Optional: Base directory where the downloaded files will be stored. (Default: ‘.’)
+no_subdir           - Optional: If true, files are written directly into base_dir and existing files are overwritten. (Default: False)
+adler32             - Optional: The adler32 checmsum to compare the downloaded files adler32 checksum with
+md5                 - Optional: The md5 checksum to compare the downloaded files md5 checksum with
+transfer_timeout    - Optional: Timeout time for the download protocols. (Default: None)</p></li>
+<li><p><strong>num_threads</strong> – Suggestion of number of threads to use for the download. It will be lowered if it’s too high.</p></li>
+<li><p><strong>trace_custom_fields</strong> – Custom key value pairs to send with the traces</p></li>
+<li><p><strong>traces_copy_out</strong> – reference to an external list, where the traces should be uploaded</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list of dictionaries with an entry for each file, containing the input options, the did, and the clientState
+clientState can be one of the following: ALREADY_DONE, DONE, FILE_NOT_FOUND, FAIL_VALIDATE, FAILED</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.InputValidationError" title="rucio.common.exception.InputValidationError"><strong>InputValidationError</strong></a> – if one of the input items is in the wrong format</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.NoFilesDownloaded" title="rucio.common.exception.NoFilesDownloaded"><strong>NoFilesDownloaded</strong></a> – if no files could be downloaded</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.NotAllFilesDownloaded" title="rucio.common.exception.NotAllFilesDownloaded"><strong>NotAllFilesDownloaded</strong></a> – if not all files could be downloaded</p></li>
+<li><p><a class="reference internal" href="exception.html#rucio.common.exception.RucioException" title="rucio.common.exception.RucioException"><strong>RucioException</strong></a> – if something unexpected went wrong during the download</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/archive.html">Archive Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/authentication.html">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/replica.html">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">The Client API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">Scope Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="did.html">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="replica.html">Replica Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifetime.html">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+                <li class="footer-element">
+                    
+                        <a href="../_sources/api/download.rst.txt" rel="nofollow"> source</a>
+                    
+                </li>
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: Data Identifier Methods</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+
+  <link rel="stylesheet" href="../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../index.html"><img src="../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>Data Identifier Methods</h1>
+        </div>
+        <div id="main-content">
+          
+  <div class="section" id="data-identifier-methods">
+<h1>Data Identifier Methods<a class="headerlink" href="#data-identifier-methods" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-rucio.client.didclient"><span id="did"></span></span><dl class="py class">
+<dt id="rucio.client.didclient.DIDClient">
+<em class="property">class </em><code class="sig-prename descclassname">rucio.client.didclient.</code><code class="sig-name descname">DIDClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rucio_host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auth_host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">account</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ca_cert</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auth_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">creds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">600</span></em>, <em class="sig-param"><span class="n">user_agent</span><span class="o">=</span><span class="default_value">'rucio-clients'</span></em>, <em class="sig-param"><span class="n">vo</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rucio.client.baseclient.BaseClient</span></code></p>
+<p>DataIdentifier client class for working with data identifiers</p>
+<dl class="py attribute">
+<dt id="rucio.client.didclient.DIDClient.ARCHIVES_BASEURL">
+<code class="sig-name descname">ARCHIVES_BASEURL</code><em class="property"> = 'archives'</em><a class="headerlink" href="#rucio.client.didclient.DIDClient.ARCHIVES_BASEURL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="rucio.client.didclient.DIDClient.DIDS_BASEURL">
+<code class="sig-name descname">DIDS_BASEURL</code><em class="property"> = 'dids'</em><a class="headerlink" href="#rucio.client.didclient.DIDClient.DIDS_BASEURL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_container">
+<code class="sig-name descname">add_container</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">statuses</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">meta</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rules</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lifetime</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add data identifier for a container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>statuses</strong> – Dictionary with statuses, e.g.g {‘monotonic’:True}.</p></li>
+<li><p><strong>meta</strong> – Meta-data associated with the data identifier is represented using key/value pairs in a dictionary.</p></li>
+<li><p><strong>rules</strong> – Replication rules associated with the data identifier. A list of dictionaries, e.g., [{‘copies’: 2, ‘rse_expression’: ‘TIERS1’}, ].</p></li>
+<li><p><strong>lifetime</strong> – DID’s lifetime (in seconds).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_containers">
+<code class="sig-name descname">add_containers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cnts</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_containers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bulk add containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cnts</strong> – A list of containers.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_containers_to_container">
+<code class="sig-name descname">add_containers_to_container</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">cnts</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_containers_to_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add containers to container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The dataset name.</p></li>
+<li><p><strong>dsns</strong> – The content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_containers_to_containers">
+<code class="sig-name descname">add_containers_to_containers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attachments</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_containers_to_containers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add containers_to_containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>attachments</strong> – The attachments.
+attachments is: [attachment, attachment, …]
+attachment is: {‘scope’: scope, ‘name’: name, ‘dids’: dids}
+dids is: [{‘scope’: scope, ‘name’: name}, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_dataset">
+<code class="sig-name descname">add_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">statuses</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">meta</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rules</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lifetime</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">files</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rse</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add data identifier for a dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>statuses</strong> – Dictionary with statuses, e.g.g {‘monotonic’:True}.</p></li>
+<li><p><strong>lifetime</strong> – DID’s lifetime (in seconds).</p></li>
+<li><p><strong>files</strong> – The content.</p></li>
+<li><p><strong>rse</strong> – The RSE name when registering replicas.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Rules</dt>
+<dd class="field-even"><p>Replication rules associated with the data identifier. A list of dictionaries, e.g., [{‘copies’: 2, ‘rse_expression’: ‘TIERS1’}, ].</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_datasets">
+<code class="sig-name descname">add_datasets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dsns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_datasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bulk add datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dsns</strong> – A list of datasets.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_datasets_to_container">
+<code class="sig-name descname">add_datasets_to_container</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">dsns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_datasets_to_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add datasets to container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The dataset name.</p></li>
+<li><p><strong>dsns</strong> – The content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_datasets_to_containers">
+<code class="sig-name descname">add_datasets_to_containers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attachments</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_datasets_to_containers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add datasets_to_containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>attachments</strong> – The attachments.
+attachments is: [attachment, attachment, …]
+attachment is: {‘scope’: scope, ‘name’: name, ‘dids’: dids}
+dids is: [{‘scope’: scope, ‘name’: name}, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_did">
+<code class="sig-name descname">add_did</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">type</span></em>, <em class="sig-param"><span class="n">statuses</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">meta</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rules</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lifetime</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dids</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rse</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_did" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add data identifier for a dataset or container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>statuses</strong> – Dictionary with statuses, e.g.g {‘monotonic’:True}.</p></li>
+<li><p><strong>lifetime</strong> – DID’s lifetime (in seconds).</p></li>
+<li><p><strong>dids</strong> – The content.</p></li>
+<li><p><strong>rse</strong> – The RSE name when registering replicas.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Paran type</dt>
+<dd class="field-even"><p>The data identifier type (file|dataset|container).</p>
+</dd>
+<dt class="field-odd">Rules</dt>
+<dd class="field-odd"><p>Replication rules associated with the data identifier. A list of dictionaries, e.g., [{‘copies’: 2, ‘rse_expression’: ‘TIERS1’}, ].</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_dids">
+<code class="sig-name descname">add_dids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bulk add datasets/containers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_files_to_archive">
+<code class="sig-name descname">add_files_to_archive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">files</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_files_to_archive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add files to archive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The dataset name.</p></li>
+<li><p><strong>files</strong> – The content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_files_to_dataset">
+<code class="sig-name descname">add_files_to_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">files</span></em>, <em class="sig-param"><span class="n">rse</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_files_to_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add files to datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The dataset name.</p></li>
+<li><p><strong>files</strong> – The content.</p></li>
+<li><p><strong>rse</strong> – The RSE name when registering replicas.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_files_to_datasets">
+<code class="sig-name descname">add_files_to_datasets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attachments</span></em>, <em class="sig-param"><span class="n">ignore_duplicate</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_files_to_datasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add files to datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attachments</strong> – The attachments.
+attachments is: [attachment, attachment, …]
+attachment is: {‘scope’: scope, ‘name’: name, ‘dids’: dids}
+dids is: [{‘scope’: scope, ‘name’: name}, …]</p></li>
+<li><p><strong>ignore_duplicate</strong> – If True, ignore duplicate entries.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.add_temporary_dids">
+<code class="sig-name descname">add_temporary_dids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.add_temporary_dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bulk add temporary data identifiers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dids</strong> – A list of dids.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.attach_dids">
+<code class="sig-name descname">attach_dids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">dids</span></em>, <em class="sig-param"><span class="n">rse</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.attach_dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach data identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>dids</strong> – The content.</p></li>
+<li><p><strong>rse</strong> – The RSE name when registering replicas.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.attach_dids_to_dids">
+<code class="sig-name descname">attach_dids_to_dids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attachments</span></em>, <em class="sig-param"><span class="n">ignore_duplicate</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.attach_dids_to_dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add dids to dids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>attachments</strong> – The attachments.
+attachments is: [attachment, attachment, …]
+attachment is: {‘scope’: scope, ‘name’: name, ‘dids’: dids}
+dids is: [{‘scope’: scope, ‘name’: name}, …]
+:param ignore_duplicate: If True, ignore duplicate entries.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>close dataset/container</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The dataset/container name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.create_did_sample">
+<code class="sig-name descname">create_did_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_scope</span></em>, <em class="sig-param"><span class="n">input_name</span></em>, <em class="sig-param"><span class="n">output_scope</span></em>, <em class="sig-param"><span class="n">output_name</span></em>, <em class="sig-param"><span class="n">nbfiles</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.create_did_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a sample from an input collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_scope</strong> – The scope of the input DID.</p></li>
+<li><p><strong>input_name</strong> – The name of the input DID.</p></li>
+<li><p><strong>output_scope</strong> – The scope of the output dataset.</p></li>
+<li><p><strong>output_name</strong> – The name of the output dataset.</p></li>
+<li><p><strong>account</strong> – The account.</p></li>
+<li><p><strong>nbfiles</strong> – The number of files to register in the output dataset.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.delete_metadata">
+<code class="sig-name descname">delete_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.delete_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete data identifier metadata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier.</p></li>
+<li><p><strong>key</strong> – the key.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.detach_dids">
+<code class="sig-name descname">detach_dids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">dids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.detach_dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detach data identifier</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>dids</strong> – The content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.get_dataset_by_guid">
+<code class="sig-name descname">get_dataset_by_guid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">guid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.get_dataset_by_guid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parent datasets for a given GUID.
+:param guid: The GUID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A did</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.get_did">
+<code class="sig-name descname">get_did</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">dynamic</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.get_did" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a single data identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>dynamic</strong> – Calculate sizes dynamically when True</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.get_metadata">
+<code class="sig-name descname">get_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">plugin</span><span class="o">=</span><span class="default_value">'DID_COLUMN'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.get_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get data identifier metadata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.get_metadata_bulk">
+<code class="sig-name descname">get_metadata_bulk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.get_metadata_bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bulk get data identifier metadata
+:param dids: A list of dids.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_archive_content">
+<code class="sig-name descname">list_archive_content</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_archive_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>List archive contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_associated_rules_for_file">
+<code class="sig-name descname">list_associated_rules_for_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_associated_rules_for_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the associated rules a file is affected from..</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The file name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_content">
+<code class="sig-name descname">list_content</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>List data identifier contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_content_history">
+<code class="sig-name descname">list_content_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_content_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>List data identifier contents history.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_did_rules">
+<code class="sig-name descname">list_did_rules</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_did_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the associated rules of a data identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_dids">
+<code class="sig-name descname">list_dids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">filters</span></em>, <em class="sig-param"><span class="n">type</span><span class="o">=</span><span class="default_value">'collection'</span></em>, <em class="sig-param"><span class="n">long</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all data identifiers in a scope which match a given pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>filters</strong> – A dictionary of key/value pairs like {‘type’: ‘dataset’, ‘scope’: ‘test’}.</p></li>
+<li><p><strong>type</strong> – The type of the did: ‘all’(container, dataset or file)|’collection’(dataset or container)|’dataset’|’container’|’file’</p></li>
+<li><p><strong>long</strong> – Long format option to display more information for each DID.</p></li>
+<li><p><strong>recursive</strong> – Recursively list DIDs content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_dids_by_meta">
+<code class="sig-name descname">list_dids_by_meta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">select</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_dids_by_meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all dids matching the values of the provided metadata keys
+:param scope: the scope of the search
+:param select: the key value pairs to search with(query in json format)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_dids_extended">
+<code class="sig-name descname">list_dids_extended</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">filters</span></em>, <em class="sig-param"><span class="n">type</span><span class="o">=</span><span class="default_value">'collection'</span></em>, <em class="sig-param"><span class="n">long</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_dids_extended" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all data identifiers in a scope which match a given pattern. Extended version that goes through plugin mechanism.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>filters</strong> – A dictionary of key/value pairs like {‘type’: ‘dataset’, ‘scope’: ‘test’}.</p></li>
+<li><p><strong>type</strong> – The type of the did: ‘all’(container, dataset or file)|’collection’(dataset or container)|’dataset’|’container’|’file’</p></li>
+<li><p><strong>long</strong> – Long format option to display more information for each DID.</p></li>
+<li><p><strong>recursive</strong> – Recursively list DIDs content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_files">
+<code class="sig-name descname">list_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">long</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>List data identifier file contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>long</strong> – A boolean to choose if GUID is returned or not.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.list_parent_dids">
+<code class="sig-name descname">list_parent_dids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.list_parent_dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>List parent dataset/containers of a did.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope.</p></li>
+<li><p><strong>name</strong> – The name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.resurrect">
+<code class="sig-name descname">resurrect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.resurrect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resurrect a list of dids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dids</strong> – A list of dids [{‘scope’: scope, ‘name’: name}, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.scope_list">
+<code class="sig-name descname">scope_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.scope_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>List data identifiers in a scope.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>recursive</strong> – boolean, True or False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.set_metadata">
+<code class="sig-name descname">set_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.set_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set data identifier metadata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>key</strong> – the key.</p></li>
+<li><p><strong>value</strong> – the value.</p></li>
+<li><p><strong>recursive</strong> – Option to propagate the metadata change to content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.set_metadata_bulk">
+<code class="sig-name descname">set_metadata_bulk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">meta</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.set_metadata_bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set data identifier metadata in bulk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>meta</strong> (<em>dict</em>) – the metadata key-values.</p></li>
+<li><p><strong>recursive</strong> – Option to propagate the metadata change to content.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rucio.client.didclient.DIDClient.set_status">
+<code class="sig-name descname">set_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scope</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rucio.client.didclient.DIDClient.set_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set data identifier status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope</strong> – The scope name.</p></li>
+<li><p><strong>name</strong> – The data identifier name.</p></li>
+<li><p><strong>kwargs</strong> – Keyword arguments of the form status_name=value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/archive.html">Archive Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/authentication.html">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/replica.html">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../restapi/vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">The Client API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">Scope Methods</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="replica.html">Replica Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifetime.html">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+                <li class="footer-element">
+                    
+                        <a href="../_sources/api/did.rst.txt" rel="nofollow"> source</a>
+                    
+                </li>
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>

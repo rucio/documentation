@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Typical Replica Workflow · Rucio Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This section gives an overview of what happens within Rucio, for a typical replica workflow. Two workflows are described:"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Typical Replica Workflow · Rucio Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://rucio.github.io/documentation/"/><meta property="og:description" content="This section gives an overview of what happens within Rucio, for a typical replica workflow. Two workflows are described:"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/documentation/img/android-chrome-512x512.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="/documentation/css/custom.css"/><link rel="stylesheet" href="/documentation/prism/prism.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,700&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;display=swap"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/documentation/prism/prism.js"></script><script src="/documentation/js/scrollSpy.js"></script><link rel="stylesheet" href="/documentation/css/main.css"/><script src="/documentation/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/documentation/"><img class="logo" src="/documentation/img/wide_logo2.png" alt="Rucio Documentation"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/documentation/docs/" target="_self">Docs</a></li><li class=""><a href="https://rucio.readthedocs.io/_/downloads/en/next/pdf/" target="_self">Downloads</a></li><li class=""><a href="https://arxiv.org/abs/1902.09857" target="_self">Scientific articles</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Ask me something" title="Ask me something"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Typical Replica Workflow</h1></header><article><div><span><p>This section gives an overview of what happens within Rucio, for a typical replica workflow. Two workflows are described:
+When a replica is uploaded to Rucio via a client and when a replica is created by a
+site to site transfer due to the creation of a <a href="overview_Replica_management.html">replication rule</a>.</p>
+<p>##Replica paths on storage</p>
+<p>Rucio has two basic paradigms in deciding the path for a replica on a specific storage system. <strong>Deterministic</strong> and <strong>Non-deterministic</strong> paths. If we assume
+a file whose data identifier is <code>user.jdoe:test.file.1</code>, thus the scope is <code>user.jdoe</code> and the name is <code>test.file.1</code>. In Rucio a deterministically created path is a path
+which can be generated solely knowing the scope and name of a data identifier (Ignoring the static prefix of the storage endpoint). For a non-deterministic path
+additional information describing the file is necessary, such as meta-data, the dataset the file belongs to, etc.</p>
+<p>Rucio supports pluggable algorithms for both deterministic and non-deterministic algorithms. This section explains a few of them.</p>
+<p>##Deterministic algorithm based on hashes</p>
+<p>The hash deterministic algorithm is an algorithm commonly used in Rucio. The advantage of this algorithm is that, due to the characteristics of cryptographic hash functions,
+the files are evenly distributed to directories. This can be an important characteristic for storage systems whose access performance degrades based on the number
+of files in a directory.</p>
+<p>For a data identifier, e.g. <code>user.jdoe:test.file.1</code> a md5-hashsum is calculated <code>077c8119053bebb168d125034bff64ac</code>. The generated path is then based on the first four
+characters of the hashsum. e.g. <code>/07/7c/user.jdoe/test.file.1</code>.</p>
+<p>##Deterministic algorithm based on naming convention</p>
+<p>If a specific naming convention is enforced on the filenames, a possible deterministic algorithm can be based on it.</p>
+<p>For the data identifier <code>user.jdoe:test.file.1</code> the first part of the filename (<code>test</code>) is extracted and used to generate the path: <code>/test/user.jdoe/file.1</code></p>
+<p>##Non-Deterministic algorithm based on parent dataset</p>
+<p>If the file is part of a dataset, e.g. <code>data:dataset1234</code> the dataset can be used in the path of the filename. This is useful for e.g. tape storage systems, to keep the files belonging to the same dataset on the same tape.</p>
+<p>For the data identifier <code>user.jdoe:test.file.1</code> which is part of the dataset <code>data:dataset1234</code> the generated path is: <code>/data/dataset1234/user.jdoe/test.file.1</code></p>
+<p>##Replica is uploaded with the command line client</p>
+<p>This is a typical workflow when a user uploads multiple files, which are part of a dataset, via the command line client.</p>
+<ol>
+<li>The dataset <code>test.dataset</code> is being registered at the server.
+All files, or datasets are associated to a <a href="overview_File_Dataset_Container.html">scope</a>, if not specifically mentioned the client will assume the default scope of the user,
+such as <code>user.jdoe</code>. Thus the full data identifier for the dataset is <code>user.jdoe:test.dataset</code>.</li>
+</ol>
+<ol start="2">
+<li><p>The client queries the RSE information from the server. This not only gives a list of prioritized write protocols to use but also the information
+if the RSE is a deterministic or non-deterministic one.</p></li>
+<li><p>The file replica is registered as <code>COPYING</code> on the RSE.</p></li>
+<li><p>Based on the identified naming algorithm of the RSE and the list of prioritized write protocols, the file URL is calculated.
+e.g. using the hash algorithm from above: <code>https://storageserver.organization.org/VO/data/07/7c/user.jdoe/test.file.1</code></p></li>
+<li><p>The file upload is done with the first prioritized protocol. If the upload fails, step 4 is repeated with the second prioritized protocol, etc.</p></li>
+<li><p>Once the upload is successfully finished, the replica state is changed to <code>AVAILABLE</code>.</p></li>
+<li><p>Step 3-6 are repeated (done in parallel) with all other files part of the uploaded dataset.</p></li>
+</ol>
+<p>##Replica is created by a replication rule</p>
+<p>This is a typical workflow if a file already exists in Rucio but the user wants to replicate it to a different RSE.</p>
+<ol>
+<li><p>The user creates a replication rule for the dataset <code>user.jdoe:test.dataset</code> at the server.</p></li>
+<li><p>The Rucio server creates internal requests for each single file in the dataset and puts them in a queue to be read by the data transfer service.</p></li>
+<li><p>The data transfer submitter picks these requests up and queries the destination RSE information for each file.</p></li>
+<li><p>Based on the identified naming algorithm of the destination RSE it creates the destination URLs and creates the file replicas in <code>COPYING</code> state.</p></li>
+<li><p>The transfer service then submits the transfer job to the connected transfer tool (e.g. FTS)</p></li>
+<li><p>Once the transfers are finished the transfer tool notifies Rucio about the transfer success and the transfer services mark the replicas as <code>AVAILABLE</code>.</p></li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2021 CERN. Created with Docusaurus.</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '04e5d623b96121df11ac440e51fc8956',
+                indexName: 'rucio-cern',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: Replica Rest API</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+
+  <link rel="stylesheet" href="../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../index.html"><img src="../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>Replica Rest API</h1>
+        </div>
+        <div id="main-content">
+          
+  <div class="section" id="replica-rest-api">
+<h1>Replica Rest API<a class="headerlink" href="#replica-rest-api" title="Permalink to this headline">¶</a></h1>
+<p><strong>Overview</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 45%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Resource</p></th>
+<th class="head"><p>Operation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BadDIDs</p></td>
+<td><p><a class="reference external" href="#post--replicas-bad-dids">POST /replicas/bad/dids</a></p></td>
+<td><p>Declare bad replicas by DID.</p></td>
+</tr>
+<tr class="row-odd"><td><p>BadPFNs</p></td>
+<td><p><a class="reference external" href="#post--replicas-bad-pfns">POST /replicas/bad/pfns</a></p></td>
+<td><p>Declare bad replicas.</p></td>
+</tr>
+<tr class="row-even"><td><p>BadReplicasStates</p></td>
+<td><p><a class="reference external" href="#get--replicas-bad-states">GET /replicas/bad/states</a></p></td>
+<td><p>List bad replicas.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#post--replicas-bad">POST /replicas/bad</a></p></td>
+<td><p>Declare bad replicas.</p></td>
+</tr>
+<tr class="row-even"><td><p>BadReplicasSummary</p></td>
+<td><p><a class="reference external" href="#get--replicas-bad-summary">GET /replicas/bad/summary</a></p></td>
+<td><p>List bad replicas by incident.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DatasetReplicas</p></td>
+<td><p><a class="reference external" href="#post--replicas-datasets_bulk">POST /replicas/datasets_bulk</a></p></td>
+<td><p>List replicas for multiple DIDs.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--replicas-(path-scope_name)-datasets">GET /replicas/(path:scope_name)/datasets</a></p></td>
+<td><p>List dataset replicas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Replicas</p></td>
+<td><p><a class="reference external" href="#post--replicas-list">POST /replicas/list</a></p></td>
+<td><p>List replicas for multiple DIDs.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--replicas-(path-scope_name)">GET /replicas/(path:scope_name)</a></p></td>
+<td><p>List replicas for DID.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#post--replicas-">POST /replicas/</a></p></td>
+<td><p>create replicas at RSE</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#put--replicas-">PUT /replicas/</a></p></td>
+<td><p>update replicas state.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#delete--replicas-">DELETE /replicas/</a></p></td>
+<td><p>Delete replica at RSE.</p></td>
+</tr>
+<tr class="row-even"><td><p>ReplicasDIDs</p></td>
+<td><p><a class="reference external" href="#post--replicas-dids">POST /replicas/dids</a></p></td>
+<td><p>List DIDs for replicas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ReplicasRSE</p></td>
+<td><p><a class="reference external" href="#get--replicas-rse-(rse)">GET /replicas/rse/(rse)</a></p></td>
+<td><p>List dataset replicas per RSE.</p></td>
+</tr>
+<tr class="row-even"><td><p>SuspiciousReplicas</p></td>
+<td><p><a class="reference external" href="#post--replicas-suspicious">POST /replicas/suspicious</a></p></td>
+<td><p>Declare suspicious replicas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tombstone</p></td>
+<td><p><a class="reference external" href="#post--replicas-tombstone">POST /replicas/tombstone</a></p></td>
+<td><p>Set a tombstone on a list of replicas.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Details</strong></p>
+<dl class="http get">
+<dt id="get--replicas-bad-summary">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/replicas/bad/summary</code><a class="headerlink" href="#get--replicas-bad-summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a summary of the bad replicas by incident.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse_expression</strong> – The RSE expression.</p></li>
+<li><p><strong>from_date</strong> – The start date.</p></li>
+<li><p><strong>to_date</strong> – The end date.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of bad replicas by incident.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--replicas-bad-states">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/replicas/bad/states</code><a class="headerlink" href="#get--replicas-bad-states" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the bad or suspicious replicas by states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> – The state of the file (SUSPICIOUS or BAD).</p></li>
+<li><p><strong>rse</strong> – The RSE name.</p></li>
+<li><p><strong>younger_than</strong> – date in format “%Y-%m-%dT%H:%M:%S.%f” to select bad replicas younger than this date.</p></li>
+<li><p><strong>older_than</strong> – date in format “%Y-%m-%dT%H:%M:%S.%f” to select bad replicas older than this date.</p></li>
+<li><p><strong>limit</strong> – The maximum number of replicas returned.</p></li>
+<li><p><strong>list_pfns</strong> – Flag to include pfns.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of dicts of bad file replicas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-bad-pfns">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/bad/pfns</code><a class="headerlink" href="#post--replicas-bad-pfns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a list of bad PFNs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> (<em>string</em>) – The list of PFNs.</p></li>
+<li><p><strong>reason</strong> (<em>string</em>) – The reason of the loss.</p></li>
+<li><p><strong>state</strong> (<em>string</em>) – The state is eiher BAD, SUSPICIOUS or TEMPORARY_UNAVAILABLE.</p></li>
+<li><p><strong>expires_at</strong> (<em>string</em>) – The expiration date. Only apply to TEMPORARY_UNAVAILABLE.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-string</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Replica not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of not successfully declared files.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-bad-dids">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/bad/dids</code><a class="headerlink" href="#post--replicas-bad-dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a list of bad replicas by DID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> (<em>string</em>) – The list of PFNs.</p></li>
+<li><p><strong>reason</strong> (<em>string</em>) – The reason of the loss.</p></li>
+<li><p><strong>state</strong> (<em>string</em>) – The state is eiher BAD, SUSPICIOUS or TEMPORARY_UNAVAILABLE.</p></li>
+<li><p><strong>expires_at</strong> (<em>string</em>) – The expiration date. Only apply to TEMPORARY_UNAVAILABLE.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-string</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Replica not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of not successfully declared files.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-datasets_bulk">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/datasets_bulk</code><a class="headerlink" href="#post--replicas-datasets_bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>List dataset replicas for multiple DIDs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dids</strong> (<em>list</em>) – List of DIDs for querying the datasets.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Bad Request.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary containing all replicas information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-suspicious">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/suspicious</code><a class="headerlink" href="#post--replicas-suspicious" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a list of suspicious replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> (<em>string</em>) – The list of PFNs.</p></li>
+<li><p><strong>reason</strong> (<em>string</em>) – The reason of the loss.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Replica not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of not successfully declared files.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-tombstone">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/tombstone</code><a class="headerlink" href="#post--replicas-tombstone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a tombstone on a list of replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>replicas</strong> (<em>string</em>) – list fo replicas</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-string</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – ReplicaNotFound.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-list">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/list</code><a class="headerlink" href="#post--replicas-list" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all replicas for data identifiers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>HTTP_ACCEPT</em> – application/metalink4+xml</p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>schemes</strong> – A list of schemes to filter the replicas.</p></li>
+<li><p><strong>sort</strong> – Requested sorting of the result, e.g., ‘geoip’, ‘closeness’, ‘dynamic’, ‘ranking’, ‘random’.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dids</strong> (<em>list</em>) – list of DIDs.</p></li>
+<li><p><strong>schemes</strong> (<em>list</em>) – A list of schemes to filter the replicas.</p></li>
+<li><p><strong>unavailable</strong> (<em>bool</em>) – Also include unavailable replicas.</p></li>
+<li><p><strong>all_states</strong> (<em>bool</em>) – Return all replicas whatever state they are in. Adds an extra ‘states’ entry in the result dictionary.</p></li>
+<li><p><strong>rse_expression</strong> (<em>string</em>) – The RSE expression to restrict on a list of RSEs.</p></li>
+<li><p><strong>client_location</strong> (<em>dict</em>) – Client location dictionary for PFN modification {‘ip’, ‘fqdn’, ‘site’}.</p></li>
+<li><p><strong>sort</strong> (<em>bool</em>) – Requested sorting of the result, e.g., ‘geoip’, ‘closeness’, ‘dynamic’, ‘ranking’, ‘random’.</p></li>
+<li><p><strong>domain</strong> (<em>string</em>) – The network domain for the call, either None, ‘wan’ or ‘lan’. None is fallback to ‘wan’, ‘all’ is both [‘lan’,’wan’]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/metalink4+xml</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary containing all replicas information.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A metalink description of replicas if metalink(4)+xml is specified in Accept:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-dids">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/dids</code><a class="headerlink" href="#post--replicas-dids" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the DIDs associated to a list of replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> (<em>string</em>) – The list of PFNs.</p></li>
+<li><p><strong>rse</strong> (<em>string</em>) – The RSE name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-string</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dictionaries containing the mapping PFNs to DIDs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-bad">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/bad</code><a class="headerlink" href="#post--replicas-bad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a list of bad replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pfns</strong> (<em>string</em>) – The list of PFNs.</p></li>
+<li><p><strong>reason</strong> (<em>string</em>) – The reason of the loss.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Replica not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of not successfully declared files.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--replicas-(path-scope_name)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/replicas/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><a class="headerlink" href="#get--replicas-(path-scope_name)" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all replicas for data identifiers.</p>
+<dl class="simple">
+<dt>HTTP Success:</dt><dd><p>200 OK</p>
+</dd>
+<dt>HTTP Error:</dt><dd><p>401 Unauthorized
+500 InternalError</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>HTTP_ACCEPT</em> – application/metalink4+xml</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/metalink4+xml</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – DID not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary containing all replicas information.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A metalink description of replicas if metalink(4)+xml is specified in Accept:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--replicas-">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#post--replicas-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create file replicas at a given RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> (<em>string</em>) – The RSE name.</p></li>
+<li><p><strong>files</strong> (<em>list</em>) – list of dicts with ‘scope’, ‘name’, ‘bytes’, ‘meta’ and ‘adler32’.</p></li>
+<li><p><strong>ignore_availability</strong> (<em>bool</em>) – Flag to ignore the RSE blacklisting.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Replica Successfully created.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Invalid Path.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Scope not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – Replica already exists.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> – DID already exists.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4">503 Service Unavailable</a> – Resource Temporary Unavailable.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http put">
+<dt id="put--replicas-">
+<code class="sig-name descname">PUT </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#put--replicas-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a file replicas state at a given RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> (<em>string</em>) – The RSE name.</p></li>
+<li><p><strong>files</strong> (<em>list</em>) – list of dicts with ‘scope’, ‘name’ and ‘state’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> – Replica successfully updated.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--replicas-">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/replicas/</code><a class="headerlink" href="#delete--replicas-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete file replicas at a given RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rse</strong> (<em>string</em>) – The RSE name.</p></li>
+<li><p><strong>files</strong> (<em>list</em>) – list of dicts with ‘scope’, ‘name’.</p></li>
+<li><p><strong>ignore_availability</strong> (<em>bool</em>) – Flag to ignore the RSE blacklisting.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Replica successfully deleted.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Cannot decode json parameter list.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – RSE not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Replica not found.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--replicas-rse-(rse)">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/replicas/rse/</code><span class="sig-paren">(</span><em class="sig-param">rse</em><span class="sig-paren">)</span><a class="headerlink" href="#get--replicas-rse-(rse)" title="Permalink to this definition">¶</a></dt>
+<dd><p>List dataset replicas per RSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary containing all replicas on the RSE.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--replicas-(path-scope_name)-datasets">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/replicas/</code><span class="sig-paren">(</span><em class="property">path: </em><em class="sig-param">scope_name</em><span class="sig-paren">)</span><code class="sig-name descname">/datasets</code><a class="headerlink" href="#get--replicas-(path-scope_name)-datasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>List dataset replicas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scope_name</strong> – data identifier (scope)/(name).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>deep</strong> – Flag to ennable lookup at the file level.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/x-json-stream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Invalid auth token.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Internal Error.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary containing all replicas information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../rest.html">RESTful APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive.html">Archive Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">The Client API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/scope.html">Scope Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/did.html">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/replica.html">Replica Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rule.html">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lifetime.html">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/config.html">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/exception.html">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+                <li class="footer-element">
+                    
+                        <a href="../_sources/restapi/replica.rst.txt" rel="nofollow"> source</a>
+                    
+                </li>
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>

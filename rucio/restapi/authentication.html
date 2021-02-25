@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>Rucio :: Authentication Rest API</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+
+  <link rel="stylesheet" href="../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.2',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../index.html"><img src="../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>Rucio Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>Authentication Rest API</h1>
+        </div>
+        <div id="main-content">
+          
+  <div class="section" id="authentication-rest-api">
+<h1>Authentication Rest API<a class="headerlink" href="#authentication-rest-api" title="Permalink to this headline">¶</a></h1>
+<p><strong>Overview</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 45%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Resource</p></th>
+<th class="head"><p>Operation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GSS</p></td>
+<td><p><a class="reference external" href="#get--auth-gss">GET /auth/gss</a></p></td>
+<td><p>Authenticate with GSS token</p></td>
+</tr>
+<tr class="row-odd"><td><p>OIDC</p></td>
+<td><p><a class="reference external" href="#get--auth-oidc_redirect">GET /auth/oidc_redirect</a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--auth-oidc_refresh">GET /auth/oidc_refresh</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-oidc_token">GET /auth/oidc_token</a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="#get--auth-oidc_code">GET /auth/oidc_code</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-oidc">GET /auth/oidc</a></p></td>
+<td><p>Authenticate with OIDC</p></td>
+</tr>
+<tr class="row-even"><td><p>SAML</p></td>
+<td><p><a class="reference external" href="#post--auth-saml">POST /auth/saml</a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-saml">GET /auth/saml</a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>SSH</p></td>
+<td><p><a class="reference external" href="#get--auth-ssh_challenge_token">GET /auth/ssh_challenge_token</a></p></td>
+<td><p>Request SSH Challenge Token</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-ssh">GET /auth/ssh</a></p></td>
+<td><p>Authenticate with SSH key exchange.</p></td>
+</tr>
+<tr class="row-even"><td><p>UserPass</p></td>
+<td><p><a class="reference external" href="#get--auth-userpass">GET /auth/userpass</a></p></td>
+<td><p>Authenticate with username/password</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validate</p></td>
+<td><p><a class="reference external" href="#get--auth-validate">GET /auth/validate</a></p></td>
+<td><p>Validate a Rucio Auth Token.</p></td>
+</tr>
+<tr class="row-even"><td><p>x509</p></td>
+<td><p><a class="reference external" href="#get--auth-x509">GET /auth/x509</a></p></td>
+<td><p>Authenticate with x509 certificate.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="#get--auth-x509_proxy">GET /auth/x509_proxy</a></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Details</strong></p>
+<dl class="http get">
+<dt id="get--auth-ssh_challenge_token">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/ssh_challenge_token</code><a class="headerlink" href="#get--auth-ssh_challenge_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request a challenge token for SSH authentication</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>Rucio-VO</em> – VO name as a string (Multi-VO only).</p></li>
+<li><p><em>Rucio-Account</em> – Account identifier as a string.</p></li>
+<li><p><em>Rucio-AppID</em> – Application identifier as a string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-origin-response-header">Access-Control-Allow-Origin</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-headers-response-header">Access-Control-Allow-Headers</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-methods-response-header">Access-Control-Allow-Methods</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-credentials-response-header">Access-Control-Allow-Credentials</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-expose-headers-response-header">Access-Control-Expose-Headers</a> – </p></li>
+<li><p><em>X-Rucio-SSH-Challenge-Token</em> – The SSH challenge token</p></li>
+<li><p><em>X-Rucio-SSH-Challenge-Token-Expires</em> – The expiry time of the token</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully authenticated</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Invalid credentials</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc_redirect">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc_redirect</code><a class="headerlink" href="#get--auth-oidc_redirect" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.4">303 See Other</a> – Redirect</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc_refresh">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc_refresh</code><a class="headerlink" href="#get--auth-oidc_refresh" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-x509">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/x509</code><a class="headerlink" href="#get--auth-x509" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-x509_proxy">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/x509_proxy</code><a class="headerlink" href="#get--auth-x509_proxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate a Rucio account temporarily via an x509 certificate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>Rucio-VO</em> – VO name as a string (Multi-VO only).</p></li>
+<li><p><em>Rucio-Account</em> – Account identifier as a string.</p></li>
+<li><p><em>Rucio-AppID</em> – Application identifier as a string.</p></li>
+<li><p><em>SSLStdEnv</em> – Apache mod_ssl SSL Standard Env Variables.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-origin-response-header">Access-Control-Allow-Origin</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-headers-response-header">Access-Control-Allow-Headers</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-methods-response-header">Access-Control-Allow-Methods</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-credentials-response-header">Access-Control-Allow-Credentials</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-expose-headers-response-header">Access-Control-Expose-Headers</a> – </p></li>
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully authenticated</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Invalid credentials</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc_token">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc_token</code><a class="headerlink" href="#get--auth-oidc_token" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+<li><p><em>X-Rucio-Auth-Token-Expires</em> – The time when the token expires</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc_code">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc_code</code><a class="headerlink" href="#get--auth-oidc_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-userpass">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/userpass</code><a class="headerlink" href="#get--auth-userpass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate a Rucio account temporarily via username and password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>X-Rucio-VO</em> – VO name as a string (Multi-VO Only)</p></li>
+<li><p><em>X-Rucio-Account</em> – Account identifier as a string.</p></li>
+<li><p><em>X-Rucio-Username</em> – Username as a string.</p></li>
+<li><p><em>X-Rucio-Password</em> – password as a text-plain string.</p></li>
+<li><p><em>X-Rucio-AppID</em> – Application identifier as a string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-origin-response-header">Access-Control-Allow-Origin</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-headers-response-header">Access-Control-Allow-Headers</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-methods-response-header">Access-Control-Allow-Methods</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-credentials-response-header">Access-Control-Allow-Credentials</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-expose-headers-response-header">Access-Control-Expose-Headers</a> – </p></li>
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully authenticated</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Invalid credentials</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-validate">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/validate</code><a class="headerlink" href="#get--auth-validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a Rucio Auth Token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>Rucio-Auth-Token</em> – as a variable-length string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7">406 Not Acceptable</a> – Not Acceptable.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple(account name, token lifetime).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--auth-saml">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/auth/saml</code><a class="headerlink" href="#post--auth-saml" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-saml">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/saml</code><a class="headerlink" href="#get--auth-saml" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>Rucio-VO</em> – VO name as a string (Multi-VO only)</p></li>
+<li><p><em>Rucio-Account</em> – Account identifier as a string.</p></li>
+<li><p><em>Rucio-Username</em> – Username as a string.</p></li>
+<li><p><em>Rucio-Password</em> – Password as a string.</p></li>
+<li><p><em>Rucio-AppID</em> – Application identifier as a string.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>X-Rucio-SAML-Auth-URL</em> – as a variable-length string header.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-oidc">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/oidc</code><a class="headerlink" href="#get--auth-oidc" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – OK</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Unauthorized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><em>X-Rucio-OIDC-Auth-URL</em> – User &amp; Rucio OIDC Client specific Authorization URL</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-gss">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/gss</code><a class="headerlink" href="#get--auth-gss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate a Rucio account temporarily via a GSS token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>Rucio-VO</em> – VO name as a string (Multi-VO only).</p></li>
+<li><p><em>Rucio-Account</em> – Account identifier as a string.</p></li>
+<li><p><em>Rucio-AppID</em> – Application identifier as a string.</p></li>
+<li><p><em>SavedCredentials</em> – Apache mod_auth_kerb SavedCredentials.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-origin-response-header">Access-Control-Allow-Origin</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-headers-response-header">Access-Control-Allow-Headers</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-methods-response-header">Access-Control-Allow-Methods</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-credentials-response-header">Access-Control-Allow-Credentials</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-expose-headers-response-header">Access-Control-Expose-Headers</a> – </p></li>
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully authenticated</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Invalid credentials</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--auth-ssh">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/auth/ssh</code><a class="headerlink" href="#get--auth-ssh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate a Rucio account temporarily via SSH key exchange.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><em>Rucio-VO</em> – VO name as a string (Multi-VO only).</p></li>
+<li><p><em>Rucio-Account</em> – Account identifier as a string.</p></li>
+<li><p><em>Rucio-SSH-Signature</em> – Response to server challenge signed with SSH private key as a base64 encoded string.</p></li>
+<li><p><em>Rucio-AppID</em> – Application identifier as a string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-origin-response-header">Access-Control-Allow-Origin</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-headers-response-header">Access-Control-Allow-Headers</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-methods-response-header">Access-Control-Allow-Methods</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-allow-credentials-response-header">Access-Control-Allow-Credentials</a> – </p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/cors/#access-control-expose-headers-response-header">Access-Control-Expose-Headers</a> – </p></li>
+<li><p><em>X-Rucio-Auth-Token</em> – The authentication token</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – Successfully authenticated</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Invalid credentials</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../rest.html">RESTful APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account.html">Account Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="account_limit.html">Account Limit Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive.html">Archive Rest API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Authentication Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="did.html">DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heartbeat.html">Heartbeat Rest Api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifetime_exception.html">Lifetime Exception Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lock.html">Lock Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta.html">Meta Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nongrid_trace.html">Nongrid Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ping.html">Ping Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redirect.html">Redirect Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="replica.html">Replica Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="request.html">Request Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rse.html">RSE Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html">Rule Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">Scope Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="temporary_did.html">Temporary DID Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trace.html">Trace Rest API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vo.html">VO Rest API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">The Client API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/account.html">Account Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/accountlimit.html">AccountLimit Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/scope.html">Scope Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/did.html">Data Identifier Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/meta-data.html">Meta-data Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rse.html">RSE Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/rse.html#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/rse.html#module-rucio.rse.rsemanager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/rse.html#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/replica.html">Replica Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rule.html">Replication Rule Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lock.html">Lock Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/subscription.html">Subscription  Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lifetime.html">Lifetime Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/touch.html">Touch Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/config.html">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/exception.html">Rucio Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ping.html">Ping Method</a></li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+                <li class="footer-element">
+                    
+                        <a href="../_sources/restapi/authentication.rst.txt" rel="nofollow"> source</a>
+                    
+                </li>
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>
