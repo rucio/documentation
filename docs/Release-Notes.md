@@ -54,6 +54,7 @@ uptil the latest one:
 - [1.18.5](Release-Notes/1.18.5.md)
 - [1.18.5.post1](Release-Notes/1.18.5.post1.md)
 - [1.18.6](Release-Notes/1.18.6.md)
+- [1.18.6.post1](Release-Notes/1.18.6.post1.md)
 - [1.18.7](Release-Notes/1.18.7.md)
 - [1.18.8](Release-Notes/1.18.8.md)
 - [1.18.8.post1](Release-Notes/1.18.8.post1.md)
