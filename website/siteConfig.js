@@ -33,11 +33,6 @@ const siteConfig = {
       href: "https://rucio.readthedocs.io/_/downloads/en/next/pdf/",
       label: "Downloads",
     },
-    {
-      href:
-        "https://twiki.cern.ch/twiki/bin/view/AtlasComputing/AtlasDistributedComputing",
-      label: "Wiki",
-    },
     { href: "https://arxiv.org/abs/1902.09857", label: "Scientific articles" },
     { search: true },
   ],
