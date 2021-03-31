@@ -1,0 +1,31 @@
+name: Update Documentation
+on:
+  push: {}
+  schedule:
+    - cron: '0 4 * * 1-5'
+
+jobs:
+  update_documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: rucio/rucio
+          ref: master
+          path: rucio
+      - name: Install rucio-api generation dependencies and build markdown sites for the API
+        run: |
+          python3 -m pip install -U pip setuptools
+          python3 -m pip install -U -r requirements.txt
+          ./rucio-api.py
+      - name: Install dependencies and static website
+        run: |
+          cd website
+          yarn install
+          yarn build
+      - name: Push to Github Pages branch
+        run: |
+          cd website/build/documentation
+          touch .nojekyll
+          GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} INPUT_DIRECTORY=$(pwd) publish.sh
