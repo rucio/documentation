@@ -3,6 +3,7 @@ set -e
 
 INPUT_BRANCH=${INPUT_BRANCH:-gh-pages}
 INPUT_DIRECTORY=${INPUT_DIRECTORY:-'website/build/documentation'}
+OUTPUT_DIRECTORY=${OUTPUT_DIRECTORY:-'gh-pages'}
 
 echo "Push to branch $INPUT_BRANCH";
 [ -z "${GITHUB_TOKEN}" ] && {
@@ -10,9 +11,10 @@ echo "Push to branch $INPUT_BRANCH";
     exit 1;
 };
 
-cp -r ${INPUT_DIRECTORY} /gh-pages
+rm -rf "${OUTPUT_DIRECTORY}"
+cp -r "${INPUT_DIRECTORY}" "${OUTPUT_DIRECTORY}"
 
-cd /gh-pages
+cd "${OUTPUT_DIRECTORY}"
 git init
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
