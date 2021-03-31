@@ -15,6 +15,8 @@ jobs:
           ref: master
           path: rucio
       - name: Install rucio-api generation dependencies and build markdown sites for the API
+        env:
+          RUCIO_TARGET_OVERRIDE: auto
         run: |
           python3 -m pip install -U pip setuptools
           python3 -m pip install -U -r requirements.txt
