@@ -1,12 +1,13 @@
-.DS_Store
+node_modules/
+/website/translated_docs
+/website/build/
+/website/yarn.lock
+/website/i18n/*
 
-node_modules
+# rucio repo for generating API docs
+/rucio
 
-lib/core/metadata.js
-lib/core/MetadataBlog.js
+# generated API docs
+/docs/rucio_client_api.md
+/docs/rucio_rest_api.md
 
-website/translated_docs
-website/build/
-website/yarn.lock
-website/node_modules
-website/i18n/*
