@@ -18,6 +18,7 @@
 
 import os
 import shutil
+import sys
 from collections import namedtuple
 from typing import List
 
@@ -45,7 +46,11 @@ def print_line(par: RenderParams):
 
 
 def render(params: List[RenderParams]):
-    pydoc_markdown = sh.Command("pydoc-markdown")
+    python = sys.executable
+    if not python:
+        python = "python3"
+
+    python = sh.Command(python)
     procs = []
     for par in params:
         print("Adding header for", par.title)
@@ -55,7 +60,9 @@ def render(params: List[RenderParams]):
         print(file=par.fh)
         print("Rendering", par.title)
         procs.append(
-            pydoc_markdown(
+            python(
+                "-m",
+                "pydoc_markdown.main",
                 "-I",
                 par.in_path,
                 "--render-toc",
