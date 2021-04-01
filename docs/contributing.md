@@ -51,7 +51,7 @@ The following figure might help you with an overview:
 
 
 
-![image](/documentation/img/branching_strategy.svg)
+![image](../img/branching_strategy.svg)
 
 ## Getting started
 

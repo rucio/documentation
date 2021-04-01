@@ -11,10 +11,12 @@
 // List of projects/orgs using your project for the users page.
 const users = [];
 
+const baseUrl = "/documentation/";
+
 const siteConfig = {
   title: "Rucio Documentation", // Title for your website.
   url: "https://rucio.github.io", // Your website URL
-  baseUrl: "/documentation/", // Base URL for your project */
+  baseUrl, // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
@@ -88,7 +90,7 @@ const siteConfig = {
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
     "https://buttons.github.io/buttons.js",
-    "/documentation/prism/prism.js",
+    `${baseUrl}prism/prism.js`,
   ],
 
   // On page navigation for the current documentation page.
@@ -113,8 +115,8 @@ const siteConfig = {
 
   preconnect: ["https://fonts.gstatic.com"],
   stylesheets: [
-    "/documentation/css/custom.css",
-    "/documentation/prism/prism.css",
+    `${baseUrl}css/custom.css`,
+    `${baseUrl}prism/prism.css`,
     "https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap",
     "https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap",
     "https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"

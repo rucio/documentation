@@ -26,7 +26,7 @@ Existing ``.py`` files in the directories should give you an idea of
 how this is done across the project.
 Once the changes have been approved & pushed into the main branch, 
 you will need to submit a Pull Request to the **sphinx** branch of the 
-[``rucio\documentation``](https://github.com/rucio/rucio/documentation) repository so that the changes can be
+[``rucio\documentation``](https://github.com/rucio/documentation) repository so that the changes can be
 reflected on the website.
 
 ## Markdown documentation
