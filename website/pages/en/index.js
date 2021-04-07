@@ -63,7 +63,8 @@ class HomeSplash extends React.Component {
         <div className="inner">
         <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} />
           <PromoSection>
-            <Button href={`${baseUrl}rucio/index.html`}>API documentation</Button>
+            <Button href={`${baseUrl}docs/rucio_client_api`}>Client API documentation</Button>
+            <Button href={`${baseUrl}docs/rucio_rest_api`}>REST API documentation</Button>
             <Button href="https://hub.docker.com/u/rucio">Dockerhub documentation</Button>
           </PromoSection>
         </div>
@@ -111,7 +112,7 @@ class Index extends React.Component {
             content: 'Install the Rucio client & try out some common CLI commands while learning a bit more about the user interface.',
             image: `${baseUrl}img/user-playground.svg`,
             imageAlign: 'top',
-            imageLink: siteConfig.baseUrl + 'docs/Clients.html',
+            imageLink: siteConfig.baseUrl + 'docs/setting-up-rucio-client',
             title: 'Rucio User Playground',
           },
           {
@@ -125,7 +126,7 @@ class Index extends React.Component {
             content: 'Along with the API references - both Client & REST, peruse the list of some development tips & tricks that are sure to come in handy!',
             image: `${baseUrl}img/developer.svg`,
             imageAlign: 'top',
-            imageLink: `${baseUrl}rucio/index.html`,
+            imageLink: `${baseUrl}docs/developing-with-rucio`,
             title: 'Developer Documentation',
           },
           {

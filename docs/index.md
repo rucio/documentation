@@ -35,7 +35,7 @@ laptop/desktop. Make sure you read the pre-requisites section before starting of
 - [Pre-requisites](setting-up-demo)
 - [Setting up Demo environment](setting-up-demo)
 
-## [Rucio User Playground](Clients)
+## Rucio User Playground
 
 Congratulations on setting up your Rucio environment! Let us now have a look at some of
 the common things you can do using Rucio by setting up the Rucio client. Also, this
