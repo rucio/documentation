@@ -23,7 +23,9 @@ pip install rucio
 This will pull the latest release from
 [__PyPi__](https://pypi.python.org/pypi/rucio/). The Rucio server also needs
 several Python dependencies. These are all listed in the file
-`tools/pip-requires` and will be pulled in as necessary.
+[`etc/pip-requires`](https://github.com/rucio/rucio/blob/master/etc/pip-requires)
+and will be pulled in as necessary.
+
 
 ## Install via Docker
 

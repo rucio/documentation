@@ -20,8 +20,7 @@ RSE Expressions [__here__](rse_expressions.html).
 
 ## Example 1
 
-*I want to have 2 replicas of first_dataset and second_datset on Tier 1
-RSEs*
+*I want to have 2 replicas of first_dataset and second_dataset on Tier 1 RSEs*
 
 The number 2 *second_dataset* is the number of copies expected. At the
 end, the RSE Expression select all the Tier 1 RSEs as possible targets
