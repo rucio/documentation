@@ -10,4 +10,4 @@ node_modules/
 # generated API docs
 /docs/rucio_client_api.md
 /docs/rucio_rest_api.md
-
+/docs/bin

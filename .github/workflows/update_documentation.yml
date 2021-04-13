@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: rucio/rucio
-          ref: master
+          ref: release-1.25
           path: rucio
       - name: Install rucio-api generation dependencies and build markdown sites for the API
         env:
@@ -22,7 +22,9 @@ jobs:
         run: |
           python3 -m pip install -U pip setuptools
           python3 -m pip install -U -r requirements.txt
-          ./rucio-api.py
+          docker login https://docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+          ./rucio-generate-doc.py
+          docker logout https://docker.pkg.github.com
       - name: Install dependencies and static website
         run: |
           cd website

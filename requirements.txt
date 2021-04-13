@@ -1,2 +1,1 @@
-pydoc-markdown~=3.10.0
 sh~=1.14.1
