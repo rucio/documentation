@@ -4,7 +4,6 @@ title: Welcome to Rucio's documentation!
 sidebar_label: Welcome!
 ---
 
-
 Rucio is a project that provides services and associated libraries for allowing scientific
 collaborations to manage large volumes of data spread across facilities at
 multiple institutions and organisations. Rucio has been developed by
@@ -34,6 +33,7 @@ laptop/desktop. Make sure you read the pre-requisites section before starting of
 
 - [Pre-requisites](setting-up-demo)
 - [Setting up Demo environment](setting-up-demo)
+- [Rucio executables](bin.md)
 
 ## Rucio User Playground
 

@@ -4,8 +4,7 @@ title: Using the Rucio Client
 sidebar_label: Using the Rucio Client
 ---
 
-Rucio provides several commands for the end-user. See [man
-pages](man/rucio.html).
+Rucio provides several commands for the end-user. See [executables](bin.md).
 
 ## Getting user information
 

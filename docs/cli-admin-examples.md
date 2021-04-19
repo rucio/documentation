@@ -5,7 +5,7 @@ sidebar_label: Rucio administration CLI: Examples
 ---
 
 Rucio provides a CLI for administrative tasks. The get methods can be executed by
-any user, but the set methods require some admin privileges. See `man pages <man/rucio-admin.html>`_.
+any user, but the set methods require some admin privileges. See the [rucio-admin help page](bin/rucio-admin.md).
 
 ## Account and identity methods
 
