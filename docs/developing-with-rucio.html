@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Developing with Rucio · Rucio Documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Rucio Clients"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Developing with Rucio · Rucio Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://rucio.github.io/documentation/"/><meta property="og:description" content="## Rucio Clients"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/documentation/img/android-chrome-512x512.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="/documentation/css/custom.css"/><link rel="stylesheet" href="/documentation/prism/prism.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,700&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&amp;display=swap"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&amp;display=swap"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/documentation/prism/prism.js"></script><script src="/documentation/js/scrollSpy.js"></script><link rel="stylesheet" href="/documentation/css/main.css"/><script src="/documentation/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/documentation/"><img class="logo" src="/documentation/img/wide_logo2.png" alt="Rucio Documentation"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/documentation/docs/" target="_self">Docs</a></li><li class=""><a href="https://rucio.readthedocs.io/_/downloads/en/next/pdf/" target="_self">Downloads</a></li><li class=""><a href="https://arxiv.org/abs/1902.09857" target="_self">Scientific articles</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Ask me something" title="Ask me something"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Developing with Rucio</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="rucio-clients"></a><a href="#rucio-clients" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rucio Clients</h2>
+<p>Rucio includes a client class to remove some of the complexity of
+dealing with raw HTTP requests against the RESTful API.</p>
+<p>All client methods are accessible through the high-level class Client.
+Below is one example of using Rucio Client class:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> rucio.client <span class="hljs-keyword">import</span> Client
+rucio_client = Client()
+rucio_client.ping()
+</code></pre>
+<p>The methods are separated per resource type. The API in full can be viewed
+<a href="/documentation/docs/rucio_client_api">here</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="errors-and-exceptions"></a><a href="#errors-and-exceptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Errors and Exceptions</h3>
+<p>In the case of an error, Rucio returns a Python Exception with the
+appropriate Traceback, a detailed error string, and a unique error
+number. If the error occurred on the server side, it will be propagated
+to the client. The command line clients will exit back to the shell with
+the POSIX [errno]{.title-ref} of the unique Rucio error number. The full
+and up to date list can be found in the <a href="https://github.com/rucio/rucio/blob/master/lib/rucio/common/exception.py">Exception definition</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="restful-apis"></a><a href="#restful-apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RESTful APIs</h2>
+<p>Each resource can be accessed or modified using specially formed URLs and the standard HTTP methods:</p>
+<pre><code class="hljs"><span class="hljs-keyword">GET</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">read</span>
+POST <span class="hljs-keyword">to</span> <span class="hljs-keyword">create</span>
+PUT <span class="hljs-keyword">to</span> <span class="hljs-keyword">update</span>
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">to</span> remove
+</code></pre>
+<p>We require that all requests are done over SSL. The API supports JSON formats. Rucio uses <a href="http://oauth.net/">OAuth</a>
+to authenticate all API requests. The method is to get an authentication token, and use it for the rest of
+the requests. Descriptions of the actions you may perform on each resource can be found in the
+<a href="/documentation/docs/rucio_rest_api">API documentation</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="date-format"></a><a href="#date-format" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Date format</h3>
+<p>All dates returned are in UTC and are strings in the following format (RFC 1123, ex RFC 822):
+<code>Mon, 13 May 2013 10:23:03 UTC</code></p>
+<p>In code format, which can be used in all programming languages that support strftime or strptime:</p>
+<pre><code class="hljs"><span class="hljs-built_in">%a</span>, <span class="hljs-built_in">%d</span> <span class="hljs-built_in">%b</span> <span class="hljs-built_in">%Y</span> <span class="hljs-built_in">%H</span>:<span class="hljs-built_in">%M</span>:<span class="hljs-built_in">%S</span> UTC
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="ssl-only"></a><a href="#ssl-only" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SSL only</h3>
+<p>We require that all requests(except for the ping) are done over SSL.</p>
+<h3><a class="anchor" aria-hidden="true" id="response-formats"></a><a href="#response-formats" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Response formats</h3>
+<p>The currently-available response format for all REST endpoints is the string-based format JavaScript Object Notation
+(<a href="http://www.json.org/">JSON</a>).
+The server answer can be one of the following content-type in the http Header:</p>
+<pre><code class="hljs">Content-<span class="hljs-keyword">type</span>: application/<span class="hljs-type">json</span>
+Content-<span class="hljs-keyword">Type</span>: application/x-<span class="hljs-type">json</span>-stream
+</code></pre>
+<p>In the last case, it corresponds to JSON objects delimited by newlines(streaming JSON for large answer), e.g.:</p>
+<pre><code class="hljs css language-json">{ "id": 1, "foo": "bar" }
+{ "id": 2, "foo": "baz" }
+...
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="error-handling"></a><a href="#error-handling" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Error handling</h3>
+<p>Errors are returned using standard HTTP error code syntax.
+Additional info is included in the header or the body of the return call, JSON-formatted with the parameters:</p>
+<pre><code class="hljs"><span class="hljs-attribute">ExceptionClass
+ExceptionMessage</span>
+</code></pre>
+<p>Where <code>ExceptionClass</code> refers to Rucio Exceptions.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#rucio-clients">Rucio Clients</a><ul class="toc-headings"><li><a href="#errors-and-exceptions">Errors and Exceptions</a></li></ul></li><li><a href="#restful-apis">RESTful APIs</a><ul class="toc-headings"><li><a href="#date-format">Date format</a></li><li><a href="#ssl-only">SSL only</a></li><li><a href="#response-formats">Response formats</a></li><li><a href="#error-handling">Error handling</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2021 CERN. Created with Docusaurus.</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '04e5d623b96121df11ac440e51fc8956',
+                indexName: 'rucio-cern',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
