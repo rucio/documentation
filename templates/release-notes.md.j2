@@ -1,0 +1,11 @@
+---
+title: Release Notes
+sidebar_label: Release Notes
+---
+
+Below listed are all the release notes from the very first release
+uptil the latest one:
+
+{% for file in index("release-notes") | sort(attribute="stem", reverse=True) -%}
+- [{{ file.stem }}]({{ file.path }})
+{% endfor %}
