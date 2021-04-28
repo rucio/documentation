@@ -6,7 +6,8 @@
       "What-is-rucio",
       "Main-components-of-rucio",
       "Additional-layers-and-Resources",
-      "concepts"
+      "concepts",
+      "releasepolicy"
     ],
     "Try Rucio": [
       "Try-rucio",
