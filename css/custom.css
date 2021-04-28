@@ -34,6 +34,15 @@ code{
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+a {
+  text-decoration: underline;
+}
+
+a:active, a:focus, a:hover {
+  text-decoration: none;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
