@@ -25,6 +25,7 @@ found by browsing through the sub-sections of this topic.
 - [Main Components of Rucio](Main-components-of-rucio.md)
 - [Additional layers and Resources](Additional-layers-&-Resources.md)
 - [Concepts & Terminology](concepts.md)
+- [Release Policy](releasepolicy.md)
 
 ## [Try Rucio!](Try-rucio.md)
 
