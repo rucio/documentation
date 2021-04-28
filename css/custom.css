@@ -35,11 +35,11 @@ code{
   scrollbar-width: none;  /* Firefox */
 }
 
-a {
+.mainContainer a {
   text-decoration: underline;
 }
 
-a:active, a:focus, a:hover {
+.mainContainer a:active, .mainContainer a:focus, .mainContainer a:hover {
   text-decoration: none;
 }
 
