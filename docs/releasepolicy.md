@@ -12,10 +12,10 @@ A release line is only maintained with patch releases until the start of the nex
 
 | Version        | Code name                  | Release date   | Supported until   |
 | -------------- | -------------------------- | -------------- | ----------------- |
-| 1.27           | Batdonkey v Superdonkey    | 2021-11        | ~2022-02          |
-| **1.26 LTS**   | Donkey League of La Mancha | 2021-06        | ~2023-06          |
-| 1.25           | Rat-Donkey                 | 2021-02        | 2021-06           |
-| 1.24           | Aquadonkey                 | 2020-11        | ~2021-02          |
+| 1.27           | Batdonkey v Superdonkey    | ~2021-11       | ~2022-02          |
+| **1.26 LTS**   | Donkey League of La Mancha | ~2021-06       | ~2023-06          |
+| 1.25           | Rat-Donkey                 | 2021-02        | ~2021-06           |
+| 1.24           | Aquadonkey                 | 2020-11        | 2021-02          |
 | **1.23 LTS**   | The incredible Donkey      | 2020-07        | at least 2022-07  |
 | 1.22           | Green Donkey               | 2020-02        | 2020-06           |
 | 1.21           | Donkeys of the Galaxy      | 2019-11        | 2020-02           |
