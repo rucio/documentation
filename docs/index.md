@@ -1,7 +1,8 @@
 ---
 id: index
-title: Welcome to Rucio's documentation!
-sidebar_label: Welcome!
+title: "Welcome to Rucio's documentation!"
+sidebar_label: "Welcome!"
+slug: /
 ---
 
 Rucio is a project that provides services and associated libraries for allowing scientific
@@ -55,13 +56,13 @@ before you ensure you've read through the pre-requisites section under each of t
 
 - [Installing Rucio Server](installing-rucio-server)
 - [Installing Rucio Daemons](installing-rucio-daemons)
-- [Monitoring](Monitoring)
+- [Monitoring](monitoring.md)
 
 ## [Rucio Developer Documentation](developer)
 
 Whether you want to develop with Rucio or contribute to the project, the Developer
 documentation will help you get started. Peruse some common REST API & Client API
-references that are directly derived from [Rucio's python libraries](). We also
+references that are directly derived from Rucio's python libraries. We also
 have a contribution guide for those who wish to pitch in.
 
 - [Client API Documentation](rucio_client_api)

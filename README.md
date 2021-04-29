@@ -4,7 +4,7 @@ Welcome!
 
 There are 2 branches in this repository:
 
-- master: Containing the build files for Docusaurus
+- main: Containing the build files for Docusaurus
 - gh-pages: Hosting the website
 
 The current solution for Rucio's documentation aims to:

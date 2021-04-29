@@ -1,6 +1,7 @@
 node_modules/
 /website/translated_docs
 /website/build/
+/website/.docusaurus/
 /website/yarn.lock
 /website/i18n/*
 

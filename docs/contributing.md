@@ -49,7 +49,7 @@ Generally all [__pull requests__](https://github.com/rucio/rucio/pulls) are to b
 
 The following figure might help you with an overview:
 
-![Branching Strategy Graph](../img/branching_strategy.svg)
+![Branching Strategy Graph](/img/branching_strategy.svg)
 
 
 ## Getting started

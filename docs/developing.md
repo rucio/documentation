@@ -1,4 +1,6 @@
-# Setting up a Rucio development environment
+---
+title: "Setting up a Rucio development environment"
+---
 
 ## Prerequisites
 

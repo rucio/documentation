@@ -77,7 +77,7 @@ There are 3 CLI login methods. Two were introduced in order to avoid
 typing the password in the Rucio CLI. The default Identity Provider
 (IdP)/issuer is configured on the side of Rucio server. In case multiple
 IdPs are supported, user can specify which one he desires to use by
-`--oidc-issuer=<IdP nickname>` option (where IdP nickname is the key
+`--oidc-issuer=\<IdP nickname\>` option (where IdP nickname is the key
 under which issuers are configured on Rucio server side in the
 [idpsecrets.json]{.title-ref} file). In the following examples we assume
 that user does not want to use the rucio account name specified in the
@@ -90,17 +90,17 @@ server side.
 1.  Login via user's browser + fetch code:
 
 ```bash
-rucio -a=\<rucio_account_name\ -S=OIDC -v whoami
+rucio -a=\<rucio_account_name\> -S=OIDC -v whoami
 ```
 2.  Login via user's browser + polling Rucio auth server:
 
 ```bash
-rucio -a=\<rucio_account_name\ -S=OIDC \--oidc-polling -v whoami
+rucio -a=\<rucio_account_name\> -S=OIDC --oidc-polling -v whoami
 ```
 3.  Automatic login:
 
 ```bash
-rucio -a=\<rucio_account_name\ -S=OIDC \--oidc-user=\<idp_username\ \--oidc-password=\<idp_password\ \--oidc-auto -v whoami
+rucio -a=\<rucio_account_name\> -S=OIDC --oidc-user=\<idp_username\> --oidc-password=\<idp_password\> --oidc-auto -v whoami
 ```
 We strongly discourage this approach, typing your password in CLI does
 not comply with OAuth2/OIDC standard !
@@ -111,7 +111,7 @@ refresh token and specify the time for which Rucio should act on behalf
 of the user (in hours) using the `--refresh-lifetime` option:
 
 ```bash
-rucio -a=<rucio_account_name> -S=OIDC --oidc-scope="openid profile offline_access" --oidc-refresh-lifetime=24 -v whoami
+rucio -a=\<rucio_account_name\> -S=OIDC --oidc-scope="openid profile offline_access" --oidc-refresh-lifetime=24 -v whoami
 ```
 If Rucio Server is granted a user both valid access and refresh tokens,
 it is also possible to configure Rucio Client to ask Rucio Server for
@@ -141,10 +141,10 @@ Example of rucio.cfg file configuration with automatic token refresh:
 ```
 [client]
 
-rucio_host = https://<rucio_host:443
-auth_host = https://<rucio_auth_host:443
+rucio_host = https://\<rucio_host\>:443
+auth_host = https://\<rucio_auth_host\>:443
 auth_type = oidc
-account = <rucio_account_name
+account = \<rucio_account_name\>
 oidc_audience = rucio
 oidc_scope = openid profile offline_access
 oidc_issuer = wlcg
@@ -170,7 +170,7 @@ that:
 - The token scope claim is no less than the minimum scope (e.g. 'openid profile') required by the Rucio Auth server (configured there in the rucio.cfg file).
 - same as above is true for the use of audience claim
 - token issuer is known to Rucio Authentication server
-- the identity of the token ("SUB=<user sub claim>, ISS=<issuer url>") is assigned to an existing Rucio account (pre-provisioned)
+- the identity of the token ("SUB=\<user sub claim\>, ISS=\<issuer url\>") is assigned to an existing Rucio account (pre-provisioned)
 
 If so, one can directly present the token to the Rucio REST endpoint in
 the \'X-Rucio-Auth-Token\' header, e.g.:
@@ -178,9 +178,9 @@ the \'X-Rucio-Auth-Token\' header, e.g.:
  python
  import requests
  s=requests.session()
- your_token=<your JWT access token string
+ your_token=\<your JWT access token string\>
  headers={'X-Rucio-Auth-Token': your_token}
- address='https://<Rucio Auth Server Name/accounts/guenther'
+ address='https://\<Rucio Auth Server Name\>/accounts/guenther'
  result=s.get(address, headers=headers, verify=False)
  result.text
  u'{"status": "ACTIVE", "account": "guenther", "account_type": "USER", "created_at": "2019-11-13T13:01:58", "suspended_at": null, "updated_at": "2019-11-13T13:01:58", "deleted_at": null, "email": "jaroslav.guenther@gmail.com"}'

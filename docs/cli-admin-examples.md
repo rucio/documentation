@@ -1,7 +1,7 @@
 ---
 id: cli-admin-examples
-title: Rucio administration CLI: Examples
-sidebar_label: Rucio administration CLI: Examples
+title: "Rucio administration CLI: Examples"
+sidebar_label: "Rucio administration CLI: Examples"
 ---
 
 Rucio provides a CLI for administrative tasks. The get methods can be executed by

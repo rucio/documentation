@@ -1,5 +1,4 @@
 ---
-id: Monitoring
 title: Monitoring
 sidebar_label: Monitoring
 ---

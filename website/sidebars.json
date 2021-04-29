@@ -15,14 +15,13 @@
     ],
     "Using Rucio": [
       "release-notes",
-      "Clients",
       "setting-up-rucio-client",
       "using-rucio-client"
     ],
     "Rucio Operator Documentation": [
       "installing-rucio-server",
       "installing-rucio-daemons",
-      "Monitoring"
+      "monitoring"
     ],
     "Rucio Developer Documentation": [
       "database",
