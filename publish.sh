@@ -2,7 +2,7 @@
 set -e
 
 INPUT_BRANCH=${INPUT_BRANCH:-gh-pages}
-INPUT_DIRECTORY=${INPUT_DIRECTORY:-'website/build/documentation'}
+INPUT_DIRECTORY=${INPUT_DIRECTORY:-'website/build'}
 OUTPUT_DIRECTORY=${OUTPUT_DIRECTORY:-'gh-pages'}
 
 [ -z "${GITHUB_TOKEN}" ] && {
@@ -20,6 +20,7 @@ cp -r "${INPUT_DIRECTORY}" "${OUTPUT_DIRECTORY}"
 
 mv output.git "${OUTPUT_DIRECTORY}/.git"
 cd "${OUTPUT_DIRECTORY}"
+touch .nojekyll
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
 git add .
