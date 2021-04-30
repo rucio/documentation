@@ -35,12 +35,8 @@ code{
   scrollbar-width: none;  /* Firefox */
 }
 
-.mainContainer a {
-  text-decoration: underline;
-}
-
-.mainContainer a:active, .mainContainer a:focus, .mainContainer a:hover {
-  text-decoration: none;
+.navbar__logo {
+  height: auto !important;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
