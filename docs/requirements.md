@@ -1,7 +1,7 @@
 ---
 id: requirements
 title: Requirements
-sidebar_label: requirements
+sidebar_label: Requirements
 ---
 
 Rucio relies on several dependencies, some of them being a hard requirement, others being optional depending on the used Rucio functionality.
