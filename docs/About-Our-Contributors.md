@@ -15,15 +15,15 @@ submission.
 
 # Individual contributors to the source code
 ------------------------------------------
-- Mario Lassnig <mario.lassnig@cern.ch>, 2012-2019
+- Mario Lassnig <mario.lassnig@cern.ch>, 2012-2021
 - Vincent Garonne <vgaronne@gmail.com>, 2012-2019
 - Angelos Molfetas <Angelos.Molfetas@cern.ch>, 2012
-- Martin Barisits <martin.barisits@cern.ch>, 2012-2019
-- Thomas Beermann <thomas.beermann@cern.ch>, 2012-2019
+- Martin Barisits <martin.barisits@cern.ch>, 2012-2021
+- Thomas Beermann <thomas.beermann@cern.ch>, 2012-2021
 - Ralph Vigne <ralph.vigne@cern.ch>, 2012-2016
 - Graeme Stewart <graeme.andrew.stewart@cern.ch>, 2012
 - Yun-Pin Sun <winter0128@gmail.com>, 2012-2013
-- Cedric Serfon <cedric.serfon@cern.ch>, 2012-2020
+- Cedric Serfon <cedric.serfon@cern.ch>, 2012-2021
 - Luis Rodrigues <lfrodrigues@gmail.com>, 2013
 - WeiJen Chang <e4523744@gmail.com>, 2013-2014
 - Gancho Dimitrov <gancho.dimitrov@cern.ch>, 2013
@@ -35,21 +35,21 @@ submission.
 - Joaquín Bogado <jbogado@linti.unlp.edu.ar>, 2014-2018
 - Fernando López <fernando.e.lopez@gmail.com>, 2015-2016
 - Sylvain Blunier <sylvain.blunier@cern.ch>, 2016
-- Tomas Javurek <tomas.javurek@cern.ch>, 2016-2019
+- Tomas Javurek <tomas.javurek@cern.ch>, 2016-2020
 - Brian Bockelman <bbockelm@cse.unl.edu>, 2016-2018
-- Tobias Wegner <twegner@cern.ch>, 2017-2019
+- Tobias Wegner <twegner@cern.ch>, 2017-2020
 - Frank Berghaus <frank.berghaus@cern.ch>, 2017
 - Vitjan Zavrtanik <vitjan.zavrtanik@cern.ch>, 2017
 - Stefan Prenner <stefan.prenner@cern.ch>, 2017-2018
 - Nicolo Magini <Nicolo.Magini@cern.ch>, 2017-2018
 - Oliver Freyermuth <o.freyermuth@googlemail.com>, 2017
 - Eric Vaandering <ericvaandering@gmail.com>, 2018
-- Dimitrios Christidis <dimitrios.christidis@cern.ch>, 2018-2019
+- Dimitrios Christidis <dimitrios.christidis@cern.ch>, 2018-2021
 - Igor Mandrichenko <ivm@fnal.gov>, 2018
 - Shreyansh Khajanchi <shreyansh_k@live.com>, 2018
 - Robert Illingworth <illingwo@fnal.gov>, 2018
 - Hannes Hansen <hannes.jakob.hansen@cern.ch>, 2018-2019
-- James Perry <j.perry@epcc.ed.ac.uk>, 2019
+- James Perry <j.perry@epcc.ed.ac.uk>, 2019-2021
 - Vivek Nigam <viveknigam.nigam3@gmail.com>, 2019 - 2020
 - Kaustubh Hiware <hiwarekaustubh@gmail.com>, 2019
 - Florido Paganelli <florido.paganelli@hep.lu.se>, 2019
@@ -57,7 +57,7 @@ submission.
 - Ruturaj Gujar <ruturaj.gujar23@gmail.com> 2019
 - Andrew Lister <andrew.lister@stfc.ac.uk>, 2019
 - Aristeidis Fkiaras <aristeidis.fkiaras@cern.ch>, 2019
-- Benedikt Ziemons <benedikt.ziemons@cern.ch>, 2020
+- Benedikt Ziemons <benedikt.ziemons@cern.ch>, 2020-2021
 - Muhammad Aditya Hilmy <mhilmy@hey.com>, 2020
 - Eli Chadwick <eli.chadwick@stfc.ac.uk>, 2020
 - Patrick Austin <patrick.austin@stfc.ac.uk>, 2020
