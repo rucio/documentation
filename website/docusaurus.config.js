@@ -43,7 +43,14 @@ module.exports={
       }
     ]
   ],
-  "plugins": [],
+  "plugins": [
+    ['@docusaurus/plugin-content-docs',
+     {
+       path: 'docs',
+       editUrl: 'https://github.com/rucio/documentation/docs/',
+     }
+    ]
+  ], 
   "themeConfig": {
     "navbar": {
       "title": "Rucio Documentation",
