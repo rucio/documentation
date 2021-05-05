@@ -6,19 +6,19 @@ sidebar_label: Main Components of Rucio
 
 Rucio is based on a distributed system architecture & can be sectioned into four major layers:
 
-- **Clients**
+## Clients
 
 The clients layer consists of components such as the command line clients (CLI), Python clients, and the Javascript-based web user interface and configuration.
 
-- **Server**
+## Server
 
 The server layer serves the purpose of authentication & provides a common API for interaction with clients & other external application, as also the Web UI.
 
-- **Core**
+## Core
 
 This layer consists of all the Rucio-level abstractions that are explained at length in the [Concepts & Terminology](concepts.md) section.
 
-- **Daemons**
+## Daemons
 
 The daemons layer takes care of all the asynchronous & continuous workflows in the background.
 
