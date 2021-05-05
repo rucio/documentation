@@ -28,7 +28,6 @@ jobs:
       - name: Install dependencies and static website
         run: |
           cd website
-          yarn add @docusaurus/plugin-content-docs
           yarn install
           yarn build
       - name: Push to Github Pages branch
