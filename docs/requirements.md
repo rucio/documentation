@@ -18,7 +18,7 @@ Rucio server, daemons and clients are written in Python and thus depend on an in
 Database               | Supported version | Nota bene
 ---------------------- | ----------------- | ---------
 SQLite                 | 3+                | For testing only
-MySQL                  | 5                 | Supported up to Rucio release 1.25
+MySQL                  | 5                 | Supported up to Rucio release [1.25](../release-notes/1.25.md)
 MySQL                  | 8 and higher      | No support for SSH public key authentication
 PostgreSQL             | up to 11          | Limited support for JSON-based generic metadata
 PostgreSQL             | 12 and higher     | 
