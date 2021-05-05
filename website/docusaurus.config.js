@@ -35,7 +35,7 @@ module.exports={
           "path": "../docs",
           "routeBasePath": "/",
           "sidebarPath": "../website/sidebars.json",
-          'editUrl': 'https://github.com/rucio/documentation/docs/',
+          'editUrl': 'https://github.com/rucio/documentation/tree/main/docs',
         },        
         "blog": {},
         "theme": {
