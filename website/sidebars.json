@@ -8,14 +8,14 @@
       "Additional-layers-and-Resources",
       "requirements",
       "concepts",
-      "releasepolicy"
+      "releasepolicy",
+      "release-notes"
     ],
     "Try Rucio": [
       "Try-rucio",
       "setting-up-demo"
     ],
-    "Using Rucio": [
-      "release-notes",
+    "Using Rucio": [      
       "setting-up-rucio-client",
       "using-rucio-client"
     ],
