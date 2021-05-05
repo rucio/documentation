@@ -34,8 +34,9 @@ module.exports={
           "showLastUpdateTime": true,
           "path": "../docs",
           "routeBasePath": "/",
-          "sidebarPath": "../website/sidebars.json"
-        },
+          "sidebarPath": "../website/sidebars.json",
+          'editUrl': 'https://github.com/rucio/documentation/docs/',
+        },        
         "blog": {},
         "theme": {
           "customCss": "../src/css/customTheme.css"
@@ -43,14 +44,7 @@ module.exports={
       }
     ]
   ],
-  "plugins": [
-    ['@docusaurus/plugin-content-docs',
-     {
-       path: 'docs',
-       editUrl: 'https://github.com/rucio/documentation/docs/',
-     }
-    ]
-  ], 
+  "plugins": [], 
   "themeConfig": {
     "navbar": {
       "title": "Rucio Documentation",
