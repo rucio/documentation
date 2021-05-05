@@ -13,3 +13,11 @@ To install Rucio, we generally recommend a Kubernetes-based deployment based on 
 Rucio server, daemons and clients are written in Python and thus depend on an installed Python interpreter. Since the Rucio [1.24](../release-notes/1.24.0) release servers and daemons require **Python 3.6** or upwards, while the clients still support **Python 2.7** for the foreseeable future.
 
 ## Database
+
+
+Database               | Supported version
+---------------------- | -----------------
+SQLLite (For Testing)  | X
+MySQL                  | X
+PostgreSQL             | X
+Oracle                 | X
