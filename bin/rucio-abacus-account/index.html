@@ -12,16 +12,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap">
 <script src="https://buttons.github.io/buttons.js"></script><title data-react-helmet="true">Running rucio-abacus-account | Rucio Documentation</title><meta data-react-helmet="true" property="og:url" content="https://rucio.github.io/documentation/bin/rucio-abacus-account"><meta data-react-helmet="true" name="docsearch:language" content="en"><meta data-react-helmet="true" name="docsearch:version" content="current"><meta data-react-helmet="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-react-helmet="true" property="og:title" content="Running rucio-abacus-account | Rucio Documentation"><meta data-react-helmet="true" name="description" content="`"><meta data-react-helmet="true" property="og:description" content="`"><link data-react-helmet="true" rel="shortcut icon" href="/documentation/img/android-chrome-512x512.png"><link data-react-helmet="true" rel="canonical" href="https://rucio.github.io/documentation/bin/rucio-abacus-account"><link data-react-helmet="true" rel="alternate" href="https://rucio.github.io/documentation/bin/rucio-abacus-account" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://rucio.github.io/documentation/bin/rucio-abacus-account" hreflang="x-default"><link data-react-helmet="true" rel="preconnect" href="https://BH4D9OD16A-dsn.algolia.net" crossorigin="anonymous"><link rel="stylesheet" href="/documentation/assets/css/styles.166fee96.css">
-<link rel="preload" href="/documentation/assets/js/styles.c5f08f24.js" as="script">
-<link rel="preload" href="/documentation/assets/js/runtime~main.43639faf.js" as="script">
-<link rel="preload" href="/documentation/assets/js/main.bbf8d06c.js" as="script">
-<link rel="preload" href="/documentation/assets/js/1.ecc2fc79.js" as="script">
-<link rel="preload" href="/documentation/assets/js/2.fec01067.js" as="script">
-<link rel="preload" href="/documentation/assets/js/270.fa57f05d.js" as="script">
-<link rel="preload" href="/documentation/assets/js/273.b5087f9a.js" as="script">
-<link rel="preload" href="/documentation/assets/js/935f2afb.436ebcab.js" as="script">
-<link rel="preload" href="/documentation/assets/js/17896441.e995d62a.js" as="script">
-<link rel="preload" href="/documentation/assets/js/72cb92ca.217966d4.js" as="script">
+<link rel="preload" href="/documentation/assets/js/styles.7bc4cf77.js" as="script">
+<link rel="preload" href="/documentation/assets/js/runtime~main.61a5fc73.js" as="script">
+<link rel="preload" href="/documentation/assets/js/main.399ef89f.js" as="script">
+<link rel="preload" href="/documentation/assets/js/1.62fd6115.js" as="script">
+<link rel="preload" href="/documentation/assets/js/2.7b8ffc92.js" as="script">
+<link rel="preload" href="/documentation/assets/js/271.726658d0.js" as="script">
+<link rel="preload" href="/documentation/assets/js/274.4af3c363.js" as="script">
+<link rel="preload" href="/documentation/assets/js/935f2afb.4de68955.js" as="script">
+<link rel="preload" href="/documentation/assets/js/17896441.2e6cfb3b.js" as="script">
+<link rel="preload" href="/documentation/assets/js/72cb92ca.9c98a4d8.js" as="script">
 </head>
 <body>
 <script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
@@ -29,15 +29,15 @@
 </span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">The Abacus-Account daemon is responsible for updating account usages. It</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">checks if there are new entries in the UpdatedAccountCounter table and updates</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">the account counters in the AccountCounter table by adding or substrating the</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">amount and size of files and recalculating the quotas.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain" style="display:inline-block">
 </span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">optional arguments:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  -h, --help         show this help message and exit</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  --run-once         One iteration only</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  --threads THREADS  Concurrency control: total number of threads on this</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">                     process</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  --enable-history   Record account usage into history table every hour.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain" style="display:inline-block">
 </span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">Upload a file:: $ rucio upload --rse MOCK --scope mock filename.txt Check</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">account usage:: $ rucio list-account-usage username</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">+-------+---------+---------+--------------+ | RSE | USAGE | LIMIT | QUOTA</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">LEFT | |-------+---------+---------+--------------|</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">+-------+---------+---------+--------------+ Run the daemon:: $ rucio-abacus-</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">account --run-once Check account usage again:: $ rucio list-account-usage</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">username +-------+------------+---------+--------------+ | RSE | USAGE | LIMIT</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">| QUOTA LEFT | |-------+------------+---------+--------------| | MOCK |</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">211.724 kB | 0.000 B | 0.000 B |</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">+-------+------------+---------+--------------+</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o">Copy</button></div></div></div></article><div class="margin-vert--lg"><nav class="pagination-nav" aria-label="Docs pages navigation"><div class="pagination-nav__item"></div><div class="pagination-nav__item pagination-nav__item--next"></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_35-E thin-scrollbar"></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="footer__bottom text--center"><div class="margin-bottom--sm"><img src="/documentation/img/rucio_horizontaled_black.svg" alt="" class="themedImage_1VuW themedImage--light_3UqQ footer__logo"><img src="/documentation/img/rucio_horizontaled_white.svg" alt="" class="themedImage_1VuW themedImage--dark_hz6m footer__logo"></div><div class="footer__copyright">Copyright © 2021 CERN</div></div></div></footer></div>
-<script src="/documentation/assets/js/styles.c5f08f24.js"></script>
-<script src="/documentation/assets/js/runtime~main.43639faf.js"></script>
-<script src="/documentation/assets/js/main.bbf8d06c.js"></script>
-<script src="/documentation/assets/js/1.ecc2fc79.js"></script>
-<script src="/documentation/assets/js/2.fec01067.js"></script>
-<script src="/documentation/assets/js/270.fa57f05d.js"></script>
-<script src="/documentation/assets/js/273.b5087f9a.js"></script>
-<script src="/documentation/assets/js/935f2afb.436ebcab.js"></script>
-<script src="/documentation/assets/js/17896441.e995d62a.js"></script>
-<script src="/documentation/assets/js/72cb92ca.217966d4.js"></script>
+<script src="/documentation/assets/js/styles.7bc4cf77.js"></script>
+<script src="/documentation/assets/js/runtime~main.61a5fc73.js"></script>
+<script src="/documentation/assets/js/main.399ef89f.js"></script>
+<script src="/documentation/assets/js/1.62fd6115.js"></script>
+<script src="/documentation/assets/js/2.7b8ffc92.js"></script>
+<script src="/documentation/assets/js/271.726658d0.js"></script>
+<script src="/documentation/assets/js/274.4af3c363.js"></script>
+<script src="/documentation/assets/js/935f2afb.4de68955.js"></script>
+<script src="/documentation/assets/js/17896441.2e6cfb3b.js"></script>
+<script src="/documentation/assets/js/72cb92ca.9c98a4d8.js"></script>
 </body>
 </html>
