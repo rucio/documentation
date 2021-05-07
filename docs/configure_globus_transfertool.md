@@ -36,7 +36,7 @@ Below shows a typical setup for a test RSE. Options for CLI given when supported
 
 The following code will create a non-determinisic RSE.
 
-Python:
+**Python:**
 
 ```py
 # set up the target non-deterministic rse (TEST_RSE)
@@ -51,7 +51,7 @@ CLI alternative: RSE creation not supported at time of writing of this document 
 
 The following code creates a schema to connect to Globus for the RSE created above.
 
-Python:
+**Python:**
 
 ```py
 from rucio.client.rseclient import RSEClient
@@ -71,7 +71,7 @@ CLI alternative: (the hostname value is required for the CLI command but is arbi
 
 The following code sets some attributes for the RSE.
 
-Python:
+**Python:**
 
 ```py
 from rucio.client.rseclient import RSEClient
@@ -83,7 +83,7 @@ result = rseclient.add_rse_attribute(rse = rse_name, key = 'globus_endpoint_id',
 result = rseclient.add_rse_attribute(rse = rse_name, key = 'istape', value = False)
 ```
 
-CLI alternative:
+**CLI alternative:**
 
 ```bash
 > rucio-admin rse set-attribute --rse TEST_RSE --key naming_convention --value bnl

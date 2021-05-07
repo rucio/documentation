@@ -17,7 +17,7 @@ Please make sure that you install this recent Docker version especially
 if you are on CentOS, i.e. its default version is ancient and does not
 support some features we rely on.
 
-Start the Docker daemon with [sudo systemctl start docker]{.title-ref}.
+Start the Docker daemon with `sudo systemctl start docker`.
 You can confirm that Docker is running properly by executing (might need
 `sudo`:
 
@@ -102,10 +102,10 @@ Alternatively, you can bootstrap the test environment once with the
 modules, test case groups, or even single test cases, for example:
 
 ```bash
-$ tools/run_tests_docker.sh -i
-$ pytest -v --full-trace lib/rucio/tests/test_replica.py
-$ pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore
-$ pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
+tools/run_tests_docker.sh -i
+pytest -v --full-trace lib/rucio/tests/test_replica.py
+pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore
+pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
 ```
 ## Using the environment including storage
 
@@ -133,13 +133,11 @@ starts in state REPLICATING. To demonstrate the transfer capability, the
 daemons can be run in single-execution mode in order:
 
 ```bash
-$ rucio rule-info <rule-id>
-
-$ rucio-conveyor-submitter --run-once
-$ rucio-conveyor-poller --run-once  --older-than 0 
-$ rucio-conveyor-finisher --run-once
-
-$ rucio rule-info <rule-id>
+rucio rule-info <rule-id>
+rucio-conveyor-submitter --run-once 
+rucio-conveyor-poller --run-once --older-than 0 
+rucio-conveyor-finisher --run-once
+rucio rule-info <rule-id>
 ```
 On the second display of the rule, its state has cleared to OK.
 
@@ -182,7 +180,7 @@ ssh -L 5601:127.0.0.1:5601 <hostname>
 
 Additionally, there is also a Grafana server running with one simple
 dashboard. You can access it at `<http://localhost:3000>`. The default
-credentials are \"admin/admin\". Also ActiveMQ web console can be
+credentials are *"admin admin"*. Also ActiveMQ web console can be
 accessed at `<http://localhost:8161>`.
 
 If you would like to continously create some transfers and events there
@@ -216,8 +214,8 @@ Rucio server with a shortcut to tail the logfiles
 (`logshow`), and one terminal to actually run interactive
 commands:
 
-From your host, get a separate Terminal 1 (the Rucio \"server log
-show\"):
+From your host, get a separate Terminal 1 (the Rucio *"server log
+show"*):
 
 ```bash
 docker exec -it dev_rucio_1 /bin/bash
@@ -292,10 +290,10 @@ cd ../containers/dev
 Change anything you need, e.g. the code branch cloned to your docker
 container:
 ```bash
-# from
-RUN git clone https://github.com/rucio/rucio.git /tmp/rucio
-# to e.g.:
-RUN git clone --single-branch --branch next https://github.com/rucio/rucio.git /tmp/rucio
+# from RUN
+git clone https://github.com/rucio/rucio.git /tmp/rucio
+# to e.g. RUN:
+git clone --single-branch --branch next https://github.com/rucio/rucio.git /tmp/rucio
 #build your docker
 sudo docker build -t rucio/rucio-dev
 ```
@@ -318,35 +316,36 @@ tools/run_tests_docker.sh -ir
 Some files are created. Let\'s add them to a new dataset:
 
 ```bash
-$ rucio add-dataset test:mynewdataset
-$ rucio attach test:mynewdataset test:file1 test:file2 test:file3 test:file4
+rucio add-dataset test:mynewdataset
+rucio attach test:mynewdataset test:file1 test:file2 test:file3 test:file4
 ```
 If you run the command below, the files are not in the RSE XRD3, but
 only in XRD1 and 2.:
 
-    $ **rucio list-file-replicas test:mynewdataset**
-    +-------+-------+-----------+----------+------------------------------------------------+
-    | SCOPE | NAME  | FILESIZE  | ADLER32  | RSE: REPLICA                                   |
-    |-------|-------|-----------|----------|------------------------------------------------|
-    | test  | file1 | 10.486 MB | 141a641e | XRD1: root://xrd1:1094//rucio/test/80/25/file1 |
-    | test  | file2 | 10.486 MB | fdfa7eea | XRD1: root://xrd1:1094//rucio/test/f3/14/file2 |
-    | test  | file3 | 10.486 MB | c669167d | XRD2: root://xrd2:1095//rucio/test/a9/23/file3 |
-    | test  | file4 | 10.486 MB | 65786e49 | XRD2: root://xrd2:1095//rucio/test/2b/c2/file4 |
-    +-------+-------+-----------+----------+------------------------------------------------+
-
+```bash
+rucio list-file-replicas test:mynewdataset
++-------+-------+-----------+----------+------------------------------------------------+
+| SCOPE | NAME  | FILESIZE  | ADLER32  | RSE: REPLICA                                   |
+|-------|-------|-----------|----------|------------------------------------------------|
+| test  | file1 | 10.486 MB | 141a641e | XRD1: root://xrd1:1094//rucio/test/80/25/file1 |
+| test  | file2 | 10.486 MB | fdfa7eea | XRD1: root://xrd1:1094//rucio/test/f3/14/file2 |
+| test  | file3 | 10.486 MB | c669167d | XRD2: root://xrd2:1095//rucio/test/a9/23/file3 |
+| test  | file4 | 10.486 MB | 65786e49 | XRD2: root://xrd2:1095//rucio/test/2b/c2/file4 |
++-------+-------+-----------+----------+------------------------------------------------+
+```
 So let\'s add a new rule on our new dataset to oblige Rucio to create
 replicas also on XRD3:
 
 ```bash
-rucio add-rule test:mynewdataset 1 XRD3**
-1aadd685d891400dba050ad43e71fea9**
+rucio add-rule test:mynewdataset 1 XRD3
+1aadd685d891400dba050ad43e71fea9
 ```
 Now we can check the status of the rule. We will see there are 4 files
 in `Replicating` state:
 
 ```bash
-rucio rule-info 1aadd685d891400dba050ad43e71fea9|grep Locks**
-Locks OK/REPLICATING/STUCK: 0/4/0**
+rucio rule-info 1aadd685d891400dba050ad43e71fea9|grep Locks
+Locks OK/REPLICATING/STUCK: 0/4/0
 ```
 Now we can run the daemons. First the rule evaluation daemon
 (judge-evaluator) will pick up our rule. Then the transfer submitter
@@ -357,10 +356,10 @@ Finally, the transfer sign-off daemon (conveyor-finisher) updates the
 internal state of the Rucio catalogue to reflect the changes.:
 
 ```bash
-$ rucio-judge-evaluator --run-once**
-$ rucio-conveyor-submitter --run-once**
-$ rucio-conveyor-poller --run-once**
-$ rucio-conveyor-finisher --run-once**
+rucio-judge-evaluator --run-once
+rucio-conveyor-submitter --run-once
+rucio-conveyor-poller --run-once
+rucio-conveyor-finisher --run-once
 ```
 If we see the state of the rule now, we see the locks are OK:
 
@@ -371,16 +370,18 @@ Locks OK/REPLICATING/STUCK: 4/0/0**
 And if we look at the replicas of the dataset, we see the there are
 replicas of the files also in XRD3:
 
-    $**rucio list-file-replicas test:mynewdataset**
-    +---------+--------+------------+-----------+------------------------------------------------+
-    | SCOPE   | NAME   | FILESIZE   | ADLER32   | RSE: REPLICA                                   | 
-    |---------+--------+------------+-----------+------------------------------------------------|
-    | test    | file1  | 10.486 MB  | 141a641e  | XRD3: root://xrd3:1096//rucio/test/80/25/file1 |
-    | test    | file1  | 10.486 MB  | 141a641e  | XRD1: root://xrd1:1094//rucio/test/80/25/file1 |
-    | test    | file2  | 10.486 MB  | fdfa7eea  | XRD3: root://xrd3:1096//rucio/test/f3/14/file2 |
-    | test    | file2  | 10.486 MB  | fdfa7eea  | XRD1: root://xrd1:1094//rucio/test/f3/14/file2 |
-    | test    | file3  | 10.486 MB  | c669167d  | XRD2: root://xrd2:1095//rucio/test/a9/23/file3 |
-    | test    | file3  | 10.486 MB  | c669167d  | XRD3: root://xrd3:1096//rucio/test/a9/23/file3 |
-    | test    | file4  | 10.486 MB  | 65786e49  | XRD2: root://xrd2:1095//rucio/test/2b/c2/file4 |
-    | test    | file4  | 10.486 MB  | 65786e49  | XRD3: root://xrd3:1096//rucio/test/2b/c2/file4 |
-    +---------+--------+------------+-----------+------------------------------------------------+
+```bash
+rucio list-file-replicas test:mynewdataset
++---------+--------+------------+-----------+------------------------------------------------+
+| SCOPE   | NAME   | FILESIZE   | ADLER32   | RSE: REPLICA                                   | 
+|---------+--------+------------+-----------+------------------------------------------------|
+| test    | file1  | 10.486 MB  | 141a641e  | XRD3: root://xrd3:1096//rucio/test/80/25/file1 |
+| test    | file1  | 10.486 MB  | 141a641e  | XRD1: root://xrd1:1094//rucio/test/80/25/file1 |
+| test    | file2  | 10.486 MB  | fdfa7eea  | XRD3: root://xrd3:1096//rucio/test/f3/14/file2 |
+| test    | file2  | 10.486 MB  | fdfa7eea  | XRD1: root://xrd1:1094//rucio/test/f3/14/file2 |
+| test    | file3  | 10.486 MB  | c669167d  | XRD2: root://xrd2:1095//rucio/test/a9/23/file3 |
+| test    | file3  | 10.486 MB  | c669167d  | XRD3: root://xrd3:1096//rucio/test/a9/23/file3 |
+| test    | file4  | 10.486 MB  | 65786e49  | XRD2: root://xrd2:1095//rucio/test/2b/c2/file4 |
+| test    | file4  | 10.486 MB  | 65786e49  | XRD3: root://xrd3:1096//rucio/test/2b/c2/file4 |
++---------+--------+------------+-----------+------------------------------------------------+
+```

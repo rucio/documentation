@@ -2,10 +2,9 @@
   --ifm-color-primary-lightest: #ecfaec;
   --ifm-color-primary-lighter: #dce9dc;
   --ifm-color-primary-light: #c3cfc4;
-  /*--ifm-color-primary: #2C312E;*/
+  --ifm-color-primary: #04AADE;
   --ifm-color-primary-dark: #282C29;
   --ifm-color-primary-darker: #252A27;
   --ifm-color-primary-darkest: #1F2220;
-  --ifm-link-decoration: underline;
   --ifm-link-hover-decoration: none;
 }
