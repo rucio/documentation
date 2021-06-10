@@ -58,6 +58,21 @@ In addition to creating VOs, the description and email for a VO can be altered u
 associate a new identity with it using `recover_vo_root_identity`. Finally, a list of current VOs and their descriptions is accessible via `list_vos`.
 
 
+##Long VO Name Mapping
+
+The rucio database stores all VO references as a single three-character tag for performance reasons. It's possible to create aliases for these tag to allow users/clients to
+specify long VO names when getting a token (and modifying VOs) and have these converted to the internal tag automatically. Long VO names should only use the basic DNS name
+character set of alphanumber charaters, hyphen and dot (a-zA-Z0-9-.). The alias mappings are stored in the vo-map section of the configs database table and can be edited via
+the usual methods for modifying this config. The option name is the long VO name and the value is the short name; for example these can be added using the CLI:
+
+```bash
+rucio-admin config set --section vo-map --option my.long.vo --value mlv
+rucio-admin config set --section vo-map --option another.vo --value ant
+```
+
+You may specify more than one alias for a VO if required.
+
+
 ##Converting Existing Instances
 
 As opposed to starting a new M-VO instance from scratch, it may be desirable to
