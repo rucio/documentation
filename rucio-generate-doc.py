@@ -117,6 +117,11 @@ def main():
     )
     image_list = json.loads(build_out.stdout)
     assert len(image_list) == 1, "should have returned exactly one image"
+
+    # remove bin, if exists
+    if os.path.exists("docs/bin/"):
+        shutil.rmtree("docs/bin/")
+
     docker.run(
         "--volume",
         f"{output_path}:/opt/rucio/docs:Z",
