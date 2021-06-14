@@ -46,9 +46,11 @@ functionality for a particular action, or so that new actions added to
 Rucio will work without your policy package having to be updated. This
 fallback can be implemented with code similar to the following:
 
-    import rucio.core.permission.generic
-    if action not in perm:
-        return rucio.core.permission.generic.has_permission(issuer, action, kwargs)
+```python
+import rucio.core.permission.generic
+if action not in perm:
+    return rucio.core.permission.generic.has_permission(issuer, action, kwargs)
+```
 
 `__init__.py` should include a
 `SUPPORTED_VERSION` field indicating the version of Rucio
@@ -56,14 +58,18 @@ that your package was developed against. This may be checked by Rucio in
 the event that the policy package interface changes in the future.
 Example:
 
-    SUPPORTED_VERSION = "1.20.7"
+```python
+SUPPORTED_VERSION = "1.20.7"
+```
 
 It can also contain an optional function called `get_surl_algorithms` that
 returns a dictionary of custom surl construction algorithms implemented
 within the package:
 
-    def get_surl_algorithms():
-        return { 'voname_special': construct_surl_special }
+```python
+def get_surl_algorithms():
+    return { 'voname_special': construct_surl_special }
+```
 
 where `construct_surl_special` is the function within the policy package
 that implements the algorithm.
@@ -71,8 +77,10 @@ that implements the algorithm.
 Another optional function called `get_lfn2pfn_algorithms` does the same
 for lfn to pfn translation algorithms:
 
-    def get_lfn2pfn_algorithms():
-        return { 'voname_special': lfn2pfn_special }
+```python
+def get_lfn2pfn_algorithms():
+    return { 'voname_special': lfn2pfn_special }
+```
 
 In both cases the name used to register the function must be prefixed
 with the name of the virtual organisation that owns the policy package,
