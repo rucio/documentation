@@ -45,19 +45,20 @@ the generic permission checks if your experiment does not need specific
 functionality for a particular action, or so that new actions added to
 Rucio will work without your policy package having to be updated. This
 fallback can be implemented with code similar to the following:
+```py
+import rucio.core.permission.generic
+if action not in perm:
+    return rucio.core.permission.generic.has_permission(issuer, action, kwargs)
+```
 
-    import rucio.core.permission.generic
-    if action not in perm:
-        return rucio.core.permission.generic.has_permission(issuer, action, kwargs)
-
-init.py should include a
+`init.py` should include a
 SUPPORTED_VERSION field indicating the version of Rucio
 that your package was developed against. This may be checked by Rucio in
 the event that the policy package interface changes in the future.
 Example:
-
-    SUPPORTED_VERSION = "1.20.7"
-
+```py
+SUPPORTED_VERSION = "1.20.7"
+```
 Custom surl construction algorithms can be registered in
 `init.py`:
 
@@ -65,10 +66,10 @@ Custom surl construction algorithms can be registered in
     register_surl_algorithm(construct_surl_special, 'voname_special')
 
 So can custom lfn to pfn algorithms:
-
-    from rucio.rse.protocols.protocol import RSEDeterministicTranslation
-    RSEDeterministicTranslation.register(lfn2pfn_special, 'voname_special')
-
+```py
+from rucio.rse.protocols.protocol import RSEDeterministicTranslation
+RSEDeterministicTranslation.register(lfn2pfn_special, 'voname_special')
+```
 In both cases the name used to register the function must be prefixed
 with the name of the virtual organisation that owns the policy package,
 to avoid naming conflicts on multi-VO Rucio installations.

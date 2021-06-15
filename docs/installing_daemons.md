@@ -65,8 +65,8 @@ docker run --name=rucio-judge-cleaner -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg
 ## Environment Variables
 
 As shown in the examples above the rucio-daemon image can be configured
-using environment variables that are passed with [docker
-run]{.title-ref}. Below is a list of all available variables and their
+using environment variables that are passed with `docker run`. 
+Below is a list of all available variables and their
 behaviour:
 
 ### RUCIO_DAEMON
@@ -78,7 +78,7 @@ e.g., `hermes`, `kronos`,
 ### RUCIO_DAEMON_ARGS
 
 Any additional command line parameter can be specified here, e.g.,
-`\--run-once` This field is optional.
+`--run-once` This field is optional.
 
 ### RUCIO_ENABLE_LOGFILE
 

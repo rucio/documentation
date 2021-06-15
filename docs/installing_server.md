@@ -4,14 +4,12 @@ title: Installing Rucio Server
 sidebar_label: Installing Rucio Server
 ---
 
-Prerequisites
-=============
+## Prerequisites
 
 The Rucio server runs on Python 2.7, 3.6 and 3.7 on any Unix-like
 platform.
 
-Install via pip
-===============
+## Install via pip
 
 Heads up: We recommend to use the docker-based install (see next
 section) as it will configure many things for you automatically. Only
@@ -29,8 +27,7 @@ several Python dependencies. These are all listed in the file
 and will be pulled in as necessary.
 
 
-Install via Docker
-==================
+## Install via Docker
 
 A simple server without SSL can be started like this:
 
@@ -134,7 +131,7 @@ be written to `access_log` and `error_log` under
 
 ### RUCIO_LOG_LEVEL
 
-The default log level is [info]{.title-ref}. You can change it using
+The default log level is `info`. You can change it using
 this variable.
 
 ### RUCIO_LOG_FORMAT
@@ -201,9 +198,8 @@ need to [__register two IAM Rucio clients__](https://indigo-iam.github.io/docs/v
 linked to this account. Once it is done, please save the relevant
 client_id, client_secret, and registration access token (RAT) some place
 safe, you will be needing them. In both clients, one needs to setup the
-redirect_uris to include both
-**https://\<your_server_name\>/auth/oidc_token** and
-**https://\<your_server_name\>/auth/oidc_code** paths. We will
+redirect_uris to include both **https://<your_server_name\>/auth/oidc_token** and
+**https://<your_server_name\>/auth/oidc_code** paths. We will
 use one client as Rucio Auth IAM client (i.e. client for the
 authentication and authorization on the Rucio server). This client needs
 to have __token exchange__, __token refresh__, and
@@ -213,18 +209,18 @@ accessible to IAM users. In addition, you will need to request your IAM
 admin to allow your client returning refresh tokens with lifetime being
 visible in their unverified header. In addition Rucio assumes refresh
 tokens to expire immediatelly after their first use, which has to be
-also confirmed by your IAM admin. Second client, let\'s call it Rucio
+also confirmed by your IAM admin. Second client, let's call it Rucio
 Admin IAM client, will be used by a Rucio probe script
 __check_voms__ in order to synchronize existing Rucio accounts
-with Rucio identities. Rucio will also use this client\'s credentials in
+with Rucio identities. Rucio will also use this client's credentials in
 order to request token for itself. The IAM administrator must include
-the __scim:read__ scope and allow __client
-credentials__ grant type for the Rucio Admin IAM client in
+the __scim:read__ scope and allow __client credentials__ grant type for 
+the Rucio Admin IAM client in
 order to grant you rights to pre-provision IAM users for Rucio. Examples
 of the configuration of these two clients follow below:
 
 Example of the Rucio Auth IAM client configuration:
-
+```json
     {
       "client_id": "AbcCDe123...",
       "registration_access_token": "AbcCDe123...",
@@ -278,9 +274,9 @@ Example of the Rucio Auth IAM client configuration:
       "client_secret_expires_at": 0,
       "client_id_issued_at": 1574700620
     }
-
+```
 Example of the Rucio Admin IAM client configuration:
-
+```json
     {
       "client_id": "AbcDe123...",
       "registration_access_token": "AbcDe123...",
@@ -328,12 +324,12 @@ Example of the Rucio Admin IAM client configuration:
       "client_secret_expires_at": 0,
       "client_id_issued_at": 1574700703
     }
-
+```
 To make the Rucio server aware of the two clients above, one has to
 exchange the empty dictionary in __etc/idpsecrets.json__ file
 with one containing the relevant information. Example of such dictionary
 (for multiple IdPs) follows:
-
+```json
     {
      "<IdP nickname>": {
       "redirect_uris": [
@@ -367,29 +363,29 @@ with one containing the relevant information. Example of such dictionary
      },
      "xdc": { ... },
     }
-
+```
 After this is done, please make sure your __rucio.cfg__ file
 contains the following section:
-
-    [oidc]
-    idpsecrets = /path/to/your/idpsecrets.json
-    admin_issuer = <IdP_nickname>
-    expected_audience = '<rucio>'
-    expected_scope = 'openid profile'
-
-Parameters \'idpsecrets\' and \'admin_issuer\' have to be present.
-\<IdP_nickname\> stands for your preferred IdP (e.g. \"wlcg\"). The IdP
+```
+[oidc]
+idpsecrets = /path/to/your/idpsecrets.json
+admin_issuer = <IdP_nickname>
+expected_audience = '<rucio>'
+expected_scope = 'openid profile'
+```
+Parameters __'idpsecrets'__ and __'admin_issuer'__ have to be present.
+__<IdP_nickname>__ stands for your preferred IdP (e.g. __"wlcg"__). The IdP
 specified under admin_issuer will be contacted to get information about
-Rucio Users (SCIM) and to request tokens for the Rucio \'root\' account.
+Rucio Users (SCIM) and to request tokens for the Rucio __'root'__ account.
 The expected_scope and expected_audence parameters are optional and if
-not filled, the Rucio server will set them to \'openid profile\' and
-\'rucio\' respectively. The expected scopes and audiences have to be
+not filled, the Rucio server will set them to __'openid profile'__ and
+__'rucio'__ respectively. The expected scopes and audiences have to be
 configured correspondinly on the side of your registered clienst at your
 IdP (usually you can control accepted scopes and audiences for your
 clients via an IdP web interface).
 
 To finalise the process, one should assign the OIDC identities to the
-relevant Rucio admin_account_name (e.g. \'root\', \'ddmadmin\'). This
+relevant Rucio admin_account_name (e.g. __'root'__, __'ddmadmin'__). This
 identity ID is composed of the IAM account sub claim and issuer url such
 as demonstrated below:
 
@@ -432,13 +428,13 @@ server!
 Rucio servers may run also conveyor daemon, which is responsible for
 submission of the transfers created in connection with existing Rucio
 rule. In case both, the source and destination RSEs have attribute
-{\'oidc_support\': True} assigned, the Rucio account which created such
+__{'oidc_support': True}__ assigned, the Rucio account which created such
 a rule will be used to request a JWT token for OAuth2 authentication
-with FTS. The issuer of user\'s token will be used to get a valid OIDC
+with FTS. The issuer of user's token will be used to get a valid OIDC
 token with the requested audience and scope for FTS transfer. This new
 token will have either the same identity of the user (received after
-user\'s token exchange with IdP) or it will have the identity of the
-Rucio Admin IAM client (client_id will be in the \'sub\' claim)
+user's token exchange with IdP) or it will have the identity of the
+Rucio Admin IAM client (client_id will be in the __'sub'__ claim)
 (received after client credentials token flow of the admin). If in any
 of the two formerly mentioned cases, valid token is present in Rucio DB
 beforehand, it will be used in the header of the transfer request to FTS
@@ -451,13 +447,13 @@ rucio.cfg file:
   request_oidc_scope = 'fts:submit-transfer'
   request_oidc_audience = 'fts'
 ```
-If \'allow_user_oidc_tokens\' is set to True the system will attempt to
+If __'allow_user_oidc_tokens'__ is set to True the system will attempt to
 exchange a valid OIDC token (if any) of the account that owns the
-rule/transfer for a token that has the \'request_oidc_scope\' and
-\'request_oidc_audience\'. If set to False, the system will use the IdP
+rule/transfer for a token that has the __'request_oidc_scope'__ and
+__'request_oidc_audience'__. If set to False, the system will use the IdP
 issuer of the account that owns the transfer, will get a Rucio admin
-client token with the \'request_oidc_scope\' and
-\'request_oidc_audience\' and authenticate against FTS with the Rucio
+client token with the __'request_oidc_scope'__ and
+__'request_oidc_audience'__ and authenticate against FTS with the Rucio
 admin client credentials on behalf of the user. The allowed scopes and
 audiences have to be again also configured correspondingly for your
 clients at the IdP side (usually through IdP web interface).

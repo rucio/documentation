@@ -64,6 +64,11 @@ module.exports={
           "position": "left"
         }
       ]
+    
+    },
+    "prism":{
+      "theme": require('prism-react-renderer/themes/vsLight'),
+      "darkTheme": require('prism-react-renderer/themes/vsDark'),
     },
     "footer": {
       "links": [],
