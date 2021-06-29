@@ -27,7 +27,8 @@
     "Rucio Developer Documentation": [
       "database",
       "configure-rucio-globus",
-      "contributing"
+      "contributing",
+      "component_leads"
     ],
     "Miscellaneous": [
       "policy-packages",
