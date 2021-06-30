@@ -21,7 +21,7 @@ sidebar_label: Contributing Guide
 
 * If you have questions, you can reach the core development team on our [__Slack__](https://rucio.slack.com/) channel, or send an email to our development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
 
-A contribution can be either be a **patch**, **feature**, or **hotfix**:
+A contribution can be either be a **patch** or **feature**:
 
     
     * **Patches** include bugfixes and minor changes to the code and are included in patch releases usually made on a bi-weekly schedule.
@@ -29,8 +29,6 @@ A contribution can be either be a **patch**, **feature**, or **hotfix**:
 
     * **Features** include major developments or potentially disruptive changes and are included in feature releases made multiple times a year.
 
-
-    * **Hotfix** are specific patch releases happening due to the necessity of important fixes.
 
 The [__repository__](https://github.com/rucio/rucio/)  consists of different branches:
 
@@ -40,8 +38,6 @@ The [__repository__](https://github.com/rucio/rucio/)  consists of different bra
 
     * the **release-…** branches include the patch/minor development of the releases.
 
-
-    * the **hotfix-…** branches include the patches for hotfix releases.
 
 On release day both master and the related release branch are essentially the same. Release branches only exist for the currently maintained release versions. Hotfix branches are created on demand. Please communicate to the Rucio maintainers, if you wish to hotfix a previous release.
 
@@ -85,14 +81,11 @@ $ ./tools/configure_git.sh
 * Feature branches must be named **feature-[issue number]-[short description]**
 
 
-* Hotfix branches must be named **hotfix-[issue number]-[short description]**
-
 If you create these branches by hand please check the spelling because otherwise the test automation might misidentify your branch. There are utility scripts to fetch master and create these branches for you:
 
 ```bash
 $ ./tools/create-patch-branch <unique issue number> '<short_change_message>'
 $ ./tools/create-feature-branch <unique issue number> '<short_change_message>'
-$ ./tools/create-hotfix-branch <release tag/release branch> <unique issue number> '<short_change_message>'
 ```
 
 **Step 3**: Commit your change. The commit command must include a specific message format:
