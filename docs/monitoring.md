@@ -96,7 +96,7 @@ transfertool.fts3myproxy.[externalhost].submission.success/failure (counter)
 3) Judge 
 
 ```
-rule.judge.excpetions.*
+rule.judge.exceptions.*
 ```
 
 4) Transmogrified
