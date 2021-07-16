@@ -24,7 +24,7 @@ Rucio uses [Alembic](http://alembic.zzzcomputing.com/en/latest/) as a database m
 
 `alembic upgrade head --sql`
 
-You can edit & apply the SQL directly on your database. We do not advise running automatic upgrades/downgrades with alembic.
+You can edit and then apply the SQL directly on your database. We do not advise running automatic upgrades/downgrades with alembic.
 
 Notabene, schema upgrades are reserved for feature releases and will not happen with patch releases.
 
