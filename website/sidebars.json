@@ -22,7 +22,8 @@
     "Rucio Operator Documentation": [
       "installing-rucio-server",
       "installing-rucio-daemons",
-      "monitoring"
+      "monitoring",
+      "configuration-parameters"
     ],
     "Rucio Developer Documentation": [
       "database",

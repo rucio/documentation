@@ -57,6 +57,7 @@ before you ensure you've read through the pre-requisites section under each of t
 - [Installing Rucio Server](installing-rucio-server)
 - [Installing Rucio Daemons](installing-rucio-daemons)
 - [Monitoring](monitoring.md)
+- [Configuration parameters](configuration-parameters)
 
 ## [Rucio Developer Documentation](developer)
 
