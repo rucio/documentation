@@ -11,12 +11,12 @@ representing the numbers of replicas wanted and a Rucio Storage Element
 Expression that allows to select a set of probable RSEs to store the
 replicas.
 
-The [__RSE Expression__](rse_expressions.html) gets resolved into a set of
+The [__RSE Expression__](rse_expressions.md) gets resolved into a set of
 RSEs, which are possible destination RSEs for the number of replicas the
 user wants to create.
 
 Is possible to find detailed information and examples about how to write
-RSE Expressions [__here__](rse_expressions.html).
+RSE Expressions [__here__](rse_expressions.md).
 
 ## Example 1
 

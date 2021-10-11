@@ -5,7 +5,7 @@ title: Replica management with replication rules
 Replica management is based on replication rules defined on data
 identifiers (files, datasets, containers). A replication rule is owned
 by an account and defines the minimum number of replicas to be available
-on a list of RSEs, denoted by an [RSE Expression](rse_expressions.html).
+on a list of RSEs, denoted by an [RSE Expression](rse_expressions.md).
 Accounts are allowed to set multiple rules[^1]. Rules may optionally
 have a limited lifetime and can be added, removed or modified at any
 time.
@@ -37,7 +37,7 @@ deletion. The deletion service will also immediately delete all replicas
 of any file which is declared obsolete.
 
 Some examples of replication rules are listed
-[here](replication_rules_examples.html).
+[here](replication_rules_examples.md).
 
 ## Footnotes
 

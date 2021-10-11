@@ -13,7 +13,7 @@ non-pledged space), and geographical zone.
 Rucio Storage Elements can be grouped in many logical ways, e.g. the UK
 RSEs, the Tier-1 RSEs, or the \'good\' RSEs. One can reference groups of
 RSEs by metadata attributes or by explicit enumeration of RSEs. See the
-section about [RSE Expressions](rse_expressions.html) for more
+section about [RSE Expressions](rse_expressions.md) for more
 information.
 
 RSE tags are expanded at transfer time to enumerate target sites.
@@ -33,5 +33,5 @@ about replica location on volatile RSEs can have a lifetime. Replicas
 registered on volatile RSEs are excluded from the Rucio replica
 management system (replication rules, quota, replication locks)
 described in the section [Replica
-management](overview_Replica_management.html). Explicit transfer
+management](overview_Replica_management.md). Explicit transfer
 requests can be made to Rucio in order to populate the cache.
