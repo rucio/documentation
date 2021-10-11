@@ -90,7 +90,7 @@ it can be done using the `RUCIO_ENABLE_LOGS` variable. The
 storage folder of the logs can be used as a volume:
 
 ```bash
-docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/httpd -p 80:80 -e RUCIO_ENABLE_LOGFILE=True -d rucio/rucio-server
+docker run --name=rucio-server -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg -v /tmp/logs:/var/log/httpd -p 80:80 -e RUCIO_ENABLE_LOGS=True -d rucio/rucio-server
 ```
 
 ## Environment Variables
@@ -125,7 +125,7 @@ of aliases you can set this variable to `True`. The web
 server then expects an alias file under
 `/opt/rucio/etc/aliases.conf`
 
-### RUCIO_ENABLE_LOGFILE
+### RUCIO_ENABLE_LOGS
 
 By default, the log output of the web server is written to stdout and
 stderr. If you set this variable to `True` the output will

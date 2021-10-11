@@ -80,7 +80,7 @@ e.g., `hermes`, `kronos`,
 Any additional command line parameter can be specified here, e.g.,
 `\--run-once` This field is optional.
 
-### RUCIO_ENABLE_LOGFILE
+### RUCIO_ENABLE_LOGS
 
 By default, the log output of the daemon is written to stdout and
 stderr. If you set this variable to `True` the output will
