@@ -9,7 +9,8 @@
       "requirements",
       "concepts",
       "releasepolicy",
-      "release-notes"
+      "release-notes",
+      "overview-daemons"
     ],
     "Try Rucio": [
       "Try-rucio",
