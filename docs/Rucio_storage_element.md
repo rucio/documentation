@@ -35,3 +35,15 @@ management system (replication rules, quota, replication locks)
 described in the section [Replica
 management](overview_Replica_management.md). Explicit transfer
 requests can be made to Rucio in order to populate the cache.
+
+
+## Distances between RSEs
+
+When configuring transfers between RSEs, bidirectional distances or rankings must
+be defined for that link. When sorting by these distances in the
+selection of a transfer source, the following criterion are used:
+
+- Higher source_ranking first
+- On equal source_ranking, prefer DISK over TAPE
+- On equal type, prefer lower distance_ranking
+- On equal distance, prefer single hop
