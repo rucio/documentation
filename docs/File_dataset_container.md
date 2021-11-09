@@ -10,8 +10,8 @@ set of files.
 Files can be grouped into datasets (a named set of files) and datasets
 can be grouped into containers (a named set of datasets or, recursively,
 containers). All three types of names refer to data so the term 'data
-identifier' (DID) is used to represent any set of file, dataset or
-container identifier. A data identifier is just the name of a single
+identifier' (DID) is used to represent any set of files, datasets or
+container identifiers. A data identifier is just the name of a single
 file, dataset or container.
 
 ## Data identifiers and scope
