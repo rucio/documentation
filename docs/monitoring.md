@@ -141,7 +141,7 @@ replica.recoverer.exceptions.* (counter)
 daemons.hermes.reconnect.* (counter)
 ```
 
-10) Coneyor
+10) Conveyor
 
 ```
 daemons.conveyor.[submitter].submit_bulk_transfer.per_file, daemons.conveyor.[submitter].submit_bulk_transfer.files (timer)
