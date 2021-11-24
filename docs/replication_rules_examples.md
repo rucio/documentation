@@ -34,7 +34,7 @@ To see all the possible targets, **rucio list-rses** command can be
 used:
 
 ```bash
-username@host:~$ rucio list-rses --expression 'tier=1'
+username@host:~$ rucio list-rses --rses 'tier=1'
 ```
 
 ## Example 2
