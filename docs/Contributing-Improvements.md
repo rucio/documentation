@@ -20,17 +20,16 @@ documentation for:
 
 Since the documentation is directly derived from the source, any
 change to the documentation needs to be made in the Source code.
-Please submit an issue to the [``rucio\rucio``]((https://github.com/rucio/rucio/)) repository with your
-suggestions for contribution. Once the changes have been approved &
-pushed into the main branch, you will need to submit a Pull Request
-to the sphinx branch of the [``rucio\documentation``] repository so
-that the changes can be picked up by the respective files.
+Please submit an issue or pull request to the [``rucio/rucio``](https://github.com/rucio/rucio/)
+repository with your suggestions for contribution.
+Once the changes have been approved & pushed into the main branch,
+the changes will be available at <https://rucio.cern.ch/documentation> on the next day.
 
 ## Markdown documentation
 
 The source for this section lives in the ``docs`` folder within the 
-master branch of the [``rucio/documentation``](https://github.com/rucio/documentation) GitHub repository. Improvements 
-may be suggested by submitting an issue to the **master** branch of 
-the repository. Once the changes are approved, GitHub actions will 
-trigger the build process for merging your changes with the master 
-branch & publishing on to GitHub pages.
+main branch of the [``rucio/documentation``](https://github.com/rucio/documentation)
+GitHub repository. Improvements may be suggested by submitting
+an issue or pull request to the **main** branch of  the repository.
+Once the changes are approved, GitHub Actions will trigger
+the build process and publish on to GitHub pages.
