@@ -22,43 +22,53 @@ main change is the addition of two options in the `rucio.cfg` file, one to flag 
   ...
   vo = abc
 ```
-`multi_vo` should also be set in the other config files for the server, daemons etc. However, `vo` should not be set in these cases as these parts of Rucio are not associated
+
+## Changes to the rucio.cfg on the Server and Daemons
+Similar settings need to be changed on the server and daemon rucio.cfg files as well as on the client end.
+For the server `multi_vo` should also be set in the config file.
+For the daemons another section is needed to be added, this is to map each VO to its own proxy certificate. Rucio uses this information when submitting and polling transfers to use the correct certificates.
+'''cfg
+  [vo_certs]
+  ...
+  <3 char vo name> = <path/to/vo/proxy>
+'''
+However, `vo` should not be set for the server or the daemons as these parts of Rucio are not associated
 with a single VO. If `multi_vo` is not set, or set to False, then Rucio will operate normally.
 
 
-##Role of the super_root
+## Role of the super_root
 
 While root accounts still retain their administrative role within a VO, for example adding RSEs and accounts, functions relating to the creation and management of VOs is handled
 by the super_root account, a concept introduced with M-VO Rucio. It is worth noting that the super_root account **cannot** be used to perform individual VO administration; the
 roles of super_root and root are distinct.
 
 
-##Access of super_root Functions
+## Access of super_root Functions
 
 As the super_root functions aren't intended for use by normal users of admins, they do not have an implementation in the client or CLI. They can be accessed from the core or the
 :ref:`vo-rest-api`, however the latter will require the VO endpoint to be added to the aliases file used when setting up the server as it is disabled by default.
 
 
-##Starting a M-VO Instance
+## Starting a M-VO Instance
 
 When bootstrapping the database as part of the Rucio installation, if M-VO is enabled in `rucio.cfg` then the super_root account is created automatically. The default VO "def"
 is also created, and the super_root acccount is associated with it. The identity used to access this account can be managed in the usual way.
 
 
-##Creating VOs
+## Creating VOs
 
 When creating a new VO with the `add_vo` function you need to specify the three digit identifier for the new VO, which can contain letters and numbers. This must be unique for
 the instance. A more complete description can also be optionally included, along with an email to use for the root of this new VO. In addition to creating the new VO, a root
 account is also created for this VO, and has all identities associated with super_root added to it. The identities for the new root can then be configured as usual.
 
 
-##Managing VOs
+## Managing VOs
 
 In addition to creating VOs, the description and email for a VO can be altered using `update_vo`. If the root user of a VO loses access to their account, the super_root can
 associate a new identity with it using `recover_vo_root_identity`. Finally, a list of current VOs and their descriptions is accessible via `list_vos`.
 
 
-##Long VO Name Mapping
+## Long VO Name Mapping
 
 The rucio database stores all VO references as a single three-character tag for performance reasons. It's possible to create aliases for these tag to allow users/clients to
 specify long VO names when getting a token (and modifying VOs) and have these converted to the internal tag automatically. Long VO names should only use the basic DNS name
@@ -73,7 +83,7 @@ rucio-admin config set --section vo-map --option another.vo --value ant
 You may specify more than one alias for a VO if required.
 
 
-##Converting Existing Instances
+## Converting Existing Instances
 
 As opposed to starting a new M-VO instance from scratch, it may be desirable to
 convert the database for an existing (S-VO) Rucio instance into a M-VO instance
@@ -90,7 +100,7 @@ one if previously in M-VO mode). In order to change these, direct operations on
 the database are required. These commands are generated using SQLAlchemy, and
 can either be run directly on the database or printed out and run manually.
 
-##Practicalities
+## Practicalities
 
 Before attempting to convert existing data, it is recommended that a backup of
 the database is taken in case an issue arises. Furthermore, of the databases
@@ -105,7 +115,7 @@ to be updated in order to use the database. While the history will be
 inaccessible from the new VO, it will still exist in the database and could be
 accessed using the `super_root` account if needed.
 
-##S-VO to M-VO
+## S-VO to M-VO
 
 Before starting, ensure that `multi_vo` is set to `True` in the config file.
 The SQL commands needed to convert the database involve dropping foreign key
@@ -145,7 +155,7 @@ those tables are omitted:
   $ tools/convert_database_vo.py --skip_history convert_to_mvo new "New VO for existing data" rucio@email.com
 ```
 
-##M-VO to S-VO
+## M-VO to S-VO
 
 Before starting, ensure that `multi_vo` is set to `True` in the config file
 (this option can be removed after completing the conversion). The first stage
