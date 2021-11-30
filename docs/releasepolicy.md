@@ -15,7 +15,7 @@ A release line is only maintained with patch releases until the start of the nex
 | 1.30            |                                | _2022_         | _2023_               |
 | 1.29 LTS        |                                | _2022_         | _2024_               |
 | 1.28            |                                | _2022_         | _2022_               |
-| 1.27            | Batdonkey v Superdonkey        | _2021-11_      | _2022-02_            |
+| **1.27**        | **Batdonkey v Superdonkey**    | **2021-11**    | _2022-02_ ☑️         |
 | **1.26 LTS**    | **Donkey League of La Mancha** | **2021-07**    | _at least 2023-07_ ☑️|
 | 1.25            | Rat-Donkey                     | 2021-02        | 2021-07              |
 | 1.24            | Aquadonkey                     | 2020-11        | 2021-02              |
