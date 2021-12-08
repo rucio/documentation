@@ -23,11 +23,11 @@
       "installing-rucio-server",
       "installing-rucio-daemons",
       "monitoring",
-      "configuration-parameters"
+      "configuration-parameters",
+      "configure-rucio-globus"
     ],
     "Rucio Developer Documentation": [
       "database",
-      "configure-rucio-globus",
       "contributing",
       "component_leads"
     ],
