@@ -62,10 +62,22 @@ $ git remote add upstream https://github.com/rucio/rucio.git
 
 ## Git Hooks
 
-Some git hooks (pre-commit, prepare-commit-msg) can be installed by executing the script:
+The `prepare-commit-msg` hook can be installed by executing the script:
 
 ```bash
-$ ./tools/configure_git.sh
+./tools/configure_git.sh
+```
+
+Also, the [`pre-commit` python](https://pre-commit.com/) package is configured
+for this repository. The `pre-commit` hook checks the syntax and format of the
+files before commiting. This saves time in the development process, since minor
+errors are noticed early.
+
+To install the package and activate the hooks for the project:
+
+```bash
+pip install pre-commit
+pre-commit install
 ```
 
 ## Contributing
