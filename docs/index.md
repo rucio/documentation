@@ -16,7 +16,7 @@ domain (e.g., HEP, astronomy, biology).
 
 Below are some resources to help you get you started on your journey. 
 
-## [Before You Get Started](Before-you-get-started)
+## Before You Get Started
 
 What exactly is Rucio? What were the motivations behind developing such a system? Who
 uses it? What powers these systems? Answers to all these questions and more can be

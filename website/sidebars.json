@@ -2,7 +2,6 @@
   "docs": {
     "Getting Started": [
       "index",
-      "Before-you-get-started",
       "What-is-rucio",
       "Main-components-of-rucio",
       "Additional-layers-and-Resources",
