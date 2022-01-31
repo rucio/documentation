@@ -28,7 +28,7 @@ found by browsing through the sub-sections of this topic.
 - [Concepts & Terminology](concepts.md)
 - [Release Policy](releasepolicy.md)
 
-## [Try Rucio!](Try-rucio.md)
+## Try Rucio!
 
 Get your hands dirty by trying to setup your very own demo environment on your local
 laptop/desktop. Make sure you read the pre-requisites section before starting off, though!
@@ -47,7 +47,7 @@ helpful when working with Rucio.
 - [Setting up Rucio Client](setting-up-rucio-client)
 - [Rucio CLI playground](using-rucio-client)
 
-## [Rucio Operator Documentation](operator)
+## Rucio Operator Documentation
 
 This section of the documentation deals with some of the material that an operator or
 administrator of a Rucio environment would require. For example, how to install a server
@@ -59,7 +59,7 @@ before you ensure you've read through the pre-requisites section under each of t
 - [Monitoring](monitoring.md)
 - [Configuration parameters](configuration-parameters)
 
-## [Rucio Developer Documentation](developer)
+## Rucio Developer Documentation
 
 Whether you want to develop with Rucio or contribute to the project, the Developer
 documentation will help you get started. Peruse some common REST API & Client API

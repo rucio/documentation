@@ -11,15 +11,11 @@
       "releasepolicy",
       "release-notes"
     ],
-    "Try Rucio": [
-      "Try-rucio",
-      "setting-up-demo"
-    ],
-    "Using Rucio": [      
+    "Client": [
       "setting-up-rucio-client",
       "using-rucio-client"
     ],
-    "Rucio Operator Documentation": [
+    "Server": [
       "installing-rucio-server",
       "installing-rucio-daemons",
       "monitoring",
@@ -27,7 +23,8 @@
       "configuration-parameters",
       "configure-rucio-globus"
     ],
-    "Rucio Developer Documentation": [
+    "Developer": [
+	"setting-up-demo",
       "contributing",
       "component_leads"
     ],
