@@ -27,11 +27,15 @@ main change is the addition of two options in the `rucio.cfg` file, one to flag 
 Similar settings need to be changed on the server and daemon rucio.cfg files as well as on the client end.
 For the server `multi_vo` should also be set in the config file.
 For the daemons another section is needed to be added, this is to map each VO to its own proxy certificate. Rucio uses this information when submitting and polling transfers to use the correct certificates.
-'''cfg
+
+```cfg
   [vo_certs]
   ...
   <3 char vo name> = <path/to/vo/proxy>
-'''
+```
+
+It is recommended that the proxies are placed in /tmp/x509up_<VO>, and the certificates and keys are placed in /opt/rucio/certs/<VO>/ and /opt/rucio/keys/<VO>/ respectively. 
+
 However, `vo` should not be set for the server or the daemons as these parts of Rucio are not associated
 with a single VO. If `multi_vo` is not set, or set to False, then Rucio will operate normally.
 
