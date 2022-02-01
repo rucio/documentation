@@ -34,7 +34,7 @@ For the daemons another section is needed to be added, this is to map each VO to
   <3 char vo name> = <path/to/vo/proxy>
 ```
 
-It is recommended that the proxies are placed in /tmp/x509up_<VO>, and the certificates and keys are placed in /opt/rucio/certs/<VO>/ and /opt/rucio/keys/<VO>/ respectively. 
+It is recommended that the proxies are placed in /tmp/x509up_<VO\>, and the certificates and keys are placed in /opt/rucio/certs/<VO\>/ and /opt/rucio/keys/<VO\>/ respectively. 
 
 However, `vo` should not be set for the server or the daemons as these parts of Rucio are not associated
 with a single VO. If `multi_vo` is not set, or set to False, then Rucio will operate normally.
