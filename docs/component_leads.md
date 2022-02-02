@@ -4,7 +4,10 @@ title: Component development leads
 sidebar_label: Component leads
 ---
 
-The component lead is responsible for the planning and development of patches and features for the respective component. This does not mean that the component lead is the only person developing the component, but he/she should direct the efforts and be the point of contact in case of problems.
+The component lead is responsible for the planning and development of patches
+and features for the respective component. This does not mean that the component
+lead is the only person developing the component, but he/she should direct the
+efforts and be the point of contact in case of problems.
 
 **Rucio Project Leader**: [Martin Barisits](https://github.com/bari12)
 

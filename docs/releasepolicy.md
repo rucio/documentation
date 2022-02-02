@@ -4,11 +4,24 @@ title: Release Policy
 sidebar_label: Release Policy
 ---
 
-Rucio follows a release policy with **feature** (named) releases. Approximately every 4 months we produce a feature release with a version number like **1.x.0** (with x > 0). A feature release marks the start of a release line. This release line is maintained with bi-weekly patch releases, containing bug fixes or minor enhancements, with version numbers like **1.19.y** (with y > 0). Versions within one release line are always backwards compatible, thus they do not include database schema changes, API modifications, or other backward-compatibility breaking changes.
+Rucio follows a release policy with **feature** (named) releases. Approximately
+every 4 months we produce a feature release with a version number like **1.x.0**
+(with x > 0). A feature release marks the start of a release line. This release
+line is maintained with bi-weekly patch releases, containing bug fixes or minor
+enhancements, with version numbers like **1.19.y** (with y > 0). Versions within
+one release line are always backwards compatible, thus they do not include
+database schema changes, API modifications, or other backward-compatibility
+breaking changes.
 
 ## Support period
 
-A release line is only maintained with patch releases until the start of the next release line, thus approximately 4 months. Typically once a year we will designate a release line a **Long-term Support** (LTS) release line. This release line will be supported with **security** and **critical** patches for approximately two years. It is foreseen to have an overlap of at least 12 months between two LTS release lines, to give communities a comfortable time window to deploy the new LTS release.
+A release line is only maintained with patch releases until the start of the
+next release line, thus approximately 4 months. Typically once a year we will
+designate a release line a **Long-term Support** (LTS) release line. This
+release line will be supported with **security** and **critical** patches for
+approximately two years. It is foreseen to have an overlap of at least 12 months
+between two LTS release lines, to give communities a comfortable time window to
+deploy the new LTS release.
 
 | Version         | Code name                      | Release date   | Supported until      |
 | --------------- | ------------------------------ | -------------- | -------------------- |

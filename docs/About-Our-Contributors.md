@@ -14,7 +14,9 @@ listed in the [__contribution guide for developers__](contributing) and the
 submission.
 
 # Individual contributors to the source code
-------------------------------------------
+
+---
+
 - Mario Lassnig <mario.lassnig@cern.ch>, 2012-2021
 - Vincent Garonne <vgaronne@gmail.com>, 2012-2019
 - Angelos Molfetas <Angelos.Molfetas@cern.ch>, 2012
@@ -65,7 +67,9 @@ submission.
 - Alan Malta Rodrigues <alan.malta@cern.ch>, 2020
 
 # Organisations employing contributors
-------------------------------------
+
+---
+
 - European Organisation for Nuclear Research (Switzerland)
 - University of Oslo (Norway)
 - University of Wisconsin Madison (USA)

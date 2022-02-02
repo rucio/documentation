@@ -12,9 +12,9 @@ time.
 
 An example listing of replication rules is given below:
 
--   prod: 1x replica @ CERN, no lifetime
--   barisits: 1x replica @ US-T2, until 2019-01-01
--   vgaronne: 2x replica @ T1, no lifetime
+- prod: 1x replica @ CERN, no lifetime
+- barisits: 1x replica @ US-T2, until 2019-01-01
+- vgaronne: 2x replica @ T1, no lifetime
 
 A rule engine validates the rules and creates transfer primitives to
 fulfil all rules, e.g. transfer a file from RSE A to RSE B. The rule
