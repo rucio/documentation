@@ -34,12 +34,12 @@ is suffixed with the VO name (for example, `package-vo1` or
 The structure of a policy package is very simple. It contains the
 following:
 
--   a `permission.py` module implementing permission
-    customisations.
--   a `schema.py` module implementing schema customisations.
--   an `__init__.py` file that can optionally return a dictionary of
-    algorithms provided by the package.
--   It should also contain a SUPPORTED_VERSION field.
+- A `permission.py` module implementing permission
+  customisations.
+- A `schema.py` module implementing schema customisations.
+- An `__init__.py` file that can optionally return a dictionary of
+  algorithms provided by the package.
+- It should also contain a SUPPORTED_VERSION field.
 
 The easiest way to create the `permission.py` and
 `schema.py` modules is to modify the generic versions from
@@ -84,10 +84,10 @@ Example:
 def get_algorithms():
     return { 'surl':
              { 'voname_surl': construct_surl_voname },
-	     'lfn2pfn':
-	     { 'voname_lfn2pfn': lfn2pfn_voname },
-	     'scope':
-	     { 'voname_extract_scope': extract_scope_voname } }
+         'lfn2pfn':
+         { 'voname_lfn2pfn': lfn2pfn_voname },
+         'scope':
+         { 'voname_extract_scope': extract_scope_voname } }
 ```
 
 In all cases the names used to register the functions must be prefixed

@@ -36,7 +36,6 @@ described in the section [Replica
 management](Replica_management.md). Explicit transfer
 requests can be made to Rucio in order to populate the cache.
 
-
 ## Distances between RSEs
 
 When configuring transfers between RSEs, bidirectional distances or rankings must

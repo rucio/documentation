@@ -17,84 +17,88 @@ Rucio allows to test RSE Expressions, using the command list-rses.
 The most simple RSE Expression is the one containing the name of a
 particular RSE.
 
-1.  The following expression returns all RSEs:
+1. The following expression returns all RSEs:
 
-```bash
-jbogadog@lxplus0058:~$ rucio list-rses --expression '*'
+  ```bash
+  jbogadog@lxplus0058:~$ rucio list-rses --expression '*'
 
-IFIC-LCG2_LOCALGROUPDISK
-IFAE_PRODDISK
-PIC_SCRATCHDISK
-EELA-UNLP_SCRATCHDISK
-CERN-PROD_TZDISK
-BNL-OSG2_MCTAPE
-BNL-OSG2_DATADISK
-IN2P3-CC_MCTAPE
-CERN-PROD_DERIVED
-CERN-PROD_DATADISK
-EELA-UNLP_DATADISK
-UAM-LCG2_SCRATCHDISK
-IFIC-LCG2_DATADISK LIP-COIMBRA_LOCALGROUPDISK
-```
+  IFIC-LCG2_LOCALGROUPDISK
+  IFAE_PRODDISK
+  PIC_SCRATCHDISK
+  EELA-UNLP_SCRATCHDISK
+  CERN-PROD_TZDISK
+  BNL-OSG2_MCTAPE
+  BNL-OSG2_DATADISK
+  IN2P3-CC_MCTAPE
+  CERN-PROD_DERIVED
+  CERN-PROD_DATADISK
+  EELA-UNLP_DATADISK
+  UAM-LCG2_SCRATCHDISK
+  IFIC-LCG2_DATADISK LIP-COIMBRA_LOCALGROUPDISK
+  ```
 
-2.  Whereas the next expression only returns a set containing a single
-    RSE:
+1. Whereas the next expression only returns a set containing a single
+   RSE:
 
-```bash
- jbogadog@lxplus0058:~$ rucio list-rses --expression
+  ```bash
+  jbogadog@lxplus0058:~$ rucio list-rses --expression
 
- EELA-UNLP_SCRATCHDISK
- ELA-UNLP_SCRATCHDISK
-```
+  EELA-UNLP_SCRATCHDISK
+  ELA-UNLP_SCRATCHDISK
+  ```
 
-3.  Another simple RSE Expression allows to list the set of all the RSEs
-    in a particular site:
+1. Another simple RSE Expression allows to list the set of all the RSEs
+   in a particular site:
 
-```bash
-jbogadog@lxplus0058:~$ rucio list-rses --expression site=EELA-UNLP
+  ```bash
+  jbogadog@lxplus0058:~$ rucio list-rses --expression site=EELA-UNLP
 
-EELA-UNLP_PRODDISK
-EELA-UNLP_DATADISK
-EELA-UNLP_SCRATCHDISK
-```
+  EELA-UNLP_PRODDISK
+  EELA-UNLP_DATADISK
+  EELA-UNLP_SCRATCHDISK
+  ```
 
-4.  Or all the RSEs who\'s type is SCRATCHDISK:
+1. Or all the RSEs who\'s type is SCRATCHDISK:
 
-```bash
- jbogadog@lxplus0058:~$ rucio list-rses --expression type=SCRATCHDISK
+  ```bash
+  jbogadog@lxplus0058:~$ rucio list-rses --expression type=SCRATCHDISK
 
-UNI-SIEGEN-HEP_SCRATCHDISK
-NCG-INGRID-PT_SCRATCHDISK
-EELA-UNLP_SCRATCHDISK
-INFN-T1_SCRATCHDISK
-FMPHI-UNIBA_SCRATCHDISK
-INFN-FRASCATI_SCRATCHDISK
-```
+  UNI-SIEGEN-HEP_SCRATCHDISK
+  NCG-INGRID-PT_SCRATCHDISK
+  EELA-UNLP_SCRATCHDISK
+  INFN-T1_SCRATCHDISK
+  FMPHI-UNIBA_SCRATCHDISK
+  INFN-FRASCATI_SCRATCHDISK
+  ```
 
-5.  Or all the Spanish sites:
-```bash
-jbogadog@lxplus0058:~$ rucio list-rses --expression SPAINSITES
+1. Or all the Spanish sites:
 
-IFIC-LCG2_LOCALGROUPDISK
-IFAE_PRODDISK
-PIC_SCRATCHDISK
-EELA-UNLP_SCRATCHDISK
-EELA-UNLP_DATADISK
-UAM-LCG2_SCRATCHDISK
-IFIC-LCG2_DATADISK
-LIP-COIMBRA_LOCALGROUPDISK
-```
-6.  Also numerical comparisons with \< and \are possible:
-```bash
-jbogadog@lxplus0058:~$ rucio list-rses --expression "freespace3000"
+  ```bash
+  jbogadog@lxplus0058:~$ rucio list-rses --expression SPAINSITES
 
-CERN-PROD_TZDISK
-BNL-OSG2_MCTAPE
-BNL-OSG2_DATADISK
-IN2P3-CC_MCTAPE
-CERN-PROD_DERIVED
-CERN-PROD_DATADISK
-```
+  IFIC-LCG2_LOCALGROUPDISK
+  IFAE_PRODDISK
+  PIC_SCRATCHDISK
+  EELA-UNLP_SCRATCHDISK
+  EELA-UNLP_DATADISK
+  UAM-LCG2_SCRATCHDISK
+  IFIC-LCG2_DATADISK
+  LIP-COIMBRA_LOCALGROUPDISK
+  ```
+
+1. Also numerical comparisons with \< and \are possible:
+
+  ```bash
+  jbogadog@lxplus0058:~$ rucio list-rses --expression "freespace3000"
+
+  CERN-PROD_TZDISK
+  BNL-OSG2_MCTAPE
+  BNL-OSG2_DATADISK
+  IN2P3-CC_MCTAPE
+  CERN-PROD_DERIVED
+  CERN-PROD_DATADISK
+  ```
+
 Note that if the RSE Expression returns an empty set, Rucio returns an
 error as an RSE Expression must resolve to at least one RSE. Thus, an
 error does not necessarily mean that the syntax of the expression is
@@ -106,6 +110,7 @@ must be equal to a given value to match the expression. While in 2) and
 numerical term is used to resolve all RSEs with more than 3000 TB free
 space. It is possible to see the list of attributes for a particular RSE
 with Rucio:
+
 ```bash
 jbogadog@lxplus0100:~$ rucio list-rse-attributes EELA-UNLP_SCRATCHDISK
 
@@ -131,6 +136,7 @@ datapolicyt0tape: False
 type: SCRATCHDISK
 istape: False
 ```
+
 Most of the RSEs share the same set of attributes, and is possible to
 create RSE Expressions based on all of them.
 
@@ -159,6 +165,7 @@ expressions to select whatever RSE you need to put your data in. Use the
 following list of examples to build your own RSE Expressions.
 
 All Tier 2 sites in DE cloud:
+
 ```bash
 jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=2&cloud=DE'
 PRAGUELCG2_PPSLOCALGROUPDISK
@@ -167,10 +174,12 @@ FMPHI-UNIBA_LOCALGROUPDISK
 UNI-FREIBURG_DATADISK
 DESY-HH_PRODDISK
 ```
+
 Note the use of the single quotes. Single quotes are needed to avoid the
 shell interpret the &, the \| or the \\ as commands.
 
 All tier 1 but not the ones in country=us:
+
 ```bash
 jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=us'
 
@@ -179,8 +188,10 @@ BNL-OSG2_DATATAPE
 BNL-OSG2_DDMTEST
 NIKHEF-ELPROD_PHYS-SUSY
 ```
+
 However, take care of the subtle differences. While the first expression
 exclude United States\' sites, the second doesn\'t:
+
 ```bash
 jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=us'|wc -l
 115
@@ -188,22 +199,29 @@ jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=us'|wc -l
 jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=US'|wc -l
 117
 ```
+
 The filters are processed from left to right. Is possible to use
 parenthesis to force the order of operation. See the following example
 to get all the SCRATCHDISKs in IT or FR clouds:
+
 ```bash
-jbogadog@lxplus0100:~$ rucio list-rses --expression 'cloud=IT|cloud=FR&type=SCRATCHDISK'|wc -l
+jbogadog@lxplus0100:~$ rucio list-rses --expression \
+  'cloud=IT|cloud=FR&type=SCRATCHDISK' | wc -l
 30
 
-jbogadog@lxplus0100:~$ rucio list-rses --expression '(cloud=IT|cloud=FR)&type=SCRATCHDISK'|wc -l
+jbogadog@lxplus0100:~$ rucio list-rses --expression \
+  '(cloud=IT|cloud=FR)&type=SCRATCHDISK' | wc -l
 30
 
-jbogadog@lxplus0100:~$ rucio list-rses --expression 'type=SCRATCHDISK&(cloud=IT|cloud=FR)'|wc -l
+jbogadog@lxplus0100:~$ rucio list-rses --expression \
+  'type=SCRATCHDISK&(cloud=IT|cloud=FR)' | wc -l
 30
 
-jbogadog@lxplus0100:~$ rucio list-rses --expression 'type=SCRATCHDISK&cloud=IT|cloud=FR'|wc -l
+jbogadog@lxplus0100:~$ rucio list-rses --expression \
+  'type=SCRATCHDISK&cloud=IT|cloud=FR' | wc -l
 92
 ```
+
 While the first three operations are equivalent, the last return sites
 in cloud FR but not only the SCRATCHDISKs but the GROUPDISKs and
 DATADISKs too, among other types.

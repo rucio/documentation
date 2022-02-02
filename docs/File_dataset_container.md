@@ -42,14 +42,14 @@ been deleted from the system.
 
 The following status attributes are supported for files:
 
--   `availability`: LOST/DELETED/AVAILABLE
+- `availability`: LOST/DELETED/AVAILABLE
 
 A file is LOST if there are no known replicas of the file in Rucio,
 while at the same time at least one account requested a replica; a file
 is DELETED if no account requested a replica; otherwise the file is
 AVAILABLE. This is a derived attribute.
 
--   `suppressed`: True/False
+- `suppressed`: True/False
 
 This is a user settable flag. It indicates that the owner of the scope
 no longer needs the name to be present in the scope. Files that are
@@ -61,19 +61,19 @@ listing contents of datasets/containers.
 
 The dataset/container status is reflected by a set of attributes:
 
--   `open`: True/False
+- `open`: True/False
 
 If a dataset/container is open, content can be added to it.
 Datasets/containers are created open and once closed, they cannot be
 opened again[^1].
 
--   `monotonic`: True/False
+- `monotonic`: True/False
 
 If the monotonic attribute is set, content cannot be removed from an
 open dataset/container. Datasets/containers are, by default, created
 non-monotonic. Once set to monotonic, this cannot be reversed.
 
--   `complete`: True/False
+- `complete`: True/False
 
 A dataset/container where all files have replicas available is complete.
 Any dataset/container which contains files without replicas is
