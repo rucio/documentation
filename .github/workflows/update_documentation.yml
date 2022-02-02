@@ -1,13 +1,25 @@
 name: Update Documentation
 on:
   push:
-    branches:
-      - main
+  pull_request:
   schedule:
     - cron: '0 4 * * 1-5'
 
 jobs:
-  update_documentation:
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Lint Markdown
+        uses: actionshub/markdownlint@main
+        with:
+          # Ignore the component leads for now, since the line length of 80
+          # characters is to small. Also ignore the relase-notes, templates, and
+          # releasepolicy for now.
+          filesToIgnoreRegex: 'docs\/component\_leads\.md|docs\/release-notes|docs\/releasepolicy.md|templates'
+  generate_documentation:
+    needs: markdown-lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,6 +42,20 @@ jobs:
           cd website
           yarn install
           yarn build
+      - uses: actions/upload-artifact@master
+        with:
+          name: documentation-artifacts
+          path: website/build
+  publish_documentation:
+    needs: generate_documentation
+    if: github.ref == 'refs/heads/master' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@master
+        with:
+          name: documentation-artifacts
+          path: website/build
       - name: Push to Github Pages branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
