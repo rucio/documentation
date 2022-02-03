@@ -5,7 +5,10 @@ repos:
   - id: check-yaml
   - id: end-of-file-fixer
   - id: trailing-whitespace
-- repo: https://github.com/markdownlint/markdownlint
-  rev: v0.11.0
+- repo: local
   hooks:
-  - id: markdownlint
+  - id: check-markdown
+    name: Check the markdown files for inconsistencies.
+    entry: ./check-docs.sh
+    language: system
+    files: ".md"

@@ -11,7 +11,7 @@ efforts and be the point of contact in case of problems.
 
 **Rucio Project Leader**: [Martin Barisits](https://github.com/bari12)
 
-Component | Lead (+Deputies) | Description 
+Component | Lead (+Deputies) | Description
 --------- | ---------------- | -----------
 [Authentication & Authorisation](https://github.com/rucio/rucio/issues?q=label%3A%22Authentication+%26+Authorisation%22+is%3Aissue+is%3Aopen) | [Mario Lassnig](https://github.com/mlassnig), [Rizart Dona](https://github.com/rizart) | Client-server authentication, Rucio tokens, auth methods (kerberos, ssh, userpass, OIDC, ...)
 [Clients](https://github.com/rucio/rucio/issues?q=label%3A%22Clients%22+is%3Aissue+is%3Aopen) | [Mario Lassnig](https://github.com/mlassnig), [Radu Carpa](https://github.com/rcarpa), [Joel Dierkes](https://github.com/joeldierkes) | General Python Clients and Command Line interface related development, rucio download, rucio upload; Specific component related client functionality is part of the other components

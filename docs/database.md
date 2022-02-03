@@ -51,3 +51,4 @@ schema upgrade+downgrade file:
 This will output the name of the file that has been generated with two functions
 `def upgrade()` and `def downgrade()` that need to be implemented. These should
 reflect the changes to the `lib/rucio/db/sqla/models.py` SQLAlchemy mapping.
+3
