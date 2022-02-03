@@ -1,0 +1,20 @@
+name: Check external links
+
+on:
+  # Only check once a week to minimize the effect on others infrastructure.
+  schedule:
+    - cron: '0 4 * * 0'
+
+jobs:
+  check-external-links:
+    name: Check external links
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        npm install -g markdown-link-check
+    - name: Check external links
+      run: |
+        npx --yes markdown-link-check --config link-check.json $(find -name "*.md")

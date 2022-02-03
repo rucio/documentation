@@ -262,7 +262,7 @@ echo 'flush_all' | nc localhost 11211 && httpd -k graceful**
 
 The default database is PostgreSQL, and `docker-compose` is
 configured to open its port to the host machine. Using your favourite
-SQL navigator, e.g., [__DBeaver__](https://dbeaver.org), you can connect to
+SQL navigator, e.g., [__DBeaver__](https://dbeaver.io), you can connect to
 the database using the default access on `localhost:5432` to
 database name `rucio`, schema name `dev`, with
 username `rucio` and password `secret`.
