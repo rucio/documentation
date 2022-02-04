@@ -18,9 +18,9 @@ Rucio PyPI server and installed in one step:
 pip install rucio-clients
 ```
 
-This command will download the latest version of Rucio and install it to
-your system. The dependencies are listed in the file
-[`etc/pip-requires-client`](https://github.com/rucio/rucio/blob/master/etc/pip-requires-client)
+This command will download the latest version of Rucio and install it to your
+system. The dependencies are listed in the file
+[`requirements.txt`](https://github.com/rucio/rucio/blob/master/requirements.txt)
 and will be pulled in as necessary.
 
 ## Upgrade via pip

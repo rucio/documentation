@@ -25,8 +25,8 @@ you’ll need to install the globus sdk and run the below Python code to obtain 
 refresh token.
 
 There is a [helpful
-walk-through](https://globus-sdk-python.readthedocs.io/en/stable/tutorial/) that
-goes into more detail around OAuth and token retrieval.
+walk-through](https://globus-sdk-python.readthedocs.io/en/stable/tutorial.html)
+that goes into more detail around OAuth and token retrieval.
 
 Obtain a refresh token to access Globus resources:
 
