@@ -6,20 +6,24 @@ on:
     - cron: '0 4 * * 1-5'
 
 jobs:
-  markdown-lint:
+  check_markdown_syntax:
+    name: Check markdown syntax
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Lint Markdown
-        uses: actionshub/markdownlint@main
+      - uses: ruby/setup-ruby@v1
         with:
-          # Ignore the component leads for now, since the line length of 80
-          # characters is to small. Also ignore the relase-notes, templates, and
-          # releasepolicy for now.
-          filesToIgnoreRegex: 'docs\/component\_leads\.md|docs\/release-notes|docs\/releasepolicy.md|templates'
-  generate_documentation:
-    needs: markdown-lint
+          ruby-version: 2.6
+      - name: Install markdownlint
+        run: |
+          gem install mdl
+      - name: Lint docs
+        run: |
+          ./check-docs.sh
+  build:
+    name: Build
+    needs: check_markdown_syntax
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -46,8 +50,9 @@ jobs:
         with:
           name: documentation-artifacts
           path: website/build
-  publish_documentation:
-    needs: generate_documentation
+  deploy:
+    name: Deploy
+    needs: build
     if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
