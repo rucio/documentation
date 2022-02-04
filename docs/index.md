@@ -16,15 +16,15 @@ scientific domain (e.g., HEP, astronomy, biology).
 
 Below are some resources to help you get you started on your journey.
 
-## [Before You Get Started](Before-you-get-started)
+## [Before You Get Started](before_you_get_started.md)
 
 What exactly is Rucio? What were the motivations behind developing such a
 system? Who uses it? What powers these systems? Answers to all these questions
 and more can be found by browsing through the sub-sections of this topic.
 
-- [What is Rucio?](What-is-rucio.md)
-- [Main Components of Rucio](Main-components-of-rucio.md)
-- [Additional layers and Resources](Additional-layers-&-Resources.md)
+- [What is Rucio?](what_is_rucio.md)
+- [Main Components](main_components.md)
+- [Additional layers and Resources](additional_layers_and_resources.md)
 - [Concepts & Terminology](concepts.md)
 - [Release Policy](releasepolicy.md)
 
@@ -34,8 +34,8 @@ Get your hands dirty by trying to setup your very own demo environment on your
 local laptop/desktop. Make sure you read the pre-requisites section before
 starting off, though!
 
-- [Pre-requisites](setting-up-demo)
-- [Setting up Demo environment](setting-up-demo)
+- [Pre-requisites](setting_up_demo)
+- [Setting up Demo environment](setting_up_demo)
 - [Rucio executables](bin.md)
 
 ## Rucio User Playground
@@ -45,8 +45,8 @@ some of the common things you can do using Rucio by setting up the Rucio
 client. Also, this section will introduce you to some common CLI commands that
 you, as a user, might find helpful when working with Rucio.
 
-- [Setting up Rucio Client](setting-up-rucio-client)
-- [Rucio CLI playground](using-rucio-client)
+- [Setting up the Rucio Client](setting_up_the_rucio_client.md)
+- [Rucio CLI playground](using_the_client.md)
 
 ## Rucio Operator Documentation
 
@@ -56,10 +56,10 @@ to install a server or some quick tips for working with the administrative
 CLI. Take a deep dive, but not before you ensure you've read through the
 pre-requisites section under each of the topics!
 
-- [Installing Rucio Server](installing-rucio-server)
-- [Installing Rucio Daemons](installing-rucio-daemons)
+- [Installing Rucio Server](installing_server.md)
+- [Installing Rucio Daemons](installing_daemons.md)
 - [Monitoring](monitoring.md)
-- [Configuration parameters](configuration-parameters)
+- [Configuration parameters](configuration_parameters.md)
 
 ## Rucio Developer Documentation
 
@@ -75,15 +75,14 @@ libraries. We also have a contribution guide for those who wish to pitch in.
   Tool](configure-rucio-globus)
 - [Contributing guide](contributing)
 
-## [Contributing to the Documentation](Contributing)
+## Contributing to the Documentation
 
 Documentation is always a work in progress & we welcome both, qualitative and
 technical contributions from the community. Make sure you read through this
 section & understand the pre-requisites before you submit your first PR!
 
-- [Types of pages](page-types)
-- [Contributing Improvements](contributing-improvements)
-- [New Content Contribution Guide](new-content-contribution-guide)
+- [Types of pages](types_of_pages.md)
+- [Contribution Guide for Documentation](contribution_guide_for_documentation.md)
 
 ## About Us
 
@@ -91,5 +90,5 @@ Learn more about the brilliant minds pioneering the development & maintenance of
 Rucio in this section. Should you wish to get in touch with us, we've also
 included several ways of doing so in the **Contact Us** section.
 
-- [About Our Contributors](about-our-contributors)
-- [Contact Us](how-to-reach-us)
+- [About Our Contributors](about_our_contributors.md)
+- [Contact Us](contact_us.md)

@@ -1,7 +1,6 @@
 ---
-id: Main-components-of-rucio
-title: Main Components of Rucio
-sidebar_label: Main Components of Rucio
+id: main_components
+title: Main Components
 ---
 
 Rucio is based on a distributed system architecture & can be sectioned into four

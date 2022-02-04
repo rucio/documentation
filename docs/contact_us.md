@@ -1,7 +1,6 @@
 ---
-id: how-to-reach-us
+id: contact_us
 title: Contact us
-sidebar_label: Contact us
 ---
 
 We know getting started can be difficult, which is why

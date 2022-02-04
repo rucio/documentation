@@ -1,8 +1,8 @@
 ---
-id: What-is-rucio
+id: what_is_rucio
 title: What is Rucio?
-sidebar_label: What is Rucio?
 ---
+
 Having demonstrated very large scale data management capabilities, Don Quijote
 (DQ2), the **ATLAS Distributed Data Management System** used for **HEP
 experiments at CERN** had reached its limits in terms of scalability. The

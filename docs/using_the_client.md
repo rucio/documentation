@@ -1,7 +1,6 @@
 ---
-id: using-rucio-client
-title: Using the Rucio Client
-sidebar_label: Using the Rucio Client
+id: using_the_client
+title: Using the Client
 ---
 
 Rucio provides several commands for the end-user. See [executables](bin.md).

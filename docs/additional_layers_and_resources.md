@@ -1,9 +1,8 @@
 ---
-id: Additional-layers-and-Resources
+id: additional_layers_and_resources
 title: Additional Layers and Resources
-sidebar_label: Additional Layers and Resources
 ---
-In addition to the four [main layers](Main-components-of-rucio.md), we have the
+In addition to the four [main layers](main_components.md), we have the
 storage resources & transfer tools, as well as the underlying persistent
 layers. These are represented in the architecture diagram by the different
 *queuing systems*, *transactional* relational databases, & *analytics* storage

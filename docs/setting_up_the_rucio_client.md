@@ -1,7 +1,5 @@
 ---
-id: setting-up-rucio-client
 title: Setting Up the Rucio Client
-sidebar_label: Setting Up the Rucio Client
 ---
 
 ## Prerequisites

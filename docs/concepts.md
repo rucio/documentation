@@ -10,14 +10,15 @@ or replication rules are fundamental for all types of users, while other
 concepts, such as notifications or subscriptions are suitable for more
 advanced use cases.
 
-- [Rucio Account](Rucio_account.md)
-- [File Dataset Container](File_dataset_container.md)
-- [Rucio_Storage_Element](Rucio_storage_element.md)
-- [Metadata Attributes](Metadata-attributes.md)
-- [Permission Model](Permission-model.md)
-- [Replica Management](Replica-management.md)
+- [Rucio Account](rucio_account.md)
+- [File Dataset Container](file_dataset_container.md)
+- [Rucio Storage Element](rucio_storage_element.md)
+- [Metadata Attributes](metadata_attributes.md)
+- [Permission Model](permission_model.md)
+- [Replica Management](replica_management.md)
 - [Examples of some replication rules](replication_rules_examples.md)
 - [Some RSE Expressions](rse_expressions.md)
-- [Accounting & quota](Accounting-and-quota.md)
+- [Accounting & quota](accounting_and_quota.md)
 - [Notifications](notifications.md)
 - [Subscriptions](subscriptions.md)
+- [Replica Workflow](replica_workflow.md)
