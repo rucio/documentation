@@ -21,9 +21,18 @@ jobs:
       - name: Lint docs
         run: |
           ./check-docs.sh
+  check_file_names:
+    name: Check file names
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Check file names
+        run: |
+          ./check-file-names.sh
   build:
     name: Build
-    needs: check_markdown_syntax
+    needs: [check_markdown_syntax, check_file_names]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
