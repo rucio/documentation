@@ -8,9 +8,8 @@ source code & their employers.
 
 Should you wish to contribute to the Rucio source code or the documentation,
 please ensure you go through the guidelines listed in the [__contribution guide
-for developers__](contributing) and the [__contribution guide for
-documentation__](contribution_guide_for_documentation) before making a
-submission.
+for developers__](contributing) and look into the [documentation GitHub
+repository](https://github.com/rucio/documentation) before making a submission.
 
 # Individual contributors to the source code
 
