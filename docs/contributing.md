@@ -83,6 +83,15 @@ pip install pre-commit
 pre-commit install
 ```
 
+If you only want to run the hooks on a push, run:
+
+```bash
+pre-commit install --hook-type pre-push
+```
+
+More information:
+<https://pre-commit.com/#confining-hooks-to-run-at-certain-stages>
+
 ## Contributing
 
 **Step 1**: If not exist, create an
