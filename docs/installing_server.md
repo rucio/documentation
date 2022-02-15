@@ -123,6 +123,11 @@ look for `hostcert.pem`, `hostkey.pem` and `ca.pem` under `/etc/grid-security`
 so you will have to mount them as volumes. Furthermore you will also have to
 expose port 443.
 
+### RUCIO_SSL_PROTOCOL
+
+By default, the server will only accept TLSv1.2 connections. Defining this
+environment variable will allow specification of a custom Apache SSLProtocol.
+
 ### RUCIO_CA_PATH
 
 If you are using SSL and want use `SSLCACertificatePath` and
