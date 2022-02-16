@@ -174,10 +174,12 @@ attributes.
     x509_proxy, gss, ssh, saml, oidc}`.
   - **ca_cert**: Path of the cert file for HTTPS. Example:
     `/opt/rucio/etc/web/ca.crt`.
-  - **client_cert**: Path of the X.509 client cert file. Example:
+  - **client_cert**: Path of the X.509 client cert file. This can be overwitten
+    by the `RUCIO_CLIENT_CERT` environment variable. Example:
     `/opt/rucio/etc/web/client.crt`.
   - **client_key**: Path of the X.509 client key file for the cert defined in
-    `client_cert`. Example: `/opt/rucio/etc/web/client.key`.
+    `client_cert`. This can be overwitten by the `RUCIO_CLIENT_KEY` environment
+    variable. Example: `/opt/rucio/etc/web/client.key`.
   - **client_x509_proxy**: Path of the X.509 client proxy. Mandatory if
     `auth_type = x509_proxy`.
   - **oidc_audience**: _(Optional)_ Only used if `auth_type = oidc`. Default:
