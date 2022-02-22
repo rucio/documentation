@@ -2,46 +2,47 @@
   "docs": {
     "Getting Started": [
       "index",
-      "Before-you-get-started",
-      "What-is-rucio",
-      "Main-components-of-rucio",
-      "Additional-layers-and-Resources",
+      "before_you_get_started",
+      "what_is_rucio",
+      "main_components",
+      "additional_layers_and_resources",
       "requirements",
       "concepts",
       "releasepolicy",
       "release-notes"
     ],
     "Client": [
-      "setting-up-rucio-client",
-      "using-rucio-client"
+      "setting_up_the_rucio_client",
+      "using_the_client",
+      "using_the_admin_client"
     ],
     "Server": [
-      "installing-rucio-server",
-      "installing-rucio-daemons",
+      "installing_server",
+      "installing_daemons",
       "monitoring",
       "database",
-      "configuration-parameters",
+      "configuration_parameters",
       "configure-rucio-globus"
     ],
     "Developer": [
-	"setting-up-demo",
+      "setting_up_demo",
+      "developing_with_rucio",
       "contributing",
       "component_leads"
     ],
     "Miscellaneous": [
-      "policy-packages",
+      "policy_packages",
       "notifications",
-      "metadata-attributes"
+      "metadata_attributes"
     ],
     "Contribution": [
-      "Contributing",
-      "page-types",
-      "contributing-improvements",
-      "new-content-contribution-guide"
+      "contributing",
+      "types_of_pages",
+      "contribution_guide_for_documentation"
     ],
     "About Us": [
-      "about-our-contributors",
-      "how-to-reach-us"
+      "about_our_contributors",
+      "contact_us"
     ]
   }
 }

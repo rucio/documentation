@@ -1,16 +1,15 @@
 ---
-id: about-our-contributors
+id: about_our_contributors
 title: About Our Contributors
-sidebar_label: About Our Contributors
 ---
 
 Below is a list of contibutors who have contributed to the
 source code & their employers.
 
-Should you wish to contribute to the Rucio source code or
-the documentation, please ensure you go through the guidelines
-listed in the [__contribution guide for developers__](contributing) and the
-[__contribution guide for documentation__](Contributing) before making a
+Should you wish to contribute to the Rucio source code or the documentation,
+please ensure you go through the guidelines listed in the [__contribution guide
+for developers__](contributing) and the [__contribution guide for
+documentation__](contribution_guide_for_documentation) before making a
 submission.
 
 # Individual contributors to the source code

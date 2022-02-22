@@ -1,7 +1,6 @@
 ---
-id: replica-workflow
+id: replica_workflow
 title: Typical Replica Workflow
-sidebar_label: Typical Replica Workflow
 ---
 
 This section gives an overview of what happens within Rucio, for a typical

@@ -1,7 +1,6 @@
 ---
-id: metadata-attributes
+id: metadata_attributes
 title: Metadata attributes
-sidebar_label: Metadata Attributes
 ---
 
 Meta-data associated with a dataset/file is represented using

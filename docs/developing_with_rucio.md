@@ -1,5 +1,5 @@
 ---
-id: developing-with-rucio
+id: developing_with_rucio
 title: Developing with Rucio
 ---
 

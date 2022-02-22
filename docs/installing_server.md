@@ -1,7 +1,6 @@
 ---
-id: installing-rucio-server
+id: installing_server
 title: Installing Rucio Server
-sidebar_label: Installing Rucio Server
 ---
 
 ## Prerequisites

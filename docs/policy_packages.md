@@ -1,7 +1,6 @@
 ---
-id: policy-packages
-title: Policy packages
-sidebar_label: Policy packages
+id: policy_packages
+title: Policy Packages
 ---
 
 ## Overview

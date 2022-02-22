@@ -1,7 +1,6 @@
 ---
-id: setting-up-demo
+id: setting_up_demo
 title: Setting up a Rucio demo environment
-sidebar_label: Setting up a Rucio demo environment
 ---
 
 ## Prerequisites

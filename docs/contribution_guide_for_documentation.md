@@ -1,13 +1,11 @@
 ---
-id: contributing-improvements
-title: Contributing Improvements
-sidebar_label: Contributing Improvements
+id: contribution_guide_for_documentation
+title: Contribution Guide for Documentation
 ---
 
-There are two types of documentation hosted on Rucio as detailed
-in the [__Types of Pages__](page-types) section. Should you wish to
-contribute improvements to any of them, kindly follow the
-guidelines below per the section.
+There are two types of documentation hosted on Rucio as detailed in the [__Types
+of Pages__](types_of_pages.md) section. Should you wish to contribute
+improvements to any of them, kindly follow the guidelines below per the section.
 
 ## API Documentation
 

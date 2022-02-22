@@ -16,7 +16,7 @@ sidebar_label: Contributing Guide
   generated from issues).
 
 * Ensure you add your name (and organisation) to our [__list of
-  contributors__](about-our-contributors).
+  contributors__](about_our_contributors.md).
 
 * If you have questions, you can reach the core development team on our
   [__Slack__](https://rucio.slack.com/) channel, or send an email to our

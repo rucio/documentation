@@ -33,7 +33,7 @@ about replica location on volatile RSEs can have a lifetime. Replicas
 registered on volatile RSEs are excluded from the Rucio replica
 management system (replication rules, quota, replication locks)
 described in the section [Replica
-management](Replica_management.md). Explicit transfer
+management](replica_management.md). Explicit transfer
 requests can be made to Rucio in order to populate the cache.
 
 ## Distances between RSEs

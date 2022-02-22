@@ -1,7 +1,6 @@
 ---
-id: page-types
+id: types_of_pages
 title: Types of Pages
-sidebar_label: Types of Pages
 ---
 
 ## API Documentation
