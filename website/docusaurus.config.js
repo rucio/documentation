@@ -36,7 +36,7 @@ module.exports={
           "routeBasePath": "/",
           "sidebarPath": "../website/sidebars.json",
           'editUrl': 'https://github.com/rucio/documentation/tree/main/docs',
-        },        
+        },
         "blog": {},
         "theme": {
           "customCss": "../src/css/customTheme.css"
@@ -44,7 +44,7 @@ module.exports={
       }
     ]
   ],
-  "plugins": [], 
+  "plugins": [],
   "themeConfig": {
     "navbar": {
       "title": "Rucio Documentation",
@@ -59,7 +59,7 @@ module.exports={
           "position": "left"
         },
         {
-          "to": "rucio_rest_api",
+          "to": "pathname:///html/rest_api_doc.html",
           "label": "REST API",
           "position": "left"
         }
