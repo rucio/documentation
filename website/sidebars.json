@@ -21,6 +21,7 @@
       "installing_daemons",
       "monitoring",
       "database",
+      "administration",
       "configuration_parameters",
       "configure-rucio-globus"
     ],
