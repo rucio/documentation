@@ -23,8 +23,8 @@ in rucio to spare you the toil related to maintaining your own local patch set.
 
 Lets assume you run rucio `1.27.3` in production, and you realize there is
 a bug in the `conveyor-poller` daemon. You contact the rucio team and are
-told that a fix was already done in the pull request 
-[#5246](https://github.com/rucio/rucio/pull/5246/commits) 
+told that a fix was already done in the pull request
+[#5246](https://github.com/rucio/rucio/pull/5246/commits)
 and will be released next week. Follow
 the following steps to create a patch file from this pull request without
 having to wait for the next rucio release to fix your issue:
