@@ -58,7 +58,7 @@ particular RSE.
   EELA-UNLP_SCRATCHDISK
   ```
 
-1. Or all the RSEs who\'s type is SCRATCHDISK:
+1. Or all the RSEs who's type is `SCRATCHDISK`:
 
   ```bash
   jbogadog@lxplus0058:~$ rucio list-rses --expression type=SCRATCHDISK
@@ -86,10 +86,10 @@ particular RSE.
   LIP-COIMBRA_LOCALGROUPDISK
   ```
 
-1. Also numerical comparisons with \< and \are possible:
+1. Also numerical comparisons with `<` and `>` are possible:
 
   ```bash
-  jbogadog@lxplus0058:~$ rucio list-rses --expression "freespace3000"
+  jbogadog@lxplus0058:~$ rucio list-rses --expression "freespace>3000"
 
   CERN-PROD_TZDISK
   BNL-OSG2_MCTAPE
@@ -99,17 +99,16 @@ particular RSE.
   CERN-PROD_DATADISK
   ```
 
-Note that if the RSE Expression returns an empty set, Rucio returns an
-error as an RSE Expression must resolve to at least one RSE. Thus, an
-error does not necessarily mean that the syntax of the expression is
-wrong, it might just result into an empty list.
+Note that if the RSE Expression returns an empty set, Rucio returns an error as
+an RSE Expression must resolve to __at least one__ RSE. Thus, an error does not
+necessarily mean that the syntax of the expression is wrong, it might just
+result into an empty list.
 
-In 3) and 4), the RSE Expression refers to an attribute in the RSE that
-must be equal to a given value to match the expression. While in 2) and
-5), the expression matches an RSE if the attribute is True. In 6) a
-numerical term is used to resolve all RSEs with more than 3000 TB free
-space. It is possible to see the list of attributes for a particular RSE
-with Rucio:
+In `3.` and `4.`, the RSE Expression refers to an attribute in the RSE that must
+be equal to a given value to match the expression. While in `2.` and `5.`, the
+expression matches an RSE if the attribute is True. In `6.` a numerical term is
+used to resolve all RSEs with more than 3000 TB free space. It is possible to
+see the list of attributes for a particular RSE with Rucio:
 
 ```bash
 jbogadog@lxplus0100:~$ rucio list-rse-attributes EELA-UNLP_SCRATCHDISK
@@ -137,32 +136,30 @@ type: SCRATCHDISK
 istape: False
 ```
 
-Most of the RSEs share the same set of attributes, and is possible to
-create RSE Expressions based on all of them.
+Most of the RSEs share the same set of attributes, and is possible to create RSE
+Expressions based on all of them.
 
 ## Operators
 
 Operators are used to connect terms in order to get more complex RSE
-Expressions/terms. The syntactic functionality of the Rucio RSE
-Expressions Parser allows the basic operations defined in mathematical
-set theory, Union, Intersection and Complement. Using an operator on two
-sets of RSEs will construct a new set based on the given sets.
+Expressions/terms. The syntactic functionality of the Rucio RSE Expressions
+Parser allows the basic operations defined in mathematical set theory, Union,
+Intersection and Complement. Using an operator on two sets of RSEs will
+construct a new set based on the given sets.
 
 The symbols A and B in this table stand for a term.
 
-Operator Meaning Interpretation Example
-
----
-
-A\|B UNION A union B EELA-UNLP_SCRATCHDISK \| EELA-UNLP_PRODDISK
-A&B INTERSECT A intersect B tier=1&country=us
-A\\B COMPLEMENT A complement B cloud=ES\\type=SCRATCHDISK
+| Operator | Meaning    | Interpretation | Example                    |
+|----------|------------|----------------|----------------------------|
+| A\|B     | UNION      | A union B      | tier=1\|tier=2             |
+| A&B      | INTERSECT  | A intersect B  | tier=1&country=us          |
+| A\\B     | COMPLEMENT | A complement B | cloud=ES\\type=SCRATCHDISK |
 
 ## Composing RSE Expressions
 
-Using the operators described above, it\'s possible to create
-expressions to select whatever RSE you need to put your data in. Use the
-following list of examples to build your own RSE Expressions.
+Using the operators described above, it's possible to create expressions to
+select whatever RSE you need to put your data in. Use the following list of
+examples to build your own RSE Expressions.
 
 All Tier 2 sites in DE cloud:
 
@@ -175,8 +172,8 @@ UNI-FREIBURG_DATADISK
 DESY-HH_PRODDISK
 ```
 
-Note the use of the single quotes. Single quotes are needed to avoid the
-shell interpret the &, the \| or the \\ as commands.
+Note the use of the single quotes. Single quotes are needed to avoid the shell
+interpret the `&`, the `\|` or the `\\` as commands.
 
 All tier 1 but not the ones in country=us:
 
@@ -189,8 +186,8 @@ BNL-OSG2_DDMTEST
 NIKHEF-ELPROD_PHYS-SUSY
 ```
 
-However, take care of the subtle differences. While the first expression
-exclude United States\' sites, the second doesn\'t:
+However, take care of the subtle differences. While the first expression exclude
+United States' sites, the second doesn't:
 
 ```bash
 jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=us'|wc -l
@@ -200,9 +197,9 @@ jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=US'|wc -l
 117
 ```
 
-The filters are processed from left to right. Is possible to use
-parenthesis to force the order of operation. See the following example
-to get all the SCRATCHDISKs in IT or FR clouds:
+The filters are processed from left to right. Is possible to use parenthesis to
+force the order of operation. See the following example to get all the
+`SCRATCHDISK`s in IT or FR clouds:
 
 ```bash
 jbogadog@lxplus0100:~$ rucio list-rses --expression \
@@ -222,6 +219,6 @@ jbogadog@lxplus0100:~$ rucio list-rses --expression \
 92
 ```
 
-While the first three operations are equivalent, the last return sites
-in cloud FR but not only the SCRATCHDISKs but the GROUPDISKs and
-DATADISKs too, among other types.
+While the first three operations are equivalent, the last return sites in cloud
+`FR` but not only the `SCRATCHDISK`s but the `GROUPDISK`s and `DATADISK`s too,
+among other types.
