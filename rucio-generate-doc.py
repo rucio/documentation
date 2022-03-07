@@ -132,7 +132,7 @@ def main():
         image_list[0],
         "sh",
         "-c",
-        "tools/test/install_script.sh && tools/generate_doc.py",
+        "tools/test/install_script.sh && tools/generate_doc.py && tools/generate_rest_api_doc.py > docs/rest_api_doc_spec.yaml && pwd",
         _in=sys.stdin,
         _out=sys.stdout,
         _err=sys.stderr,
@@ -148,6 +148,9 @@ def main():
     assert os.path.exists(templates_dir)
     render_templates(templates_dir, output_path)
 
+    # build rest api documentation
+    os.system('npx --yes redoc-cli bundle docs/rest_api_doc_spec.yaml')
+    os.system('mkdir -p website/static/html && cp redoc-static.html website/static/html/rest_api_doc.html')
 
 if __name__ == "__main__":
     main()

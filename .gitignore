@@ -15,6 +15,7 @@ node_modules/
 /docs/bin
 /docs/bin.md
 /docs/release-notes.md
+/docs/rest_api_doc_spec.yaml
 
 # emacs
 *~
