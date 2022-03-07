@@ -22,12 +22,9 @@ release in July 2022.
 
 ## Database
 
-Database   | Supported version | Nota bene
+Database   | Supported version | Note
 -----------| ----------------- | ---------
 SQLite     | 3+                | For testing only
-MySQL      | 5                 | Supported up to Rucio release [1.25](../release-notes/1.25.md)
-MySQL      | 8 and higher      | No support for SSH public key authentication
-PostgreSQL | up to 11          | Limited support for JSON-based generic metadata
+MySQL      | 8                 | No support for SSH public key authentication
 PostgreSQL | 12 and higher     |
-Oracle     | 11g               | Limited support for JSON-based generic metadata
 Oracle     | 19c               |
