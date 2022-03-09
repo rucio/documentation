@@ -78,11 +78,9 @@ libraries. We also have a contribution guide for those who wish to pitch in.
 ## Contributing to the Documentation
 
 Documentation is always a work in progress & we welcome both, qualitative and
-technical contributions from the community. Make sure you read through this
-section & understand the pre-requisites before you submit your first PR!
-
-- [Types of pages](types_of_pages.md)
-- [Contribution Guide for Documentation](contribution_guide_for_documentation.md)
+technical contributions from the community. Make sure you look into the
+[documentations GitHub repository](https://github.com/rucio/documentation) &
+understand the pre-requisites before you submit your first PR!
 
 ## About Us
 
