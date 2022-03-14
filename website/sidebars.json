@@ -7,7 +7,22 @@
       "main_components",
       "additional_layers_and_resources",
       "requirements",
-      "concepts",
+      {
+        "Concepts": [
+          "rucio_account",
+          "file_dataset_container",
+          "rucio_storage_element",
+          "metadata_attributes",
+          "permission_model",
+          "replica_management",
+          "replication_rules_examples",
+          "rse_expressions",
+          "accounting_and_quota",
+          "notifications",
+          "subscriptions",
+          "replica_workflow"
+        ]
+      },
       "releasepolicy",
       "release-notes"
     ],

@@ -11,4 +11,3 @@ are some of the points covered in this section.
 - [What is Rucio?](what_is_rucio.md)
 - [Main Components](main_components.md)
 - [Additional layers and Resources](additional_layers_and_resources.md)
-- [Concepts & Terminology](concepts.md)
