@@ -23,18 +23,14 @@
       "database",
       "administration",
       "configuration_parameters",
-      "configure-rucio-globus"
+      "configure-rucio-globus",
+      "policy_packages"
     ],
     "Developer": [
       "setting_up_demo",
       "developing_with_rucio",
       "contributing",
       "component_leads"
-    ],
-    "Miscellaneous": [
-      "policy_packages",
-      "notifications",
-      "metadata_attributes"
     ],
     "About Us": [
       "about_our_contributors",
