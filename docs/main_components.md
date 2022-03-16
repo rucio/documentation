@@ -19,7 +19,7 @@ for interaction with clients & other external application, as also the Web UI.
 ## Core
 
 This layer consists of all the Rucio-level abstractions that are explained at
-length in the [Concepts & Terminology](concepts.md) section.
+length in the Concepts section.
 
 ## Daemons
 

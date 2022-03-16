@@ -25,7 +25,6 @@ and more can be found by browsing through the sub-sections of this topic.
 - [What is Rucio?](what_is_rucio.md)
 - [Main Components](main_components.md)
 - [Additional layers and Resources](additional_layers_and_resources.md)
-- [Concepts & Terminology](concepts.md)
 - [Release Policy](releasepolicy.md)
 
 ## Try Rucio
