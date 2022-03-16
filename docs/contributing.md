@@ -4,23 +4,17 @@ title: Contributing Guide
 sidebar_label: Contributing Guide
 ---
 
-* Thank you for participating!
+## Thank you for participating
 
-* Please ensure that an [__issue__](https://github.com/rucio/rucio/issues/new)
-  exists before submitting your contribution as a pull request.
+The following is a set of rules for contributing to **Rucio** and its
+packages. Use your best judgment, and feel free to propose changes to this
+document.
 
-* The issue should contain the motivation, modification and expected results
-  (discussions usually happen there).
+If you have questions, you can reach the core development team on our
+[__Slack__](https://rucio.slack.com/) channel, or send an email to our
+development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
 
-* No pull request will be merged without an associated issue (release notes are
-  generated from issues).
-
-* Ensure you add your name (and organisation) to our [__list of
-  contributors__](about_our_contributors.md).
-
-* If you have questions, you can reach the core development team on our
-  [__Slack__](https://rucio.slack.com/) channel, or send an email to our
-  development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
+## What should I know before I get started
 
 A contribution can be either be a **patch** or **feature**:
 
@@ -33,10 +27,10 @@ The [__repository__](https://github.com/rucio/rucio/) consists of different
 branches:
 
 * the **master** branch includes the development for the next major version.
-* the **release-…** branches include the patch/minor development of the releases.
+* the **release-…** branches include the patch/minor development of the
+  releases.
 
-On release day both master and the related release branch are essentially the
-same. Release branches only exist for the currently maintained release
+Release branches only exist for the currently maintained release
 versions. Hotfix branches are created on demand. Please communicate to the Rucio
 maintainers, if you wish to hotfix a previous release.
 
@@ -50,56 +44,65 @@ The following figure might help you with an overview:
 
 ![Branching Strategy Graph](/img/branching_strategy.svg)
 
-## Getting started
+## How can I Contribute
 
-**Step 1**: Fork the [__repository__](https://github.com/rucio/rucio/) on
-Github.
+### 1. Prerequisite
 
-**Step 2**: Clone the repository to your development machine and configure it:
+* Ensure you add your name (and organisation) to our [__list of
+  contributors__](about_our_contributors.md).
 
-```bash
-git clone https://github.com/<YOUR_USER>/rucio/
-cd rucio
-git remote add upstream https://github.com/rucio/rucio.git
-```
+* Fork the [__repository__](https://github.com/rucio/rucio/) on
+  Github.
 
-## Git Hooks
+* Clone the repository to your development machine and configure it:
 
-The `prepare-commit-msg` hook can be installed by executing the script:
+  ```bash
+  git clone https://github.com/<YOUR_USER>/rucio/
+  cd rucio
+  git remote add upstream https://github.com/rucio/rucio.git
+  ```
 
-```bash
-./tools/configure_git.sh
-```
+* **Optional: Install Git Hooks**
 
-Also, the [`pre-commit` python](https://pre-commit.com/) package is configured
-for this repository. The `pre-commit` hook checks the syntax and format of the
-files before commiting. This saves time in the development process, since minor
-errors are noticed early.
+  The `prepare-commit-msg` hook can be installed by executing the script:
 
-To install the package and activate the hooks for the project:
+  ```bash
+  ./tools/configure_git.sh
+  ```
 
-```bash
-pip install pre-commit
-pre-commit install
-```
+  Also, the [`pre-commit` python](https://pre-commit.com/) package is configured
+  for this repository. The `pre-commit` hook checks the syntax and format of the
+  files before commiting. This saves time in the development process, since
+  minor errors are noticed before submission.
 
-If you only want to run the hooks on a push, run:
+  To install the package and activate the hooks for the project:
 
-```bash
-pre-commit install --hook-type pre-push
-```
+  ```bash
+  pip install pre-commit
+  pre-commit install
+  ```
 
-More information:
-<https://pre-commit.com/#confining-hooks-to-run-at-certain-stages>
+  If you only want to run the hooks on a push, run:
 
-## Contributing
+  ```bash
+  pre-commit install --hook-type pre-push
+  ```
 
-**Step 1**: If not exist, create an
-[__issue__](https://github.com/rucio/rucio/issues/new) with the description of
-the contribution (motivation, modification and expected results). Every issue
-will get a **unique issue number**.
+  More information:
+  <https://pre-commit.com/#confining-hooks-to-run-at-certain-stages>
 
-**Step 2**: Create a local branch that corresponds to the issue. To easily
+### 2. Create an Issue
+
+Please ensure that an [__issue__](https://github.com/rucio/rucio/issues/new)
+exists before submitting your contribution as a pull request. The issue should
+contain the motivation, modification and expected results (discussions usually
+happen there). No pull request will be merged without an associated issue
+(release notes are generated from issues). Each issue gets a **unique issue
+number**.
+
+### 3. Create a local working branch
+
+Create a local branch that corresponds to the issue. To easily
 identify the purpose of branches different keywords must be used:
 
 * Patch branches must be named **patch-[issue number]-[short description]**
@@ -114,8 +117,9 @@ fetch master and create these branches for you:
 ./tools/create-feature-branch <unique issue number> '<short_change_message>'
 ```
 
-**Step 3**: Commit your change. The commit command must include a specific
-message format:
+### 4. Commit your changes
+
+Commit your change. The commit command must include a specific message format:
 
 ```bash
 git commit -m "<component>: <change_message> #<issue number>"
@@ -125,7 +129,9 @@ Valid component names are listed in the [__label
 list__](https://github.com/rucio/rucio/labels) and are usually specified on the
 issue of the change.
 
-If you use the default commit message template, make sure you edit it.
+Add additional explanations to the body of the commit, such as motivation for
+certain decisions and background information. Here are some general rules:
+<https://cbea.ms/git-commit/>.
 
 If you add a [__github-recognised
 keyword__](https://help.github.com/articles/closing-issues-using-keywords/) then
@@ -136,8 +142,9 @@ merged, e.g.:
 <component>: <change_message> Fix #<issue number>
 ```
 
-**Step 4**: Push the commit to your forked repository and create the pull
-request.
+### 5. Push changes and create a Pull Request
+
+Push the commit to your forked repository and create the pull request.
 
 While using the [__github
 interface__](https://help.github.com/articles/creating-a-pull-request/) is the
@@ -151,9 +158,10 @@ The format of the pull request title must be:
 <component>: <short_change_message> #<issue number>
 ```
 
-**Step 5**: Watch the pull request for comments and reviews. For any pull
-requests update, please try to squash/amend your commits to avoid “in-between”
-commits.
+### 6. Watch the Pull Request for reviews
+
+Watch the pull request for comments and reviews. For any pull requests update,
+please try to squash/amend your commits to avoid “in-between” commits.
 
 ## Automatic Testing
 
