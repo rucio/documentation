@@ -142,21 +142,6 @@ merged, e.g.:
 <component>: <change_message> Fix #<issue number>
 ```
 
-#### Python file headers
-
-The python files in rucio contain special auto generated headers. These headers
-include file codings, copyrights and the names of all contributors of the
-file. If you edit a python file, you have to generate the updated header. This
-can be done with the command:
-
-```bash
-tools/add-header -i FILE [FILES...]
-```
-
-If you have the *pre-commit* script installed, these headers will automatically
-be gernated for you when you commit your changes. You only have to add them to
-your staged files.
-
 ### 5. Push changes and create a Pull Request
 
 Push the commit to your forked repository and create the pull request.
