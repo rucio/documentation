@@ -27,7 +27,7 @@ Component | Lead (+Deputies) | Description
 [Functional tests](https://github.com/rucio/rucio/issues?q=label%3A%22Functional+tests%22+is%3Aissue+is%3Aopen) | [Cedric Serfon](https://github.com/cserf) | Functional transfer tests
 [Life time model](https://github.com/rucio/rucio/issues?q=label%3A%22Life+time+model%22+is%3Aissue+is%3Aopen) | [Dimitrios Christidis](https://github.com/dchristidis) | Life time model processing and exceptions
 [Messaging](https://github.com/rucio/rucio/issues?q=label%3A%22Messaging%22+is%3Aissue+is%3Aopen) | [Mario Lassnig](https://github.com/mlassnig) | Messaging daemon: Hermes, Creation of eMails and ActiveMQ messages
-[Metadata](https://github.com/rucio/rucio/issues?q=label%3A%22Messaging%22+is%3Aissue+is%3Aopen) | [Rob Barnsley](https://github.com/robbarnsley) | Metadata workflows
+[Metadata](https://github.com/rucio/rucio/issues?q=label%3A%22Metadata%22+is%3Aissue+is%3Aopen) | [Rob Barnsley](https://github.com/robbarnsley) | Metadata workflows
 [Monitoring & Logging](https://github.com/rucio/rucio/issues?q=label%3A%22Monitoring+%26+Logging%22+is%3Aissue+is%3Aopen) | [Mayank Sharma](https://github.com/maany), [Mario Lassnig](https://github.com/mlassnig), [Radu Carpa](https://github.com/rcarpa) | All things logging and internal monitoring
 [Multi VO](https://github.com/rucio/rucio/issues?q=is%3Aopen+is%3Aissue+label%3A%22Multi+VO%22) | [Tim Noble](https://github.com/Thysk) |  Issues and developments related to Rucio Multi VO mode
 [Policies](https://github.com/rucio/rucio/issues?q=is%3Aopen+is%3Aissue+label%3APolicies) | [James Perry](https://github.com/jamesp-epcc) |  All things related to separate settings/config/policies into community specific things
