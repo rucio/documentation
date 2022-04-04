@@ -39,7 +39,12 @@
                 "database",
                 "administration",
                 "configuration_parameters",
-                "configure-rucio-globus",
+                {
+                    "Transfers": [
+                        "transfers-overview",
+                        "configure-rucio-globus"
+                    ]
+                },
                 "policy_packages"
             ],
             "Developer": [
