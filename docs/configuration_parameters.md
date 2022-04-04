@@ -105,6 +105,9 @@ attributes.
   - **redis_port**: Port of the Redis database defined in `redis_host`.
 - **cache**
   - **url**: _(Optional)_ URL of the cache. Default: `127.0.0.1:11211`.
+  - **use_external_cache_for_auth_tokens**: _(Optional)_ if True, use remote
+    cache provider for auth tokens. If False, use a private in-memory cache.
+    Default: `False`
 - **common**
   - **extract_scope**: _(Optional)_ <!--??--> Default: `atlas`.
   - **logdir**: Path of the directory for logs. Contains `auditor.log`.
@@ -508,14 +511,25 @@ attributes.
 - **associated_sites**: <!--??--> Separated by commas. Default: `None`.
 - **auto_approve_bytes**: Auto Approve Limit. Example: `500GB`. No default.
 - **auto_approve_files**: <!--??--> No default.
+- **available_for_multihop**: Boolean. If True, allow to use this RSE as an
+  intermediate hop in a multi-hop transfer. Default: `False`.
 - **block_manual_approval**: <!--??--> Boolean. Default: `False`.
 - **country**: <!--??--> No default.
 - **greedyDeletion**: <!--??--> Boolean. Default: `False`.
+- **hop_penalty**: <!--??--> Integer. Cost of passing via this RSE in multi-hop
+  transfers. Overrides the global `transfers/hop_penalty` configuration
+  value for this particular RSE. Has only meaning if `available_for_multihop`
+  attribute is True on the RSE. No default value.
 - **istape**: <!--??--> Boolean. Default: `False`.
 - **mock**: <!--??--> Boolean. Default: `False`.
 - **naming_convention**: <!--??--> Default: `None`.
 - **physgroup**: <!--??--> Default: ` `.
 - **quota_approvers**: <!--??--> Separated by commas. Default: `None`.
+- **restricted_read** <!--??--> Boolean. If True, only allow transfers
+  from this RSE if started by an account with admin privileges.
+  Default: `False`
+- **restricted_write** <!--??--> Boolean. Same as `restricted_read`, but for
+  transfers towards this RSE. Default: `False`
 - **rule_approvers**: <!--??--> Separated by commas. No default.
 - **rule_deleters**: <!--??--> Separated by commas. No default.
 - **site** <!--??-->
