@@ -8,6 +8,12 @@ links](https://github.com/rucio/documentation/actions/workflows/check_external_l
 This project contains the documentation for the [rucio](https://github.com/rucio/rucio)
 project.
 
+## Contribution
+
+Every change or idea is welcome! For information on how to contribute to the
+Rucio documentation, please refer and follow our [CONTRIBUTING](CONTRIBUTING.md)
+guidelines.
+
 ## Documentation Structure
 
 There are two types of documentation hosted for Rucio. Should you wish to
@@ -37,24 +43,3 @@ pull request to the [``rucio/rucio``](https://github.com/rucio/rucio/)
 repository with your suggestions for contribution.  Once the changes have been
 approved & pushed into the main branch, the changes will be available at
 <https://rucio.cern.ch/documentation> on the next day.
-
-## Project Structure
-
-There are 2 branches in this repository:
-
-- main: Containing the build files for Docusaurus
-- gh-pages: Hosting the website available at
-  [https://rucio.cern.ch/documentation](https://rucio.cern.ch/documentation)
-
-## Git Hooks
-
-The `pre-commit` python package is configured for this repository. The
-pre-commit hook checks the syntax and format of the files before commiting. This
-saves time in the development process, since minor errors are noticed early.
-
-To install the package and activate the hooks for the project:
-
-```bash
-pip install pre-commit
-pre-commit install
-```
