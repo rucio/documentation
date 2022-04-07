@@ -50,6 +50,7 @@
                 {
                     "Transfers": [
                         "transfers-overview",
+                        "transfers-submitter",
                         "configure-rucio-globus"
                     ]
                 },
