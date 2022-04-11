@@ -1,55 +1,62 @@
 {
-  "docs": {
-    "Getting Started": [
-      "index",
-      "before_you_get_started",
-      "what_is_rucio",
-      "main_components",
-      "additional_layers_and_resources",
-      "requirements",
-      {
-        "Concepts": [
-          "rucio_account",
-          "file_dataset_container",
-          "rucio_storage_element",
-          "metadata_attributes",
-          "permission_model",
-          "replica_management",
-          "replication_rules_examples",
-          "rse_expressions",
-          "accounting_and_quota",
-          "notifications",
-          "subscriptions",
-          "replica_workflow"
-        ]
-      },
-      "releasepolicy",
-      "release-notes"
-    ],
-    "Client": [
-      "setting_up_the_rucio_client",
-      "using_the_client",
-      "using_the_admin_client"
-    ],
-    "Server": [
-      "installing_server",
-      "installing_daemons",
-      "monitoring",
-      "database",
-      "administration",
-      "configuration_parameters",
-      "configure-rucio-globus",
-      "policy_packages"
-    ],
-    "Developer": [
-      "setting_up_demo",
-      "developing_with_rucio",
-      "contributing",
-      "component_leads"
-    ],
-    "About Us": [
-      "about_our_contributors",
-      "contact_us"
+    "docs": [
+        "index",
+        {
+            "Getting Started": [
+                "before_you_get_started",
+                "what_is_rucio",
+                "main_components",
+                "additional_layers_and_resources",
+                "requirements",
+                {
+                    "Concepts": [
+                        "rucio_account",
+                        "file_dataset_container",
+                        "rucio_storage_element",
+                        "metadata_attributes",
+                        "permission_model",
+                        "replica_management",
+                        "replication_rules_examples",
+                        "rse_expressions",
+                        "accounting_and_quota",
+                        "notifications",
+                        "subscriptions",
+                        "replica_workflow"
+                    ]
+                },
+                "releasepolicy",
+                "release-notes"
+            ],
+            "Client": [
+                "setting_up_the_rucio_client",
+                "using_the_client",
+                "using_the_admin_client"
+            ],
+            "Server": [
+                "installing_server",
+                "installing_daemons",
+                "monitoring",
+                "database",
+                "administration",
+                "configuration_parameters",
+                {
+                    "Transfers": [
+                        "transfers-overview",
+                        "configure-rucio-globus"
+                    ]
+                },
+                "policy_packages"
+            ],
+            "Developer": [
+                "setting_up_demo",
+                "developing_with_rucio",
+                "contributing",
+                "component_leads"
+            ],
+            "About Us": [
+                "about_our_contributors",
+                "contact_us"
+            ]
+        }
     ]
-  }
 }

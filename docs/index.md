@@ -1,53 +1,44 @@
 ---
 id: index
-title: "Welcome to Rucio's documentation!"
-sidebar_label: "Welcome!"
+title: "Welcome to Rucio's documentation"
+sidebar_label: "Welcome"
 slug: /
 ---
 
 Rucio is a project that provides services and associated libraries for allowing
 scientific collaborations to manage large volumes of data spread across
-facilities at multiple institutions and organisations. Rucio has been developed
-by [the ATLAS experiment](https://atlas.cern/)
+facilities at multiple institutions and organisations. Rucio was originally
+developed to meet the requirements of the high-energy physics experiment
+[ATLAS](https://atlas.cern/), and now is continuously extended to support the
+LHC experiments and other diverse scientific communities.
 
 Rucio offers advanced features, is highly scalable, and modular. It is a data
-management solution that could cover the needs of different communities in the
+management solution that covers the needs of different communities in the
 scientific domain (e.g., HEP, astronomy, biology).
 
 Below are some resources to help you get you started on your journey.
 
-## [Before You Get Started](before_you_get_started.md)
+## Getting Started
 
 What exactly is Rucio? What were the motivations behind developing such a
 system? Who uses it? What powers these systems? Answers to all these questions
 and more can be found by browsing through the sub-sections of this topic.
 
-- [What is Rucio?](what_is_rucio.md)
+- [What is Rucio](what_is_rucio.md)
 - [Main Components](main_components.md)
-- [Additional layers and Resources](additional_layers_and_resources.md)
-- [Release Policy](releasepolicy.md)
+- [Additional Layers and Resources](additional_layers_and_resources.md)
 
-## Try Rucio
+## Client
 
-Get your hands dirty by trying to setup your very own demo environment on your
-local laptop/desktop. Make sure you read the pre-requisites section before
-starting off, though!
+The rucio client enables users to interact with the system and access the
+distributed data. The client can upload, download, manage and delete everything
+from single files up to Petabyte sized datasets.
 
-- [Pre-requisites](setting_up_demo)
-- [Setting up Demo environment](setting_up_demo)
-- [Rucio executables](bin.md)
+- [Setting Up the Rucio Client](setting_up_the_rucio_client.md)
+- [Using the Client](using_the_client.md)
+- [Using the Admin Client](using_the_admin_client.md)
 
-## Rucio User Playground
-
-Congratulations on setting up your Rucio environment! Let us now have a look at
-some of the common things you can do using Rucio by setting up the Rucio
-client. Also, this section will introduce you to some common CLI commands that
-you, as a user, might find helpful when working with Rucio.
-
-- [Setting up the Rucio Client](setting_up_the_rucio_client.md)
-- [Rucio CLI playground](using_the_client.md)
-
-## Rucio Operator Documentation
+## Administration
 
 This section of the documentation deals with some of the material that an
 operator or administrator of a Rucio environment would require. For example, how
@@ -58,9 +49,10 @@ pre-requisites section under each of the topics!
 - [Installing Rucio Server](installing_server.md)
 - [Installing Rucio Daemons](installing_daemons.md)
 - [Monitoring](monitoring.md)
+- [Database](database)
 - [Configuration parameters](configuration_parameters.md)
 
-## Rucio Developer Documentation
+## Developer Documentation
 
 Whether you want to develop with Rucio or contribute to the project, the
 Developer documentation will help you get started. Peruse some common REST API &
@@ -69,22 +61,22 @@ libraries. We also have a contribution guide for those who wish to pitch in.
 
 - [Client API Documentation](rucio_client_api)
 - [REST API Documentation](rucio_rest_api)
-- [Database](database)
+- [Setting up a Rucio demo environment](setting_up_demo.md)
 - [Configuring Rucio to use Globus as an Online Transfer
   Tool](configure-rucio-globus)
 - [Contributing guide](contributing)
 
 ## Contributing to the Documentation
 
-Documentation is always a work in progress & we welcome both, qualitative and
-technical contributions from the community. Make sure you look into the
-[documentations GitHub repository](https://github.com/rucio/documentation) &
+Documentation is always a work in progress and we welcome both, qualitative and
+technical contributions, from the community. Make sure you look into the
+[documentations GitHub repository](https://github.com/rucio/documentation) and
 understand the pre-requisites before you submit your first PR!
 
 ## About Us
 
-Learn more about the brilliant minds pioneering the development & maintenance of
-Rucio in this section. Should you wish to get in touch with us, we've also
+Learn more about the brilliant minds pioneering the development and maintenance
+of Rucio in this section. Should you wish to get in touch with us, we've also
 included several ways of doing so in the **Contact Us** section.
 
 - [About Our Contributors](about_our_contributors.md)
