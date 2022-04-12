@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap">
 <script src="https://buttons.github.io/buttons.js"></script><title data-react-helmet="true">Rucio REST API | Rucio Documentation</title><meta data-react-helmet="true" property="og:url" content="https://rucio.github.io/documentation/rucio_rest_api"><meta data-react-helmet="true" name="docsearch:language" content="en"><meta data-react-helmet="true" name="docsearch:version" content="current"><meta data-react-helmet="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-react-helmet="true" property="og:title" content="Rucio REST API | Rucio Documentation"><meta data-react-helmet="true" name="description" content="* \\init\\"><meta data-react-helmet="true" property="og:description" content="* \\init\\"><link data-react-helmet="true" rel="shortcut icon" href="/documentation/img/android-chrome-512x512.png"><link data-react-helmet="true" rel="canonical" href="https://rucio.github.io/documentation/rucio_rest_api"><link data-react-helmet="true" rel="alternate" href="https://rucio.github.io/documentation/rucio_rest_api" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://rucio.github.io/documentation/rucio_rest_api" hreflang="x-default"><link data-react-helmet="true" rel="preconnect" href="https://BH4D9OD16A-dsn.algolia.net" crossorigin="anonymous"><link rel="stylesheet" href="/documentation/assets/css/styles.365df3eb.css">
 <link rel="preload" href="/documentation/assets/js/styles.90697047.js" as="script">
-<link rel="preload" href="/documentation/assets/js/runtime~main.0f0c62a2.js" as="script">
+<link rel="preload" href="/documentation/assets/js/runtime~main.a299db05.js" as="script">
 <link rel="preload" href="/documentation/assets/js/main.aae25b4f.js" as="script">
 <link rel="preload" href="/documentation/assets/js/1.15a32517.js" as="script">
 <link rel="preload" href="/documentation/assets/js/2.81e41a0b.js" as="script">
@@ -21,7 +21,7 @@
 <link rel="preload" href="/documentation/assets/js/318.f1e87c14.js" as="script">
 <link rel="preload" href="/documentation/assets/js/935f2afb.c1791df6.js" as="script">
 <link rel="preload" href="/documentation/assets/js/17896441.15c7ce09.js" as="script">
-<link rel="preload" href="/documentation/assets/js/ab836617.7306bc33.js" as="script">
+<link rel="preload" href="/documentation/assets/js/ab836617.be9e110b.js" as="script">
 </head>
 <body>
 <script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
@@ -82,10 +82,72 @@ type: str
 400:
 description: Invalid value
 406:
-description: Not acceptable</li></ul><a name="archives.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="tmp_dids"></a># tmp\_dids<a name="tmp_dids.BulkDIDS"></a>## BulkDIDS Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">BulkDIDS</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><a name="tmp_dids.BulkDIDS.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Bulk add temporary data identifiers.</p><p>.. :quickref: BulkDIDS; Bulk add temporary dids.</p><p>:\&lt;json list dids: A list of dids.
-:status 201: Created.
-:status 400: Cannot decode json parameter list.
-:status 401: Invalid Auth Token.</p><a name="tmp_dids.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="ping"></a># ping<a name="ping.Ping"></a>## Ping Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Ping</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><a name="ping.Ping.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Ping
+description: Not acceptable</li></ul><a name="archives.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="tmp_dids"></a># tmp\_dids<a name="tmp_dids.BulkDIDS"></a>## BulkDIDS Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">BulkDIDS</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><a name="tmp_dids.BulkDIDS.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Add Temporary Data Identifiers
+description: Bulk adds temporary data identifiers.
+tags:</p><ul><li>Temporary Data Identifiers
+requestBody:
+content:
+application/json:
+schema:
+description: A list of temporary dids.
+type: array
+items:
+description: A temporary did.
+properties:
+rse:
+description: The name of the RSE.
+type: string
+rse_id:
+description: The id of the RSE. Can be specified instead of the RSE name.
+type: string
+scope:
+description: The scope.
+type: string
+parent_scope:
+description: The parent scope.
+type: string
+name:
+description: The name of the DID.
+type: string
+path:
+description: The path of the DID.
+type: string
+pfn:
+description: The pfn of the DID.
+type: string
+bytes:
+description: The size of the DID in bytes.
+type: integer
+md5:
+description: The md5 checksum of the DID.
+type: string
+adler32:
+description: The adler32 checksum of the DID.
+type: string
+guid:
+description: The guid of the DID.
+type: string
+events:
+description: The events of the DID.
+type: string
+parent_name:
+description: The name of the parent.
+type: string
+offset:
+description: The offset of the DID.
+type: integer
+responses:
+201:
+description: Created
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+401:
+description: Invalid Auth Token
+406:
+description: Not acceptable</li></ul><a name="tmp_dids.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="ping"></a># ping<a name="ping.Ping"></a>## Ping Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Ping</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><a name="ping.Ping.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Ping
 description: Ping the server and get data about it.
 tags:</p><ul><li>Ping
 responses:
@@ -1878,28 +1940,664 @@ description: Invalid Auth Token
 404:
 description: Lifetime Exception not found
 400:
-description: Cannot decode json parameter list.</li></ul><a name="lifetime_exceptions.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="requests"></a># requests<a name="requests.RequestGet"></a>## RequestGet Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RequestGet</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API to get requests.</p><a name="requests.RequestGet.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">scope_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List request for given DID to a destination RSE.</p><p>.. :quickref: RequestGet; list requests</p><p><strong>Arguments</strong>:</p><p>:reqheader Content-Type: application/json
-:status 200: Request found.
-:status 404: Request not found.
-:status 406: Not Acceptable.</p><ul><li><code>scope_name</code>: data identifier (scope)/(name).</li><li><code>rse</code>: destination RSE.</li></ul><a name="requests.RequestHistoryGet"></a>## RequestHistoryGet Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RequestHistoryGet</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API to get historical requests.</p><a name="requests.RequestHistoryGet.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">scope_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List request for given DID to a destination RSE.</p><p>.. :quickref: RequestHistoryGet; list requests</p><p><strong>Arguments</strong>:</p><p>:reqheader Content-Type: application/json
-:status 200: Request found.
-:status 404: Request not found.</p><ul><li><code>scope_name</code>: data identifier (scope)/(name).</li><li><code>rse</code>: destination RSE.</li></ul><a name="requests.RequestList"></a>## RequestList Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RequestList</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API to get requests.</p><a name="requests.RequestList.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List requests for a given source and destination RSE or site.</p><p>.. :quickref: RequestsGet; list requests</p><p>:reqheader Content-Type: application/x-json-stream
-:status 200: Request found.
-:status 404: Request not found.
-:status 406: Not Acceptable.</p><a name="requests.RequestHistoryList"></a>## RequestHistoryList Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RequestHistoryList</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API to get requests.</p><a name="requests.RequestHistoryList.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List historical requests for a given source and destination RSE or site.</p><p>.. :quickref: RequestsGet; list requests</p><p>:reqheader Content-Type: application/x-json-stream
-:status 200: Request found.
-:status 404: Request not found.</p><a name="requests.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="scopes"></a># scopes<a name="scopes.Scope"></a>## Scope Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Scope</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><a name="scopes.Scope.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List all scopes.</p><p>.. :quickref: Scopes; Get all scopes.</p><p><strong>Example request</strong>:</p><p>.. sourcecode:: http</p><div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI"><div tabindex="0" class="prism-code language-undefined codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">GET /posts/ HTTP/1.1</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">Host: rucio.com</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p><strong>Example response</strong>:</p><p>.. sourcecode:: http</p><div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI"><div tabindex="0" class="prism-code language-undefined codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">HTTP/1.1 200 OK</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">Vary: Accept</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">Content-Type: application/json</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain" style="display:inline-block">
-</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">[&quot;RSE1&quot;, &quot;RSE2&quot;, &quot;RSE3&quot;, &quot;RSE4&quot;, &quot;RSE5&quot;]</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>:resheader Content-Type: application/json
-:status 200: scopes found
-:status 406: Not Acceptable</p><p><strong>Returns</strong>:</p><p>:class:<code>String</code></p><a name="scopes.Scope.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">account</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scope</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Add a new scope.</p><p>.. :quickref: Scopes; Add a new scope.</p><p>:resheader Location: post url
-:status 201: scope created
-:status 404: account does not exist
-:status 401: unauthorized
-:status 409: scope already exists</p><a name="scopes.AccountScopeList"></a>## AccountScopeList Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">AccountScopeList</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><a name="scopes.AccountScopeList.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">account</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List account scopes.</p><p>.. :quickref: Scopes; Get scopes for account.</p><p>:resheader Content-Type: application/json
-:status 200: Scopes found
-:status 404: Account not found
-:status 404: No scopes for this account
-:status 406: Not Acceptable</p><p><strong>Returns</strong>:</p><p>A list containing all scope names for an account.</p><a name="scopes.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="export"></a># export<a name="export.Export"></a>## Export Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Export</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Export data.</p><a name="export.Export.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Export data
+description: Cannot decode json parameter list.</li></ul><a name="lifetime_exceptions.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="requests"></a># requests<a name="requests.RequestGet"></a>## RequestGet Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RequestGet</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API to get requests.</p><a name="requests.RequestGet.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">scope_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get Request
+description: Get a request for a given DID to a destinaion RSE.
+tags:</p><ul><li>Requests
+parameters:</li><li>name: scope_name
+in: path
+description: Data identifier (scope)/(name).
+schema:
+type: string
+style: simple</li><li>name: rse
+in: path
+description: Destination rse.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: The request associated with the DID and destination RSE.
+type: object
+properties:
+id:
+description: The id of the request.
+type: strig
+request_type:
+description: The request type.
+type: string
+enum: [&quot;T&quot;, &quot;U&quot;, &quot;D&quot;, &quot;I&quot;, &quot;O&quot;]
+scope:
+description: The scope of the transfer.
+type: string
+name:
+description: The name of the transfer.
+type: string
+did_type:
+description: The did type.
+type: string
+dest_rse_id:
+description: The destination RSE id.
+type: string
+source_rse_id:
+description: The source RSE id.
+type: string
+attributes:
+description: All attributes associated with the request.
+type: string
+state:
+description: The state of the request.
+type: string
+enum: [&quot;Q&quot;, &quot;G&quot;, &quot;S&quot;, &quot;F&quot;, &quot;D&quot;, &quot;L&quot;, &quot;N&quot;, &quot;O&quot;, &quot;A&quot;, &quot;M&quot;, &quot;U&quot;, &quot;W&quot;, &quot;P&quot;]
+external_id:
+description: External id of the request.
+type: string
+external_host:
+description: External host of the request.
+type: string
+retry_count:
+description: The numbers of attempted retires.
+type: integer
+err_msg:
+description: An error message if one occured.
+type: string
+previous_attempt_id:
+description: The id of the previous attempt.
+type: string
+rule_id:
+description: The id of the associated replication rule.
+type: string
+activity:
+description: The activity of the request.
+type: string
+bytes:
+description: The size of the did in bytes.
+type: integer
+md5:
+description: The md5 checksum of the did to transfer.
+type: string
+adler32:
+description: The adler32 checksum of the did to transfer.
+type: string
+dest_url:
+description: The destination url.
+type: string
+submitted_at:
+description: The time the request got submitted.
+type: string
+started_at:
+description: The time the request got started.
+type: string
+transferred_at:
+description: The time the request got transfered.
+type: string
+estimated_at:
+description: The time the request got estimated.
+type: string
+submitter_id:
+description: The id of the submitter.
+type: string
+estimated_stated_at:
+description: The estimation of the started at value.
+type: string
+estimated_transferred_at:
+description: The estimation of the transfered at value.
+type: string
+staging_started_at:
+description: The time the staging got started.
+type: string
+staging_finished_at:
+description: The time the staging got finished.
+type: string
+account:
+description: The account which issued the request.
+type: string
+requested_at:
+description: The time the request got requested.
+type: string
+priority:
+description: The priority of the request.
+type: integer
+transfertool:
+description: The transfertool used.
+type: string
+source_rse:
+description: The name of the source RSE.
+type: string
+dest_rse:
+description: The name of the destination RSE.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: Not found
+406:
+description: Not acceptable</li></ul><a name="requests.RequestHistoryGet"></a>## RequestHistoryGet Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RequestHistoryGet</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API to get historical requests.</p><a name="requests.RequestHistoryGet.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">scope_name</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get Historical Request
+description: List a hostorical request for a given DID to a destination RSE.
+tags:</p><ul><li>Requests
+parameters:</li><li>name: scope_name
+in: path
+description: Data identifier (scope)/(name).
+schema:
+type: string
+style: simple</li><li>name: rse
+in: path
+description: Destination rse.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: The request associated with the DID and destination RSE.
+type: object
+properties:
+id:
+description: The id of the request.
+type: strig
+request_type:
+description: The request type.
+type: string
+enum: [&quot;T&quot;, &quot;U&quot;, &quot;D&quot;, &quot;I&quot;, &quot;O&quot;]
+scope:
+description: The scope of the transfer.
+type: string
+name:
+description: The name of the transfer.
+type: string
+did_type:
+description: The did type.
+type: string
+dest_rse_id:
+description: The destination RSE id.
+type: string
+source_rse_id:
+description: The source RSE id.
+type: string
+attributes:
+description: All attributes associated with the request.
+type: string
+state:
+description: The state of the request.
+type: string
+enum: [&quot;Q&quot;, &quot;G&quot;, &quot;S&quot;, &quot;F&quot;, &quot;D&quot;, &quot;L&quot;, &quot;N&quot;, &quot;O&quot;, &quot;A&quot;, &quot;M&quot;, &quot;U&quot;, &quot;W&quot;, &quot;P&quot;]
+external_id:
+description: External id of the request.
+type: string
+external_host:
+description: External host of the request.
+type: string
+retry_count:
+description: The numbers of attempted retires.
+type: integer
+err_msg:
+description: An error message if one occured.
+type: string
+previous_attempt_id:
+description: The id of the previous attempt.
+type: string
+rule_id:
+description: The id of the associated replication rule.
+type: string
+activity:
+description: The activity of the request.
+type: string
+bytes:
+description: The size of the did in bytes.
+type: integer
+md5:
+description: The md5 checksum of the did to transfer.
+type: string
+adler32:
+description: The adler32 checksum of the did to transfer.
+type: string
+dest_url:
+description: The destination url.
+type: string
+submitted_at:
+description: The time the request got submitted.
+type: string
+started_at:
+description: The time the request got started.
+type: string
+transferred_at:
+description: The time the request got transfered.
+type: string
+estimated_at:
+description: The time the request got estimated.
+type: string
+submitter_id:
+description: The id of the submitter.
+type: string
+estimated_stated_at:
+description: The estimation of the started at value.
+type: string
+estimated_transferred_at:
+description: The estimation of the transfered at value.
+type: string
+staging_started_at:
+description: The time the staging got started.
+type: string
+staging_finished_at:
+description: The time the staging got finished.
+type: string
+account:
+description: The account which issued the request.
+type: string
+requested_at:
+description: The time the request got requested.
+type: string
+priority:
+description: The priority of the request.
+type: integer
+transfertool:
+description: The transfertool used.
+type: string
+source_rse:
+description: The name of the source RSE.
+type: string
+dest_rse:
+description: The name of the destination RSE.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: Not found
+406:
+description: Not acceptable</li></ul><a name="requests.RequestList"></a>## RequestList Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RequestList</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API to get requests.</p><a name="requests.RequestList.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: List Historic Requests
+description: List requests for a given source and destination RSE or site.
+tags:</p><ul><li>Requests
+parameters:</li><li>name: src_rse
+in: query
+description: The source rse.
+schema:
+type: array
+items:
+type: object
+required:<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI"><div tabindex="0" class="prism-code language-undefined codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">  - rse_id</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">properties:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  rse_id:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    description: The id of the rse.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    type: string</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div></li><li>name: dest_rse
+in: query
+description: The destination rse.
+schema:
+type: array
+items:
+type: object
+required:<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI"><div tabindex="0" class="prism-code language-undefined codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">  - rse_id</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">properties:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  rse_id:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    description: The id of the rse.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    type: string</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div></li><li>name: src_site
+in: query
+description: The source site.
+schema:
+type: string</li><li>name: dest_site
+in: query
+description: The destination site.
+schema:
+type: string</li><li>name: request_states
+in: query
+description: The accepted request states. Delimited by comma.
+schema:
+type: string
+responses:
+200:
+description: OK
+content:
+application/x-json-stream:
+schema:
+description: All requests matching the arguments. Seperated by the new line character.
+type: array
+items:
+description: A request.
+type: object
+properties:
+id:
+description: The id of the request.
+type: strig
+request_type:
+description: The request type.
+type: string
+enum: [&quot;T&quot;, &quot;U&quot;, &quot;D&quot;, &quot;I&quot;, &quot;O&quot;]
+scope:
+description: The scope of the transfer.
+type: string
+name:
+description: The name of the transfer.
+type: string
+did_type:
+description: The did type.
+type: string
+dest_rse_id:
+description: The destination RSE id.
+type: string
+source_rse_id:
+description: The source RSE id.
+type: string
+attributes:
+description: All attributes associated with the request.
+type: string
+state:
+description: The state of the request.
+type: string
+enum: [&quot;Q&quot;, &quot;G&quot;, &quot;S&quot;, &quot;F&quot;, &quot;D&quot;, &quot;L&quot;, &quot;N&quot;, &quot;O&quot;, &quot;A&quot;, &quot;M&quot;, &quot;U&quot;, &quot;W&quot;, &quot;P&quot;]
+external_id:
+description: External id of the request.
+type: string
+external_host:
+description: External host of the request.
+type: string
+retry_count:
+description: The numbers of attempted retires.
+type: integer
+err_msg:
+description: An error message if one occured.
+type: string
+previous_attempt_id:
+description: The id of the previous attempt.
+type: string
+rule_id:
+description: The id of the associated replication rule.
+type: string
+activity:
+description: The activity of the request.
+type: string
+bytes:
+description: The size of the did in bytes.
+type: integer
+md5:
+description: The md5 checksum of the did to transfer.
+type: string
+adler32:
+description: The adler32 checksum of the did to transfer.
+type: string
+dest_url:
+description: The destination url.
+type: string
+submitted_at:
+description: The time the request got submitted.
+type: string
+started_at:
+description: The time the request got started.
+type: string
+transferred_at:
+description: The time the request got transfered.
+type: string
+estimated_at:
+description: The time the request got estimated.
+type: string
+submitter_id:
+description: The id of the submitter.
+type: string
+estimated_stated_at:
+description: The estimation of the started at value.
+type: string
+estimated_transferred_at:
+description: The estimation of the transfered at value.
+type: string
+staging_started_at:
+description: The time the staging got started.
+type: string
+staging_finished_at:
+description: The time the staging got finished.
+type: string
+account:
+description: The account which issued the request.
+type: string
+requested_at:
+description: The time the request got requested.
+type: string
+priority:
+description: The priority of the request.
+type: integer
+transfertool:
+description: The transfertool used.
+type: string
+source_rse:
+description: The name of the source RSE.
+type: string
+dest_rse:
+description: The name of the destination RSE.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: Not found
+406:
+description: Not acceptable</li></ul><a name="requests.RequestHistoryList"></a>## RequestHistoryList Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RequestHistoryList</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API to get requests.</p><a name="requests.RequestHistoryList.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: List Historic Requests
+description: List historical requests for a given source and destination RSE or site.
+tags:</p><ul><li>Requests
+parameters:</li><li>name: src_rse
+in: query
+description: The source rse.
+schema:
+type: array
+items:
+type: object
+required:<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI"><div tabindex="0" class="prism-code language-undefined codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">  - rse_id</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">properties:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  rse_id:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    description: The id of the rse.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    type: string</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div></li><li>name: dest_rse
+in: query
+description: The destination rse.
+schema:
+type: array
+items:
+type: object
+required:<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI"><div tabindex="0" class="prism-code language-undefined codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">  - rse_id</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">properties:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  rse_id:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    description: The id of the rse.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    type: string</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div></li><li>name: src_site
+in: query
+description: The source site.
+schema:
+type: string</li><li>name: dest_site
+in: query
+description: The destination site.
+schema:
+type: string</li><li>name: request_states
+in: query
+description: The accepted request states. Delimited by comma.
+schema:
+type: string</li><li>name: offset
+in: query
+description: The offset of the list.
+schema:
+type: integer
+default: 0</li><li>name: limit
+in: query
+description: The maximum number of items to return.
+schema:
+type: integer
+default: 100
+responses:
+200:
+description: OK
+content:
+application/x-json-stream:
+schema:
+description: All requests matching the arguments. Seperated by a new line character.
+type: array
+items:
+description: A request.
+type: object
+properties:
+id:
+description: The id of the request.
+type: strig
+request_type:
+description: The request type.
+type: string
+enum: [&quot;T&quot;, &quot;U&quot;, &quot;D&quot;, &quot;I&quot;, &quot;O&quot;]
+scope:
+description: The scope of the transfer.
+type: string
+name:
+description: The name of the transfer.
+type: string
+did_type:
+description: The did type.
+type: string
+dest_rse_id:
+description: The destination RSE id.
+type: string
+source_rse_id:
+description: The source RSE id.
+type: string
+attributes:
+description: All attributes associated with the request.
+type: string
+state:
+description: The state of the request.
+type: string
+enum: [&quot;Q&quot;, &quot;G&quot;, &quot;S&quot;, &quot;F&quot;, &quot;D&quot;, &quot;L&quot;, &quot;N&quot;, &quot;O&quot;, &quot;A&quot;, &quot;M&quot;, &quot;U&quot;, &quot;W&quot;, &quot;P&quot;]
+external_id:
+description: External id of the request.
+type: string
+external_host:
+description: External host of the request.
+type: string
+retry_count:
+description: The numbers of attempted retires.
+type: integer
+err_msg:
+description: An error message if one occured.
+type: string
+previous_attempt_id:
+description: The id of the previous attempt.
+type: string
+rule_id:
+description: The id of the associated replication rule.
+type: string
+activity:
+description: The activity of the request.
+type: string
+bytes:
+description: The size of the did in bytes.
+type: integer
+md5:
+description: The md5 checksum of the did to transfer.
+type: string
+adler32:
+description: The adler32 checksum of the did to transfer.
+type: string
+dest_url:
+description: The destination url.
+type: string
+submitted_at:
+description: The time the request got submitted.
+type: string
+started_at:
+description: The time the request got started.
+type: string
+transferred_at:
+description: The time the request got transfered.
+type: string
+estimated_at:
+description: The time the request got estimated.
+type: string
+submitter_id:
+description: The id of the submitter.
+type: string
+estimated_stated_at:
+description: The estimation of the started at value.
+type: string
+estimated_transferred_at:
+description: The estimation of the transfered at value.
+type: string
+staging_started_at:
+description: The time the staging got started.
+type: string
+staging_finished_at:
+description: The time the staging got finished.
+type: string
+account:
+description: The account which issued the request.
+type: string
+requested_at:
+description: The time the request got requested.
+type: string
+priority:
+description: The priority of the request.
+type: integer
+transfertool:
+description: The transfertool used.
+type: string
+source_rse:
+description: The name of the source RSE.
+type: string
+dest_rse:
+description: The name of the destination RSE.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: Not found
+406:
+description: Not acceptable</li></ul><a name="requests.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="scopes"></a># scopes<a name="scopes.Scope"></a>## Scope Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Scope</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><a name="scopes.Scope.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: List Scopes
+description: List all scopes
+tags:</p><ul><li>Scopes
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: All scopes.
+type: array
+items:
+description: A scope.
+type: string
+401:
+description: Invalid Auth Token
+406:
+description: Not acceptable</li></ul><a name="scopes.Scope.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">account</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scope</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Add Scope
+description: Adds a new scope.
+tags:</p><ul><li>Scopes
+parameters:</li><li>name: account
+in: path
+description: The account associated with the scope.
+schema:
+type: string
+style: simple</li><li>name: scope
+in: path
+description: The name of the scope.
+schema:
+type: string
+style: simple
+responses:
+201:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+401:
+description: Invalid Auth Token
+404:
+description: Account not found
+409:
+description: Scope already exists</li></ul><a name="scopes.AccountScopeList"></a>## AccountScopeList Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">AccountScopeList</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><a name="scopes.AccountScopeList.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">account</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: List Account Scopes
+description: List all scopes for an account.
+tags:</p><ul><li>Scopes
+parameters:</li><li>name: account
+in: path
+description: The account associated with the scope.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: All scopes for the account.
+type: array
+items:
+description: A scope for the account.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: Account not found or no scopes
+406:
+description: Not acceptable</li></ul><a name="scopes.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="export"></a># export<a name="export.Export"></a>## Export Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Export</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Export data.</p><a name="export.Export.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Export data
 description: Export data from rucio.
 tags:</p><ul><li>Export
 parameters:</li><li>name: distance
@@ -3499,7 +4197,7 @@ HTTP Success:
 :status 401: Invalid auth token.
 :status 404: ReplicaNotFound.</p><a name="replicas.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p></div></article><div class="margin-vert--xl"><div class="row"><div class="col"><a href="https://github.com/rucio/documentation/tree/main/docs/../docs/rucio_rest_api.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="1.2em" width="1.2em" preserveAspectRatio="xMidYMid meet" role="img" viewBox="0 0 40 40" class="iconEdit_mS5F" aria-label="Edit page"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav" aria-label="Docs pages navigation"><div class="pagination-nav__item"></div><div class="pagination-nav__item pagination-nav__item--next"></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_vrFS thin-scrollbar"></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="footer__bottom text--center"><div class="margin-bottom--sm"><img src="/documentation/img/rucio_horizontaled_black.svg" alt="" class="themedImage_TMUO themedImage--light_4Vu1 footer__logo"><img src="/documentation/img/rucio_horizontaled_white.svg" alt="" class="themedImage_TMUO themedImage--dark_uzRr footer__logo"></div><div class="footer__copyright">Copyright © 2022 CERN</div></div></div></footer></div>
 <script src="/documentation/assets/js/styles.90697047.js"></script>
-<script src="/documentation/assets/js/runtime~main.0f0c62a2.js"></script>
+<script src="/documentation/assets/js/runtime~main.a299db05.js"></script>
 <script src="/documentation/assets/js/main.aae25b4f.js"></script>
 <script src="/documentation/assets/js/1.15a32517.js"></script>
 <script src="/documentation/assets/js/2.81e41a0b.js"></script>
@@ -3507,6 +4205,6 @@ HTTP Success:
 <script src="/documentation/assets/js/318.f1e87c14.js"></script>
 <script src="/documentation/assets/js/935f2afb.c1791df6.js"></script>
 <script src="/documentation/assets/js/17896441.15c7ce09.js"></script>
-<script src="/documentation/assets/js/ab836617.7306bc33.js"></script>
+<script src="/documentation/assets/js/ab836617.be9e110b.js"></script>
 </body>
 </html>
