@@ -6,7 +6,7 @@ title: Typical Replica Workflow
 This section gives an overview of what happens within Rucio, for a typical
 replica workflow. Two workflows are described: When a replica is uploaded to
 Rucio via a client and when a replica is created by a site to site transfer due
-to the creation of a [replication rule](overview_Replica_management.md).
+to the creation of a [replication rule](replica_management.md).
 
 ## Replica paths on storage
 
@@ -58,9 +58,9 @@ This is a typical workflow when a user uploads multiple files, which are part of
 a dataset, via the command line client.
 
 1. The dataset `test.dataset` is being registered at the server.  All files, or
-   datasets are associated to a [scope](overview_File_Dataset_Container.md), if
-   not specifically mentioned the client will assume the default scope of the
-   user, such as `user.jdoe`. Thus the full data identifier for the dataset is
+   datasets are associated to a [scope](file_dataset_container.md), if not
+   specifically mentioned the client will assume the default scope of the user,
+   such as `user.jdoe`. Thus the full data identifier for the dataset is
    `user.jdoe:test.dataset`.
 
 1. The client queries the RSE information from the server. This not only gives a
