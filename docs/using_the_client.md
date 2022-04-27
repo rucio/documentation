@@ -245,7 +245,7 @@ If the RSEs are tagged with attributes you can build RSE expressions and query
 the sites matching these expressions:
 
 ```bash
-$ rucio list-rses --expression "tier=1&disk=1"
+$ rucio list-rses --rses "tier=1&disk=1"
 SITE1_DISK
 SITE2_DISK
 ```
