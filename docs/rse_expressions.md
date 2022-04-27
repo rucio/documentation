@@ -20,7 +20,7 @@ particular RSE.
 1. The following expression returns all RSEs:
 
   ```bash
-  jbogadog@lxplus0058:~$ rucio list-rses --expression '*'
+  jbogadog@lxplus0058:~$ rucio list-rses --rses '*'
 
   IFIC-LCG2_LOCALGROUPDISK
   IFAE_PRODDISK
@@ -41,7 +41,7 @@ particular RSE.
    RSE:
 
   ```bash
-  jbogadog@lxplus0058:~$ rucio list-rses --expression
+  jbogadog@lxplus0058:~$ rucio list-rses --rses
 
   EELA-UNLP_SCRATCHDISK
   ELA-UNLP_SCRATCHDISK
@@ -51,7 +51,7 @@ particular RSE.
    in a particular site:
 
   ```bash
-  jbogadog@lxplus0058:~$ rucio list-rses --expression site=EELA-UNLP
+  jbogadog@lxplus0058:~$ rucio list-rses --rses site=EELA-UNLP
 
   EELA-UNLP_PRODDISK
   EELA-UNLP_DATADISK
@@ -61,7 +61,7 @@ particular RSE.
 1. Or all the RSEs who's type is `SCRATCHDISK`:
 
   ```bash
-  jbogadog@lxplus0058:~$ rucio list-rses --expression type=SCRATCHDISK
+  jbogadog@lxplus0058:~$ rucio list-rses --rses type=SCRATCHDISK
 
   UNI-SIEGEN-HEP_SCRATCHDISK
   NCG-INGRID-PT_SCRATCHDISK
@@ -74,7 +74,7 @@ particular RSE.
 1. Or all the Spanish sites:
 
   ```bash
-  jbogadog@lxplus0058:~$ rucio list-rses --expression SPAINSITES
+  jbogadog@lxplus0058:~$ rucio list-rses --rses SPAINSITES
 
   IFIC-LCG2_LOCALGROUPDISK
   IFAE_PRODDISK
@@ -89,7 +89,7 @@ particular RSE.
 1. Also numerical comparisons with `<` and `>` are possible:
 
   ```bash
-  jbogadog@lxplus0058:~$ rucio list-rses --expression "freespace>3000"
+  jbogadog@lxplus0058:~$ rucio list-rses --rses "freespace>3000"
 
   CERN-PROD_TZDISK
   BNL-OSG2_MCTAPE
@@ -164,7 +164,7 @@ examples to build your own RSE Expressions.
 All Tier 2 sites in DE cloud:
 
 ```bash
-jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=2&cloud=DE'
+jbogadog@lxplus0100:~$ rucio list-rses --rses 'tier=2&cloud=DE'
 PRAGUELCG2_PPSLOCALGROUPDISK
 FMPHI-UNIBA_LOCALGROUPDISK
 ...
@@ -178,7 +178,7 @@ interpret the `&`, the `\|` or the `\\` as commands.
 All tier 1 but not the ones in country=us:
 
 ```bash
-jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=us'
+jbogadog@lxplus0100:~$ rucio list-rses --rses 'tier=1\country=us'
 
 INFN-T1_MCTAPE
 BNL-OSG2_DATATAPE
@@ -190,10 +190,10 @@ However, take care of the subtle differences. While the first expression exclude
 United States' sites, the second doesn't:
 
 ```bash
-jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=us'|wc -l
+jbogadog@lxplus0100:~$ rucio list-rses --rses 'tier=1\country=us'|wc -l
 115
 
-jbogadog@lxplus0100:~$ rucio list-rses --expression 'tier=1\country=US'|wc -l
+jbogadog@lxplus0100:~$ rucio list-rses --rses 'tier=1\country=US'|wc -l
 117
 ```
 
@@ -202,19 +202,19 @@ force the order of operation. See the following example to get all the
 `SCRATCHDISK`s in IT or FR clouds:
 
 ```bash
-jbogadog@lxplus0100:~$ rucio list-rses --expression \
+jbogadog@lxplus0100:~$ rucio list-rses --rses \
   'cloud=IT|cloud=FR&type=SCRATCHDISK' | wc -l
 30
 
-jbogadog@lxplus0100:~$ rucio list-rses --expression \
+jbogadog@lxplus0100:~$ rucio list-rses --rses \
   '(cloud=IT|cloud=FR)&type=SCRATCHDISK' | wc -l
 30
 
-jbogadog@lxplus0100:~$ rucio list-rses --expression \
+jbogadog@lxplus0100:~$ rucio list-rses --rses \
   'type=SCRATCHDISK&(cloud=IT|cloud=FR)' | wc -l
 30
 
-jbogadog@lxplus0100:~$ rucio list-rses --expression \
+jbogadog@lxplus0100:~$ rucio list-rses --rses \
   'type=SCRATCHDISK&cloud=IT|cloud=FR' | wc -l
 92
 ```

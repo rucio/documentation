@@ -107,7 +107,7 @@ Last step is to create RSE attributes that can be used to build RSE expressions:
   Added new RSE attribute for SITE3_DISK: tier-1
   $ rucio-admin rse set-attribute --rse SITE3_DISK --key disk --value 1
   Added new RSE attribute for SITE3_DISK: disk-1
-  $ rucio list-rses --expression "disk=1&tier=1"
+  $ rucio list-rses --rses "disk=1&tier=1"
   SITE3_DISK
 ```
 
