@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap">
 <script src="https://buttons.github.io/buttons.js"></script><title data-react-helmet="true">Rucio REST API | Rucio Documentation</title><meta data-react-helmet="true" property="og:url" content="https://rucio.github.io/documentation/rucio_rest_api"><meta data-react-helmet="true" name="docsearch:language" content="en"><meta data-react-helmet="true" name="docsearch:version" content="current"><meta data-react-helmet="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-react-helmet="true" property="og:title" content="Rucio REST API | Rucio Documentation"><meta data-react-helmet="true" name="description" content="* main"><meta data-react-helmet="true" property="og:description" content="* main"><link data-react-helmet="true" rel="shortcut icon" href="/documentation/img/android-chrome-512x512.png"><link data-react-helmet="true" rel="canonical" href="https://rucio.github.io/documentation/rucio_rest_api"><link data-react-helmet="true" rel="alternate" href="https://rucio.github.io/documentation/rucio_rest_api" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://rucio.github.io/documentation/rucio_rest_api" hreflang="x-default"><link data-react-helmet="true" rel="preconnect" href="https://BH4D9OD16A-dsn.algolia.net" crossorigin="anonymous"><link rel="stylesheet" href="/documentation/assets/css/styles.365df3eb.css">
 <link rel="preload" href="/documentation/assets/js/styles.ea0c7a4f.js" as="script">
-<link rel="preload" href="/documentation/assets/js/runtime~main.432010ea.js" as="script">
+<link rel="preload" href="/documentation/assets/js/runtime~main.44394f7a.js" as="script">
 <link rel="preload" href="/documentation/assets/js/main.e4296f03.js" as="script">
 <link rel="preload" href="/documentation/assets/js/1.1c8f0af5.js" as="script">
 <link rel="preload" href="/documentation/assets/js/2.e6b2b92b.js" as="script">
@@ -21,7 +21,7 @@
 <link rel="preload" href="/documentation/assets/js/318.42bd5429.js" as="script">
 <link rel="preload" href="/documentation/assets/js/935f2afb.3bae9ca6.js" as="script">
 <link rel="preload" href="/documentation/assets/js/17896441.2d2a6b11.js" as="script">
-<link rel="preload" href="/documentation/assets/js/ab836617.6aae4c1f.js" as="script">
+<link rel="preload" href="/documentation/assets/js/ab836617.6621b98d.js" as="script">
 </head>
 <body>
 <script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
@@ -1636,138 +1636,1481 @@ description: Account for the identity.
 401:
 description: Invalid Auth Token
 401:
-description: Not acceptable</li></ul><a name="identities.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="rses"></a># rses<a name="rses.RSEs"></a>## RSEs Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RSEs</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List all RSEs in the database.</p><a name="rses.RSEs.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List all RSEs.</p><p>.. :quickref: RSEs; List all RSEs.</p><p>:query expression: The returned list only contains RSE matching this expression.
-:resheader Content-Type: application/x-json-stream
-:status 200: DIDs found.
-:status 400: Invalid RSE Expression.
-:status 401: Invalid Auth Token.
-:status 406: Not Acceptable.</p><p><strong>Returns</strong>:</p><p>A list containing all RSEs.</p><a name="rses.RSE"></a>## RSE Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RSE</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create, update, get and disable RSE.</p><a name="rses.RSE.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create RSE with given name.</p><p>.. :quickref: RSE; create a new RSE.</p><p><strong>Arguments</strong>:</p><p>:\&lt;json bool deterministic: Boolean to know if the pfn is generated deterministically.
-:\&lt;json bool volatile: Boolean for RSE cache.
-:\&lt;json string city: City for the RSE.
-:\&lt;json bool staging_area: Staging area.
-:\&lt;json string region_code: The region code for the RSE.
-:\&lt;json string country_name: The country.
-:\&lt;json string continent: The continent.
-:\&lt;json string time_zone: Timezone.
-:\&lt;json string ISP: Internet Service Provider.
-:\&lt;json string rse_type: RSE type.
-:\&lt;json number latitude: Latitude coordinate of RSE.
-:\&lt;json number longitude: Longitude coordinate of RSE.
-:\&lt;json string ASN: Access service network.
-:\&lt;json integer availability: Availability.
-:status 201: RSE created successfully.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 409: RSE already exists.
-:status 409: RSE not found.</p><ul><li><code>rse</code>: The RSE name.</li></ul><a name="rses.RSE.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Update RSE properties (e.g. name, availability).</p><p>.. :quickref: RSE; Update an RSE.</p><p><strong>Arguments</strong>:</p><p>:\&lt;json dict parameters: Dictionary of parameters to update.
-:status 201: RSE updated successfully.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 409: RSE not found.
-:status 409: RSE already exists.</p><ul><li><code>rse</code>: The RSE name.</li></ul><a name="rses.RSE.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Details about a specific RSE.</p><p>.. :quickref: RSE; get RSE details.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE not found.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: the RSE name.</li></ul><p><strong>Returns</strong>:</p><p>A list containing all RSEs.</p><a name="rses.RSE.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Disable RSE with given RSE name.</p><p>.. :quickref: RSE; disable RSE.</p><p><strong>Arguments</strong>:</p><p>:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE not found.</p><ul><li><code>rse</code>: the RSE name.</li></ul><a name="rses.Attributes"></a>## Attributes Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Attributes</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create, update, get and disable RSE attribute.</p><a name="rses.Attributes.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> key</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>create RSE attribute with given RSE name.</p><p>.. :quickref: Attributes; Create RSE attribute.</p><p><strong>Arguments</strong>:</p><p>:\&lt;json dict parameter: Dictionary with &#x27;value&#x27;.
-:status 201: Created.
-:status 400: Cannot decode json parameter dictionary.
-:status 400: Key not defined.
-:status 401: Invalid Auth Token.
-:status 409: Attribute already exists.</p><ul><li><code>rse</code>: RSE name.</li><li><code>key</code>: Key attribute.</li></ul><a name="rses.Attributes.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>list all RSE attributes for a RSE.</p><p>.. :quickref: Attributes; List all RSE attributes.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: RSE name.</li></ul><p><strong>Returns</strong>:</p><p>A list containing all RSE attributes.</p><a name="rses.Attributes.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> key</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Delete an RSE attribute for given RSE name.</p><p>.. :quickref: Attributes; Delete RSE attribute.</p><p><strong>Arguments</strong>:</p><p>:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE not found.
-:status 404: RSE attribute not found.</p><ul><li><code>rse</code>: RSE name.</li><li><code>key</code>: The key name.</li></ul><a name="rses.ProtocolList"></a>## ProtocolList Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">ProtocolList</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List supported protocols.</p><a name="rses.ProtocolList.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List all supported protocols of the given RSE.</p><p>.. :quickref: Protocols; List all RSE protocols.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE Operation Not Supported.
-:status 404: RSE Not Found.
-:status 404: RSE Protocol Domain Not Supported.
-:status 404: RSE Protocol Not Supported.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: The RSE name.</li></ul><p><strong>Returns</strong>:</p><p>A list containing all supported protocols and all their attributes.</p><a name="rses.LFNS2PFNS"></a>## LFNS2PFNS Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">LFNS2PFNS</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Translate one-or-more LFNs to corresponding PFNs.</p><a name="rses.LFNS2PFNS.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Return PFNs for a set of LFNs.  Formatted as a JSON object where the key is a LFN and the
-value is the corresponding PFN.</p><p>.. :quickref: Attributes; Translate LFNs to PFNs.</p><p><strong>Arguments</strong>:</p><p>:query lfn: One or more LFN to translate.
-:query scheme: Optional argument to help with the protocol selection (e.g., http / gsiftp / srm)
-:query domain: Optional argument used to select the protocol for wan or lan use cases.
-:query operation: Optional query argument to select the protoco for read-vs-writes.
-:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.
-:status 404: RSE Protocol Not Supported.
-:status 404: RSE Protocol Domain Not Supported.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: The RSE name.</li><li><code>scheme</code>: The protocol identifier.</li></ul><p><strong>Returns</strong>:</p><p>A list with detailed PFN information.</p><a name="rses.Protocol"></a>## Protocol Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Protocol</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create, Update, Read and delete a specific protocol.</p><a name="rses.Protocol.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create a protocol for a given RSE.</p><p>.. :quickref: Protocol; Create an RSE protocol.</p><p><strong>Arguments</strong>:</p><p>:\&lt;json dict paramaters: parameter of the new protocol entry.
-:status 201: Created.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 404: RSE not found.
-:status 404: RSE Protocol Domain Not Supported.
-:status 409: RSE Protocol Priority Error.</p><ul><li><code>rse</code>: The RSE name.</li><li><code>scheme</code>: The protocol identifier.</li></ul><a name="rses.Protocol.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List all references of the provided RSE for the given protocol.</p><p>.. :quickref: Protocol; List RSE protocol.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.
-:status 404: RSE Protocol Not Supported.
-:status 404: RSE Protocol Domain Not Supported.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: The RSE name.</li><li><code>scheme</code>: The protocol identifier.</li></ul><p><strong>Returns</strong>:</p><p>A list with detailed protocol information.</p><a name="rses.Protocol.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> hostname</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> port</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Updates attributes of an existing protocol entry. Because protocol identifier, hostname,
-and port are used as unique identifier they are immutable.</p><p>.. :quickref: Protocol; Update RSE protocol.</p><p><strong>Arguments</strong>:</p><p>:\&lt;json dict paramaters: parameter of the new protocol entry.
-:status 201: Created.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 404: RSE not found.
-:status 404: RSE Protocol Not Supported.
-:status 404: RSE Protocol Domain Not Supported.
-:status 409: RSE Protocol Priority Error.</p><ul><li><code>rse</code>: The RSE name.</li><li><code>scheme</code>: The protocol identifier.</li><li><code>hostname</code>: The hostname defined for the scheme, used if more than one scheme is registered with the same identifier.</li><li><code>port</code>: The port registered for the hostname, ued if more than one scheme is registered with the same identifier and hostname.</li></ul><a name="rses.Protocol.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> hostname</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> port</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Deletes a protocol entry for the provided RSE.</p><p>.. :quickref: Protocol; Delete an RSE protocol.</p><p><strong>Arguments</strong>:</p><p>:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE not found.
-:status 404: RSE Protocol Not Supported.</p><ul><li><code>rse</code>: The RSE name.</li><li><code>scheme</code>: The protocol identifier.</li><li><code>hostname</code>: The hostname defined for the scheme, used if more than one scheme is registered with the same identifier.</li><li><code>port</code>: The port registered for the hostname, ued if more than one scheme is registered with the same identifier and hostname.</li></ul><a name="rses.Usage"></a>## Usage Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Usage</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Update and read RSE space usage information.</p><a name="rses.Usage.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Get RSE usage information.</p><p>.. :quickref: Usage; Get RSE usage.</p><p><strong>Arguments</strong>:</p><p>:query source: The information source, e.g., srm.
-:query per_account: Boolean whether the usage should be also calculated per account or not.
-:resheader Content-Type: application/x-json-stream
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: the RSE name.</li></ul><p><strong>Returns</strong>:</p><p>A list of dictionaries with the usage information.</p><a name="rses.Usage.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Update RSE usage information.</p><p>.. :quickref: Usage; Update RSE usage.</p><p><strong>Arguments</strong>:</p><p>:\&lt;json dict parameter: Dictionary with &#x27;source&#x27;, &#x27;used&#x27;, &#x27;free&#x27;, &#x27;files&#x27; values to update.
-:status 200: OK.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 404: RSE not found.</p><ul><li><code>rse</code>: The RSE name.</li></ul><a name="rses.UsageHistory"></a>## UsageHistory Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">UsageHistory</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Read RSE space usage history information.</p><a name="rses.UsageHistory.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Get RSE usage information.</p><p>.. :quickref: UsageHistory; Get RSE usage history.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/x-json-stream
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: the RSE name.</li></ul><p><strong>Returns</strong>:</p><p>Line separated list of dictionary with RSE usage information.</p><a name="rses.Limits"></a>## Limits Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Limits</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create, Update, Read and delete RSE limits.</p><a name="rses.Limits.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Get RSE limits.</p><p>.. :quickref: Limits; Get RSE limits.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: the RSE name.</li></ul><p><strong>Returns</strong>:</p><p>List of dictionaries with RSE limits.</p><a name="rses.Limits.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Update RSE limits.</p><p>.. :quickref: Limits; Update RSE limits.</p><p><strong>Arguments</strong>:</p><p>:status 200: OK.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.</p><ul><li><code>rse</code>: The RSE name.</li></ul><a name="rses.Limits.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Update RSE limits.</p><p>.. :quickref: Limits; Update RSE limits.</p><p><strong>Arguments</strong>:</p><p>:status 200: OK.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.</p><ul><li><code>rse</code>: The RSE name.</li></ul><a name="rses.RSEAccountUsageLimit"></a>## RSEAccountUsageLimit Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RSEAccountUsageLimit</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Read and delete RSE limits for accounts.</p><a name="rses.RSEAccountUsageLimit.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Get account usage and limit for one RSE.</p><p>.. :quickref: RSEAccountUsageLimit; Get account usage.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.
-:status 406: Not Acceptable.</p><ul><li><code>rse</code>: the RSE name.</li></ul><p><strong>Returns</strong>:</p><p>Line separated list of dict with account usage and limits.</p><a name="rses.Distance"></a>## Distance Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Distance</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create/Update and read distances between RSEs.</p><a name="rses.Distance.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">source</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> destination</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Get RSE distance between source and destination.</p><p>.. :quickref: Distance; Get RSE distance.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 406: Not Acceptable.</p><ul><li><code>source</code>: the source RSE name.</li><li><code>destination</code>: the destination RSE name.</li></ul><p><strong>Returns</strong>:</p><p>List of dictionaries with RSE distances.</p><a name="rses.Distance.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">source</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> destination</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create distance information between source RSE and destination RSE.</p><p>.. :quickref: Distance; Create RSE distance.</p><p><strong>Arguments</strong>:</p><p>:status 201: Created.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.</p><ul><li><code>source</code>: The source RSE name.</li><li><code>destination</code>: The destination RSE name.</li></ul><a name="rses.Distance.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">source</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> destination</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Update distance information between source RSE and destination RSE.</p><p>.. :quickref: Distance; Update RSE distance.</p><p><strong>Arguments</strong>:</p><p>:status 200: OK.
-:status 400: Cannot decode json parameter dictionary.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.</p><ul><li><code>source</code>: The source RSE name.</li><li><code>destination</code>: The destination RSE name.</li></ul><a name="rses.Distance.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">source</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> destination</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Delete distance information between source RSE and destination RSE.</p><p>.. :quickref: Distance; Delete RSE distances.</p><p><strong>Arguments</strong>:</p><p>:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.</p><ul><li><code>source</code>: The source RSE name.</li><li><code>destination</code>: The destination RSE name.</li></ul><a name="rses.QoSPolicy"></a>## QoSPolicy Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">QoSPolicy</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Add/Delete/List QoS policies on an RSE.</p><a name="rses.QoSPolicy.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> policy</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Add QoS policy to RSE</p><p>.. :quickref: QoSPolicy; Add QoS policy to RSE.</p><p><strong>Arguments</strong>:</p><p>:status 201: Created.
-:status 401: Invalid Auth Token.
-:status 404: RSE Not Found.</p><ul><li><code>rse</code>: The RSE name.</li><li><code>policy</code>: The QoS policy name.</li></ul><a name="rses.QoSPolicy.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> policy</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Delete QoS policy from RSE.</p><p>.. :quickref: QoSPolicy; Delete QoS policy from RSE.</p><p><strong>Arguments</strong>:</p><p>:status 200: OK.
-:status 401: Invalid Auth Token.
-:status 404: RSE not found.</p><ul><li><code>rse</code>: The RSE name.</li><li><code>policy</code>: The QoS policy name.</li></ul><a name="rses.QoSPolicy.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List all QoS policies of an RSE.</p><p>.. :quickref: QoSPolicy; List all QoS policies of an RSE.</p><p><strong>Arguments</strong>:</p><p>:resheader Content-Type: application/json
-:status 200: OK.
-:status 401: Invalid Auth Token.</p><ul><li><code>rse</code>: The RSE name.</li></ul><p><strong>Returns</strong>:</p><p>List of QoS policies</p><a name="rses.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="heartbeats"></a># heartbeats<a name="heartbeats.Heartbeat"></a>## Heartbeat Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Heartbeat</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API for Heartbeats.</p><a name="heartbeats.Heartbeat.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: List
+description: Not acceptable</li></ul><a name="identities.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="rses"></a># rses<a name="rses.RSEs"></a>## RSEs Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RSEs</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List all RSEs in the database.</p><a name="rses.RSEs.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: List RSEs
+description: Lists all RSEs.
+tags:</p><ul><li>Rucio Storage Elements
+requestBody:
+content:
+application/json:
+schema:
+type: object
+properties:
+expression:
+description: An RSE expression.
+type: string
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: A list with the corresponding rses.
+type: array
+items:
+type: object
+properties:
+id:
+description: The rse id.
+type: string
+rse:
+description: The name of the rse.
+type: string
+rse_type:
+description: The type of the rse.
+type: string
+deterministic:
+description: If the rse is deterministic.
+type: boolean
+volatile:
+description: If the rse is volatile.
+type: boolean
+staging_area:
+description: Is this rse a staging area?
+type: boolean
+city:
+description: The city of the rse.
+type: string
+region_code:
+description: The region_code of the rse.
+type: string
+country_name:
+description: The country name of the rse.
+type: string
+continent:
+description: The continent of the rse.
+type: string
+time_zone:
+description: The time zone of the rse.
+type: string
+ISP:
+description: The isp of the rse.
+type: string
+ASN:
+description: The asn of the rse.
+type: string
+longitude:
+description: The longitude of the rse.
+type: number
+latitude:
+description: The latitude of the rse.
+type: number
+availability:
+description: The availability of the rse.
+type: integer
+usage:
+description: The usage of the rse.
+type: integer
+qos_class:
+description: The quality of service class.
+type: string
+400:
+description: Invalid RSE expression
+401:
+description: Invalid Auth Token
+406:
+description: Not acceptable</li></ul><a name="rses.RSE"></a>## RSE Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RSE</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create, update, get and disable RSE.</p><a name="rses.RSE.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Create RSE
+description: Creates a RSE with all the metadata.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+requestBody:
+content:
+application/json:
+schema:
+type: object
+properties:
+deterministic:
+description: If the pfn is generated deterministicly.
+type: boolean
+volatile:
+description: RSE cache.
+type: boolean
+city:
+description: The city of the RSE.
+type: string
+staging_area:
+description: Staging area.
+type: string
+region_code:
+description: The region code of the RSE.
+type: string
+country_name:
+description: The country name of the RSE.
+type: string
+continent:
+description: The continent of the RSE.
+type: string
+time_zone:
+description: The time zone of the RSE.
+type: string
+ISP:
+description: The internet service provider of the RSE.
+type: string
+rse_type:
+description: The rse type.
+type: string
+enum: [&quot;DISK&quot;, &quot;TAPE&quot;]
+latitute:
+description: The latitute of the RSE.
+type: float
+longitude:
+description: The longitude of the RSE.
+type: float
+ASN:
+description: The access service network of the RSE.
+type: string
+availability:
+description: The availability of the RSE.
+type: integer
+responses:
+201:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+400:
+description: Cannot decode json parameter dictionary
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found
+409:
+description: RSE already exists.</li></ul><a name="rses.RSE.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Update RSE
+description: Update RSE properties.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+requestBody:
+content:
+application/json:
+schema:
+type: object
+properties:
+availability_raed:
+description: The vailability of the RSE.
+type: boolean
+availability_write:
+description: The vailability of the RSE.
+type: boolean
+availability_delete:
+description: The vailability of the RSE.
+type: boolean
+deterministic:
+description: If the pfn is generated deterministicly.
+type: boolean
+volatile:
+description: RSE cache.
+type: boolean
+city:
+description: The city of the RSE.
+type: string
+staging_area:
+description: Staging area.
+type: string
+region_code:
+description: The region code of the RSE.
+type: string
+country_name:
+description: The country name of the RSE.
+type: string
+time_zone:
+description: The time zone of the RSE.
+type: string
+rse_type:
+description: The rse type.
+type: string
+enum: [&quot;DISK&quot;, &quot;TAPE&quot;]
+latitute:
+description: The latitute of the RSE.
+type: float
+longitude:
+description: The longitude of the RSE.
+type: float
+responses:
+201:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+400:
+description: Cannot decode json parameter dictionary
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found</li></ul><a name="rses.RSE.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get RSE
+description: Get details about a specific RSE.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: The RSE properties.
+type: object
+properties:
+deterministic:
+description: If the pfn is generated deterministicly.
+type: boolean
+volatile:
+description: RSE cache.
+type: boolean
+city:
+description: The city of the RSE.
+type: string
+staging_area:
+description: Staging area.
+type: string
+region_code:
+description: The region code of the RSE.
+type: string
+country_name:
+description: The country name of the RSE.
+type: string
+continent:
+description: The continent of the RSE.
+type: string
+time_zone:
+description: The time zone of the RSE.
+type: string
+ISP:
+description: The internet service provider of the RSE.
+type: string
+rse_type:
+description: The rse type.
+type: string
+enum: [&quot;DISK&quot;, &quot;TAPE&quot;]
+latitute:
+description: The latitute of the RSE.
+type: float
+longitude:
+description: The longitude of the RSE.
+type: float
+ASN:
+description: The access service network of the RSE.
+type: string
+availability:
+description: The availability of the RSE.
+type: integer
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found
+406:
+description: Not acceptable</li></ul><a name="rses.RSE.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Disable RSE
+description: Disable a specific RSE.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found</li></ul><a name="rses.Attributes"></a>## Attributes Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Attributes</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create, update, get and disable RSE attribute.</p><a name="rses.Attributes.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> key</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Create RSE Attribute
+description: Create a RSE attribute with given RSE name.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: key
+in: path
+description: The name of the attribute of the RSE.
+schema:
+type: string
+style: simple
+requestBody:
+content:
+application/json:
+schema:
+type: object
+required:<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI"><div tabindex="0" class="prism-code language-undefined codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">    - value</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    properties:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">      value:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        description: The value of the RSE attribute.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        type: string</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div>responses:
+201:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+400:
+description: Cannot decode json parameter dictionary
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found
+409:
+description: Attribute already exists</li></ul><a name="rses.Attributes.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get RSE Attributes
+description: Lists all RSE attributes for a RSE.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: The RSE attribute list. Returns a dictionary with the attribute names as keys and the values as values.
+type: object
+additionalProperties:
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found
+406:
+description: Not acceptable</li></ul><a name="rses.Attributes.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> key</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Delete RSE Attribute
+description: Delete an RSE attribute for given RSE name.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: key
+in: path
+description: The name of the attribute of the RSE.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+401:
+description: Invalid Auth Token
+404:
+description: RSE or RSE attribute not found</li></ul><a name="rses.ProtocolList"></a>## ProtocolList Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">ProtocolList</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>List supported protocols.</p><a name="rses.ProtocolList.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: List RSE Protocols
+description: List all supported protocols of the given RSE.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: Supported RSE Protocols and other information.
+type: object
+properties:
+deterministic:
+description: If the pfn is generated deterministicly.
+type: boolean
+volatile:
+description: RSE cache.
+type: boolean
+staging_area:
+description: Staging area.
+type: string
+rse_type:
+description: The rse type.
+type: string
+enum: [&quot;DISK&quot;, &quot;TAPE&quot;]
+availability_read:
+description: The read availability of the RSE.
+type: boolean
+availability_write:
+description: The write availability of the RSE.
+type: boolean
+availability_delete:
+description: The delete availability of the RSE.
+type: boolean
+credentials:
+description: The credentials, currently None.
+type: string
+domain:
+description: The domains of the RSE protocols.
+type: array
+id:
+description: The RSE id.
+type: string
+lfn2pfn_algorithm:
+description: The algorithm used to translate the logical file names to the physical ones.
+type: string
+qos_class:
+description: The qos class of the RSE.
+type: string
+rse:
+description: The name of the RSE.
+type: string
+sign_url:
+description: The sign url of the RSE.
+type: string
+verify_checksum:
+description: If the checksum of the files should be verified.
+type: boolean
+protocols:
+description: All supported protocols of the RSE.
+type: array
+items:
+type: object
+description: A supported RSE protocol.
+properties:
+hostname:
+description: The hostname of the protocol.
+type: string
+scheme:
+description: The scheme of the protocol.
+type: string
+port:
+description: The port of the protocol.
+type: integer
+prefix:
+description: The prefix of the protocol.
+type: string
+impl:
+description: The implementation of the protocol.
+type: string
+domains:
+description: The domains of the protocol.
+type: object
+properties:
+lan:
+description: The lan domain
+type: object
+properties:
+read:
+description: The read value of the lan protocol.
+type: integer
+write:
+description: The write value of the lan protocol.
+type: integer
+delete:
+description: The delete value of the lan protocol.
+type: integer
+wan:
+read:
+description: The read value of the wan protocol.
+type: integer
+write:
+description: The read value of the wan protocol.
+type: integer
+delete:
+description: The read value of the wan protocol.
+type: integer
+third_party_copy:
+description: The third party copy value of the wan protocol.
+type: integer
+third_party_copy_read:
+description: The third party copy read value of the wan protocol.
+type: integer
+third_party_copy_write:
+description: The third party copy write value of the wan protocol.
+type: integer
+extended_attributes:
+description: The extended attributes of the protocol.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found or RSE Operation, RSE Protocal Doman, RSE Protocol not supported
+406:
+description: Not acceptable</li></ul><a name="rses.LFNS2PFNS"></a>## LFNS2PFNS Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">LFNS2PFNS</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Translate one-or-more LFNs to corresponding PFNs.</p><a name="rses.LFNS2PFNS.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Translate LFNs to PFNs
+description: Return PFNs for a set of LFNs.  Formatted as a JSON object where the key is a LFN and the value is the corresponding PFN.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: schema
+in: path
+description: The protocol identifier.
+schema:
+type: string
+style: simple
+required: False</li><li>name: lfn
+in: query
+description: The lfns of the request.
+schema:
+type: string
+required: True</li><li>name: scheme
+in: query
+description: Optional argument to help with the protocol selection (e.g., http / gsiftp / srm)
+schema:
+type: string</li><li>name: domain
+in: query
+description: Optional argument used to select the protocol for wan or lan use cases.
+schema:
+type: string</li><li>name: operation
+in: query
+description: Optional query argument to select the protoco for read-vs-writes.
+schema:
+type: string
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: The PFNs to the LFNs. Dictionary with lfns as keys and pfns as values.
+type: object
+additionalProperties:
+type:
+string
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found or RSE Protocol or RSE Protocl Domain not supported
+406:
+description: Not acceptable</li></ul><a name="rses.Protocol"></a>## Protocol Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Protocol</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create, Update, Read and delete a specific protocol.</p><a name="rses.Protocol.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Create RSE Protocol
+description: Create a protocol for a given RSE.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: scheme
+in: path
+description: The protocol identifier.
+schema:
+type: string
+style: simple
+required: False
+requestBody:
+content:
+application/json:
+schema:
+type: object
+properties:
+domains:
+description: The domains for the protocol.
+type: array
+port:
+description: The port the protocol uses.
+type: integer
+hostname:
+description: The hostname of the protocol.
+type: string
+extended_attributes:
+description: Extended attributes for the protocol.
+type: string
+prefix:
+description: The prefix of the Protocol.
+type: string
+impl:
+description: The impl used by the Protocol.
+type: string
+read_lan:
+description: If the protocol is readable via lan.
+type: integer
+write_lan:
+description: If the protocol is writable via lan.
+type: integer
+delete_lan:
+description: If the protocol is deletable via lan.
+type: integer
+read_wan:
+description: If the protocol is readable via wan.
+type: integer
+write_wan:
+description: If the protocol is writable via wan.
+type: integer
+delete_wan:
+description: If the protocol is deletable via wan.
+type: integer
+responses:
+201:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+400:
+description: Cannot decode json parameter dictionary
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found or RSE Protocol Domain not supported
+409:
+description: RSE protocol priority error</li></ul><a name="rses.Protocol.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get Protocols
+description: List all references of the provided RSE for the given protocol.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: scheme
+in: path
+description: The protocol identifier.
+schema:
+type: string
+style: simple
+required: False
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: A dict with RSE information and supported protocols.
+type: object
+properties:
+deterministic:
+description: If the pfn is generated deterministicly.
+type: boolean
+volatile:
+description: RSE cache.
+type: boolean
+staging_area:
+description: Staging area.
+type: string
+rse_type:
+description: The rse type.
+type: string
+enum: [&quot;DISK&quot;, &quot;TAPE&quot;]
+availability_read:
+description: The read availability of the RSE.
+type: boolean
+availability_write:
+description: The write availability of the RSE.
+type: boolean
+availability_delete:
+description: The delete availability of the RSE.
+type: boolean
+credentials:
+description: The credentials, currently None.
+type: string
+domain:
+description: The domains of the RSE protocols.
+type: array
+id:
+description: The RSE id.
+type: string
+lfn2pfn_algorithm:
+description: The algorithm used to translate the logical file names to the physical ones.
+type: string
+qos_class:
+description: The qos class of the RSE.
+type: string
+rse:
+description: The name of the RSE.
+type: string
+sign_url:
+description: The sign url of the RSE.
+type: string
+verify_checksum:
+description: If the checksum of the files should be verified.
+type: boolean
+protocols:
+description: All supported protocols of the RSE.
+type: array
+items:
+type: object
+description: A supported RSE protocol.
+properties:
+hostname:
+description: The hostname of the protocol.
+type: string
+scheme:
+description: The scheme of the protocol.
+type: string
+port:
+description: The port of the protocol.
+type: integer
+prefix:
+description: The prefix of the protocol.
+type: string
+impl:
+description: The implementation of the protocol.
+type: string
+domains:
+description: The domains of the protocol.
+type: object
+properties:
+lan:
+description: The lan domain
+type: object
+properties:
+read:
+description: The read value of the lan protocol.
+type: integer
+write:
+description: The write value of the lan protocol.
+type: integer
+delete:
+description: The delete value of the lan protocol.
+type: integer
+wan:
+read:
+description: The read value of the wan protocol.
+type: integer
+write:
+description: The read value of the wan protocol.
+type: integer
+delete:
+description: The read value of the wan protocol.
+type: integer
+third_party_copy:
+description: The third party copy value of the wan protocol.
+type: integer
+third_party_copy_read:
+description: The third party copy read value of the wan protocol.
+type: integer
+third_party_copy_write:
+description: The third party copy write value of the wan protocol.
+type: integer
+extended_attributes:
+description: The extended attributes of the protocol.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found or Protocol or Protocol domain not Supported.
+406:
+description: Not acceptable</li></ul><a name="rses.Protocol.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> hostname</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> port</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Update Protocol Attributes
+description: Updates attributes of an existing protocol entry. Because protocol identifier, hostname, and port are used as unique identifier they are immutable.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: scheme
+in: path
+description: The protocol identifier.
+schema:
+type: string
+style: simple</li><li>name: hostname
+in: path
+description: The hostname of the protocol.
+schema:
+type: string
+style: simple
+required: False</li><li>name: port
+in: path
+description: The port of the protocol.
+schema:
+type: integer
+style: simple
+required: False
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: A dict with RSE information and supported protocols.
+type: object
+properties:
+deterministic:
+description: If the pfn is generated deterministicly.
+type: boolean
+volatile:
+description: RSE cache.
+type: boolean
+staging_area:
+description: Staging area.
+type: string
+rse_type:
+description: The rse type.
+type: string
+enum: [&quot;DISK&quot;, &quot;TAPE&quot;]
+availability_read:
+description: The read availability of the RSE.
+type: boolean
+availability_write:
+description: The write availability of the RSE.
+type: boolean
+availability_delete:
+description: The delete availability of the RSE.
+type: boolean
+credentials:
+description: The credentials, currently None.
+type: string
+domain:
+description: The domains of the RSE protocols.
+type: array
+id:
+description: The RSE id.
+type: string
+lfn2pfn_algorithm:
+description: The algorithm used to translate the logical file names to the physical ones.
+type: string
+qos_class:
+description: The qos class of the RSE.
+type: string
+rse:
+description: The name of the RSE.
+type: string
+sign_url:
+description: The sign url of the RSE.
+type: string
+verify_checksum:
+description: If the checksum of the files should be verified.
+type: boolean
+protocols:
+description: All supported protocols of the RSE.
+type: array
+items:
+type: object
+description: A supported RSE protocol.
+properties:
+hostname:
+description: The hostname of the protocol.
+type: string
+scheme:
+description: The scheme of the protocol.
+type: string
+port:
+description: The port of the protocol.
+type: integer
+prefix:
+description: The prefix of the protocol.
+type: string
+impl:
+description: The implementation of the protocol.
+type: string
+domains:
+description: The domains of the protocol.
+type: object
+properties:
+lan:
+description: The lan domain
+type: object
+properties:
+read:
+description: The read value of the lan protocol.
+type: integer
+write:
+description: The write value of the lan protocol.
+type: integer
+delete:
+description: The delete value of the lan protocol.
+type: integer
+wan:
+read:
+description: The read value of the wan protocol.
+type: integer
+write:
+description: The read value of the wan protocol.
+type: integer
+delete:
+description: The read value of the wan protocol.
+type: integer
+third_party_copy:
+description: The third party copy value of the wan protocol.
+type: integer
+third_party_copy_read:
+description: The third party copy read value of the wan protocol.
+type: integer
+third_party_copy_write:
+description: The third party copy write value of the wan protocol.
+type: integer
+extended_attributes:
+description: The extended attributes of the protocol.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: RSE not found or Protocol or Protocol domain not Supported.
+406:
+description: Not acceptable</li></ul><a name="rses.Protocol.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> scheme</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> hostname</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> port</span><span class="token operator" style="color:rgb(137, 221, 255)">=</span><span class="token boolean" style="color:rgb(255, 88, 116)">None</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Delete Protocol Attributes
+description: Delete all protocol attibutes.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: scheme
+in: path
+description: The protocol identifier.
+schema:
+type: string
+style: simple</li><li>name: hostname
+in: path
+description: The hostname of the protocol.
+schema:
+type: string
+style: simple
+required: False</li><li>name: port
+in: path
+description: The port of the protocol.
+schema:
+type: integer
+style: simple
+required: False
+responses:
+200:
+description: OK
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found or protocol not supported</li></ul><a name="rses.Usage"></a>## Usage Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Usage</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Update and read RSE space usage information.</p><a name="rses.Usage.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get Rse Usage Information
+description: Get rse usage information.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: per_account
+in: query
+description: Boolean whether the usage should be also calculated per account or not.
+schema:
+type: boolean</li><li>name: source
+in: query
+description: The information source, e.g., srm.
+schema:
+type: string
+responses:
+200:
+description: OK
+content:
+application/x-json-stream:
+schema:
+description: A list with the rse usage.
+type: array
+items:
+type: object
+properties:
+rse_id:
+description: The id of the rse.
+type: string
+rse:
+description: The name of the rse.
+type: string
+source:
+description: The source of the rse.
+type: string
+used:
+description: The number of used bytes.
+type: integer
+free:
+description: The number of free bytes.
+type: integer
+total:
+description: The number of total bytes.
+type: integer
+files:
+description: The number of files.
+type: integer
+updated_at:
+description: The last time it got updated.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.Usage.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Update Rse Usage
+description: Update the RSE Update information.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+requestBody:
+content:
+application/json:
+schema:
+type: object
+properties:
+source:
+description: The information source, e.g. srm.
+type: string
+used:
+description: The number of used bytes.
+type: integer
+free:
+description: The number of free bytes.
+type: integer
+files:
+description: The number of files.
+type: integer
+responses:
+200:
+description: OK
+400:
+description: Can not decode json parameter list.
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.UsageHistory"></a>## UsageHistory Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">UsageHistory</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Read RSE space usage history information.</p><a name="rses.UsageHistory.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/x-json-stream&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get Rse Usage History
+description: Get the rse usage history
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/x-json-stream:
+schema:
+description: A list with the rse usage history items.
+type: array
+items:
+type: object
+properties:
+rse_id:
+description: The id of the rse.
+type: string
+rse:
+description: The name of the rse.
+type: string
+source:
+description: The source of the rse.
+type: string
+used:
+description: The number of used bytes.
+type: integer
+free:
+description: The number of free bytes.
+type: integer
+total:
+description: The number of total bytes.
+type: integer
+updated_at:
+description: The last time it got updated.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.Limits"></a>## Limits Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Limits</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create, Update, Read and delete RSE limits.</p><a name="rses.Limits.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get Rse Limits
+description: Get the rse limits.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: The limits.
+type: object
+additionalProperties:
+x-additionalPropertiesName: limit name
+description: An item with the name as key and the value as value.
+type: integer
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.Limits.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Update Rse Limit
+description: Update an rse limit.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+requestBody:
+content:
+application/json:
+schema:
+type: object
+properties:
+name:
+description: The name of the limit.
+type: string
+value:
+description: The value of the limit.
+type: integer
+responses:
+200:
+description: OK
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.Limits.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Delete Rse Limit
+description: Delete an rse limit
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+requestBody:
+content:
+application/json:
+schema:
+type: object
+required:<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI"><div tabindex="0" class="prism-code language-undefined codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">    - name</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    properties:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">      name:</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        description: The name of the limit.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        type: string</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div>responses:
+200:
+description: OK
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.RSEAccountUsageLimit"></a>## RSEAccountUsageLimit Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">RSEAccountUsageLimit</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Read and delete RSE limits for accounts.</p><a name="rses.RSEAccountUsageLimit.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get Rse Account Usage and Limit
+description: Returns the usage and limit of an account for a rse.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: A list with the rse account limits and usages.
+type: array
+items:
+type: object
+properties:
+rse_id:
+description: The id of the rse.
+type: string
+rse:
+description: The name of the rse.
+type: string
+account:
+description: The account.
+type: string
+used_files:
+description: The number of used files.
+type: integer
+used_bytes:
+description: The number of used bytes.
+type: integer
+quota_bytes:
+description: The number of quota bytes.
+type: integer
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.Distance"></a>## Distance Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Distance</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Create/Update and read distances between RSEs.</p><a name="rses.Distance.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">source</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> destination</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Get Rse Distances
+description: Returns the distances between a source and destination rse.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: source
+in: path
+description: The name of the source Rucio Storage Element.
+schema:
+type: string
+style: simple</li><li>name: destination
+in: path
+description: The name of the destination Rucio Storage Element.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: The distances between the Rses.
+type: array
+items:
+type: object
+description: One distance betweeen source and destination.
+properties:
+src_rse_id:
+description: The source rse id.
+type: string
+dest_rse_id:
+description: The destination rse id.
+type: string
+ranking:
+description: The ranking.
+type: integer
+agis_distance:
+description: The agis distance.
+type: integer
+geoip_distance:
+description: The geo ip distance.
+type: integer
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.Distance.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">source</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> destination</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Create Rse Distance
+description: Post a rse distance.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: source
+in: path
+description: The name of the source Rucio Storage Element.
+schema:
+type: string
+style: simple</li><li>name: destination
+in: path
+description: The name of the destination Rucio Storage Element.
+schema:
+type: string
+style: simple
+requestBody:
+content:
+application/json:
+schema:
+type: object
+properties:
+ranking:
+description: The ranking of the distance.
+type: integer
+distance:
+description: The distance between the Rses.
+type: integer
+geoip_distance:
+description: The geoip distance between the Rses.
+type: integer
+active:
+description: If the distance is active.
+type: boolean
+submitted:
+description: If the distance is submitted.
+type: boolean
+finished:
+description: If the distance is finished.
+type: boolean
+failed:
+description: If the distance failed.
+type: boolean
+transfer_speed:
+description: The transferspeed between the Rses.
+type: integer
+responses:
+201:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.Distance.put"></a>#### put<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> put</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">source</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> destination</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Update Rse Distance
+description: Update rse distance information.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: source
+in: path
+description: The name of the source Rucio Storage Element.
+schema:
+type: string
+style: simple</li><li>name: destination
+in: path
+description: The name of the destination Rucio Storage Element.
+schema:
+type: string
+style: simple
+requestBody:
+content:
+application/json:
+schema:
+type: object
+properties:
+ranking:
+description: The ranking of the distance.
+type: integer
+agis_distance:
+description: The distance between the Rses.
+type: integer
+geoip_distance:
+description: The geoip distance between the Rses.
+type: integer
+active:
+description: If the distance is active.
+type: boolean
+submitted:
+description: If the distance is submitted.
+type: boolean
+finished:
+description: If the distance is finished.
+type: boolean
+failed:
+description: If the distance failed.
+type: boolean
+transfer_speed:
+description: The transferspeed between the Rses.
+type: integer
+responses:
+201:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.Distance.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">source</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> destination</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Delete Rse Distance
+description: Delete distance information between source RSE and destination RSE.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: source
+in: path
+description: The name of the source Rucio Storage Element.
+schema:
+type: string
+style: simple</li><li>name: destination
+in: path
+description: The name of the destination Rucio Storage Element.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Deleted&quot;]
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.QoSPolicy"></a>## QoSPolicy Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">QoSPolicy</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Add/Delete/List QoS policies on an RSE.</p><a name="rses.QoSPolicy.post"></a>#### post<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> post</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> policy</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Add QoS policy
+description: Add a QoS Policy to a RSE.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: policy
+in: path
+description: The QoS policy to add to and rse.
+schema:
+type: string
+style: simple
+responses:
+201:
+description: OK
+content:
+application/json:
+schema:
+type: string
+enum: [&quot;Created&quot;]
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.QoSPolicy.delete"></a>#### delete<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> delete</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">,</span><span class="token plain"> policy</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Delete QoS Policy
+description: Delete QoS policy from RSE.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple</li><li>name: policy
+in: path
+description: The QoS policy to add to and rse.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.QoSPolicy.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">rse</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: Gett QoS Policies
+description: List all QoS policies for an Rse.
+tags:</p><ul><li>Rucio Storage Elements
+parameters:</li><li>name: rse
+in: path
+description: The name of the Rucio Storage Element name.
+schema:
+type: string
+style: simple
+responses:
+200:
+description: OK
+content:
+application/json:
+schema:
+description: A list with all the QoS policies for an Rse.
+type: array
+items:
+type: object
+porperties:
+rse_id:
+description: The rse id.
+type: string
+qos_policy:
+description: The qos policy.
+type: string
+401:
+description: Invalid Auth Token
+404:
+description: Rse not found
+406:
+description: Not acceptable</li></ul><a name="rses.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p><a name="heartbeats"></a># heartbeats<a name="heartbeats.Heartbeat"></a>## Heartbeat Objects<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token keyword" style="font-style:italic">class</span><span class="token plain"> </span><span class="token class-name" style="color:rgb(255, 203, 107)">Heartbeat</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token plain">ErrorHandlingMethodView</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>REST API for Heartbeats.</p><a name="heartbeats.Heartbeat.get"></a>#### get<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> @check_accept_header_wrapper_flask</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&#x27;application/json&#x27;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span><span class="token plain"></span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain"> </span><span class="token operator" style="color:rgb(137, 221, 255)">|</span><span class="token plain"> get</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><hr><p>summary: List
 description: List all heartbeats.
 tags:</p><ul><li>Heartbeat
 responses:
@@ -4197,7 +5540,7 @@ description: Not acceptable</li></ul><a name="accounts.make_doc"></a>#### make\_
 :status 404: Account not found.
 :status 409: Unsupported operation.</p><ul><li><code>vo</code>: VO to be recovered.</li></ul><a name="vos.make_doc"></a>#### make\_doc<div class="codeBlockContainer_J+bg"><div class="codeBlockContent_csEI python"><div tabindex="0" class="prism-code language-python codeBlock_rtdJ thin-scrollbar"><div class="codeBlockLines_1zSZ" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">make_doc</span><span class="token punctuation" style="color:rgb(199, 146, 234)">(</span><span class="token punctuation" style="color:rgb(199, 146, 234)">)</span></div></div></div><button type="button" aria-label="Copy code to clipboard" class="copyButton_M3SB">Copy</button></div></div><p>Only used for sphinx documentation</p></div></article><div class="margin-vert--xl"><div class="row"><div class="col"><a href="https://github.com/rucio/documentation/tree/main/docs/../docs/rucio_rest_api.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="1.2em" width="1.2em" preserveAspectRatio="xMidYMid meet" role="img" viewBox="0 0 40 40" class="iconEdit_mS5F" aria-label="Edit page"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav" aria-label="Docs pages navigation"><div class="pagination-nav__item"></div><div class="pagination-nav__item pagination-nav__item--next"></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_vrFS thin-scrollbar"></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="footer__bottom text--center"><div class="margin-bottom--sm"><img src="/documentation/img/rucio_horizontaled_black.svg" alt="" class="themedImage_TMUO themedImage--light_4Vu1 footer__logo"><img src="/documentation/img/rucio_horizontaled_white.svg" alt="" class="themedImage_TMUO themedImage--dark_uzRr footer__logo"></div><div class="footer__copyright">Copyright © 2022 CERN</div></div></div></footer></div>
 <script src="/documentation/assets/js/styles.ea0c7a4f.js"></script>
-<script src="/documentation/assets/js/runtime~main.432010ea.js"></script>
+<script src="/documentation/assets/js/runtime~main.44394f7a.js"></script>
 <script src="/documentation/assets/js/main.e4296f03.js"></script>
 <script src="/documentation/assets/js/1.1c8f0af5.js"></script>
 <script src="/documentation/assets/js/2.e6b2b92b.js"></script>
@@ -4205,6 +5548,6 @@ description: Not acceptable</li></ul><a name="accounts.make_doc"></a>#### make\_
 <script src="/documentation/assets/js/318.42bd5429.js"></script>
 <script src="/documentation/assets/js/935f2afb.3bae9ca6.js"></script>
 <script src="/documentation/assets/js/17896441.2d2a6b11.js"></script>
-<script src="/documentation/assets/js/ab836617.6aae4c1f.js"></script>
+<script src="/documentation/assets/js/ab836617.6621b98d.js"></script>
 </body>
 </html>
