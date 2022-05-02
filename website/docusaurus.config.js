@@ -23,8 +23,8 @@ module.exports={
       "https://fonts.gstatic.com"
     ]
   },
-  "onBrokenLinks": "log",
-  "onBrokenMarkdownLinks": "log",
+  "onBrokenLinks": "throw",
+  "onBrokenMarkdownLinks": "throw",
   "presets": [
     [
       "@docusaurus/preset-classic",
