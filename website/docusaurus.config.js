@@ -54,8 +54,8 @@ module.exports={
       },
       "items": [
         {
-          "to": "rucio_client_api",
-          "label": "Client API",
+          "to": "client_api/accountclient",
+          "label": "Python Client API",
           "position": "left"
         },
         {

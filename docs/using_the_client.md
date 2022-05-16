@@ -3,7 +3,7 @@ id: using_the_client
 title: Using the Client
 ---
 
-Rucio provides several commands for the end-user. See [executables](bin.md).
+Rucio provides several commands for the end-user. See [executables](bin/rucio.md).
 
 ## Getting user information
 

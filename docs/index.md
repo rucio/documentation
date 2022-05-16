@@ -59,8 +59,8 @@ Developer documentation will help you get started. Peruse some common REST API &
 Client API references that are directly derived from Rucio's python
 libraries. We also have a contribution guide for those who wish to pitch in.
 
-- [Client API Documentation](rucio_client_api)
-- [REST API Documentation](rucio_rest_api)
+- [Client API Documentation](client_api/accountclient)
+- REST API Documentation
 - [Setting up a Rucio demo environment](setting_up_demo.md)
 - [Configuring Rucio to use Globus as an Online Transfer
   Tool](configure-rucio-globus)

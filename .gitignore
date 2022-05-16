@@ -13,9 +13,8 @@ node_modules/
 /docs/rucio_client_api.md
 /docs/rucio_rest_api.md
 /docs/bin
-/docs/bin.md
 /docs/release-notes.md
-/docs/rest_api_doc_spec.yaml
+/docs/client_api
 
 # emacs
 *~
@@ -65,3 +64,5 @@ flycheck_*.el
 
 # network security
 /network-security.data
+
+__pycache__
