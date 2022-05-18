@@ -18,7 +18,7 @@ rucio_client.ping()
 ```
 
 The methods are separated per resource type. The API in full can be viewed
-[here](rucio_client_api.md).
+[here](client_api/accountclient).
 
 ### Errors and Exceptions
 
@@ -46,7 +46,7 @@ We require that all requests are done over SSL. The API supports JSON
 formats. Rucio uses [OAuth](http://oauth.net/) to authenticate all API
 requests. The method is to get an authentication token, and use it for the rest
 of the requests. Descriptions of the actions you may perform on each resource
-can be found in the [API documentation](rucio_rest_api.md).
+can be found in the REST API documentation.
 
 ### Date format
 
