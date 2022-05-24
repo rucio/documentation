@@ -44,7 +44,9 @@ class RucioRenderer(Renderer):
             # print(f"<div style=\"visibility: hidden\">\n## {sanitize(obj.name)}\n</div>\n")
             print(f"## {sanitize(obj.name)}\n")
             if obj.docstring:
+                print('<span style={{"white-space": "pre"}}>\n')
                 print(obj.docstring.content + "\n")
+                print('</span>\n')
 
         for item in getattr(obj, "members", []):
             self.render_recursive(item)
