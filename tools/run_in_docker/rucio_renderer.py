@@ -52,10 +52,9 @@ class RucioRenderer(Renderer):
             self.render_recursive(item)
 
     def render(self, modules: t.List[docspec.Module]) -> None:
+        client_class = get_first_client_class(modules)
         print("---")
-        print(f"title: {get_first_client_class(modules).name}")
+        print(f"title: {client_class.name}")
         print("---")
 
-        
-        for module in modules:
-            self.render_recursive(module)
+        self.render_recursive(client_class)
