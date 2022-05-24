@@ -40,7 +40,7 @@ class RucioRenderer(Renderer):
         self.markdown.init(context)
 
     def render_recursive(self, obj: docspec.ApiObject) -> None:
-        if isinstance(obj, docspec.Function):
+        if isinstance(obj, docspec.Function) and (not obj.name.startswith("_") or obj.name == "__init__"):
             # print(f"<div style=\"visibility: hidden\">\n## {sanitize(obj.name)}\n</div>\n")
             print(f"## {sanitize(obj.name)}\n")
             if obj.docstring:
