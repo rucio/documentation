@@ -6,15 +6,15 @@ from pydoc_markdown.interfaces import Context, Renderer
 from pydoc_markdown.contrib.renderers.markdown import MarkdownRenderer
 
 
-def get_first_class(modules: t.List[docspec.Module]) -> t.Optional[docspec.Class]:
+def get_first_client_class(modules: t.List[docspec.Module]) -> t.Optional[docspec.Class]:
     if not modules:
         return None
 
     for i in modules:
-        if isinstance(i, docspec.Class):
+        if isinstance(i, docspec.Class) and getattr(i, "name", "").lower().endswith("client"):
             return i
 
-        child = get_first_class(getattr(i, "members", []))
+        child = get_first_client_class(getattr(i, "members", []))
         if child:
             return child
 
@@ -51,7 +51,7 @@ class RucioRenderer(Renderer):
 
     def render(self, modules: t.List[docspec.Module]) -> None:
         print("---")
-        print(f"title: {get_first_class(modules).name}")
+        print(f"title: {get_first_client_class(modules).name}")
         print("---")
 
         
