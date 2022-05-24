@@ -6,6 +6,15 @@ sidebar_label: Release Notes
 Below listed are all the release notes from the very first release
 uptil the latest one:
 
-{% for file in index("release-notes") | sort(attribute="stem", reverse=True) -%}
-- [{{ file.stem }}]({{ file.path }})
+{% for group, items in index("release-notes") | dictsort(reverse = True) %}
+## {{ group }}
+
+{% for item in items
+  | sort(
+    reverse = True,
+    attribute = "major_version_number,minor_version_number,patch_version_number,stem"
+  ) -%}
+- [{{ item['stem'] }}]({{item['path']}})
+{% endfor -%}
+
 {% endfor %}
