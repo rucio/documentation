@@ -27,7 +27,7 @@
                 "releasepolicy",
                 "release-notes"
             ],
-            "Client": [
+            "User": [
                 "setting_up_the_rucio_client",
                 "using_the_client",
                 "using_the_admin_client",
@@ -40,7 +40,7 @@
                     ]
                 }
             ],
-            "Server": [
+            "Operator": [
                 "installing_server",
                 "installing_daemons",
                 "monitoring",
