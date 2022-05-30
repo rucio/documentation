@@ -12,7 +12,7 @@ uptil the latest one:
 {% for item in items
   | sort(
     reverse = True,
-    attribute = "major_version_number,minor_version_number,patch_version_number,stem"
+    attribute = "major_version_number,minor_version_number,patch_version_number,post_version_sort,stem"
   ) -%}
 - [{{ item['stem'] }}]({{item['path']}})
 {% endfor -%}
