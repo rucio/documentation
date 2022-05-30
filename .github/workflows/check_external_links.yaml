@@ -17,4 +17,4 @@ jobs:
         npm install -g markdown-link-check
     - name: Check external links
       run: |
-        npx --yes markdown-link-check --config link-check.json $(find -name "*.md")
+        npx --yes markdown-link-check --config tools/link-check.json $(find -name "*.md")
