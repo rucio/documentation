@@ -7,7 +7,7 @@ Below listed are all the release notes from the very first release
 uptil the latest one:
 
 {% for group, items in index("release-notes") | dictsort(reverse = True) %}
-## {{ group }}
+## {{ minor_release_get_title("release-notes", group) }}
 
 {% for item in items
   | sort(
