@@ -13,6 +13,18 @@ PATCH_VERSION = re.compile(r"\d+\.\d+\.(\d+)")
 MAJOR_MINOR_VERSION = re.compile(r"(\d+\.\d+)\.\d+")
 
 
+def map_post_version_sort_to_number(stem: str) -> int:
+    """
+    Maps the post version string (e.g. "post1" in "1.27.4.post1") to a
+    number. This defines the sorting of the releases.
+    """
+    if re.match(".*rc\d+", stem):
+        return 0
+    if re.match(".*\.post\d+", stem):
+        return 2
+    return 1
+
+
 def render_templates(templates_dir: str, output_path: pathlib.Path):
     def index_item(path: pathlib.Path):
         return {"stem": path.stem, "path": str(path.relative_to(output_path))}
@@ -33,6 +45,7 @@ def render_templates(templates_dir: str, output_path: pathlib.Path):
                     "major_version_number": int(MAJOR_VERSION.match(i.stem).group(1)),
                     "minor_version_number": int(MINOR_VERSION.match(i.stem).group(1)),
                     "patch_version_number": int(PATCH_VERSION.match(i.stem).group(1)),
+                    "post_version_sort": map_post_version_sort_to_number(i.stem),
                     "stem": i.stem,
                     "path": str(i.relative_to(output_path))
                 }
