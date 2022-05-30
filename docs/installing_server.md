@@ -206,11 +206,11 @@ In order to be able to use JSON web tokens (JWTs) and related OAuth2.0
 authentication and authorization with Rucio, one first needs to have an account
 with the Identity Provider (IdP) which will act as Rucio Admin account
 representing the Rucio Application. Currently supported IdPs use Identity Access
-Management (IAM) system. Once, you have got your Rucio Admin IAM account (and
+Management (IAM) system. Once you have got your Rucio Admin IAM account (and
 its subclaim identifier), you will need to [__register two IAM Rucio
 clients__](https://indigo-iam.github.io/docs/v/current/user-guide/client-registration.html)
-linked to this account. Once it is done, please save the relevant client_id,
-client_secret, and registration access token (RAT) some place safe, you will be
+linked to this account. Please save the relevant client_id,
+client_secret, and registration access token (RAT) in a safe place, as you will be
 needing them. In both clients, one needs to setup the redirect_uris to include
 both <https://\<your_server_name\>/auth/oidc_token> and
 <https://\<your_server_name\>/auth/oidc_code> paths. We will use one client as
@@ -220,12 +220,12 @@ refresh__, and __authorization code grant__ enabled. For the former two you
 might need to contact the IAM admin as such settings are usually not accessible
 to IAM users. In addition, you will need to request your IAM admin to allow your
 client returning refresh tokens with lifetime being visible in their unverified
-header. In addition Rucio assumes refresh tokens to expire immediatelly after
-their first use, which has to be also confirmed by your IAM admin. Second
-client, let\'s call it Rucio Admin IAM client, will be used by a Rucio probe
-script __check_voms__ in order to synchronize existing Rucio accounts with Rucio
-identities. Rucio will also use this client\'s credentials in order to request
-token for itself. The IAM administrator must include the __scim:read__ scope and
+header. In addition Rucio assumes refresh tokens to expire immediately after
+their first use, which has to be also confirmed by your IAM admin. The second
+client, let's call it Rucio Admin IAM client, will be used by a Rucio probe
+script, __check_voms__, in order to synchronize existing Rucio accounts with Rucio
+identities. Rucio will also use this client's credentials in order to request
+tokens for itself. The IAM administrator must include the __scim:read__ scope and
 allow __client credentials__ grant type for the Rucio Admin IAM client in order
 to grant you rights to pre-provision IAM users for Rucio. Examples of the
 configuration of these two clients follow below:
