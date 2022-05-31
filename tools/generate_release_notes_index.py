@@ -37,28 +37,40 @@ def render_templates(templates_dir: str, output_path: pathlib.Path):
         :returns: The coresponsing release title. This is just the version string in
             case no title exist.
         """
-
-        # The minor release note title should be in the first release of the
-        # minor history. Due to inconsistencies this is not always the case, so
-        # we have to hardcode the missing ones.
+        # We hardcode the minor release titles for now, since there is no east
+        # way to automatically get them.
         HARD_CODED_RELEASE_NOTE_TITLE = {
-            "1.19": "1.19 Fantastic Donkeys",
-            "1.13": "1.13 Donkerine"
+            "1.30": "The Donkeynator",
+            "1.29": "Into the Donkeyverse",
+            "1.28": "Teenage Mutant Ninja Donkeys",
+            "1.27": "Batdonkey v Superdonkey",
+            "1.26": "Donkey League of La Mancha",
+            "1.25": "Rat-Donkey",
+            "1.24": "Aquadonkey",
+            "1.23": "The incredible Donkey",
+            "1.22": "Green Donkey",
+            "1.21": "Donkeys of the Galaxy",
+            "1.20": "Wonder Donkey",
+            "1.19": "Fantastic Donkeys",
+            "1.18": "Invisible Donkey",
+            "1.17": "Donkey Surfer",
+            "1.16": "Doctor Donkey",
+            "1.15": "Daredonkey",
+            "1.14": "Professor D",
+            "1.13": "Donkerine",
+            "1.12": "Captain Donkey",
+            "1.11": "Batdonkey",
+            "1.10": "Irondonkey",
+            "1.9": "Superdonkey",
+            "1.8": "Spiderdonkey",
+            "1.7": "Donkey One",
+            "1.6": "The Donkey awakens",
+            "1.5": "Return of the Donkey",
+            "1.4": "The Donkey strikes back"
         }
         if version in HARD_CODED_RELEASE_NOTE_TITLE:
-            return HARD_CODED_RELEASE_NOTE_TITLE[version]
-
-        release_title_file_path = os.path.join(output_path / path, version + ".0.md")
-
-        if not os.path.exists(release_title_file_path):
-            return version
-
-        with open(release_title_file_path, 'r') as f:
-            content = f.read().split("---")[1]
-        data = yaml.safe_load(content)
-
-        minor_version_title = data["title"].replace("\"", "").replace("'", "").split(".0 ")[1]
-        return version + " " + minor_version_title
+            return version + " " +HARD_CODED_RELEASE_NOTE_TITLE[version]
+        raise Exception(f"The minor version {version} is not present in the hardcoded list of minor release titles!")
 
     def index_item(path: pathlib.Path):
         return {"stem": path.stem, "path": str(path.relative_to(output_path))}
