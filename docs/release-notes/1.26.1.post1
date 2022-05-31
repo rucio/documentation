@@ -1,9 +1,0 @@
----
-title: 1.26.1.post1
-sidebar_label: 1.26.1.post1
----
-
-## General
-
-### Bugs
-- Rules: Fix default rse attribute reg-exp [#4760](https://github.com/rucio/rucio/issues/4760)
