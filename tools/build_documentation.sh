@@ -25,4 +25,7 @@ cp -r $AUTO_GENERATED/client_api $DOCS
 cp -r $AUTO_GENERATED/bin $DOCS
 
 
+echo "Generating Release Notes..."
+$SCRIPT_DIR/generate_release_notes.py
+echo "Generating Release Notes Index..."
 $SCRIPT_DIR/generate_release_notes_index.py
