@@ -1,17 +1,21 @@
 import dataclasses
-import docspec
 import typing as t
-from pathlib import Path
-from pydoc_markdown.interfaces import Context, Renderer
+
+import docspec
 from pydoc_markdown.contrib.renderers.markdown import MarkdownRenderer
+from pydoc_markdown.interfaces import Context, Renderer
 
 
-def get_first_client_class(modules: t.List[docspec.Module]) -> t.Optional[docspec.Class]:
+def get_first_client_class(
+    modules: t.List[docspec.Module],
+) -> t.Optional[docspec.Class]:
     if not modules:
         return None
 
     for i in modules:
-        if isinstance(i, docspec.Class) and getattr(i, "name", "").lower().endswith("client"):
+        if isinstance(i, docspec.Class) and getattr(i, "name", "").lower().endswith(
+            "client"
+        ):
             return i
 
         child = get_first_client_class(getattr(i, "members", []))
@@ -40,13 +44,14 @@ class RucioRenderer(Renderer):
         self.markdown.init(context)
 
     def render_recursive(self, obj: docspec.ApiObject) -> None:
-        if isinstance(obj, docspec.Function) and (not obj.name.startswith("_") or obj.name == "__init__"):
-            # print(f"<div style=\"visibility: hidden\">\n## {sanitize(obj.name)}\n</div>\n")
+        if isinstance(obj, docspec.Function) and (
+            not obj.name.startswith("_") or obj.name == "__init__"
+        ):
             print(f"## {sanitize(obj.name)}\n")
             if obj.docstring:
                 print('<span style={{"white-space": "pre"}}>\n')
                 print(obj.docstring.content + "\n")
-                print('</span>\n')
+                print("</span>\n")
 
         for item in getattr(obj, "members", []):
             self.render_recursive(item)

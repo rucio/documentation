@@ -25,7 +25,6 @@ import typing as t
 
 import docspec
 import docstring_parser
-
 from pydoc_markdown.interfaces import Processor, Resolver
 
 logger = logging.getLogger(__name__)
@@ -64,11 +63,15 @@ def generate_sections_markdown(sections):
         if section:
             ret.append("\n<tr style={{border: 'none'}}>\n")
 
-            ret.append("\n<td style={{border: 'none', backgroundColor: 'white', 'verticalAlign': 'top'}}>\n")
+            ret.append(
+                "\n<td style={{border: 'none', backgroundColor: 'white', 'verticalAlign': 'top'}}>\n"  # noqa: E501
+            )
             ret.append(f"**{key}**:")
             ret.append("\n</td>\n")
 
-            ret.append("\n<td style={{border: 'none', backgroundColor: 'white', 'verticalAlign': 'top'}}>\n")
+            ret.append(
+                "\n<td style={{border: 'none', backgroundColor: 'white', 'verticalAlign': 'top'}}>\n"  # noqa: E501
+            )
             ret.extend(section)
             ret.append("\n</td>\n")
 
@@ -101,22 +104,34 @@ class RucioProcessor(Processor):
     }
 
     def check_docstring_format(self, docstring: str) -> bool:
-        return any(f":{k}" in docstring for _, value in self._KEYWORDS.items() for k in value)
+        return any(
+            f":{k}" in docstring for _, value in self._KEYWORDS.items() for k in value
+        )
 
-    def process(self, modules: t.List[docspec.Module], resolver: t.Optional[Resolver]) -> None:
+    def process(
+        self, modules: t.List[docspec.Module], resolver: t.Optional[Resolver]
+    ) -> None:
         docspec.visit(modules, self._process)
 
-    def _convert_raises(self, raises: t.List[docstring_parser.common.DocstringRaises]) -> list:
+    def _convert_raises(
+        self, raises: t.List[docstring_parser.common.DocstringRaises]
+    ) -> list:
         """Convert a list of DocstringRaises from docstring_parser to markdown lines
 
         :return: A list of markdown formatted lines
         """
         converted_lines = []
         for entry in raises:
-            converted_lines.append("`{}`: {}\n".format(sanitize(entry.type_name), sanitize(entry.description)))
+            converted_lines.append(
+                "`{}`: {}\n".format(
+                    sanitize(entry.type_name), sanitize(entry.description)
+                )
+            )
         return converted_lines
 
-    def _convert_params(self, params: t.List[docstring_parser.common.DocstringParam]) -> list:
+    def _convert_params(
+        self, params: t.List[docstring_parser.common.DocstringParam]
+    ) -> list:
         """Convert a list of DocstringParam to markdown lines.
 
         :return: A list of markdown formatted lines
@@ -124,16 +139,25 @@ class RucioProcessor(Processor):
         converted = []
         for param in params:
             if param.type_name is None:
-                converted.append("`{name}`: {description}\n".format(name=sanitize(param.arg_name), description=sanitize(param.description)))
+                converted.append(
+                    "`{name}`: {description}\n".format(
+                        name=sanitize(param.arg_name),
+                        description=sanitize(param.description),
+                    )
+                )
             else:
                 converted.append(
                     "`{name}` (`{type}`): {description}\n".format(
-                        name=sanitize(param.arg_name), type=param.type_name, description=sanitize(param.description)
+                        name=sanitize(param.arg_name),
+                        type=param.type_name,
+                        description=sanitize(param.description),
                     )
                 )
         return converted
 
-    def _convert_returns(self, returns: t.Optional[docstring_parser.common.DocstringReturns]) -> str:
+    def _convert_returns(
+        self, returns: t.Optional[docstring_parser.common.DocstringReturns]
+    ) -> str:
         """Convert a DocstringReturns object to a markdown string.
 
         :return: A markdown formatted string
@@ -146,7 +170,6 @@ class RucioProcessor(Processor):
             type_data = ""
         return "  " + type_data + (sanitize(returns.description) or "") + "\n"
 
-
     def _process(self, node: docspec.ApiObject) -> None:
         if not node.docstring:
             return
@@ -154,7 +177,9 @@ class RucioProcessor(Processor):
         lines = []
         components: t.Dict[str, t.List[str]] = {}
 
-        parsed_docstring = docstring_parser.parse(node.docstring.content, docstring_parser.DocstringStyle.REST)
+        parsed_docstring = docstring_parser.parse(
+            node.docstring.content, docstring_parser.DocstringStyle.REST
+        )
         components["Arguments"] = self._convert_params(parsed_docstring.params)
         components["Raises"] = self._convert_raises(parsed_docstring.raises)
         return_doc = self._convert_returns(parsed_docstring.returns)
