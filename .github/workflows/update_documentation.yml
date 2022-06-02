@@ -7,7 +7,7 @@ on:
 
 jobs:
   check_markdown_syntax:
-    name: Check markdown syntax
+    name: Check Markdown Syntax
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,7 +22,7 @@ jobs:
         run: |
           ./check-docs.sh
   check_file_names:
-    name: Check file names
+    name: Check File Names
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
