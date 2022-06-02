@@ -1,19 +1,19 @@
 {
-  "ignorePatterns": [
-    {
-      "pattern": "^(?!https?://)"
-    },
-    {
-      "pattern": "https?://localhost"
-    },
-    {
-      "pattern": "https?://ip:"
-    },
-    {
-      "comment": "The release-notes contains too many references to the GitHub issues. We will skip them, we have bigger problems if we can't access them.",
-      "pattern": "https?://github.com/rucio/rucio/issues"
-    }
-  ],
-  "retryOn429": true,
-  "fallbackRetryDelay": 1
+    "ignorePatterns": [
+	{
+	    "pattern": "^(?!https?://)"
+	},
+	{
+	    "pattern": "https?://localhost"
+	},
+	{
+	    "pattern": "https?://ip:"
+	},
+	{
+	    "comment": "The release-notes contains too many references to the GitHub issues. We will skip them, we have bigger problems if we can't access them.",
+	    "pattern": "https?://github.com/rucio/rucio/issues"
+	}
+    ],
+    "retryOn429": true,
+    "fallbackRetryDelay": 1
 }
