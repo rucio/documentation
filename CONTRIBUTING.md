@@ -63,3 +63,13 @@ To install the package and activate the hooks for the project run:
 pip install pre-commit
 pre-commit install
 ```
+
+### Static Code Checkers
+
+This repository uses static code checkers to check the style, integrity and used
+anti-patterns in the scripts.
+
+#### Shellcheck
+
+[`shellcheck`](https://github.com/koalaman/shellcheck) is used to check the
+shell scripts for common anti-patterns.

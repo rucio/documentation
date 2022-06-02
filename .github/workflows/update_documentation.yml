@@ -30,9 +30,21 @@ jobs:
       - name: Check file names
         run: |
           ./check-file-names.sh
+  check_shell_scripts:
+    name: Check Shell Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get install --yes shellcheck
+      - name: Check Shell Scripts
+        run: |
+          shellcheck **/*.sh
   build:
     name: Build
-    needs: [check_markdown_syntax, check_file_names]
+    needs: [check_markdown_syntax, check_file_names, check_shell_scripts]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
