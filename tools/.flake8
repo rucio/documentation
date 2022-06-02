@@ -1,0 +1,9 @@
+[flake8]
+exclude =
+    .git,
+    __pycache__,
+    rucio
+max-complexity = 10
+
+# This is the default value balck uses
+max-line-length = 88
