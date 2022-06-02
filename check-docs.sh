@@ -1,4 +1,7 @@
 #!/bin/sh
+# The find command outputs a lot of text. This gets messy with the quotes around
+# the command, as suggested by shellcheck. We thus should disable the rule.
+# shellcheck disable=SC2046
 
 mdl --config .mdl/mdlrc $(find . -name "*.md" -not -path "./website/*" -not -path "./docs/release-notes/*" -not -name "component_leads.md" -not -name "releasepolicy.md")
 exit_code=$?
