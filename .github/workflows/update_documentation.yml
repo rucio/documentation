@@ -42,9 +42,27 @@ jobs:
       - name: Check Shell Scripts
         run: |
           shellcheck **/*.sh
+  check_python_scripts:
+    name: Check Python Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          pip install black isort flake8
+      - name: Run black
+        run: |
+          black --check .
+      - name: Run isort
+        run: |
+          isort --profile black --filter-files --check .
+      - name: Run flake8
+        run: |
+          flake8 --config tools/.flake8
   build:
     name: Build
-    needs: [check_markdown_syntax, check_file_names, check_shell_scripts]
+    needs: [check_markdown_syntax, check_file_names, check_shell_scripts, check_python_scripts]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

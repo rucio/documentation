@@ -73,3 +73,21 @@ anti-patterns in the scripts.
 
 [`shellcheck`](https://github.com/koalaman/shellcheck) is used to check the
 shell scripts for common anti-patterns.
+
+#### Black
+
+[`black`](https://github.com/psf/black) is used to format the python
+scripts. The program automatically re-formats python files to follow their
+rules.
+
+#### Isort
+
+[`isort`](https://github.com/pycqa/isort) is used to sort the python
+imports. Thes imports are also grouped together by different categories, which
+makes it easier to read the source code.
+
+#### Flake8
+
+[`flake8`](https://github.com/PyCQA/flake8) checks the python code for common
+anti-patterns. The anti-patterns include "unused imports", "unused code",
+"overfull line", ... .
