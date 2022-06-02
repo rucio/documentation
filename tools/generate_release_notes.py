@@ -1,12 +1,11 @@
 #!/bin/python
-from dataclasses import dataclass
-from itertools import count
-from typing import Any, Iterator, List, Dict
-from enum import Enum, auto
 import os
 import re
-import requests
+from dataclasses import dataclass
+from itertools import count
+from typing import Any, Iterator
 
+import requests
 
 ITEMS_PER_PAGE = 100  # 100 is the max
 RELEASE_NOTES_FOLDER = (
@@ -20,7 +19,9 @@ class GitHubRelease:
     body: str
 
     @classmethod
-    def from_github_release_api_json_obj(cls, obj: Any) -> "GitHubRelease":
+    def from_github_release_api_json_obj(
+        cls: "GitHubRelease", obj: Any
+    ) -> "GitHubRelease":
         return cls(obj["tag_name"], obj["body"])
 
 
@@ -80,7 +81,7 @@ def process_release(release: GitHubRelease) -> None:
     fp.write(str(github_to_markdown_body("\n" + release.body)))
 
 
-def main():
+def main() -> None:
     if not os.path.exists(RELEASE_NOTES_FOLDER):
         os.makedirs(RELEASE_NOTES_FOLDER)
 
