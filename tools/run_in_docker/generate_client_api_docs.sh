@@ -12,14 +12,14 @@ for f in rucio/lib/rucio/client/*.py; do
 	continue
     fi
 
-    executable_name=$(basename $f ".py")
+    executable_name=$(basename "$f" ".py")
 
     config="
 processors:
   - type: rucio_processor.RucioProcessor
 renderer:
   type: rucio_renderer.RucioRenderer"
-    content=$(PYTHONPATH=. pydoc-markdown -I rucio/lib/rucio/client -m $executable_name "$config")
+    content=$(PYTHONPATH=. pydoc-markdown -I rucio/lib/rucio/client -m "$executable_name" "$config")
 
-    echo "$content" > /auto_generated/client_api/$executable_name.md
+    echo "$content" > /auto_generated/client_api/"$executable_name".md
 done

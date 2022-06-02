@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=all
 set -e
 
 INPUT_BRANCH=${INPUT_BRANCH:-gh-pages}

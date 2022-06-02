@@ -7,10 +7,13 @@ function generate_bin_help_for_file {
     #
     # :param $1: The path to the executable.
     echo "---"
-    echo "title: $(basename $1)"
+    echo "title: $(basename "$1")"
     echo "---"
     echo "\`\`\`"
+
+    # shellcheck disable=SC2005
     echo "$($1 --help)"
+
     echo "\`\`\`"
 }
 
@@ -19,5 +22,5 @@ echo "Generating the Executable Help Docs..."
 
 mkdir -p /auto_generated/bin
 for f in rucio/bin/*; do
-    echo "$(generate_bin_help_for_file $f)" > /auto_generated/bin/$(basename $f).md
+    generate_bin_help_for_file "$f" > /auto_generated/bin/"$(basename "$f")".md
 done
