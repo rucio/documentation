@@ -28,7 +28,7 @@ repos:
   hooks:
   - id: check-markdown
     name: Check the markdown files for inconsistencies.
-    entry: ./check-docs.sh
+    entry: ./tools/check-docs.sh
     language: system
     files: ".md"
   - id: check-file-names

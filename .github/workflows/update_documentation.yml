@@ -20,7 +20,7 @@ jobs:
           gem install mdl
       - name: Lint docs
         run: |
-          ./check-docs.sh
+          ./tools/check-docs.sh
   check_file_names:
     name: Check File Names
     runs-on: ubuntu-latest
