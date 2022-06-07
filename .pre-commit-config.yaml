@@ -33,5 +33,5 @@ repos:
     files: ".md"
   - id: check-file-names
     name: Check the file names for inconsistencies.
-    entry: ./check-file-names.sh
+    entry: ./tools/check-file-names.sh
     language: system

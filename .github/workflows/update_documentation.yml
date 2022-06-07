@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Check file names
         run: |
-          ./check-file-names.sh
+          ./tools/check-file-names.sh
   check_shell_scripts:
     name: Check Shell Scripts
     runs-on: ubuntu-latest
