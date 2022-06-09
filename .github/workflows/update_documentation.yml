@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Install dependencies
         run: |
-          pip install black isort flake8 mypy
+          pip install -r tools/requirements.txt
       - name: Run black
         run: |
           black --check .
