@@ -3,7 +3,7 @@ import os
 import pathlib
 import re
 from collections import defaultdict
-from typing import Dict, List
+from typing import Dict, List, Optional, TypeVar
 
 import jinja2
 
@@ -11,6 +11,21 @@ MAJOR_VERSION = re.compile(r"(\d+)\.\d+\.\d+")
 MINOR_VERSION = re.compile(r"\d+\.(\d+)\.\d+")
 PATCH_VERSION = re.compile(r"\d+\.\d+\.(\d+)")
 MAJOR_MINOR_VERSION = re.compile(r"(\d+\.\d+)\.\d+")
+
+
+T = TypeVar("T")
+
+
+def ensure_not_none(inp: Optional[T]) -> T:
+    """
+    This function unwraps an Optional type and returns the content. It fails if
+    the provided value is None.
+
+    :param inp: The Optional type with the content to return.
+    :returns: The content of the inp.
+    """
+    assert inp, "The input should not be None!"
+    return inp
 
 
 def map_post_version_sort_to_number(stem: str) -> int:
@@ -77,21 +92,29 @@ def render_templates(templates_dir: str, output_path: pathlib.Path) -> None:
         return {"stem": path.stem, "path": str(path.relative_to(output_path))}
 
     def index_func(path: str) -> Dict[str, List[Dict]]:
-        path = output_path / path
-        if not str(path).startswith(str(output_path)):
+        relative_path = output_path / path
+        if not str(relative_path).startswith(str(output_path)):
             raise ValueError("path may not escape the output path")
-        if not path.exists():
+        if not relative_path.exists():
             raise ValueError(f"cannot index: {path} does not exist")
 
-        items = path.iterdir()
+        items = relative_path.iterdir()
 
         mapped_items = defaultdict(list)
         for i in items:
-            mapped_items[MAJOR_MINOR_VERSION.match(i.stem).group(1)].append(
+            mapped_items[
+                ensure_not_none(MAJOR_MINOR_VERSION.match(i.stem)).group(1)
+            ].append(
                 {
-                    "major_version_number": int(MAJOR_VERSION.match(i.stem).group(1)),
-                    "minor_version_number": int(MINOR_VERSION.match(i.stem).group(1)),
-                    "patch_version_number": int(PATCH_VERSION.match(i.stem).group(1)),
+                    "major_version_number": int(
+                        ensure_not_none(MAJOR_VERSION.match(i.stem)).group(1)
+                    ),
+                    "minor_version_number": int(
+                        ensure_not_none(MINOR_VERSION.match(i.stem)).group(1)
+                    ),
+                    "patch_version_number": int(
+                        ensure_not_none(PATCH_VERSION.match(i.stem)).group(1)
+                    ),
                     "post_version_sort": map_post_version_sort_to_number(i.stem),
                     "stem": i.stem,
                     "path": str(i.relative_to(output_path)),

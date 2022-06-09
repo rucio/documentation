@@ -62,7 +62,7 @@ jobs:
           flake8 --config tools/.flake8
       - name: MyPy
         run: |
-          mypy .
+          mypy --ignore-missing-imports .
   build:
     name: Build
     needs: [check_markdown_syntax, check_file_names, check_shell_scripts, check_python_scripts]
