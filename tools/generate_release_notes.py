@@ -3,7 +3,7 @@ import os
 import re
 from dataclasses import dataclass
 from itertools import count
-from typing import Any, Iterator
+from typing import Any, Iterator, Type
 
 import requests
 
@@ -20,7 +20,7 @@ class GitHubRelease:
 
     @classmethod
     def from_github_release_api_json_obj(
-        cls: "GitHubRelease", obj: Any
+        cls: "Type[GitHubRelease]", obj: Any
     ) -> "GitHubRelease":
         return cls(obj["tag_name"], obj["body"])
 
@@ -86,7 +86,7 @@ def main() -> None:
         os.makedirs(RELEASE_NOTES_FOLDER)
 
     releases = iter_github_releases("rucio", "rucio")
-    [process_release(r) for r in releases]
+    list(map(lambda r: process_release(r), releases))
 
 
 if __name__ == "__main__":
