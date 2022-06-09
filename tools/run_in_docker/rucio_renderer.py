@@ -22,6 +22,8 @@ def get_first_client_class(
         if child:
             return child
 
+    return None
+
 
 def sanitize(s: str) -> str:
     character_map = {
@@ -58,6 +60,8 @@ class RucioRenderer(Renderer):
 
     def render(self, modules: t.List[docspec.Module]) -> None:
         client_class = get_first_client_class(modules)
+        assert client_class, "Client Class should not be empty"
+
         print("---")
         print(f"title: {client_class.name}")
         print("---")
