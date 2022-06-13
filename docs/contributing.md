@@ -233,3 +233,9 @@ lead.
 
 We use flake8 and pylint to sanitize our code. Please do the same before
 submitting a pull request.
+
+## Rest Api
+
+The Rest Api gets generated from the Rucio doc comments in `web`. They provide a
+[OpenApi](https://www.openapis.org/) specification
+[file](pathname:///yaml/rest_api_doc_spec.yaml).
