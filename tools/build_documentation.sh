@@ -17,9 +17,11 @@ sudo chown -R "$USER":"$USER" "$AUTO_GENERATED"
 
 echo "Generating Rest Api Docs from Spec File..."
 npx --yes redoc-cli build "$AUTO_GENERATED"/rest_api_doc_spec.yaml --output "$AUTO_GENERATED"/rest_api_doc.html
+
+mkdir -p "$SCRIPT_DIR"/../website/static/yaml/
 mkdir -p "$SCRIPT_DIR"/../website/static/html/
 
-
+cp -r "$AUTO_GENERATED"/rest_api_doc_spec.yaml "$SCRIPT_DIR"/../website/static/yaml/
 cp -r "$AUTO_GENERATED"/rest_api_doc.html "$SCRIPT_DIR"/../website/static/html/
 cp -r "$AUTO_GENERATED"/client_api "$DOCS"
 cp -r "$AUTO_GENERATED"/bin "$DOCS"
