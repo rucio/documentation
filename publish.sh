@@ -22,6 +22,13 @@ cp -r "${INPUT_DIRECTORY}" "${OUTPUT_DIRECTORY}"
 mv output.git "${OUTPUT_DIRECTORY}/.git"
 cd "${OUTPUT_DIRECTORY}"
 touch .nojekyll
+
+# We want to add the assets to the deployment, however we don't want to have the
+# changes in the versioning system. Deleting the .gitignore files will add the
+# assets to the deployment.
+rm html/.gitignore
+rm yaml/.gitignore
+
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
 git add .
