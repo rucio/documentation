@@ -232,8 +232,9 @@ attributes.
     <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_size>
   - **pool_timeout**:
     <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_timeout>
-  - **poolclass**: Which connection pooling mechanism to use. Values: `nullpool` (disables pooling),
-    `queuepool` (default for all but SQLite engine), or `singletonthreadpool` (default for SQLite engine).
+  - **poolclass**: Which connection pooling mechanism to use. Values: `nullpool`
+    (disables pooling), `queuepool` (default for all but SQLite engine), or
+    `singletonthreadpool` (default for SQLite engine).
     See <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.poolclass>
   - **schema**: _(Optional)_ Schema to be applied to a database, if not set in
     config, try to create automatically.
