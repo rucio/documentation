@@ -661,6 +661,51 @@ paths:
       summary: Update
       tags:
       - Account
+    get:
+      description: Lists all parameters for an account.
+      parameters:
+      - description: The account identifier.
+        in: path
+        name: account
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                properties:
+                  account:
+                    description: The account identifier.
+                    type: string
+                  account_type:
+                    description: The account type.
+                    type: string
+                  deleted_at:
+                    description: Datetime if the account was deleted.
+                    type: string
+                  email:
+                    description: The email for the account.
+                    type: string
+                  status:
+                    description: The account status.
+                    type: string
+                  suspended_at:
+                    description: Datetime if the account was suspended.
+                    type: string
+                type: object
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No account found.
+        '406':
+          description: Not acceptable
+      summary: List account parameters
+      tags:
+      - Account
     post:
       description: Create an account.
       parameters:
@@ -706,51 +751,6 @@ paths:
         '400':
           description: Unknown status
       summary: Create
-      tags:
-      - Account
-    get:
-      description: Lists all parameters for an account.
-      parameters:
-      - description: The account identifier.
-        in: path
-        name: account
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                properties:
-                  account:
-                    description: The account identifier.
-                    type: string
-                  account_type:
-                    description: The account type.
-                    type: string
-                  deleted_at:
-                    description: Datetime if the account was deleted.
-                    type: string
-                  email:
-                    description: The email for the account.
-                    type: string
-                  status:
-                    description: The account status.
-                    type: string
-                  suspended_at:
-                    description: Datetime if the account was suspended.
-                    type: string
-                type: object
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No account found.
-        '406':
-          description: Not acceptable
-      summary: List account parameters
       tags:
       - Account
     delete:
@@ -5442,6 +5442,59 @@ paths:
       summary: Update Rse Distance
       tags:
       - Rucio Storage Elements
+    get:
+      description: Returns the distances between a source and destination rse.
+      parameters:
+      - description: The name of the source Rucio Storage Element.
+        in: path
+        name: source
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the destination Rucio Storage Element.
+        in: path
+        name: destination
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: The distances between the Rses.
+                items:
+                  description: One distance betweeen source and destination.
+                  properties:
+                    agis_distance:
+                      description: The agis distance.
+                      type: integer
+                    dest_rse_id:
+                      description: The destination rse id.
+                      type: string
+                    geoip_distance:
+                      description: The geo ip distance.
+                      type: integer
+                    ranking:
+                      description: The ranking.
+                      type: integer
+                    src_rse_id:
+                      description: The source rse id.
+                      type: string
+                  type: object
+                type: array
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Get Rse Distances
+      tags:
+      - Rucio Storage Elements
     post:
       description: Post a rse distance.
       parameters:
@@ -5505,59 +5558,6 @@ paths:
         '406':
           description: Not acceptable
       summary: Create Rse Distance
-      tags:
-      - Rucio Storage Elements
-    get:
-      description: Returns the distances between a source and destination rse.
-      parameters:
-      - description: The name of the source Rucio Storage Element.
-        in: path
-        name: source
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The name of the destination Rucio Storage Element.
-        in: path
-        name: destination
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                description: The distances between the Rses.
-                items:
-                  description: One distance betweeen source and destination.
-                  properties:
-                    agis_distance:
-                      description: The agis distance.
-                      type: integer
-                    dest_rse_id:
-                      description: The destination rse id.
-                      type: string
-                    geoip_distance:
-                      description: The geo ip distance.
-                      type: integer
-                    ranking:
-                      description: The ranking.
-                      type: integer
-                    src_rse_id:
-                      description: The source rse id.
-                      type: string
-                  type: object
-                type: array
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Get Rse Distances
       tags:
       - Rucio Storage Elements
     delete:
@@ -6448,12 +6448,85 @@ paths:
                 type: string
           description: OK
         '400':
-          description: Cannot decode json parameter dictionary
+          description: Cannot decode json parameter dictionary or invalid option provided
         '401':
           description: Invalid Auth Token
         '404':
           description: RSE not found
       summary: Update RSE
+      tags:
+      - Rucio Storage Elements
+    get:
+      description: Get details about a specific RSE.
+      parameters:
+      - description: The name of the Rucio Storage Element name.
+        in: path
+        name: rse
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: The RSE properties.
+                properties:
+                  ASN:
+                    description: The access service network of the RSE.
+                    type: string
+                  ISP:
+                    description: The internet service provider of the RSE.
+                    type: string
+                  availability:
+                    description: The availability of the RSE.
+                    type: integer
+                  city:
+                    description: The city of the RSE.
+                    type: string
+                  continent:
+                    description: The continent of the RSE.
+                    type: string
+                  country_name:
+                    description: The country name of the RSE.
+                    type: string
+                  deterministic:
+                    description: If the pfn is generated deterministicly.
+                    type: boolean
+                  latitute:
+                    description: The latitute of the RSE.
+                    type: float
+                  longitude:
+                    description: The longitude of the RSE.
+                    type: float
+                  region_code:
+                    description: The region code of the RSE.
+                    type: string
+                  rse_type:
+                    description: The rse type.
+                    enum:
+                    - DISK
+                    - TAPE
+                    type: string
+                  staging_area:
+                    description: Staging area.
+                    type: string
+                  time_zone:
+                    description: The time zone of the RSE.
+                    type: string
+                  volatile:
+                    description: RSE cache.
+                    type: boolean
+                type: object
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE not found
+        '406':
+          description: Not acceptable
+      summary: Get RSE
       tags:
       - Rucio Storage Elements
     post:
@@ -6535,79 +6608,6 @@ paths:
         '409':
           description: RSE already exists.
       summary: Create RSE
-      tags:
-      - Rucio Storage Elements
-    get:
-      description: Get details about a specific RSE.
-      parameters:
-      - description: The name of the Rucio Storage Element name.
-        in: path
-        name: rse
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                description: The RSE properties.
-                properties:
-                  ASN:
-                    description: The access service network of the RSE.
-                    type: string
-                  ISP:
-                    description: The internet service provider of the RSE.
-                    type: string
-                  availability:
-                    description: The availability of the RSE.
-                    type: integer
-                  city:
-                    description: The city of the RSE.
-                    type: string
-                  continent:
-                    description: The continent of the RSE.
-                    type: string
-                  country_name:
-                    description: The country name of the RSE.
-                    type: string
-                  deterministic:
-                    description: If the pfn is generated deterministicly.
-                    type: boolean
-                  latitute:
-                    description: The latitute of the RSE.
-                    type: float
-                  longitude:
-                    description: The longitude of the RSE.
-                    type: float
-                  region_code:
-                    description: The region code of the RSE.
-                    type: string
-                  rse_type:
-                    description: The rse type.
-                    enum:
-                    - DISK
-                    - TAPE
-                    type: string
-                  staging_area:
-                    description: Staging area.
-                    type: string
-                  time_zone:
-                    description: The time zone of the RSE.
-                    type: string
-                  volatile:
-                    description: RSE cache.
-                    type: boolean
-                type: object
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE not found
-        '406':
-          description: Not acceptable
-      summary: Get RSE
       tags:
       - Rucio Storage Elements
     delete:
@@ -7352,8 +7352,8 @@ paths:
     get: {}
   /subscriptions/{account}/{name}:
     put: {}
-    post: {}
     get: {}
+    post: {}
   /subscriptions/Name/{name}:
     get: {}
 
