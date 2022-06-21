@@ -24,6 +24,26 @@ SQLite: `sqlite:////tmp/rucio.db`
 Please ensure correct UNIX permissions on the SQLite file, such that the web
 server process can read and write to it.
 
+## Additional options
+
+### Connection pooling
+
+Connection pooling is enabled by default, but can be disabled by setting the option
+
+```dosini
+poolclass = nullpool
+```
+
+in the `[database]` section in `etc/rucio.cfg`.
+
+Other valid values are `singletonthreadpool`,
+which is the default pooling mechanism when using the SQLite engine,
+and `queuepool`,
+which is the default otherwise.
+
+Note that the chosen `poolclass` may conflict with other pooling options.
+For instance, one cannot combine `poolclass = nullpool` with the `pool_size` option.
+
 ## Upgrading and downgrading the database schema
 
 Rucio uses [Alembic](http://alembic.zzzcomputing.com/en/latest/) as a database
