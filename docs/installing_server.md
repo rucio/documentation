@@ -204,8 +204,8 @@ becomes `RUCIO_CFG_DATABASE_DEFAULT`. All available environment variables are:
 
 In order to be able to use [OIDC](https://openid.net/connect/) JSON Web Tokens ([JWTs](https://en.wikipedia.org/wiki/JSON_Web_Token)) and related [OAuth2.0](https://oauth.net/2/)
 authentication and authorization with Rucio, one first needs to have an account
-with an Identity Provider (IdP) which will act as Rucio Admin account
-representing the Rucio Application. Currently, the only fully supported IdP is [INDIGO IAM](https://indigo-iam.github.io/v/current/). Once you have got your Rucio Admin IAM account (and
+with an Identity Provider (IdP) which will act as Rucio admin account
+representing the Rucio Application. Currently, the only fully supported IdP is [INDIGO IAM](https://indigo-iam.github.io/v/current/). Once you have got your Rucio Service IAM Account \[A\] (and
 its subject claim identifier), you will need to [register two IAM Rucio
 clients](https://indigo-iam.github.io/docs/v/current/user-guide/client-registration.html)
 linked to this account. Please save the relevant __client_id__,
@@ -220,7 +220,7 @@ https://<your_server_name>/auth/oidc_code
 ```
 
 We will use one client as
-__Rucio Auth IAM Client__ (i.e. client for the authentication and authorization on
+__Rucio Auth IAM Client__ \[C1\] (i.e. client for the authentication and authorization on
 the Rucio server). This client needs to have __token_exchange__, __token_refresh__, and __authorization_code__ grants enabled. For __token_exchange__ and __token_refresh__ you
 might need to contact the IAM admin as such settings are usually not accessible
 to IAM users. In addition, you will need to request your IAM admin to allow your
@@ -229,15 +229,15 @@ header. In addition Rucio assumes refresh tokens to expire immediately after
 their first use, which has to be also confirmed by your IAM admin.
 
 The second
-client, let's call it __Rucio Admin IAM Client__, will be used by a Rucio probe
-script, __check_voms__, in order to synchronize existing Rucio accounts with Rucio
+client, let's call it __Rucio Admin IAM Client__ \[C2\], can be used by a Rucio probe
+script (e.g. [check_scim](https://github.com/rucio/probes/blob/master/attic/check_scim), [sync_iam_rucio](https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts/blob/master/iam-rucio-sync/sync_iam_rucio.py)) in order to synchronize existing Rucio accounts with Rucio
 identities. Rucio will also use this client's credentials in order to request
 tokens for itself. The IAM administrator must include the __scim:read__ scope and
-allow the __client_credentials__ grant type for the Rucio Admin IAM client in order
+allow the __client_credentials__ grant type for [C2] in order
 to grant you rights to pre-provision IAM users for Rucio. Examples of the
 configuration of these two clients follow below:
 
-Example of the __Rucio Auth IAM Client__ configuration:
+Example of the __Rucio Auth IAM Client__ \[C1\] configuration:
 
 ```json
 {
@@ -296,7 +296,7 @@ Example of the __Rucio Auth IAM Client__ configuration:
 }
 ```
 
-Example of the __Rucio Admin IAM Client__ configuration:
+Example of the __Rucio Admin IAM Client__ \[C2\] configuration:
 
 ```bash
 {
@@ -355,37 +355,51 @@ relevant information. Example of such dictionary (for multiple IdPs) follows:
 
 ```json
 {
-  "<IdP nickname>": {
-    "redirect_uris": [
-      "https://<server_name>/auth/oidc_token",
-      "https://<server_name>/auth/oidc_code"
-    ],
-    "registration_access_token": "<RAT_string>",
-    "client_secret": "<client_secret>",
-    "SCIM": {
-      "client_secret": "<client_secret>",
-      "grant_type": "client_credentials",
-      "registration_access_token": "<RAT_string>"
+    "<IdP nickname>": {
+
+        "issuer": "https://<issuer_server_name>",
+
+        "redirect_uris": [
+            "https://<auth_server_name>/auth/oidc_token",
+            "https://<auth_server_name>/auth/oidc_code"
+        ],
+
+        "client_id": "<C1_client_id>",
+        "client_secret": "<C1_client_secret>",
+
+        # this is not really needed for the OIDC functionality
+        # but it is suggested to store it anyway as it is required
+        # to edit the client in INDIGO IAM
+        "registration_access_token": "<C1_client_RAT_string>",
+
+        "SCIM": {
+            "client_id": "<C2_client_id>",
+            "client_secret": "<C2_client_secret>",
+            "registration_access_token": "<C2_client_RAT_string>"
+        }
     },
-    "issuer": "https://<issuer_server_name>/"
-  },
-  "wlcg": {
-    "redirect_uris": [
-      "https://rucio-auth.cern.ch/auth/oidc_token",
-      "https://rucio-auth.cern.ch/auth/oidc_code"
-    ],
-    "registration_access_token": "eyJraWQiOi ...",
-    "client_id": "fdc297fc-09 ...",
-    "client_secret": "APFVcga_X ...",
-    "SCIM": {
-      "client_secret": "IQqAcMOa ...",
-      "grant_type": "client_credentials",
-      "registration_access_token": "eyJraW ...",
-      "client_id": "5b5e5d3 ..."
+
+    "wlcg": {
+  
+        "issuer": "https://wlcg.cloud.cnaf.infn.it/",
+
+        "redirect_uris": [
+            "https://rucio-auth.cern.ch/auth/oidc_token",
+            "https://rucio-auth.cern.ch/auth/oidc_code"
+        ],
+
+        "client_id": "fdc297fc-09 ...",
+        "client_secret": "APFVcga_X ...",
+        "registration_access_token": "eyJraWQiOi ...",
+
+        "SCIM": {
+            "client_id": "5b5e5d3 ...",
+            "client_secret": "IQqAcMOa ...",
+            "registration_access_token": "eyJraW ..."
+        }
     },
-    "issuer": "https://wlcg.cloud.cnaf.infn.it/"
-  },
-  "xdc": { ... },
+
+    "xdc": { ... },
 }
 ```
 
@@ -407,45 +421,62 @@ Users (SCIM) and to request tokens for the Rucio __root__ account.  The
 __expected_scope__ and __expected_audence__ parameters are optional and if not filled,
 the Rucio server will set them to `openid profile` and `rucio`
 respectively. The expected scopes and audiences have to be configured
-correspondinly on the side of your registered clienst at your IdP (usually you
+correspondinly on the side of your registered clients at your IdP (usually you
 can control accepted scopes and audiences for your clients via an IdP web
 interface).
 
 To finalise the process, one should assign the OIDC identities to the relevant
-Rucio __admin_account_name__ (e.g. \'root\', \'ddmadmin\'). This identity ID is
-composed of the IAM account sub claim and issuer url such as demonstrated below:
+Rucio __admin_account__ (e.g. \'root\', \'ddmadmin\'). This identity ID is
+composed of the Rucio Service IAM Account [A] subject claim and issuer url such as demonstrated below:
 
 ```bash
-rucio-admin identity add --account admin_account_name \
+# Add the Rucio Service IAM Account ID as an OIDC identity
+rucio-admin identity add --account rucio_admin_account \
   --type OIDC \
   --id "SUB=b3127dc7-2be3-417b-9647-6bf61238ad01, \
     ISS=https://wlcg.cloud.cnaf.infn.it/" \
   --email "wlcg-doma-rucio@cern.ch"
 ```
 
-A second identity has to be added to the same admin_account_name representing
-the client_credentials flow of the Rucio application, i.e.  of the Rucio Admin
-IAM client from above. This identity consists of the client_id of the Rucio
-Admin IAM client and the issuer (the token obtained via the client credentials
-flow using the Rucio Admin IAM client will contain in the SUB claim the
-client_id instead of the IAM account SUB claim):
+A second identity has to be added to the same __admin_account__ representing
+the __client_credentials__ flow of the Rucio application, i.e.  of the __Rucio Admin IAM Client__ [C2] from above. This identity consists of the __client_id__ of [C2] and the issuer (the token obtained via the client credentials
+flow using [C2] will contain in the __sub__ claim the
+__client_id__ of [C2] instead of Rucio Service IAM Account [A] __sub__ claim):
 
 ```bash
-rucio-admin identity add --account admin_account_name \
+# Add the Rucio Admin IAM Client client_id as an OIDC identity
+rucio-admin identity add --account rucio_admin_account \
   --type OIDC \
   --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, \
     ISS=https://wlcg.cloud.cnaf.infn.it/" \
   --email "wlcg-doma-rucio@cern.ch"
 ```
 
-Note: In case you can not/will not run the Rucio check_scim probe script in
+Note: In case you can not/will not run any IAM -> Rucio user mapping tool in
 order to sync Rucio accounts with their IAM identities, you should assign the
 appropriate OIDC identity manually (as in the example above) to each Rucio
-account which is meant to use the OIDC authN/Z.
+account which is meant to use the OIDC authN/Z:
+
+```bash
+# Add an IAM User Account ID as an OIDC identity
+# (needs to be done for each user!)
+rucio-admin identity add --account rucio_user_account \
+  --type OIDC \
+  --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, \
+    ISS=https://wlcg.cloud.cnaf.infn.it/" \
+  --email "wlcg-doma-rucio@cern.ch"
+```
+
 
 In case you wish to use OIDC by default in order to login to the Rucio WebUI,
-one has to configure also another block in the `rucio.cfg` file: ``` [webui]
-auth_type = oidc auth_issuer = <IdP nickname from the idpsecrets.json file> ```
+one has to configure also another block in the `rucio.cfg` file:
+
+```cfg
+[webui]
+auth_type = oidc
+auth_issuer = <IdP nickname from the idpsecrets.json file> 
+```
+
 This is not a mandatory section, if not filled a user will get directed to a
 page with login choices.
 
