@@ -467,21 +467,10 @@ rucio-admin identity add --account rucio_user_account \
   --email "wlcg-doma-rucio@cern.ch"
 ```
 
-
-In case you wish to use OIDC by default in order to login to the Rucio WebUI,
-one has to configure also another block in the `rucio.cfg` file:
-
-```cfg
-[webui]
-auth_type = oidc
-auth_issuer = <IdP nickname from the idpsecrets.json file> 
-```
-
-This is not a mandatory section, if not filled a user will get directed to a
-page with login choices.
-
 In order to ensure the correct lifetime management of the tokens and auth
 sessions, one also has to run the rucio-oauth-daemon run on the server!
+
+### Configuration for Conveyor Daemons
 
 Rucio servers may run also conveyor daemon, which is responsible for submission
 of the transfers created in connection with existing Rucio rule. In case both,
@@ -496,13 +485,13 @@ after client credentials token flow of the admin). If in any of the two formerly
 mentioned cases, valid token is present in Rucio DB beforehand, it will be used
 in the header of the transfer request to FTS and no new token demand will be
 made to IdP. The OIDC authentication mechanism shall be configured by the
-following parameters in the rucio.cfg file: 
+following parameters in the rucio.cfg file:
 
 ``` [conveyor]
 allow_user_oidc_tokens = False 
 request_oidc_scope = 'fts:submit-transfer'
 request_oidc_audience = 'fts' 
-``` 
+```
 
 If `allow_user_oidc_tokens` is set to `True`
 the system will attempt to exchange a valid OIDC token (if any) of the account
@@ -519,3 +508,5 @@ not a part of the token payload. For this reason Rucio has a fall-back mechanism
 to get this information using the IdPs introspection endpoint. To allow Rucio to
 introspect tokens that were not issued by its clients, please talk to the IdP
 admin who should enable this functionality for your clients.
+
+### Rucio WebUI Login with CERN SSO
