@@ -25,11 +25,11 @@ deploy the new LTS release.
 
 | Version         | Code name                        | Release date   | Supported until      |
 | --------------- | -------------------------------- | -------------- | -------------------- |
-| 1.30            | The Donkeynator                  | _2022-11_      | _2023_               |
-| 1.29 LTS        | Into the Donkeyverse             | _2022-07_      | _at least 2024-07_   |
-| **1.28**        | **Teenage Mutant Ninja Donkeys** | **2022-03**    | _2022-07_ ☑️         |
+| 1.30            | The Donkeynator                  | _2022-11_      | _2023-??_            |
+| **1.29 LTS**    | **Into the Donkeyverse**         | **2022-07**    | _at least 2024-07_ ☑️ |
+| 1.28            | Teenage Mutant Ninja Donkeys     | 2022-03        | 2022-07              |
 | 1.27            | Batdonkey v Superdonkey          | 2021-11        | 2022-03              |
-| **1.26 LTS**    | **Donkey League of La Mancha**   | **2021-07**    | _at least 2023-07_ ☑️|
+| **1.26 LTS**    | **Donkey League of La Mancha**   | **2021-07**    | **2023-07** ☑️       |
 | 1.25            | Rat-Donkey                       | 2021-02        | 2021-07              |
 | 1.24            | Aquadonkey                       | 2020-11        | 2021-02              |
 | **1.23 LTS**    | **The incredible Donkey**        | **2020-07**    | **2022-07** ☑️       |
