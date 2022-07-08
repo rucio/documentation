@@ -1,10 +1,36 @@
 info:
   title: Rucio
-  version: 1.29.0rc1
+  version: 1.29.0rc2
 openapi: 3.0.2
 paths:
   /static/{filename}: {}
   /accountlimits/local/{account}/{rse}:
+    delete:
+      parameters:
+      - description: The account for the accountlimit.
+        in: path
+        name: account
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The rse for the accountlimit.
+        in: path
+        name: rse
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No RSE or account found for the given id.
+      summary: Delete a local account limit
+      tags:
+      - Account Limit
     post:
       parameters:
       - description: The account for the accountlimit.
@@ -48,6 +74,7 @@ paths:
       summary: Create or update a local accont limit
       tags:
       - Account Limit
+  /accountlimits/global/{account}/{rse_expression}:
     delete:
       parameters:
       - description: The account for the accountlimit.
@@ -57,9 +84,9 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The rse for the accountlimit.
+      - description: The rse expression for the accountlimit.
         in: path
-        name: rse
+        name: rse_expression
         required: true
         schema:
           type: string
@@ -71,10 +98,9 @@ paths:
           description: Invalid Auth Token
         '404':
           description: No RSE or account found for the given id.
-      summary: Delete a local account limit
+      summary: Delete a global account limit
       tags:
       - Account Limit
-  /accountlimits/global/{account}/{rse_expression}:
     post:
       parameters:
       - description: The account for the accountlimit.
@@ -118,18 +144,20 @@ paths:
       summary: Create or update a global account limit
       tags:
       - Account Limit
+  /accounts/{account}/attr/{key}:
     delete:
+      description: Delete an attribute of an account.
       parameters:
-      - description: The account for the accountlimit.
+      - description: The account identifier.
         in: path
         name: account
         required: true
         schema:
           type: string
         style: simple
-      - description: The rse expression for the accountlimit.
+      - description: The key of the account attribute to remove.
         in: path
-        name: rse_expression
+        name: key
         required: true
         schema:
           type: string
@@ -140,11 +168,10 @@ paths:
         '401':
           description: Invalid Auth Token
         '404':
-          description: No RSE or account found for the given id.
-      summary: Delete a global account limit
+          description: No account found for the given id.
+      summary: Delete attribute
       tags:
-      - Account Limit
-  /accounts/{account}/attr/{key}:
+      - Account
     post:
       description: Create an attribute to an account.
       parameters:
@@ -193,33 +220,6 @@ paths:
         '409':
           description: Attribute already exists
       summary: Create attribute
-      tags:
-      - Account
-    delete:
-      description: Delete an attribute of an account.
-      parameters:
-      - description: The account identifier.
-        in: path
-        name: account
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The key of the account attribute to remove.
-        in: path
-        name: key
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No account found for the given id.
-      summary: Delete attribute
       tags:
       - Account
   /accounts/{account}/scopes/{scope}:
@@ -334,6 +334,41 @@ paths:
       tags:
       - Account
   /accounts/{account}/identities:
+    delete:
+      description: Delete an account identity.
+      parameters:
+      - description: The account identifier.
+        in: path
+        name: account
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                authtype:
+                  description: The authtype.
+                  type: string
+                identity:
+                  description: The identity.
+                  type: string
+              required:
+              - identity
+              - authtype
+              type: object
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Account or identity not found
+      summary: Delete identity
+      tags:
+      - Account
     post:
       description: Grant an account identity access to an account.
       parameters:
@@ -421,41 +456,6 @@ paths:
         '406':
           description: Not acceptable
       summary: List identities
-      tags:
-      - Account
-    delete:
-      description: Delete an account identity.
-      parameters:
-      - description: The account identifier.
-        in: path
-        name: account
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                authtype:
-                  description: The authtype.
-                  type: string
-                identity:
-                  description: The identity.
-                  type: string
-              required:
-              - identity
-              - authtype
-              type: object
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Account or identity not found
-      summary: Delete identity
       tags:
       - Account
   /accounts/{account}/rules:
@@ -632,6 +632,55 @@ paths:
       tags:
       - Account
   /accounts/{account}:
+    put:
+      description: Update a parameter for an account.
+      parameters:
+      - description: The account identifier.
+        in: path
+        name: account
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: Json object with key-value pairs corresponding to the new
+                values of the parameters.
+              type: object
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No account found.
+        '400':
+          description: Unknown status
+      summary: Update
+      tags:
+      - Account
+    delete:
+      description: Delete an account.
+      parameters:
+      - description: The account identifier.
+        in: path
+        name: account
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '201':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Account not found
+      summary: Delete
+      tags:
+      - Account
     post:
       description: Create an account.
       parameters:
@@ -679,35 +728,6 @@ paths:
       summary: Create
       tags:
       - Account
-    put:
-      description: Update a parameter for an account.
-      parameters:
-      - description: The account identifier.
-        in: path
-        name: account
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: Json object with key-value pairs corresponding to the new
-                values of the parameters.
-              type: object
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No account found.
-        '400':
-          description: Unknown status
-      summary: Update
-      tags:
-      - Account
     get:
       description: Lists all parameters for an account.
       parameters:
@@ -751,26 +771,6 @@ paths:
         '406':
           description: Not acceptable
       summary: List account parameters
-      tags:
-      - Account
-    delete:
-      description: Delete an account.
-      parameters:
-      - description: The account identifier.
-        in: path
-        name: account
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '201':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Account not found
-      summary: Delete
       tags:
       - Account
   /accounts:
@@ -990,7 +990,6 @@ paths:
       tags:
       - Config
   /credentials/signurl:
-    options: {}
     get:
       description: Sign a url for a limited lifetime for a particular srevice.
       parameters:
@@ -1065,6 +1064,7 @@ paths:
       summary: Sign URL
       tags:
       - Credentials
+    options: {}
   /dids/{scope}/:
     get:
       description: Return all data identifiers in the given scope.
@@ -1554,6 +1554,46 @@ paths:
       tags:
       - Data Identifiers
   /dids/{scope_name}/dids:
+    delete:
+      description: Detach data identifiers from data identifiers.
+      parameters:
+      - description: The scope and the name of the did.
+        in: path
+        name: scope_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                dids:
+                  description: The dids to detach.
+                  items:
+                    properties:
+                      name:
+                        description: The name of the did.
+                        type: string
+                      scope:
+                        description: The scope of the did.
+                        type: string
+                    type: object
+                  type: array
+              required:
+              - dids
+              type: object
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Did not found
+      summary: Detach dids from did
+      tags:
+      - Data Identifiers
     post:
       description: Append data identifiers to data identifiers.
       parameters:
@@ -1666,8 +1706,9 @@ paths:
       summary: Get did
       tags:
       - Data Identifiers
+  /dids/{scope_name}/meta:
     delete:
-      description: Detach data identifiers from data identifiers.
+      description: Deletes the specified metadata from the did.
       parameters:
       - description: The scope and the name of the did.
         in: path
@@ -1676,37 +1717,27 @@ paths:
         schema:
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                dids:
-                  description: The dids to detach.
-                  items:
-                    properties:
-                      name:
-                        description: The name of the did.
-                        type: string
-                      scope:
-                        description: The scope of the did.
-                        type: string
-                    type: object
-                  type: array
-              required:
-              - dids
-              type: object
+      - description: The key to delete.
+        in: query
+        name: key
+        schema:
+          type: string
       responses:
         '200':
           description: OK
+        '400':
+          description: scope_name could not be parsed.
         '401':
           description: Invalid Auth Token
         '404':
-          description: Did not found
-      summary: Detach dids from did
+          description: Did or key not found
+        '406':
+          description: Not acceptable
+        '409':
+          description: Feature is not in current database.
+      summary: Delete metadata
       tags:
       - Data Identifiers
-  /dids/{scope_name}/meta:
     post:
       description: Add metadata to a did.
       parameters:
@@ -1783,37 +1814,6 @@ paths:
         '406':
           description: Not acceptable
       summary: Get metadata
-      tags:
-      - Data Identifiers
-    delete:
-      description: Deletes the specified metadata from the did.
-      parameters:
-      - description: The scope and the name of the did.
-        in: path
-        name: scope_name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The key to delete.
-        in: query
-        name: key
-        schema:
-          type: string
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: scope_name could not be parsed.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Did or key not found
-        '406':
-          description: Not acceptable
-        '409':
-          description: Feature is not in current database.
-      summary: Delete metadata
       tags:
       - Data Identifiers
   /dids/{scope_name}/meta/{key}:
@@ -2043,6 +2043,39 @@ paths:
       tags:
       - Data Identifiers
   /dids/{scope_name}/follow:
+    delete:
+      description: Mark the input DID as not followed
+      parameters:
+      - description: The scope and the name of the did.
+        in: path
+        name: scope_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                account:
+                  description: The account to unfollow the did.
+                  type: string
+              required:
+              - account
+              type: null
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Not found
+        '500':
+          description: Internal error
+      summary: Delete follow
+      tags:
+      - Data Identifiers
     post:
       description: Mark the input DID as being followed by the given account.
       parameters:
@@ -2112,39 +2145,6 @@ paths:
         '406':
           description: Not acceptable
       summary: Get followers
-      tags:
-      - Data Identifiers
-    delete:
-      description: Mark the input DID as not followed
-      parameters:
-      - description: The scope and the name of the did.
-        in: path
-        name: scope_name
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                account:
-                  description: The account to unfollow the did.
-                  type: string
-              required:
-              - account
-              type: null
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Not found
-        '500':
-          description: Internal error
-      summary: Delete follow
       tags:
       - Data Identifiers
   /dids:
@@ -5298,6 +5298,33 @@ paths:
       tags:
       - Requests
   /rses/{rse}/attr/{key}:
+    delete:
+      description: Delete an RSE attribute for given RSE name.
+      parameters:
+      - description: The name of the Rucio Storage Element name.
+        in: path
+        name: rse
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the attribute of the RSE.
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE or RSE attribute not found
+      summary: Delete RSE Attribute
+      tags:
+      - Rucio Storage Elements
     post:
       description: Create a RSE attribute with given RSE name.
       parameters:
@@ -5346,99 +5373,7 @@ paths:
       summary: Create RSE Attribute
       tags:
       - Rucio Storage Elements
-    delete:
-      description: Delete an RSE attribute for given RSE name.
-      parameters:
-      - description: The name of the Rucio Storage Element name.
-        in: path
-        name: rse
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The name of the attribute of the RSE.
-        in: path
-        name: key
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE or RSE attribute not found
-      summary: Delete RSE Attribute
-      tags:
-      - Rucio Storage Elements
   /rses/{source}/distances/{destination}:
-    post:
-      description: Post a rse distance.
-      parameters:
-      - description: The name of the source Rucio Storage Element.
-        in: path
-        name: source
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The name of the destination Rucio Storage Element.
-        in: path
-        name: destination
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                active:
-                  description: If the distance is active.
-                  type: boolean
-                distance:
-                  description: The distance between the Rses.
-                  type: integer
-                failed:
-                  description: If the distance failed.
-                  type: boolean
-                finished:
-                  description: If the distance is finished.
-                  type: boolean
-                geoip_distance:
-                  description: The geoip distance between the Rses.
-                  type: integer
-                ranking:
-                  description: The ranking of the distance.
-                  type: integer
-                submitted:
-                  description: If the distance is submitted.
-                  type: boolean
-                transfer_speed:
-                  description: The transferspeed between the Rses.
-                  type: integer
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                - Created
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Create Rse Distance
-      tags:
-      - Rucio Storage Elements
     put:
       description: Update rse distance information.
       parameters:
@@ -5504,6 +5439,107 @@ paths:
       summary: Update Rse Distance
       tags:
       - Rucio Storage Elements
+    delete:
+      description: Delete distance information between source RSE and destination
+        RSE.
+      parameters:
+      - description: The name of the source Rucio Storage Element.
+        in: path
+        name: source
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the destination Rucio Storage Element.
+        in: path
+        name: destination
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                enum:
+                - Deleted
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Delete Rse Distance
+      tags:
+      - Rucio Storage Elements
+    post:
+      description: Post a rse distance.
+      parameters:
+      - description: The name of the source Rucio Storage Element.
+        in: path
+        name: source
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the destination Rucio Storage Element.
+        in: path
+        name: destination
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                active:
+                  description: If the distance is active.
+                  type: boolean
+                distance:
+                  description: The distance between the Rses.
+                  type: integer
+                failed:
+                  description: If the distance failed.
+                  type: boolean
+                finished:
+                  description: If the distance is finished.
+                  type: boolean
+                geoip_distance:
+                  description: The geoip distance between the Rses.
+                  type: integer
+                ranking:
+                  description: The ranking of the distance.
+                  type: integer
+                submitted:
+                  description: If the distance is submitted.
+                  type: boolean
+                transfer_speed:
+                  description: The transferspeed between the Rses.
+                  type: integer
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                - Created
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Create Rse Distance
+      tags:
+      - Rucio Storage Elements
     get:
       description: Returns the distances between a source and destination rse.
       parameters:
@@ -5555,42 +5591,6 @@ paths:
         '406':
           description: Not acceptable
       summary: Get Rse Distances
-      tags:
-      - Rucio Storage Elements
-    delete:
-      description: Delete distance information between source RSE and destination
-        RSE.
-      parameters:
-      - description: The name of the source Rucio Storage Element.
-        in: path
-        name: source
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The name of the destination Rucio Storage Element.
-        in: path
-        name: destination
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                enum:
-                - Deleted
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Delete Rse Distance
       tags:
       - Rucio Storage Elements
   /rses/{rse}/protocols/{scheme}/{hostname}/{port}:
@@ -6205,39 +6205,6 @@ paths:
       tags:
       - Rucio Storage Elements
   /rses/{rse}/limits:
-    delete:
-      description: Delete an rse limit
-      parameters:
-      - description: The name of the Rucio Storage Element name.
-        in: path
-        name: rse
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                name:
-                  description: The name of the limit.
-                  type: string
-              required:
-              - name
-              type: object
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Delete Rse Limit
-      tags:
-      - Rucio Storage Elements
     put:
       description: Update an rse limit.
       parameters:
@@ -6272,6 +6239,39 @@ paths:
       summary: Update Rse Limit
       tags:
       - Rucio Storage Elements
+    delete:
+      description: Delete an rse limit
+      parameters:
+      - description: The name of the Rucio Storage Element name.
+        in: path
+        name: rse
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: The name of the limit.
+                  type: string
+              required:
+              - name
+              type: object
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Delete Rse Limit
+      tags:
+      - Rucio Storage Elements
     get:
       description: Get the rse limits.
       parameters:
@@ -6304,6 +6304,35 @@ paths:
       tags:
       - Rucio Storage Elements
   /rses/{rse}/qos_policy/{policy}:
+    delete:
+      description: Delete QoS policy from RSE.
+      parameters:
+      - description: The name of the Rucio Storage Element name.
+        in: path
+        name: rse
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The QoS policy to add to and rse.
+        in: path
+        name: policy
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Delete QoS Policy
+      tags:
+      - Rucio Storage Elements
     post:
       description: Add a QoS Policy to a RSE.
       parameters:
@@ -6339,127 +6368,7 @@ paths:
       summary: Add QoS policy
       tags:
       - Rucio Storage Elements
-    delete:
-      description: Delete QoS policy from RSE.
-      parameters:
-      - description: The name of the Rucio Storage Element name.
-        in: path
-        name: rse
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The QoS policy to add to and rse.
-        in: path
-        name: policy
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Delete QoS Policy
-      tags:
-      - Rucio Storage Elements
   /rses/{rse}:
-    post:
-      description: Creates a RSE with all the metadata.
-      parameters:
-      - description: The name of the Rucio Storage Element name.
-        in: path
-        name: rse
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                ASN:
-                  description: The access service network of the RSE.
-                  type: string
-                ISP:
-                  description: The internet service provider of the RSE.
-                  type: string
-                availability:
-                  deprecated: true
-                  description: The availability of the RSE.
-                  type: integer
-                availability_delete:
-                  description: If the RSE is deletable.
-                  type: boolean
-                availability_read:
-                  description: If the RSE is readable.
-                  type: boolean
-                availability_write:
-                  description: If the RSE is writable.
-                  type: boolean
-                city:
-                  description: The city of the RSE.
-                  type: string
-                continent:
-                  description: The continent of the RSE.
-                  type: string
-                country_name:
-                  description: The country name of the RSE.
-                  type: string
-                deterministic:
-                  description: If the pfn is generated deterministicly.
-                  type: boolean
-                latitute:
-                  description: The latitute of the RSE.
-                  type: float
-                longitude:
-                  description: The longitude of the RSE.
-                  type: float
-                region_code:
-                  description: The region code of the RSE.
-                  type: string
-                rse_type:
-                  description: The rse type.
-                  enum:
-                  - DISK
-                  - TAPE
-                  type: string
-                staging_area:
-                  description: Staging area.
-                  type: string
-                time_zone:
-                  description: The time zone of the RSE.
-                  type: string
-                volatile:
-                  description: RSE cache.
-                  type: boolean
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                - Created
-                type: string
-          description: OK
-        '400':
-          description: Cannot decode json parameter dictionary
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE not found
-        '409':
-          description: RSE already exists.
-      summary: Create RSE
-      tags:
-      - Rucio Storage Elements
     put:
       description: Update RSE properties.
       parameters:
@@ -6478,7 +6387,7 @@ paths:
                 availability_delete:
                   description: The vailability of the RSE.
                   type: boolean
-                availability_read:
+                availability_raed:
                   description: The vailability of the RSE.
                   type: boolean
                 availability_write:
@@ -6536,6 +6445,107 @@ paths:
       summary: Update RSE
       tags:
       - Rucio Storage Elements
+    delete:
+      description: Disable a specific RSE.
+      parameters:
+      - description: The name of the Rucio Storage Element name.
+        in: path
+        name: rse
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE not found
+      summary: Disable RSE
+      tags:
+      - Rucio Storage Elements
+    post:
+      description: Creates a RSE with all the metadata.
+      parameters:
+      - description: The name of the Rucio Storage Element name.
+        in: path
+        name: rse
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ASN:
+                  description: The access service network of the RSE.
+                  type: string
+                ISP:
+                  description: The internet service provider of the RSE.
+                  type: string
+                availability:
+                  description: The availability of the RSE.
+                  type: integer
+                city:
+                  description: The city of the RSE.
+                  type: string
+                continent:
+                  description: The continent of the RSE.
+                  type: string
+                country_name:
+                  description: The country name of the RSE.
+                  type: string
+                deterministic:
+                  description: If the pfn is generated deterministicly.
+                  type: boolean
+                latitute:
+                  description: The latitute of the RSE.
+                  type: float
+                longitude:
+                  description: The longitude of the RSE.
+                  type: float
+                region_code:
+                  description: The region code of the RSE.
+                  type: string
+                rse_type:
+                  description: The rse type.
+                  enum:
+                  - DISK
+                  - TAPE
+                  type: string
+                staging_area:
+                  description: Staging area.
+                  type: string
+                time_zone:
+                  description: The time zone of the RSE.
+                  type: string
+                volatile:
+                  description: RSE cache.
+                  type: boolean
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                - Created
+                type: string
+          description: OK
+        '400':
+          description: Cannot decode json parameter dictionary
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE not found
+        '409':
+          description: RSE already exists.
+      summary: Create RSE
+      tags:
+      - Rucio Storage Elements
     get:
       description: Get details about a specific RSE.
       parameters:
@@ -6560,17 +6570,7 @@ paths:
                     description: The internet service provider of the RSE.
                     type: string
                   availability:
-                    deprecated: true
-                    description: The availability of the rse.
-                    type: integer
-                  availability_delete:
-                    description: If the RSE is deletable.
-                    type: integer
-                  availability_read:
-                    description: If the RSE is readable.
-                    type: integer
-                  availability_write:
-                    description: If the RSE is writable.
+                    description: The availability of the RSE.
                     type: integer
                   city:
                     description: The city of the RSE.
@@ -6619,26 +6619,6 @@ paths:
       summary: Get RSE
       tags:
       - Rucio Storage Elements
-    delete:
-      description: Disable a specific RSE.
-      parameters:
-      - description: The name of the Rucio Storage Element name.
-        in: path
-        name: rse
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE not found
-      summary: Disable RSE
-      tags:
-      - Rucio Storage Elements
   /rses/:
     get:
       description: Lists all RSEs.
@@ -6666,17 +6646,7 @@ paths:
                       description: The isp of the rse.
                       type: string
                     availability:
-                      deprecated: true
                       description: The availability of the rse.
-                      type: integer
-                    availability_delete:
-                      description: If the RSE is deletable.
-                      type: integer
-                    availability_read:
-                      description: If the RSE is readable.
-                      type: integer
-                    availability_write:
-                      description: If the RSE is writable.
                       type: integer
                     city:
                       description: The city of the rse.
@@ -6736,25 +6706,6 @@ paths:
       tags:
       - Rucio Storage Elements
   /rules/{rule_id}:
-    delete:
-      parameters:
-      - description: The id of the replication rule.
-        in: path
-        name: rule_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No rule found for the given id
-      summary: Delete a replication rule
-      tags:
-      - Rule
     put:
       parameters:
       - description: The id of the replication rule.
@@ -6829,6 +6780,25 @@ paths:
         '404':
           description: No rule found for the given id
       summary: Update the replication rules parameters
+      tags:
+      - Rule
+    delete:
+      parameters:
+      - description: The id of the replication rule.
+        in: path
+        name: rule_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No rule found for the given id
+      summary: Delete a replication rule
       tags:
       - Rule
     get:
@@ -7370,8 +7340,8 @@ paths:
   /subscriptions/{account}/{name}/Rules:
     get: {}
   /subscriptions/{account}/{name}:
-    post: {}
     put: {}
+    post: {}
     get: {}
   /subscriptions/Name/{name}:
     get: {}
