@@ -467,41 +467,58 @@ rucio-admin identity add --account rucio_user_account \
   --email "wlcg-doma-rucio@cern.ch"
 ```
 
-In order to ensure the correct lifetime management of the tokens and auth
-sessions, one also has to run the rucio-oauth-daemon run on the server!
+Finally, in order to ensure the correct lifetime management of the tokens and auth
+sessions, one has to run the __oauth-manager__ daemon.
 
-### Configuration for Conveyor Daemons
+### Configuration for Daemons
 
-Rucio servers may run also conveyor daemon, which is responsible for submission
-of the transfers created in connection with existing Rucio rule. In case both,
-the source and destination RSEs have attribute {\'oidc_support\': True}
-assigned, the Rucio account which created such a rule will be used to request a
-JWT token for OAuth2 authentication with FTS. The issuer of user\'s token will
-be used to get a valid OIDC token with the requested audience and scope for FTS
-transfer. This new token will have either the same identity of the user
-(received after user\'s token exchange with IdP) or it will have the identity of
-the Rucio Admin IAM client (client_id will be in the \'sub\' claim) (received
-after client credentials token flow of the admin). If in any of the two formerly
-mentioned cases, valid token is present in Rucio DB beforehand, it will be used
-in the header of the transfer request to FTS and no new token demand will be
-made to IdP. The OIDC authentication mechanism shall be configured by the
-following parameters in the rucio.cfg file:
+OIDC authN/Z is also supported by the Rucio conveyor daemons and more specifically by the __conveyor-submitter__ and __conveyor-poller__ ones.
+__Conveyor-submitter__ is responsible for submission of the transfers created in connection with an existing Rucio rule. __Conveyor-poller__ is responsible for polling the state of the transfers that have been submitted and updating the relevant state in the database.
 
-``` [conveyor]
-allow_user_oidc_tokens = False 
-request_oidc_scope = 'fts:submit-transfer'
-request_oidc_audience = 'fts' 
+In order to enable this functionality, RSEs must have an attribute set as follows:
+```
+oidc_support: True
+```
+In general, the Rucio account which created such a rule will be used to request a
+JWT token for OAuth2 authentication with FTS. More specifically, there are three Rucio authentication flows that are possible:
+
+1. __User Token Exchange__: In this case, a valid OIDC token that the user authenticated with in Rucio is getting [exchanged](https://indigo-iam.github.io/docs/v/current/user-guide/api/oauth-token-exchange.html) with an appropriate token that is intented to be served to the FTS server. This FTS intented token must have a specific audience [*] as well as specific scopes [**], this applies for the next authentication flows as well. It is also worth noting that the acquired FTS intented token includes all original claims that were present in the initial token.
+
+2. __Admin Flow__: In this Rucio authN/Z flow, the [client_credentials](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow) flow is used with the __Rucio Admin IAM Client__ [C2]. The __sub__ claim of the acquired token becomes the __client_id__ of [C2]. In this case any group membership that was present in the original token is not included in the new FTS intented token. Aditionally, for this flow to be successful a valid user OIDC token must already be present in the database.
+
+3. __Admin Root Flow__: This scenario has the same logic as flow 2, with the difference that it is used when the relevant rule is created by the Rucio __admin_account__ (e.g. \`root\`). No other user token is involved in this case.
+
+In all three formerly mentioned cases, if a valid FTS intented token already exists in the Rucio database then a new token is not requested and the existing one is used.
+
+The OIDC authentication mechanism shall be configured by the
+following parameters in the `rucio.cfg` file:
+
+```
+[conveyor]
+# if set to True, then only flow 1 will be tried
+# if set to False, then flow 1 will never be tried
+allow_user_oidc_tokens = False (default)
+
+# FTS intented audience [*]
+request_oidc_audience = 'fts:example' (default)
+
+# FTS intented scopes [**]
+request_oidc_scope = 'fts:submit-transfer' (default)
 ```
 
-If `allow_user_oidc_tokens` is set to `True`
-the system will attempt to exchange a valid OIDC token (if any) of the account
-that owns the rule/transfer for a token that has the `request_oidc_scope` and
-`request_oidc_audience`. If set to `False`, the system will use the IdP issuer
-of the account that owns the transfer, will get a Rucio admin client token with
-the `request_oidc_scope` and `request_oidc_audience` and authenticate
-against FTS with the Rucio admin client credentials on behalf of the user. The
-allowed scopes and audiences have to be again also configured correspondingly
-for your clients at the IdP side (usually through IdP web interface).
+For the __conveyor-poller__ to work an additional configuration is needed:
+```
+[conveyor]
+poller_oidc_account = rucio_admin_account
+```
+
+On an another level, the __reaper__ daemon can be also configred to perform deletions of files on the storage by using an OIDC token, the following configuration is needed:
+```
+[reaper]
+oidc_account = rucio_admin_account
+oidc_scope = same logic as [*]
+oidc_audience = same logic as [**]
+```
 
 Note aside: For some IdPs it may happen that the scope and audience claims are
 not a part of the token payload. For this reason Rucio has a fall-back mechanism
