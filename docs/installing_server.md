@@ -531,3 +531,48 @@ introspect tokens that were not issued by its clients, please talk to the IdP
 admin who should enable this functionality for your clients.
 
 ### Rucio WebUI Login with CERN SSO
+
+By using the Rucio OIDC capabilities it is possible to integrate the [CERN SSO](https://auth.docs.cern.ch/user-documentation/oidc/oidc/) service with the WebUI so users will be able to login with a CERN account. Please note that in contrast to INDIGO IAM, the CERN IdP can only be used for WebUI login at the moment and not for the other operations that were described previously. The following steps are needed:
+
+1. The Rucio administrators need to create a new application at the [Application Portal](https://application-portal.web.cern.ch/). Please note that the __Application Identifier__ field will be the audience claim in the tokens acquired by the CERN Authorization Service.
+
+2. In the newly create Application, a new __SSO Registration__ is needed. Please select OIDC in the \'Which protocol does your application use for authentication?\' question. At the same time, the two Rucio redirect URIs are neended as described in the `etc/idpsecrets.json` configuration that was mentioned previously.
+
+3. The new CERN IdP needs to be added in the `etc/idpsecrets.json` configuration, with the newly acquired client secret that was given after step 2. Please note that in this case the SCIM field needs to be filled even though it will never be used for this IdP, one can just repeat the original client_id and client_secret. The configuration will have the following format:
+
+```json
+{
+    # ...
+    "cern": {
+  
+        "issuer": "https://auth.cern.ch/auth/realms/cern",
+
+        "redirect_uris": [
+            "https://<auth_server_name>/auth/oidc_token",
+            "https://<auth_server_name>/auth/oidc_code"
+        ],
+
+        "client_id": "<SSO_client_id>", # Same as Application Identifier
+        "client_secret": "<SSO_client_secret>",
+
+        "SCIM": {
+            "client_id": "<SSO_client_id>",
+            "client_secret": "<SSO_client_secret>",
+        }
+    }
+    # ...
+}
+```
+
+4. Finally, the CERN user identities need to be mapped to Rucio accounts as it was previously described. One example mapping follows:
+
+```bash
+# Add an CERN User Account Username as an OIDC identity
+# (needs to be done for each user!)
+# Note that the SUB field is the CERN Account username
+rucio-admin identity add --account rucio_user_account \
+  --type OIDC \
+  --id "SUB=ridona, \
+    ISS=https://auth.cern.ch/auth/realms/cern" \
+  --email "rucio@cern.ch"
+```
