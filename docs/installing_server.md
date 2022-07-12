@@ -422,7 +422,7 @@ expected_scope = 'openid profile'
 ```
 
 Parameters __idpsecrets__ and __admin_issuer__ have to be present.
-\<IdP_nickname\> stands for your preferred IdP (e.g. \"wlcg\"). The IdP
+\<IdP_nickname\> stands for your preferred IdP (e.g. 'wlcg'). The IdP
 specified under __admin_issuer__ will be contacted to get information about Rucio
 Users (SCIM) and to request tokens for the Rucio __root__ account.  The
 __expected_scope__ and __expected_audence__ parameters are optional and if not filled,
@@ -433,7 +433,7 @@ can control accepted scopes and audiences for your clients via an IdP web
 interface).
 
 To finalise the process, one should assign the OIDC identities to the relevant
-Rucio __admin_account__ (e.g. \'root\', \'ddmadmin\'). This identity ID is
+Rucio __admin_account__ (e.g. 'root', 'ddmadmin'). This identity ID is
 composed of the Rucio Service IAM Account [A] subject claim and
 issuer url such as demonstrated below:
 
@@ -579,7 +579,7 @@ that were described previously. The following steps are needed:
 
 1. In the newly created Application, a new __SSO Registration__ is needed.
    Please select OIDC in the
-   \'Which protocol does your application use for authentication?\' question.
+   'Which protocol does your application use for authentication?' question.
    At the same time, the two Rucio redirect URIs are neended as
    described in the `etc/idpsecrets.json` configuration that was mentioned previously.
 
