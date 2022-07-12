@@ -577,7 +577,7 @@ that were described previously. The following steps are needed:
    Please note that the __Application Identifier__ field will be the
    audience claim in the tokens acquired by the CERN Authorization Service.
 
-1. In the newly create Application, a new __SSO Registration__ is needed.
+1. In the newly created Application, a new __SSO Registration__ is needed.
    Please select OIDC in the
    \'Which protocol does your application use for authentication?\' question.
    At the same time, the two Rucio redirect URIs are neended as
