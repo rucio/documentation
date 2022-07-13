@@ -208,7 +208,7 @@ related [OAuth2.0](https://oauth.net/2/) authentication and authorization with R
 one first needs to have an account with an Identity Provider (IdP)
 which will act as Rucio admin account representing the Rucio Application.
 Currently, the only fully supported IdP is [INDIGO IAM](https://indigo-iam.github.io/v/current/).
-Once you have got your Rucio Service IAM Account \[A\]
+Once you have got your Rucio Service IAM Account [A]
 (and its subject claim identifier), you will need to [register two IAM Rucio
 clients](https://indigo-iam.github.io/docs/v/current/user-guide/client-registration.html)
 linked to this account. Please save the relevant __client_id__,
@@ -224,7 +224,7 @@ https://<your_server_name>/auth/oidc_code
 ```
 
 We will use one client as
-__Rucio Auth IAM Client__ \[C1\] (i.e. client for the authentication and
+__Rucio Auth IAM Client__ [C1] (i.e. client for the authentication and
 authorization on the Rucio server). This client needs to have __token_exchange__,
 __token_refresh__, and __authorization_code__ grants enabled. For __token_exchange__
 and __token_refresh__ you might need to contact the IAM admin as such settings are
@@ -234,7 +234,7 @@ in their unverified header. In addition Rucio assumes refresh tokens to expire
 immediately after their first use, which has to be also confirmed by your IAM admin.
 
 The second
-client, let's call it __Rucio Admin IAM Client__ \[C2\], can be used by a Rucio probe
+client, let's call it __Rucio Admin IAM Client__ [C2], can be used by a Rucio probe
 script (e.g. [check_scim](https://github.com/rucio/probes/blob/master/attic/check_scim),
 [sync_iam_rucio](https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts/blob/master/iam-rucio-sync/sync_iam_rucio.py))
 in order to synchronize existing Rucio accounts with Rucio
@@ -244,7 +244,7 @@ allow the __client_credentials__ grant type for [C2] in order
 to grant you rights to pre-provision IAM users for Rucio. Examples of the
 configuration of these two clients follow below:
 
-Example of the __Rucio Auth IAM Client__ \[C1\] configuration:
+Example of the __Rucio Auth IAM Client__ [C1] configuration:
 
 ```json
 {
@@ -303,7 +303,7 @@ Example of the __Rucio Auth IAM Client__ \[C1\] configuration:
 }
 ```
 
-Example of the __Rucio Admin IAM Client__ \[C2\] configuration:
+Example of the __Rucio Admin IAM Client__ [C2] configuration:
 
 ```bash
 {
@@ -422,7 +422,7 @@ expected_scope = 'openid profile'
 ```
 
 Parameters __idpsecrets__ and __admin_issuer__ have to be present.
-\<IdP_nickname\> stands for your preferred IdP (e.g. 'wlcg'). The IdP
+\<IdP nickname\> stands for your preferred IdP (e.g. 'wlcg'). The IdP
 specified under __admin_issuer__ will be contacted to get information about Rucio
 Users (SCIM) and to request tokens for the Rucio __root__ account.  The
 __expected_scope__ and __expected_audence__ parameters are optional and if not filled,
@@ -516,7 +516,7 @@ are three Rucio authentication flows that are possible:
 
 1. __Admin Root Flow__: This scenario has the same logic as flow 2, with the
    difference that it is used when the relevant rule is created by the
-   Rucio __admin_account__ (e.g. \`root\`).
+   Rucio __admin_account__ (e.g. 'root').
    No other user token is involved in this case.
 
 In all three formerly mentioned cases, if a valid FTS intented token
