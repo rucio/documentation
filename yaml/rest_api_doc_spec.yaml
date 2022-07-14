@@ -334,6 +334,38 @@ paths:
       tags:
       - Account
   /accounts/{account}/identities:
+    get:
+      description: Lists all identities for an account.
+      parameters:
+      - description: The account identifier.
+        in: path
+        name: account
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/x-json-stream:
+              schema:
+                items:
+                  items:
+                    type: string
+                  maxItems: 2
+                  minItems: 2
+                  type: array
+                type: array
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Account not found
+        '406':
+          description: Not acceptable
+      summary: List identities
+      tags:
+      - Account
     post:
       description: Grant an account identity access to an account.
       parameters:
@@ -389,38 +421,6 @@ paths:
         '400':
           description: Parameter missing
       summary: Create identity
-      tags:
-      - Account
-    get:
-      description: Lists all identities for an account.
-      parameters:
-      - description: The account identifier.
-        in: path
-        name: account
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          content:
-            application/x-json-stream:
-              schema:
-                items:
-                  items:
-                    type: string
-                  maxItems: 2
-                  minItems: 2
-                  type: array
-                type: array
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Account not found
-        '406':
-          description: Not acceptable
-      summary: List identities
       tags:
       - Account
     delete:
@@ -632,53 +632,6 @@ paths:
       tags:
       - Account
   /accounts/{account}:
-    post:
-      description: Create an account.
-      parameters:
-      - description: The account identifier.
-        in: path
-        name: account
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                email:
-                  description: The email for the account.
-                  type: string
-                type:
-                  description: The account type.
-                  enum:
-                  - USER
-                  - GROUP
-                  - SERVICE
-                  type: string
-              required:
-              - type
-              - email
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                - Created
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '409':
-          description: Account already exists
-        '400':
-          description: Unknown status
-      summary: Create
-      tags:
-      - Account
     put:
       description: Update a parameter for an account.
       parameters:
@@ -751,6 +704,53 @@ paths:
         '406':
           description: Not acceptable
       summary: List account parameters
+      tags:
+      - Account
+    post:
+      description: Create an account.
+      parameters:
+      - description: The account identifier.
+        in: path
+        name: account
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  description: The email for the account.
+                  type: string
+                type:
+                  description: The account type.
+                  enum:
+                  - USER
+                  - GROUP
+                  - SERVICE
+                  type: string
+              required:
+              - type
+              - email
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                - Created
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '409':
+          description: Account already exists
+        '400':
+          description: Unknown status
+      summary: Create
       tags:
       - Account
     delete:
@@ -944,6 +944,24 @@ paths:
       tags:
       - Config
   /config:
+    get:
+      description: List the full configuration.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: A dict with the sections as keys and a dict with the
+                  configuration as value.
+                type: object
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '406':
+          description: Not acceptable
+      summary: List
+      tags:
+      - Config
     post:
       description: Create or set the configuration option in the requested section.
       requestBody:
@@ -971,26 +989,7 @@ paths:
       summary: Create
       tags:
       - Config
-    get:
-      description: List the full configuration.
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                description: A dict with the sections as keys and a dict with the
-                  configuration as value.
-                type: object
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '406':
-          description: Not acceptable
-      summary: List
-      tags:
-      - Config
   /credentials/signurl:
-    options: {}
     get:
       description: Sign a url for a limited lifetime for a particular srevice.
       parameters:
@@ -1065,6 +1064,7 @@ paths:
       summary: Sign URL
       tags:
       - Credentials
+    options: {}
   /dids/{scope}/:
     get:
       description: Return all data identifiers in the given scope.
@@ -1554,6 +1554,61 @@ paths:
       tags:
       - Data Identifiers
   /dids/{scope_name}/dids:
+    get:
+      description: Returns the contents of a data identifier.
+      parameters:
+      - description: The scope and the name of the did.
+        in: path
+        name: scope_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/x-json-stream:
+              schema:
+                description: The contents of a did. Items are line seperated.
+                items:
+                  properties:
+                    adler32:
+                      description: The adler32 checksum of the did.
+                      type: string
+                    bytes:
+                      description: The size of the did.
+                      type: number
+                    md5:
+                      description: The md5 checksum of the did.
+                      type: string
+                    name:
+                      description: The name of the did.
+                      type: string
+                    scope:
+                      description: The scope of the did.
+                      type: string
+                    type:
+                      description: The type of the did.
+                      type: string
+                  required:
+                  - scope
+                  - name
+                  - type
+                  - bytes
+                  - adler32
+                  - md5
+                  type: object
+                type: array
+          description: Did found
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Scope not found
+        '406':
+          description: Not acceptable
+      summary: Get did
+      tags:
+      - Data Identifiers
     post:
       description: Append data identifiers to data identifiers.
       parameters:
@@ -1611,61 +1666,6 @@ paths:
       summary: Add dids to did
       tags:
       - Data Identifiers
-    get:
-      description: Returns the contents of a data identifier.
-      parameters:
-      - description: The scope and the name of the did.
-        in: path
-        name: scope_name
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          content:
-            application/x-json-stream:
-              schema:
-                description: The contents of a did. Items are line seperated.
-                items:
-                  properties:
-                    adler32:
-                      description: The adler32 checksum of the did.
-                      type: string
-                    bytes:
-                      description: The size of the did.
-                      type: number
-                    md5:
-                      description: The md5 checksum of the did.
-                      type: string
-                    name:
-                      description: The name of the did.
-                      type: string
-                    scope:
-                      description: The scope of the did.
-                      type: string
-                    type:
-                      description: The type of the did.
-                      type: string
-                  required:
-                  - scope
-                  - name
-                  - type
-                  - bytes
-                  - adler32
-                  - md5
-                  type: object
-                type: array
-          description: Did found
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Scope not found
-        '406':
-          description: Not acceptable
-      summary: Get did
-      tags:
-      - Data Identifiers
     delete:
       description: Detach data identifiers from data identifiers.
       parameters:
@@ -1707,6 +1707,39 @@ paths:
       tags:
       - Data Identifiers
   /dids/{scope_name}/meta:
+    get:
+      description: Get the metadata of a did.
+      parameters:
+      - description: The scope and the name of the did.
+        in: path
+        name: scope_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - default: DID_COLUMN
+        description: The plugin to use.
+        in: query
+        name: plugin
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: A data identifer with all attributes.
+                type: object
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Did not found
+        '406':
+          description: Not acceptable
+      summary: Get metadata
+      tags:
+      - Data Identifiers
     post:
       description: Add metadata to a did.
       parameters:
@@ -1750,39 +1783,6 @@ paths:
         '406':
           description: Not acceptable
       summary: Add metadata
-      tags:
-      - Data Identifiers
-    get:
-      description: Get the metadata of a did.
-      parameters:
-      - description: The scope and the name of the did.
-        in: path
-        name: scope_name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - default: DID_COLUMN
-        description: The plugin to use.
-        in: query
-        name: plugin
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                description: A data identifer with all attributes.
-                type: object
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Did not found
-        '406':
-          description: Not acceptable
-      summary: Get metadata
       tags:
       - Data Identifiers
     delete:
@@ -2043,41 +2043,6 @@ paths:
       tags:
       - Data Identifiers
   /dids/{scope_name}/follow:
-    post:
-      description: Mark the input DID as being followed by the given account.
-      parameters:
-      - description: The scope and the name of the did.
-        in: path
-        name: scope_name
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                account:
-                  description: The account to follow the did.
-                  type: string
-              required:
-              - account
-              type: object
-      responses:
-        '201':
-          description: OK
-        '400':
-          description: Scope or name could not be interpreted
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Not found
-        '500':
-          description: Internal error
-      summary: Post follow
-      tags:
-      - Data Identifiers
     get:
       description: Get all followers for a specific did.
       parameters:
@@ -2112,6 +2077,41 @@ paths:
         '406':
           description: Not acceptable
       summary: Get followers
+      tags:
+      - Data Identifiers
+    post:
+      description: Mark the input DID as being followed by the given account.
+      parameters:
+      - description: The scope and the name of the did.
+        in: path
+        name: scope_name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                account:
+                  description: The account to follow the did.
+                  type: string
+              required:
+              - account
+              type: object
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Scope or name could not be interpreted
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Not found
+        '500':
+          description: Internal error
+      summary: Post follow
       tags:
       - Data Identifiers
     delete:
@@ -2573,6 +2573,25 @@ paths:
       tags:
       - Export
   /heartbeats:
+    get:
+      description: List all heartbeats.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  description: List of tuples [('Executable', 'Hostname', ...), ...]
+                  type: object
+                type: array
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '406':
+          description: Not acceptable
+      summary: List
+      tags:
+      - Heartbeat
     post:
       requestBody:
         content:
@@ -2609,25 +2628,6 @@ paths:
         '404':
           description: Key not found.
       summary: Create
-      tags:
-      - Heartbeat
-    get:
-      description: List all heartbeats.
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  description: List of tuples [('Executable', 'Hostname', ...), ...]
-                  type: object
-                type: array
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '406':
-          description: Not acceptable
-      summary: List
       tags:
       - Heartbeat
   /identities/{account}/userpass:
@@ -2885,50 +2885,6 @@ paths:
       tags:
       - Import
   /lifetime_exceptions/:
-    post:
-      description: Creates a Lifetime Exception.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                comments:
-                  description: The comment for the lifetime exception.
-                  type: string
-                dids:
-                  description: List of dids associated with the lifetime exception.
-                  items:
-                    description: A did
-                    properties:
-                      name:
-                        description: The name of the did.
-                        type: string
-                    type: object
-                  type: array
-                expires_at:
-                  description: The expiration date for the lifetime exception.
-                  type: string
-                pattern:
-                  description: The pattern of the lifetime exception.
-                  type: string
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                description: The exception id.
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '400':
-          description: Cannot decode json parameter list.
-        '409':
-          description: Lifetime exception already exists.
-      summary: Create Exception
-      tags:
-      - Lifetime Exceptions
     get:
       description: Retrieves all exceptions.
       responses:
@@ -2992,6 +2948,50 @@ paths:
         '406':
           description: Not acceptable
       summary: List Exceptions
+      tags:
+      - Lifetime Exceptions
+    post:
+      description: Creates a Lifetime Exception.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                comments:
+                  description: The comment for the lifetime exception.
+                  type: string
+                dids:
+                  description: List of dids associated with the lifetime exception.
+                  items:
+                    description: A did
+                    properties:
+                      name:
+                        description: The name of the did.
+                        type: string
+                    type: object
+                  type: array
+                expires_at:
+                  description: The expiration date for the lifetime exception.
+                  type: string
+                pattern:
+                  description: The pattern of the lifetime exception.
+                  type: string
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                description: The exception id.
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '400':
+          description: Cannot decode json parameter list.
+        '409':
+          description: Lifetime exception already exists.
+      summary: Create Exception
       tags:
       - Lifetime Exceptions
   /lifetime_exceptions/{exception_id}:
@@ -3411,6 +3411,34 @@ paths:
       tags:
       - Meta
   /meta/{key}/:
+    get:
+      description: List all values for a key.
+      parameters:
+      - description: The reference key.
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: List of all key values.
+                items:
+                  description: A value associated with a key.
+                  type: string
+                type: array
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '406':
+          description: Not acceptable
+      summary: Get value for key
+      tags:
+      - Meta
     post:
       description: Creates a new value for a key.
       parameters:
@@ -3450,34 +3478,6 @@ paths:
         '409':
           description: Value already exists.
       summary: Create value for key
-      tags:
-      - Meta
-    get:
-      description: List all values for a key.
-      parameters:
-      - description: The reference key.
-        in: path
-        name: key
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                description: List of all key values.
-                items:
-                  description: A value associated with a key.
-                  type: string
-                type: array
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '406':
-          description: Not acceptable
-      summary: Get value for key
       tags:
       - Meta
   /ping:
@@ -3872,39 +3872,6 @@ paths:
       tags:
       - Replicas
   /replicas/suspicious:
-    post:
-      description: Declare a list of suspicious replicas.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                pfns:
-                  description: The list of pfns.
-                  items:
-                    type: string
-                  type: array
-                reason:
-                  description: The reason for the declaration.
-                  type: string
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                description: Returns the not declared files.
-                type: array
-          description: OK
-        '400':
-          description: Can not decode json parameter list.
-        '404':
-          description: Not found
-        '406':
-          description: Not acceptable
-      summary: Declare Suspicious Replicas
-      tags:
-      - Replicas
     get:
       description: List the suspicious replicas on a list of RSEs.
       parameters:
@@ -3958,6 +3925,39 @@ paths:
         '406':
           description: Not acceptable
       summary: List Suspicious Replicas
+      tags:
+      - Replicas
+    post:
+      description: Declare a list of suspicious replicas.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                pfns:
+                  description: The list of pfns.
+                  items:
+                    type: string
+                  type: array
+                reason:
+                  description: The reason for the declaration.
+                  type: string
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                description: Returns the not declared files.
+                type: array
+          description: OK
+        '400':
+          description: Can not decode json parameter list.
+        '404':
+          description: Not found
+        '406':
+          description: Not acceptable
+      summary: Declare Suspicious Replicas
       tags:
       - Replicas
   /replicas/bad/states:
@@ -5374,71 +5374,6 @@ paths:
       tags:
       - Rucio Storage Elements
   /rses/{source}/distances/{destination}:
-    post:
-      description: Post a rse distance.
-      parameters:
-      - description: The name of the source Rucio Storage Element.
-        in: path
-        name: source
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The name of the destination Rucio Storage Element.
-        in: path
-        name: destination
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                active:
-                  description: If the distance is active.
-                  type: boolean
-                distance:
-                  description: The distance between the Rses.
-                  type: integer
-                failed:
-                  description: If the distance failed.
-                  type: boolean
-                finished:
-                  description: If the distance is finished.
-                  type: boolean
-                geoip_distance:
-                  description: The geoip distance between the Rses.
-                  type: integer
-                ranking:
-                  description: The ranking of the distance.
-                  type: integer
-                submitted:
-                  description: If the distance is submitted.
-                  type: boolean
-                transfer_speed:
-                  description: The transferspeed between the Rses.
-                  type: integer
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                - Created
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Create Rse Distance
-      tags:
-      - Rucio Storage Elements
     put:
       description: Update rse distance information.
       parameters:
@@ -5555,6 +5490,71 @@ paths:
         '406':
           description: Not acceptable
       summary: Get Rse Distances
+      tags:
+      - Rucio Storage Elements
+    post:
+      description: Post a rse distance.
+      parameters:
+      - description: The name of the source Rucio Storage Element.
+        in: path
+        name: source
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the destination Rucio Storage Element.
+        in: path
+        name: destination
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                active:
+                  description: If the distance is active.
+                  type: boolean
+                distance:
+                  description: The distance between the Rses.
+                  type: integer
+                failed:
+                  description: If the distance failed.
+                  type: boolean
+                finished:
+                  description: If the distance is finished.
+                  type: boolean
+                geoip_distance:
+                  description: The geoip distance between the Rses.
+                  type: integer
+                ranking:
+                  description: The ranking of the distance.
+                  type: integer
+                submitted:
+                  description: If the distance is submitted.
+                  type: boolean
+                transfer_speed:
+                  description: The transferspeed between the Rses.
+                  type: integer
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                - Created
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Create Rse Distance
       tags:
       - Rucio Storage Elements
     delete:
@@ -6369,87 +6369,6 @@ paths:
       tags:
       - Rucio Storage Elements
   /rses/{rse}:
-    post:
-      description: Creates a RSE with all the metadata.
-      parameters:
-      - description: The name of the Rucio Storage Element name.
-        in: path
-        name: rse
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                ASN:
-                  description: The access service network of the RSE.
-                  type: string
-                ISP:
-                  description: The internet service provider of the RSE.
-                  type: string
-                availability:
-                  description: The availability of the RSE.
-                  type: integer
-                city:
-                  description: The city of the RSE.
-                  type: string
-                continent:
-                  description: The continent of the RSE.
-                  type: string
-                country_name:
-                  description: The country name of the RSE.
-                  type: string
-                deterministic:
-                  description: If the pfn is generated deterministicly.
-                  type: boolean
-                latitute:
-                  description: The latitute of the RSE.
-                  type: float
-                longitude:
-                  description: The longitude of the RSE.
-                  type: float
-                region_code:
-                  description: The region code of the RSE.
-                  type: string
-                rse_type:
-                  description: The rse type.
-                  enum:
-                  - DISK
-                  - TAPE
-                  type: string
-                staging_area:
-                  description: Staging area.
-                  type: string
-                time_zone:
-                  description: The time zone of the RSE.
-                  type: string
-                volatile:
-                  description: RSE cache.
-                  type: boolean
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                - Created
-                type: string
-          description: OK
-        '400':
-          description: Cannot decode json parameter dictionary
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE not found
-        '409':
-          description: RSE already exists.
-      summary: Create RSE
-      tags:
-      - Rucio Storage Elements
     put:
       description: Update RSE properties.
       parameters:
@@ -6597,6 +6516,87 @@ paths:
         '406':
           description: Not acceptable
       summary: Get RSE
+      tags:
+      - Rucio Storage Elements
+    post:
+      description: Creates a RSE with all the metadata.
+      parameters:
+      - description: The name of the Rucio Storage Element name.
+        in: path
+        name: rse
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ASN:
+                  description: The access service network of the RSE.
+                  type: string
+                ISP:
+                  description: The internet service provider of the RSE.
+                  type: string
+                availability:
+                  description: The availability of the RSE.
+                  type: integer
+                city:
+                  description: The city of the RSE.
+                  type: string
+                continent:
+                  description: The continent of the RSE.
+                  type: string
+                country_name:
+                  description: The country name of the RSE.
+                  type: string
+                deterministic:
+                  description: If the pfn is generated deterministicly.
+                  type: boolean
+                latitute:
+                  description: The latitute of the RSE.
+                  type: float
+                longitude:
+                  description: The longitude of the RSE.
+                  type: float
+                region_code:
+                  description: The region code of the RSE.
+                  type: string
+                rse_type:
+                  description: The rse type.
+                  enum:
+                  - DISK
+                  - TAPE
+                  type: string
+                staging_area:
+                  description: Staging area.
+                  type: string
+                time_zone:
+                  description: The time zone of the RSE.
+                  type: string
+                volatile:
+                  description: RSE cache.
+                  type: boolean
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                - Created
+                type: string
+          description: OK
+        '400':
+          description: Cannot decode json parameter dictionary
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE not found
+        '409':
+          description: RSE already exists.
+      summary: Create RSE
       tags:
       - Rucio Storage Elements
     delete:
@@ -6827,6 +6827,23 @@ paths:
       tags:
       - Rule
   /rules/:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No rule found for the given id
+        '406':
+          description: Not Acceptable
+      summary: Return all rules for a given account
+      tags:
+      - Rule
     post:
       requestBody:
         content:
@@ -6945,23 +6962,6 @@ paths:
 
             - Invalid Object'
       summary: Create a new replication rule
-      tags:
-      - Rule
-    get:
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No rule found for the given id
-        '406':
-          description: Not Acceptable
-      summary: Return all rules for a given account
       tags:
       - Rule
   /rules/{rule_id}/locks:
@@ -7340,9 +7340,9 @@ paths:
   /subscriptions/{account}/{name}/Rules:
     get: {}
   /subscriptions/{account}/{name}:
-    post: {}
     put: {}
     get: {}
+    post: {}
   /subscriptions/Name/{name}:
     get: {}
 
