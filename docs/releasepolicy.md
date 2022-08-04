@@ -32,7 +32,7 @@ deploy the new LTS release.
 | **1.26 LTS**    | **Donkey League of La Mancha**   | **2021-07**    | **2023-07** ☑️       |
 | 1.25            | Rat-Donkey                       | 2021-02        | 2021-07              |
 | 1.24            | Aquadonkey                       | 2020-11        | 2021-02              |
-| **1.23 LTS**    | **The incredible Donkey**        | **2020-07**    | **2022-07** ☑️       |
+| 1.23 LTS        | The incredible Donkey            | 2020-07        | 2022-07              |
 | 1.22            | Green Donkey                     | 2020-02        | 2020-06              |
 | 1.21            | Donkeys of the Galaxy            | 2019-11        | 2020-02              |
 | 1.20 LTS        | Wonder Donkey                    | 2019-06        | 2021-07              |
