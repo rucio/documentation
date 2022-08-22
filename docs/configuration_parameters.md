@@ -422,7 +422,7 @@ attributes.
     `use_ssl` is not set. No default.
   - **port**: Port of the broker.
   - **prefetch_size**: `activemq.prefetchSize`, see
-    <https://svn.apache.org/repos/infra/websites/production/activemq/content/5.7.0/what-is-the-prefetch-limit-for.html>
+    <https://activemq.apache.org/what-is-the-prefetch-limit-for>
   - **queue**: The topic or queue to subscribe to. Example:
     `/queue/Consumer.kronos.rucio.tracer`.
   - **reconnect_attempts**: Maximum attempts to reconnect. Integer. Example:
