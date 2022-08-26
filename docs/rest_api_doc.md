@@ -2,7 +2,7 @@
 title: Rest Api Documentation
 ---
 Rucio provides a Rest Api interface for client-server communication. The code
-for the server is located under `lib/rucio/rest/flask/v1`.
+for the server is located in the Rucio project under `lib/rucio/rest/flask/v1`.
 
 The Rest Api Documentation provides a sufficient documentation of all endpoints
 and should be descriptive enough so that it is not required to look at the code
@@ -27,6 +27,13 @@ endpoints given by Flask.
 `tools/generate_rest_api_doc.py` generates the OpenApi specification file with
 ApiSpec.
 
+:::note
+
+The latest OpenApi specification for the Rest Api Documentation is available
+[here](pathname:///yaml/rest_api_doc_spec.yaml).
+
+:::
+
 ### ReDoc
 
 ReDoc creates a static html front-end for a given specification file. ReDoc has
@@ -37,10 +44,12 @@ several advantages over other front-end tools:
 - The generated file is structured, easy to read, contains a search field, and
   the possibility to display examples.
 
-:::info
+:::note
+
 Front-end generators only need the spec file and some configuration to generate
 a user friendly view of the documentation. Select a generator from the [OpenApi
 Tools](https://openapi.tools/#documentation) and generate your own front-end.
+
 :::
 
 To generate the ReDoc html file run
