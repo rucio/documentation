@@ -446,6 +446,8 @@ attributes.
   - **auth_type**: _(Optional)_ Preferred server side config for webui
     authentication. Values: `{oidc, None}`. Default: `None`.
   - **usercert** <!--NOT USED IN CODE-->
+  - **urls**: A CSV specifying urls of Rucio WebUI 2.0 clients. Required for
+    correctly handling pre-flight CORS requests.
 
 ## Rucio configuration table
 
