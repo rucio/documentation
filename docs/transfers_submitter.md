@@ -97,4 +97,3 @@ attribute on both source and destination RSE.
 If a path can be submitted, all missing hops are created into the database,
 and submitter goes to the submission step, which is straightforward and
 consists of calling the transfertool with the correct arguments.
-

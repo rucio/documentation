@@ -4,6 +4,7 @@ repos:
   hooks:
   - id: check-yaml
   - id: end-of-file-fixer
+    exclude: ^website/
   - id: trailing-whitespace
   - id: check-json
 - repo: https://github.com/koalaman/shellcheck-precommit
