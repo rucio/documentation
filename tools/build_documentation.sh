@@ -16,7 +16,7 @@ DOCS=$SCRIPT_DIR/../docs
 sudo chown -R "$USER":"$USER" "$AUTO_GENERATED"
 
 echo "Generating Rest Api Docs from Spec File..."
-npx --yes redoc-cli build "$AUTO_GENERATED"/rest_api_doc_spec.yaml --output "$AUTO_GENERATED"/rest_api_doc.html
+npx --yes redoc-cli build "$AUTO_GENERATED"/rest_api_doc_spec.yaml --template "$SCRIPT_DIR"/templates/rest_api_html_template.hbs --output "$AUTO_GENERATED"/rest_api_doc.html
 
 mkdir -p "$SCRIPT_DIR"/../website/static/yaml/
 mkdir -p "$SCRIPT_DIR"/../website/static/html/
