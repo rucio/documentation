@@ -74,6 +74,9 @@ jobs:
           repository: rucio/rucio
           ref: master
           path: tools/run_in_docker/rucio
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Install rucio-api generation dependencies and build markdown sites for the API
         run: |
           python3 -m pip install -U pip setuptools
