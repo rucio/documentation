@@ -142,9 +142,16 @@ merged, e.g.:
 <component>: <change_message> Fix #<issue number>
 ```
 
+Using multiple commits is allowed as long as they achieve an independent, 
+well-defined, change and are well-described. Otherwise multiple commits should
+be squashed.
+
 ### 5. Push changes and create a Pull Request
 
-Push the commit to your forked repository and create the pull request.
+Push the commit to your forked repository and create the pull request. Try to
+keep the Pull Request simple, it should achieve the single objective described
+in the issue. Multiple enhancements/fixes should be split into multiple Pull
+Requests.
 
 While using the [__github
 interface__](https://help.github.com/articles/creating-a-pull-request/) is the
