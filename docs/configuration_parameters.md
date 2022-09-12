@@ -422,7 +422,7 @@ attributes.
     `use_ssl` is not set. No default.
   - **port**: Port of the broker.
   - **prefetch_size**: `activemq.prefetchSize`, see
-    <https://svn.apache.org/repos/infra/websites/production/activemq/content/5.7.0/what-is-the-prefetch-limit-for.html>
+    <https://activemq.apache.org/what-is-the-prefetch-limit-for>
   - **queue**: The topic or queue to subscribe to. Example:
     `/queue/Consumer.kronos.rucio.tracer`.
   - **reconnect_attempts**: Maximum attempts to reconnect. Integer. Example:
@@ -446,6 +446,8 @@ attributes.
   - **auth_type**: _(Optional)_ Preferred server side config for webui
     authentication. Values: `{oidc, None}`. Default: `None`.
   - **usercert** <!--NOT USED IN CODE-->
+  - **urls**: A CSV specifying urls of Rucio WebUI 2.0 clients. Required for
+    correctly handling pre-flight CORS requests.
 
 ## Rucio configuration table
 

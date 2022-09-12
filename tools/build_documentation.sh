@@ -15,8 +15,18 @@ DOCS=$SCRIPT_DIR/../docs
 # since the current user does not own the files.
 sudo chown -R "$USER":"$USER" "$AUTO_GENERATED"
 
+echo "Adding code examples to Rest Api Spec file..."
+(
+    cd "$SCRIPT_DIR"/openapi_examples
+    yarn install
+)
+node "$SCRIPT_DIR"/openapi_examples/generate_api_examples.js "$AUTO_GENERATED"/rest_api_doc_spec.yaml > "$AUTO_GENERATED"/rest_api_doc_spec_tmp.yaml
+cp  "$AUTO_GENERATED"/rest_api_doc_spec_tmp.yaml  "$AUTO_GENERATED"/rest_api_doc_spec.yaml
+rm "$AUTO_GENERATED"/rest_api_doc_spec_tmp.yaml
+
+
 echo "Generating Rest Api Docs from Spec File..."
-npx --yes redoc-cli build "$AUTO_GENERATED"/rest_api_doc_spec.yaml --output "$AUTO_GENERATED"/rest_api_doc.html
+npx --yes redoc-cli build "$AUTO_GENERATED"/rest_api_doc_spec.yaml --template "$SCRIPT_DIR"/templates/rest_api_html_template.hbs --output "$AUTO_GENERATED"/rest_api_doc.html
 
 mkdir -p "$SCRIPT_DIR"/../website/static/yaml/
 mkdir -p "$SCRIPT_DIR"/../website/static/html/
