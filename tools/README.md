@@ -12,6 +12,7 @@ installed:
 docker
 python3
 mdl           # markdownlint, see https://github.com/markdownlint/markdownlint
+yarn
 npx           # part of npm
 ```
 
@@ -32,9 +33,9 @@ api. All parts, which need a full running Rucio instance, run in docker
 container. The generated files get copied to their final destination afterwards.
 
 ```mermaid
-flowchart LR
+flowchart TD
     build-documentation.sh-->generate_dynamic_files.sh
-    build-documentation.sh-->rest_api_docs[Generate rest api docs html]
+    build-documentation.sh-->rest_api_docs[Add code examples to Rest Api Docs]
     build-documentation.sh-->generate_release_notes.py
     build-documentation.sh-->generate_release_notes_index.py
 
@@ -48,6 +49,8 @@ flowchart LR
 
     generate_rest_api_docs.sh-. /auto_generated/rest_api_doc_spec.yaml .->rest_api_docs
     generate_release_notes.py-. /docs/release-notes .->generate_release_notes_index.py
+
+	rest_api_docs-->rest_api_docs_html[Generate Rest Api Docs Html]
 ```
 
 ## Check Repository Health
