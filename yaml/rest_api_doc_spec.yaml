@@ -1,3 +1,10 @@
+components:
+  securitySchemes:
+    AuthToken:
+      description: The Rucio Token obtained by one of the /auth endpoints.
+      in: header
+      name: X-Rucio-Auth-Token
+      type: apiKey
 info:
   description: >
     Each resource can be accessed or modified using specially
@@ -163,7 +170,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/accountlimits/local/{account}/{rse}
+              --url http://undefinedundefined/accountlimits/local/{account}/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -173,7 +181,10 @@ paths:
             "http://undefinedundefined/accountlimits/local/{account}/{rse}"
 
 
-            response = requests.request("DELETE", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers)
 
 
             print(response.text)
@@ -186,7 +197,8 @@ paths:
             'http://undefinedundefined/accountlimits/local/{account}/{rse}';
 
 
-            let options = {method: 'DELETE'};
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -241,6 +253,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/accountlimits/local/{account}/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"bytes":0}'
         - lang: Python
@@ -254,7 +267,10 @@ paths:
 
             payload = {"bytes": 0}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -273,7 +289,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"bytes":0}'
             };
 
@@ -313,7 +329,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/accountlimits/global/{account}/{rse_expression}
+              --url http://undefinedundefined/accountlimits/global/{account}/{rse_expression} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -323,7 +340,10 @@ paths:
             "http://undefinedundefined/accountlimits/global/{account}/{rse_expression}"
 
 
-            response = requests.request("DELETE", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers)
 
 
             print(response.text)
@@ -336,7 +356,8 @@ paths:
             'http://undefinedundefined/accountlimits/global/{account}/{rse_expression}';
 
 
-            let options = {method: 'DELETE'};
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -391,6 +412,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/accountlimits/global/{account}/{rse_expression} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"bytes":0}'
         - lang: Python
@@ -404,7 +426,10 @@ paths:
 
             payload = {"bytes": 0}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -423,7 +448,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"bytes":0}'
             };
 
@@ -464,23 +489,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/accounts/{account}/attr/{key}
+              --url http://undefinedundefined/accounts/{account}/attr/{key} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/accounts/{account}/attr/{key}"
 
-            response = requests.request("DELETE", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/accounts/{account}/attr/{key}';
 
-            let options = {method: 'DELETE'};
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -542,6 +574,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/accounts/{account}/attr/{key} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"key":"string","value":"string"}'
         - lang: Python
@@ -557,7 +590,10 @@ paths:
                 "value": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -573,7 +609,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"key":"string","value":"string"}'
             };
 
@@ -623,14 +659,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request POST \
-              --url http://undefinedundefined/accounts/{account}/scopes/{scope}
+              --url http://undefinedundefined/accounts/{account}/scopes/{scope} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/accounts/{account}/scopes/{scope}"
 
-            response = requests.request("POST", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("POST", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -642,7 +681,8 @@ paths:
             'http://undefinedundefined/accounts/{account}/scopes/{scope}';
 
 
-            let options = {method: 'POST'};
+            let options = {method: 'POST', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -690,7 +730,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/limits/local/{rse}
+              --url http://undefinedundefined/accounts/{account}/limits/local/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -700,7 +741,10 @@ paths:
             "http://undefinedundefined/accounts/{account}/limits/local/{rse}"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -713,7 +757,8 @@ paths:
             'http://undefinedundefined/accounts/{account}/limits/local/{rse}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -763,7 +808,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/limits/global/{rse_expression}
+              --url http://undefinedundefined/accounts/{account}/limits/global/{rse_expression} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -773,7 +819,10 @@ paths:
             "http://undefinedundefined/accounts/{account}/limits/global/{rse_expression}"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -786,7 +835,8 @@ paths:
             'http://undefinedundefined/accounts/{account}/limits/global/{rse_expression}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -834,6 +884,7 @@ paths:
           source: |-
             curl --request DELETE \
               --url http://undefinedundefined/accounts/{account}/identities \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"authtype":"string","identity":"string"}'
         - lang: Python
@@ -849,7 +900,10 @@ paths:
                 "identity": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("DELETE", url, json=payload,
@@ -865,7 +919,7 @@ paths:
 
             let options = {
               method: 'DELETE',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"authtype":"string","identity":"string"}'
             };
 
@@ -935,6 +989,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/accounts/{account}/identities \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"authtype":"string","default":false,"email":"string","identity":"string","password":"none"}'
         - lang: Python
@@ -953,7 +1008,10 @@ paths:
                 "password": "none"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -969,7 +1027,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"authtype":"string","default":false,"email":"string","identity":"string","password":"none"}'
             };
 
@@ -1013,23 +1071,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/identities
+              --url http://undefinedundefined/accounts/{account}/identities \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/accounts/{account}/identities"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/accounts/{account}/identities';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -1068,23 +1133,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/rules
+              --url http://undefinedundefined/accounts/{account}/rules \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/accounts/{account}/rules"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/accounts/{account}/rules';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -1140,7 +1212,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/usage/history/{rse}
+              --url http://undefinedundefined/accounts/{account}/usage/history/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -1150,7 +1223,10 @@ paths:
             "http://undefinedundefined/accounts/{account}/usage/history/{rse}"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -1163,7 +1239,8 @@ paths:
             'http://undefinedundefined/accounts/{account}/usage/history/{rse}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -1223,7 +1300,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/usage/local/{rse}
+              --url http://undefinedundefined/accounts/{account}/usage/local/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -1233,7 +1311,10 @@ paths:
             "http://undefinedundefined/accounts/{account}/usage/local/{rse}"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -1246,7 +1327,8 @@ paths:
             'http://undefinedundefined/accounts/{account}/usage/local/{rse}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -1306,7 +1388,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/usage/global/{rse_expression}
+              --url http://undefinedundefined/accounts/{account}/usage/global/{rse_expression} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -1316,7 +1399,10 @@ paths:
             "http://undefinedundefined/accounts/{account}/usage/global/{rse_expression}"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -1329,7 +1415,8 @@ paths:
             'http://undefinedundefined/accounts/{account}/usage/global/{rse_expression}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -1361,81 +1448,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/accounts/{account}
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/accounts/{account}"
-
-            response = requests.request("DELETE", url)
-
-            print(response.text)
-        - lang: Node
-          source: |-
-            const fetch = require('node-fetch');
-
-            let url = 'http://undefinedundefined/accounts/{account}';
-
-            let options = {method: 'DELETE'};
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Update a parameter for an account.
-      parameters:
-        - description: The account identifier.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: >-
-                Json object with key-value pairs corresponding to the new values
-                of the parameters.
-              type: object
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Unknown status
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No account found.
-      summary: Update
-      tags:
-        - Account
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
               --url http://undefinedundefined/accounts/{account} \
-              --header 'content-type: application/json' \
-              --data '{}'
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: >-
+          source: |-
             import requests
-
 
             url = "http://undefinedundefined/accounts/{account}"
 
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
-            payload = {}
-
-            headers = {"content-type": "application/json"}
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
+            response = requests.request("DELETE", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -1446,8 +1469,8 @@ paths:
             let url = 'http://undefinedundefined/accounts/{account}';
 
 
-            let options = {method: 'PUT', headers: {'content-type':
-            'application/json'}, body: '{}'};
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -1506,6 +1529,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/accounts/{account} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"email":"string","type":"USER"}'
         - lang: Python
@@ -1521,7 +1545,10 @@ paths:
                 "type": "USER"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -1537,8 +1564,83 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"email":"string","type":"USER"}'
+            };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    put:
+      description: Update a parameter for an account.
+      parameters:
+        - description: The account identifier.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: >-
+                Json object with key-value pairs corresponding to the new values
+                of the parameters.
+              type: object
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Unknown status
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No account found.
+      summary: Update
+      tags:
+        - Account
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/accounts/{account} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/accounts/{account}"
+
+
+            payload = {}
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: |-
+            const fetch = require('node-fetch');
+
+            let url = 'http://undefinedundefined/accounts/{account}';
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{}'
             };
 
             fetch(url, options)
@@ -1594,23 +1696,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts/{account}
+              --url http://undefinedundefined/accounts/{account} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/accounts/{account}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/accounts/{account}';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -1647,23 +1756,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/accounts
+              --url http://undefinedundefined/accounts \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/accounts"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/accounts';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -1720,14 +1836,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request PUT \
-              --url http://undefinedundefined/config/{section}/{option}/{value}
+              --url http://undefinedundefined/config/{section}/{option}/{value} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/config/{section}/{option}/{value}"
 
-            response = requests.request("PUT", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("PUT", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -1739,7 +1858,8 @@ paths:
             'http://undefinedundefined/config/{section}/{option}/{value}';
 
 
-            let options = {method: 'PUT'};
+            let options = {method: 'PUT', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -1776,23 +1896,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/config/{section}/{option}
+              --url http://undefinedundefined/config/{section}/{option} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/config/{section}/{option}"
 
-            response = requests.request("DELETE", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/config/{section}/{option}';
 
-            let options = {method: 'DELETE'};
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -1836,23 +1963,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/config/{section}/{option}
+              --url http://undefinedundefined/config/{section}/{option} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/config/{section}/{option}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/config/{section}/{option}';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -1901,6 +2035,7 @@ paths:
           source: |-
             curl --request GET \
               --url http://undefinedundefined/config/{section} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"bytes":0}'
         - lang: Python
@@ -1913,7 +2048,10 @@ paths:
 
             payload = {"bytes": 0}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("GET", url, json=payload,
@@ -1929,7 +2067,7 @@ paths:
 
             let options = {
               method: 'GET',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"bytes":0}'
             };
 
@@ -1971,6 +2109,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/config \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{}'
         - lang: Python
@@ -1983,7 +2122,10 @@ paths:
 
             payload = {}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -1992,16 +2134,16 @@ paths:
 
             print(response.text)
         - lang: Node
-          source: >-
+          source: |-
             const fetch = require('node-fetch');
-
 
             let url = 'http://undefinedundefined/config';
 
-
-            let options = {method: 'POST', headers: {'content-type':
-            'application/json'}, body: '{}'};
-
+            let options = {
+              method: 'POST',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{}'
+            };
 
             fetch(url, options)
               .then(res => res.json())
@@ -2030,23 +2172,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/config
+              --url http://undefinedundefined/config \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/config"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/config';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -2094,23 +2243,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request OPTIONS \
-              --url http://undefinedundefined/credentials/signurl
+              --url http://undefinedundefined/credentials/signurl \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/credentials/signurl"
 
-            response = requests.request("OPTIONS", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("OPTIONS", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/credentials/signurl';
 
-            let options = {method: 'OPTIONS'};
+
+            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -2194,7 +2350,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/credentials/signurl?rse=SOME_STRING_VALUE&lifetime=SOME_STRING_VALUE&svc=SOME_STRING_VALUE&op=SOME_STRING_VALUE&url=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/credentials/signurl?rse=SOME_STRING_VALUE&lifetime=SOME_STRING_VALUE&svc=SOME_STRING_VALUE&op=SOME_STRING_VALUE&url=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -2207,7 +2364,11 @@ paths:
             {"rse":"SOME_STRING_VALUE","lifetime":"SOME_STRING_VALUE","svc":"SOME_STRING_VALUE","op":"SOME_STRING_VALUE","url":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -2220,7 +2381,8 @@ paths:
             'http://undefinedundefined/credentials/signurl?rse=SOME_STRING_VALUE&lifetime=SOME_STRING_VALUE&svc=SOME_STRING_VALUE&op=SOME_STRING_VALUE&url=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -2299,6 +2461,7 @@ paths:
           source: |-
             curl --request GET \
               --url http://undefinedundefined/dids/{scope}/ \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"name":"string","recursive":true}'
         - lang: Python
@@ -2314,7 +2477,10 @@ paths:
                 "recursive": True
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("GET", url, json=payload,
@@ -2330,7 +2496,7 @@ paths:
 
             let options = {
               method: 'GET',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"name":"string","recursive":true}'
             };
 
@@ -2382,23 +2548,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/dids/{guid}/guid
+              --url http://undefinedundefined/dids/{guid}/guid \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/dids/{guid}/guid"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/dids/{guid}/guid';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -2511,7 +2684,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/dids/{scope}/dids/search?type=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&long=SOME_BOOLEAN_VALUE&recursive=SOME_BOOLEAN_VALUE&created_before=SOME_STRING_VALUE&created_after=SOME_STRING_VALUE&length=SOME_INTEGER_VALUE&length.gt=SOME_INTEGER_VALUE&length.lt=SOME_INTEGER_VALUE&length.gte=SOME_INTEGER_VALUE&length.lte=SOME_INTEGER_VALUE&name=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/dids/{scope}/dids/search?type=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&long=SOME_BOOLEAN_VALUE&recursive=SOME_BOOLEAN_VALUE&created_before=SOME_STRING_VALUE&created_after=SOME_STRING_VALUE&length=SOME_INTEGER_VALUE&length.gt=SOME_INTEGER_VALUE&length.lt=SOME_INTEGER_VALUE&length.gte=SOME_INTEGER_VALUE&length.lte=SOME_INTEGER_VALUE&name=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -2524,7 +2698,11 @@ paths:
             {"type":"SOME_STRING_VALUE","limit":"SOME_INTEGER_VALUE","long":"SOME_BOOLEAN_VALUE","recursive":"SOME_BOOLEAN_VALUE","created_before":"SOME_STRING_VALUE","created_after":"SOME_STRING_VALUE","length":"SOME_INTEGER_VALUE","length.gt":"SOME_INTEGER_VALUE","length.lt":"SOME_INTEGER_VALUE","length.gte":"SOME_INTEGER_VALUE","length.lte":"SOME_INTEGER_VALUE","name":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -2537,7 +2715,8 @@ paths:
             'http://undefinedundefined/dids/{scope}/dids/search?type=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&long=SOME_BOOLEAN_VALUE&recursive=SOME_BOOLEAN_VALUE&created_before=SOME_STRING_VALUE&created_after=SOME_STRING_VALUE&length=SOME_INTEGER_VALUE&length.gt=SOME_INTEGER_VALUE&length.lt=SOME_INTEGER_VALUE&length.gte=SOME_INTEGER_VALUE&length.lte=SOME_INTEGER_VALUE&name=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -2653,7 +2832,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/dids/{scope}/dids/search_extended?type=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&long=SOME_BOOLEAN_VALUE&recursive=SOME_BOOLEAN_VALUE&created_before=SOME_STRING_VALUE&created_after=SOME_STRING_VALUE&length=SOME_INTEGER_VALUE&length.gt=SOME_INTEGER_VALUE&length.lt=SOME_INTEGER_VALUE&length.gte=SOME_INTEGER_VALUE&length.lte=SOME_INTEGER_VALUE&name=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/dids/{scope}/dids/search_extended?type=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&long=SOME_BOOLEAN_VALUE&recursive=SOME_BOOLEAN_VALUE&created_before=SOME_STRING_VALUE&created_after=SOME_STRING_VALUE&length=SOME_INTEGER_VALUE&length.gt=SOME_INTEGER_VALUE&length.lt=SOME_INTEGER_VALUE&length.gte=SOME_INTEGER_VALUE&length.lte=SOME_INTEGER_VALUE&name=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -2666,7 +2846,11 @@ paths:
             {"type":"SOME_STRING_VALUE","limit":"SOME_INTEGER_VALUE","long":"SOME_BOOLEAN_VALUE","recursive":"SOME_BOOLEAN_VALUE","created_before":"SOME_STRING_VALUE","created_after":"SOME_STRING_VALUE","length":"SOME_INTEGER_VALUE","length.gt":"SOME_INTEGER_VALUE","length.lt":"SOME_INTEGER_VALUE","length.gte":"SOME_INTEGER_VALUE","length.lte":"SOME_INTEGER_VALUE","name":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -2679,7 +2863,8 @@ paths:
             'http://undefinedundefined/dids/{scope}/dids/search_extended?type=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&long=SOME_BOOLEAN_VALUE&recursive=SOME_BOOLEAN_VALUE&created_before=SOME_STRING_VALUE&created_after=SOME_STRING_VALUE&length=SOME_INTEGER_VALUE&length.gt=SOME_INTEGER_VALUE&length.lt=SOME_INTEGER_VALUE&length.gte=SOME_INTEGER_VALUE&length.lte=SOME_INTEGER_VALUE&name=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -2723,6 +2908,7 @@ paths:
           source: |-
             curl --request PUT \
               --url http://undefinedundefined/dids/{scope_name}/status \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"open":true}'
         - lang: Python
@@ -2735,7 +2921,10 @@ paths:
 
             payload = {"open": True}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("PUT", url, json=payload,
@@ -2751,7 +2940,7 @@ paths:
 
             let options = {
               method: 'PUT',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"open":true}'
             };
 
@@ -2847,16 +3036,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/dids/{scope_name}/files?long=SOME_OBJECT_VALUE'
+              --url 'http://undefinedundefined/dids/{scope_name}/files?long=SOME_OBJECT_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/dids/{scope_name}/files"
 
+
             querystring = {"long":"SOME_OBJECT_VALUE"}
 
-            response = requests.request("GET", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -2868,7 +3066,8 @@ paths:
             'http://undefinedundefined/dids/{scope_name}/files?long=SOME_OBJECT_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -2940,14 +3139,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/dids/history
+              --url http://undefinedundefined/dids/{scope_name}/dids/history \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/dids/{scope_name}/dids/history"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -2959,7 +3161,8 @@ paths:
             'http://undefinedundefined/dids/{scope_name}/dids/history';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -3012,6 +3215,7 @@ paths:
           source: |-
             curl --request DELETE \
               --url http://undefinedundefined/dids/{scope_name}/dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"dids":[{"name":"string","scope":"string"}]}'
         - lang: Python
@@ -3028,7 +3232,10 @@ paths:
                         "scope": "string"
                     }
                 ]}
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("DELETE", url, json=payload,
@@ -3044,7 +3251,7 @@ paths:
 
             let options = {
               method: 'DELETE',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"dids":[{"name":"string","scope":"string"}]}'
             };
 
@@ -3114,6 +3321,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dids/{scope_name}/dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"account":"string","dids":{"account":"string","name":"string","scope":"string"},"rse":"string"}'
         - lang: Python
@@ -3134,7 +3342,10 @@ paths:
                 "rse": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -3150,7 +3361,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"account":"string","dids":{"account":"string","name":"string","scope":"string"},"rse":"string"}'
             };
 
@@ -3217,23 +3428,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/dids
+              --url http://undefinedundefined/dids/{scope_name}/dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/dids/{scope_name}/dids"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/dids/{scope_name}/dids';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -3275,16 +3493,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url 'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/dids/{scope_name}/meta"
 
+
             querystring = {"key":"SOME_STRING_VALUE"}
 
-            response = requests.request("DELETE", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -3296,7 +3523,8 @@ paths:
             'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE';
 
 
-            let options = {method: 'DELETE'};
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -3355,6 +3583,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dids/{scope_name}/meta \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"meta":{},"recursive":false}'
         - lang: Python
@@ -3370,7 +3599,10 @@ paths:
                 "recursive": False
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -3386,7 +3618,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"meta":{},"recursive":false}'
             };
 
@@ -3431,16 +3663,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/dids/{scope_name}/meta?plugin=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/dids/{scope_name}/meta?plugin=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/dids/{scope_name}/meta"
 
+
             querystring = {"plugin":"SOME_STRING_VALUE"}
 
-            response = requests.request("GET", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -3452,7 +3693,8 @@ paths:
             'http://undefinedundefined/dids/{scope_name}/meta?plugin=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -3515,6 +3757,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dids/{scope_name}/meta/{key} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"value":{}}'
         - lang: Python
@@ -3527,7 +3770,10 @@ paths:
 
             payload = {"value": {}}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -3543,7 +3789,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"value":{}}'
             };
 
@@ -3605,6 +3851,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dids/bulkdidsmeta \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"dids":[{"meta":{},"name":"string","scope":"string"}]}'
         - lang: Python
@@ -3622,7 +3869,10 @@ paths:
                         "scope": "string"
                     }
                 ]}
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -3638,7 +3888,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"dids":[{"meta":{},"name":"string","scope":"string"}]}'
             };
 
@@ -3681,23 +3931,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/rules
+              --url http://undefinedundefined/dids/{scope_name}/rules \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/dids/{scope_name}/rules"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/dids/{scope_name}/rules';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -3748,23 +4005,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/parents
+              --url http://undefinedundefined/dids/{scope_name}/parents \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/dids/{scope_name}/parents"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/dids/{scope_name}/parents';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -3831,14 +4095,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/associated_rules
+              --url http://undefinedundefined/dids/{scope_name}/associated_rules \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/dids/{scope_name}/associated_rules"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -3850,7 +4117,8 @@ paths:
             'http://undefinedundefined/dids/{scope_name}/associated_rules';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -3896,6 +4164,7 @@ paths:
           source: |-
             curl --request DELETE \
               --url http://undefinedundefined/dids/{scope_name}/follow \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"account":"string"}'
         - lang: Python
@@ -3908,7 +4177,10 @@ paths:
 
             payload = {"account": "string"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("DELETE", url, json=payload,
@@ -3924,7 +4196,7 @@ paths:
 
             let options = {
               method: 'DELETE',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"account":"string"}'
             };
 
@@ -3972,6 +4244,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dids/{scope_name}/follow \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"account":"string"}'
         - lang: Python
@@ -3984,7 +4257,10 @@ paths:
 
             payload = {"account": "string"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -4000,7 +4276,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"account":"string"}'
             };
 
@@ -4048,23 +4324,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/follow
+              --url http://undefinedundefined/dids/{scope_name}/follow \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/dids/{scope_name}/follow"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/dids/{scope_name}/follow';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -4132,6 +4415,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '[{"account":"string","name":"string","scope":"string","statuses":"string","type":"F"}]'
         - lang: Python
@@ -4152,7 +4436,10 @@ paths:
                 }
             ]
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -4168,7 +4455,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '[{"account":"string","name":"string","scope":"string","statuses":"string","type":"F"}]'
             };
 
@@ -4239,7 +4526,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request POST \
-              --url http://undefinedundefined/dids/{input_scope}/{input_name}/{output_scope}/{output_name}/{nbfiles}/sample
+              --url http://undefinedundefined/dids/{input_scope}/{input_name}/{output_scope}/{output_name}/{nbfiles}/sample \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -4249,7 +4537,10 @@ paths:
             "http://undefinedundefined/dids/{input_scope}/{input_name}/{output_scope}/{output_name}/{nbfiles}/sample"
 
 
-            response = requests.request("POST", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("POST", url, headers=headers)
 
 
             print(response.text)
@@ -4262,7 +4553,8 @@ paths:
             'http://undefinedundefined/dids/{input_scope}/{input_name}/{output_scope}/{output_name}/{nbfiles}/sample';
 
 
-            let options = {method: 'POST'};
+            let options = {method: 'POST', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -4375,6 +4667,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dids/attachments \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '[]'
         - lang: Python
@@ -4387,7 +4680,10 @@ paths:
 
             payload = []
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -4396,16 +4692,16 @@ paths:
 
             print(response.text)
         - lang: Node
-          source: >-
+          source: |-
             const fetch = require('node-fetch');
-
 
             let url = 'http://undefinedundefined/dids/attachments';
 
-
-            let options = {method: 'POST', headers: {'content-type':
-            'application/json'}, body: '[]'};
-
+            let options = {
+              method: 'POST',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '[]'
+            };
 
             fetch(url, options)
               .then(res => res.json())
@@ -4455,16 +4751,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/dids/new?type=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/dids/new?type=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/dids/new"
 
+
             querystring = {"type":"SOME_STRING_VALUE"}
 
-            response = requests.request("GET", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -4476,7 +4781,8 @@ paths:
             'http://undefinedundefined/dids/new?type=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -4527,6 +4833,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dids/resurrect \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '[{"name":"string","scope":"string"}]'
         - lang: Python
@@ -4544,7 +4851,10 @@ paths:
                 }
             ]
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -4560,7 +4870,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '[{"name":"string","scope":"string"}]'
             };
 
@@ -4624,23 +4934,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request POST \
-              --url http://undefinedundefined/dids/bulkmeta
+              --url http://undefinedundefined/dids/bulkmeta \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/dids/bulkmeta"
 
-            response = requests.request("POST", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("POST", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/dids/bulkmeta';
 
-            let options = {method: 'POST'};
+
+            let options = {method: 'POST', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -4708,6 +5025,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/dirac/addfiles \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"ignore_availability":true,"lfns":[{}]}'
         - lang: Python
@@ -4723,7 +5041,10 @@ paths:
                 "lfns": [{}]
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -4739,7 +5060,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"ignore_availability":true,"lfns":[{}]}'
             };
 
@@ -4776,16 +5097,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/export?distance=SOME_BOOLEAN_VALUE'
+              --url 'http://undefinedundefined/export?distance=SOME_BOOLEAN_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/export"
 
+
             querystring = {"distance":"SOME_BOOLEAN_VALUE"}
 
-            response = requests.request("GET", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -4797,7 +5127,8 @@ paths:
             'http://undefinedundefined/export?distance=SOME_BOOLEAN_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -4850,6 +5181,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/heartbeats \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"executable":"string","hostname":"string","older_than":0,"payload":"string","pid":0}'
         - lang: Python
@@ -4868,7 +5200,10 @@ paths:
                 "pid": 0
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -4884,7 +5219,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"executable":"string","hostname":"string","older_than":0,"payload":"string","pid":0}'
             };
 
@@ -4915,23 +5250,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/heartbeats
+              --url http://undefinedundefined/heartbeats \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/heartbeats"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/heartbeats';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -4989,7 +5331,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request PUT \
-              --url 'http://undefinedundefined/identities/{account}/userpass?X-Rucio-Username=SOME_STRING_VALUE&X-Rucio-Password=SOME_STRING_VALUE&X-Rucio-Email=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/identities/{account}/userpass?X-Rucio-Username=SOME_STRING_VALUE&X-Rucio-Password=SOME_STRING_VALUE&X-Rucio-Email=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -5002,7 +5345,11 @@ paths:
             {"X-Rucio-Username":"SOME_STRING_VALUE","X-Rucio-Password":"SOME_STRING_VALUE","X-Rucio-Email":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("PUT", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("PUT", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -5015,7 +5362,8 @@ paths:
             'http://undefinedundefined/identities/{account}/userpass?X-Rucio-Username=SOME_STRING_VALUE&X-Rucio-Password=SOME_STRING_VALUE&X-Rucio-Email=SOME_STRING_VALUE';
 
 
-            let options = {method: 'PUT'};
+            let options = {method: 'PUT', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -5058,16 +5406,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request PUT \
-              --url 'http://undefinedundefined/identities/{account}/x509?X-Rucio-Email=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/identities/{account}/x509?X-Rucio-Email=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/identities/{account}/x509"
 
+
             querystring = {"X-Rucio-Email":"SOME_STRING_VALUE"}
 
-            response = requests.request("PUT", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("PUT", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -5079,7 +5436,8 @@ paths:
             'http://undefinedundefined/identities/{account}/x509?X-Rucio-Email=SOME_STRING_VALUE';
 
 
-            let options = {method: 'PUT'};
+            let options = {method: 'PUT', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -5122,16 +5480,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request PUT \
-              --url 'http://undefinedundefined/identities/{account}/gss?X-Rucio-Email=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/identities/{account}/gss?X-Rucio-Email=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/identities/{account}/gss"
 
+
             querystring = {"X-Rucio-Email":"SOME_STRING_VALUE"}
 
-            response = requests.request("PUT", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("PUT", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -5143,7 +5510,8 @@ paths:
             'http://undefinedundefined/identities/{account}/gss?X-Rucio-Email=SOME_STRING_VALUE';
 
 
-            let options = {method: 'PUT'};
+            let options = {method: 'PUT', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -5187,7 +5555,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/identities/{identity_key}/{type}/accounts
+              --url http://undefinedundefined/identities/{identity_key}/{type}/accounts \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -5197,7 +5566,10 @@ paths:
             "http://undefinedundefined/identities/{identity_key}/{type}/accounts"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -5210,7 +5582,8 @@ paths:
             'http://undefinedundefined/identities/{identity_key}/{type}/accounts';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -5332,6 +5705,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/import \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"accounts":[{"account":"string","email":"string","identities":[{"identity":"string","password":"string","type":"X509"}]}],"distances":{"src rse1":{"dest rse1":{"active":0,"agis_distance":0,"failed":0,"finished":0,"geoip_distance":0,"ranking":0,"submitted":0,"transfer_speed":0},"dest rse2":{"active":0,"agis_distance":0,"failed":0,"finished":0,"geoip_distance":0,"ranking":0,"submitted":0,"transfer_speed":0}},"src rse2":{"dest rse1":{"active":0,"agis_distance":0,"failed":0,"finished":0,"geoip_distance":0,"ranking":0,"submitted":0,"transfer_speed":0},"dest rse2":{"active":0,"agis_distance":0,"failed":0,"finished":0,"geoip_distance":0,"ranking":0,"submitted":0,"transfer_speed":0}}},"rses":{"rse name1":{"rse_type":"DISK"},"rse name2":{"rse_type":"DISK"}}}'
         - lang: Python
@@ -5408,7 +5782,10 @@ paths:
                 }
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -5424,7 +5801,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"accounts":[{"account":"string","email":"string","identities":[{"identity":"string","password":"string","type":"X509"}]}],"distances":{"src rse1":{"dest rse1":{"active":0,"agis_distance":0,"failed":0,"finished":0,"geoip_distance":0,"ranking":0,"submitted":0,"transfer_speed":0},"dest rse2":{"active":0,"agis_distance":0,"failed":0,"finished":0,"geoip_distance":0,"ranking":0,"submitted":0,"transfer_speed":0}},"src rse2":{"dest rse1":{"active":0,"agis_distance":0,"failed":0,"finished":0,"geoip_distance":0,"ranking":0,"submitted":0,"transfer_speed":0},"dest rse2":{"active":0,"agis_distance":0,"failed":0,"finished":0,"geoip_distance":0,"ranking":0,"submitted":0,"transfer_speed":0}}},"rses":{"rse name1":{"rse_type":"DISK"},"rse name2":{"rse_type":"DISK"}}}'
             };
 
@@ -5482,6 +5859,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/lifetime_exceptions/ \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"comments":"string","dids":[{"name":"string"}],"expires_at":"string","pattern":"string"}'
         - lang: Python
@@ -5499,7 +5877,10 @@ paths:
                 "pattern": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -5515,7 +5896,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"comments":"string","dids":[{"name":"string"}],"expires_at":"string","pattern":"string"}'
             };
 
@@ -5592,23 +5973,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/lifetime_exceptions/
+              --url http://undefinedundefined/lifetime_exceptions/ \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/lifetime_exceptions/"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/lifetime_exceptions/';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -5660,6 +6048,7 @@ paths:
           source: |-
             curl --request PUT \
               --url http://undefinedundefined/lifetime_exceptions/{exception_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"state":"A"}'
         - lang: Python
@@ -5672,7 +6061,10 @@ paths:
 
             payload = {"state": "A"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("PUT", url, json=payload,
@@ -5691,7 +6083,7 @@ paths:
 
             let options = {
               method: 'PUT',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"state":"A"}'
             };
 
@@ -5777,14 +6169,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/lifetime_exceptions/{exception_id}
+              --url http://undefinedundefined/lifetime_exceptions/{exception_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/lifetime_exceptions/{exception_id}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -5796,7 +6191,8 @@ paths:
             'http://undefinedundefined/lifetime_exceptions/{exception_id}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -5891,6 +6287,7 @@ paths:
           source: |-
             curl --request GET \
               --url http://undefinedundefined/locks/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"did_type":"dataset"}'
         - lang: Python
@@ -5903,7 +6300,10 @@ paths:
 
             payload = {"did_type": "dataset"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("GET", url, json=payload,
@@ -5919,7 +6319,7 @@ paths:
 
             let options = {
               method: 'GET',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"did_type":"dataset"}'
             };
 
@@ -6015,6 +6415,7 @@ paths:
           source: |-
             curl --request GET \
               --url http://undefinedundefined/locks/{scope_name} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"did_type":"dataset"}'
         - lang: Python
@@ -6027,7 +6428,10 @@ paths:
 
             payload = {"did_type": "dataset"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("GET", url, json=payload,
@@ -6043,7 +6447,7 @@ paths:
 
             let options = {
               method: 'GET',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"did_type":"dataset"}'
             };
 
@@ -6150,6 +6554,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/locks/bulk_locks_for_dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"dids":[{"name":"string","scope":"string","type":"dataset"}]}'
         - lang: Python
@@ -6167,7 +6572,10 @@ paths:
                         "type": "dataset"
                     }
                 ]}
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -6183,7 +6591,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"dids":[{"name":"string","scope":"string","type":"dataset"}]}'
             };
 
@@ -6240,6 +6648,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/meta/{key} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"key_type":"string","value_regexp":"string","value_type":"string"}'
         - lang: Python
@@ -6256,7 +6665,10 @@ paths:
                 "value_type": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -6272,7 +6684,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"key_type":"string","value_regexp":"string","value_type":"string"}'
             };
 
@@ -6327,6 +6739,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/meta/{key}/ \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"value":"string"}'
         - lang: Python
@@ -6339,7 +6752,10 @@ paths:
 
             payload = {"value": "string"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -6355,7 +6771,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"value":"string"}'
             };
 
@@ -6395,23 +6811,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/meta/{key}/
+              --url http://undefinedundefined/meta/{key}/ \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/meta/{key}/"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/meta/{key}/';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -6440,23 +6863,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/ping
+              --url http://undefinedundefined/ping \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/ping"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/ping';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -6531,7 +6961,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/redirect/{scope_name}/metalink?ip=SOME_STRING_VALUE&fqdn=SOME_STRING_VALUE&site=SOME_STRING_VALUE&schemes=SOME_ARRAY_VALUE&select=SOME_STRING_VALUE&sort=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/redirect/{scope_name}/metalink?ip=SOME_STRING_VALUE&fqdn=SOME_STRING_VALUE&site=SOME_STRING_VALUE&schemes=SOME_ARRAY_VALUE&select=SOME_STRING_VALUE&sort=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -6544,7 +6975,11 @@ paths:
             {"ip":"SOME_STRING_VALUE","fqdn":"SOME_STRING_VALUE","site":"SOME_STRING_VALUE","schemes":"SOME_ARRAY_VALUE","select":"SOME_STRING_VALUE","sort":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -6557,7 +6992,8 @@ paths:
             'http://undefinedundefined/redirect/{scope_name}/metalink?ip=SOME_STRING_VALUE&fqdn=SOME_STRING_VALUE&site=SOME_STRING_VALUE&schemes=SOME_ARRAY_VALUE&select=SOME_STRING_VALUE&sort=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -6639,7 +7075,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/redirect/{scope_name}?ip=SOME_STRING_VALUE&fqdn=SOME_STRING_VALUE&site=SOME_STRING_VALUE&schemes=SOME_ARRAY_VALUE&select=SOME_STRING_VALUE&sort=SOME_STRING_VALUE&rse=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/redirect/{scope_name}?ip=SOME_STRING_VALUE&fqdn=SOME_STRING_VALUE&site=SOME_STRING_VALUE&schemes=SOME_ARRAY_VALUE&select=SOME_STRING_VALUE&sort=SOME_STRING_VALUE&rse=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -6652,7 +7089,11 @@ paths:
             {"ip":"SOME_STRING_VALUE","fqdn":"SOME_STRING_VALUE","site":"SOME_STRING_VALUE","schemes":"SOME_ARRAY_VALUE","select":"SOME_STRING_VALUE","sort":"SOME_STRING_VALUE","rse":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -6665,7 +7106,8 @@ paths:
             'http://undefinedundefined/redirect/{scope_name}?ip=SOME_STRING_VALUE&fqdn=SOME_STRING_VALUE&site=SOME_STRING_VALUE&schemes=SOME_ARRAY_VALUE&select=SOME_STRING_VALUE&sort=SOME_STRING_VALUE&rse=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -6846,6 +7288,7 @@ paths:
             curl --request POST \
               --url 'http://undefinedundefined/replicas/list?limit=SOME_INTEGER_VALUE&select=SOME_STRING_VALUE&sort=SOME_STRING_VALUE' \
               --header 'X-Forwarded-For: SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"all_states":true,"client_location":"string","dids":[{"name":"string","scope":"string"}],"domain":"string","ignore_availability":true,"nrandom":0,"resolve_archives":true,"resolve_parents":true,"rse_expression":"string","schemes":["string"],"signature_lifetime":0,"sort":"string","unavailable":true,"updated_after":"string"}'
         - lang: Python
@@ -6884,6 +7327,7 @@ paths:
 
             headers = {
                 "X-Forwarded-For": "SOME_STRING_VALUE",
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
                 "content-type": "application/json"
             }
 
@@ -6904,7 +7348,11 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'X-Forwarded-For': 'SOME_STRING_VALUE', 'content-type': 'application/json'},
+              headers: {
+                'X-Forwarded-For': 'SOME_STRING_VALUE',
+                'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE',
+                'content-type': 'application/json'
+              },
               body: '{"all_states":true,"client_location":"string","dids":[{"name":"string","scope":"string"}],"domain":"string","ignore_availability":true,"nrandom":0,"resolve_archives":true,"resolve_parents":true,"rse_expression":"string","schemes":["string"],"signature_lifetime":0,"sort":"string","unavailable":true,"updated_after":"string"}'
             };
 
@@ -6997,7 +7445,8 @@ paths:
           source: |-
             curl --request GET \
               --url 'http://undefinedundefined/replicas/{scope_name}?schemes=SOME_STRING_VALUE&select=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE' \
-              --header 'X-Forwarded-For: SOME_STRING_VALUE'
+              --header 'X-Forwarded-For: SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -7010,7 +7459,10 @@ paths:
             {"schemes":"SOME_STRING_VALUE","select":"SOME_STRING_VALUE","limit":"SOME_INTEGER_VALUE"}
 
 
-            headers = {"X-Forwarded-For": "SOME_STRING_VALUE"}
+            headers = {
+                "X-Forwarded-For": "SOME_STRING_VALUE",
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"
+            }
 
 
             response = requests.request("GET", url, headers=headers,
@@ -7027,8 +7479,13 @@ paths:
             'http://undefinedundefined/replicas/{scope_name}?schemes=SOME_STRING_VALUE&select=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE';
 
 
-            let options = {method: 'GET', headers: {'X-Forwarded-For':
-            'SOME_STRING_VALUE'}};
+            let options = {
+              method: 'GET',
+              headers: {
+                'X-Forwarded-For': 'SOME_STRING_VALUE',
+                'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE'
+              }
+            };
 
 
             fetch(url, options)
@@ -7074,6 +7531,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/replicas/suspicious \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"pfns":["string"],"reason":"string"}'
         - lang: Python
@@ -7089,7 +7547,10 @@ paths:
                 "reason": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -7105,7 +7566,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"pfns":["string"],"reason":"string"}'
             };
 
@@ -7172,7 +7633,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/replicas/suspicious?rse_expression=SOME_STRING_VALUE&younger_than=SOME_STRING_VALUE&nattempts=SOME_INTEGER_VALUE'
+              --url 'http://undefinedundefined/replicas/suspicious?rse_expression=SOME_STRING_VALUE&younger_than=SOME_STRING_VALUE&nattempts=SOME_INTEGER_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -7185,7 +7647,11 @@ paths:
             {"rse_expression":"SOME_STRING_VALUE","younger_than":"SOME_STRING_VALUE","nattempts":"SOME_INTEGER_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -7198,7 +7664,8 @@ paths:
             'http://undefinedundefined/replicas/suspicious?rse_expression=SOME_STRING_VALUE&younger_than=SOME_STRING_VALUE&nattempts=SOME_INTEGER_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -7301,7 +7768,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/replicas/bad/states?state=SOME_STRING_VALUE&rse=SOME_STRING_VALUE&younger_than=SOME_STRING_VALUE&older_than=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&list_pfns=SOME_BOOLEAN_VALUE'
+              --url 'http://undefinedundefined/replicas/bad/states?state=SOME_STRING_VALUE&rse=SOME_STRING_VALUE&younger_than=SOME_STRING_VALUE&older_than=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&list_pfns=SOME_BOOLEAN_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -7314,7 +7782,11 @@ paths:
             {"state":"SOME_STRING_VALUE","rse":"SOME_STRING_VALUE","younger_than":"SOME_STRING_VALUE","older_than":"SOME_STRING_VALUE","limit":"SOME_INTEGER_VALUE","list_pfns":"SOME_BOOLEAN_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -7327,7 +7799,8 @@ paths:
             'http://undefinedundefined/replicas/bad/states?state=SOME_STRING_VALUE&rse=SOME_STRING_VALUE&younger_than=SOME_STRING_VALUE&older_than=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE&list_pfns=SOME_BOOLEAN_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -7390,7 +7863,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/replicas/bad/summary?rse_expression=SOME_STRING_VALUE&from_date=SOME_STRING_VALUE&to_date=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/replicas/bad/summary?rse_expression=SOME_STRING_VALUE&from_date=SOME_STRING_VALUE&to_date=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -7403,7 +7877,11 @@ paths:
             {"rse_expression":"SOME_STRING_VALUE","from_date":"SOME_STRING_VALUE","to_date":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -7416,7 +7894,8 @@ paths:
             'http://undefinedundefined/replicas/bad/summary?rse_expression=SOME_STRING_VALUE&from_date=SOME_STRING_VALUE&to_date=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -7470,6 +7949,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/replicas/bad/pfns \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"expires_at":"2019-08-24T14:15:22Z","pfns":["string"],"reason":"string","state":"BAD"}'
         - lang: Python
@@ -7487,7 +7967,10 @@ paths:
                 "state": "BAD"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -7503,7 +7986,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"expires_at":"2019-08-24T14:15:22Z","pfns":["string"],"reason":"string","state":"BAD"}'
             };
 
@@ -7566,6 +8049,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/replicas/bad/dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"dids":[{"name":"string","scope":"string"}],"expires_at":"2019-08-24T14:15:22Z","reason":"string","rse":"string"}'
         - lang: Python
@@ -7588,7 +8072,10 @@ paths:
                 "rse": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -7604,7 +8091,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"dids":[{"name":"string","scope":"string"}],"expires_at":"2019-08-24T14:15:22Z","reason":"string","rse":"string"}'
             };
 
@@ -7684,23 +8171,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/replicas/rse/{rse}
+              --url http://undefinedundefined/replicas/rse/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/replicas/rse/{rse}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/replicas/rse/{rse}';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -7747,6 +8241,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/replicas/bad \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"reason":"string","replicas":["string"]}'
         - lang: Python
@@ -7762,7 +8257,10 @@ paths:
                 "replicas": ["string"]
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -7778,7 +8276,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"reason":"string","replicas":["string"]}'
             };
 
@@ -7835,6 +8333,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/replicas/quarantine \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"replicas":[{"name":"string","path":"string","scope":"string"}],"rse":"string","rse_id":"string"}'
         - lang: Python
@@ -7857,7 +8356,10 @@ paths:
                 "rse_id": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -7873,7 +8375,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"replicas":[{"name":"string","path":"string","scope":"string"}],"rse":"string","rse_id":"string"}'
             };
 
@@ -7936,6 +8438,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/replicas/dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"pfns":["string"],"rse":"string"}'
         - lang: Python
@@ -7951,7 +8454,10 @@ paths:
                 "rse": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -7967,7 +8473,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"pfns":["string"],"rse":"string"}'
             };
 
@@ -8054,16 +8560,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/replicas/{scope_name}/datasets?deep=SOME_BOOLEAN_VALUE'
+              --url 'http://undefinedundefined/replicas/{scope_name}/datasets?deep=SOME_BOOLEAN_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/replicas/{scope_name}/datasets"
 
+
             querystring = {"deep":"SOME_BOOLEAN_VALUE"}
 
-            response = requests.request("GET", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -8075,7 +8590,8 @@ paths:
             'http://undefinedundefined/replicas/{scope_name}/datasets?deep=SOME_BOOLEAN_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -8172,6 +8688,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/replicas/datasets_bulk \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"dids":[{"name":"string","scope":"string"}]}'
         - lang: Python
@@ -8188,7 +8705,10 @@ paths:
                         "scope": "string"
                     }
                 ]}
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -8204,7 +8724,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"dids":[{"name":"string","scope":"string"}]}'
             };
 
@@ -8257,6 +8777,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/replicas/tombstone \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"replicas":[{"name":"string","rse":"string","scope":"string"}]}'
         - lang: Python
@@ -8274,7 +8795,10 @@ paths:
                         "scope": "string"
                     }
                 ]}
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -8290,7 +8814,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"replicas":[{"name":"string","rse":"string","scope":"string"}]}'
             };
 
@@ -8330,16 +8854,25 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/replicas/{scope_name}/datasets_vp?deep=SOME_BOOLEAN_VALUE'
+              --url 'http://undefinedundefined/replicas/{scope_name}/datasets_vp?deep=SOME_BOOLEAN_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/replicas/{scope_name}/datasets_vp"
 
+
             querystring = {"deep":"SOME_BOOLEAN_VALUE"}
 
-            response = requests.request("GET", url, params=querystring)
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
+
 
             print(response.text)
         - lang: Node
@@ -8351,7 +8884,8 @@ paths:
             'http://undefinedundefined/replicas/{scope_name}/datasets_vp?deep=SOME_BOOLEAN_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -8523,23 +9057,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/requests/{scope_name}/{rse}
+              --url http://undefinedundefined/requests/{scope_name}/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/requests/{scope_name}/{rse}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/requests/{scope_name}/{rse}';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -8710,7 +9251,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/requests/history/{scope_name}/{rse}
+              --url http://undefinedundefined/requests/history/{scope_name}/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -8720,7 +9262,10 @@ paths:
             "http://undefinedundefined/requests/history/{scope_name}/{rse}"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -8733,7 +9278,8 @@ paths:
             'http://undefinedundefined/requests/history/{scope_name}/{rse}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -8937,7 +9483,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/requests/list?src_rse=SOME_ARRAY_VALUE&dest_rse=SOME_ARRAY_VALUE&src_site=SOME_STRING_VALUE&dest_site=SOME_STRING_VALUE&request_states=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/requests/list?src_rse=SOME_ARRAY_VALUE&dest_rse=SOME_ARRAY_VALUE&src_site=SOME_STRING_VALUE&dest_site=SOME_STRING_VALUE&request_states=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -8950,7 +9497,11 @@ paths:
             {"src_rse":"SOME_ARRAY_VALUE","dest_rse":"SOME_ARRAY_VALUE","src_site":"SOME_STRING_VALUE","dest_site":"SOME_STRING_VALUE","request_states":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -8963,7 +9514,8 @@ paths:
             'http://undefinedundefined/requests/list?src_rse=SOME_ARRAY_VALUE&dest_rse=SOME_ARRAY_VALUE&src_site=SOME_STRING_VALUE&dest_site=SOME_STRING_VALUE&request_states=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -9179,7 +9731,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/requests/history/list?src_rse=SOME_ARRAY_VALUE&dest_rse=SOME_ARRAY_VALUE&src_site=SOME_STRING_VALUE&dest_site=SOME_STRING_VALUE&request_states=SOME_STRING_VALUE&offset=SOME_INTEGER_VALUE&limit=SOME_INTEGER_VALUE'
+              --url 'http://undefinedundefined/requests/history/list?src_rse=SOME_ARRAY_VALUE&dest_rse=SOME_ARRAY_VALUE&src_site=SOME_STRING_VALUE&dest_site=SOME_STRING_VALUE&request_states=SOME_STRING_VALUE&offset=SOME_INTEGER_VALUE&limit=SOME_INTEGER_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -9192,7 +9745,11 @@ paths:
             {"src_rse":"SOME_ARRAY_VALUE","dest_rse":"SOME_ARRAY_VALUE","src_site":"SOME_STRING_VALUE","dest_site":"SOME_STRING_VALUE","request_states":"SOME_STRING_VALUE","offset":"SOME_INTEGER_VALUE","limit":"SOME_INTEGER_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -9205,7 +9762,8 @@ paths:
             'http://undefinedundefined/requests/history/list?src_rse=SOME_ARRAY_VALUE&dest_rse=SOME_ARRAY_VALUE&src_site=SOME_STRING_VALUE&dest_site=SOME_STRING_VALUE&request_states=SOME_STRING_VALUE&offset=SOME_INTEGER_VALUE&limit=SOME_INTEGER_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -9244,23 +9802,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/rses/{rse}/attr/{key}
+              --url http://undefinedundefined/rses/{rse}/attr/{key} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rses/{rse}/attr/{key}"
 
-            response = requests.request("DELETE", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rses/{rse}/attr/{key}';
 
-            let options = {method: 'DELETE'};
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -9319,6 +9884,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/rses/{rse}/attr/{key} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"value":"string"}'
         - lang: Python
@@ -9331,7 +9897,10 @@ paths:
 
             payload = {"value": "string"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -9347,7 +9916,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"value":"string"}'
             };
 
@@ -9395,108 +9964,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/rses/{source}/distances/{destination}
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url =
-            "http://undefinedundefined/rses/{source}/distances/{destination}"
-
-
-            response = requests.request("DELETE", url)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/rses/{source}/distances/{destination}';
-
-
-            let options = {method: 'DELETE'};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Update rse distance information.
-      parameters:
-        - description: The name of the source Rucio Storage Element.
-          in: path
-          name: source
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The name of the destination Rucio Storage Element.
-          in: path
-          name: destination
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                active:
-                  description: If the distance is active.
-                  type: boolean
-                agis_distance:
-                  description: The distance between the Rses.
-                  type: integer
-                failed:
-                  description: If the distance failed.
-                  type: boolean
-                finished:
-                  description: If the distance is finished.
-                  type: boolean
-                geoip_distance:
-                  description: The geoip distance between the Rses.
-                  type: integer
-                ranking:
-                  description: The ranking of the distance.
-                  type: integer
-                submitted:
-                  description: If the distance is submitted.
-                  type: boolean
-                transfer_speed:
-                  description: The transferspeed between the Rses.
-                  type: integer
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                  - Created
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Update Rse Distance
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
               --url http://undefinedundefined/rses/{source}/distances/{destination} \
-              --header 'content-type: application/json' \
-              --data '{"active":true,"agis_distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -9506,22 +9975,10 @@ paths:
             "http://undefinedundefined/rses/{source}/distances/{destination}"
 
 
-            payload = {
-                "active": True,
-                "agis_distance": 0,
-                "failed": True,
-                "finished": True,
-                "geoip_distance": 0,
-                "ranking": 0,
-                "submitted": True,
-                "transfer_speed": 0
-            }
-
-            headers = {"content-type": "application/json"}
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
 
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
+            response = requests.request("DELETE", url, headers=headers)
 
 
             print(response.text)
@@ -9534,11 +9991,8 @@ paths:
             'http://undefinedundefined/rses/{source}/distances/{destination}';
 
 
-            let options = {
-              method: 'PUT',
-              headers: {'content-type': 'application/json'},
-              body: '{"active":true,"agis_distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
-            };
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -9615,6 +10069,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/rses/{source}/distances/{destination} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"active":true,"distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
         - lang: Python
@@ -9637,7 +10092,10 @@ paths:
                 "transfer_speed": 0
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -9656,8 +10114,132 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"active":true,"distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
+            };
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    put:
+      description: Update rse distance information.
+      parameters:
+        - description: The name of the source Rucio Storage Element.
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The name of the destination Rucio Storage Element.
+          in: path
+          name: destination
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                active:
+                  description: If the distance is active.
+                  type: boolean
+                agis_distance:
+                  description: The distance between the Rses.
+                  type: integer
+                failed:
+                  description: If the distance failed.
+                  type: boolean
+                finished:
+                  description: If the distance is finished.
+                  type: boolean
+                geoip_distance:
+                  description: The geoip distance between the Rses.
+                  type: integer
+                ranking:
+                  description: The ranking of the distance.
+                  type: integer
+                submitted:
+                  description: If the distance is submitted.
+                  type: boolean
+                transfer_speed:
+                  description: The transferspeed between the Rses.
+                  type: integer
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Created
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Update Rse Distance
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/rses/{source}/distances/{destination} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"active":true,"agis_distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url =
+            "http://undefinedundefined/rses/{source}/distances/{destination}"
+
+
+            payload = {
+                "active": True,
+                "agis_distance": 0,
+                "failed": True,
+                "finished": True,
+                "geoip_distance": 0,
+                "ranking": 0,
+                "submitted": True,
+                "transfer_speed": 0
+            }
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/rses/{source}/distances/{destination}';
+
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"active":true,"agis_distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
             };
 
 
@@ -9722,7 +10304,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rses/{source}/distances/{destination}
+              --url http://undefinedundefined/rses/{source}/distances/{destination} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -9732,7 +10315,10 @@ paths:
             "http://undefinedundefined/rses/{source}/distances/{destination}"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -9745,7 +10331,8 @@ paths:
             'http://undefinedundefined/rses/{source}/distances/{destination}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -9798,7 +10385,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}
+              --url http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -9808,7 +10396,10 @@ paths:
             "http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}"
 
 
-            response = requests.request("DELETE", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers)
 
 
             print(response.text)
@@ -9821,7 +10412,8 @@ paths:
             'http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}';
 
 
-            let options = {method: 'DELETE'};
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -9999,7 +10591,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request PUT \
-              --url http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}
+              --url http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -10009,7 +10602,10 @@ paths:
             "http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}"
 
 
-            response = requests.request("PUT", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("PUT", url, headers=headers)
 
 
             print(response.text)
@@ -10022,7 +10618,8 @@ paths:
             'http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}';
 
 
-            let options = {method: 'PUT'};
+            let options = {method: 'PUT', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -10179,23 +10776,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rses/{rse}/protocols
+              --url http://undefinedundefined/rses/{rse}/protocols \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rses/{rse}/protocols"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rses/{rse}/protocols';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -10264,7 +10868,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/rses/{rse}/lfns2pfns?lfn=SOME_STRING_VALUE&scheme=SOME_STRING_VALUE&domain=SOME_STRING_VALUE&operation=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/rses/{rse}/lfns2pfns?lfn=SOME_STRING_VALUE&scheme=SOME_STRING_VALUE&domain=SOME_STRING_VALUE&operation=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -10277,7 +10882,11 @@ paths:
             {"lfn":"SOME_STRING_VALUE","scheme":"SOME_STRING_VALUE","domain":"SOME_STRING_VALUE","operation":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -10290,7 +10899,8 @@ paths:
             'http://undefinedundefined/rses/{rse}/lfns2pfns?lfn=SOME_STRING_VALUE&scheme=SOME_STRING_VALUE&domain=SOME_STRING_VALUE&operation=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -10350,23 +10960,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rses/{rse}/accounts/usage
+              --url http://undefinedundefined/rses/{rse}/accounts/usage \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rses/{rse}/accounts/usage"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rses/{rse}/accounts/usage';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -10420,6 +11037,7 @@ paths:
           source: |-
             curl --request PUT \
               --url http://undefinedundefined/rses/{rse}/usage \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"files":0,"free":0,"source":"string","used":0}'
         - lang: Python
@@ -10437,7 +11055,10 @@ paths:
                 "used": 0
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("PUT", url, json=payload,
@@ -10453,7 +11074,7 @@ paths:
 
             let options = {
               method: 'PUT',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"files":0,"free":0,"source":"string","used":0}'
             };
 
@@ -10531,7 +11152,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/rses/{rse}/usage?per_account=SOME_BOOLEAN_VALUE&source=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/rses/{rse}/usage?per_account=SOME_BOOLEAN_VALUE&source=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -10544,7 +11166,11 @@ paths:
             {"per_account":"SOME_BOOLEAN_VALUE","source":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -10557,7 +11183,8 @@ paths:
             'http://undefinedundefined/rses/{rse}/usage?per_account=SOME_BOOLEAN_VALUE&source=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -10620,23 +11247,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rses/{rse}/usage/history
+              --url http://undefinedundefined/rses/{rse}/usage/history \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rses/{rse}/usage/history"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rses/{rse}/usage/history';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -10681,6 +11315,7 @@ paths:
           source: |-
             curl --request DELETE \
               --url http://undefinedundefined/rses/{rse}/limits \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"name":"string"}'
         - lang: Python
@@ -10693,7 +11328,10 @@ paths:
 
             payload = {"name": "string"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("DELETE", url, json=payload,
@@ -10709,7 +11347,7 @@ paths:
 
             let options = {
               method: 'DELETE',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"name":"string"}'
             };
 
@@ -10756,6 +11394,7 @@ paths:
           source: |-
             curl --request PUT \
               --url http://undefinedundefined/rses/{rse}/limits \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"name":"string","value":0}'
         - lang: Python
@@ -10771,7 +11410,10 @@ paths:
                 "value": 0
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("PUT", url, json=payload,
@@ -10787,7 +11429,7 @@ paths:
 
             let options = {
               method: 'PUT',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"name":"string","value":0}'
             };
 
@@ -10830,23 +11472,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rses/{rse}/limits
+              --url http://undefinedundefined/rses/{rse}/limits \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rses/{rse}/limits"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rses/{rse}/limits';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -10886,14 +11535,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/rses/{rse}/qos_policy/{policy}
+              --url http://undefinedundefined/rses/{rse}/qos_policy/{policy} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rses/{rse}/qos_policy/{policy}"
 
-            response = requests.request("DELETE", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -10905,7 +11557,8 @@ paths:
             'http://undefinedundefined/rses/{rse}/qos_policy/{policy}';
 
 
-            let options = {method: 'DELETE'};
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -10951,14 +11604,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request POST \
-              --url http://undefinedundefined/rses/{rse}/qos_policy/{policy}
+              --url http://undefinedundefined/rses/{rse}/qos_policy/{policy} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rses/{rse}/qos_policy/{policy}"
 
-            response = requests.request("POST", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("POST", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -10970,7 +11626,8 @@ paths:
             'http://undefinedundefined/rses/{rse}/qos_policy/{policy}';
 
 
-            let options = {method: 'POST'};
+            let options = {method: 'POST', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -11002,154 +11659,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/rses/{rse}
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/rses/{rse}"
-
-            response = requests.request("DELETE", url)
-
-            print(response.text)
-        - lang: Node
-          source: |-
-            const fetch = require('node-fetch');
-
-            let url = 'http://undefinedundefined/rses/{rse}';
-
-            let options = {method: 'DELETE'};
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Update RSE properties.
-      parameters:
-        - description: The name of the Rucio Storage Element name.
-          in: path
-          name: rse
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                availability_delete:
-                  description: The vailability of the RSE.
-                  type: boolean
-                availability_raed:
-                  description: The vailability of the RSE.
-                  type: boolean
-                availability_write:
-                  description: The vailability of the RSE.
-                  type: boolean
-                city:
-                  description: The city of the RSE.
-                  type: string
-                country_name:
-                  description: The country name of the RSE.
-                  type: string
-                deterministic:
-                  description: If the pfn is generated deterministicly.
-                  type: boolean
-                latitute:
-                  description: The latitute of the RSE.
-                  type: number
-                longitude:
-                  description: The longitude of the RSE.
-                  type: number
-                region_code:
-                  description: The region code of the RSE.
-                  type: string
-                rse_type:
-                  description: The rse type.
-                  enum:
-                    - DISK
-                    - TAPE
-                  type: string
-                staging_area:
-                  description: Staging area.
-                  type: string
-                time_zone:
-                  description: The time zone of the RSE.
-                  type: string
-                volatile:
-                  description: RSE cache.
-                  type: boolean
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                  - Created
-                type: string
-          description: OK
-        '400':
-          description: Cannot decode json parameter dictionary or invalid option provided
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE not found
-      summary: Update RSE
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
               --url http://undefinedundefined/rses/{rse} \
-              --header 'content-type: application/json' \
-              --data '{"availability_delete":true,"availability_raed":true,"availability_write":true,"city":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: >-
+          source: |-
             import requests
-
 
             url = "http://undefinedundefined/rses/{rse}"
 
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
-            payload = {
-                "availability_delete": True,
-                "availability_raed": True,
-                "availability_write": True,
-                "city": "string",
-                "country_name": "string",
-                "deterministic": True,
-                "latitute": 0,
-                "longitude": 0,
-                "region_code": "string",
-                "rse_type": "DISK",
-                "staging_area": "string",
-                "time_zone": "string",
-                "volatile": True
-            }
-
-            headers = {"content-type": "application/json"}
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
+            response = requests.request("DELETE", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rses/{rse}';
 
-            let options = {
-              method: 'PUT',
-              headers: {'content-type': 'application/json'},
-              body: '{"availability_delete":true,"availability_raed":true,"availability_write":true,"city":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
-            };
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -11241,6 +11774,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/rses/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"ASN":"string","ISP":"string","availability":0,"city":"string","continent":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
         - lang: Python
@@ -11268,7 +11802,10 @@ paths:
                 "volatile": True
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -11284,8 +11821,143 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"ASN":"string","ISP":"string","availability":0,"city":"string","continent":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
+            };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    put:
+      description: Update RSE properties.
+      parameters:
+        - description: The name of the Rucio Storage Element name.
+          in: path
+          name: rse
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                availability_delete:
+                  description: The vailability of the RSE.
+                  type: boolean
+                availability_raed:
+                  description: The vailability of the RSE.
+                  type: boolean
+                availability_write:
+                  description: The vailability of the RSE.
+                  type: boolean
+                city:
+                  description: The city of the RSE.
+                  type: string
+                country_name:
+                  description: The country name of the RSE.
+                  type: string
+                deterministic:
+                  description: If the pfn is generated deterministicly.
+                  type: boolean
+                latitute:
+                  description: The latitute of the RSE.
+                  type: number
+                longitude:
+                  description: The longitude of the RSE.
+                  type: number
+                region_code:
+                  description: The region code of the RSE.
+                  type: string
+                rse_type:
+                  description: The rse type.
+                  enum:
+                    - DISK
+                    - TAPE
+                  type: string
+                staging_area:
+                  description: Staging area.
+                  type: string
+                time_zone:
+                  description: The time zone of the RSE.
+                  type: string
+                volatile:
+                  description: RSE cache.
+                  type: boolean
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Created
+                type: string
+          description: OK
+        '400':
+          description: Cannot decode json parameter dictionary or invalid option provided
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE not found
+      summary: Update RSE
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/rses/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"availability_delete":true,"availability_raed":true,"availability_write":true,"city":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/rses/{rse}"
+
+
+            payload = {
+                "availability_delete": True,
+                "availability_raed": True,
+                "availability_write": True,
+                "city": "string",
+                "country_name": "string",
+                "deterministic": True,
+                "latitute": 0,
+                "longitude": 0,
+                "region_code": "string",
+                "rse_type": "DISK",
+                "staging_area": "string",
+                "time_zone": "string",
+                "volatile": True
+            }
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: |-
+            const fetch = require('node-fetch');
+
+            let url = 'http://undefinedundefined/rses/{rse}';
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"availability_delete":true,"availability_raed":true,"availability_write":true,"city":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
             };
 
             fetch(url, options)
@@ -11369,23 +12041,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rses/{rse}
+              --url http://undefinedundefined/rses/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rses/{rse}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rses/{rse}';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -11482,6 +12161,7 @@ paths:
           source: |-
             curl --request GET \
               --url http://undefinedundefined/rses/ \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"expression":"string"}'
         - lang: Python
@@ -11494,7 +12174,10 @@ paths:
 
             payload = {"expression": "string"}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("GET", url, json=payload,
@@ -11510,7 +12193,7 @@ paths:
 
             let options = {
               method: 'GET',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"expression":"string"}'
             };
 
@@ -11542,23 +12225,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/rules/{rule_id}
+              --url http://undefinedundefined/rules/{rule_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rules/{rule_id}"
 
-            response = requests.request("DELETE", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rules/{rule_id}';
 
-            let options = {method: 'DELETE'};
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -11645,6 +12335,7 @@ paths:
           source: |-
             curl --request PUT \
               --url http://undefinedundefined/rules/{rule_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"options":{"account":"string","activity":"string","boost_rule":{},"cancel_requests":true,"child_rule_id":"string","comment":"string","eol_at":"string","lifetime":0,"locked":true,"meta":{},"priority":0,"purge_replicas":true,"source_replica_expression":"string","state":"string"}}'
         - lang: Python
@@ -11671,7 +12362,10 @@ paths:
                     "source_replica_expression": "string",
                     "state": "string"
                 }}
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("PUT", url, json=payload,
@@ -11687,7 +12381,7 @@ paths:
 
             let options = {
               method: 'PUT',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"options":{"account":"string","activity":"string","boost_rule":{},"cancel_requests":true,"child_rule_id":"string","comment":"string","eol_at":"string","lifetime":0,"locked":true,"meta":{},"priority":0,"purge_replicas":true,"source_replica_expression":"string","state":"string"}}'
             };
 
@@ -11724,23 +12418,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rules/{rule_id}
+              --url http://undefinedundefined/rules/{rule_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rules/{rule_id}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rules/{rule_id}';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -11871,6 +12572,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/rules/ \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"account":"string","activity":"string","ask_approval":true,"asynchronous":true,"comments":"string","copies":0,"dids":["string"],"grouping":"string","ignore_availability":true,"lifetime":0,"locked":true,"meta":"string","notify":"string","priority":0,"purge_replicas":true,"rse_expression":"string","sourse_replica_expression":"string","split_container":true,"subscription_id":"string","weight":0}'
         - lang: Python
@@ -11904,7 +12606,10 @@ paths:
                 "weight": 0
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -11920,7 +12625,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"account":"string","activity":"string","ask_approval":true,"asynchronous":true,"comments":"string","copies":0,"dids":["string"],"grouping":"string","ignore_availability":true,"lifetime":0,"locked":true,"meta":"string","notify":"string","priority":0,"purge_replicas":true,"rse_expression":"string","sourse_replica_expression":"string","split_container":true,"subscription_id":"string","weight":0}'
             };
 
@@ -11949,23 +12654,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rules/
+              --url http://undefinedundefined/rules/ \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rules/"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rules/';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -12022,23 +12734,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rules/{rule_id}/locks
+              --url http://undefinedundefined/rules/{rule_id}/locks \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rules/{rule_id}/locks"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rules/{rule_id}/locks';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -12089,6 +12808,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/rules/{rule_id}/reduce \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"copies":0}'
         - lang: Python
@@ -12101,7 +12821,10 @@ paths:
 
             payload = {"copies": 0}
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -12117,7 +12840,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"copies":0}'
             };
 
@@ -12181,6 +12904,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/rules/{rule_id}/move \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"activity":"string","rse_expression":"string","rule_id":"string","source_replica_expression":"string"}'
         - lang: Python
@@ -12198,7 +12922,10 @@ paths:
                 "source_replica_expression": "string"
             }
 
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -12214,7 +12941,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"activity":"string","rse_expression":"string","rule_id":"string","source_replica_expression":"string"}'
             };
 
@@ -12271,23 +12998,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rules/{rule_id}/history
+              --url http://undefinedundefined/rules/{rule_id}/history \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rules/{rule_id}/history"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rules/{rule_id}/history';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -12354,23 +13088,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rules/{scope_name}/history
+              --url http://undefinedundefined/rules/{scope_name}/history \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rules/{scope_name}/history"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rules/{scope_name}/history';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -12443,23 +13184,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/rules/{rule_id}/analysis
+              --url http://undefinedundefined/rules/{rule_id}/analysis \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/rules/{rule_id}/analysis"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rules/{rule_id}/analysis';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -12505,23 +13253,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request POST \
-              --url http://undefinedundefined/scopes/{account}/{scope}
+              --url http://undefinedundefined/scopes/{account}/{scope} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/scopes/{account}/{scope}"
 
-            response = requests.request("POST", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("POST", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/scopes/{account}/{scope}';
 
-            let options = {method: 'POST'};
+
+            let options = {method: 'POST', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -12562,23 +13317,30 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/scopes/{account}/scopes
+              --url http://undefinedundefined/scopes/{account}/scopes \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/scopes/{account}/scopes"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/scopes/{account}/scopes';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -12662,14 +13424,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/subscriptions/Id/{subscription_id}
+              --url http://undefinedundefined/subscriptions/Id/{subscription_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/subscriptions/Id/{subscription_id}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -12681,7 +13446,8 @@ paths:
             'http://undefinedundefined/subscriptions/Id/{subscription_id}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -12749,7 +13515,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/subscriptions/{account}/{name}/Rules/States
+              --url http://undefinedundefined/subscriptions/{account}/{name}/Rules/States \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -12759,7 +13526,10 @@ paths:
             "http://undefinedundefined/subscriptions/{account}/{name}/Rules/States"
 
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
 
 
             print(response.text)
@@ -12772,7 +13542,8 @@ paths:
             'http://undefinedundefined/subscriptions/{account}/{name}/Rules/States';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -12825,7 +13596,8 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url 'http://undefinedundefined/subscriptions/{account}/{name}/Rules?state=SOME_STRING_VALUE'
+              --url 'http://undefinedundefined/subscriptions/{account}/{name}/Rules?state=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
             import requests
@@ -12838,7 +13610,11 @@ paths:
             querystring = {"state":"SOME_STRING_VALUE"}
 
 
-            response = requests.request("GET", url, params=querystring)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers,
+            params=querystring)
 
 
             print(response.text)
@@ -12851,7 +13627,8 @@ paths:
             'http://undefinedundefined/subscriptions/{account}/{name}/Rules?state=SOME_STRING_VALUE';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -12945,6 +13722,7 @@ paths:
           source: |-
             curl --request POST \
               --url http://undefinedundefined/subscriptions/{account}/{name} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"options":{"comments":"string","dry_run":false,"filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
         - lang: Python
@@ -12964,7 +13742,10 @@ paths:
                     "replication_rules": "string",
                     "retroactive": True
                 }}
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("POST", url, json=payload,
@@ -12983,7 +13764,7 @@ paths:
 
             let options = {
               method: 'POST',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"options":{"comments":"string","dry_run":false,"filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
             };
 
@@ -13059,6 +13840,7 @@ paths:
           source: |-
             curl --request PUT \
               --url http://undefinedundefined/subscriptions/{account}/{name} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
               --header 'content-type: application/json' \
               --data '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
         - lang: Python
@@ -13077,7 +13859,10 @@ paths:
                     "replication_rules": "string",
                     "retroactive": True
                 }}
-            headers = {"content-type": "application/json"}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
 
 
             response = requests.request("PUT", url, json=payload,
@@ -13096,7 +13881,7 @@ paths:
 
             let options = {
               method: 'PUT',
-              headers: {'content-type': 'application/json'},
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
             };
 
@@ -13192,14 +13977,17 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/subscriptions/{account}/{name}
+              --url http://undefinedundefined/subscriptions/{account}/{name} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/subscriptions/{account}/{name}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
@@ -13211,7 +13999,8 @@ paths:
             'http://undefinedundefined/subscriptions/{account}/{name}';
 
 
-            let options = {method: 'GET'};
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
@@ -13299,26 +14088,35 @@ paths:
         - lang: Shell
           source: |-
             curl --request GET \
-              --url http://undefinedundefined/subscriptions/Name/{name}
+              --url http://undefinedundefined/subscriptions/Name/{name} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
             url = "http://undefinedundefined/subscriptions/Name/{name}"
 
-            response = requests.request("GET", url)
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/subscriptions/Name/{name}';
 
-            let options = {method: 'GET'};
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+security:
+  - AuthToken: []
 
