@@ -14,6 +14,50 @@ Every change or idea is welcome! For information on how to contribute to the
 Rucio documentation, please refer and follow our [CONTRIBUTING](CONTRIBUTING.md)
 guidelines.
 
+## Installation
+
+The following packages need to be installed to build the documentation:
+
+```text
+docker
+python3
+mdl           # markdownlint, see https://github.com/markdownlint/markdownlint
+yarn
+npx           # part of npm
+```
+
+The python dependencies need to be installed. They are defined in
+`requirements.txt`. Install them via:
+
+```bash
+python3 -m pip install -r tools/requirements.txt
+```
+
+To run the server locally, the dependencies of the server need to be installed:
+
+```bash
+(cd website && yarn install)
+```
+
+## Usage
+
+To build the assets, run the `build_documentation.sh` script in `tools`. The
+assets need to be build in order for the server to run!
+
+```bash
+tools/build_documentation.sh
+```
+
+The script might generate multiple error messages. These are forwarded from the
+build of the different components and can be ignored, as long as the process
+finishes with the exit code 0.
+
+To start the development version of the server, run:
+
+```bash
+(cd website && yarn start)
+```
+
 ## Documentation Structure
 
 There are two types of documentation hosted for Rucio. Should you wish to

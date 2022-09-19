@@ -3,28 +3,6 @@
 This folder contains tools to maintain the health and integrity of the
 Documentation for Rucio project. It also contains code to auto-generate content.
 
-## Requirements
-
-The tools need some external packages to run. The following packages need to be
-installed:
-
-```text
-docker
-python3
-mdl           # markdownlint, see https://github.com/markdownlint/markdownlint
-yarn
-npx           # part of npm
-```
-
-Also, the python dependencies should be installed. They are defined in
-`requirements.txt`. You can install them via:
-
-```bash
-$ pip install -r requirements.txt
-Defaulting to user installation because normal site-packages is not writeable
-...
-```
-
 ## Build Documentation
 
 The `build-documentation.sh` script builds all necessary missing content files
