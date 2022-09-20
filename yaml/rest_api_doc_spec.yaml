@@ -952,71 +952,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    get:
-      description: Lists all identities for an account.
-      parameters:
-        - description: The account identifier.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/x-json-stream:
-              schema:
-                items:
-                  items:
-                    type: string
-                  maxItems: 2
-                  minItems: 2
-                  type: array
-                type: array
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Account not found
-        '406':
-          description: Not acceptable
-      summary: List identities
-      tags:
-        - Account
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/identities \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/accounts/{account}/identities"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/accounts/{account}/identities';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     delete:
       description: Delete an account identity.
       parameters:
@@ -1095,6 +1030,71 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"authtype":"string","identity":"string"}'
             };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    get:
+      description: Lists all identities for an account.
+      parameters:
+        - description: The account identifier.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/x-json-stream:
+              schema:
+                items:
+                  items:
+                    type: string
+                  maxItems: 2
+                  minItems: 2
+                  type: array
+                type: array
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Account not found
+        '406':
+          description: Not acceptable
+      summary: List identities
+      tags:
+        - Account
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/accounts/{account}/identities \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/accounts/{account}/identities"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/accounts/{account}/identities';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -1424,6 +1424,81 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /accounts/{account}:
+    put:
+      description: Update a parameter for an account.
+      parameters:
+        - description: The account identifier.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: >-
+                Json object with key-value pairs corresponding to the new values
+                of the parameters.
+              type: object
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Unknown status
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No account found.
+      summary: Update
+      tags:
+        - Account
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/accounts/{account} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/accounts/{account}"
+
+
+            payload = {}
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: |-
+            const fetch = require('node-fetch');
+
+            let url = 'http://undefinedundefined/accounts/{account}';
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{}'
+            };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     post:
       description: Create an account.
       parameters:
@@ -1519,6 +1594,59 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    delete:
+      description: Delete an account.
+      parameters:
+        - description: The account identifier.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '201':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Account not found
+      summary: Delete
+      tags:
+        - Account
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/accounts/{account} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/accounts/{account}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/accounts/{account}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Lists all parameters for an account.
       parameters:
@@ -1592,134 +1720,6 @@ paths:
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    delete:
-      description: Delete an account.
-      parameters:
-        - description: The account identifier.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '201':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Account not found
-      summary: Delete
-      tags:
-        - Account
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/accounts/{account} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/accounts/{account}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("DELETE", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/accounts/{account}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Update a parameter for an account.
-      parameters:
-        - description: The account identifier.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: >-
-                Json object with key-value pairs corresponding to the new values
-                of the parameters.
-              type: object
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Unknown status
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No account found.
-      summary: Update
-      tags:
-        - Account
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
-              --url http://undefinedundefined/accounts/{account} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/accounts/{account}"
-
-
-            payload = {}
-
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: |-
-            const fetch = require('node-fetch');
-
-            let url = 'http://undefinedundefined/accounts/{account}';
-
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{}'
-            };
 
             fetch(url, options)
               .then(res => res.json())
@@ -1867,6 +1867,64 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /config/{section}/{option}:
+    delete:
+      description: Delete an option of a section.
+      parameters:
+        - description: The section.
+          in: path
+          name: section
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The option of the section.
+          in: path
+          name: option
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+      summary: Delete option
+      tags:
+        - Config
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/config/{section}/{option} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/config/{section}/{option}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/config/{section}/{option}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Returns the value of an option
       parameters:
@@ -1927,64 +1985,6 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    delete:
-      description: Delete an option of a section.
-      parameters:
-        - description: The section.
-          in: path
-          name: section
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The option of the section.
-          in: path
-          name: option
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-      summary: Delete option
-      tags:
-        - Config
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/config/{section}/{option} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/config/{section}/{option}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("DELETE", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/config/{section}/{option}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -3280,94 +3280,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    get:
-      description: Returns the contents of a data identifier.
-      parameters:
-        - description: The scope and the name of the did.
-          in: path
-          name: scope_name
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/x-json-stream:
-              schema:
-                description: The contents of a did. Items are line seperated.
-                items:
-                  properties:
-                    adler32:
-                      description: The adler32 checksum of the did.
-                      type: string
-                    bytes:
-                      description: The size of the did.
-                      type: number
-                    md5:
-                      description: The md5 checksum of the did.
-                      type: string
-                    name:
-                      description: The name of the did.
-                      type: string
-                    scope:
-                      description: The scope of the did.
-                      type: string
-                    type:
-                      description: The type of the did.
-                      type: string
-                  required:
-                    - scope
-                    - name
-                    - type
-                    - bytes
-                    - adler32
-                    - md5
-                  type: object
-                type: array
-          description: Did found
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Scope not found
-        '406':
-          description: Not acceptable
-      summary: Get did
-      tags:
-        - Data Identifiers
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/dids \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/dids/{scope_name}/dids"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/dids/{scope_name}/dids';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     delete:
       description: Detach data identifiers from data identifiers.
       parameters:
@@ -3452,6 +3364,94 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"dids":[{"name":"string","scope":"string"}]}'
             };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    get:
+      description: Returns the contents of a data identifier.
+      parameters:
+        - description: The scope and the name of the did.
+          in: path
+          name: scope_name
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/x-json-stream:
+              schema:
+                description: The contents of a did. Items are line seperated.
+                items:
+                  properties:
+                    adler32:
+                      description: The adler32 checksum of the did.
+                      type: string
+                    bytes:
+                      description: The size of the did.
+                      type: number
+                    md5:
+                      description: The md5 checksum of the did.
+                      type: string
+                    name:
+                      description: The name of the did.
+                      type: string
+                    scope:
+                      description: The scope of the did.
+                      type: string
+                    type:
+                      description: The type of the did.
+                      type: string
+                  required:
+                    - scope
+                    - name
+                    - type
+                    - bytes
+                    - adler32
+                    - md5
+                  type: object
+                type: array
+          description: Did found
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Scope not found
+        '406':
+          description: Not acceptable
+      summary: Get did
+      tags:
+        - Data Identifiers
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/dids/{scope_name}/dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/dids/{scope_name}/dids"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/dids/{scope_name}/dids';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -3553,6 +3553,79 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    delete:
+      description: Deletes the specified metadata from the did.
+      parameters:
+        - description: The scope and the name of the did.
+          in: path
+          name: scope_name
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The key to delete.
+          in: query
+          name: key
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: scope_name could not be parsed.
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Did or key not found
+        '406':
+          description: Not acceptable
+        '409':
+          description: Feature is not in current database.
+      summary: Delete metadata
+      tags:
+        - Data Identifiers
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url 'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/dids/{scope_name}/meta"
+
+
+            querystring = {"key":"SOME_STRING_VALUE"}
+
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers,
+            params=querystring)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Get the metadata of a did.
       parameters:
@@ -3621,79 +3694,6 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    delete:
-      description: Deletes the specified metadata from the did.
-      parameters:
-        - description: The scope and the name of the did.
-          in: path
-          name: scope_name
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The key to delete.
-          in: query
-          name: key
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: scope_name could not be parsed.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Did or key not found
-        '406':
-          description: Not acceptable
-        '409':
-          description: Feature is not in current database.
-      summary: Delete metadata
-      tags:
-        - Data Identifiers
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url 'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE' \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/dids/{scope_name}/meta"
-
-
-            querystring = {"key":"SOME_STRING_VALUE"}
-
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-
-            response = requests.request("DELETE", url, headers=headers,
-            params=querystring)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -4206,75 +4206,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    get:
-      description: Get all followers for a specific did.
-      parameters:
-        - description: The scope and the name of the did.
-          in: path
-          name: scope_name
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                description: A list of all followers of a did.
-                items:
-                  description: A follower of a did.
-                  properties:
-                    user:
-                      description: The user which follows the did.
-                      type: string
-                  type: object
-                type: array
-          description: OK
-        '400':
-          description: Value error
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Did not found
-        '406':
-          description: Not acceptable
-      summary: Get followers
-      tags:
-        - Data Identifiers
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/follow \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/dids/{scope_name}/follow"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/dids/{scope_name}/follow';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     delete:
       description: Mark the input DID as not followed
       parameters:
@@ -4348,6 +4279,75 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"account":"string"}'
             };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    get:
+      description: Get all followers for a specific did.
+      parameters:
+        - description: The scope and the name of the did.
+          in: path
+          name: scope_name
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: A list of all followers of a did.
+                items:
+                  description: A follower of a did.
+                  properties:
+                    user:
+                      description: The user which follows the did.
+                      type: string
+                  type: object
+                type: array
+          description: OK
+        '400':
+          description: Value error
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Did not found
+        '406':
+          description: Not acceptable
+      summary: Get followers
+      tags:
+        - Data Identifiers
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/dids/{scope_name}/follow \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/dids/{scope_name}/follow"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/dids/{scope_name}/follow';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -6003,6 +6003,95 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /lifetime_exceptions/{exception_id}:
+    put:
+      description: Approve/Reject a Lifetime Exception.
+      parameters:
+        - description: The id of the Lifetime Exception.
+          in: path
+          name: exception_id
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                state:
+                  description: The new state for the Lifetime Exception.
+                  enum:
+                    - A
+                    - R
+                  type: string
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Created
+                type: string
+          description: OK
+        '400':
+          description: Cannot decode json parameter list.
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Lifetime Exception not found
+      summary: Approve/Reject exception
+      tags:
+        - Lifetime Exceptions
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/lifetime_exceptions/{exception_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"state":"A"}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/lifetime_exceptions/{exception_id}"
+
+
+            payload = {"state": "A"}
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/lifetime_exceptions/{exception_id}';
+
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"state":"A"}'
+            };
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Get a single Lifetime Exception.
       parameters:
@@ -6104,95 +6193,6 @@ paths:
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Approve/Reject a Lifetime Exception.
-      parameters:
-        - description: The id of the Lifetime Exception.
-          in: path
-          name: exception_id
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                state:
-                  description: The new state for the Lifetime Exception.
-                  enum:
-                    - A
-                    - R
-                  type: string
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                  - Created
-                type: string
-          description: OK
-        '400':
-          description: Cannot decode json parameter list.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Lifetime Exception not found
-      summary: Approve/Reject exception
-      tags:
-        - Lifetime Exceptions
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
-              --url http://undefinedundefined/lifetime_exceptions/{exception_id} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"state":"A"}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/lifetime_exceptions/{exception_id}"
-
-
-            payload = {"state": "A"}
-
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/lifetime_exceptions/{exception_id}';
-
-
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"state":"A"}'
-            };
 
 
             fetch(url, options)
@@ -9925,296 +9925,6 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /rses/{source}/distances/{destination}:
-    post:
-      description: Post a rse distance.
-      parameters:
-        - description: The name of the source Rucio Storage Element.
-          in: path
-          name: source
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The name of the destination Rucio Storage Element.
-          in: path
-          name: destination
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                active:
-                  description: If the distance is active.
-                  type: boolean
-                distance:
-                  description: The distance between the Rses.
-                  type: integer
-                failed:
-                  description: If the distance failed.
-                  type: boolean
-                finished:
-                  description: If the distance is finished.
-                  type: boolean
-                geoip_distance:
-                  description: The geoip distance between the Rses.
-                  type: integer
-                ranking:
-                  description: The ranking of the distance.
-                  type: integer
-                submitted:
-                  description: If the distance is submitted.
-                  type: boolean
-                transfer_speed:
-                  description: The transferspeed between the Rses.
-                  type: integer
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                  - Created
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Create Rse Distance
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request POST \
-              --url http://undefinedundefined/rses/{source}/distances/{destination} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"active":true,"distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url =
-            "http://undefinedundefined/rses/{source}/distances/{destination}"
-
-
-            payload = {
-                "active": True,
-                "distance": 0,
-                "failed": True,
-                "finished": True,
-                "geoip_distance": 0,
-                "ranking": 0,
-                "submitted": True,
-                "transfer_speed": 0
-            }
-
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("POST", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/rses/{source}/distances/{destination}';
-
-
-            let options = {
-              method: 'POST',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"active":true,"distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
-            };
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    get:
-      description: Returns the distances between a source and destination rse.
-      parameters:
-        - description: The name of the source Rucio Storage Element.
-          in: path
-          name: source
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The name of the destination Rucio Storage Element.
-          in: path
-          name: destination
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                description: The distances between the Rses.
-                items:
-                  description: One distance betweeen source and destination.
-                  properties:
-                    agis_distance:
-                      description: The agis distance.
-                      type: integer
-                    dest_rse_id:
-                      description: The destination rse id.
-                      type: string
-                    geoip_distance:
-                      description: The geo ip distance.
-                      type: integer
-                    ranking:
-                      description: The ranking.
-                      type: integer
-                    src_rse_id:
-                      description: The source rse id.
-                      type: string
-                  type: object
-                type: array
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Get Rse Distances
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/rses/{source}/distances/{destination} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url =
-            "http://undefinedundefined/rses/{source}/distances/{destination}"
-
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-
-            response = requests.request("GET", url, headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/rses/{source}/distances/{destination}';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    delete:
-      description: Delete distance information between source RSE and destination RSE.
-      parameters:
-        - description: The name of the source Rucio Storage Element.
-          in: path
-          name: source
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The name of the destination Rucio Storage Element.
-          in: path
-          name: destination
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                enum:
-                  - Deleted
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Delete Rse Distance
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/rses/{source}/distances/{destination} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url =
-            "http://undefinedundefined/rses/{source}/distances/{destination}"
-
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-
-            response = requests.request("DELETE", url, headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/rses/{source}/distances/{destination}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     put:
       description: Update rse distance information.
       parameters:
@@ -10339,53 +10049,170 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-  /rses/{rse}/protocols/{scheme}/{hostname}/{port}:
-    delete:
-      description: Delete all protocol attibutes.
+    post:
+      description: Post a rse distance.
       parameters:
-        - description: The name of the Rucio Storage Element name.
+        - description: The name of the source Rucio Storage Element.
           in: path
-          name: rse
+          name: source
           required: true
           schema:
             type: string
           style: simple
-        - description: The protocol identifier.
+        - description: The name of the destination Rucio Storage Element.
           in: path
-          name: scheme
+          name: destination
           required: true
           schema:
             type: string
           style: simple
-        - description: The hostname of the protocol.
-          in: path
-          name: hostname
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The port of the protocol.
-          in: path
-          name: port
-          required: true
-          schema:
-            type: integer
-          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                active:
+                  description: If the distance is active.
+                  type: boolean
+                distance:
+                  description: The distance between the Rses.
+                  type: integer
+                failed:
+                  description: If the distance failed.
+                  type: boolean
+                finished:
+                  description: If the distance is finished.
+                  type: boolean
+                geoip_distance:
+                  description: The geoip distance between the Rses.
+                  type: integer
+                ranking:
+                  description: The ranking of the distance.
+                  type: integer
+                submitted:
+                  description: If the distance is submitted.
+                  type: boolean
+                transfer_speed:
+                  description: The transferspeed between the Rses.
+                  type: integer
+              type: object
       responses:
-        '200':
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Created
+                type: string
           description: OK
         '401':
           description: Invalid Auth Token
         '404':
-          description: Rse not found or protocol not supported
-      summary: Delete Protocol Attributes
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Create Rse Distance
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request POST \
+              --url http://undefinedundefined/rses/{source}/distances/{destination} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"active":true,"distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url =
+            "http://undefinedundefined/rses/{source}/distances/{destination}"
+
+
+            payload = {
+                "active": True,
+                "distance": 0,
+                "failed": True,
+                "finished": True,
+                "geoip_distance": 0,
+                "ranking": 0,
+                "submitted": True,
+                "transfer_speed": 0
+            }
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("POST", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/rses/{source}/distances/{destination}';
+
+
+            let options = {
+              method: 'POST',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"active":true,"distance":0,"failed":true,"finished":true,"geoip_distance":0,"ranking":0,"submitted":true,"transfer_speed":0}'
+            };
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      description: Delete distance information between source RSE and destination RSE.
+      parameters:
+        - description: The name of the source Rucio Storage Element.
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The name of the destination Rucio Storage Element.
+          in: path
+          name: destination
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Deleted
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Delete Rse Distance
       tags:
         - Rucio Storage Elements
       x-codeSamples:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port} \
+              --url http://undefinedundefined/rses/{source}/distances/{destination} \
               --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
@@ -10393,7 +10220,7 @@ paths:
 
 
             url =
-            "http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}"
+            "http://undefinedundefined/rses/{source}/distances/{destination}"
 
 
             headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
@@ -10409,7 +10236,7 @@ paths:
 
 
             let url =
-            'http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}';
+            'http://undefinedundefined/rses/{source}/distances/{destination}';
 
 
             let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
@@ -10420,6 +10247,99 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    get:
+      description: Returns the distances between a source and destination rse.
+      parameters:
+        - description: The name of the source Rucio Storage Element.
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The name of the destination Rucio Storage Element.
+          in: path
+          name: destination
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: The distances between the Rses.
+                items:
+                  description: One distance betweeen source and destination.
+                  properties:
+                    agis_distance:
+                      description: The agis distance.
+                      type: integer
+                    dest_rse_id:
+                      description: The destination rse id.
+                      type: string
+                    geoip_distance:
+                      description: The geo ip distance.
+                      type: integer
+                    ranking:
+                      description: The ranking.
+                      type: integer
+                    src_rse_id:
+                      description: The source rse id.
+                      type: string
+                  type: object
+                type: array
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Get Rse Distances
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/rses/{source}/distances/{destination} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url =
+            "http://undefinedundefined/rses/{source}/distances/{destination}"
+
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("GET", url, headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/rses/{source}/distances/{destination}';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+  /rses/{rse}/protocols/{scheme}/{hostname}/{port}:
     put:
       description: >-
         Updates attributes of an existing protocol entry. Because protocol
@@ -10619,6 +10539,86 @@ paths:
 
 
             let options = {method: 'PUT', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      description: Delete all protocol attibutes.
+      parameters:
+        - description: The name of the Rucio Storage Element name.
+          in: path
+          name: rse
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The protocol identifier.
+          in: path
+          name: scheme
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The hostname of the protocol.
+          in: path
+          name: hostname
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The port of the protocol.
+          in: path
+          name: port
+          required: true
+          schema:
+            type: integer
+          style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found or protocol not supported
+      summary: Delete Protocol Attributes
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url =
+            "http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}"
+
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/rses/{rse}/protocols/{scheme}/{hostname}/{port}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -10990,6 +10990,98 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /rses/{rse}/usage:
+    put:
+      description: Update the RSE Update information.
+      parameters:
+        - description: The name of the Rucio Storage Element name.
+          in: path
+          name: rse
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                files:
+                  description: The number of files.
+                  type: integer
+                free:
+                  description: The number of free bytes.
+                  type: integer
+                source:
+                  description: The information source, e.g. srm.
+                  type: string
+                used:
+                  description: The number of used bytes.
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Can not decode json parameter list.
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Update Rse Usage
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/rses/{rse}/usage \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"files":0,"free":0,"source":"string","used":0}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/rses/{rse}/usage"
+
+
+            payload = {
+                "files": 0,
+                "free": 0,
+                "source": "string",
+                "used": 0
+            }
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: |-
+            const fetch = require('node-fetch');
+
+            let url = 'http://undefinedundefined/rses/{rse}/usage';
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"files":0,"free":0,"source":"string","used":0}'
+            };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Get rse usage information.
       parameters:
@@ -11099,98 +11191,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    put:
-      description: Update the RSE Update information.
-      parameters:
-        - description: The name of the Rucio Storage Element name.
-          in: path
-          name: rse
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                files:
-                  description: The number of files.
-                  type: integer
-                free:
-                  description: The number of free bytes.
-                  type: integer
-                source:
-                  description: The information source, e.g. srm.
-                  type: string
-                used:
-                  description: The number of used bytes.
-                  type: integer
-              type: object
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Can not decode json parameter list.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Update Rse Usage
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
-              --url http://undefinedundefined/rses/{rse}/usage \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"files":0,"free":0,"source":"string","used":0}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/rses/{rse}/usage"
-
-
-            payload = {
-                "files": 0,
-                "free": 0,
-                "source": "string",
-                "used": 0
-            }
-
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: |-
-            const fetch = require('node-fetch');
-
-            let url = 'http://undefinedundefined/rses/{rse}/usage';
-
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"files":0,"free":0,"source":"string","used":0}'
-            };
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
   /rses/{rse}/usage/history:
     get:
       description: Get the rse usage history
@@ -11277,8 +11277,8 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /rses/{rse}/limits:
-    get:
-      description: Get the rse limits.
+    put:
+      description: Update an rse limit.
       parameters:
         - description: The name of the Rucio Storage Element name.
           in: path
@@ -11287,17 +11287,20 @@ paths:
           schema:
             type: string
           style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: The name of the limit.
+                  type: string
+                value:
+                  description: The value of the limit.
+                  type: integer
+              type: object
       responses:
         '200':
-          content:
-            application/json:
-              schema:
-                additionalProperties:
-                  description: An item with the name as key and the value as value.
-                  type: integer
-                  x-additionalPropertiesName: limit name
-                description: The limits.
-                type: object
           description: OK
         '401':
           description: Invalid Auth Token
@@ -11305,37 +11308,52 @@ paths:
           description: Rse not found
         '406':
           description: Not acceptable
-      summary: Get Rse Limits
+      summary: Update Rse Limit
       tags:
         - Rucio Storage Elements
       x-codeSamples:
         - lang: Shell
           source: |-
-            curl --request GET \
+            curl --request PUT \
               --url http://undefinedundefined/rses/{rse}/limits \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"name":"string","value":0}'
         - lang: Python
-          source: |-
+          source: >-
             import requests
+
 
             url = "http://undefinedundefined/rses/{rse}/limits"
 
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
-            response = requests.request("GET", url, headers=headers)
+            payload = {
+                "name": "string",
+                "value": 0
+            }
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
 
             print(response.text)
         - lang: Node
-          source: >-
+          source: |-
             const fetch = require('node-fetch');
-
 
             let url = 'http://undefinedundefined/rses/{rse}/limits';
 
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"name":"string","value":0}'
+            };
 
             fetch(url, options)
               .then(res => res.json())
@@ -11419,8 +11437,8 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    put:
-      description: Update an rse limit.
+    get:
+      description: Get the rse limits.
       parameters:
         - description: The name of the Rucio Storage Element name.
           in: path
@@ -11429,20 +11447,17 @@ paths:
           schema:
             type: string
           style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                name:
-                  description: The name of the limit.
-                  type: string
-                value:
-                  description: The value of the limit.
-                  type: integer
-              type: object
       responses:
         '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  description: An item with the name as key and the value as value.
+                  type: integer
+                  x-additionalPropertiesName: limit name
+                description: The limits.
+                type: object
           description: OK
         '401':
           description: Invalid Auth Token
@@ -11450,52 +11465,37 @@ paths:
           description: Rse not found
         '406':
           description: Not acceptable
-      summary: Update Rse Limit
+      summary: Get Rse Limits
       tags:
         - Rucio Storage Elements
       x-codeSamples:
         - lang: Shell
           source: |-
-            curl --request PUT \
+            curl --request GET \
               --url http://undefinedundefined/rses/{rse}/limits \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"name":"string","value":0}'
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
-          source: >-
+          source: |-
             import requests
-
 
             url = "http://undefinedundefined/rses/{rse}/limits"
 
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
-            payload = {
-                "name": "string",
-                "value": 0
-            }
-
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
+            response = requests.request("GET", url, headers=headers)
 
             print(response.text)
         - lang: Node
-          source: |-
+          source: >-
             const fetch = require('node-fetch');
+
 
             let url = 'http://undefinedundefined/rses/{rse}/limits';
 
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"name":"string","value":0}'
-            };
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -11635,6 +11635,141 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /rses/{rse}:
+    put:
+      description: Update RSE properties.
+      parameters:
+        - description: The name of the Rucio Storage Element name.
+          in: path
+          name: rse
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                availability_delete:
+                  description: The vailability of the RSE.
+                  type: boolean
+                availability_raed:
+                  description: The vailability of the RSE.
+                  type: boolean
+                availability_write:
+                  description: The vailability of the RSE.
+                  type: boolean
+                city:
+                  description: The city of the RSE.
+                  type: string
+                country_name:
+                  description: The country name of the RSE.
+                  type: string
+                deterministic:
+                  description: If the pfn is generated deterministicly.
+                  type: boolean
+                latitute:
+                  description: The latitute of the RSE.
+                  type: number
+                longitude:
+                  description: The longitude of the RSE.
+                  type: number
+                region_code:
+                  description: The region code of the RSE.
+                  type: string
+                rse_type:
+                  description: The rse type.
+                  enum:
+                    - DISK
+                    - TAPE
+                  type: string
+                staging_area:
+                  description: Staging area.
+                  type: string
+                time_zone:
+                  description: The time zone of the RSE.
+                  type: string
+                volatile:
+                  description: RSE cache.
+                  type: boolean
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Created
+                type: string
+          description: OK
+        '400':
+          description: Cannot decode json parameter dictionary or invalid option provided
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE not found
+      summary: Update RSE
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/rses/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"availability_delete":true,"availability_raed":true,"availability_write":true,"city":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/rses/{rse}"
+
+
+            payload = {
+                "availability_delete": True,
+                "availability_raed": True,
+                "availability_write": True,
+                "city": "string",
+                "country_name": "string",
+                "deterministic": True,
+                "latitute": 0,
+                "longitude": 0,
+                "region_code": "string",
+                "rse_type": "DISK",
+                "staging_area": "string",
+                "time_zone": "string",
+                "volatile": True
+            }
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: |-
+            const fetch = require('node-fetch');
+
+            let url = 'http://undefinedundefined/rses/{rse}';
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"availability_delete":true,"availability_raed":true,"availability_write":true,"city":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
+            };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     post:
       description: Creates a RSE with all the metadata.
       parameters:
@@ -11776,6 +11911,59 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    delete:
+      description: Disable a specific RSE.
+      parameters:
+        - description: The name of the Rucio Storage Element name.
+          in: path
+          name: rse
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE not found
+      summary: Disable RSE
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/rses/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/rses/{rse}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/rses/{rse}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Get details about a specific RSE.
       parameters:
@@ -11877,194 +12065,6 @@ paths:
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    delete:
-      description: Disable a specific RSE.
-      parameters:
-        - description: The name of the Rucio Storage Element name.
-          in: path
-          name: rse
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE not found
-      summary: Disable RSE
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/rses/{rse} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/rses/{rse}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("DELETE", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/rses/{rse}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Update RSE properties.
-      parameters:
-        - description: The name of the Rucio Storage Element name.
-          in: path
-          name: rse
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                availability_delete:
-                  description: The vailability of the RSE.
-                  type: boolean
-                availability_raed:
-                  description: The vailability of the RSE.
-                  type: boolean
-                availability_write:
-                  description: The vailability of the RSE.
-                  type: boolean
-                city:
-                  description: The city of the RSE.
-                  type: string
-                country_name:
-                  description: The country name of the RSE.
-                  type: string
-                deterministic:
-                  description: If the pfn is generated deterministicly.
-                  type: boolean
-                latitute:
-                  description: The latitute of the RSE.
-                  type: number
-                longitude:
-                  description: The longitude of the RSE.
-                  type: number
-                region_code:
-                  description: The region code of the RSE.
-                  type: string
-                rse_type:
-                  description: The rse type.
-                  enum:
-                    - DISK
-                    - TAPE
-                  type: string
-                staging_area:
-                  description: Staging area.
-                  type: string
-                time_zone:
-                  description: The time zone of the RSE.
-                  type: string
-                volatile:
-                  description: RSE cache.
-                  type: boolean
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                  - Created
-                type: string
-          description: OK
-        '400':
-          description: Cannot decode json parameter dictionary or invalid option provided
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE not found
-      summary: Update RSE
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
-              --url http://undefinedundefined/rses/{rse} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"availability_delete":true,"availability_raed":true,"availability_write":true,"city":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/rses/{rse}"
-
-
-            payload = {
-                "availability_delete": True,
-                "availability_raed": True,
-                "availability_write": True,
-                "city": "string",
-                "country_name": "string",
-                "deterministic": True,
-                "latitute": 0,
-                "longitude": 0,
-                "region_code": "string",
-                "rse_type": "DISK",
-                "staging_area": "string",
-                "time_zone": "string",
-                "volatile": True
-            }
-
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: |-
-            const fetch = require('node-fetch');
-
-            let url = 'http://undefinedundefined/rses/{rse}';
-
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"availability_delete":true,"availability_raed":true,"availability_write":true,"city":"string","country_name":"string","deterministic":true,"latitute":0,"longitude":0,"region_code":"string","rse_type":"DISK","staging_area":"string","time_zone":"string","volatile":true}'
-            };
 
             fetch(url, options)
               .then(res => res.json())
@@ -12202,116 +12202,6 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /rules/{rule_id}:
-    get:
-      parameters:
-        - description: The id of the replication rule.
-          in: path
-          name: rule_id
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No rule found for the given id
-        '406':
-          description: Not Acceptable
-      summary: Return a Rule
-      tags:
-        - Rule
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/rules/{rule_id} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/rules/{rule_id}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/rules/{rule_id}';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    delete:
-      parameters:
-        - description: The id of the replication rule.
-          in: path
-          name: rule_id
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No rule found for the given id
-      summary: Delete a replication rule
-      tags:
-        - Rule
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/rules/{rule_id} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/rules/{rule_id}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("DELETE", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/rules/{rule_id}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     put:
       parameters:
         - description: The id of the replication rule.
@@ -12442,6 +12332,116 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"options":{"account":"string","activity":"string","boost_rule":{},"cancel_requests":true,"child_rule_id":"string","comment":"string","eol_at":"string","lifetime":0,"locked":true,"meta":{},"priority":0,"purge_replicas":true,"source_replica_expression":"string","state":"string"}}'
             };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      parameters:
+        - description: The id of the replication rule.
+          in: path
+          name: rule_id
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No rule found for the given id
+      summary: Delete a replication rule
+      tags:
+        - Rule
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/rules/{rule_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/rules/{rule_id}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/rules/{rule_id}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    get:
+      parameters:
+        - description: The id of the replication rule.
+          in: path
+          name: rule_id
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No rule found for the given id
+        '406':
+          description: Not Acceptable
+      summary: Return a Rule
+      tags:
+        - Rule
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/rules/{rule_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/rules/{rule_id}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/rules/{rule_id}';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -13636,6 +13636,123 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /subscriptions/{account}/{name}:
+    put:
+      description: Update an existing subscription.
+      parameters:
+        - description: The account name.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The subscription name.
+          in: path
+          name: name
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                options:
+                  description: The values for the new subcription.
+                  properties:
+                    comments:
+                      description: The comments for the subscription.
+                      type: string
+                    filter:
+                      description: The filter for the subscription.
+                      type: string
+                    lifetime:
+                      description: The lifetime for the subscription.
+                      format: date-time
+                      type: string
+                    priority:
+                      description: >-
+                        The priority/policyid for the subscription. Stored as
+                        policyid.
+                      type: integer
+                    replication_rules:
+                      description: The replication rules for the subscription.
+                      type: string
+                    retroactive:
+                      description: If the retroactive is actiavted for a subscription.
+                      type: boolean
+                  type: object
+              required:
+                - options
+              type: object
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Cannot decode json parameter list.
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Not found
+      summary: Update subscription
+      tags:
+        - Replicas
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/subscriptions/{account}/{name} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/subscriptions/{account}/{name}"
+
+
+            payload = {"options": {
+                    "comments": "string",
+                    "filter": "string",
+                    "lifetime": "2019-08-24T14:15:22Z",
+                    "priority": 0,
+                    "replication_rules": "string",
+                    "retroactive": True
+                }}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/subscriptions/{account}/{name}';
+
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
+            };
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     post:
       description: Create a new subscription
       parameters:
@@ -13884,123 +14001,6 @@ paths:
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Update an existing subscription.
-      parameters:
-        - description: The account name.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The subscription name.
-          in: path
-          name: name
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                options:
-                  description: The values for the new subcription.
-                  properties:
-                    comments:
-                      description: The comments for the subscription.
-                      type: string
-                    filter:
-                      description: The filter for the subscription.
-                      type: string
-                    lifetime:
-                      description: The lifetime for the subscription.
-                      format: date-time
-                      type: string
-                    priority:
-                      description: >-
-                        The priority/policyid for the subscription. Stored as
-                        policyid.
-                      type: integer
-                    replication_rules:
-                      description: The replication rules for the subscription.
-                      type: string
-                    retroactive:
-                      description: If the retroactive is actiavted for a subscription.
-                      type: boolean
-                  type: object
-              required:
-                - options
-              type: object
-      responses:
-        '201':
-          description: OK
-        '400':
-          description: Cannot decode json parameter list.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Not found
-      summary: Update subscription
-      tags:
-        - Replicas
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
-              --url http://undefinedundefined/subscriptions/{account}/{name} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/subscriptions/{account}/{name}"
-
-
-            payload = {"options": {
-                    "comments": "string",
-                    "filter": "string",
-                    "lifetime": "2019-08-24T14:15:22Z",
-                    "priority": 0,
-                    "replication_rules": "string",
-                    "retroactive": True
-                }}
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/subscriptions/{account}/{name}';
-
-
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
-            };
 
 
             fetch(url, options)
