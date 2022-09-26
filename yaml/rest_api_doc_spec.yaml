@@ -6003,6 +6003,95 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /lifetime_exceptions/{exception_id}:
+    put:
+      description: Approve/Reject a Lifetime Exception.
+      parameters:
+        - description: The id of the Lifetime Exception.
+          in: path
+          name: exception_id
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                state:
+                  description: The new state for the Lifetime Exception.
+                  enum:
+                    - A
+                    - R
+                  type: string
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Created
+                type: string
+          description: OK
+        '400':
+          description: Cannot decode json parameter list.
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Lifetime Exception not found
+      summary: Approve/Reject exception
+      tags:
+        - Lifetime Exceptions
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/lifetime_exceptions/{exception_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"state":"A"}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/lifetime_exceptions/{exception_id}"
+
+
+            payload = {"state": "A"}
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/lifetime_exceptions/{exception_id}';
+
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"state":"A"}'
+            };
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Get a single Lifetime Exception.
       parameters:
@@ -6104,95 +6193,6 @@ paths:
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Approve/Reject a Lifetime Exception.
-      parameters:
-        - description: The id of the Lifetime Exception.
-          in: path
-          name: exception_id
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                state:
-                  description: The new state for the Lifetime Exception.
-                  enum:
-                    - A
-                    - R
-                  type: string
-              type: object
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                enum:
-                  - Created
-                type: string
-          description: OK
-        '400':
-          description: Cannot decode json parameter list.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Lifetime Exception not found
-      summary: Approve/Reject exception
-      tags:
-        - Lifetime Exceptions
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
-              --url http://undefinedundefined/lifetime_exceptions/{exception_id} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"state":"A"}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/lifetime_exceptions/{exception_id}"
-
-
-            payload = {"state": "A"}
-
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/lifetime_exceptions/{exception_id}';
-
-
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"state":"A"}'
-            };
 
 
             fetch(url, options)
@@ -10999,6 +10999,98 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /rses/{rse}/usage:
+    put:
+      description: Update the RSE Update information.
+      parameters:
+        - description: The name of the Rucio Storage Element name.
+          in: path
+          name: rse
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                files:
+                  description: The number of files.
+                  type: integer
+                free:
+                  description: The number of free bytes.
+                  type: integer
+                source:
+                  description: The information source, e.g. srm.
+                  type: string
+                used:
+                  description: The number of used bytes.
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Can not decode json parameter list.
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Update Rse Usage
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/rses/{rse}/usage \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"files":0,"free":0,"source":"string","used":0}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/rses/{rse}/usage"
+
+
+            payload = {
+                "files": 0,
+                "free": 0,
+                "source": "string",
+                "used": 0
+            }
+
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: |-
+            const fetch = require('node-fetch');
+
+            let url = 'http://undefinedundefined/rses/{rse}/usage';
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"files":0,"free":0,"source":"string","used":0}'
+            };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Get rse usage information.
       parameters:
@@ -11103,98 +11195,6 @@ paths:
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Update the RSE Update information.
-      parameters:
-        - description: The name of the Rucio Storage Element name.
-          in: path
-          name: rse
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                files:
-                  description: The number of files.
-                  type: integer
-                free:
-                  description: The number of free bytes.
-                  type: integer
-                source:
-                  description: The information source, e.g. srm.
-                  type: string
-                used:
-                  description: The number of used bytes.
-                  type: integer
-              type: object
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Can not decode json parameter list.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Update Rse Usage
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
-              --url http://undefinedundefined/rses/{rse}/usage \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"files":0,"free":0,"source":"string","used":0}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/rses/{rse}/usage"
-
-
-            payload = {
-                "files": 0,
-                "free": 0,
-                "source": "string",
-                "used": 0
-            }
-
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: |-
-            const fetch = require('node-fetch');
-
-            let url = 'http://undefinedundefined/rses/{rse}/usage';
-
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"files":0,"free":0,"source":"string","used":0}'
-            };
 
             fetch(url, options)
               .then(res => res.json())
@@ -13645,6 +13645,123 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /subscriptions/{account}/{name}:
+    put:
+      description: Update an existing subscription.
+      parameters:
+        - description: The account name.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The subscription name.
+          in: path
+          name: name
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                options:
+                  description: The values for the new subcription.
+                  properties:
+                    comments:
+                      description: The comments for the subscription.
+                      type: string
+                    filter:
+                      description: The filter for the subscription.
+                      type: string
+                    lifetime:
+                      description: The lifetime for the subscription.
+                      format: date-time
+                      type: string
+                    priority:
+                      description: >-
+                        The priority/policyid for the subscription. Stored as
+                        policyid.
+                      type: integer
+                    replication_rules:
+                      description: The replication rules for the subscription.
+                      type: string
+                    retroactive:
+                      description: If the retroactive is actiavted for a subscription.
+                      type: boolean
+                  type: object
+              required:
+                - options
+              type: object
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Cannot decode json parameter list.
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Not found
+      summary: Update subscription
+      tags:
+        - Replicas
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request PUT \
+              --url http://undefinedundefined/subscriptions/{account}/{name} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
+              --header 'content-type: application/json' \
+              --data '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/subscriptions/{account}/{name}"
+
+
+            payload = {"options": {
+                    "comments": "string",
+                    "filter": "string",
+                    "lifetime": "2019-08-24T14:15:22Z",
+                    "priority": 0,
+                    "replication_rules": "string",
+                    "retroactive": True
+                }}
+            headers = {
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
+                "content-type": "application/json"
+            }
+
+
+            response = requests.request("PUT", url, json=payload,
+            headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/subscriptions/{account}/{name}';
+
+
+            let options = {
+              method: 'PUT',
+              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
+              body: '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
+            };
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     get:
       description: Retrieve a subscription.
       parameters:
@@ -13892,123 +14009,6 @@ paths:
               method: 'POST',
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"options":{"comments":"string","dry_run":false,"filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
-            };
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    put:
-      description: Update an existing subscription.
-      parameters:
-        - description: The account name.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The subscription name.
-          in: path
-          name: name
-          required: true
-          schema:
-            type: string
-          style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                options:
-                  description: The values for the new subcription.
-                  properties:
-                    comments:
-                      description: The comments for the subscription.
-                      type: string
-                    filter:
-                      description: The filter for the subscription.
-                      type: string
-                    lifetime:
-                      description: The lifetime for the subscription.
-                      format: date-time
-                      type: string
-                    priority:
-                      description: >-
-                        The priority/policyid for the subscription. Stored as
-                        policyid.
-                      type: integer
-                    replication_rules:
-                      description: The replication rules for the subscription.
-                      type: string
-                    retroactive:
-                      description: If the retroactive is actiavted for a subscription.
-                      type: boolean
-                  type: object
-              required:
-                - options
-              type: object
-      responses:
-        '201':
-          description: OK
-        '400':
-          description: Cannot decode json parameter list.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Not found
-      summary: Update subscription
-      tags:
-        - Replicas
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request PUT \
-              --url http://undefinedundefined/subscriptions/{account}/{name} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE' \
-              --header 'content-type: application/json' \
-              --data '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/subscriptions/{account}/{name}"
-
-
-            payload = {"options": {
-                    "comments": "string",
-                    "filter": "string",
-                    "lifetime": "2019-08-24T14:15:22Z",
-                    "priority": 0,
-                    "replication_rules": "string",
-                    "retroactive": True
-                }}
-            headers = {
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE",
-                "content-type": "application/json"
-            }
-
-
-            response = requests.request("PUT", url, json=payload,
-            headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/subscriptions/{account}/{name}';
-
-
-            let options = {
-              method: 'PUT',
-              headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
-              body: '{"options":{"comments":"string","filter":"string","lifetime":"2019-08-24T14:15:22Z","priority":0,"replication_rules":"string","retroactive":true}}'
             };
 
 
