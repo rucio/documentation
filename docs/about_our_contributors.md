@@ -64,6 +64,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Rob Barnsley <R.Barnsley@skatelescope.org>, 2020
 - Alan Malta Rodrigues <alan.malta@cern.ch>, 2020
 - Aksel Lunde Aase <aksel.lunde.aase@gmail.com>, 2022
+- Anton Schwarz <anton.schwarz@cern.ch>, 2022
 
 # Organisations employing contributors
 
