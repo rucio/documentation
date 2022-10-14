@@ -626,3 +626,83 @@ that were described previously. The following steps are needed:
         ISS=https://auth.cern.ch/auth/realms/cern" \
     --email "rucio@cern.ch"
     ```
+
+## S3 Storage Configuration
+
+Rucio supports S3 storages which can be configured and used as RSEs. This section describes the steps needed to setup and use an S3 storage RSE when using FTS3 as the transfer tool and GFAL2 as the file access library.
+
+### FTS3 & GFAL Specifications
+
+There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/fts3-docs/docs/s3_support.html#s3-support)  and [GFAL2](https://dmc-docs.web.cern.ch/dmc-docs/gfal2/plugins.html#gfal2-plugin-http) ([davix](https://davix.web.cern.ch/davix/docs/devel/cloud-support.html#amazon-s3)) to communicate with an S3 storage:
+
+1. Using [pre-signed](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) URLs which can be used to access the resources. In this case the endpoint protocol must be `https://` and the user must pre-sign the URL before presenting it to the tools.
+
+2. Delegating the signature of the URL to FTS3 and GFAL2. This requires providing the relevant configurations ([gfal_config](https://dmc-docs.web.cern.ch/dmc-docs/gfal2/plugins.html#for-a-specific-host) & [fts_config](https://fts3-docs.web.cern.ch/fts3-docs/docs/s3_support.html#configuration)) and using `s3s://` as the endpoint protocol. In this case the user must also be cautious to use the `alternate` configuration/flag appropriately. This will guide the usage of the [Path-Style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) URL (`alternate=true`) or the [Virtual-Style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) URL (`alternate=false`) during the signing process.
+
+### How to Setup an S3 RSE
+
+1. Create the RSE. Upon executing `rucio-admin rse info <RSE>` command one should     have the following indicative result for the protocols section:
+
+    ```bash
+                                    .
+                                    .
+    Protocols:
+    ==========
+    https
+        domains: '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan":..}'
+        extended_attributes: None
+        hostname: <S3_HOSTNAME>
+        impl: rucio.rse.protocols.gfal.Default
+        port: 443
+        prefix: <PATH> # bucket name in case of path-style URLs
+        scheme: https
+                                    .
+                                    .
+    ```
+
+2. Set the following RSE attributes:
+
+    ```bash
+    sign_url: s3
+    skip_upload_stat: True
+    verify_checksum: False
+    strict_copy: True
+    s3_url_style: path(default)|virtual
+    ```
+
+3. Deploy the S3 configuration to the Rucio servers and restart servers:
+
+    ```bash
+    # vim /opt/rucio/etc/rse-accounts.cfg
+    {
+        "f4dc2967e329vdf5a73c154eb8d9ffae": {  #rse_id
+                "access_key": "...",
+                "secret_key": "...",
+                "signature_version": "s3v4",   # must be s3v4
+                "region": "us-west-2"          # adapt as necessary
+        },
+        ...
+    }
+    ```
+
+4. Give every Rucio account the following attribute to be able to sign URLs:
+
+    ```bash
+    rucio-admin account add-attribute <accountname> --key sign-gcs --value true
+    ```
+
+    In order for this step to be effective, one has to make sure the relevant permission is given when the sign-gcs key is present for the account, for example [this](https://github.com/rizart/rucio/blob/88984a4dbc9d8be4e254f61545c7066e6c67de56/lib/rucio/core/permission/atlas.py#L1152) is the way it is currently done for ATLAS.
+
+
+5. Configure FTS to be able to use the same access and secret keys as you did for the Rucio servers:
+
+    * You need to have access to the FTS server config page
+      * Visit <fts_server>/config/cloud_storage
+    * Add a new cloud storage (the name should be `S3:<URL>`)
+    * Configure the added cloud storage as the following indicative example:
+
+    ![image](/img/architecture.png)
+
+    * Add `*` to User to include all users. If this cannot be done via the UI you need to contact the people who manage your FTS server.
+    * Configure the VO roles
+    * Add the __access token__ and the __access secret__, these correspond to the __access_key__ and __secret_key__ you also configured for Rucio.
