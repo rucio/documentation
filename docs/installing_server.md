@@ -111,7 +111,7 @@ docker run --name=rucio-server \
 
 As shown in the examples above the rucio-server image can be configured using
 environment variables that are passed with `docker run`. Below is a list of all
-available variables and their behaviour:
+available variables and their behavior:
 
 ### RUCIO_ENABLE_SSL
 
@@ -422,17 +422,17 @@ expected_scope = 'openid profile'
 ```
 
 Parameters __idpsecrets__ and __admin_issuer__ have to be present.
-\<IdP nickname\> stands for your preferred IdP (e.g. 'wlcg'). The IdP
+<IdP nickname\> stands for your preferred IdP (e.g. 'wlcg'). The IdP
 specified under __admin_issuer__ will be contacted to get information about Rucio
 Users (SCIM) and to request tokens for the Rucio __root__ account.  The
 __expected_scope__ and __expected_audence__ parameters are optional and if not filled,
 the Rucio server will set them to `openid profile` and `rucio`
 respectively. The expected scopes and audiences have to be configured
-correspondinly on the side of your registered clients at your IdP (usually you
+correspondingly on the side of your registered clients at your IdP (usually you
 can control accepted scopes and audiences for your clients via an IdP web
 interface).
 
-To finalise the process, one should assign the OIDC identities to the relevant
+To finalize the process, one should assign the OIDC identities to the relevant
 Rucio __admin_account__ (e.g. 'root', 'ddmadmin'). This identity ID is
 composed of the Rucio Service IAM Account [A] subject claim and
 issuer url such as demonstrated below:
@@ -501,17 +501,17 @@ are three Rucio authentication flows that are possible:
 
 1. __User Token Exchange__: In this case, a valid OIDC token that the user authenticated
    with in Rucio is getting [exchanged](https://indigo-iam.github.io/docs/v/current/user-guide/api/oauth-token-exchange.html)
-   with an appropriate token that is intented to be served to the FTS server.
-   This FTS intented token must have a specific audience [*] as well as
+   with an appropriate token that is intended to be served to the FTS server.
+   This FTS intended token must have a specific audience [*] as well as
    specific scopes [**] that the FTS server expects, this applies for the next
    authentication flows as well. It is also worth noting that the acquired FTS
-   intented token includes all original claims that were present in the initial token.
+   intended token includes all original claims that were present in the initial token.
 
 1. __Admin Flow__: In this Rucio authN/Z flow, the [client_credentials](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow)
    flow is used with the __Rucio Admin IAM Client__ [C2]. The __sub__ claim of the
    acquired token becomes the __client_id__ of [C2]. In this case any group membership
-   that was present in the original token is not included in the new FTS intented
-   token. Aditionally, for this flow to be successful a valid user OIDC token
+   that was present in the original token is not included in the new FTS intended
+   token. Additionally, for this flow to be successful a valid user OIDC token
    must already be present in the database.
 
 1. __Admin Root Flow__: This scenario has the same logic as flow 2, with the
@@ -519,7 +519,7 @@ are three Rucio authentication flows that are possible:
    Rucio __admin_account__ (e.g. 'root').
    No other user token is involved in this case.
 
-In all three formerly mentioned cases, if a valid FTS intented token
+In all three formerly mentioned cases, if a valid FTS intended token
 already exists in the Rucio database then a new token is not requested
 and the existing one is used.
 
@@ -532,10 +532,10 @@ following parameters in the `rucio.cfg` file:
 # if set to False, then flow 1 will never be tried
 allow_user_oidc_tokens = False (default)
 
-# FTS intented audience [*]
+# FTS intended audience [*]
 request_oidc_audience = 'fts:example' (default)
 
-# FTS intented scopes [**]
+# FTS intended scopes [**]
 request_oidc_scope = 'fts:submit-transfer' (default)
 ```
 
@@ -546,7 +546,7 @@ For the __conveyor-poller__ to work an additional configuration is needed:
 poller_oidc_account = rucio_admin_account
 ```
 
-On an another level, the __reaper__ daemon can be also configred to
+On an another level, the __reaper__ daemon can be also configured to
 perform deletions of files on the storage by using an OIDC token,
 the following configuration is needed:
 
@@ -580,7 +580,7 @@ that were described previously. The following steps are needed:
 1. In the newly created Application, a new __SSO Registration__ is needed.
    Please select OIDC in the
    'Which protocol does your application use for authentication?' question.
-   At the same time, the two Rucio redirect URIs are neended as
+   At the same time, the two Rucio redirect URIs are needed as
    described in the `etc/idpsecrets.json` configuration that was mentioned previously.
 
 1. The new CERN IdP needs to be added in the `etc/idpsecrets.json` configuration,
@@ -631,11 +631,11 @@ that were described previously. The following steps are needed:
 
 Rucio supports S3 storages which can be configured and used as RSEs. This section describes the steps needed to setup and use an S3 storage RSE when using FTS3 as the transfer tool and GFAL2 as the file access library.
 
-### FTS3 & GFAL Specifications
+### FTS3 & GFAL2 Specifications
 
 There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/fts3-docs/docs/s3_support.html#s3-support)  and [GFAL2](https://dmc-docs.web.cern.ch/dmc-docs/gfal2/plugins.html#gfal2-plugin-http) ([davix](https://davix.web.cern.ch/davix/docs/devel/cloud-support.html#amazon-s3)) to communicate with an S3 storage:
 
-1. Using [pre-signed](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) URLs which can be used to access the resources. In this case the endpoint protocol must be `https://` and the user must pre-sign the URL before presenting it to the tools.
+1. Using [pre-signed](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) URLs which can be used to access and modify the resources. In this case the endpoint protocol must be `https://` and the user must pre-sign the URL before presenting it to the tools.
 
 2. Delegating the signature of the URL to FTS3 and GFAL2. This requires providing the relevant configurations ([gfal_config](https://dmc-docs.web.cern.ch/dmc-docs/gfal2/plugins.html#for-a-specific-host) & [fts_config](https://fts3-docs.web.cern.ch/fts3-docs/docs/s3_support.html#configuration)) and using `s3s://` as the endpoint protocol. In this case the user must also be cautious to use the `alternate` configuration/flag appropriately. This will guide the usage of the [Path-Style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) URL (`alternate=true`) or the [Virtual-Style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) URL (`alternate=false`) during the signing process.
 
