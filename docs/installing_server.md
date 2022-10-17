@@ -496,21 +496,21 @@ oidc_support: True
 ```
 
 In general, the Rucio account which created such a rule will be used to request a
-JWT token for OAuth2 authentication with FTS. More specifically, there
+JWT token for OAuth2 authentication with FTS3. More specifically, there
 are three Rucio authentication flows that are possible:
 
 1. __User Token Exchange__: In this case, a valid OIDC token that the user authenticated
    with in Rucio is getting [exchanged](https://indigo-iam.github.io/docs/v/current/user-guide/api/oauth-token-exchange.html)
-   with an appropriate token that is intended to be served to the FTS server.
-   This FTS intended token must have a specific audience [*] as well as
-   specific scopes [**] that the FTS server expects, this applies for the next
-   authentication flows as well. It is also worth noting that the acquired FTS
+   with an appropriate token that is intended to be served to the FTS3 server.
+   This FTS3 intended token must have a specific audience [*] as well as
+   specific scopes [**] that the FTS3 server expects, this applies for the next
+   authentication flows as well. It is also worth noting that the acquired FTS3
    intended token includes all original claims that were present in the initial token.
 
 1. __Admin Flow__: In this Rucio authN/Z flow, the [client_credentials](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow)
    flow is used with the __Rucio Admin IAM Client__ [C2]. The __sub__ claim of the
    acquired token becomes the __client_id__ of [C2]. In this case any group membership
-   that was present in the original token is not included in the new FTS intended
+   that was present in the original token is not included in the new FTS3 intended
    token. Additionally, for this flow to be successful a valid user OIDC token
    must already be present in the database.
 
@@ -519,7 +519,7 @@ are three Rucio authentication flows that are possible:
    Rucio __admin_account__ (e.g. 'root').
    No other user token is involved in this case.
 
-In all three formerly mentioned cases, if a valid FTS intended token
+In all three formerly mentioned cases, if a valid FTS3 intended token
 already exists in the Rucio database then a new token is not requested
 and the existing one is used.
 
@@ -532,10 +532,10 @@ following parameters in the `rucio.cfg` file:
 # if set to False, then flow 1 will never be tried
 allow_user_oidc_tokens = False (default)
 
-# FTS intended audience [*]
+# FTS3 intended audience [*]
 request_oidc_audience = 'fts:example' (default)
 
-# FTS intended scopes [**]
+# FTS3 intended scopes [**]
 request_oidc_scope = 'fts:submit-transfer' (default)
 ```
 
@@ -694,16 +694,16 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
     In order for this step to be effective, one has to make sure the relevant permission is given when the sign-gcs key is present for the account, for example [this](https://github.com/rizart/rucio/blob/88984a4dbc9d8be4e254f61545c7066e6c67de56/lib/rucio/core/permission/atlas.py#L1152) is the way it is currently done for ATLAS.
 
 
-5. Configure FTS to be able to use the same access and secret keys as you did for the Rucio servers:
+5. Configure FTS3 to be able to use the same access and secret keys as you did for the Rucio servers:
 
-    * You need to have access to the FTS server config page
+    * You need to have access to the FTS3 server config page
       * Visit `<fts_server>:8446/config/cloud_storage`
     * Add a new cloud storage (the name should be `S3:<URL>`)
     * Configure the added cloud storage as the following indicative example:
 
     ![image](/img/architecture.png)
 
-    * Add `*` to User to include all users. If this cannot be done via the UI you need to contact the people who manage your FTS server.
+    * Add `*` to User to include all users. If this cannot be done via the UI you need to contact the people who manage your FTS3 server.
     * Configure the VO roles
     * Add the __access token__ and the __access secret__, these correspond to the __access_key__ and __secret_key__ you also configured for Rucio.
 
@@ -711,4 +711,4 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
 
 * When a client tries __rucio upload__ & __rucio download__, or when the __reaper__ daemon tries to delete data, Rucio pre-signs the S3 URL and passes that signed URL to GFAL2. GFAL2 needs `https://` as the scheme for the protocol when this is the case.
 
-* When the __conveyor-submitter__ daemon submits a transfer to FTS3, it does not pre-sign the URL but it depends on the FTS3 server to do so (Step 5 of the configuration in the previous section), in this case the proper scheme to use for the protocol is `s3s://`, Rucio will automatically translate `https -> s3s` in order to submit the transfer properly. The approach of not pre-signing the URL is necessary since those URLs have an expiration time and there is no guarantee of when the FTS transfer will really happen. This way, FTS signs the URL just before the transfer actually starts.
+* When the __conveyor-submitter__ daemon submits a transfer to FTS3, it does not pre-sign the URL but it depends on the FTS3 server to do so (Step 5 of the configuration in the previous section), in this case the proper scheme to use for the protocol is `s3s://`, Rucio will automatically translate `https -> s3s` in order to submit the transfer properly. The approach of not pre-signing the URL is necessary since those URLs have an expiration time and there is no guarantee of when the FTS3 transfer will really happen. This way, FTS3 signs the URL just before the transfer actually starts.
