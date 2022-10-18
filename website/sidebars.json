@@ -55,6 +55,7 @@
                     ]
                 },
                 "policy_packages",
+                "s3_rse_config",
                 {
                     "Executables": [
                         {
