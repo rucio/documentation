@@ -82,6 +82,8 @@ jobs:
           python3 -m pip install -U pip setuptools
           python3 -m pip install -U -r tools/requirements.txt
           docker login https://docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+          ls -la /opt/rucio/etc/
+          cat /opt/rucio/etc/rucio.cfg
           ./tools/build_documentation.sh
           docker logout https://docker.pkg.github.com
       - name: Install dependencies and static website
