@@ -414,7 +414,6 @@ attributes.
   - **broker_virtual_host**: _(Optional)_ <!--??--> No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **chunksize**: Integer
-  - **dataset_wait**: Integer. Example `60`.
   - **excluded_usrdns**: Separated by commas. Example:
     `/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=gangarbt/CN=722147/CN=Robot:
     Ganga Robot/CN=proxy`.
