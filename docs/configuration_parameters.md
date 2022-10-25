@@ -496,6 +496,8 @@ attributes.
   - **use_new_rule_algorithm**: _(Optional)_ Boolean. Default: `False`.
 - **subscriptions**
   - **keep_history**: _(Optional)_ Boolean. Default: `False`.
+  - **reevaluate_dids_at_close**: _(Optional)_ Flag to reevaluate the DID against
+    all the subscriptions when the DID is closed. Boolean. Default: `False`.
 - **throttler**
   - **mode**: Conveyor-throttler mode. Values: `{DEST_PER_ALL_ACT, DEST_PER_ACT,
     SRC_PER_ACT, SRC_PER_ALL_ACT}`. Default: `None` for `core/request`,
