@@ -77,7 +77,7 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
     * Add a new cloud storage (the name should be `S3:<URL>`)
     * Configure the added cloud storage as the following indicative example:
 
-    ![image](/img/architecture.png)
+    ![image](/img/fts_s3_config.png)
 
     * Add `*` to User to include all users. If this cannot be done via the UI you need to contact the people who manage your FTS3 server.
     * Configure the VO roles
