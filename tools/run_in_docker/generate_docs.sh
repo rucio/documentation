@@ -15,7 +15,7 @@ if [ ! -d "rucio" ]; then
     git clone --depth=1 https://github.com/rucio/rucio.git
 fi
 
-cp rucio/etc/docker/test/extra/rucio_client.cfg /opt/rucio/etc/rucio.cfg
+cp rucio/etc/docker/test/extra/rucio_sqlite.cfg /opt/rucio/etc/rucio.cfg
 
 "$SCRIPT_DIR"/generate_rest_api_docs.sh
 "$SCRIPT_DIR"/generate_bin_help_docs.sh
