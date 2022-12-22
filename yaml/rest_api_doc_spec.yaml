@@ -140,71 +140,6 @@ openapi: 3.0.2
 paths:
   /static/{filename}: {}
   /accountlimits/local/{account}/{rse}:
-    delete:
-      parameters:
-        - description: The account for the accountlimit.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The rse for the accountlimit.
-          in: path
-          name: rse
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No RSE or account found for the given id.
-      summary: Delete a local account limit
-      tags:
-        - Account Limit
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/accountlimits/local/{account}/{rse} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url =
-            "http://undefinedundefined/accountlimits/local/{account}/{rse}"
-
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-
-            response = requests.request("DELETE", url, headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/accountlimits/local/{account}/{rse}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     post:
       parameters:
         - description: The account for the accountlimit.
@@ -298,7 +233,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-  /accountlimits/global/{account}/{rse_expression}:
     delete:
       parameters:
         - description: The account for the accountlimit.
@@ -308,9 +242,9 @@ paths:
           schema:
             type: string
           style: simple
-        - description: The rse expression for the accountlimit.
+        - description: The rse for the accountlimit.
           in: path
-          name: rse_expression
+          name: rse
           required: true
           schema:
             type: string
@@ -322,14 +256,14 @@ paths:
           description: Invalid Auth Token
         '404':
           description: No RSE or account found for the given id.
-      summary: Delete a global account limit
+      summary: Delete a local account limit
       tags:
         - Account Limit
       x-codeSamples:
         - lang: Shell
           source: |-
             curl --request DELETE \
-              --url http://undefinedundefined/accountlimits/global/{account}/{rse_expression} \
+              --url http://undefinedundefined/accountlimits/local/{account}/{rse} \
               --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: >-
@@ -337,7 +271,7 @@ paths:
 
 
             url =
-            "http://undefinedundefined/accountlimits/global/{account}/{rse_expression}"
+            "http://undefinedundefined/accountlimits/local/{account}/{rse}"
 
 
             headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
@@ -353,7 +287,7 @@ paths:
 
 
             let url =
-            'http://undefinedundefined/accountlimits/global/{account}/{rse_expression}';
+            'http://undefinedundefined/accountlimits/local/{account}/{rse}';
 
 
             let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
@@ -364,6 +298,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+  /accountlimits/global/{account}/{rse_expression}:
     post:
       parameters:
         - description: The account for the accountlimit.
@@ -451,6 +386,71 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"bytes":0}'
             };
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      parameters:
+        - description: The account for the accountlimit.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The rse expression for the accountlimit.
+          in: path
+          name: rse_expression
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No RSE or account found for the given id.
+      summary: Delete a global account limit
+      tags:
+        - Account Limit
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/accountlimits/global/{account}/{rse_expression} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url =
+            "http://undefinedundefined/accountlimits/global/{account}/{rse_expression}"
+
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/accountlimits/global/{account}/{rse_expression}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
 
 
             fetch(url, options)
