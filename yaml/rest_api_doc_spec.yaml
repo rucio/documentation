@@ -952,6 +952,71 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    get:
+      description: Lists all identities for an account.
+      parameters:
+        - description: The account identifier.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/x-json-stream:
+              schema:
+                items:
+                  items:
+                    type: string
+                  maxItems: 2
+                  minItems: 2
+                  type: array
+                type: array
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Account not found
+        '406':
+          description: Not acceptable
+      summary: List identities
+      tags:
+        - Account
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/accounts/{account}/identities \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/accounts/{account}/identities"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/accounts/{account}/identities';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     delete:
       description: Delete an account identity.
       parameters:
@@ -1030,71 +1095,6 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"authtype":"string","identity":"string"}'
             };
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    get:
-      description: Lists all identities for an account.
-      parameters:
-        - description: The account identifier.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/x-json-stream:
-              schema:
-                items:
-                  items:
-                    type: string
-                  maxItems: 2
-                  minItems: 2
-                  type: array
-                type: array
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Account not found
-        '406':
-          description: Not acceptable
-      summary: List identities
-      tags:
-        - Account
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/accounts/{account}/identities \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/accounts/{account}/identities"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/accounts/{account}/identities';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
 
             fetch(url, options)
               .then(res => res.json())
@@ -1594,59 +1594,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    delete:
-      description: Delete an account.
-      parameters:
-        - description: The account identifier.
-          in: path
-          name: account
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '201':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Account not found
-      summary: Delete
-      tags:
-        - Account
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/accounts/{account} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/accounts/{account}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("DELETE", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/accounts/{account}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Lists all parameters for an account.
       parameters:
@@ -1718,6 +1665,59 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      description: Delete an account.
+      parameters:
+        - description: The account identifier.
+          in: path
+          name: account
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '201':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Account not found
+      summary: Delete
+      tags:
+        - Account
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/accounts/{account} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/accounts/{account}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/accounts/{account}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -1862,71 +1862,6 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /auth/userpass:
-    options:
-      description: UserPass Allow cross-site scripting. Explicit for Authentication.
-      responses:
-        '200':
-          description: OK
-          headers:
-            Access-Control-Allow-Credentials:
-              schema:
-                enum:
-                  - 'true'
-                type: string
-            Access-Control-Allow-Headers:
-              schema:
-                type: string
-            Access-Control-Allow-Methods:
-              schema:
-                enum:
-                  - '*'
-                type: string
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-            Access-Control-Expose-Headers:
-              schema:
-                enum:
-                  - X-Rucio-Auth-Token
-                type: string
-        '404':
-          description: Not found
-      summary: UserPass Allow cross-site scripting
-      tags:
-        - Auth
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request OPTIONS \
-              --url http://undefinedundefined/auth/userpass \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/auth/userpass"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("OPTIONS", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/auth/userpass';
-
-
-            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Authenticate a Rucio account temporarily via username and password.
       parameters:
@@ -2052,9 +1987,8 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-  /auth/gss:
     options:
-      description: GSS Allow cross-site scripting. Explicit for Authentication.
+      description: UserPass Allow cross-site scripting. Explicit for Authentication.
       responses:
         '200':
           description: OK
@@ -2082,20 +2016,20 @@ paths:
                 type: string
         '404':
           description: Not found
-      summary: GSS Allow cross-site scripting
+      summary: UserPass Allow cross-site scripting
       tags:
         - Auth
       x-codeSamples:
         - lang: Shell
           source: |-
             curl --request OPTIONS \
-              --url http://undefinedundefined/auth/gss \
+              --url http://undefinedundefined/auth/userpass \
               --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
-            url = "http://undefinedundefined/auth/gss"
+            url = "http://undefinedundefined/auth/userpass"
 
             headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
@@ -2107,7 +2041,7 @@ paths:
             const fetch = require('node-fetch');
 
 
-            let url = 'http://undefinedundefined/auth/gss';
+            let url = 'http://undefinedundefined/auth/userpass';
 
 
             let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
@@ -2118,6 +2052,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+  /auth/gss:
     get:
       description: Authenticate a Rucio account via GSS.
       parameters:
@@ -2204,9 +2139,8 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-  /auth/x509:
     options:
-      description: x509 Allow cross-site scripting. Explicit for Authentication.
+      description: GSS Allow cross-site scripting. Explicit for Authentication.
       responses:
         '200':
           description: OK
@@ -2234,20 +2168,20 @@ paths:
                 type: string
         '404':
           description: Not found
-      summary: x509 Allow cross-site scripting
+      summary: GSS Allow cross-site scripting
       tags:
         - Auth
       x-codeSamples:
         - lang: Shell
           source: |-
             curl --request OPTIONS \
-              --url http://undefinedundefined/auth/x509 \
+              --url http://undefinedundefined/auth/gss \
               --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
-            url = "http://undefinedundefined/auth/x509"
+            url = "http://undefinedundefined/auth/gss"
 
             headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
@@ -2259,7 +2193,7 @@ paths:
             const fetch = require('node-fetch');
 
 
-            let url = 'http://undefinedundefined/auth/x509';
+            let url = 'http://undefinedundefined/auth/gss';
 
 
             let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
@@ -2270,6 +2204,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+  /auth/x509:
     get:
       description: Authenticate a Rucio account via x509.
       parameters:
@@ -2348,9 +2283,8 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-  /auth/ssh:
     options:
-      description: SSH Allow cross-site scripting. Explicit for Authentication.
+      description: x509 Allow cross-site scripting. Explicit for Authentication.
       responses:
         '200':
           description: OK
@@ -2378,20 +2312,20 @@ paths:
                 type: string
         '404':
           description: Not found
-      summary: SSH Allow cross-site scripting
+      summary: x509 Allow cross-site scripting
       tags:
         - Auth
       x-codeSamples:
         - lang: Shell
           source: |-
             curl --request OPTIONS \
-              --url http://undefinedundefined/auth/ssh \
+              --url http://undefinedundefined/auth/x509 \
               --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
-            url = "http://undefinedundefined/auth/ssh"
+            url = "http://undefinedundefined/auth/x509"
 
             headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
@@ -2403,7 +2337,7 @@ paths:
             const fetch = require('node-fetch');
 
 
-            let url = 'http://undefinedundefined/auth/ssh';
+            let url = 'http://undefinedundefined/auth/x509';
 
 
             let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
@@ -2414,6 +2348,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+  /auth/ssh:
     get:
       description: Authenticate a Rucio account via SSH.
       parameters:
@@ -2500,11 +2435,8 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-  /auth/ssh_challenge_token:
     options:
-      description: >-
-        SSHChallengeToken Allow cross-site scripting. Explicit for
-        Authentication.
+      description: SSH Allow cross-site scripting. Explicit for Authentication.
       responses:
         '200':
           description: OK
@@ -2532,20 +2464,20 @@ paths:
                 type: string
         '404':
           description: Not found
-      summary: SSHChallengeToken Allow cross-site scripting
+      summary: SSH Allow cross-site scripting
       tags:
         - Auth
       x-codeSamples:
         - lang: Shell
           source: |-
             curl --request OPTIONS \
-              --url http://undefinedundefined/auth/ssh_challenge_token \
+              --url http://undefinedundefined/auth/ssh \
               --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
-            url = "http://undefinedundefined/auth/ssh_challenge_token"
+            url = "http://undefinedundefined/auth/ssh"
 
             headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
@@ -2557,7 +2489,7 @@ paths:
             const fetch = require('node-fetch');
 
 
-            let url = 'http://undefinedundefined/auth/ssh_challenge_token';
+            let url = 'http://undefinedundefined/auth/ssh';
 
 
             let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
@@ -2568,6 +2500,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+  /auth/ssh_challenge_token:
     get:
       description: Authenticate a Rucio account via SSHChallengeToken.
       parameters:
@@ -2646,6 +2579,73 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    options:
+      description: >-
+        SSHChallengeToken Allow cross-site scripting. Explicit for
+        Authentication.
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                enum:
+                  - 'true'
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                enum:
+                  - '*'
+                type: string
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Expose-Headers:
+              schema:
+                enum:
+                  - X-Rucio-Auth-Token
+                type: string
+        '404':
+          description: Not found
+      summary: SSHChallengeToken Allow cross-site scripting
+      tags:
+        - Auth
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request OPTIONS \
+              --url http://undefinedundefined/auth/ssh_challenge_token \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/auth/ssh_challenge_token"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("OPTIONS", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/auth/ssh_challenge_token';
+
+
+            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
   /auth/saml:
     post:
       description: Post a SAML request
@@ -2683,71 +2683,6 @@ paths:
 
 
             let options = {method: 'POST', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    options:
-      description: SAML Allow cross-site scripting. Explicit for Authentication.
-      responses:
-        '200':
-          description: OK
-          headers:
-            Access-Control-Allow-Credentials:
-              schema:
-                enum:
-                  - 'true'
-                type: string
-            Access-Control-Allow-Headers:
-              schema:
-                type: string
-            Access-Control-Allow-Methods:
-              schema:
-                enum:
-                  - '*'
-                type: string
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-            Access-Control-Expose-Headers:
-              schema:
-                enum:
-                  - X-Rucio-Auth-Token
-                type: string
-        '404':
-          description: Not found
-      summary: SAML Allow cross-site scripting
-      tags:
-        - Auth
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request OPTIONS \
-              --url http://undefinedundefined/auth/saml \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/auth/saml"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("OPTIONS", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/auth/saml';
-
-
-            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -2837,7 +2772,127 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    options:
+      description: SAML Allow cross-site scripting. Explicit for Authentication.
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                enum:
+                  - 'true'
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                enum:
+                  - '*'
+                type: string
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Expose-Headers:
+              schema:
+                enum:
+                  - X-Rucio-Auth-Token
+                type: string
+        '404':
+          description: Not found
+      summary: SAML Allow cross-site scripting
+      tags:
+        - Auth
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request OPTIONS \
+              --url http://undefinedundefined/auth/saml \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/auth/saml"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("OPTIONS", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/auth/saml';
+
+
+            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
   /auth/validate:
+    get:
+      description: Validate a Rucio auth token.
+      parameters:
+        - in: header
+          name: X-Rucio-Account
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Cannot authenticate
+      summary: Validate
+      tags:
+        - Auth
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/auth/validate \
+              --header 'X-Rucio-Account: SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/auth/validate"
+
+            headers = {
+                "X-Rucio-Account": "SOME_STRING_VALUE",
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"
+            }
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: |-
+            const fetch = require('node-fetch');
+
+            let url = 'http://undefinedundefined/auth/validate';
+
+            let options = {
+              method: 'GET',
+              headers: {
+                'X-Rucio-Account': 'SOME_STRING_VALUE',
+                'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE'
+              }
+            };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     options:
       description: Validate Allow cross-site scripting. Explicit for Authentication.
       responses:
@@ -2903,122 +2958,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    get:
-      description: Validate a Rucio auth token.
-      parameters:
-        - in: header
-          name: X-Rucio-Account
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Cannot authenticate
-      summary: Validate
-      tags:
-        - Auth
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/auth/validate \
-              --header 'X-Rucio-Account: SOME_STRING_VALUE' \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/auth/validate"
-
-            headers = {
-                "X-Rucio-Account": "SOME_STRING_VALUE",
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"
-            }
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: |-
-            const fetch = require('node-fetch');
-
-            let url = 'http://undefinedundefined/auth/validate';
-
-            let options = {
-              method: 'GET',
-              headers: {
-                'X-Rucio-Account': 'SOME_STRING_VALUE',
-                'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE'
-              }
-            };
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
   /auth/oidc:
-    options:
-      description: OIDC Allow cross-site scripting. Explicit for Authentication.
-      responses:
-        '200':
-          description: OK
-          headers:
-            Access-Control-Allow-Credentials:
-              schema:
-                enum:
-                  - 'true'
-                type: string
-            Access-Control-Allow-Headers:
-              schema:
-                type: string
-            Access-Control-Allow-Methods:
-              schema:
-                enum:
-                  - '*'
-                type: string
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-        '404':
-          description: Not found
-      summary: OIDC Allow cross-site scripting
-      tags:
-        - Auth
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request OPTIONS \
-              --url http://undefinedundefined/auth/oidc \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/auth/oidc"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("OPTIONS", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/auth/oidc';
-
-
-            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Authenticate a Rucio account via OIDC.
       parameters:
@@ -3128,9 +3068,8 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-  /auth/oidc_token:
     options:
-      description: TokenOIDC Allow cross-site scripting. Explicit for Authentication.
+      description: OIDC Allow cross-site scripting. Explicit for Authentication.
       responses:
         '200':
           description: OK
@@ -3153,20 +3092,20 @@ paths:
                 type: string
         '404':
           description: Not found
-      summary: TokenOIDC Allow cross-site scripting
+      summary: OIDC Allow cross-site scripting
       tags:
         - Auth
       x-codeSamples:
         - lang: Shell
           source: |-
             curl --request OPTIONS \
-              --url http://undefinedundefined/auth/oidc_token \
+              --url http://undefinedundefined/auth/oidc \
               --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
-            url = "http://undefinedundefined/auth/oidc_token"
+            url = "http://undefinedundefined/auth/oidc"
 
             headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
@@ -3178,7 +3117,7 @@ paths:
             const fetch = require('node-fetch');
 
 
-            let url = 'http://undefinedundefined/auth/oidc_token';
+            let url = 'http://undefinedundefined/auth/oidc';
 
 
             let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
@@ -3189,6 +3128,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+  /auth/oidc_token:
     get:
       description: Authenticate a Rucio account via TokenOIDC.
       parameters:
@@ -3252,7 +3192,121 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    options:
+      description: TokenOIDC Allow cross-site scripting. Explicit for Authentication.
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                enum:
+                  - 'true'
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                enum:
+                  - '*'
+                type: string
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+        '404':
+          description: Not found
+      summary: TokenOIDC Allow cross-site scripting
+      tags:
+        - Auth
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request OPTIONS \
+              --url http://undefinedundefined/auth/oidc_token \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/auth/oidc_token"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("OPTIONS", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/auth/oidc_token';
+
+
+            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
   /auth/oidc_code:
+    get:
+      description: Authenticate a Rucio account via CodeOIDC.
+      parameters:
+        - in: header
+          name: X-Forwarded-For
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid request
+      summary: CodeOIDC
+      tags:
+        - Auth
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/auth/oidc_code \
+              --header 'X-Forwarded-For: SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/auth/oidc_code"
+
+            headers = {
+                "X-Forwarded-For": "SOME_STRING_VALUE",
+                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"
+            }
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: |-
+            const fetch = require('node-fetch');
+
+            let url = 'http://undefinedundefined/auth/oidc_code';
+
+            let options = {
+              method: 'GET',
+              headers: {
+                'X-Forwarded-For': 'SOME_STRING_VALUE',
+                'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE'
+              }
+            };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     options:
       description: CodeOIDC Allow cross-site scripting. Explicit for Authentication.
       responses:
@@ -3313,121 +3367,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    get:
-      description: Authenticate a Rucio account via CodeOIDC.
-      parameters:
-        - in: header
-          name: X-Forwarded-For
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Invalid request
-      summary: CodeOIDC
-      tags:
-        - Auth
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/auth/oidc_code \
-              --header 'X-Forwarded-For: SOME_STRING_VALUE' \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/auth/oidc_code"
-
-            headers = {
-                "X-Forwarded-For": "SOME_STRING_VALUE",
-                "X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"
-            }
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: |-
-            const fetch = require('node-fetch');
-
-            let url = 'http://undefinedundefined/auth/oidc_code';
-
-            let options = {
-              method: 'GET',
-              headers: {
-                'X-Forwarded-For': 'SOME_STRING_VALUE',
-                'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE'
-              }
-            };
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
   /auth/oidc_redirect:
-    options:
-      description: RedirectOIDC Allow cross-site scripting. Explicit for Authentication.
-      responses:
-        '200':
-          description: OK
-          headers:
-            Access-Control-Allow-Credentials:
-              schema:
-                enum:
-                  - 'true'
-                type: string
-            Access-Control-Allow-Headers:
-              schema:
-                type: string
-            Access-Control-Allow-Methods:
-              schema:
-                enum:
-                  - '*'
-                type: string
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-        '404':
-          description: Not found
-      summary: RedirectOIDC Allow cross-site scripting
-      tags:
-        - Auth
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request OPTIONS \
-              --url http://undefinedundefined/auth/oidc_redirect \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/auth/oidc_redirect"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("OPTIONS", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/auth/oidc_redirect';
-
-
-            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Authenticate a Rucio account via RedirectOIDC.
       parameters:
@@ -3494,9 +3434,8 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-  /auth/oidc_refresh:
     options:
-      description: RefreshOIDC Allow cross-site scripting. Explicit for Authentication.
+      description: RedirectOIDC Allow cross-site scripting. Explicit for Authentication.
       responses:
         '200':
           description: OK
@@ -3517,27 +3456,22 @@ paths:
             Access-Control-Allow-Origin:
               schema:
                 type: string
-            Access-Control-Expose-Headers:
-              schema:
-                enum:
-                  - X-Rucio-Auth-Token
-                type: string
         '404':
           description: Not found
-      summary: RefreshOIDC Allow cross-site scripting
+      summary: RedirectOIDC Allow cross-site scripting
       tags:
         - Auth
       x-codeSamples:
         - lang: Shell
           source: |-
             curl --request OPTIONS \
-              --url http://undefinedundefined/auth/oidc_refresh \
+              --url http://undefinedundefined/auth/oidc_redirect \
               --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
         - lang: Python
           source: |-
             import requests
 
-            url = "http://undefinedundefined/auth/oidc_refresh"
+            url = "http://undefinedundefined/auth/oidc_redirect"
 
             headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
 
@@ -3549,7 +3483,7 @@ paths:
             const fetch = require('node-fetch');
 
 
-            let url = 'http://undefinedundefined/auth/oidc_refresh';
+            let url = 'http://undefinedundefined/auth/oidc_redirect';
 
 
             let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
@@ -3560,6 +3494,7 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+  /auth/oidc_refresh:
     get:
       description: Authenticate a Rucio account via RefreshOIDC.
       parameters:
@@ -3624,6 +3559,71 @@ paths:
                 'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE'
               }
             };
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    options:
+      description: RefreshOIDC Allow cross-site scripting. Explicit for Authentication.
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                enum:
+                  - 'true'
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                enum:
+                  - '*'
+                type: string
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Expose-Headers:
+              schema:
+                enum:
+                  - X-Rucio-Auth-Token
+                type: string
+        '404':
+          description: Not found
+      summary: RefreshOIDC Allow cross-site scripting
+      tags:
+        - Auth
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request OPTIONS \
+              --url http://undefinedundefined/auth/oidc_refresh \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/auth/oidc_refresh"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("OPTIONS", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/auth/oidc_refresh';
+
+
+            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
 
             fetch(url, options)
               .then(res => res.json())
@@ -3711,64 +3711,6 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /config/{section}/{option}:
-    delete:
-      description: Delete an option of a section.
-      parameters:
-        - description: The section.
-          in: path
-          name: section
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The option of the section.
-          in: path
-          name: option
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-      summary: Delete option
-      tags:
-        - Config
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/config/{section}/{option} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/config/{section}/{option}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("DELETE", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/config/{section}/{option}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Returns the value of an option
       parameters:
@@ -3829,6 +3771,64 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      description: Delete an option of a section.
+      parameters:
+        - description: The section.
+          in: path
+          name: section
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The option of the section.
+          in: path
+          name: option
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+      summary: Delete option
+      tags:
+        - Config
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/config/{section}/{option} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/config/{section}/{option}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/config/{section}/{option}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -4046,76 +4046,6 @@ paths:
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
   /credentials/signurl:
-    options:
-      description: Allow cross-site scripting. Explicit for Authentication.
-      responses:
-        '200':
-          description: OK
-          headers:
-            Access-Control-Allow-Credentials:
-              description: If credentials are allowed.
-              schema:
-                enum:
-                  - 'true'
-                type: string
-            Access-Control-Allow-Headers:
-              description: The http access controll request headers.
-              schema:
-                type: string
-            Access-Control-Allow-Methods:
-              description: The allowed methods.
-              schema:
-                enum:
-                  - '*'
-                type: string
-            Access-Control-Allow-Origin:
-              description: The http origin.
-              schema:
-                type: string
-            Access-Control-Expose-Headers:
-              description: The exposed access controll header.
-              schema:
-                enum:
-                  - X-Rucio-Auth-Token
-                type: string
-        '404':
-          description: Not found
-      summary: Cross-Site Scripting
-      tags:
-        - Credentials
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request OPTIONS \
-              --url http://undefinedundefined/credentials/signurl \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/credentials/signurl"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("OPTIONS", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/credentials/signurl';
-
-
-            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Sign a url for a limited lifetime for a particular srevice.
       parameters:
@@ -4226,6 +4156,76 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    options:
+      description: Allow cross-site scripting. Explicit for Authentication.
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Credentials:
+              description: If credentials are allowed.
+              schema:
+                enum:
+                  - 'true'
+                type: string
+            Access-Control-Allow-Headers:
+              description: The http access controll request headers.
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              description: The allowed methods.
+              schema:
+                enum:
+                  - '*'
+                type: string
+            Access-Control-Allow-Origin:
+              description: The http origin.
+              schema:
+                type: string
+            Access-Control-Expose-Headers:
+              description: The exposed access controll header.
+              schema:
+                enum:
+                  - X-Rucio-Auth-Token
+                type: string
+        '404':
+          description: Not found
+      summary: Cross-Site Scripting
+      tags:
+        - Credentials
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request OPTIONS \
+              --url http://undefinedundefined/credentials/signurl \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/credentials/signurl"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("OPTIONS", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/credentials/signurl';
+
+
+            let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -5124,6 +5124,94 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    get:
+      description: Returns the contents of a data identifier.
+      parameters:
+        - description: The scope and the name of the did.
+          in: path
+          name: scope_name
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/x-json-stream:
+              schema:
+                description: The contents of a did. Items are line seperated.
+                items:
+                  properties:
+                    adler32:
+                      description: The adler32 checksum of the did.
+                      type: string
+                    bytes:
+                      description: The size of the did.
+                      type: number
+                    md5:
+                      description: The md5 checksum of the did.
+                      type: string
+                    name:
+                      description: The name of the did.
+                      type: string
+                    scope:
+                      description: The scope of the did.
+                      type: string
+                    type:
+                      description: The type of the did.
+                      type: string
+                  required:
+                    - scope
+                    - name
+                    - type
+                    - bytes
+                    - adler32
+                    - md5
+                  type: object
+                type: array
+          description: Did found
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Scope not found
+        '406':
+          description: Not acceptable
+      summary: Get did
+      tags:
+        - Data Identifiers
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/dids/{scope_name}/dids \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/dids/{scope_name}/dids"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/dids/{scope_name}/dids';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     delete:
       description: Detach data identifiers from data identifiers.
       parameters:
@@ -5208,94 +5296,6 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"dids":[{"name":"string","scope":"string"}]}'
             };
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    get:
-      description: Returns the contents of a data identifier.
-      parameters:
-        - description: The scope and the name of the did.
-          in: path
-          name: scope_name
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/x-json-stream:
-              schema:
-                description: The contents of a did. Items are line seperated.
-                items:
-                  properties:
-                    adler32:
-                      description: The adler32 checksum of the did.
-                      type: string
-                    bytes:
-                      description: The size of the did.
-                      type: number
-                    md5:
-                      description: The md5 checksum of the did.
-                      type: string
-                    name:
-                      description: The name of the did.
-                      type: string
-                    scope:
-                      description: The scope of the did.
-                      type: string
-                    type:
-                      description: The type of the did.
-                      type: string
-                  required:
-                    - scope
-                    - name
-                    - type
-                    - bytes
-                    - adler32
-                    - md5
-                  type: object
-                type: array
-          description: Did found
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Scope not found
-        '406':
-          description: Not acceptable
-      summary: Get did
-      tags:
-        - Data Identifiers
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/dids \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/dids/{scope_name}/dids"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/dids/{scope_name}/dids';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
 
             fetch(url, options)
               .then(res => res.json())
@@ -5397,79 +5397,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    delete:
-      description: Deletes the specified metadata from the did.
-      parameters:
-        - description: The scope and the name of the did.
-          in: path
-          name: scope_name
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The key to delete.
-          in: query
-          name: key
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: scope_name could not be parsed.
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Did or key not found
-        '406':
-          description: Not acceptable
-        '409':
-          description: Feature is not in current database.
-      summary: Delete metadata
-      tags:
-        - Data Identifiers
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url 'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE' \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url = "http://undefinedundefined/dids/{scope_name}/meta"
-
-
-            querystring = {"key":"SOME_STRING_VALUE"}
-
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-
-            response = requests.request("DELETE", url, headers=headers,
-            params=querystring)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Get the metadata of a did.
       parameters:
@@ -5538,6 +5465,79 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      description: Deletes the specified metadata from the did.
+      parameters:
+        - description: The scope and the name of the did.
+          in: path
+          name: scope_name
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The key to delete.
+          in: query
+          name: key
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: scope_name could not be parsed.
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Did or key not found
+        '406':
+          description: Not acceptable
+        '409':
+          description: Feature is not in current database.
+      summary: Delete metadata
+      tags:
+        - Data Identifiers
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url 'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE' \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url = "http://undefinedundefined/dids/{scope_name}/meta"
+
+
+            querystring = {"key":"SOME_STRING_VALUE"}
+
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers,
+            params=querystring)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/dids/{scope_name}/meta?key=SOME_STRING_VALUE';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -6050,6 +6050,75 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    get:
+      description: Get all followers for a specific did.
+      parameters:
+        - description: The scope and the name of the did.
+          in: path
+          name: scope_name
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: A list of all followers of a did.
+                items:
+                  description: A follower of a did.
+                  properties:
+                    user:
+                      description: The user which follows the did.
+                      type: string
+                  type: object
+                type: array
+          description: OK
+        '400':
+          description: Value error
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Did not found
+        '406':
+          description: Not acceptable
+      summary: Get followers
+      tags:
+        - Data Identifiers
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/dids/{scope_name}/follow \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/dids/{scope_name}/follow"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/dids/{scope_name}/follow';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     delete:
       description: Mark the input DID as not followed
       parameters:
@@ -6123,75 +6192,6 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"account":"string"}'
             };
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    get:
-      description: Get all followers for a specific did.
-      parameters:
-        - description: The scope and the name of the did.
-          in: path
-          name: scope_name
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                description: A list of all followers of a did.
-                items:
-                  description: A follower of a did.
-                  properties:
-                    user:
-                      description: The user which follows the did.
-                      type: string
-                  type: object
-                type: array
-          description: OK
-        '400':
-          description: Value error
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Did not found
-        '406':
-          description: Not acceptable
-      summary: Get followers
-      tags:
-        - Data Identifiers
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/dids/{scope_name}/follow \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/dids/{scope_name}/follow"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/dids/{scope_name}/follow';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
 
             fetch(url, options)
               .then(res => res.json())
@@ -11945,80 +11945,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    delete:
-      description: Delete distance information between source RSE and destination RSE.
-      parameters:
-        - description: The name of the source Rucio Storage Element.
-          in: path
-          name: source
-          required: true
-          schema:
-            type: string
-          style: simple
-        - description: The name of the destination Rucio Storage Element.
-          in: path
-          name: destination
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                enum:
-                  - Deleted
-                type: string
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Delete Rse Distance
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/rses/{source}/distances/{destination} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: >-
-            import requests
-
-
-            url =
-            "http://undefinedundefined/rses/{source}/distances/{destination}"
-
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-
-            response = requests.request("DELETE", url, headers=headers)
-
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url =
-            'http://undefinedundefined/rses/{source}/distances/{destination}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Returns the distances between a source and destination rse.
       parameters:
@@ -12102,6 +12028,80 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      description: Delete distance information between source RSE and destination RSE.
+      parameters:
+        - description: The name of the source Rucio Storage Element.
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The name of the destination Rucio Storage Element.
+          in: path
+          name: destination
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Deleted
+                type: string
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Delete Rse Distance
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/rses/{source}/distances/{destination} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: >-
+            import requests
+
+
+            url =
+            "http://undefinedundefined/rses/{source}/distances/{destination}"
+
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+
+            response = requests.request("DELETE", url, headers=headers)
+
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url =
+            'http://undefinedundefined/rses/{source}/distances/{destination}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -13129,6 +13129,70 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
+    get:
+      description: Get the rse limits.
+      parameters:
+        - description: The name of the Rucio Storage Element name.
+          in: path
+          name: rse
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  description: An item with the name as key and the value as value.
+                  type: integer
+                  x-additionalPropertiesName: limit name
+                description: The limits.
+                type: object
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: Rse not found
+        '406':
+          description: Not acceptable
+      summary: Get Rse Limits
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request GET \
+              --url http://undefinedundefined/rses/{rse}/limits \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/rses/{rse}/limits"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("GET", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/rses/{rse}/limits';
+
+
+            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
     delete:
       description: Delete an rse limit
       parameters:
@@ -13202,70 +13266,6 @@ paths:
               headers: {'X-Rucio-Auth-Token': 'REPLACE_KEY_VALUE', 'content-type': 'application/json'},
               body: '{"name":"string"}'
             };
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
-    get:
-      description: Get the rse limits.
-      parameters:
-        - description: The name of the Rucio Storage Element name.
-          in: path
-          name: rse
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                additionalProperties:
-                  description: An item with the name as key and the value as value.
-                  type: integer
-                  x-additionalPropertiesName: limit name
-                description: The limits.
-                type: object
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: Rse not found
-        '406':
-          description: Not acceptable
-      summary: Get Rse Limits
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request GET \
-              --url http://undefinedundefined/rses/{rse}/limits \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/rses/{rse}/limits"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("GET", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/rses/{rse}/limits';
-
-
-            let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
 
             fetch(url, options)
               .then(res => res.json())
@@ -13694,59 +13694,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    delete:
-      description: Disable a specific RSE.
-      parameters:
-        - description: The name of the Rucio Storage Element name.
-          in: path
-          name: rse
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: RSE not found
-      summary: Disable RSE
-      tags:
-        - Rucio Storage Elements
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/rses/{rse} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/rses/{rse}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("DELETE", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/rses/{rse}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       description: Get details about a specific RSE.
       parameters:
@@ -13855,6 +13802,59 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      description: Disable a specific RSE.
+      parameters:
+        - description: The name of the Rucio Storage Element name.
+          in: path
+          name: rse
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: RSE not found
+      summary: Disable RSE
+      tags:
+        - Rucio Storage Elements
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/rses/{rse} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/rses/{rse}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/rses/{rse}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
@@ -14139,58 +14139,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    delete:
-      parameters:
-        - description: The id of the replication rule.
-          in: path
-          name: rule_id
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-        '404':
-          description: No rule found for the given id
-      summary: Delete a replication rule
-      tags:
-        - Rule
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request DELETE \
-              --url http://undefinedundefined/rules/{rule_id} \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/rules/{rule_id}"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("DELETE", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/rules/{rule_id}';
-
-
-            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     get:
       parameters:
         - description: The id of the replication rule.
@@ -14242,6 +14190,58 @@ paths:
 
 
             let options = {method: 'GET', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    delete:
+      parameters:
+        - description: The id of the replication rule.
+          in: path
+          name: rule_id
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+        '404':
+          description: No rule found for the given id
+      summary: Delete a replication rule
+      tags:
+        - Rule
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request DELETE \
+              --url http://undefinedundefined/rules/{rule_id} \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/rules/{rule_id}"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("DELETE", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/rules/{rule_id}';
+
+
+            let options = {method: 'DELETE', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
