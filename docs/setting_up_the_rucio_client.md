@@ -2,11 +2,6 @@
 title: Setting Up the Rucio Client
 ---
 
-## Prerequisites
-
-Rucio clients run on Python 2.7, 3.6, 3.7 and 3.8 on any Unix-like
-platform.
-
 ## Install via pip
 
 When `pip` is available, the distribution can be downloaded from the
