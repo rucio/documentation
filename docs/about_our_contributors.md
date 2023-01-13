@@ -66,6 +66,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Rizart Dona <rizart.dona@gmail.com>, 2021-2022
 - Aksel Lunde Aase <aksel.lunde.aase@gmail.com>, 2022
 - Anton Schwarz <anton.schwarz@cern.ch>, 2022
+- Johannes Lange <johannes.lange@uni-hamburg.de>, 2022-2023
 
 # Organisations employing contributors
 
@@ -92,3 +93,4 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Science and Technology Facilities Council (UK)
 - Brookhaven National Laboratory (USA)
 - Institut Teknologi Bandung (Indonesia)
+- Universität Hamburg (Germany)
