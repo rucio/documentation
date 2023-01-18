@@ -43,7 +43,7 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
     skip_upload_stat: True
     verify_checksum: False
     strict_copy: True
-    s3_url_style: path(default)|virtual
+    s3_url_style: path(default)|host
     ```
 
 3. Deploy the S3 configuration to the Rucio servers and restart servers:
