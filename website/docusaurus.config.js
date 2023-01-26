@@ -39,7 +39,7 @@ module.exports={
         },
         "blog": {},
         "theme": {
-          "customCss": [require.resolve('../src/css/customTheme.css')]
+          "customCss": [require.resolve('./src/css/customTheme.css')]
         }
       }
     ]
