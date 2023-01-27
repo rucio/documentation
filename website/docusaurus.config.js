@@ -77,7 +77,6 @@ module.exports={
       "apiKey": "04e5d623b96121df11ac440e51fc8956",
       "appId": "NDP6TP9QYQ",
       "indexName": "rucio-cern",
-      "algoliaOptions": {},
       "placeholder": "Ask me something"
     }
   }
