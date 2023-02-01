@@ -50,6 +50,8 @@
                 {
                     "Transfers": [
                         "transfers-overview",
+                        "transfers-preparer",
+                        "transfers-throttler",
                         "transfers-submitter",
                         "configure-rucio-globus"
                     ]
