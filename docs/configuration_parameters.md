@@ -131,11 +131,6 @@ attributes.
     the dogpile system. Default: `600`.
   - **failover_scheme**: Failover schemes. Default: `None`.
   - **filter_transfertool**: _(Optional)_ <!--??--> Default: `None`.
-  - **fts_throttler_cycle**: _(Optional)_ Path to the cycle file (JSON). If not
-    specified cannot perform tuning for this cycle without cycle file. Example:
-    `fts_throttler_cycle.json`. No default.
-  - **fts_throttler_tuning_ratio**: _(Optional)_ Integer. Example: `20`. No
-    default.
   - **ftshosts**: URL of the [File Transfer Service
     (FTS)](https://fts.web.cern.ch/) hosts (separated by commas). Example:
     `https://fts3-pilot.cern.ch:8446, https://fts3-pilot.cern.ch:8446`. <!--NOT
@@ -498,10 +493,6 @@ attributes.
   - **keep_history**: _(Optional)_ Boolean. Default: `False`.
   - **reevaluate_dids_at_close**: _(Optional)_ Flag to reevaluate the DID against
     all the subscriptions when the DID is closed. Boolean. Default: `False`.
-- **throttler**
-  - **mode**: Conveyor-throttler mode. Values: `{DEST_PER_ALL_ACT, DEST_PER_ACT,
-    SRC_PER_ACT, SRC_PER_ALL_ACT}`. Default: `None` for `core/request`,
-    `DEST_PER_ACT` for `rucio-conveyor-throttler`.
 - **transfers**
   - **hop_penalty**: _(Optional)_ Penalty to be applied to each further
     hop. Integer. Default: `10`.

@@ -67,6 +67,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Aksel Lunde Aase <aksel.lunde.aase@gmail.com>, 2022
 - Anton Schwarz <anton.schwarz@cern.ch>, 2022
 - Johannes Lange <johannes.lange@uni-hamburg.de>, 2022-2023
+- Domenic Gosein <domenic.gosein@cern.ch>, 2023
 
 # Organisations employing contributors
 

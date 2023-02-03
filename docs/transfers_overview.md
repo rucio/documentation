@@ -22,9 +22,13 @@ type) and others.
 The following transfer-related daemons exist in rucio, presented in the order
 they intervene in a transfer lifecycle:
 
-- **preparer**: an optional daemon, but required for some advanced usages, like
-  multiple transfertools together. It is also required to be able to use
-  throttler
+- **preparer**: a strongly recommended optional daemon which is required for 
+  many advanced usages, like multiple transfertools together. 
+  It is also required to be able to use throttler. If active, performs part 
+  of the source selection and path computation work instead of the submitter. 
+  For all new rucio installation, it is recommended to run this daemon and
+  activate it by setting the `conveyor/use_preparer = True` configuration 
+  option.
 - **throttler**: an optional daemon which can throttle request submissions
   to/from an RSE
 - **submitter**, **stager**: perform source selection, path computation and the
@@ -97,11 +101,12 @@ long as it respects the RSE expression. Here, `*` matches any RSE.
 For the seek of the example, lets assume that RSE4 was selected.
 
 The rule evaluation mechanism will then create two transfer requests, which
-will be picked by the transfer machinery. After being processed, if needed,
-by `preparer` and `throttler` the transfers eventually arrive at `submitter`.
+will be picked by the transfer machinery. Depending on the configuration value
+`conveyor/use_preparer`, the transfer will be either handled by the `preparer`
+or by the `submitter` directly. 
 
-At this stage, the submitter finds all the possible sources. It filters out
-the ones which don't match different rule criterias (for example:
+At this stage, the transfer machinery finds all the possible sources. It
+filters out the ones which don't match different rule criterias (for example:
 source RSE expression) and administrative constraints (for example:
 skip blocklisted RSEs). It then computes the paths. In the previous example,
 the path `RSE1 -> RSE2 -> RSE3 -> RSE4` will be picked due to cost constraints.
