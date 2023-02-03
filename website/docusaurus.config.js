@@ -67,14 +67,14 @@ module.exports={
     },
     "footer": {
       "links": [],
-      "copyright": "Copyright © 2022 CERN",
+      "copyright": "Copyright © 2023 CERN",
       "logo": {
         "src": "img/rucio_horizontaled_black.svg",
         "srcDark": "img/rucio_horizontaled_white.svg"
       }
     },
     "algolia": {
-      "apiKey": "04e5d623b96121df11ac440e51fc8956",
+      "apiKey": "43793c746780cfec79feebd0f9745923",
       "appId": "NDP6TP9QYQ",
       "indexName": "rucio-cern",
       "placeholder": "Ask me something"
