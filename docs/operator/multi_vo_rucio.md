@@ -62,6 +62,56 @@ not be set for the server or the daemons as these parts of Rucio are not
 associated with a single VO. If `multi_vo` is not set, or set to False, then
 Rucio will operate normally.
 
+### Renew FTS cronjob
+
+Some daemons need a delegated X509 user proxy and the necessary CA so that it
+can submit jobs to FTS. For the CA you have to add a
+`<releasename>-rucio-ca-bundle` secret. For the user proxy a cronjob can be
+setup to either generate it from a long proxy. The cronjob uses the
+[fts-cron](https://github.com/rucio/containers/tree/master/fts-cron) container
+which expects different input secrets. When enabled, the cronjob runs once upon
+installation and then every 6 hours. 
+
+For multi-vo the helm chart needs some changes vo should be set to `multi_vo`
+and a `vomses` section added. This section contains the vo and voms extention
+if required. Any additiional VOMS server info can be mounted as an additional
+secret to /etc/vomses/.
+An example configuration looks like this:
+
+    ftsRenewal:
+      enabled: 1
+      schedule: "12 */6 * * *"
+      image:
+        repository: rucio/fts-cron
+        tag: latest
+        pullPolicy: Always
+      vo: "multi_vo"
+      vomses: 
+      - vo: dteam
+        voms: dteam
+      - vo: cms
+        voms: "cms:/cms/Role=production"
+      gridPassphrase:
+        required: false
+        existingSecret:
+          name: 'grid-passphrase'
+          key: 'passphrase'
+      servers: "https://fts3-devel.cern.ch:8446,https://fts3-pilot.cern.ch:8446"
+      ftsSecrets: '' # e.g., rucio-x509up
+      ftsCert:
+        existingSecret:
+          name: '' # e.g., fts-cert
+          key: '' # e.g., usercert.pem
+      ftsKey:
+        existingSecret:
+          name: '' # e.g., fts-key
+          key: '' # e.g., userkey.pem
+      longProxy: ''
+      ftsLongProxy:
+        existingSecret:
+          name: '' # e.g., long-proxy
+          key: '' # e.g., long.proxy
+          
 ## Role of the super_root
 
 While root accounts still retain their administrative role within a VO, for
