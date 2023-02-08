@@ -66,15 +66,15 @@ Rucio will operate normally.
 
 Some daemons need a delegated X509 user proxy and the necessary CA so that it
 can submit jobs to FTS. For the CA you have to add a
-`<releasename>-rucio-ca-bundle` secret. For the user proxy a cronjob can be
-setup to either generate it from a long proxy. The cronjob uses the
+`<releasename>-rucio-ca-bundle` secret. For the user proxy, the cronjob can be
+setup to generate it from a long proxy. The cronjob uses the
 [fts-cron](https://github.com/rucio/containers/tree/master/fts-cron) container
 which expects different input secrets. When enabled, the cronjob runs once upon
 installation and then every 6 hours. 
 
 For multi-vo the helm chart needs some changes vo should be set to `multi_vo`
 and a `vomses` section added. This section contains the vo and voms extention
-if required. Any additiional VOMS server info can be mounted as an additional
+if required. Any additional VOMS server info can be mounted as an additional
 secret to /etc/vomses/.
 An example configuration looks like this:
 
