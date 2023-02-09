@@ -38,7 +38,8 @@
                             "dirName": "client_api"
                         }
                     ]
-                }
+                },
+                "developing_with_rucio"
             ],
             "Operator": [
                 "installing_server",
@@ -69,7 +70,6 @@
             ],
             "Developer": [
                 "setting_up_demo",
-                "developing_with_rucio",
                 "contributing",
                 "rest_api_doc",
                 "component_leads",
