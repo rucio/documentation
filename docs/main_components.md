@@ -22,7 +22,7 @@ the guidelines mentioned specifically in
 https://github.com/rucio/webui#getting-started-with-create-react-app one must follow 
 these credentials to login for a root user (username and password).
 
-file:///home/sayandeep/Pictures/Screenshots/Screenshot%20from%202023-03-02%2016-03-27.png![image](https://user-images.githubusercontent.com/77008026/222405999-997e93ca-1c83-42b9-8013-bbce572273f6.png)
+![image](https://user-images.githubusercontent.com/77008026/222405999-997e93ca-1c83-42b9-8013-bbce572273f6.png)
 
 
 
