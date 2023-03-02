@@ -15,6 +15,16 @@ Python clients, and the Javascript-based web user interface and configuration.
 
 The server layer serves the purpose of authentication & provides a common API
 for interaction with clients & other external application, as also the Web UI.
+It is a passive component which receives incoming queries and forward them to 
+the core. For any general user who want s to access the Rucio WebUI, one must 
+fork the the WebUI repository (https://github.com/rucio/webui) and after follwing
+the guidelines mentioned specifically in 
+https://github.com/rucio/webui#getting-started-with-create-react-app one must follow 
+these credentials to login for a root user (username and password).
+
+file:///home/sayandeep/Pictures/Screenshots/Screenshot%20from%202023-03-02%2016-03-27.png![image](https://user-images.githubusercontent.com/77008026/222405999-997e93ca-1c83-42b9-8013-bbce572273f6.png)
+
+
 
 ## Core
 
