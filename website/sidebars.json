@@ -70,6 +70,7 @@
             ],
             "Developer": [
                 "setting_up_demo",
+                "setting_up_intellij_dev_env",
                 "contributing",
                 "rest_api_doc",
                 "component_leads",
