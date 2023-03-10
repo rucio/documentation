@@ -213,7 +213,7 @@ With this properly configured, local login should work (note that the
 **-h localhost** argument may be necessary to connect on the TCP
 port instead of the UNIX socket):
     
-	$psql -h localhost --user rucio --password secret
+	$psql -h localhost --user rucio --password rucio
     
 ## Configure Rucio to use the database
 
