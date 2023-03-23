@@ -54,6 +54,7 @@ def render_templates(templates_dir: str, output_path: pathlib.Path) -> None:
         # We hardcode the minor release titles for now, since there is no east
         # way to automatically get them.
         HARD_CODED_RELEASE_NOTE_TITLE = {
+            "1.31": "Donkeys of the Caribbean",
             "1.30": "The Donkeynator",
             "1.29": "Into the Donkeyverse",
             "1.28": "Teenage Mutant Ninja Donkeys",
