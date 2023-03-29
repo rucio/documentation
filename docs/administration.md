@@ -63,13 +63,10 @@ If you deploy rucio in a kubernetes cluster using the official rucio
 [helm charts](https://github.com/rucio/helm-charts/) and want to hotfix
 rucio using a patch file created in the previous section, follow these steps:
 
-Lets assume you have two helm releases: `daemons` and `servers` in the
-kubernetes namespace `rucio`. Create a kubernetes secret for each of your
-helm releases:
+Create a kubernetes secret from the hotfix patch: 
 
 ```bash
-kubectl -n rucio create secret generic daemons-hotfix-conveyor-poller-patch --from-file=hotfix_conveyor_poller.patch
-kubectl -n rucio create secret generic servers-hotfix-conveyor-poller-patch --from-file=hotfix_conveyor_poller.patch
+kubectl -n rucio create secret generic hotfix-conveyor-poller-patch --from-file=hotfix_conveyor_poller.patch
 ```
 
 *Note:* if you have more than one cluster, don't forget to create the
@@ -79,10 +76,8 @@ Now you'll have to update the helm `values` file for each helm release and
 add the following
 
 ```yaml
-    additionalSecrets:
-      hotfix-conveyor-poller-patch:
-        # the helm release (daemons-/servers-) must NOT prefix the name
-        secretName: hotfix-conveyor-poller-patch
+    secretMounts:
+      - secretFullName: hotfix-conveyor-poller-patch
         mountPath: /patch/hotfix_conveyor_poller.patch
         subPath: hotfix_conveyor_poller.patch
 ```
