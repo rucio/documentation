@@ -59,13 +59,13 @@ if action not in perm:
 ```
 
 `__init__.py` should include a
-`SUPPORTED_VERSION` field indicating the version of Rucio
-that your package was developed against. This may be checked by Rucio in
+`SUPPORTED_VERSION` field indicating the major version of Rucio
+that your package was developed against. This is checked by Rucio in
 the event that the policy package interface changes in the future.
 Example:
 
 ```python
-SUPPORTED_VERSION = "1.20.7"
+SUPPORTED_VERSION = "1.30"
 ```
 
 It can also contain an optional function called `get_algorithms` that
