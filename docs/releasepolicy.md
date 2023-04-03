@@ -28,7 +28,7 @@ deploy the new LTS release.
 | 33              | Eternal Sunshine of the Donkey's Mind     | _2023-11_      | _2024-03_            |
 | 32 LTS          | The Good, The Bad and the Donkey          | _2023-07_      | _at least 2025-07_   |
 | **1.31**        | **Donkeys of the Caribbean**              | **2023-03**    | _2023-07_            |
-| 1.30            | The Donkeynator                           | _2022-11_      | _2023-??_            |
+| 1.30            | The Donkeynator                           | 2022-11        | 2023-03              |
 | **1.29 LTS**    | **Into the Donkeyverse**                  | **2022-07**    | _at least 2024-07_   |
 | 1.28            | Teenage Mutant Ninja Donkeys              | 2022-03        | 2022-07              |
 | 1.27            | Batdonkey v Superdonkey                   | 2021-11        | 2022-03              |
