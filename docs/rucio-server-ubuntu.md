@@ -6,23 +6,24 @@ Setting up a Rucio server on Ubuntu
 
 This instruction is about how to install the central Rucio server and
 get it up and running. This server is a Web Server Gateway Interface
-(WSGI) Python application and has to run on a WSGI capable web server,
-such as Apache with enabled mod_wsgi. The server provides a REST API
-and interacts with a database. The actual tasks are then performed by
-intermediate-level daemons. These read the database and can interact
-with lower level components including storage managers (FTS, etc).
+(WSGI) Python application in the Flask framework, and should run on a
+WSGI capable web server, such as Apache with mod_wsgi. The Rucio server
+provides a REST API and interacts with a database. The actual tasks
+are then performed by intermediate-level daemons, which read the
+database and interact with lower level components including
+the FTS file transfer system.
 
-This architecture gives big flexibility in choices of authentication,
-transfer protocols, and storage systems, and no special software has
-to run on the storage systems as long as they provide a supported
-protocol and authN/authZ mechanism. However, this can also make
-first-time setup a nontrivial task. The Rucio developers recommend all
-users to run the Docker containers they provide. To learn about setup
-and configuration, however, it may still be preferrable to install the
-Rucio server and necessary daemons from source. Another reason is that
-the provided containers and instructions for use are all built on
-CentOS, which may be incompatible with more up to date host operating
-systems. In the following we describe how to deploy a Rucio
+Rucio's modular architecture gives big flexibility in choices of
+authentication, transfer protocols, and storage systems, and no
+special software has to run on the storage systems as long as they
+provide a supported protocol and an authN/authZ mechanism. However,
+this can also make first-time setup a nontrivial task. The Rucio
+developers recommend all users to run the Docker containers they
+provide. To learn about setup and configuration, however, it may still
+be preferrable to install the Rucio server and necessary daemons from
+source. Another reason is that the provided Docker containers are
+built on CentOS, which may be incompatible with more up to date host
+operating systems. In the following we describe how to deploy a Rucio
 server on an Ubuntu server system.
 
 # Prerequisites
@@ -33,7 +34,7 @@ etc). We assume this to be available. Installing in a Python virtual
 environment may be preferrable for compatibility of dependencies. In
 the test setup described here, we instead started a fresh LXD
 container and installed all packages system-wide. Versions of Ubuntu
-Server used include 20.04 LTS and 21.10.
+Server tested include 20.04 LTS (focal), 22.04 LTS (jammy), and 22.10.
 
 
 # Dependencies
@@ -106,18 +107,37 @@ intermediate certificates) and unencrypted private key in for example
 	 /etc/grid-security/hostkey.pem
 	 
 For certificate-based authentication, also get a personal certificate
-(or export the one you have) and make sure it is saved on the system where the client will run as
+(or export the one you have) and make sure it is saved on the system
+where the *client* will run as
     
 	 $HOME/.globus/usercert.pem and
 	 $HOME/.globus/userkey.pem
 	 
 This personal certificate will later be used to create a short-lived
-*grid proxy certificate* for user authentication. With CAs properly
-configured, the proxy certificate will allow the https connection to
-transfer your identity (certificate Distinguished Name) securely to
-the server.
+*grid proxy certificate* for user authentication to the server. With
+CAs properly configured, the proxy certificate will allow the https
+connection to transfer your identity (certificate Distinguished Name)
+securely to the server. The software required to set up the grid proxy
+certificate can be installed with
+    
+	 sudo apt install globus-proxy-utils
 
-Add: instructions on certificate export and **grid-proxy-init**
+## Note on certificate DN formats
+The Distinguished Name (DN) in a certificate is a text string that can have two different formats: comma or slash separated, like 
+
+    CN=John Doe,OU=Users,DC=example,DC=com 
+	
+or
+
+   /DC=com/DC=example/OU=Users/CN=John Doe
+   
+Recent versions of Rucio expect the newer comma separatedone, but many certificate authorities (including Sectigo) will give you certificates with the latter form of the DN. If you have one of those, you must add one option to the Apache SSL configuration
+
+    SSLOptions +LegacyDNStringFormat
+
+In the sample config below you will see the following. Thus remove the last option if your DN is of the newer kind.
+
+	SSLOptions +StdEnvVars +LegacyDNStringFormat
 
 # Get the Rucio software
 
@@ -178,7 +198,6 @@ Follow the instruction prompts that appear:
     Shall the new role be allowed to create databases? n
     Shall the new role be allowed to create more new roles? n
 
-(Checkme: required permissions?)
 
 Next enter the PostgreSQL CLI and make sure that you can connect to the database:
 
@@ -304,11 +323,14 @@ set up, generate a proxy certificate with
 
     $grid-proxy-init
 	
-or (as is the case in the EISCAT local install, to allow authentication to dCache storage with VO attributes)
+or (in case you also have to transfer Virtual Organization attributes)
 
     $voms-proxy-init --voms <my.vo>:/<my>/<group>/Role=<my-role>
 
-Next, either set certificate and user details in **rucio.cfg** [clients] section, or
+This will ask for the password of your user key, and write a temporary
+short-lived certificate file to the /tmp filesystem.
+
+Next, either set these certificate and user details in **rucio.cfg** [clients] section, or
 
     $export X509_USER_PROXY=/tmp/x509up_u<nnnn>
 
@@ -318,23 +340,22 @@ Insert the proper name of your generated proxy certificate file here --- typical
 	
 Now the command line client **/usr/local/bin/rucio** should be able to connect to the server:
 
-
     $rucio ping
 
-This should reply with the version number, e.g. 1.27.0
+This should reply with the version number, e.g. 1.30.8
 	
 	$rucio whoami
 	
 This should give a reply similar to the following, including the account name:
 
-	status     : ACTIVE
-	email      : None
-	deleted_at : None
-	updated_at : 2022-02-23T12:18:11
-	account_type : SERVICE
-	account    : root
-	suspended_at : None
-	created_at : 2022-02-23T12:18:11
+    account    : root
+    account_type : SERVICE
+    email      : None
+    deleted_at : None
+    updated_at : 2023-03-21T11:02:23
+    status     : ACTIVE
+    suspended_at : None
+    created_at : 2023-03-21T11:02:23
 
 
 # Troubleshooting
@@ -497,7 +518,6 @@ Note: **auth** should be added to [api] endpoints config
 
 
 ## **/etc/apache2/sites-available/rucio.conf** (remember **sudo a2ensite rucio**)
-(Checkme: is everything necessary? How enable Web UI properly?)
 
 
 	<IfModule mod_ssl.c>
@@ -518,7 +538,7 @@ Note: **auth** should be added to [api] endpoints config
 		SSLCACertificatePath /etc/grid-security/certificates
 		SSLVerifyClient optional_no_ca
 		SSLVerifyDepth  10
-		SSLOptions +StdEnvVars
+		SSLOptions +StdEnvVars +LegacyDNStringFormat
 		SSLProxyEngine On
         SSLProxyCheckPeerCN Off
 
