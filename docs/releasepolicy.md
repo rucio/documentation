@@ -4,14 +4,17 @@ title: Release Policy
 sidebar_label: Release Policy
 ---
 
-Rucio follows a release policy with **feature** (named) releases. Approximately
-every 4 months we produce a feature release with a version number like **1.x.0**
-(with x > 0). A feature release marks the start of a release line. This release
-line is maintained with bi-weekly patch releases, containing bug fixes or minor
-enhancements, with version numbers like **1.19.y** (with y > 0). Versions within
+Rucio follows a release policy, based on [semantic versioning](https://semver.org),
+with **major** (named) releases. Approximately
+every 4 months we produce a major release with a version number like **x.0.0**
+(with x > 0). A major release marks the start of a release line. This release
+line is maintained with bi-weekly minor/patch releases, containing bug fixes or minor
+enhancements, with version numbers like **22.y.z** (with y &ge; 0, z &ge; 0). Versions within
 one release line are always backwards compatible, thus they do not include
 database schema changes, API modifications, or other backward-compatibility
 breaking changes.
+
+Previous to the 32 release line, Rucio used a different versioning theme.
 
 ## Support period
 
