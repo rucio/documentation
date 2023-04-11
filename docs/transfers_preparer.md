@@ -65,6 +65,12 @@ by priority. Same for the destination: `third_party_copy_write` is used.
 
 ```shell
 rucio-admin rse add-distance --distance 1 RSE1 RSE2
+# Note: before rucio 1.30 (as a consequence: also in the current LTS release 1.29),
+# the --ranking option was used for the same purpose. The --distance option
+# could still be set and was mentioned in documentation alongside --ranking
+# but was completely ignored by rucio.
+# On 1.29, you'll have to use the following command:
+rucio-admin rse add-distance --ranking 1 RSE1 RSE2
 ```
 
 Once all valid paths are found, after all the filtering done previously,
