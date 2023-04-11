@@ -34,11 +34,7 @@ transfer requests can be made to Rucio in order to populate the cache.
 
 ## Distances between RSEs
 
-When configuring transfers between RSEs, bidirectional distances or rankings
-must be defined for that link. When sorting by these distances in the selection
-of a transfer source, the following criterion are used:
-
-- Higher source_ranking first
-- On equal source_ranking, prefer DISK over TAPE
-- On equal type, prefer lower distance_ranking
-- On equal distance, prefer single hop
+When configuring transfers between RSEs, distances must be defined for that link.
+Distances are unidirectional. To allow transfers in both directions, a distance
+has to be defined separately in each direction. Refer to the section
+[Transfers Overview](transfers_overview.md) for more details.

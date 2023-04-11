@@ -22,18 +22,19 @@ type) and others.
 The following transfer-related daemons exist in rucio, presented in the order
 they intervene in a transfer lifecycle:
 
-- **preparer**: a strongly recommended optional daemon which is required for 
-  many advanced usages, like multiple transfertools together. 
-  It is also required to be able to use throttler. If active, performs part 
-  of the source selection and path computation work instead of the submitter. 
+- **preparer**: a strongly recommended optional daemon which is required for
+  many advanced usages, like multiple transfertools together.
+  It is also required to be able to use throttler. If active, performs part
+  of the source selection and path computation work instead of the submitter.
   For all new rucio installation, it is recommended to run this daemon and
-  activate it by setting the `conveyor/use_preparer = True` configuration 
+  activate it by setting the `conveyor/use_preparer = True` configuration
   option.
 - **throttler**: an optional daemon which can throttle request submissions
   to/from an RSE
-- **submitter**, **stager**: perform source selection, path computation and the
-  actual submission of transfers to the external transfertool. Stager is a
-  specialized submitter for issuing stagein operations to tape archives.
+- **submitter**, **stager**: perform the actual submission of transfers to the
+  external transfertool. If used without preparer, also perform path computation
+  and source replica selection. Stager is a specialized submitter for issuing
+  stagein operations to tape archives.
 - **receiver**: optional daemons which listens for events published into a
   queueing system (activemq) by the external transfertool and reacts to those
   events to mark transfers as successful or failed.
@@ -78,8 +79,15 @@ we assume that the cost was configured identical in both directions.
 For example:
 
 ```shell
-rucio-admin rse add-distance --distance 5 --ranking 5 RSE1 RSE2
-rucio-admin rse add-distance --distance 5 --ranking 5 RSE2 RSE1
+rucio-admin rse add-distance --distance 5 RSE1 RSE2
+rucio-admin rse add-distance --distance 5 RSE2 RSE1
+# Note: before rucio 1.30 (as a consequence: also in the current LTS release 1.29),
+# the --ranking option was used for the same purpose. The --distance option
+# could still be set and was mentioned in documentation alongside --ranking
+# but was completely ignored by rucio.
+# On 1.29, you'll have to use the following command:
+rucio-admin rse add-distance --ranking 5 RSE1 RSE2
+rucio-admin rse add-distance --ranking 5 RSE2 RSE1
 ```
 
 Assume a certain dataset `someScope:dsName`, which has two files
@@ -103,7 +111,7 @@ For the seek of the example, lets assume that RSE4 was selected.
 The rule evaluation mechanism will then create two transfer requests, which
 will be picked by the transfer machinery. Depending on the configuration value
 `conveyor/use_preparer`, the transfer will be either handled by the `preparer`
-or by the `submitter` directly. 
+or by the `submitter` directly.
 
 At this stage, the transfer machinery finds all the possible sources. It
 filters out the ones which don't match different rule criterias (for example:
@@ -112,6 +120,8 @@ skip blocklisted RSEs). It then computes the paths. In the previous example,
 the path `RSE1 -> RSE2 -> RSE3 -> RSE4` will be picked due to cost constraints.
 Note that it's possible to make rucio prefer shorter parts by setting the RSE
 attribute `hop_penalty`, or the global configuration value with the same name.
+For more details about how a source is selected, refer to the [Preparer](transfers_preparer.md)
+documentation.
 
 The path will be then submitted to the transfertool either in its integrity,
 if transfertool supports multi-hopping, or in multiple iterations.
