@@ -10,8 +10,8 @@ The following is a set of rules for contributing to **Rucio** and its
 packages. Use your best judgment, and feel free to propose changes to this
 document.
 
-If you have questions, you can reach the core development team on our
-[__Slack__](https://rucio.slack.com/) channel, or send an email to our
+If you have questions, you can reach the core development team on our 
+[__Mattermost__](mattermost.md) channel, or send an email to our
 development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
 
 ## What should I know before I get started
