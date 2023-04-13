@@ -10,10 +10,8 @@ with Rucio.
 
 ## Chat with us
 
-We've a dedicated Slack workspace for all things Rucio and you can be a part of
-it too! Click this
-[__link__](https://join.slack.com/t/rucio/shared_invite/zt-3varwqhd-h68jB3uY7A6OBeFmQv3TOg)
-to be invited to our workspace.
+We've a dedicated Mattermost teame for all things Rucio and you can be a part of
+it too! Click [here](mattermost.md)
 
 ## Weekly development meeting
 
