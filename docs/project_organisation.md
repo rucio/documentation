@@ -39,7 +39,7 @@ identification of funding streams and collaboration on funded projects are also
 within the scope of the RAB. The Rucio project lead communicates the advice given by 
 the advisory board to the development team.
 
-Detailed mandate and responsibility of the board can be found [here](/documentation/img/Rucio_Advisory_Board.pdf).
+Detailed mandate and responsibility of the board can be found [here](/documentation/files/Rucio_Advisory_Board.pdf).
 
 ## Composition of the Rucio Advisory Board
 
@@ -50,7 +50,11 @@ Detailed mandate and responsibility of the board can be found [here](/documentat
 | [CMS](https://cms.cern)             | Katy Ellis, STFC      | 2023-Feb to 2025-Jan |
 | [DUNE](https://www.dunescience.org) | Mike Kirby, FNAL      | 2023-Feb to 2025-Jan |
 | [ESCAPE](https://projectescape.eu)  | Xavier Espinal, CERN  | 2023-Feb to 2025-Jan |
-| ----------------------------------- | --------------------- | --------------------- |
+
+## Former Rucio Advisory Board members
+
+| Community                           | Member                | Term                 |
+| ----------------------------------- | --------------------- | -------------------- |
 | [ATLAS](https://atlas.cern)         | David Cameron, U Oslo | 2023-Feb to 2023-Apr |
 
 # Special Interest Groups
