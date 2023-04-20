@@ -5,7 +5,7 @@ title: Rucio Advisory Board
 
 Version 1.0
 
-# Introduction
+## Introduction
 
 The major success of the Rucio project can, in large part, be traced back to the way 
 the project is organised and how design decisions are made: An open development team, 
@@ -14,7 +14,7 @@ development based on expertise, technical best practices and input from their
 respective communities[^1]. This recipe of success is core to the culture and identity 
 of the Rucio project and must not change.
 
-[~1:]: A Rucio Community usually describes, but is not limited to, a scientific collaboration/experiment using/contributing to Rucio
+[^1]: A Rucio Community usually describes, but is not limited to, a scientific collaboration/experiment using/contributing to Rucio
 
 
 However, with the success of the project, and the on-boarding of many scientific 
@@ -29,7 +29,7 @@ iprojects.
 These shortcomings should be settled by complementing the existing process with the 
 creation of a **Rucio Advisory Board**.
 
-# Mandate and responsibilities of the board
+## Mandate and responsibilities of the board
 
 The primary function of the Rucio advisory board (RAB) is to provide expertise from 
 representatives of Rucio communities and to advise the Rucio project leader. 
@@ -43,7 +43,7 @@ the advice given by the advisory board to the development team.
 
 The board provides non-binding strategic advice and is informal in nature.
 
-# Composition
+## Composition
 
 The RAB is composed of a group of community representatives. The goal is to 
 complement the expertise of the development team, and thus representatives should 
@@ -60,7 +60,7 @@ with the Rucio project leader.
 The Rucio project leader is an ex-officio member of the board and chairs the 
 board meetings.
 
-# Organisation
+## Organisation
 
 The RAB meets as needed, nominally twice a year. Meetings generally take place 
 at CERN, with remote participation possibilities. The RAB members agree to 
