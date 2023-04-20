@@ -1,6 +1,6 @@
 ---
 id: project_organisation
-title: About Project Organisation
+title: Project Organisation
 ---
 
 Rucio is organised as a community-driven, open-source, project.
@@ -13,6 +13,8 @@ To organise the daily development work as well as the long-term strategic object
 of the software, the project consists of several entities described on this page.
 
 ![Project organisation](/img/project_organisation.svg)
+
+A list of members of the current "Core Team" can be seen [here](https://rucio.cern.ch/team.html).
 
 # Project leader
 
@@ -39,7 +41,7 @@ identification of funding streams and collaboration on funded projects are also
 within the scope of the RAB. The Rucio project lead communicates the advice given by 
 the advisory board to the development team.
 
-Detailed mandate and responsibility of the board can be found [here](/documentation/files/Rucio_Advisory_Board.pdf).
+Detailed mandate and responsibility of the board can be found [here](rucio_advisory_board.md).
 
 ## Composition of the Rucio Advisory Board
 
@@ -58,5 +60,26 @@ Detailed mandate and responsibility of the board can be found [here](/documentat
 | [ATLAS](https://atlas.cern)         | David Cameron, U Oslo | 2023-Feb to 2023-Apr |
 
 # Special Interest Groups
+
+Rucio Special Interest Groups (SIG) serve the purpose to offer a forum for interested users,
+operators, and developers to discuss and plan the evolution of a specific part of Rucio.
+The topic of a SIG needs to be well-defined and the community interest on the topic
+needs to be above a threshold to justify the creation of a SIG, instead of covering the
+topic just within the weekly Rucio meeting. A SIG topic can involve one or multiple 
+Rucio components, or even the entire system.
+
+Each SIG must define
+
+  - A well-defined mandate/objective of the group (Creation of a report, Development of 
+    a functionality, ...);
+  - An end-date
+  - Means to achieve the objective, such as regular meetings, a mailing-list, mattermost 
+    channel, a workshop, ...;
+  - A convener
+
+Currently there are two Rucio special interest groups:
+
+  - Quality of Service (QoS)
+  - Metadata
 
 # Contributors
