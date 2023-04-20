@@ -79,5 +79,6 @@ Learn more about the brilliant minds pioneering the development and maintenance
 of Rucio in this section. Should you wish to get in touch with us, we've also
 included several ways of doing so in the **Contact Us** section.
 
+- [Project Organisation](project_organisation.md)
 - [About Our Contributors](about_our_contributors.md)
 - [Contact Us](contact_us.md)
