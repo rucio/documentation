@@ -3,34 +3,34 @@
         "index",
         {
             "Getting Started": [
-                "before_you_get_started",
-                "what_is_rucio",
-                "main_components",
-                "additional_layers_and_resources",
-                "requirements",
+                "started/before_you_get_started",
+                "started/what_is_rucio",
+                "started/main_components",
+                "started/additional_layers_and_resources",
+                "started/requirements",
                 {
                     "Concepts": [
-                        "rucio_account",
-                        "file_dataset_container",
-                        "rucio_storage_element",
-                        "metadata_attributes",
-                        "permission_model",
-                        "replica_management",
-                        "replication_rules_examples",
-                        "rse_expressions",
-                        "accounting_and_quota",
-                        "notifications",
-                        "subscriptions",
-                        "replica_workflow"
+                        "started/concepts/rucio_account",
+                        "started/concepts/file_dataset_container",
+                        "started/concepts/rucio_storage_element",
+                        "started/concepts/metadata_attributes",
+                        "started/concepts/permission_model",
+                        "started/concepts/replica_management",
+                        "started/concepts/replication_rules_examples",
+                        "started/concepts/rse_expressions",
+                        "started/concepts/accounting_and_quota",
+                        "started/concepts/notifications",
+                        "started/concepts/subscriptions",
+                        "started/concepts/replica_workflow"
                     ]
                 },
-                "releasepolicy",
+                "started/releasepolicy",
                 "release-notes"
             ],
             "User": [
-                "setting_up_the_rucio_client",
-                "using_the_client",
-                "using_the_admin_client",
+                "user/setting_up_the_rucio_client",
+                "user/using_the_client",
+                "user/using_the_admin_client",
                 {
                     "Python Client API": [
                         {
@@ -39,26 +39,28 @@
                         }
                     ]
                 },
-                "developing_with_rucio"
+                "user/developing_with_rucio"
             ],
             "Operator": [
-                "installing_server",
-                "installing_daemons",
-                "monitoring",
-                "database",
-                "administration",
-                "configuration_parameters",
+                "operator/setting_up_demo",
+                "operator/installing_server",
+                "operator/installing_daemons",
+                "operator/multi_vo_rucio",
+                "operator/monitoring",
+                "operator/database",
+                "operator/administration",
+                "operator/configuration_parameters",
                 {
                     "Transfers": [
-                        "transfers-overview",
-                        "transfers-preparer",
-                        "transfers-throttler",
-                        "transfers-submitter",
-                        "configure-rucio-globus"
+                        "operator/transfers/transfers-overview",
+                        "operator/transfers/transfers-preparer",
+                        "operator/transfers/transfers-throttler",
+                        "operator/transfers/transfers-submitter",
+                        "operator/transfers/configure-rucio-globus"
                     ]
                 },
-                "policy_packages",
-                "s3_rse_config",
+                "operator/policy_packages",
+                "operator/s3_rse_config",
                 {
                     "Executables": [
                         {
@@ -69,12 +71,11 @@
                 }
             ],
             "Developer": [
-                "setting_up_demo",
-                "setting_up_intellij_dev_env",
-                "setting_up_vscode_dev_env",
+                "developer/setting_up_intellij_dev_env",
+                "developer/setting_up_vscode_dev_env",
                 "contributing",
-                "rest_api_doc",
-                "type_annotation_guide"
+                "developer/rest_api_doc",
+                "developer/type_annotation_guide"
             ],
             "About Us": [
                 "project_organisation",

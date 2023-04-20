@@ -1,5 +1,5 @@
 ---
-title: Rest Api Documentation
+title: REST API Documentation
 ---
 Rucio provides a Rest Api interface for client-server communication. The code
 for the server is located in the Rucio project under `lib/rucio/rest/flask/v1`.

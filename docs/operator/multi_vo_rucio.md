@@ -1,7 +1,7 @@
 ---
-id: multi-vo-rucio
+id: multi_vo_rucio
 title: Multi-VO Rucio
-sidebar_label: Multi-VI Rucio
+sidebar_label: Multi-VO Rucio
 ---
 
 This section provides an overview of using Rucio for multiple virtual
