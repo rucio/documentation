@@ -15,11 +15,11 @@ it too! Click this
 [__link__](https://join.slack.com/t/rucio/shared_invite/zt-3varwqhd-h68jB3uY7A6OBeFmQv3TOg)
 to be invited to our workspace.
 
-## Weekly development meeting
+## Weekly Rucio meeting
 
-The Rucio Development team gathers for a meeting every
-Thursday at 3 PM CEST to discuss ongoing & further
-contributions to Rucio. This meet is open to the public
+The Rucio community gathers for a meeting every Thursday at 3 PM CEST to discuss 
+community news, operational issues and questions, as well as ongoing & further
+contributions by the development team. The meeting is open to the public
 and you can view the schedule [__here__](https://indico.cern.ch/category/10588/).
 
 ## Rucio users mailing list
