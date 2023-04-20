@@ -51,9 +51,11 @@ def render_templates(templates_dir: str, output_path: pathlib.Path) -> None:
         :returns: The coresponsing release title. This is just the version string in
             case no title exist.
         """
-        # We hardcode the minor release titles for now, since there is no east
+        # We hardcode the minor release titles for now, since there is no easy
         # way to automatically get them.
         HARD_CODED_RELEASE_NOTE_TITLE = {
+            "33": "Eternal Sunshine of the Donkey's Mind",
+            "32": "The Good, The Bad and the Donkey",
             "1.31": "Donkeys of the Caribbean",
             "1.30": "The Donkeynator",
             "1.29": "Into the Donkeyverse",
