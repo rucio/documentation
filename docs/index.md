@@ -24,9 +24,9 @@ What exactly is Rucio? What were the motivations behind developing such a
 system? Who uses it? What powers these systems? Answers to all these questions
 and more can be found by browsing through the sub-sections of this topic.
 
-- [What is Rucio](what_is_rucio.md)
-- [Main Components](main_components.md)
-- [Additional Layers and Resources](additional_layers_and_resources.md)
+- [What is Rucio](started/what_is_rucio.md)
+- [Main Components](started/main_components.md)
+- [Additional Layers and Resources](started/additional_layers_and_resources.md)
 
 ## Client
 
@@ -34,9 +34,9 @@ The rucio client enables users to interact with the system and access the
 distributed data. The client can upload, download, manage and delete everything
 from single files up to Petabyte sized datasets.
 
-- [Setting Up the Rucio Client](setting_up_the_rucio_client.md)
-- [Using the Client](using_the_client.md)
-- [Using the Admin Client](using_the_admin_client.md)
+- [Setting Up the Rucio Client](user/setting_up_the_rucio_client.md)
+- [Using the Client](user/using_the_client.md)
+- [Using the Admin Client](user/using_the_admin_client.md)
 
 ## Administration
 
@@ -46,11 +46,12 @@ to install a server or some quick tips for working with the administrative
 CLI. Take a deep dive, but not before you ensure you've read through the
 pre-requisites section under each of the topics!
 
-- [Installing Rucio Server](installing_server.md)
-- [Installing Rucio Daemons](installing_daemons.md)
-- [Monitoring](monitoring.md)
-- [Database](database)
-- [Configuration parameters](configuration_parameters.md)
+- [Setting up a Rucio demo environment](operator/setting_up_demo.md)
+- [Installing Rucio Server](operator/installing_server.md)
+- [Installing Rucio Daemons](operator/installing_daemons.md)
+- [Monitoring](operator/monitoring.md)
+- [Database](operator/database)
+- [Configuration parameters](operator/configuration_parameters.md)
 
 ## Developer Documentation
 
@@ -61,9 +62,6 @@ libraries. We also have a contribution guide for those who wish to pitch in.
 
 - [Client API Documentation](client_api/accountclient)
 - REST API Documentation
-- [Setting up a Rucio demo environment](setting_up_demo.md)
-- [Configuring Rucio to use Globus as an Online Transfer
-  Tool](configure-rucio-globus)
 - [Contributing guide](contributing)
 
 ## Contributing to the Documentation

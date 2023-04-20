@@ -68,7 +68,7 @@ screenshot:
 
 ## Start and initialize the docker-compose env
 
-Follow our [documentation](./setting_up_demo/#using-the-environment-including-storage)
+Follow our [documentation](/operator/setting_up_demo/#using-the-environment-including-storage)
 to manually start the docker-compose environment and initialize the database
 and storage.
 
