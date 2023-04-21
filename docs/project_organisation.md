@@ -43,22 +43,6 @@ the advisory board to the development team.
 
 Detailed mandate and responsibility of the board can be found [here](rucio_advisory_board.md).
 
-### Composition of the Rucio Advisory Board
-
-| Community                           | Member                | Term                 |
-| ----------------------------------- | --------------------- | -------------------- |
-| [ATLAS](https://atlas.cern)         | David South, DESY     | 2023-Apr to 2025-Jan |
-| [Belle II](https://www.belle2.org)  | Paul Laycock, BNL     | 2023-Feb to 2025-Jan |
-| [CMS](https://cms.cern)             | Katy Ellis, STFC      | 2023-Feb to 2025-Jan |
-| [DUNE](https://www.dunescience.org) | Mike Kirby, FNAL      | 2023-Feb to 2025-Jan |
-| [ESCAPE](https://projectescape.eu)  | Xavier Espinal, CERN  | 2023-Feb to 2025-Jan |
-
-### Former Rucio Advisory Board members
-
-| Community                           | Member                | Term                 |
-| ----------------------------------- | --------------------- | -------------------- |
-| [ATLAS](https://atlas.cern)         | David Cameron, U Oslo | 2023-Feb to 2023-Apr |
-
 ## Special Interest Groups
 
 Rucio Special Interest Groups (SIG) serve the purpose to offer a forum for interested users,
