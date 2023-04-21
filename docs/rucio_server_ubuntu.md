@@ -519,7 +519,7 @@ Note: **auth** should be added to [api] endpoints config
 
 ## **/etc/apache2/sites-available/rucio.conf** (remember **sudo a2ensite rucio**)
 
-
+```
 	<IfModule mod_ssl.c>
 	SSLSessionCache shmcb:/var/log/apache2/ssl_scache(512000)
 	<VirtualHost _default_:443>
@@ -611,3 +611,4 @@ Note: **auth** should be added to [api] endpoints config
 
     </VirtualHost>
 </IfModule>
+```
