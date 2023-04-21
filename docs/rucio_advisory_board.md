@@ -3,8 +3,6 @@ id: rucio_advisory_board
 title: Rucio Advisory Board
 ---
 
-Version 1.0
-
 ## Mandate and responsibilities of the board
 
 The primary function of the Rucio advisory board (RAB) is to provide expertise from 
@@ -58,3 +56,9 @@ The RAB meets as needed, nominally twice a year. Meetings generally take place
 at CERN, with remote participation possibilities. The RAB members agree to 
 select a secretary for each meeting who will be in charge of keeping minutes. 
 Minutes are kept internal to the RAB.
+
+## Mandate versions
+
+| Version                                                                         | Creation    |
+| ------------------------------------------------------------------------------- | ----------- |
+| [v1.0](https://rucio.cern.ch/documentation/files/Rucio_Advisory_Board_v1.0.pdf) | Nov 7, 2022 |

@@ -1,5 +1,5 @@
 ---
-id: did-meta
+id: did_meta
 title: DID Metadata
 sidebar_label: DID Metadata
 ---
