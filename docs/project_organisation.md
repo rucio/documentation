@@ -56,10 +56,10 @@ member.
 Each SIG must define
 
   - A well-defined objective of the group (Creation of a report, Development of 
-    a functionality, ...);
+    a functionality, ...)
   - An expected end-date
   - Means to achieve the objective, such as regular meetings, a mailing-list, mattermost 
-    channel, a workshop, ...;
+    channel, a workshop, ...
   - A convener
 
 Currently there are two Rucio special interest groups:
@@ -67,4 +67,7 @@ Currently there are two Rucio special interest groups:
   - Quality of Service (QoS)
   - Metadata
 
-## Contributors
+## Contributors / Developers
+
+Rucio could not exist without the numerous contributors who spent their valuable time
+to improve the software. A list of contributours can be seen [here](about_our_contributors).
