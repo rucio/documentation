@@ -74,11 +74,12 @@
                 "setting_up_vscode_dev_env",
                 "contributing",
                 "rest_api_doc",
-                "component_leads",
                 "type_annotation_guide"
             ],
             "About Us": [
                 "project_organisation",
+                "rucio_advisory_board",
+                "component_leads",
                 "about_our_contributors",
                 "contact_us"
             ]
