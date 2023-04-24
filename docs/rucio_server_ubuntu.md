@@ -1,8 +1,9 @@
-Setting up a Rucio server on Ubuntu
-===================================
+---
+id: installing_server_ubuntu
+title: Installing Rucio Server on Ubuntu
+---
 
-
-# What is the Rucio server?
+## What is the Rucio server?
 
 This instruction is about how to install the central Rucio server and
 get it up and running. This server is a Web Server Gateway Interface
@@ -26,7 +27,7 @@ built on CentOS, which may be incompatible with more up to date host
 operating systems. In the following we describe how to deploy a Rucio
 server on an Ubuntu server system.
 
-# Prerequisites
+## Prerequisites
 
 In order to install Rucio from source, you must have a system with
 Python and the usual setup and compilation tools (build-essential,
@@ -37,9 +38,9 @@ container and installed all packages system-wide. Versions of Ubuntu
 Server tested include 20.04 LTS (focal), 22.04 LTS (jammy), and 22.10.
 
 
-# Dependencies
+## Dependencies
 
-## Install a web server
+### Install a web server
 
 A web server with support for Python WSGI is necessary. We installed
 Apache and adapted the configuration files from the Dockers to the
@@ -58,7 +59,7 @@ Repeat this step for other required modules. These include at least:
 
     authn, cache_disk, headers, proxy, rewrite, ssl, zgridsite
 
-## Install required Python packages
+### Install required Python packages ###
 
 The Rucio distribution comes with a *dependencies.txt* file and setup
 will try to install the listed dependencies automatically as
@@ -77,7 +78,7 @@ replaced separately.
 	
 FIXME: any other dependencies to replace?
 
-## Install database and support
+### Install database and support ###
 
 The database is the heart of Rucio operations.  Rucio supports several
 popular SQL databases: MySQL, PostgreSQL, etc. PostgreSQL is a good choice
@@ -85,7 +86,7 @@ and can be installed like so
 
     $sudo apt install postgresql postgresql-contrib python3-psycopg2
 
-## Install SSL certificates and utilities
+### Install SSL certificates and utilities ###
 
 For https and certificate based authentication to work it is of
 supreme importance to get SSL certificates and certificate authorites
@@ -122,7 +123,8 @@ certificate can be installed with
     
 	 sudo apt install globus-proxy-utils
 
-## Note on certificate DN formats
+### Note on certificate DN formats ###
+
 The Distinguished Name (DN) in a certificate is a text string that can have two different formats: comma or slash separated, like 
 
     CN=John Doe,OU=Users,DC=example,DC=com 
@@ -139,7 +141,7 @@ In the sample config below you will see the following. Thus remove the last opti
 
 	SSLOptions +StdEnvVars +LegacyDNStringFormat
 
-# Get the Rucio software
+## Get the Rucio software ##
 
 Next it is time to download and install the Rucio server and daemons.
 
@@ -156,27 +158,12 @@ the server packages in **/usr/local/lib/pythonVERSION/dist-packages/rucio**
 where VERSION is the Python version number e.g. 3.8.
 
 
-# Create the Rucio configuration file
-
-Rucio will look for its configuration files in **/opt/rucio/etc**. So make a link from **/opt** to **/usr/local/rucio**:
-      
-    $sudo -s
-    #cd /opt
-    #ln -s /usr/local/rucio .
-
-Make sure that there is a directory **/opt/rucio/etc/mail_templates**.
-Then at a minimum the following two files have to be created and edited:
-
-* alembic.ini (Database settings)
-* rucio.cfg 
-
-Templates are provided and examples can also be found in the appendix.
- 
-# Set up the database
+## Set up the database ##
 
 Next the database has to be configured and populated with the correct initial records including root user credentials.
 
-## Create a PostgreSQL database
+### Create a PostgreSQL database ###
+
 As mentioned we will use PostgreSQL, so by default you have to perform the following operations as the Postgres superuser:
 
     $sudo -u posgres -s
@@ -234,7 +221,7 @@ port instead of the UNIX socket):
     
 	$psql -h localhost --user rucio --password secret
     
-## Configure Rucio to use the database
+### Configure Rucio to use the database ###
 
 The database configuration has to be set in **alembic.ini** (used to create the database??) and **rucio.cfg** (used by server and clients).
 In **alembic.ini**, set 
@@ -260,7 +247,23 @@ Finally populate the database by running the following script in the distributio
 	 tools/bootstrap.py
 
 
-# Configure Apache
+## Create the Rucio configuration file ##
+
+Rucio will look for its configuration files in **/opt/rucio/etc**. So make a link from **/opt** to **/usr/local/rucio**:
+      
+    $sudo -s
+    #cd /opt
+    #ln -s /usr/local/rucio .
+
+Make sure that there is a directory **/opt/rucio/etc/mail_templates**.
+Then at a minimum the following two files have to be created and edited:
+
+* alembic.ini (Database settings)
+* rucio.cfg 
+
+Templates are provided and examples can also be found in the appendix.
+ 
+## Configure Apache ##
 
 This final step is usually the most complicated one: how to get the WSGI
 service up and running.  As Debian and Ubuntu also separate the Apache
@@ -268,14 +271,15 @@ configuration files into subdirectories and use *include* statements heavily,
 the templates from the CentOS dockers will have to be split and adapted a bit.
 
 
-## Remove defaults
+### Remove defaults ###
+
 We assume that Apache and required modules have been installed and enabled as above.
 Then a new virtual site has to be enabled for your Rucio server.
 So disable any default sites, typically:
 
     $sudo a2dissite 000-default
 	
-## IPv4 and IPv6
+### IPv4 and IPv6 ###
 
 IPv6 is not available on the local network so on my install I changed ports.conf: every line reading
  
@@ -287,18 +291,18 @@ was changed to
 
 Explicitly specifying an IPv4 address such as this "wildcard" one will disable IPv6.
 
-## Apache security
+### Apache security ###
 
 Check  **/etc/apache2/conf-available/security.conf**: some entries should maybe be added or modified (Checkme??)
 
 
-## Apache options and WSGI settings
+### Apache options and WSGI settings ###
 
 Create  **/etc/apache2/conf-available/rucio.conf** as in the template and enable it
 
 	$sudo a2enconf rucio
 	
-## New virtual site with SSL support
+### New virtual site with SSL support ###
 
 Create a new site configuration file e.g. **/etc/apache2/sites-available/rucio.conf** and enable it
 
@@ -306,7 +310,7 @@ Create a new site configuration file e.g. **/etc/apache2/sites-available/rucio.c
 	
 Finally (re)start the Apache server.
 
-# Test that your server runs
+## Test that your server runs ##
 
 At this stage the WSGI server should hopefully be running. It is time
 to configure the client program and try to connect.  We assume that
@@ -358,15 +362,16 @@ This should give a reply similar to the following, including the account name:
     created_at : 2023-03-21T11:02:23
 
 
-# Troubleshooting
+## Troubleshooting ##
 
 Rucio developers can be contacted by email or on Slack.
 
-# Connect to storage
+## Connect to storage ##
 
 In order to be able to upload files, you now have to define a Rucio storage element (RSE). Note that all uploads are handled **client-side** --- the server only tells the client the details about location and upload protocol of the RSE.
 
-## Define an RSE
+### Define an RSE ###
+
 The first step is to create the RSE with **rucio-admin**
 
 	$rucio-admin -v -u root rse add MY_STORE
@@ -384,7 +389,7 @@ For testing it may also be necessary to remove the default per-user quota of **r
 
     $rucio-admin account set-limits root MY_STORE infinity
 
-## Add a protocol to the RSE
+### Add a protocol to the RSE ###
 
 In order to associate the defined RSE with actual physical storage, at least one **protocol** has to be added to the empty protocol section of the RSE configuration. Many different file transfer implementations are supported and the one recommended by the developers is **gfal**, the multi-protocol Grid File Access Library. If you want to install **gfal** on Debian or Ubuntu, see the separate document (gfal2.md). 
 
@@ -394,7 +399,8 @@ The **rucio-admin add-protocol** command is used to add the storage. Required ar
  
 An "ugly" part of this is that the RSE must be configured as **writable from the wan domain**. This is not enabled by default and the only way to configure it at present is to provide the above extra configuration in JSON format.
 
-## Test the RSE
+### Test the RSE ###
+
 Create a Rucio scope for your user and data:
 
     $rucio-admin -u root -v scope add --account root --scope TEST
@@ -427,7 +433,7 @@ If everything works this will create a subdirectory MYDATA with the file my-file
 	
 From here on, follow the documentation about how to create containers and datasets, add files to them, and add metadata.
 
-# Add replication rules
+## Add replication rules ##
 
 Once more than one RSE has been defined, it is possible to set up
 replication. The way Rucio handles replication is to define rules per
@@ -439,9 +445,9 @@ is the CERN FTS file transfer management system.
 See separate documentation about how to install and set up an
 FTS server.
 
-# Appendix: Rucio configuration examples
+## Appendix: Rucio configuration examples ##
 
-## alembic.ini
+### alembic.ini ###
 
 	[alembic]
 
@@ -453,7 +459,8 @@ FTS server.
 
 
 
-## rucio.cfg
+### rucio.cfg ###
+
 Note: **auth** should be added to [api] endpoints config
 
         [common]
@@ -494,9 +501,9 @@ Note: **auth** should be added to [api] endpoints config
 	ssh_email =  myname@my.domain
 
 
-# Appendix: Apache configuration examples
+## Appendix: Apache configuration examples ##
 
-## **/etc/apache2/conf-available/rucio.conf** (remember **sudo a2enconf rucio**)
+### **/etc/apache2/conf-available/rucio.conf** (remember **sudo a2enconf rucio**) ###
 
 	EnableSendfile on
 	Timeout 60
@@ -517,7 +524,7 @@ Note: **auth** should be added to [api] endpoints config
 
 
 
-## **/etc/apache2/sites-available/rucio.conf** (remember **sudo a2ensite rucio**)
+### **/etc/apache2/sites-available/rucio.conf** (remember **sudo a2ensite rucio**) ###
 
 ```
 	<IfModule mod_ssl.c>
