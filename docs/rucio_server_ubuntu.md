@@ -545,7 +545,14 @@ Note: **auth** should be added to [api] endpoints config
 		SSLCACertificatePath /etc/grid-security/certificates
 		SSLVerifyClient optional_no_ca
 		SSLVerifyDepth  10
+		# -- For certificate authentication --
+		# You must enable "LegacyDNStringFormat" if your X.509 certificate DN
+		# is in the old slash-separed format, which looks like
+		# /DC=org/DC=some/DC=where/C=CC/O=Myinstitute/CN=Firstname Lastname my.email@my.org
+		# If yours is comma separed (and may contain UTF-8 characters) you don't need this.
+	    # SSLOptions +StdEnvVars
 		SSLOptions +StdEnvVars +LegacyDNStringFormat
+		# --
 		SSLProxyEngine On
         SSLProxyCheckPeerCN Off
 
