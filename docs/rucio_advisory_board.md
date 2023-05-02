@@ -38,7 +38,7 @@ board meetings.
 
 | Community                           | Member                | Term                 |
 | ----------------------------------- | --------------------- | -------------------- |
-| [ATLAS](https://atlas.cern)         | David South, DESY     | 2023-Apr to 2025-Jan |
+| [ATLAS](https://atlas.cern)         | David South, DESY     | 2023-Apr to 2025-Mar |
 | [Belle II](https://www.belle2.org)  | Paul Laycock, BNL     | 2023-Feb to 2025-Jan |
 | [CMS](https://cms.cern)             | Katy Ellis, STFC      | 2023-Feb to 2025-Jan |
 | [DUNE](https://www.dunescience.org) | Mike Kirby, FNAL      | 2023-Feb to 2025-Jan |
