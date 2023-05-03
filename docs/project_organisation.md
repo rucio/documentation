@@ -70,4 +70,4 @@ Currently there are two Rucio special interest groups:
 ## Contributors / Developers
 
 Rucio could not exist without the numerous contributors who spent their valuable time
-to improve the software. A list of contributours can be seen [here](about_our_contributors).
+to improve the software. A list of contributors can be seen [here](about_our_contributors).
