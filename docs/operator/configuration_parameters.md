@@ -160,6 +160,8 @@ attributes.
   - **geoip_licence_key**: _(Optional)_ License key for GeoLite2. Get a free
     licence key at <https://www.maxmind.com/en/geolite2/signup>. Default:
     `NOLICENCE`.
+  - **use_temp_tables**: _(Optional)_ Use Rucio with temporary table workflows. 
+    Default: `False`.
 - **client**
   - **account**: Rucio account. Example: `root`.
   - **auth_host**: URL of the host of the rucio authentication server. Example:
