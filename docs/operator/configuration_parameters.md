@@ -64,8 +64,8 @@ attributes.
   - **x509_email**: _(Optional)_ Email of the X.509 identity specified in
     `x509_identity`. Default: `ph-adp-ddm-lab@cern.ch`.
   - **x509_identity**: _(Optional)_ Identity of the X.509 certificate. Default:
-    `/C=CH/ST=Geneva/O=CERN/OU=PH-ADP-CO/CN=DDMLAB Client
-    Certificate/emailAddress=ph-adp-ddm-lab@cern.ch`.
+    `emailAddress=ph-adp-ddm-lab@cern.ch,CN=DDMLAB Client
+    Certificate,OU=PH-ADP-CO,O=CERN,ST=Geneva,C=CH`.
 - **c3po**
   - **algorithms**: _(Optional)_ Placement algorithm.
 
@@ -412,8 +412,8 @@ attributes.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **chunksize**: Integer
   - **excluded_usrdns**: Separated by commas. Example:
-    `/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=gangarbt/CN=722147/CN=Robot:
-    Ganga Robot/CN=proxy`.
+    `CN=proxy,CN=Robot: Ganga Robot,CN=722147,CN=gangarbt,OU=Users,OU=Organic
+    Units,DC=cern,DC=ch`.
   - **password**: _(Optional)_ Password of the `username`. Mandatory if
     `use_ssl` is not set. No default.
   - **port**: Port of the broker.
@@ -541,3 +541,4 @@ attributes.
 - **type**: <!--??--> Values: `{LOCALGROUPDISK, LOCALGROUPTAPE, GROUPDISK,
   SCRATCHDISK, MOCK, TEST, DATADISK}`. Default: ` `.
 - **verify_checksum**: Boolean. No default.
+

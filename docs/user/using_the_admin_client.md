@@ -20,15 +20,16 @@ policies/permissions can be set depending on the account type.  Once the account
 is created, you need to create and attach an identity to this account::
 
 ```bash
-  $ rucio-admin identity add --type X509 --id "/DC=blah/DC=blih/OU=Organic \
-    Units/OU=Users/CN=jdoe" --email jdoe@blahblih.com --account jdoe
+  $ rucio-admin identity add --type X509 \
+      --id "CN=jdoe,OU=Users,OU=Organic Units,DC=blih,DC=blah" \
+      --email jdoe@blahblih.com --account jdoe
 ```
 
 The list of possible identity types is X509, GSS, USERPASS, SSH::
 
 ```bash
   $ rucio-admin account list-identities jdoe
-  Identity: /DC=blah/DC=blih/OU=Organic Units/OU=Users/CN=jdoe,        type: X509
+  Identity: CN=jdoe,OU=Users,OU=Organic Units,DC=blih,DC=blah,        type: X509
 ```
 
 You can set attributes to the users::
