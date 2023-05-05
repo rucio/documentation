@@ -15,10 +15,13 @@ using Rucio [docker containers](https://hub.docker.com/u/rucio), or Rucio
 ## Python
 
 Rucio server, daemons and clients are written in Python and thus depend on an
-installed Python interpreter. Since the Rucio [1.24](/release-notes/1.24.0)
-release servers and daemons require **Python 3.6** or upwards. The clients still
-support **Python 2.7**, but will drop support with the Rucio [1.29 LTS](/release-notes/1.29.0) release in
-July 2022.
+installed Python interpreter.
+
+Rucio release                       | Supported python versions
+----------------------------------- | -------------------------------------------
+[1.26 LTS](/release-notes/1.26.0)   | Server: >=3.6, <=3.9; Clients: >=2.7, <=3.9
+[1.29 LTS](/release-notes/1.29.0)   | >=3.6, <=3.9
+from 32 LTS                         | >=3.9, <=3.10
 
 ## Database
 
