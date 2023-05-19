@@ -93,6 +93,29 @@ In all cases the names used to register the functions must be prefixed
 with the name of the virtual organisation that owns the policy package,
 to avoid naming conflicts on multi-VO Rucio installations.
 
+## Adding a new algorithm class
+
+The system for registering algorithms within policy packages is
+intended to be extensible so that new algorithm classes can be added
+relatively easily. The basic workflow is as follows:
+
+- The `get_algorithms` function within the policy package (see above)
+  should return a dictionary of functions of the new class, indexed
+  by name
+- The core Rucio code should maintain a dictionary of functions of the
+  new class, ready to be called when required. The details of this
+  will differ depending on what the new class actually does and how it
+  integrates with the Rucio code, but typically the algorithm name to
+  be used will be selected by a value in the config file, as for the
+  current `lfn2pfn` and `surl` algorithm types.
+- Before the algorithm is called for the first time, the core Rucio
+  code should call `rucio.common.utils.register_policy_package_algorithms`
+  to import the algorithms for this class from the policy package and
+  store them in its internal dictionary. This function takes care of
+  the complexities of interfacing with the policy package, such as
+  importing the package if necessary, and dealing with multiple
+  packages in multi-VO Rucio installations.
+
 ## Deploying Policy Packages in containers
 
 It is now common to deploy Rucio using containers managed by software
