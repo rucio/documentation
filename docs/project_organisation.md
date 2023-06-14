@@ -65,7 +65,7 @@ Each SIG must define
 Currently there are two Rucio special interest groups:
 
   - Quality of Service (QoS)
-  - Metadata
+  - [Metadata](sig_metadata.md)
 
 ## Contributors / Developers
 
