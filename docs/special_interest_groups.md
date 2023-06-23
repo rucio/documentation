@@ -3,8 +3,6 @@ id: special_interest_groups
 title: Special Interest Groups
 ---
 
-## Special Interest Groups
-
 Rucio Special Interest Groups (SIG) serve the purpose to offer a forum for interested users,
 operators, and developers to discuss and plan the evolution of a specific part of Rucio.
 The topic of a SIG needs to be well-defined and the community interest on the topic
