@@ -19,8 +19,10 @@ End of 2023
 
 ## Means to achieve the objective
 
-A general mattermost channel + ad hoc meetings with interested communities either 
-over Zoom or asynchronously over Mattermost.
+- Mattermost channel: [#metadata](https://mattermost.web.cern.ch/rucio/channels/metadata)
+- eMail list: rucio-sig-metadata@cern.ch
+- ad hoc meetings with interested communities either over Zoom or asynchronously 
+  over Mattermost.
 
 ## Convener
 
