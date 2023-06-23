@@ -53,19 +53,7 @@ topic just within the weekly Rucio meeting. A SIG topic can involve one or multi
 Rucio components, or even the entire system. SIGs are open to any interrested community
 member.
 
-Each SIG must define
-
-  - A well-defined objective of the group (Creation of a report, Development of 
-    a functionality, ...)
-  - An expected end-date
-  - Means to achieve the objective, such as regular meetings, a mailing-list, mattermost 
-    channel, a workshop, ...
-  - A convener
-
-Currently there are two Rucio special interest groups:
-
-  - Quality of Service (QoS)
-  - [Metadata](sig_metadata.md)
+Detailed information for Rucio SIGs can be found [here](special_interest_groups.md).
 
 ## Contributors / Developers
 
