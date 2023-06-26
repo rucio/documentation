@@ -14,13 +14,8 @@ free to stage the file to tape for further access. When Rucio needs to access su
 files again, the bring on line command is given to the RSE and the file is 
 transferred from tape to disk if needed. Currently this is being tested with dCache.
 In the future, it can be extended to other storage systems where appropriate.
-At the end of this SIG a report will be written documenting the status of this 
-activity. Rucio's metadata functionality or interested in using it, to ascertain if the 
-functionality currently provided in this area is sufficient for their current and 
-expected future use cases. This information will be distilled into the form of a 
-small report, where, if missing functionality is identified, the report will serve 
-to aggregate any similar requests and prioritise them, with the goal of delivering 
-a tentative roadmap to guide development.
+At the end of this SIG a report will be written documenting the outcome/benefit of this 
+activity. 
 
 ## Expected End-Date
 
@@ -28,11 +23,13 @@ September 30, 2023
 
 ## Means to achieve the objective
 
-- Mattermost channel: [#metadata](https://mattermost.web.cern.ch/rucio/channels/QoS)
-- eMail list: 
+- Mattermost channel: [#QoS](https://mattermost.web.cern.ch/rucio/channels/QoS)
+- eMail list: rucio-sig-qos@cern.ch
 - biweekly meetings with interested communities either over Zoom or asynchronously 
   over Mattermost.
+  - [Meeting series in Indico](https://indico.cern.ch/category/14213/)
+  - [Meeting notes](https://codimd.web.cern.ch/MfDv9yRMQmOrwGEwhlGXpQ#)
 
 ## Convener
 
-[Matt Snyder](msnyder at bnl dot gov)
+[Doug Benjamin](mailto:douglas.benjamin@cern.ch)
