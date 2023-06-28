@@ -1,6 +1,6 @@
 ---
 id: sig_qualityofservice
-title: SIG QOS
+title: SIG Quality of Service
 ---
 
 ## Objective

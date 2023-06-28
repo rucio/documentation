@@ -24,7 +24,7 @@ Each SIG must define
 
 ## Current Special Interest Groups
 
-| Name                        | Start    | est. End | Convener                                       |
-| --------------------------- | -------- | -------- | ---------------------------------------------- |
-| Quality of Service          | Jul-2021 |          |                                                |
-| [Metadata](sig_metadata.md) | Jul-2021 | Dec-2023 | [Rob Barnsley](https://github.com/robbarnsley) |
+| Name                                          | Start    | est. End | Convener                                         |
+| --------------------------------------------- | -------- | -------- | ------------------------------------------------ |
+| [Metadata](sig_metadata.md)                   | Jul-2021 | Dec-2023 | [Rob Barnsley](https://github.com/robbarnsley)   |
+| [Quality of Service](sig_qualityofservice.md) | Jul-2021 | Sep-2023 | [Doug Benjamin](mailto:douglas.benjamin@cern.ch) |
