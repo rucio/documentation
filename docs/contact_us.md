@@ -10,7 +10,7 @@ with Rucio.
 
 ## Chat with us
 
-We've a dedicated Mattermost teame for all things Rucio and you can be a part of
+We've a dedicated Mattermost team for all things Rucio and you can be a part of
 it too! Click [here](mattermost.md)
 
 ## Weekly Rucio meeting
@@ -28,8 +28,8 @@ clicking [__here__](https://groups.google.com/forum/#!forum/rucio-users).
 
 ## Email us
 
-We'd love to hear from you! Chat with our developers
-directly via [__email__](mailto:rucio-dev@cern.ch)
+We'd love to hear from you! Get in contact with us
+directly via [__email__](mailto:rucio-contact@cern.ch)
 
 ## Social Media
 
