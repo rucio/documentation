@@ -140,8 +140,8 @@ following parameters in the `[client]` section:
 
 ```bash
 [client]
-auth_oidc_refresh_active true
-auth_oidc_refresh_before_exp 20
+auth_oidc_refresh_active = true
+auth_oidc_refresh_before_exp = 20
 ```
 
 `auth_oidc_refresh_active` is false by default. If set to true, the Rucio Client
@@ -167,8 +167,8 @@ account = \<rucio_account_name\>
 oidc_audience = rucio
 oidc_scope = openid profile offline_access
 oidc_issuer = wlcg
-auth_oidc_refresh_active true
-auth_oidc_refresh_before_exp 20
+auth_oidc_refresh_active = true
+auth_oidc_refresh_before_exp = 20
 ```
 
 Then, you should be able to do simply:
