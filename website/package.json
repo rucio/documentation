@@ -2,6 +2,7 @@
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus start",
+    "serve": "docusaurus start",
     "build": "docusaurus build",
     "publish-gh-pages": "docusaurus-publish",
     "write-translations": "docusaurus-write-translations",
@@ -13,8 +14,8 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@docusaurus/core": "2.0.1",
-    "@docusaurus/preset-classic": "2.0.1",
+    "@docusaurus/core": "2.4.1",
+    "@docusaurus/preset-classic": "2.4.1",
     "clsx": "^1.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
