@@ -31,6 +31,31 @@ flowchart TD
 	rest_api_docs-->rest_api_docs_html[Generate Rest Api Docs Html]
 ```
 
+Following this, a Github Action calls `yarn build`, which runs docusaurus (the
+tool which takes the markdown files and converts them into HTML)
+
+### Building the Docs for the Client API
+The pipeline for the creation of the rucio-docs for the client API is as
+follows:
+
+* begin process using `build_documentation.sh`
+* `generate_dynamic_files.sh` spins up a docker container
+* inside of the docker container, `generate_docs.sh` is called
+* which in turn calls `generate_client_api_docs.sh`
+* `generate_client_api_docs.sh` parses the files in `lib/rucio/client`
+  and converts them using `pydoc-markdown`.
+* `pydoc-markdown` uses `rucio_processor.py` and `rucio_renderer.py`
+  (both in `tools/run_in_docker`, which is mounted into the docker
+  container).
+* "auto_generated" output markdown files' ownerships are changed
+* compiling this markdown into html -> completed using docusaurus as
+  part of the github action
+
+The final stage adds styling (i.e. CSS) to the compiled markdown files.
+This means that in general, a dark mode can be applied. However, some
+components in the client api are formatted in pre-styled HTML tables
+(within the markdown!), these styles are never overridden.
+
 ## Check Repository Health
 
 The repository has several scripts to check the health of files. These include:
