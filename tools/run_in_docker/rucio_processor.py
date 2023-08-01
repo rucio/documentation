@@ -64,13 +64,13 @@ def generate_sections_markdown(sections):
             ret.append("\n<tr style={{border: 'none'}}>\n")
 
             ret.append(
-                "\n<td style={{border: 'none', backgroundColor: 'white', 'verticalAlign': 'top'}}>\n"  # noqa: E501
+                "\n<td style={{border: 'none', backgroundColor: 'var(--ifm-background-color)', 'verticalAlign': 'top'}}>\n"  # noqa: E501
             )
             ret.append(f"**{key}**:")
             ret.append("\n</td>\n")
 
             ret.append(
-                "\n<td style={{border: 'none', backgroundColor: 'white', 'verticalAlign': 'top'}}>\n"  # noqa: E501
+                "\n<td style={{border: 'none', backgroundColor: 'var(--ifm-background-color)', 'verticalAlign': 'top'}}>\n"  # noqa: E501
             )
             ret.extend(section)
             ret.append("\n</td>\n")
