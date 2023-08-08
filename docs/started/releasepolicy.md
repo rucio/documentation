@@ -32,7 +32,7 @@ deploy the new LTS release.
 | **32 LTS**      | **The Good, The Bad and the Donkey**      | **2023-08**    | _at least 2025-08_   |
 | 1.31            | Donkeys of the Caribbean                  | 2023-03        | 2023-07              |
 | 1.30            | The Donkeynator                           | 2022-11        | 2023-03              |
-| **1.29 LTS**    | **Into the Donkeyverse**                  | **2022-07**    | **2024-07**          |
+| **1.29 LTS**    | **Into the Donkeyverse**                  | **2022-07**    | **2024-08**          |
 | 1.28            | Teenage Mutant Ninja Donkeys              | 2022-03        | 2022-07              |
 | 1.27            | Batdonkey v Superdonkey                   | 2021-11        | 2022-03              |
 | 1.26 LTS        | Donkey League of La Mancha                | 2021-07        | 2023-07              |
