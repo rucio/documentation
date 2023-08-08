@@ -17,10 +17,10 @@ using Rucio [docker containers](https://hub.docker.com/u/rucio), or Rucio
 Rucio server, daemons and clients are written in Python and thus depend on an
 installed Python interpreter.
 
-Rucio release                       | Supported python versions
------------------------------------ | -----------------------------------------------
-[1.29 LTS](/release-notes/1.29.0)   | `>=3.6, <=3.9`
-from 32 LTS                         | `>=3.9, <=3.10`
+Rucio release                        | Supported python versions
+------------------------------------ | -----------------------------------------------
+[1.29 LTS](/release-notes/1.29.0)    | `>=3.6, <=3.9`
+from [32 LTS](/release-notes/32.0.0) | `>=3.9, <=3.10`
 
 ## Database
 
