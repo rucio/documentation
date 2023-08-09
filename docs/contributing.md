@@ -10,35 +10,38 @@ The following is a set of rules for contributing to **Rucio** and its
 packages. Use your best judgment, and feel free to propose changes to this
 document.
 
-If you have questions, you can reach the core development team on our 
-[__Mattermost__](mattermost.md) channel, or send an email to our
-development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
+If you have questions, you can reach the development team on our 
+[__Mattermost__](mattermost.md) channel.
 
 ## What should I know before I get started
 
-A contribution can be either be a **patch** or **feature**:
-
-* **Patches** include bugfixes and minor changes to the code and are included in
-  patch releases usually made on a bi-weekly schedule.
-* **Features** include major developments or potentially disruptive changes and
-  are included in feature releases made multiple times a year.
-
-The [__repository__](https://github.com/rucio/rucio/) consists of different
-branches:
-
-* the **master** branch includes the development for the next major version.
-* the **release-…** branches include the patch/minor development of the
-  releases.
-
-Release branches only exist for the currently maintained release
-versions. Hotfix branches are created on demand. Please communicate to the Rucio
-maintainers, if you wish to hotfix a previous release.
-
 Generally all [__pull requests__](https://github.com/rucio/rucio/pulls) are to
-be created against the Rucio **master** branch. Features will end up in the
-upstream **master** only and patches are cherry-picked to the maintained
-releases if applicable. Release-specific changes are excluded from that rule and
-might be needed if e.g. cherry-picking to the last release was not successful.
+be created against the Rucio **master** branch. The master branch includes the
+developments towards the **next** major release. Usually we publish three major
+releases per year, thus it might take several months until a development becomes
+available in a published release (See [__Release policy__](started/release_policy.md)).
+
+In addition, a contribution **CAN** be included in the ongoing **current** release
+line. As a guiding principle:
+
+* Larger feature developments, backwards-compatibility breaking changes, changes
+  to the database schema, significant changes to the REST interface, and similar
+  **MUST** be targeted towards the **next** release line.
+* Bugfixes, smaller backwards-compatbile changes to the REST interface, smaller
+  feature developments, and similar **CAN** be targeted towards the **current** 
+  release line.
+
+To implement this policy the [__repository__](https://github.com/rucio/rucio/) 
+consists of different branches:
+
+* the **master** branch includes the developments towards the next major release.
+* the **release-…** branches include the patch/minor developments of the
+  releases (Such as current and LTS releases). Release branches only exist for 
+  the currently maintained releases (See the [__release policy__](started/releasepolicy.md))
+
+Pull requests named/targeted for the **next** major release will end up in the 
+upstream **master** only. Pull requests named/targeted for the **current** release 
+will be cherry-picked by the maintainer to the applicable release branch.
 
 The following figure might help you with an overview:
 
@@ -105,16 +108,18 @@ number**.
 Create a local branch that corresponds to the issue. To easily
 identify the purpose of branches different keywords must be used:
 
-* Patch branches must be named **patch-[issue number]-[short description]**
-* Feature branches must be named **feature-[issue number]-[short description]**
+* Contributions targeted to the **current** release must be named 
+  **current-[issue number]-[short description]**
+* Contributions targeted to the **next** major release must be named
+  **next-[issue number]-[short description]**
 
 If you create these branches by hand please check the spelling because otherwise
 the test automation might misidentify your branch. There are utility scripts to
 fetch master and create these branches for you:
 
 ```bash
-./tools/create-patch-branch <unique issue number> '<short_change_message>'
-./tools/create-feature-branch <unique issue number> '<short_change_message>'
+./tools/create-current-branch <unique issue number> '<short_change_message>'
+./tools/create-next-branch <unique issue number> '<short_change_message>'
 ```
 
 ### 4. Commit your changes
