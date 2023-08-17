@@ -9,7 +9,7 @@ with **major** (named) releases. Approximately
 every 4 months we produce a major release with a version number like **x.0.0**
 (with x > 0). A major release marks the start of a release line. This release
 line is maintained with bi-weekly minor/patch releases, containing bug fixes or minor
-enhancements, with version numbers like **22.y.z** (with y &ge; 0, z &ge; 0). Versions within
+enhancements, with version numbers like **32.y.z** (with y &ge; 0, z &ge; 0). Versions within
 one release line are always backwards compatible, thus they do not include
 database schema changes, API modifications, or other backward-compatibility
 breaking changes.
@@ -25,6 +25,18 @@ release line will be supported with **security** and **critical** patches for
 approximately two years. It is foreseen to have an overlap of at least 12 months
 between two LTS release lines, to give communities a comfortable time window to
 deploy the new LTS release.
+
+## Client &harr; Server compatibility
+
+For differences between the versions of a Rucio client and a Rucio server we guarantee
+compatibility of an older client up until the oldest supported LTS release line.
+For example, with 1.29 LTS being the oldest supported release line, a 32 Rucio server
+guarantees support of clients of the 1.29, 1.30, 1.31 and 32 release line. Most likely
+older clients will work, without problems, as well, however, the release policy does not
+guarantee it.
+
+Please be aware that we can not guarantee compatibility of a newer client with an older
+server.
 
 | Version         | Code name                                 | Release date   | Supported until      |
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
