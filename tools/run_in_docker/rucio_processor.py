@@ -39,7 +39,7 @@ def sanitize(s: t.Optional[str]) -> str:
         r">": r"\>",
     }
 
-    for (before, after) in character_map.items():
+    for before, after in character_map.items():
         s = s.replace(before, after)
     return s
 
@@ -83,7 +83,6 @@ def generate_sections_markdown(sections):
 
 @dataclasses.dataclass
 class RucioProcessor(Processor):
-
     _KEYWORDS = {
         "Arguments": [
             "arg",
