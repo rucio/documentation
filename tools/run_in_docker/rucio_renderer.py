@@ -39,7 +39,6 @@ def sanitize(s: str) -> str:
 
 @dataclasses.dataclass
 class RucioRenderer(Renderer):
-
     markdown: MarkdownRenderer = dataclasses.field(default_factory=MarkdownRenderer)
 
     def init(self, context: Context) -> None:
