@@ -3,18 +3,13 @@ title: Release Notes
 sidebar_label: Release Notes
 ---
 
-Below listed are all the release notes from the very first release
-uptil the latest one:
+We list the release notes in reverse chronological order, with the newest
+release first.
 
-{% for group, items in index("release-notes") | dictsort(reverse = True) %}
-## {{ minor_release_get_title("release-notes", group) }}
+{% for key, value in index().items()  %}
 
-{% for item in items
-  | sort(
-    reverse = True,
-    attribute = "major_version_number,minor_version_number,patch_version_number,post_version_sort,stem"
-  ) -%}
-- [{{ item['stem'] }}]({{item['path']}})
+## {{ get_release_title(key) }}
+{% for version in value -%}
+- [{{version}}]({{get_release_link(version)}})
 {% endfor -%}
-
 {% endfor %}

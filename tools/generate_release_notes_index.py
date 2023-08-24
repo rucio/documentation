@@ -1,51 +1,24 @@
 #!/usr/bin/env python3
 import os
-import pathlib
 import re
 from collections import defaultdict
-from typing import Dict, List, Optional, TypeVar
+from functools import cmp_to_key, partial
+from pathlib import Path
 
 import jinja2
 
-MAJOR_VERSION = re.compile(r"(\d+)\.\d+\.\d+")
-MINOR_VERSION = re.compile(r"\d+\.(\d+)\.\d+")
-PATCH_VERSION = re.compile(r"\d+\.\d+\.(\d+)")
-MAJOR_MINOR_VERSION = re.compile(r"(\d+\.\d+)\.\d+")
+ONEMINOR = re.compile(r"\d+\.\d+\.(\d+)")
+SEMANTICMINOR = re.compile(r"\d+\.(\d+).+")
+POST = re.compile(r".+post(\d+)")
+RC = re.compile(r".+0rc(\d+)")
+BIGNUM = 999
 
 
-T = TypeVar("T")
-
-
-def ensure_not_none(inp: Optional[T]) -> T:
-    """
-    This function unwraps an Optional type and returns the content. It fails if
-    the provided value is None.
-
-    :param inp: The Optional type with the content to return.
-    :returns: The content of the inp.
-    """
-    assert inp, "The input should not be None!"
-    return inp
-
-
-def map_post_version_sort_to_number(stem: str) -> int:
-    """
-    Maps the post version string (e.g. "post1" in "1.27.4.post1") to a
-    number. This defines the sorting of the releases.
-    """
-    if re.match(r".*rc\d+", stem):
-        return 0
-    if re.match(r".*\.post\d+", stem):
-        return 2
-    return 1
-
-
-def minor_release_get_title(path: str, version: str) -> str:
+def get_release_title(version: str) -> str:
     """
     Returns the title for a minor release. If this title does not exist it
     returns the version string itself.
 
-    :param path: The path to the folder containing the release informations.
     :param version: A major and minor version of a release. (e.g. "1.27")
     :returns: The coresponsing release title. This is just the version string in
         case no title exist.
@@ -100,57 +73,84 @@ def minor_release_get_title(path: str, version: str) -> str:
         )
 
 
-def render_templates(templates_dir: str, output_path: pathlib.Path) -> None:
-    def index_item(path: pathlib.Path) -> dict:
-        return {"stem": path.stem, "path": str(path.relative_to(output_path))}
+def index_func(path: Path) -> dict[str, list[str]]:
+    """
+    Takes a path to a folder containing release notes and returns a sorted
+    dictionary mapping major versions to a sorted list of minor versions
+    """
+    mapped_items = defaultdict(list)
+    for i in map(lambda x: x.name, path.iterdir()):
+        if i.startswith("1."):
+            mapped_items[f"1.{i.split('.')[1]}"].append(i[:-3])
+        else:
+            mapped_items[i.split(".")[0]].append(i[:-3])
+    sorted_major = {
+        k: mapped_items[k] for k in sorted(mapped_items.keys(), key=float, reverse=True)
+    }
+    sorted_minor = {
+        k: sorted(v, key=cmp_to_key(sort_func), reverse=True)
+        for k, v in sorted_major.items()
+    }
+    return sorted_minor
 
-    def index_func(path: str) -> Dict[str, List[Dict]]:
-        relative_path = output_path / path
-        if not str(relative_path).startswith(str(output_path)):
-            raise ValueError("path may not escape the output path")
-        if not relative_path.exists():
-            raise ValueError(f"cannot index: {path} does not exist")
 
-        items = relative_path.iterdir()
+def sort_func(a: str, b: str) -> int:
+    """
+    negative for a < b
+    zero for a == b
+    positive for a > b
+    assumes that either both start in '1.' or neither
+    """
 
-        mapped_items = defaultdict(list)
-        for i in items:
-            mapped_items[
-                ensure_not_none(MAJOR_MINOR_VERSION.match(i.stem)).group(1)
-            ].append(
-                {
-                    "major_version_number": int(
-                        ensure_not_none(MAJOR_VERSION.match(i.stem)).group(1)
-                    ),
-                    "minor_version_number": int(
-                        ensure_not_none(MINOR_VERSION.match(i.stem)).group(1)
-                    ),
-                    "patch_version_number": int(
-                        ensure_not_none(PATCH_VERSION.match(i.stem)).group(1)
-                    ),
-                    "post_version_sort": map_post_version_sort_to_number(i.stem),
-                    "stem": i.stem,
-                    "path": str(i.relative_to(output_path)),
-                }
-            )
+    class Version:
+        def __init__(self, s: str) -> None:
+            if s.startswith("1."):
+                self.major = int(s.split(".")[1])
+                self.minor = int(ONEMINOR.match(s).group(1))  # type: ignore
+                self.post = int(POST.search(s).group(1)) if POST.search(s) else -BIGNUM  # type: ignore
+                self.rc = int(RC.search(s).group(1)) if RC.search(s) else BIGNUM  # type: ignore
+            else:
+                self.major = int(s.split(".")[0])
+                self.minor = int(SEMANTICMINOR.match(s).group(1))  # type: ignore
+                self.post = int(POST.search(s).group(1)) if POST.search(s) else -BIGNUM  # type: ignore
+                self.rc = int(RC.search(s).group(1)) if RC.search(s) else BIGNUM  # type: ignore
 
-        return mapped_items
+    A, B = Version(a), Version(b)
 
-    jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(templates_dir))
-    jinja_env.globals["index"] = index_func
-    jinja_env.globals["minor_release_get_title"] = minor_release_get_title
-    for tpl in pathlib.Path(templates_dir).iterdir():
-        # render all templates with .md as the first suffix and only non-hidden files
-        if tpl.suffixes[0] == ".md" and not tpl.name.startswith("."):
-            jinja_template = jinja_env.get_template(str(tpl.relative_to(templates_dir)))
-            tpl_out_path = output_path / tpl.name[: tpl.name.find(".md") + 3]
-            tpl_out_path.write_text(jinja_template.render())
+    if A.major == B.major:
+        if A.minor == B.minor:
+            if A.minor == 0:
+                return A.rc - B.rc
+            else:
+                return A.post - B.post
+        else:
+            return A.minor - B.minor
+    else:
+        return A.major - B.major
+
+
+def get_release_link(path: Path, version: str) -> str:
+    return f"{path}/{version}.md"
+
+
+def render_templates(template_file: Path, output_path: Path) -> None:
+    jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_file.parent))
+    jinja_env.globals["index"] = partial(index_func, output_path / "release-notes")
+    jinja_env.globals["get_release_title"] = get_release_title
+    jinja_env.globals["get_release_link"] = partial(get_release_link, "release-notes")
+
+    jinja_template = jinja_env.get_template(template_file.name)
+    tpl_out_path = (
+        output_path / template_file.name[: template_file.name.find(".md") + 3]
+    )
+    tpl_out_path.write_text(jinja_template.render())
 
 
 if __name__ == "__main__":
-    templates_dir: str = os.path.join(os.path.dirname(__file__), "templates")
-    assert os.path.exists(templates_dir)
+    template_file = Path(
+        os.path.dirname(__file__), "templates/release-notes.md.j2"
+    ).resolve()
     render_templates(
-        templates_dir,
-        pathlib.Path(os.path.join(os.path.dirname(__file__), "../docs")).resolve(),
+        template_file,
+        Path(os.path.dirname(__file__), "../docs").resolve(),
     )
