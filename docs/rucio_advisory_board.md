@@ -41,7 +41,7 @@ board meetings.
 | [ATLAS](https://atlas.cern)         | David South, DESY     | 2023-Apr to 2025-Mar |
 | [Belle II](https://www.belle2.org)  | Cedric Serfon, BNL    | 2023-Jun to 2025-May |
 | [CMS](https://cms.cern)             | Katy Ellis, STFC      | 2023-Feb to 2025-Jan |
-| [DUNE](https://www.dunescience.org) | Mike Kirby, FNAL      | 2023-Feb to 2025-Jan |
+| [DUNE](https://www.dunescience.org) | Mike Kirby, BNL       | 2023-Feb to 2025-Jan |
 | [ESCAPE](https://projectescape.eu)  | Xavier Espinal, CERN  | 2023-Feb to 2025-Jan |
 
 ### Former Rucio Advisory Board members
