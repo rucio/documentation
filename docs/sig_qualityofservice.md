@@ -19,7 +19,8 @@ activity.
 
 ## Expected End-Date
 
-September 30, 2023
+~~September 30, 2023~~
+End of 2023
 
 ## Means to achieve the objective
 
