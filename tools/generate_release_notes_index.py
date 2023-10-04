@@ -9,8 +9,9 @@ import jinja2
 
 ONEMINOR = re.compile(r"\d+\.\d+\.(\d+)")
 SEMANTICMINOR = re.compile(r"\d+\.(\d+).+")
+SEMANTICPATCH = re.compile(r"\d+\.\d+\.(\d+).*")
 POST = re.compile(r".+post(\d+)")
-RC = re.compile(r".+0rc(\d+)")
+RC = re.compile(r".+rc(\d+)")
 BIGNUM = 999
 
 
@@ -105,24 +106,41 @@ def sort_func(a: str, b: str) -> int:
     class Version:
         def __init__(self, s: str) -> None:
             if s.startswith("1."):
+                self.semantic = False
                 self.major = int(s.split(".")[1])
                 self.minor = int(ONEMINOR.match(s).group(1))  # type: ignore
-                self.post = int(POST.search(s).group(1)) if POST.search(s) else -BIGNUM  # type: ignore
-                self.rc = int(RC.search(s).group(1)) if RC.search(s) else BIGNUM  # type: ignore
+                self.patch = 0
+                self.post = int(POST.search(s).group(1)) if POST.search(s) else 0  # type: ignore
+                self.rc = int(RC.search(s).group(1)) if RC.search(s) else 0  # type: ignore
             else:
+                self.semantic = True
                 self.major = int(s.split(".")[0])
                 self.minor = int(SEMANTICMINOR.match(s).group(1))  # type: ignore
-                self.post = int(POST.search(s).group(1)) if POST.search(s) else -BIGNUM  # type: ignore
-                self.rc = int(RC.search(s).group(1)) if RC.search(s) else BIGNUM  # type: ignore
+                self.patch = int(SEMANTICPATCH.match(s).group(1))  # type: ignore
+                self.post = int(POST.search(s).group(1)) if POST.search(s) else 0  # type: ignore
+                self.rc = int(RC.search(s).group(1)) if RC.search(s) else 0  # type: ignore
+
+        def combined_post_rc(self) -> int:
+            # assuming that post and rc are never both non-zero
+            if self.rc != 0:
+                # we know that post is 0, rc can be zero
+                return self.rc - BIGNUM
+            else:
+                # we know that rc is 0, post can be zero
+                return self.post
 
     A, B = Version(a), Version(b)
 
     if A.major == B.major:
         if A.minor == B.minor:
-            if A.minor == 0:
-                return A.rc - B.rc
+            # need to treat semantic and non-semantic differently
+            if A.semantic:
+                if A.patch == B.patch:
+                    return A.combined_post_rc() - B.combined_post_rc()
+                else:
+                    return A.patch - B.patch
             else:
-                return A.post - B.post
+                return A.combined_post_rc() - B.combined_post_rc()
         else:
             return A.minor - B.minor
     else:
