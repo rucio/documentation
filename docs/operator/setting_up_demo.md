@@ -113,7 +113,7 @@ pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore.test_dele
 Again run the containers using docker-compose:
 
 ```bash
-docker-compose --file etc/docker/dev/docker-compose-storage.yml up -d
+docker-compose --file etc/docker/dev/docker-compose.yml --profile storage up -d
 ```
 
 This should show you a few more running containers: the Rucio server,
@@ -150,7 +150,7 @@ On the second display of the rule, its state has cleared to OK.
 Again run the containers using docker-compose:
 
 ```bash
-docker-compose --file etc/docker/dev/docker-compose-storage-monit.yml up -d
+docker-compose --file etc/docker/dev/docker-compose.yml --profile storage --profile monitoring up -d
 ```
 
 Now you will have the same containers as before plus a full monitoring

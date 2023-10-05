@@ -42,7 +42,7 @@ picture:
 In the new window, as shown on the next picture:
 - select `Docker Compose` in the left menu.
 - in the `Configuration Files` field, navigate to the
-`./etc/docker/dev/docker-compose-storage.yaml` within the project
+`./etc/docker/dev/docker-compose.yaml` within the project
 - in the `Service` field select `rucio`
 
 ![Remote interpreter for rucio service](/img/intellij/rucio_docker_compose.png)
