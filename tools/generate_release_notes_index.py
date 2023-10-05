@@ -31,6 +31,9 @@ def get_release_title(version: str) -> str:
     # We hardcode the minor release titles for now, since there is no easy
     # way to automatically get them.
     HARD_CODED_RELEASE_NOTE_TITLE = {
+        "36": "Donkey Unchained",
+        "35": "Donkey and the Data Factory",
+        "34": "Donkey Potter and the Data Cache",
         "33": "Eternal Sunshine of the Donkey's Mind",
         "32": "The Good, The Bad and the Donkey",
         "1.31": "Donkeys of the Caribbean",

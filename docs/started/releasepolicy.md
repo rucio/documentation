@@ -40,6 +40,9 @@ server.
 
 | Version         | Code name                                 | Release date   | Supported until      |
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
+| 36              | Donkey Unchained                          | _2024-11_      | _2025-03_            |
+| 35 LTS          | Donkey and the Data Factory               | _2024-07_      | _at least 2026-07_   |
+| 34              | Donkey Potter and the Data Cache          | _2024-03_      | _2024-07_            |
 | 33              | Eternal Sunshine of the Donkey's Mind     | _2023-11_      | _2024-03_            |
 | **32 LTS**      | **The Good, The Bad and the Donkey**      | **2023-08**    | _at least 2025-08_   |
 | 1.31            | Donkeys of the Caribbean                  | 2023-03        | 2023-07              |
