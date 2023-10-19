@@ -94,7 +94,7 @@ unit tests or only set up the database. Running the full testing suite
 takes \~10 minutes:
 
 ```bash
-tools/run_tests_docker.sh
+tools/run_tests.sh
 ```
 
 Alternatively, you can bootstrap the test environment once with the
@@ -102,7 +102,7 @@ Alternatively, you can bootstrap the test environment once with the
 modules, test case groups, or even single test cases, for example:
 
 ```bash
-tools/run_tests_docker.sh -i
+tools/run_tests.sh -i
 pytest -v --full-trace lib/rucio/tests/test_replica.py
 pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore
 pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
@@ -125,7 +125,7 @@ and submit data transfers. To set this up, add the `-r`
 option to the setup.
 
 ```bash
-tools/run_tests_docker.sh -ir
+tools/run_tests.sh -ir
 ```
 
 This creates a few random files and uploads them, creates a few datasets
@@ -160,7 +160,7 @@ To create some events and write them to Elasticsearch first run again
 the tests as before:
 
 ```bash
-tools/run_tests_docker.sh -ir
+tools/run_tests.sh -ir
 ```
 
 Then you will have to run the transfer daemons (conveyor-\*) and
@@ -324,7 +324,7 @@ support single-execution mode with the \--run-once argument. Reset the
 system first with:
 
 ```bash
-tools/run_tests_docker.sh -ir
+tools/run_tests.sh -ir
 ```
 
 Some files are created. Let\'s add them to a new dataset:
