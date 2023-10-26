@@ -75,6 +75,7 @@
                 }
             ],
             "Developer": [
+                "developer/setting_up_mac_apple_silicon",
                 "developer/setting_up_intellij_dev_env",
                 "developer/setting_up_vscode_dev_env",
                 "contributing",
