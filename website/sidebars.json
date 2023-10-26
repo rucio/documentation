@@ -28,6 +28,7 @@
                 "release-notes"
             ],
             "User": [
+                "user/setting_up_mac_apple_silicon",
                 "user/setting_up_the_rucio_client",
                 "user/using_the_client",
                 "user/using_the_admin_client",
