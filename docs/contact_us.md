@@ -31,7 +31,7 @@ to [rucio-news-subscribe@cern.ch](mailto:rucio-news-subscribe@cern.ch?subject=Su
 ## Email us
 
 We'd love to hear from you! Get in contact with us
-directly via [__email__](mailto:rucio-contact@cern.ch)
+directly via [email](mailto:rucio-contact@cern.ch)
 
 ## Social Media
 
