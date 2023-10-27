@@ -10,8 +10,9 @@ with Rucio.
 
 ## Chat with us
 
-We've a dedicated Mattermost team for all things Rucio and you can be a part of
-it too! Click [here](mattermost.md)
+We have a dedicated Mattermost team for questions, support, news, development
+updates and all things Rucio and you can be a part of it too!
+Click [here](mattermost.md)
 
 ## Weekly Rucio meeting
 
@@ -20,11 +21,12 @@ community news, operational issues and questions, as well as ongoing & further
 contributions by the development team. The meeting is open to the public
 and you can view the schedule [__here__](https://indico.cern.ch/category/10588/).
 
-## Rucio users mailing list
+## Rucio news mailing list
 
-For any questions, support, or even keeping abreast of
-the latest developments, join our user mailing list by
-clicking [__here__](https://groups.google.com/forum/#!forum/rucio-users).
+We have a dedicated news mailing list for general announcements (<10 eMails per
+year) for the Rucio community. You can subscribe to [rucio-news@cern.ch](https://e-groups.cern.ch/e-groups/Egroup.do?egroupId=10586148)
+directly with a CERN account, for external subscribers please send an eMail
+to [rucio-news-subscribe@cern.ch](mailto:rucio-news-subscribe@cern.ch?subject=Subscribe).
 
 ## Email us
 
