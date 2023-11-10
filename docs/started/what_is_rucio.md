@@ -17,12 +17,11 @@ advances in Cloud & Big Data computations, it relies on a conceptual data model
 to ensure system stability. Dataflow autonomy and automation are the key design
 principles guiding the development of Rucio. To reduce the operational overheads
 of the support staff, it employs an automation framework and also accounts for
-newer use cases & user requirements of the LHC Run2 experiments.
+newer use cases & user requirements in high energy physics and beyond.
 
 ## What can Rucio do
 
-Standing on the shoulders of its predecessor, **ATLAS**, the capabilities of
-Rucio are currently leveraged for:
+The capabilities of Rucio are:
 
 - Storage of detector data, simulator data, and user data
 - Unified interfacing of heterogenous network & storage infrastructure
