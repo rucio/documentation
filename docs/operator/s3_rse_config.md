@@ -46,7 +46,7 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
     s3_url_style: path(default)|host
     ```
 
-3. Deploy the S3 configuration to the Rucio servers and restart servers:
+3. Deploy the S3 configuration to the Rucio servers by creating a `<release-name-servers>-rse-accounts` containing the following:
 
     ```bash
     # vim /opt/rucio/etc/rse-accounts.cfg
@@ -60,6 +60,23 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
         ...
     }
     ```
+
+    And add in your servers helm chart:
+
+    ```
+    values:
+      secretMounts:
+        - secretName: rse-accounts
+          mountPath: /opt/rucio/etc/rse-accounts.cfg
+          subPath: rse-accounts.cfg
+
+      config:
+        credentials: 
+          gcs: "/opt/rucio/etc/rse-accounts.cfg"
+
+    ```
+    
+    Restart the servers. 
 
 4. Give every Rucio account the following attribute to be able to sign URLs:
 
