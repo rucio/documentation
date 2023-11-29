@@ -23,6 +23,11 @@ End of 2023
 - eMail list: rucio-sig-metadata@cern.ch
 - ad hoc meetings with interested communities either over Zoom or asynchronously 
   over Mattermost.
+  - [SIG Metadata Kickoff](https://indico.cern.ch/event/1051395/), Weekly Rucio Meeting, July 2021
+  - [Metadata tests in Belle II](https://indico.cern.ch/event/1068644/), Weekly Rucio Meeting, September 2021
+  - [Astronomy & Metadata Panel](https://indico.cern.ch/event/1037922/), 4th Rucio Community Workshop, September 2021
+  - [Recent metadata developments & SIG Metadata status](https://indico.cern.ch/event/1160579/), Weekly Rucio Meeting, June 2022
+  - [SIG Metadata Update](https://indico.cern.ch/event/1185600/contributions/5120129/), 5th Rucio Community Workshop, November 2022
 
 ## Convener
 
