@@ -128,7 +128,7 @@ info:
     backgroundColor: '#FFFFFF'
     altText: Rucio logo
   title: Rucio
-  version: 33.0.0rc1
+  version: 33.0.0rc2
 components:
   securitySchemes:
     AuthToken:
