@@ -25,6 +25,7 @@ efforts and be the point of contact in case of problems.
 |[Docker & Kubernetes](https://github.com/rucio/rucio/issues?q=is%3Aopen+is%3Aissue+label%3A%22Docker+%26+Kubernetes%22) | [Mario Lassnig](https://github.com/mlassnig), [Radu Carpa](https://github.com/rcarpa), [Eric Vaandering](https://github.com/ericvaandering) | Docker & Kubernetes deployment|
 |[Documentation](https://github.com/rucio/rucio/issues?q=label%3A%22Documentation%22+is%3Aissue+is%3Aopen) | [Martin Barisits](https://github.com/bari12) | General documentation|
 |[Functional tests](https://github.com/rucio/rucio/issues?q=label%3A%22Functional+tests%22+is%3Aissue+is%3Aopen) | [Cedric Serfon](https://github.com/cserf) | Functional transfer tests|
+|[Jupyterlab extension](https://github.com/rucio/jupyterlab-extension/issues) | [Francesc Torradeflot](https://github.com/ftorradeflot), [Enrique Garcia Garcia](https://github.com/garciagenrique) | Rucio Jupyterlab extension|
 |[Life time model](https://github.com/rucio/rucio/issues?q=label%3A%22Life+time+model%22+is%3Aissue+is%3Aopen) | [Dimitrios Christidis](https://github.com/dchristidis) | Life time model processing and exceptions|
 |[Messaging](https://github.com/rucio/rucio/issues?q=label%3A%22Messaging%22+is%3Aissue+is%3Aopen) | [Mario Lassnig](https://github.com/mlassnig) | Messaging daemon: Hermes, Creation of eMails and ActiveMQ messages|
 |[Metadata](https://github.com/rucio/rucio/issues?q=label%3A%22Metadata%22+is%3Aissue+is%3Aopen) | [Rob Barnsley](https://github.com/robbarnsley) | Metadata workflows|
