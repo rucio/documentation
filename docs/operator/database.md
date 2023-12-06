@@ -48,15 +48,18 @@ For instance, one cannot combine `poolclass = nullpool` with the `pool_size` opt
 
 Rucio uses [Alembic](http://alembic.zzzcomputing.com/en/latest/) as a database
 migration tool, which works hand-in-hand with
-[SQLAlchemy](https://www.sqlalchemy.org/). Ensure that int `etc/alembic.ini` the
+[SQLAlchemy](https://www.sqlalchemy.org/). Ensure that in `etc/alembic.ini` the
 database connection string is is set to the same database connection string as
 the `etc/rucio.cfg` and issue the following command to verify the changes to the
 upgrade of the schema:
 
-`alembic upgrade head --sql`
+`alembic upgrade --sql $(alembic current | cut -d' '-f1):head`
 
-You can edit and then apply the SQL directly on your database. We do not advise
-running automatic upgrades/downgrades with alembic.
+You can edit and then apply the SQL directly on your database.
+
+`alembic upgrade head`
+
+We do not advise running automatic upgrades/downgrades with alembic.
 
 Notabene, schema upgrades are reserved for feature releases and will not happen
 with patch releases.
