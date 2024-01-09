@@ -68,6 +68,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Anton Schwarz <anton.schwarz@cern.ch>, 2022
 - Johannes Lange <johannes.lange@uni-hamburg.de>, 2022-2023
 - Domenic Gosein <domenic.gosein@cern.ch>, 2023
+- Eraldo Junior <esilvaju@cern.ch>, 2021-2024
 
 # Organisations employing contributors
 
@@ -95,3 +96,4 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Brookhaven National Laboratory (USA)
 - Institut Teknologi Bandung (Indonesia)
 - Universität Hamburg (Germany)
+- Brazilian Center for Research in Physics (Brazil)
