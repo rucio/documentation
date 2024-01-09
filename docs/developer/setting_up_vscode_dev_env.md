@@ -126,11 +126,11 @@ Whatever route you go, you should have a `hostcert.pem` and a `hostkey.pem` file
   `      urls = <http://url-of-webui:port>
      `
 
-  - If your server is running on a remote VM, but webui will be running locally, then the requests orignating from webui to the server will have the origin `http://localhost:3000`.
+  - If your server is running on a remote VM, but webui will be running locally, then the requests originating from webui to the server will have the origin `http://localhost:3000`.
 
-  - If both the server and webui are running locally, then the requests orignating from webui to the server will have the origin `http://localhost:3000`. In this case, you can set the `urls` to `http://localhost:3000`.
+  - If both the server and webui are running locally, then the requests originating from webui to the server will have the origin `http://localhost:3000`. In this case, you can set the `urls` to `http://localhost:3000`.
 
-  - If both the server and webui are running on the same remote VM, then the requests orignating from webui to the server will have the origin `http://<fqdn-of-remote-vm>:3000`. In this case, you can set the `urls` to `http://<fqdn-of-remote-vm>:3000`.
+  - If both the server and webui are running on the same remote VM, then the requests originating from webui to the server will have the origin `http://<fqdn-of-remote-vm>:3000`. In this case, you can set the `urls` to `http://<fqdn-of-remote-vm>:3000`.
 
 ## VSCode Tasks
 
