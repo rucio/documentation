@@ -38,5 +38,5 @@ username@host:~$ rucio list-rses --rses 'tier=1'
 ### I want to have 2 replicas on whatever T2 RSEs in the UK but not in Glasgow
 
 ```bash
-username@host:~$ rucio add-rule scope:first_dataset scope:second_dataset 2 'country=uk\site=GLASGOW'
+username@host:~$ rucio add-rule scope:first_dataset scope:second_dataset 2 'tier=2&country=uk\site=GLASGOW'
 ```
