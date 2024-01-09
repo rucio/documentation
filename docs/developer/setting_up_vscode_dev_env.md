@@ -88,7 +88,6 @@ Install the following extensions:
 - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
 - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
 - [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-- [Docker Compose](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
 
 VSCode comes with a plethora of extensions that can significantly improve your development experience. For more information, see [Extensions](https://code.visualstudio.com/docs/editor/extension-gallery)
 
