@@ -209,7 +209,7 @@ environment. On your host machine, you should be able to:
 
 ```bash
 cd ~/dev/rucio
-emacs <file>
+nvim <file>
 ```
 
 To see your changes in action the recommended way is to jump twice into
