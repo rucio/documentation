@@ -19,12 +19,12 @@ bugs. However, tests do not always cover all possible combinations of types.
 [PEP 484](https://peps.python.org/pep-0484/), which got adopted into the _Python
 Language Reference_ of Python3.6 and is thus a part of Python itself, introduces
 _type hints_ to Python. Type hints add more information to the source code and
-allow us to automatically check the code for type missmatches. Type-related bugs
+allow us to automatically check the code for type mismatches. Type-related bugs
 will thereby be checked at compile time (pre-runtime), rather than at
 runtime. Type hints also increase the descriptiveness of our code and make it
 easier to read.
 
-Rucio does not has type hints at the moment. The plan is to introduce them
+Rucio does not have type hints at the moment. The plan is to introduce them
 consistently to the entire project. Adding type hints to a big project is
 challenging. Since the code-base is too large to introduce them with only one
 PR, we will introduce the hints incrementally.
@@ -59,12 +59,12 @@ annotate python code with type hints. E.g.:
 
 Dynamically typed programming languages execute many common programming
 behaviours, that static programming languages perform during compilation, at
-runtime. While this is leads to quick prototyping, big projects could suffer
+runtime. While this leads to quick prototyping, big projects could suffer
 from some consequences. In particular:
 
 - The code is harder to read: Parameters and return types are specified in typed
   languages, they give some hints on how to call a function and what to
-  expect. Bugs and inconsistencies can be spotet easier (e.g. when a "get"
+  expect. Bugs and inconsistencies can be easier to spot (e.g. when a "get"
   function return a list), and some IDEs display these information for a more
   convenient coding experience. All of this is missing in dynamically typed
   programming languages.
@@ -82,10 +82,10 @@ While we have strong arguments for type annotations, there are some drawbacks:
 
 ## Type Annotations in Rucio
 
-Adding type annotations is not always trivial. Some types might be to ambigous,
-some might be to generic. A good reference point is existing type annotated
+Adding type annotations is not always trivial. Some types might be to ambiguous,
+some might be too generic. A good reference point is existing type annotated
 _Rucio_ code. It will give hints on what types may be used and how to properly
-used them in the code.
+use them in the code.
 
 :::warning
 Don't just copy the types from existing code, think about them!
@@ -151,7 +151,7 @@ A GitHub actions job ensures that newly written code contains type hints:
 The `Check Python Type Annotations` job in the autotests checks, if new code
 contains type annotations. It does this by comparing the number of missing
 python type annotations before the changes with the number of missing python
-type annotations after the changes. If the number before is less then the number
+type annotations after the changes. If the number before is less than the number
 after, new code, which is not typed, was added. The script then exits with a
 non-zero exit code. If it is equals or bigger, type annotations have been added
 to the repository.
@@ -199,8 +199,8 @@ following best practices:
 quotes](https://peps.python.org/pep-0484/#runtime-or-type-checking) and `if
 tying.TYPE_CHECKING:`**
 
-  - Quoted type hints enable "foreward references". This enables us to not
-  execute expencive code while still having type checks.
+  - Quoted type hints enable "forward references". This enables us to not
+  execute expensive code while still having type checks.
   - As long as the performance is immesurable small and not a problem, this
 should be avoided, since it > [name=Joel Dierkes] Dunno about this part. Should
 we use `if typing.TYPE_CHECKING:` and quoted types or avoid them?
@@ -215,7 +215,7 @@ we use `if typing.TYPE_CHECKING:` and quoted types or avoid them?
 
 **Avoid `Dicts`**
 
-  - Strongly typed structures should be prefered, since they are more
+  - Strongly typed structures should be preferred, since they are more
   descriptive and easier to use in the future.
   - "Was the id key in the `Dict` named `_id` or `id`?" is a question that
     should not occur.
@@ -225,7 +225,7 @@ we use `if typing.TYPE_CHECKING:` and quoted types or avoid them?
   - The `Optional` type highlights that a value _might_ be `None`. As a result
   the value _has_ to be checked for `None` on every usage (`if value: `).
   - While sometimes this cannot be avoided, the `Optional` type should be used
-    spearly. Most of the times a propper initialization of the variable is
+    sparely. Most of the times a proper initialization of the variable is
     enough to get rid of it. If it makes sense that a type can be
     "non-existent", it is appropriate to use the `Option` type.
 
