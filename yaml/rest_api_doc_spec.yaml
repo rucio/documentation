@@ -2677,49 +2677,6 @@ paths:
               .then(res => res.json())
               .then(json => console.log(json))
               .catch(err => console.error('error:' + err));
-    post:
-      summary: Post a SAML request
-      description: Post a SAML request
-      tags:
-        - Auth
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Invalid Auth Token
-      x-codeSamples:
-        - lang: Shell
-          source: |-
-            curl --request POST \
-              --url http://undefinedundefined/auth/saml \
-              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
-        - lang: Python
-          source: |-
-            import requests
-
-            url = "http://undefinedundefined/auth/saml"
-
-            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
-
-            response = requests.request("POST", url, headers=headers)
-
-            print(response.text)
-        - lang: Node
-          source: >-
-            const fetch = require('node-fetch');
-
-
-            let url = 'http://undefinedundefined/auth/saml';
-
-
-            let options = {method: 'POST', headers: {'X-Rucio-Auth-Token':
-            'REPLACE_KEY_VALUE'}};
-
-
-            fetch(url, options)
-              .then(res => res.json())
-              .then(json => console.log(json))
-              .catch(err => console.error('error:' + err));
     options:
       summary: SAML Allow cross-site scripting
       description: SAML Allow cross-site scripting. Explicit for Authentication.
@@ -2778,6 +2735,49 @@ paths:
 
 
             let options = {method: 'OPTIONS', headers: {'X-Rucio-Auth-Token':
+            'REPLACE_KEY_VALUE'}};
+
+
+            fetch(url, options)
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error('error:' + err));
+    post:
+      summary: Post a SAML request
+      description: Post a SAML request
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid Auth Token
+      x-codeSamples:
+        - lang: Shell
+          source: |-
+            curl --request POST \
+              --url http://undefinedundefined/auth/saml \
+              --header 'X-Rucio-Auth-Token: REPLACE_KEY_VALUE'
+        - lang: Python
+          source: |-
+            import requests
+
+            url = "http://undefinedundefined/auth/saml"
+
+            headers = {"X-Rucio-Auth-Token": "REPLACE_KEY_VALUE"}
+
+            response = requests.request("POST", url, headers=headers)
+
+            print(response.text)
+        - lang: Node
+          source: >-
+            const fetch = require('node-fetch');
+
+
+            let url = 'http://undefinedundefined/auth/saml';
+
+
+            let options = {method: 'POST', headers: {'X-Rucio-Auth-Token':
             'REPLACE_KEY_VALUE'}};
 
 
