@@ -117,6 +117,10 @@ The following modules will **not** be type annotated:
     - The db module is used as a dependency of core. While we need the types, we
       use very little functions out of it. We might activate support later,
       however we want to focus on core right now.
+- `lib/rucio/core/oidc.py`
+    - `pyjwkest` is no longer maintained and needs to be replaced,
+      and some functions are planned to be removed in the future.
+      It is best to skip this file for now.
 
 ### Dependencies
 
