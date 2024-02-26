@@ -500,6 +500,10 @@ attributes.
     hop. Integer. Default: `10`.
   - **multihop_tombstone_delay**: Seconds (integer). Default: `7200`.
   - **use_multihop**: Boolean. Default: `False`.
+  - **fts3tape_metadata_plugins**: _(Optional)_ Plugins to use with FTS3 to include archive 
+  metadata in the transfer process. List[String]. Default: `None`. 
+  - **metadata_byte_limit**: _(Optional)_ Limit applied to `archive_metadata` during a transfer. 
+  Only used with archive metadata plugins using FTS3. Integer. Defalt `None`. 
 - **virtual_placement**
   - **vp_endpoint**: _(Optional)_ Virtual Placement server. Once VP is
     integrated in Rucio it won't be needed. Default: ` `.
