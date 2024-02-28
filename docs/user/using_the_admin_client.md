@@ -6,6 +6,29 @@ title: "Using the Admin Client"
 Rucio provides a CLI for administrative tasks. The get methods can be executed
 by any user, but the set methods require some admin privileges. See the
 [rucio-admin help page](bin/rucio-admin.md).
+The command line client for administrative tasks is called ``rucio-admin``.
+
+## Getting help
+
+To get an overview of the available ``rucio-admin`` subcommands and flags, run:
+
+```bash
+rucio-admin --help
+```
+
+## Enable command line autocompletion
+
+If you would like to automatically complete ``rucio-admin`` commands, install
+the [argcomplete](https://pypi.org/project/argcomplete/) package and run:
+
+```bash
+eval "$(register-python-argcomplete rucio-admin)"
+```
+
+Next, type ``rucio-admin `` (note the trailing space) and press the
+<kbd>Tab</kbd> key to see all available options. To use the autocompletion
+feature, type enough letters of a subcommand or flag to uniquely define it
+and then press <kbd>Tab</kbd>.
 
 ## Account and identity methods
 
