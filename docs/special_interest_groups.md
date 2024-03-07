@@ -26,6 +26,6 @@ Each SIG must define
 
 | Name                                          | Start    | est. End | Convener                                               |
 | --------------------------------------------- | -------- | -------- | ------------------------------------------------------ |
-| [Metadata](sig_metadata.md)                   | Jul-2021 | Dec-2023 | [Rob Barnsley](https://github.com/robbarnsley)         |
+| [Metadata](sig_metadata.md)                   | Jul-2021 | Dec-2024 | [Rob Barnsley](https://github.com/robbarnsley)         |
 | [Quality of Service](sig_qualityofservice.md) | Jul-2021 | Dec-2023 | [Doug Benjamin](mailto:douglas.benjamin@cern.ch)       |
 | [Tokens](sig_tokens.md)                       | Sep-2023 | Mar-2026 | [Dimitrios Christidis](https://github.com/dchristidis) |

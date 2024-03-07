@@ -44,6 +44,7 @@
             ],
             "Operator": [
                 "operator/setting_up_demo",
+                "operator/kubernetes",
                 "operator/installing_server",
                 "operator/installing_daemons",
                 "operator/configuration",

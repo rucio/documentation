@@ -21,6 +21,7 @@ and the further development can be coordinated without the SIG.
 - Mattermost channel: [#tokens](https://mattermost.web.cern.ch/rucio/channels/tokens)
 - eMail list: rucio-sig-tokens@cern.ch
 - Ad hoc meetings
+  - [SIG Tokens Kickoff](https://indico.cern.ch/event/1316668/), Weekly Rucio Meeting, September 2023
 - A regularly updated design document
 
 ## Convener

@@ -30,8 +30,8 @@ deploy the new LTS release.
 
 For differences between the versions of a Rucio client and a Rucio server we guarantee
 compatibility of an older client up until the oldest supported LTS release line.
-For example, with 1.29 LTS being the oldest supported release line, a 32 Rucio server
-guarantees support of clients of the 1.29, 1.30, 1.31 and 32 release line. Most likely
+For example, with 1.29 LTS being the oldest supported release line, a 33 Rucio server
+guarantees support of clients of the 1.29, 1.30, 1.31, 32 and 33 release line. Most likely
 older clients will work, without problems, as well, however, the release policy does not
 guarantee it.
 
@@ -43,7 +43,7 @@ server.
 | 36              | Donkey Unchained                          | _2024-11_      | _2025-03_            |
 | 35 LTS          | Donkey and the Data Factory               | _2024-07_      | _at least 2026-07_   |
 | 34              | Donkey Potter and the Data Cache          | _2024-03_      | _2024-07_            |
-| 33              | Eternal Sunshine of the Donkey's Mind     | _2023-11_      | _2024-03_            |
+| **33**          | **Eternal Sunshine of the Donkey's Mind** | **2023-12**    | _2024-03_            |
 | **32 LTS**      | **The Good, The Bad and the Donkey**      | **2023-08**    | _at least 2025-08_   |
 | 1.31            | Donkeys of the Caribbean                  | 2023-03        | 2023-07              |
 | 1.30            | The Donkeynator                           | 2022-11        | 2023-03              |
