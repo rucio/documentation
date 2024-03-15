@@ -64,6 +64,7 @@
                 "operator/did_meta",
                 "operator/policy_packages",
                 "operator/s3_rse_config",
+                "operator/qos_rse_config",
                 "operator/notifications",
                 {
                     "Executables": [
