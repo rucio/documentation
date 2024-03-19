@@ -16,7 +16,7 @@ Please make sure that you install this recent Docker version especially
 if you are on CentOS, i.e. its default version is ancient and does not
 support some features we rely on.
 
-Start the Docker daemon with [sudo systemctl start docker]{.title-ref}.
+Start the Docker daemon with `sudo systemctl start docker`.
 You can confirm that Docker is running properly by executing (might need
 `sudo`:
 
