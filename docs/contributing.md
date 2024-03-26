@@ -4,7 +4,7 @@ title: Contributing Guide
 sidebar_label: Contributing Guide
 ---
 
-## Thank you for participating
+## Thank you for participating 
 
 The following is a set of rules for contributing to **Rucio** and its
 packages. Use your best judgment, and feel free to propose changes to this
