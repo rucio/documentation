@@ -95,6 +95,6 @@ Configuration options for Metadata are::
 
 ```python
 [metadata]
-# plugins = [list_of_plugins,comma_separated]
-plugins = [rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta, escape.rucio.did_meta_plugin]
+# plugins = list_of_plugins,comma_separated
+plugins = rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta,escape.rucio.did_meta_plugin
 ```
