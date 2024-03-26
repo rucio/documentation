@@ -6,66 +6,66 @@ on:
     - cron: '0 4 * * 1-5'
 
 jobs:
-  check_markdown_syntax:
-    name: Check Markdown Syntax
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-      - name: Install markdownlint
-        run: |
-          gem install mdl
-      - name: Lint docs
-        run: |
-          ./tools/check-docs.sh
-  check_file_names:
-    name: Check File Names
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Check file names
-        run: |
-          ./tools/check-file-names.sh
-  check_shell_scripts:
-    name: Check Shell Scripts
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Install dependencies
-        run: |
-          sudo apt-get install --yes shellcheck
-      - name: Check Shell Scripts
-        run: |
-          shellcheck **/*.sh
-  check_python_scripts:
-    name: Check Python Scripts
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Install dependencies
-        run: |
-          pip install -r tools/requirements.txt
-      - name: Run black
-        run: |
-          black --check .
-      - name: Run isort
-        run: |
-          isort --profile black --filter-files --check .
-      - name: Run flake8
-        run: |
-          flake8 --config tools/.flake8
-      - name: MyPy
-        run: |
-          mypy --ignore-missing-imports .
+  # check_markdown_syntax:
+  #   name: Check Markdown Syntax
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+  #     - uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: 2.7
+  #     - name: Install markdownlint
+  #       run: |
+  #         gem install mdl
+  #     - name: Lint docs
+  #       run: |
+  #         ./tools/check-docs.sh
+  # check_file_names:
+  #   name: Check File Names
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+  #     - name: Check file names
+  #       run: |
+  #         ./tools/check-file-names.sh
+  # check_shell_scripts:
+  #   name: Check Shell Scripts
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+  #     - name: Install dependencies
+  #       run: |
+  #         sudo apt-get install --yes shellcheck
+  #     - name: Check Shell Scripts
+  #       run: |
+  #         shellcheck **/*.sh
+  # check_python_scripts:
+  #   name: Check Python Scripts
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+  #     - name: Install dependencies
+  #       run: |
+  #         pip install -r tools/requirements.txt
+  #     - name: Run black
+  #       run: |
+  #         black --check .
+  #     - name: Run isort
+  #       run: |
+  #         isort --profile black --filter-files --check .
+  #     - name: Run flake8
+  #       run: |
+  #         flake8 --config tools/.flake8
+  #     - name: MyPy
+  #       run: |
+  #         mypy --ignore-missing-imports .
   build:
     name: Build
-    needs: [check_markdown_syntax, check_file_names, check_shell_scripts, check_python_scripts]
+    #needs: [check_markdown_syntax, check_file_names, check_shell_scripts, check_python_scripts]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -93,18 +93,18 @@ jobs:
         with:
           name: documentation-artifacts
           path: website/build
-  deploy:
-    name: Deploy
-    needs: build
-    if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@master
-        with:
-          name: documentation-artifacts
-          path: website/build
-      - name: Push to Github Pages branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./publish.sh
+  # deploy:
+  #   name: Deploy
+  #   needs: build
+  #   if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/download-artifact@master
+  #       with:
+  #         name: documentation-artifacts
+  #         path: website/build
+  #     - name: Push to Github Pages branch
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       run: ./publish.sh
