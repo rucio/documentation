@@ -92,7 +92,7 @@ against a particular regex while other might accept all possible keys.
 
 ## How to configure which metadata plugin to use
 
-Configuration options for Metadata are::
+Configuration options for Metadata are:
 
 ```python
 [metadata]
