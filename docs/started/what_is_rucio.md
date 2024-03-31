@@ -55,4 +55,3 @@ The capabilities of Rucio are:
 Rucio doesn't automatically create the storage backends. The storage servers must
 be created and configured, in advance, with one of the supported access protocols
 (webdav/s3/sftp/xrootd/...), then configured in Rucio.
-

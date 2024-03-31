@@ -16,7 +16,7 @@ Click [here](mattermost.md)
 
 ## Weekly Rucio meeting
 
-The Rucio community gathers for a meeting every Thursday at 3 PM CEST to discuss 
+The Rucio community gathers for a meeting every Thursday at 3 PM CEST to discuss
 community news, operational issues and questions, as well as ongoing & further
 contributions by the development team. The meeting is open to the public
 and you can view the schedule [here](https://indico.cern.ch/category/10588/).

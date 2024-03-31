@@ -5,14 +5,14 @@ title: SIG Tokens
 
 ## Objective
 
-The objective of this SIG is to collect feedback from the wider Rucio community 
+The objective of this SIG is to collect feedback from the wider Rucio community
 about the evolution of OIDC/oAuth2 token workflows in Rucio. This feedback should
 first be compiled into an, ongoing, design document and then drive the development
 of token functionality in Rucio.
 
 ## Expected End-Date
 
-March 2026, in line with the [WLCG Token Transition](https://zenodo.org/record/7014668) 
+March 2026, in line with the [WLCG Token Transition](https://zenodo.org/record/7014668)
 timeline. By then token functionality in Rucio will have reached a level of maturity
 and the further development can be coordinated without the SIG.
 

@@ -11,7 +11,7 @@ But a Mac equipped with Apple Silicon can execute code compiled for the x86_64 i
 
 - To install Rosetta 2 run:
 
-      /usr/sbin/softwareupdate --install-rosetta 
+      /usr/sbin/softwareupdate --install-rosetta
 
 This will initiate the Rosetta installer, and you will need to consent to a license agreement.
 

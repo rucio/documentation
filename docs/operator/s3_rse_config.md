@@ -11,7 +11,7 @@ Rucio supports S3 storages which can be configured and used as RSEs. This sectio
 
 There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/fts3-docs/docs/s3_support.html#s3-support)  and [GFAL2](https://dmc-docs.web.cern.ch/dmc-docs/gfal2/plugins.html#gfal2-plugin-http) ([davix](https://davix.web.cern.ch/davix/docs/devel/cloud-support.html#amazon-s3)) to communicate with an S3 storage:
 
-1. Using [pre-signed](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) URLs which can be used to access and modify the resources. In this case the endpoint protocol must be `https://` and the user must pre-sign the URL before presenting it to the tools. Please note that in the case of FTS3, the actual timestamp that the transfer will initiate cannot be known a priori, so a pre-signed URL with a predefined lifetime can expire before the beginning of the transfer. 
+1. Using [pre-signed](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) URLs which can be used to access and modify the resources. In this case the endpoint protocol must be `https://` and the user must pre-sign the URL before presenting it to the tools. Please note that in the case of FTS3, the actual timestamp that the transfer will initiate cannot be known a priori, so a pre-signed URL with a predefined lifetime can expire before the beginning of the transfer.
 
 2. Delegating the signature of the URL to FTS3 and GFAL2. This requires providing the relevant configurations ([gfal_config](https://dmc-docs.web.cern.ch/dmc-docs/gfal2/plugins.html#for-a-specific-host) & [fts_config](https://fts3-docs.web.cern.ch/fts3-docs/docs/s3_support.html#configuration)) and using `s3s://` as the endpoint protocol. In this case the user must also be cautious to use the `alternate` configuration/flag appropriately. This will guide the usage of the [Path-Style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) URL (`alternate=true`) or the [Virtual-Style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) URL (`alternate=false`) during the signing process. Please note that FTS3 currently cannot handle transfers between S3 path-style URLs to S3 virtual-style URLs and vice versa. The `alternate` flag affects all endpoints in the submitted job, thus all S3 endpoints should adhere to the same URL-style.
 
@@ -71,12 +71,12 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
           subPath: rse-accounts.cfg
 
       config:
-        credentials: 
+        credentials:
           gcs: "/opt/rucio/etc/rse-accounts.cfg"
 
     ```
-    
-    Restart the servers. 
+
+    Restart the servers.
 
 4. Give every Rucio account the following attribute to be able to sign URLs:
 
