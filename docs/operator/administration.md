@@ -63,7 +63,7 @@ If you deploy rucio in a kubernetes cluster using the official rucio
 [helm charts](https://github.com/rucio/helm-charts/) and want to hotfix
 rucio using a patch file created in the previous section, follow these steps:
 
-Create a kubernetes secret from the hotfix patch: 
+Create a kubernetes secret from the hotfix patch:
 
 ```bash
 kubectl -n rucio create secret generic hotfix-conveyor-poller-patch --from-file=hotfix_conveyor_poller.patch

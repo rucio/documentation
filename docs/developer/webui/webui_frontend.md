@@ -151,7 +151,7 @@ return (
         {
             // pass the content between <input></input> in here
             children
-        } 
+        }
     </input>
 )
 ```
@@ -271,7 +271,7 @@ will already be filled in correctly.
 
 
 #### Hooks
-Hooks are reusable functions. They all start with `use`. 
+Hooks are reusable functions. They all start with `use`.
 
 ##### useState
 Add a state variable to the component, i.e.
@@ -302,7 +302,7 @@ useEffect(() => {
 In this case, the function `didMetaQueryBase` returns a value of type
 `Promise<DIDMetaViewModel>`.  Learn about `Promise` in TypeScript, and how to
 deal with it,
-[here](https://basarat.gitbook.io/typescript/future-javascript/promise) 
+[here](https://basarat.gitbook.io/typescript/future-javascript/promise)
 
 :::
 
@@ -330,7 +330,7 @@ most cases, this is by Tailwind, our CSS framework. In some cases, you want
 access to the window width class (small, medium, etc.) from within your code in
 order to manipulate components programmatically. An example of this is the
 visibility of columns in StreamedTables, which is defined in a `TableStyling`
-object. 
+object.
 
 This custom hook implements a window resize event listener and exposes the
 following object:
