@@ -67,3 +67,9 @@ flycheck_*.el
 /network-security.data
 
 __pycache__
+
+# JetBrains project params
+.idea/
+
+# Mac OS X Finder
+**/.DS_Store
