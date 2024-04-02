@@ -240,3 +240,5 @@ lead.
 
 We use flake8 and pylint to sanitize our code. Please do the same before
 submitting a pull request.
+
+[A more indepth set of coding style guidelines can be found here.](./developer/style_guide.md)
