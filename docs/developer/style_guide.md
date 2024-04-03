@@ -64,11 +64,11 @@ from packageA import (
 Rucio uses a custom SQLAlchemy style. 
 Each major clause or operation is given a new line, and a level of indentation is added for each operation within a part of a query.
 
-When queries as executed, perfered output types are either scalars or single values, to avoid using an index to select an element out of a query. 
+When queries are executed, preferred output types are either scalars or single values, to avoid using an index to select an element out of a query. 
 
 Shorter statements can be written on a single line. 
 
-> **Note** - When using SQLAlchemy to make query data model, it is best practice to call the code executed (the `select` statment or similar) `statement` or `stmt`. The actual `query` is the result of the statement's execution. 
+> **Note** - When using SQLAlchemy to make query data model, it is best practice to name the code executed (the `select` statement or similar) `statement` or `stmt`. The actual `query` is the result of the statement's execution. 
 
 ### Examples 
 #### Simple Select 
@@ -114,8 +114,8 @@ for column_a, column_b, column_c in query:
   ...
 ```
 
-#### Checking existance/Single Value
-When using the query to ensure that table has been populated, or only a single result is required, use either `session.execute().one()` or `session.execute().scalar_one()`. 
+#### Checking existence/Single Value
+When using the query to ensure that the table has been populated, or only a single result is required, use either `session.execute().one()` or `session.execute().scalar_one()`. 
 
 ```python
 statement = select(model.Table.Column).where(Condition)
@@ -133,7 +133,7 @@ foo(query.Column1, query.Column2)
 
 # Pre-commits 
 Rucio uses the [`flake8`](https://github.com/PyCQA/flake8) precommit as a linter, [`ruff`](https://github.com/astral-sh/ruff-pre-commit) as a formatter, 
-a custom write-space remover, and a script to verify a uniform file-header format. 
+a custom whitespace remover, and a script to verify a uniform file-header format. 
 Please use these before submitting a pull request. 
 
 The Rucio repo provides a `pre-commit` that does this automatically. 
@@ -144,8 +144,8 @@ pip install pre-commit
 pre-commit install
 ```
 
-# Github Actions 
-Code style is checked during a pull request with a github action. 
+# GitHub Actions 
+Code style is checked during a pull request with a GitHub action. 
 The action checks the header and type annotations (including a count and veracity). 
 More information about type annotations can be found [here](./type_annotation_guide.md). 
 These checks can also be run locally using
