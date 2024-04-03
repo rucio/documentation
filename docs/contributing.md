@@ -176,6 +176,15 @@ Every submitted pull request will automatically be run through automated testing
 through continuous integration. You should see the status of these tests on your
 pull request.
 
+###  Writing Tests
+For every feature added, there should be a set of corresponding tests that verify its functionality and integration with the rest of the codebase. 
+
+* Use fixtures (found in the tests/conftest.py) or temporary object factories (tests/temp_factories.py) instead of making bare instances of rucio objects. 
+* Only write tests deterministically. Randomness produces [flaky tests](https://docs.pytest.org/en/7.1.x/explanation/flaky.html). 
+* Only write tests that are "stand alone" - tests should be entirely self-contained besides for the before-mentioned fixtures and factories. 
+* If a test requires a configuration file changed, [use a fixture to modify a mock-configuration file.](https://github.com/rucio/rucio/blob/master/tests/conftest.py#L510)
+* If a test can interfere with another test (use the same database table, interact with a queue), mark it as `noparallel`. 
+
 ### Local automatic testing
 
 There is also a local shell script to run the same autotests:
