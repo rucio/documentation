@@ -61,74 +61,166 @@ from packageA import (
 ```
 
 # SQLAlchemy Query Guide 
-Rucio uses a custom SQLAlchemy style. 
-Each major clause or operation is given a new line, and a level of indentation is added for each operation within a part of a query.
 
-When queries are executed, preferred output types are either scalars or single values, to avoid using an index to select an element out of a query. 
+The Rucio project has adopted a particular coding style for its interaction with the database.
+It can be split into two parts: constructing the SQL statement, and executing it and handling its results.
 
-Shorter statements can be written on a single line. 
+## Query construction
 
-> **Note** - When using SQLAlchemy to make query data model, it is best practice to name the code executed (the `select` statement or similar) `statement` or `stmt`. The actual `query` is the result of the statement's execution. 
+### Rationale
 
-### Examples 
-#### Simple Select 
-```python 
-statement = select(
-  models.Table.ColumnA, 
-  models.Table.ColumnB, 
-)
-query = session.execute(statement).scalars()
-for column_a, column_b in query: 
-  ...
-```
-#### Select with Join 
-```python 
-statement = select(
-  models.Table1.ColumnA, 
-  models.Table1.ColumnB, 
-  models.Table2.Column2
-).join(
-  models.Table2, 
-  (models.Table1.keyA == models.Table2.keyA) & (models.Table1.keyB == models.Table2.keyB) 
-)
-query = session.execute(statement).scalars()
-for column_a, column_b, column_c in query: 
-  ...
-```
+Statements involving the use of SQLAlchemy are not exactly Python code; they are SQL masquerading as Python code.
+Hence, there are benefits to adopting a style that can be considered somewhat un-Pythonic:
 
-#### Multiple Conditions
-```python 
-statement = select(
-  models.Table1.Column_a, 
-  models.Table1.Column_b, 
-  models.Table1.Column_c,
-).where(
-  and_(
-    models.Table1.Condition1 == True,  
-    models.Table1.Condition2 != None, 
-    models.Table1.Condition2 < {Different Statement}
-  )
-)
-query = session.execute(statement).scalars()
-for column_a, column_b, column_c in query: 
-  ...
-```
+ 1. It is visually distinct from regular Python code.
+    Thus, it stands out and assists the developer in entering an ‘SQL context’.
+ 2. It is closer to how one would format actual long SQL statements.
 
-#### Checking existence/Single Value
-When using the query to ensure that the table has been populated, or only a single result is required, use either `session.execute().one()` or `session.execute().scalar_one()`. 
+Of course, there are some downsides to this approach.
+The use of a code formatter is rendered almost impossible, thus requiring manual effort during development.
+However, code is written once but read many times.
+As such, we believe that the benefits outweigh the downsides.
+
+### Variable Assignment
+
+SQL statements should be assigned to a variable, then executed separately.
+The name `stmt` is a common choice.
 
 ```python
-statement = select(model.Table.Column).where(Condition)
-try: 
-  session.execute(statement).one() 
-except NoResultFound as e: 
-  ... # Handle the case where nothing exists 
+# Wrong
+rses = session.execute(select(models.RSE)).scalars().all()
+
+# Right
+stmt = select(
+    models.RSE
+)
+rses = session.execute(stmt).scalars().all()
 ```
 
-```python 
-statement = select(model.Table).where(Condition)
-query = session.execute(statement).scalar_one()
-foo(query.Column1, query.Column2)
+### SQLAlchemy Syntax
+
+All new code should use the more recent SQLAlchemy 2.0 syntax.
+Existing code using the older 1.4 syntax should be migrated to the 2.0 syntax.
+
+```python
+# Wrong
+rses = (session.query(models.RSE)
+               .all())
+
+# Right
+stmt = select(
+    models.RSE
+)
+rses = session.execute(stmt).scalars().all()
+```
+
+### Whitespace
+
+The functions that return basic SQL constructs (e.g. `select()`, `update()`, and `delete()`) should have a newline after the opening parenthesis and before the closing parenthesis.
+Same applies to all methods of those constructs (e.g. `distinct()`, `join()`, and `where()`).
+The latter should be ordered in a way that matches the syntax of SQL, when permittable.
+Inside the parentheses, each argument should be indented and put on a separate line.
+
+```python
+# Wrong
+stmt = (
+    select(models.RSEAttrAssociation.value)
+    .where(models.RSEAttrAssociation.key == 'fts')
+    .distinct()
+)
+
+# Right
+stmt = select(
+    models.RSEAttrAssociation.value
+).distinct(
+).where(
+    models.RSEAttrAssociation.key == 'fts'
+)
+```
+
+### Discouraged Logical Operators
+
+The functions `and_()` and `or_()` should be used instead of Python’s bitwise operators `&` and `|`.
+
+```python
+# Wrong
+stmt = select(
+    models.Request,
+    models.DataIdentifier
+).join(
+    models.DataIdentifier,
+    (models.Request.scope == models.DataIdentifier.scope) & (models.Request.name == models.DataIdentifier.name)
+)
+
+# Right
+stmt = select(
+    models.Request,
+    models.DataIdentifier
+).join(
+    models.DataIdentifier,
+    and_(models.DataIdentifier.scope == models.DataIdentifier.scope,
+         models.DataIdentifier.name == models.DataIdentifier.name)
+)
+```
+
+### Python Keywords
+
+The functions `true()`, `false()`, and `null()` should be used instead of Python’s own keywords.
+
+```python
+# Wrong
+stmt = select(
+    models.RSE
+).where(
+    models.RSE.deleted == False
+)
+
+# Right
+stmt = select(
+    models.RSE
+).where(
+    models.RSE.deleted == false()
+)
+```
+
+### UPDATE statements
+
+The `values()` method should be used with a dictionary as its sole argument.
+The keys should be entities from the models.
+The opening and closing braces of the dictionary should be paired with the parentheses of `values()`.
+
+```python
+# Wrong
+stmt = update(
+    models.Account
+).where(
+    models.Account == InternalAccount('user')
+).values(
+    status=AccountStatus.DELETED,
+    deleted_at=datetime.now()
+)
+
+# Wrong
+stmt = update(
+    models.Account
+).where(
+    models.Account == InternalAccount('user')
+).values(
+    {
+        'status': AccountStatus.DELETED,
+        'deleted_at': datetime.now()
+    }
+)
+
+# Right
+stmt = update(
+    models.Account
+).where(
+    models.Account == InternalAccount('user')
+).values({
+    models.Account.status: AccountStatus.DELETED,
+    models.Account.deleted_at: datetime.now()
+})
 ```
 
 # Pre-commits 
