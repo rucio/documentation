@@ -32,3 +32,10 @@ End of ~~2023~~ 2024
 ## Convener
 
 [Rob Barnsley](https://github.com/robbarnsley)
+
+## Documents
+
+| Document                                                                                                                | Creation     |
+| ----------------------------------------------------------------------------------------------------------------------- | ------------ |
+| [Rucio SIG Metadata interim report](https://rucio.cern.ch/documentation/files/Rucio_SIG_Metadata_report_2024-03-25.pdf) | Mar 25, 2024 |
+
