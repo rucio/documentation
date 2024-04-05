@@ -31,12 +31,12 @@ if TYPE_CHECKING:
 
 #### Examples:
 ```python
- # Wrong
+# Wrong
 import rucio
 from datetime import *
 import os
 
- # Right
+# Right
 import os
 from datetime import datetime, timedelta
 
@@ -44,19 +44,19 @@ from rucio.core.did import add_did
 ```
 
 ```python
- # Wrong
+# Wrong
 from packageA import moduleA, moduleB, moduleC, moduleD, moduleE, moduleF, moduleG, ...
 
- # Right
+# Right
 from packageA import (
-  moduleA,
-  moduleB,
-  moduleC,
-  moduleD,
-  moduleE,
-  moduleF,
-  moduleG,
-  ...
+    moduleA,
+    moduleB,
+    moduleC,
+    moduleD,
+    moduleE,
+    moduleF,
+    moduleG,
+    ...
 )
 ```
 
