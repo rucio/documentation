@@ -32,7 +32,7 @@ based on the number of files in a directory.
 
 For a data identifier, e.g. `user.jdoe:test.file.1` a md5-hashsum is calculated
 `077c8119053bebb168d125034bff64ac`. The generated path is then based on the
-first four characters of the hashsum. e.g. `/07/7c/user.jdoe/test.file.1`.
+first four characters of the hashsum. e.g. `/user.jdoe/07/7c/test.file.1`.
 
 ## Deterministic algorithm based on naming convention
 
