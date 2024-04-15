@@ -9,11 +9,13 @@ DOCS=$SCRIPT_DIR/../docs
 
 "$SCRIPT_DIR"/generate_dynamic_files.sh
 
+# Dynamically determine the primary group of the current user
+USER_GROUP=$(id -gn)
 
 # We have to change the ownership of the auto generated files here. Docker
 # creates everything with it's own (or root) user account. This is a problem,
 # since the current user does not own the files.
-sudo chown -R "$USER":"$USER" "$AUTO_GENERATED"
+sudo chown -R "$USER":"$USER_GROUP" "$AUTO_GENERATED"
 
 echo "Adding code examples to Rest Api Spec file..."
 (

@@ -5,7 +5,7 @@ title: Transfers Throttler
 
 As the name suggests, `conveyor-throttler` (transfer throttler) is used to
 protect the transfertools from overload by limiting the number of submitter
-transfers at any particular moment of time. 
+transfers at any particular moment of time.
 
 Preparer is required to be able to run throttler. See the preparer documentation
 on how to activate it.
@@ -34,7 +34,7 @@ applies to a specific RSE, the more restrictive condition applies.
 
 Throttler supports some advanced throttler techniques. Some of them are:
 - source throttling
-- grouping of files from the same dataset together (grouped_fifo strategy)  
+- grouping of files from the same dataset together (grouped_fifo strategy)
 
 These techniques can be costly on the database and were not extensively tested.
 The only technique we use in production is destination throttling.

@@ -58,12 +58,14 @@
                         "operator/transfers/transfers-preparer",
                         "operator/transfers/transfers-throttler",
                         "operator/transfers/transfers-submitter",
-                        "operator/transfers/configure-rucio-globus"
+                        "operator/transfers/configure-rucio-globus",
+                        "operator/transfers/configure-rucio-fts3-plugins"
                     ]
                 },
                 "operator/did_meta",
                 "operator/policy_packages",
                 "operator/s3_rse_config",
+                "operator/qos_rse_config",
                 "operator/notifications",
                 {
                     "Executables": [
@@ -75,11 +77,13 @@
                 }
             ],
             "Developer": [
+		"developer/setting_up_mac_apple_silicon",
                 "developer/setting_up_intellij_dev_env",
                 "developer/setting_up_vscode_dev_env",
                 "contributing",
                 "developer/rest_api_doc",
                 "developer/type_annotation_guide",
+                "developer/dev_style_guide",
                 {
                     "WebUI": [
                         "developer/webui/webui_frontend_vscode_dev_env",

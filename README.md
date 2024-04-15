@@ -42,7 +42,7 @@ To run the server locally, the dependencies of the server need to be installed:
 ## Usage
 
 To build the assets, run the `build_documentation.sh` script in `tools`. The
-assets need to be build in order for the server to run!
+assets need to be built in order for the server to run!
 
 ```bash
 tools/build_documentation.sh

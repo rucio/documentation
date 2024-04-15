@@ -10,7 +10,7 @@ The following is a set of rules for contributing to **Rucio** and its
 packages. Use your best judgment, and feel free to propose changes to this
 document.
 
-If you have questions, you can reach the core development team on our 
+If you have questions, you can reach the core development team on our
 [__Mattermost__](mattermost.md) channel, or send an email to our
 development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
 
@@ -142,7 +142,7 @@ merged, e.g.:
 <component>: <change_message> Fix #<issue number>
 ```
 
-Using multiple commits is allowed as long as they achieve an independent, 
+Using multiple commits is allowed as long as they achieve an independent,
 well-defined, change and are well-described. Otherwise multiple commits should
 be squashed.
 
@@ -249,3 +249,5 @@ lead.
 
 We use flake8 and pylint to sanitize our code. Please do the same before
 submitting a pull request.
+
+[A more indepth set of coding style guidelines can be found here.](./developer/style_guide.md)

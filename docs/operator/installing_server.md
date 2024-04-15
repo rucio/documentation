@@ -147,7 +147,7 @@ you set this variable to `True` the output will be written to `access_log` and
 
 ### RUCIO_LOG_LEVEL
 
-The default log level is [info]{.title-ref}. You can change it using this
+The default log level is `info`. You can change it using this
 variable.
 
 ### RUCIO_LOG_FORMAT
