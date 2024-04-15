@@ -173,8 +173,28 @@ please try to squash/amend your commits to avoid “in-between” commits.
 ## Automatic Testing
 
 Every submitted pull request will automatically be run through automated testing
-through continuous integration. You should see the status of these tests on your
-pull request.
+through continuous integration.
+This testing includes multiple [suites of testing](https://github.com/rucio/rucio/tree/master/.github/workflows),
+all of which are required to pass.
+Please enable testing on your fork of the main repository to see the status of your tests as you develop.
+
+
+###  Writing Tests
+For every feature added, there should be a set of corresponding tests that verify
+its functionality and integration with the rest of the codebase.
+
+* Use fixtures (found in the tests/conftest.py) or temporary object factories
+(tests/temp_factories.py) instead of making bare instances of rucio objects.
+* Only write tests deterministically.
+ Randomness produces [flaky tests](https://docs.pytest.org/en/7.1.x/explanation/flaky.html).
+* Only write tests that are "stand alone" -
+tests should be entirely self-contained besides for the before-mentioned fixtures and factories.
+* If a test requires a configuration file changed,
+[use a fixture to modify a mock-configuration file.](https://github.com/rucio/rucio/blob/master/tests/conftest.py#L510)
+* If a test can interfere with another test
+(use the same database table, interact with a queue), mark it as `noparallel`.
+* If a test is specific to a VO, mark it as such using a [`skip_non_{vo}`](https://github.com/rucio/rucio/blob/master/lib/rucio/tests/common.py) fixture,
+or mark it as `skip_multivo` if the test only is intended to work in single-vo settings.
 
 ### Local automatic testing
 
