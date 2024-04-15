@@ -38,7 +38,7 @@ Table](https://tanstack.com/table/v8/docs/guide/introduction) and optimised for
 use with the streams fed in via the ComDOM. A StreamedTable is defined by a set
 of react props passed into the component (which will be described below). The
 framework is completed by a plethora of ready-to-use components which solve the
-majority of required usecases when it comes to streamed tables. 
+majority of required usecases when it comes to streamed tables.
 
 ![StreamedTable Example](/img/webui/streamedtable.png)
 
@@ -210,7 +210,7 @@ components.
 This component toggles the Tanstack Table sorting mechanism on mouseclick and
 cycles between no sorting, sorting in ascending order and sorting in descending
 order. Examples of column entries which can be sorted are numeric data and
-dates. 
+dates.
 
 ![TableSortUpDown Dirty](/img/webui/sort-updown-dirty.png) ![TableFilterBoolean Clean](/img/webui/sort-updown-clean.png)
 

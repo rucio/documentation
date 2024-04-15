@@ -4,6 +4,30 @@ title: Using the Client
 ---
 
 Rucio provides several commands for the end-user. See [executables](bin/rucio.md).
+The command line client is called ``rucio``.
+
+
+## Getting help
+
+To get an overview of the available ``rucio`` subcommands and flags, run:
+
+```bash
+rucio --help
+```
+
+## Enable command line autocompletion
+
+If you would like to automatically complete ``rucio`` commands, install the
+[argcomplete](https://pypi.org/project/argcomplete/) package and run:
+
+```bash
+eval "$(register-python-argcomplete rucio)"
+```
+
+Next, type ``rucio `` (note the trailing space) and press the <kbd>Tab</kbd>
+key to see all available options. To use the autocompletion feature, type enough
+letters of a subcommand or flag to uniquely define it and then press
+<kbd>Tab</kbd>.
 
 ## Getting user information
 

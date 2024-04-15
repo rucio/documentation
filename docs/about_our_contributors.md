@@ -69,6 +69,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Johannes Lange <johannes.lange@uni-hamburg.de>, 2022-2023
 - Domenic Gosein <domenic.gosein@cern.ch>, 2023
 - Eraldo Junior <esilvaju@cern.ch>, 2021-2024
+- Dimitris Xenakis <d.xenakis@ieee.org>, 2024
 
 # Organisations employing contributors
 

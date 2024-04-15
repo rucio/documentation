@@ -170,7 +170,7 @@ Rucio will look for the config in the following locations -
   - **geoip_licence_key**: _(Optional)_ License key for GeoLite2. Get a free
     licence key at <https://www.maxmind.com/en/geolite2/signup>. Default:
     `NOLICENCE`.
-  - **use_temp_tables**: _(Optional)_ Use Rucio with temporary table workflows. 
+  - **use_temp_tables**: _(Optional)_ Use Rucio with temporary table workflows.
     Default: `False`.
 #### **client** {#client_config}
   - **account**: Rucio account. Example: `root`.
@@ -575,4 +575,3 @@ and how to set them up [here](./configuration.md#creating-new-rses).
 - **type**: <!--??--> Values: `{LOCALGROUPDISK, LOCALGROUPTAPE, GROUPDISK,
   SCRATCHDISK, MOCK, TEST, DATADISK}`. Default: ` `.
 - **verify_checksum**: Boolean. No default.
-

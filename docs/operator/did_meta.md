@@ -53,8 +53,9 @@ order each configured metadata plugin if it supports this KEY.
 
 ## How to develop a custom metadata solution
 
-The module you develop needs to extend the [DidMetaPlugin](/) Abstract
-class. The methods needed are:
+The module you develop needs to extend the
+[DidMetaPlugin](https://github.com/rucio/rucio/blob/master/lib/rucio/core/did_meta_plugins/did_meta_plugin_interface.py)
+Abstract class. The methods needed are:
 
 ```python
 get_metadata(scope, name, session=None)
@@ -91,10 +92,10 @@ against a particular regex while other might accept all possible keys.
 
 ## How to configure which metadata plugin to use
 
-Configuration options for Metadata are::
+Configuration options for Metadata are:
 
 ```python
 [metadata]
-# plugins = [list_of_plugins,comma_separated]
-plugins = [rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta, escape.rucio.did_meta_plugin]
+# plugins = list_of_plugins,comma_separated
+plugins = rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta,escape.rucio.did_meta_plugin
 ```

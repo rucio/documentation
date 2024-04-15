@@ -178,26 +178,6 @@ following best practices:
   backwards-compatibility.
   - E.g. favor `def add_rse(rse: str, vo: str = 'def', ...) -> str:` over `def
   add_rse(rse, vo='def', ...): # type: (str, str, ...) -> str`
-  - Don't use Python 3.6 incompatible features, this includes:
-    - The [`Union type expression "(int |
-      None)"`](https://docs.python.org/3/library/stdtypes.html#types-union),
-      this got introduces in Pyhton 3.10
-    - [`typing.TypeAlias`](https://docs.python.org/3/library/typing.html#typing.TypeAlias),
-      this got introduced in Python 3.10
-    - [`typing.Final`](https://docs.python.org/3/library/typing.html#typing.Final),
-      introduced in Python 3.8. (Sad, since it is quite handy to let the type
-      checker check for constant re-assignments. :( )
-    - Paramterized Python buildin types like `list`, `dict`, `set`, ...
-        - Parameterized buildin types are recognized by type checkers since
-          Python version 3.9. This follows after [PEP
-          585](https://peps.python.org/pep-0585/). Use the `typing` module
-          instead.
-        - The `__future__` module provides a [backport for parameterized buildin
-          types](https://docs.python.org/3/library/__future__.html) for
-          Python3.7+. This is not suitable for Python3.6
-        - [`Typed
-          Dicts`](https://docs.python.org/3.8/library/typing.html#typing.TypedDict),
-          introduced in Python3.8
 
 **Use _bare_ type hints over [ones with
 quotes](https://peps.python.org/pep-0484/#runtime-or-type-checking) and `if
@@ -249,16 +229,16 @@ we use `if typing.TYPE_CHECKING:` and quoted types or avoid them?
   True:`). Use this annotation to indicate these kind of functions.
 
 **Use
-[`typing.Iterator`](https://docs.python.org/3/library/typing.html#typing.Iterator)
+[`collections.abc.Iterator`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator)
 over
-[`typing.Generator`](https://docs.python.org/3/library/typing.html#typing.Generator)**
+[`collections.abc.Generator`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)**
 
-  - `typing.Generator[YieldType, SendType, ReturnType]` takes three Type Vars:
+  - `collections.abc.Generator[YieldType, SendType, ReturnType]` takes three Type Vars:
   The Type that gets yielded, the type that gets send back to the yield, and the
   return type of the function. If a function does only yield values, but does
   not take back values from the yield and also does not return anything with the
-  `return` keyword, the type is `typing.Generator[YieldType, None, None]`. This
-  is equivalent to `typing.Iterator[YieldType]`. We favor the `Iterator`
+  `return` keyword, the type is `collections.abc.Generator[YieldType, None, None]`. This
+  is equivalent to `collections.abc.Iterator[YieldType]`. We favor the `Iterator`
   approach over the `Generator` one because it's more understandable and easier
   to read.
 
