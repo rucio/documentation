@@ -32,7 +32,7 @@ based on the number of files in a directory.
 
 For a data identifier, e.g. `user.jdoe:test.file.1` a md5-hashsum is calculated
 `077c8119053bebb168d125034bff64ac`. The generated path is then based on the
-first four characters of the hashsum. e.g. `/user.jdoe/07/7c/test.file.1`.
+first four characters of the hashsum. e.g. `/user/jdoe/07/7c/test.file.1`.
 
 ## Deterministic algorithm based on naming convention
 
@@ -72,7 +72,7 @@ a dataset, via the command line client.
 1. Based on the identified naming algorithm of the RSE and the list of
    prioritized write protocols, the file URL is calculated.  e.g. using the hash
    algorithm from above:
-   `https://storageserver.organization.org/VO/data/07/7c/user.jdoe/test.file.1`
+   `https://storageserver.organization.org/VO/data/user/jdoe/07/7c/test.file.1`
 
 1. The file upload is done with the first prioritized protocol. If the upload
    fails, step 4 is repeated with the second prioritized protocol, etc.
