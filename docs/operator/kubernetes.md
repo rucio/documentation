@@ -60,7 +60,7 @@ that have to be done. These can be done on the `rucio-server` pod of the cluster
 are performed with the [Alembic](http://alembic.zzzcomputing.com/en/latest/) tool.
 
 The alembic.ini template can be found
-[here](https://github.com/rucio/rucio/blob/master/alembic.ini.template).
+[here](https://github.com/rucio/rucio/blob/master/etc/alembic.ini.template).
 A kubernetes+postgresql specific version can be found in the KM3NeT example
 [here](https://git.km3net.de/rucio/rucio-deployment/-/blob/main/docs/alembic.ini).
 Fill in the correct values before transferring the file to the `rucio-server` pod:

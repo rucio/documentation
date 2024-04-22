@@ -10,7 +10,8 @@
 	    "pattern": "https?://ip:"
 	}
     ],
-    "retryOn429": true,
-    "fallbackRetryDelay": 1,
+	"retryOn429": true,
+	"fallbackRetryDelay": "2m",
+	"retryCount": 3,
     "aliveStatusCodes": [200, 403]
 }
