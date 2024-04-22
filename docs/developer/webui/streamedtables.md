@@ -34,7 +34,7 @@ of the `ComDOM`.
 
 The generic component when dealing with streamed data is the `StreamedTable`,
 which is a custom HTML table framework based on [Tanstack
-Table](https://tanstack.com/table/v8/docs/guide/introduction) and optimised for
+Table](https://tanstack.com/table/v8/docs/introduction) and optimized for
 use with the streams fed in via the ComDOM. A StreamedTable is defined by a set
 of react props passed into the component (which will be described below). The
 framework is completed by a plethora of ready-to-use components which solve the
