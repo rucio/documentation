@@ -457,14 +457,15 @@ a setting already specified in the Configuration File.
 ### Options and Defaults
 #### **automatix**
   - **account**: _(Optional)_ Account to use. Default: `root`.
-  - **dataset_lifetime**: _(Optional)_. Default: `None`.
+  - **dataset_lifetime**: _(Optional)_. Default: `0`.
   - **did_prefix**: _(Optional)_ <!--??--> Default: ` `.
   - ***DIDTYPE*\_pattern**: _(Optional)_ Separated by `separator` char. No
     default.
-  - **scope**: _(Optional)_ Default: `False`.
+  - **rses**: Separated by commas.
+  - **scope**: _(Optional)_ Default: `test`.
   - **separator**: _(Optional)_ Separator char. No default.
-  - **set_metadata**: _(Optional)_ <!--??--> Default: `False`.
-  - **sites**: Separated by commas.
+  - **set_metadata**: _(Optional)_ <!--??--> Default: `True`.
+  - **sites**: Separated by commas _(to be deprecated, please use `rses`)_.
   - **sleep_time**: _(Optional)_ Integer. Default: `30`.
 #### **clientcachemap**
   - ***client_location['site']*** <!--??-->
