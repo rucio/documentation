@@ -44,9 +44,9 @@ submitting and polling transfers to use the correct certificates.
 <3 char vo name> = <path/to/vo/proxy>
 ```
 
-It is recommended that the proxies are placed in /tmp/x509up_<VO\>, and the
-certificates and keys are placed in /opt/rucio/certs/<VO\>/ and
-/opt/rucio/keys/<VO\>/ respectively.
+It is recommended that the proxies are placed in /tmp/x509up_[VO], and the
+certificates and keys are placed in /opt/rucio/certs/[VO]/ and
+/opt/rucio/keys/[VO]/ respectively.
 
 However, `vo` should not be set for the server or the daemons as these parts of
 Rucio are not associated with a single VO. If `multi_vo` is not set, or set to
@@ -56,8 +56,15 @@ Similar settings need to be changed on the server and daemon rucio.cfg files as
 well as on the client end.  For the server `multi_vo` should also be set in the
 config file.  For the daemons another section is needed to be added, this is to
 map each VO to its own proxy certificate. Rucio uses this information when
-submitting and polling transfers to use the correct certificates.  '''cfg
-[vo_certs] ...  <3 char vo name> = <path/to/vo/proxy> ''' However, `vo` should
+submitting and polling transfers to use the correct certificates.
+
+```yaml
+[vo_certs]
+ ...  
+[3 char vo name] = [path/to/vo/proxy]
+```
+
+However, `vo` should
 not be set for the server or the daemons as these parts of Rucio are not
 associated with a single VO. If `multi_vo` is not set, or set to False, then
 Rucio will operate normally.
@@ -215,13 +222,18 @@ Before starting, ensure that `multi_vo` is set to `True` in the config file
 (this option can be removed after completing the conversion). The first stage of
 the conversion is the same as before, dropping foreign key constraints and
 renaming the entries that were associated with the old VO. The name of this VO
-is the only required argument: ```bash $ tools/convert_database_vo.py
+is the only required argument:
+```bash
+$ tools/convert_database_vo.py
 convert_to_svo old ALTER TABLE account_limits DROP CONSTRAINT
 "ACCOUNT_LIMITS_ACCOUNT_FK"; ...  UPDATE account_limits SET
 account=split_part(account_limits.account, '@', 1) WHERE
 split_part(account_limits.account, '@', 2) = 'old'; ...  ALTER TABLE
 account_limits ADD CONSTRAINT "ACCOUNT_LIMITS_ACCOUNT_FK" FOREIGN KEY(account)
-REFERENCES accounts (account); ``` By default data associated with any other VOs
+REFERENCES accounts (account);
+```
+
+By default data associated with any other VOs
 is left in the database, but will be inaccessible to Rucio users. By setting
 pass the argument `--delete_vos`, these entries will be deleted from the
 database completely:
@@ -237,6 +249,10 @@ tools/convert_database_vo.py convert_to_svo old --delete_vos ...  \
 Once again, historical tables skipped with `--skip_history`, and the commands
 can be run directly against the database using the `--commit_changes` argument;
 if this is not set then the `super_root` account should be manually deleted
-after running the SQL: ```bash $ python >>> from rucio.common.types import
-InternalAccount >>> from rucio.core.account import del_account >>>
-del_account(InternalAccount('super_root', vo='def')) ```
+after running the SQL:
+```bash
+$ python 
+>>> from rucio.common.types import InternalAccount 
+>>> from rucio.core.account import del_account 
+>>> del_account(InternalAccount('super_root', vo='def'))
+```

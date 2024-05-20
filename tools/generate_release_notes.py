@@ -62,7 +62,14 @@ def github_to_markdown_body(body: str) -> str:
         r"#(\d{1,5})", r"[#\1](https://github.com/rucio/rucio/issues/\1)", body
     )
 
-    REPLACE_CHARACTERS = {"<": r"\<", ">": r"\>", "\r\n": "\n", "\n#": "\n\n##"}
+    REPLACE_CHARACTERS = {
+        "<": r"\<",
+        ">": r"\>",
+        "\r\n": "\n",
+        "\n#": "\n\n##",
+        "{": "",
+        "}": "",
+    }
 
     for before, after in REPLACE_CHARACTERS.items():
         body = body.replace(before, after)

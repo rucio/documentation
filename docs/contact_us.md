@@ -23,7 +23,7 @@ and you can view the schedule [here](https://indico.cern.ch/category/10588/).
 
 ## Rucio news mailing list
 
-We have a dedicated news mailing list for general announcements (<10 eMails per
+We have a dedicated news mailing list for general announcements (\<10 eMails per
 year) for the Rucio community. You can subscribe to [rucio-news@cern.ch](https://e-groups.cern.ch/e-groups/Egroup.do?egroupId=10586148)
 directly with a CERN account, for external subscribers please send an eMail
 to [rucio-news-subscribe@cern.ch](mailto:rucio-news-subscribe@cern.ch?subject=Subscribe).
