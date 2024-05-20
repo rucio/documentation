@@ -34,10 +34,7 @@ def sanitize(s: t.Optional[str]) -> str:
     if not s:
         return ""
 
-    character_map = {
-        r"<": r"\<",
-        r">": r"\>",
-    }
+    character_map = {r"<": r"\<", r">": r"\>", r"{": r"\{", r"}": r"\}"}
 
     for before, after in character_map.items():
         s = s.replace(before, after)

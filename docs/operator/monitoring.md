@@ -74,12 +74,12 @@ docker run -d --name=grafana -p 3000:3000 grafana/grafana
 ```
 
 The Grafana web-portal is on port 3000 of the host. Add one data source of the
-type Graphite, choose access method to "Browser" and set URL to <http://ip:80>,
+type Graphite, choose access method to "Browser" and set URL to [http://ip:80](http://ip:80),
 where ip is the address of the server hosting the Graphite container
 `dev_graphite_1`.
 
 A set of pre-defined Grafana Rucio internal plots is provided here
-<https://github.com/rucio/rucio/blob/master/tools/monitoring/visualization/rucio-internal.json>.
+(https://github.com/rucio/rucio/blob/master/tools/monitoring/visualization/rucio-internal.json).
 Users could import them directly into Grafana.
 
 ### The list of Rucio internal metrics
@@ -335,9 +335,9 @@ Rucio.
 ```
 
 The formats of them are defined in `rucio-transfer.json
-<https://github.com/rucio/rucio/blob/master/tools/monitoring/rucio-transfer.json>`__
+[https://github.com/rucio/rucio/blob/master/tools/monitoring/rucio-transfer.json]`__
 and `rucio_deletion.json
-<https://github.com/rucio/rucio/blob/master/tools/monitoring/rucio-deletion.json>`__
+[https://github.com/rucio/rucio/blob/master/tools/monitoring/rucio-deletion.json]`__
 which could be imported into Kibana.
 
 Rucio also sends messages when adding/deleting rules/DIDs and for file/dataset
@@ -346,10 +346,10 @@ access. So the monitoring is not limitted to data transferring.
 4) Transmit messages from message queue to Elastisearch
 
 This could be done via Logstash. Please refer to
-<https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash>.
+[https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash].
 
 Alternatively you could use a simple python script `extract.py
-<https://github.com/rucio/rucio/blob/master/tools/monitoring/extract.py>`__. for
+[https://github.com/rucio/rucio/blob/master/tools/monitoring/extract.py]`__. for
 this after installing the required tools
 
 ```bash
@@ -367,7 +367,7 @@ exporter.py and start it. It could be made as a systemd service for convenience.
 5) Create Kibana dashboards based on the imported messages.
 
 A set of pre-defined dashboards can be found `here
-<https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization>`__. in
+[https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization]`__. in
 json format which could be imported to Kibana directly. But you may have to
 resolve different UUIDs in Kibana.
 
@@ -424,14 +424,14 @@ used space, how many files are saved on each RSE etc. Please fill in the jdbc
 connection details and Elastisearch connection details in the config file.
 
 More pipeline definitions can be found `here
-<https://github.com/rucio/rucio/tree/master/tools/monitoring/logstash-pipeline>`__,
+[https://github.com/rucio/rucio/tree/master/tools/monitoring/logstash-pipeline]`__,
 and users could design their own DB queries for their specific monitoring
 needs. Also users could directly import the Elasticsearch indices and Kibana
 dashboard from `these
-<https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization/db_dump>`__
+[https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization/db_dump]`__
 json files.
 
 ## Footnotes
 
-[^1]: <https://graphiteapp.org/>
-[^2]: <https://grafana.com/>
+[^1]: [https://graphiteapp.org/]
+[^2]: [https://grafana.com/]

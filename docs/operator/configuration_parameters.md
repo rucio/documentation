@@ -121,13 +121,11 @@ Rucio will look for the config in the following locations -
 #### **common**
   - **extract_scope**: _(Optional)_ <!--??--> Default: `atlas`.
   - **logdir**: Path of the directory for logs. Contains `auditor.log`.
-  - **logformat**: _(Optional)_ Formatter of the log. See:
-    <https://docs.python.org/3/library/logging.html#logging.Formatter>
+  - **logformat**: _(Optional)_ Formatter of the log. See [the logging formatter documentation](https://docs.python.org/3/library/logging.html#logging.Formatter)
   - **loglevel**: _(Optional)_. Set the root logger level to the specified
     level.
 
-    Values: `{'NOTSET', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'}`. See:
-    <https://docs.python.org/3/library/logging.html#levels>
+    Values: `{'NOTSET', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'}`. See [documentation for logging levels](https://docs.python.org/3/library/logging.html#levels)
 
     Default: `DEBUG`. For `rucio-auditor` default is `WARNING`.
   - **mailtemplatedir**: _(Optional)_ Path of the folder with mail templates
@@ -168,7 +166,7 @@ Rucio will look for the config in the following locations -
 #### **core**
   - **default_mail_from**: _(Optional)_ Default email. Default: `None`.
   - **geoip_licence_key**: _(Optional)_ License key for GeoLite2. Get a free
-    licence key at <https://www.maxmind.com/en/geolite2/signup>. Default:
+    licence key at [the signup page](https://www.maxmind.com/en/geolite2/signup). Default:
     `NOLICENCE`.
   - **use_temp_tables**: _(Optional)_ Use Rucio with temporary table workflows.
     Default: `False`.
@@ -227,22 +225,16 @@ Rucio will look for the config in the following locations -
     sqlite, oracle}`.
   - **echo**: Enable echo for database logs. Values: `{0 (disable), 1
     (enable)}`.
-  - **echo_pool**: See
-    <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.echo_pool>
-  - **max_overflow**: See
-    <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.max_overflow>
-  - **pool_recycle**: See
-    <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_recycle>
-  - **pool_reset_on_return**: See
-    <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_reset_on_return>
-  - **pool_size**: See
-    <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_size>
-  - **pool_timeout**:
-    <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_timeout>
+  - **echo_pool**: See [sqlalchemy documentation](https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.echo_pool)
+  - **max_overflow**: See [sqlalchemy documentation](https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.max_overflow)
+  - **pool_recycle**: See [sqlalchemy documentation](https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_recycle)
+  - **pool_reset_on_return**: See [sqlalchemy documentation](https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_reset_on_return)
+  - **pool_size**: See [sqlalchemy documentation](https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_size)
+  - **pool_timeout**: [sqlalchemy documentation](https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.pool_timeout)
   - **poolclass**: Which connection pooling mechanism to use. Values: `nullpool`
     (disables pooling), `queuepool` (default for all but SQLite engine), or
     `singletonthreadpool` (default for SQLite engine).
-    See <https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.poolclass>
+    See [sqlalchemy documentation](https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.poolclass)
   - **schema**: _(Optional)_ Schema to be applied to a database, if not set in
     config, try to create automatically.
   - **use_threadlocal** <!--??-->
@@ -355,12 +347,10 @@ Rucio will look for the config in the following locations -
 #### **nongrid-trace**
   - **broker_virtual_host**: _(Optional)_ ?. No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
-  - **logformat**: _(Optional)_ Formatter of the log. See:
-    <https://docs.python.org/3/library/logging.html#logging.Formatter>
+  - **logformat**: _(Optional)_ Formatter of the log. See [logging documentation](https://docs.python.org/3/library/logging.html#logging.Formatter).
   - **loglevel**: _(Optional)_ Set the root logger level to the specified level.
 
-    Values: `{'NOTSET', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'}`. See:
-    <https://docs.python.org/3/library/logging.html#levels>
+    Values: `{'NOTSET', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'}`. See [logging documentation](https://docs.python.org/3/library/logging.html#levels).
 
     Default: `DEBUG`.
   - **password**: Password of the `username`.
@@ -403,12 +393,9 @@ Rucio will look for the config in the following locations -
 #### **trace**
   - **broker_virtual_host**: _(Optional)_ <!--??--> No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
-  - **logformat**: _(Optional)_ Formatter of the log. See:
-    <https://docs.python.org/3/library/logging.html#logging.Formatter>
-  - **loglevel**: _(Optional)_ Set the root logger level to the specified level
-
-    Values: `{'NOTSET', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'}`. See:
-    <https://docs.python.org/3/library/logging.html#levels>
+  - **logformat**: _(Optional)_ Formatter of the log. See [logging documentation](https://docs.python.org/3/library/logging.html#logging.Formatter).
+  - **loglevel**: _(Optional)_ Set the root logger level to the specified level.
+    Values: `{'NOTSET', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'}`. See [logging documentation](https://docs.python.org/3/library/logging.html#levels).
 
     Default: `DEBUG`.
   - **password**: Password of the `username`.
@@ -427,8 +414,7 @@ Rucio will look for the config in the following locations -
   - **password**: _(Optional)_ Password of the `username`. Mandatory if
     `use_ssl` is not set. No default.
   - **port**: Port of the broker.
-  - **prefetch_size**: `activemq.prefetchSize`, see
-    <https://activemq.apache.org/what-is-the-prefetch-limit-for>
+  - **prefetch_size**: `activemq.prefetchSize`, see [activemq documentation](https://activemq.apache.org/what-is-the-prefetch-limit-for)
   - **queue**: The topic or queue to subscribe to. Example:
     `/queue/Consumer.kronos.rucio.tracer`.
   - **reconnect_attempts**: Maximum attempts to reconnect. Integer. Example:

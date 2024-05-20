@@ -48,8 +48,7 @@ The following figure might help you with an overview:
 
 ### 1. Prerequisite
 
-* Ensure you add your name (and organisation) to our [__list of
-  contributors__](about_our_contributors.md).
+* Ensure you add your name (and organisation) to our list of [__contributors__](about_our_contributors.md).
 
 * Fork the [__repository__](https://github.com/rucio/rucio/) on
   Github.
@@ -88,8 +87,7 @@ The following figure might help you with an overview:
   pre-commit install --hook-type pre-push
   ```
 
-  More information:
-  <https://pre-commit.com/#confining-hooks-to-run-at-certain-stages>
+  More information [please view the pre-commit documentation](https://pre-commit.com/#confining-hooks-to-run-at-certain-stages)
 
 ### 2. Create an Issue
 
@@ -130,8 +128,7 @@ list__](https://github.com/rucio/rucio/labels) and are usually specified on the
 issue of the change.
 
 Add additional explanations to the body of the commit, such as motivation for
-certain decisions and background information. Here are some general rules:
-<https://cbea.ms/git-commit/>.
+certain decisions and background information. [Here are some general rules.](https://cbea.ms/git-commit/).
 
 If you add a [__github-recognised
 keyword__](https://help.github.com/articles/closing-issues-using-keywords/) then

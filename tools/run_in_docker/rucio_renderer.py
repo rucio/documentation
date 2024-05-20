@@ -26,11 +26,7 @@ def get_first_client_class(
 
 
 def sanitize(s: str) -> str:
-    character_map = {
-        r"_": r"\_",
-        r"<": r"\<",
-        r">": r"\>",
-    }
+    character_map = {r"_": r"\_", r"<": r"\<", r">": r"\>", r"{": r"\{", r"}": r"\}"}
 
     for before, after in character_map.items():
         s = s.replace(before, after)
