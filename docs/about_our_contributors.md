@@ -70,6 +70,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Domenic Gosein <domenic.gosein@cern.ch>, 2023
 - Eraldo Junior <esilvaju@cern.ch>, 2021-2024
 - Dimitris Xenakis <d.xenakis@ieee.org>, 2024
+- Fabio Luchetti <fabio.luchetti@cern.ch>, 2021
 
 # Organisations employing contributors
 
