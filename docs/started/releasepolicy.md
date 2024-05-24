@@ -8,8 +8,9 @@ Rucio follows a release policy, based on [semantic versioning](https://semver.or
 with **major** (named) releases. Approximately
 every 4 months we produce a major release with a version number like **x.0.0**
 (with x > 0). A major release marks the start of a release line. This release
-line is maintained with bi-weekly minor/patch releases, containing bug fixes or minor
-enhancements, with version numbers like **32.y.z** (with y &ge; 0, z &ge; 0). Versions within
+line is maintained with minor/patch releases published every two weeks,
+containing bug fixes or minor enhancements,
+with version numbers like **32.y.z** (with y &ge; 0, z &ge; 0). Versions within
 one release line are always backwards compatible, thus they do not include
 database schema changes, API modifications, or other backward-compatibility
 breaking changes.

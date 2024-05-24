@@ -19,7 +19,7 @@ development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
 A contribution can be either be a **patch** or **feature**:
 
 * **Patches** include bugfixes and minor changes to the code and are included in
-  patch releases usually made on a bi-weekly schedule.
+  patches that are usually relased every two weeks.
 * **Features** include major developments or potentially disruptive changes and
   are included in feature releases made multiple times a year.
 
