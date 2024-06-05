@@ -3,23 +3,33 @@ id: configuration_parameters
 title: Configuration parameters
 ---
 Description of the configuration parameters splitted in three different places:
-Rucio configuration file (`rucio.cfg`), Rucio configuration table and RSE
-attributes.
+Rucio configuration file (`rucio.cfg`), Rucio configuration table and RSE attributes.
 
-## Rucio configuration file (`rucio.cfg`)
+## Rucio Configuration File (`rucio.cfg`)
+* Only the Configuration File provides information for the 
+[client connection information](#client-client_config) or the 
+[database configuration](#database-db_config), 
+this information cannot be set in a different location. 
+* If not specified in the environmental variables (as `$RUCIO_CONFIG`), 
+Rucio will look for the config in the following locations - 
+    - `$RUCIO_HOME/etc/rucio.cfg`
+    - `$VIRTUAL_ENV/etc/rucio.cfg`
+    - `/opt/rucio/etc/rucio.cfg`
 
-- **accounts**
+
+### Options and Defaults
+#### **accounts**
   - **special_accounts** <!--NOT USED IN CODE-->
-- **alembic**
+#### **alembic**
   - **cfg**: Path to the configuration file (.ini) for Alembic. Example:
     `/opt/rucio/etc/alembic.ini`. No default.
-- **api**
+#### **api**
   - **endpoints**: _(Optional)_ Endpoints separated by commas. Default:
     `['accountlimits', 'accounts', 'config', 'credentials', 'dids', 'export',
     'heartbeats', 'identities', 'import', 'lifetime_exceptions', 'locks',
     'meta', 'ping', 'redirect', 'replicas', 'requests', 'rses', 'rules',
     'scopes', 'subscriptions']`.
-- **auditor**
+#### **auditor**
   - **cache**: Path to the folder to store the `rucio-auditor` cache. Example:
     `/opt/rucio/auditor-cache`. No default.
   - **results**: Path to the folder to store the `rucio-auditor`
@@ -36,14 +46,14 @@ attributes.
     ```
 
     Default: `0.2`.
-- **bb8**
+#### **bb8**
   - **dump_production_day**: _(Optional)_ Day of the week of the most recent
     dump. Values: `{Sunday, Monday, Tuesday, Wednesday, Thursday, Friday,
     Saturday}`. Default: `None`.
   - **dump_url_template**: _(Optional)_ URL of the template (structure) of a
     dump. Default:
     `http://rucio-analytix.cern.ch:8080/LOCKS/GetFileFromHDFS?date=${date}&rse=${rse}`.
-- **bootstrap**
+#### **bootstrap**
   - **gss_email**: _(Optional)_ Email of the Kerberos auth method which identity
     is specified in `gss_identity`.
   - **gss_identity**: _(Optional)_ Identity of the Kerberos auth method.
@@ -66,7 +76,7 @@ attributes.
   - **x509_identity**: _(Optional)_ Identity of the X.509 certificate. Default:
     `emailAddress=ph-adp-ddm-lab@cern.ch,CN=DDMLAB Client
     Certificate,OU=PH-ADP-CO,O=CERN,ST=Geneva,C=CH`.
-- **c3po**
+#### **c3po**
   - **algorithms**: _(Optional)_ Placement algorithm.
 
     Only allows multiple algorithms if the `dry_run` mode is enabled (separated
@@ -88,27 +98,27 @@ attributes.
   - **placement_algorithm** <!--NOT USED IN CODE-->
   - **redis_host**: URL of the Redis database.
   - **redis_port**: Port of the Redis database defined in `redis_host`.
-- **c3po-popularity**
+#### **c3po-popularity**
   - **elastic_url** <!--NOT USED IN CODE-->
-- **c3po-site-mapper**
+#### **c3po-site-mapper**
   - **ddm_url**: URL for DDM. Example:
     `http://atlas-agis-api.cern.ch/request/ddmendpoint/query/list/?json`.
   - **panda_url**: URL for PanDA. Example:
     `http://atlas-agis-api.cern.ch/request/pandaqueue/query/list/?json`.
-- **c3po-workload**
+#### **c3po-workload**
   - **panda_url**: URL for PanDA. Example:
     `http://bigpanda.cern.ch/jobs/?category=analysis&jobstatus=running`.
   - **window**: <!--??--> Integer.
-- **c3po-network-metrics**
+#### **c3po-network-metrics**
   - **prefix**: <!--??-->
   - **redis_host**: URL of the Redis database.
   - **redis_port**: Port of the Redis database defined in `redis_host`.
-- **cache**
+#### **cache**
   - **url**: _(Optional)_ URL of the cache. Default: `127.0.0.1:11211`.
   - **use_external_cache_for_auth_tokens**: _(Optional)_ if True, use remote
     cache provider for auth tokens. If False, use a private in-memory cache.
     Default: `False`
-- **common**
+#### **common**
   - **extract_scope**: _(Optional)_ <!--??--> Default: `atlas`.
   - **logdir**: Path of the directory for logs. Contains `auditor.log`.
   - **logformat**: _(Optional)_ Formatter of the log. See:
@@ -123,7 +133,7 @@ attributes.
   - **mailtemplatedir**: _(Optional)_ Path of the folder with mail templates
     (.tmpl). Example: `/opt/rucio/etc/mail_templates`.
   - **multi_vo**: _(Optional)_ <!--??--> Default: `False`.
-- **conveyor**
+#### **conveyor**
   - **allow_user_oidc_tokens**: _(Optional)_ Boolean. Default: `False`.
   - **bring_online**: Integer, bring online timeout. Default: `43200`.
   - **cacert** <!--NOT USED IN CODE-->
@@ -155,14 +165,14 @@ attributes.
   - **user_transfers**: _(Optional)_ <!--??--> Default: `None`.
   - **using_memcache**: _(Optional)_ Boolean. Default: `False`.
   - **webdav_transfer_mode**: _(Optional)_. Default: `None`.
-- **core**
+#### **core**
   - **default_mail_from**: _(Optional)_ Default email. Default: `None`.
   - **geoip_licence_key**: _(Optional)_ License key for GeoLite2. Get a free
     licence key at <https://www.maxmind.com/en/geolite2/signup>. Default:
     `NOLICENCE`.
   - **use_temp_tables**: _(Optional)_ Use Rucio with temporary table workflows.
     Default: `False`.
-- **client**
+#### **client** {#client_config}
   - **account**: Rucio account. Example: `root`.
   - **auth_host**: URL of the host of the rucio authentication server. Example:
     `https://rucio-auth-prod.cern.ch:443`.
@@ -208,11 +218,11 @@ attributes.
     ssh`. Example: `$HOME/.ssh/id_rsa`.
   - **username**: Mandatory if `auth_type = userpass` or `auth_type = saml`.
   - **vo**: _(Optional)_ VO name. Default: `def`.
-- **credentials**
+#### **credentials**
   - **gcs**: _(Optional)_ Path of the Google Cloud Storage credentials. Default:
     `/opt/rucio/etc/google-cloud-storage-test.json`.
   - **signature_lifetime**: _(Optional)_ ?. Default: `600`.
-- **database**
+#### **database** {#db_config}
   - **default**: Type of the SQL connection. Values: `{mysql, postgresql,
     sqlite, oracle}`.
   - **echo**: Enable echo for database logs. Values: `{0 (disable), 1
@@ -236,14 +246,14 @@ attributes.
   - **schema**: _(Optional)_ Schema to be applied to a database, if not set in
     config, try to create automatically.
   - **use_threadlocal** <!--??-->
-- **download**
+#### **download**
   - **transfer_speed_timeout**: _(Optional)_ Minimum allowed average transfer
     speed (in KBps). Default: `500`. Used to dynamically compute the timeout if
     `--transfer-timeout` not set. Is not supported for `--pfn`.
   - **transfer_timeout**: _(Optional)_ Transfer timeout (in seconds). Default:
     computed dynamically from `--transfer-speed-timeout`. If set to any value >=
     0, `--transfer-speed-timeout` is ignored.
-- **es-atlas**
+#### **es-atlas**
   - **ca_cert**: _(Optional)_ Path of the certificate for Elasticsearch. No
     default.
   - **password**: _(Optional)_ Password of the username defined in `username` to
@@ -252,29 +262,29 @@ attributes.
     `http://aianalytics01.cern.ch:9200`. No default.
   - **username**: _(Optional)_ Username to authenticate to Elasticsearch. No
     default.
-- **hermes**
+#### **hermes**
   - **elastic_endpoint**: _(Optional)_ URL of Elasticsearch. Example:
     `http://aianalytics01.cern.ch:9200`. Mandatory if `elastic` is specified in
     `services_list`.
   - **influxdb_endpoint**: _(Optional)_ URL of InfluxDB. Mandatory if `influx`
     is specified in `services_list`.
-- **importer**
+#### **importer**
   - **attr_sync_method**: _(Optional)_ Values: `{append, edit, hard}`. Default:
     `edit`.
   - **rse_sync_method**: _(Optional)_ Values: `{append, edit, hard}`. Default:
     `edit`.
-- **injector**
+#### **injector**
   - **adler32** <!--NOT USED IN CODE-->
   - **bytes** <!--NOT USED IN CODE-->
   - **file** <!--NOT USED IN CODE-->
   - **md5** <!--NOT USED IN CODE-->
-- **lifetime**
+#### **lifetime**
   - **directory**: _(Optional)_ Path to the policies directory with JSON files
     named `config_DTYPE.json`, where `DTYPE` is a value in `{data, mc, valid,
     other}`. Default: `/opt/rucio/etc/policies`.
-- **logging**
+#### **logging**
   - ***CFG_OPTION***: _(Optional)_ ?. Default: `None`.
-- **messaging-cache**
+#### **messaging-cache**
   - **account** <!--??-->
   - **broker_virtual_host**: _(Optional)_ ?
   - **brokers**: Default message broker name for `rucio-cache-client`. Ignored
@@ -290,7 +300,7 @@ attributes.
     `rucio-cache-client`. Ignored if `rucio-cache-client` executed with
     `--certificate-key`.
   - **voname** <!--NOT USED IN CODE-->
-- **messaging-fts3**
+#### **messaging-fts3**
   - **broker_virtual_host**: _(Optional)_ ?. No default.
   - **brokers**: Brokers separated by commas. Example: `dashb-test-mb.cern.ch`.
   - **destination**: Name of the destination topic. Example:
@@ -306,7 +316,7 @@ attributes.
   - **username**: _(Optional)_ Username of the broker. Only used if `use_ssl` is
     not set. No default.
   - **voname** <!--NOT USED IN CODE-->
-- **messaging-hermes**
+#### **messaging-hermes**
   - **broker_virtual_host**: _(Optional)_ <!--??--> No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **destination**: Name of the destination topic. Example:
@@ -325,10 +335,10 @@ attributes.
   - **username**: _(Optional)_ Username of the broker. Mandatory if `use_ssl` is
     not set. No default.
   - **voname** <!--NOT USED IN CODE-->
-- **metadata**
+#### **metadata**
   - **plugins**: _(Optional)_ Metadata handler modules separated by
     commas. Default: `rucio.core.did_meta_plugins.json_meta.JSONDidMeta`.
-- **monitor**
+#### **monitor**
   - **enable_metrics**: _(Optional)_ Enable `statsd` metrics. Boolean. Default:
     `False`.
   - **carbon_server**: _(Optional)_ Hostname or IP address of the `statsd`
@@ -338,11 +348,11 @@ attributes.
     application or environment. Default: `rucio`.
   - **metrics_port**: _(Optional)_ Port of Prometheus Python Client. Default:
     `8080`.
-- **nagios**
+#### **nagios**
   - **fts_servers** <!--NOT USED IN CODE-->
   - **proxy** <!--NOT USED IN CODE-->
   - **rfcproxy** <!--NOT USED IN CODE-->
-- **nongrid-trace**
+#### **nongrid-trace**
   - **broker_virtual_host**: _(Optional)_ ?. No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **logformat**: _(Optional)_ Formatter of the log. See:
@@ -358,7 +368,7 @@ attributes.
   - **tracedir**: _(Optional)_ Path of the directory for traces. Default:
     `/var/log/rucio`.
   - **username**: Username of the broker.
-- **oidc**
+#### **oidc**
   - **admin_issuer**: Example: `wlcg`.
   - **default_jwt_refresh_lifetime**: _(Optional)_ Integer. Default: `96`.
   - **exchange_grant_type**: _(Optional)_ <!--??--> Default:
@@ -367,10 +377,10 @@ attributes.
   - **expected_scope**: _(Optional)_ <!--??--> Default: `openid profile`.
   - **idpsecrets**: Path of the idpsecrets JSON. Example:
     `/opt/rucio/etc/idpsecrets.json`.
-- **permission**
+#### **permission**
   - **policy**: _(Optional)_ Permission policy. Values: `{atlas, belleii, cms,
     generic, generic_multi_vo}`. Default: `generic`.
-- **policy**
+#### **policy**
   - **lfn2pfn_algorithm_default**: _(Optional)_ Default algorithm name for
     LFN2PFN translation for this server. Default: `hash`.
   - **package** <!--??-->
@@ -381,16 +391,16 @@ attributes.
   - **support**: _(Optional)_ Contact information.
   - **support_rucio**: _(Optional)_ Rucio contact information. Default:
     `https://github.com/rucio/rucio/issues`.
-- **saml**
+#### **saml**
   - **config_path**: Path to the SAML config folder. Example:
     `/opt/rucio/lib/rucio/web/ui/common/saml/`.
-- **test**
+#### **test**
   - **cacert**: Path of the CA certificate for tests. Example:
     `/opt/rucio/etc/web/ca.crt`
   - **usercert** Path of the user certificate for tests. Example:
     `/opt/rucio/etc/web/usercert.pem`
   - **userkey**: Path of the user certificate key for tests.
-- **trace**
+#### **trace**
   - **broker_virtual_host**: _(Optional)_ <!--??--> No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **logformat**: _(Optional)_ Formatter of the log. See:
@@ -407,7 +417,7 @@ attributes.
   - **tracedir**: _(Optional)_ Path of the directory for traces. Default:
     `/var/log/rucio/trace`.
   - **username**: Username of the broker.
-- **tracer-kronos**
+#### **tracer-kronos**
   - **broker_virtual_host**: _(Optional)_ <!--??--> No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **chunksize**: Integer
@@ -432,12 +442,12 @@ attributes.
   - **use_ssl**: _(Optional)_ Boolean. Default: `True`.
   - **username**: _(Optional)_ Username of the broker. Mandatory if `use_ssl` is
     not set. No default.
-- **transmogrifier**
+#### **transmogrifier**
   - **maxdids** <!--NOT USED IN CODE-->
-- **upload**
+#### **upload**
   - **transfer_timeout**: _(Optional)_ Transfer timeout (seconds,
     integer). Default: `360`.
-- **webui**
+#### **webui**
   - **auth_issuer**: _(Optional)_ Mandatory if `auth_type` = `oidc`. No default.
   - **auth_type**: _(Optional)_ Preferred server side config for webui
     authentication. Values: `{oidc, None}`. Default: `None`.
@@ -446,8 +456,20 @@ attributes.
     correctly handling pre-flight CORS requests.
 
 ## Rucio configuration table
+* Checked only if Section/Option pair is not in the Configuration File
 
-- **automatix**
+### Updating 
+The table can be updated with the `Rucio Client`, using either 
+* `rucio-admin config set [section] [option] [value]`
+* `rucio.ConfigClient().set_config_option([section], [option], [value])` 
+
+These changes take impact immediately without requiring a restart. 
+Using the client only updates the Configuration Table and does not overwrite 
+anything in the Configuration File, and thus will not change anything if there 
+a setting already specified in the Configuration File. 
+
+### Options and Defaults
+#### **automatix**
   - **account**: _(Optional)_ Account to use. Default: `root`.
   - **dataset_lifetime**: _(Optional)_. Default: `None`.
   - **did_prefix**: _(Optional)_ <!--??--> Default: ` `.
@@ -458,20 +480,20 @@ attributes.
   - **set_metadata**: _(Optional)_ <!--??--> Default: `False`.
   - **sites**: Separated by commas.
   - **sleep_time**: _(Optional)_ Integer. Default: `30`.
-- **clientcachemap**
+#### **clientcachemap**
   - ***client_location['site']*** <!--??-->
-- **conveyor**
+#### **conveyor**
   - **activity-source-strategy**: _(Optional)_ <!--??--> Default: `{}`.
   - **default-source-strategy**: _(Optional)_ Default: `orderly`.
-- **hermes**
+#### **hermes**
   - **services_list**: List of services separated by commas. Values: `{activemq,
     elastic, influx}`.
-- **kronos**
+#### **kronos**
   - **bad_files_patterns**: _(Optional)_ Patterns (regular expression) separated
     by commas for bad files. Default: `[]`.
-- **lifetime_model**
+#### **lifetime_model**
   - **approvers_email**: _(Optional)_ Separated by commas. Default: `[]`.
-- **reaper**
+#### **reaper**
   - **auto_exclude_threshold**: _(Optional)_ Number of service unavailable
     exceptions after which the RSE gets temporarily excluded. Integer. Default:
     `100`.
@@ -484,18 +506,18 @@ attributes.
   - **max_evaluator_backlog_duration**: _(Optional)_ Minutes (integer). Default:
     `None`.
   - **nb_workers_by_hostname**: _(Optional)_ Integer. Default: `5`.
-- **root-proxy-internal**
+#### **root-proxy-internal**
   - ***client_location['site']*** <!--??-->
-- **rules**
+#### **rules**
   - **apply_rule_max_partition_size**: _(Optional)_ Integer . Default: `2000`.
   - **force_epoch_when_detach**: _(Optional)_ Purge setting of the
     rule. Boolean. Default: `False`.
   - **use_new_rule_algorithm**: _(Optional)_ Boolean. Default: `False`.
-- **subscriptions**
+#### **subscriptions**
   - **keep_history**: _(Optional)_ Boolean. Default: `False`.
   - **reevaluate_dids_at_close**: _(Optional)_ Flag to reevaluate the DID against
     all the subscriptions when the DID is closed. Boolean. Default: `False`.
-- **transfers**
+#### **transfers**
   - **hop_penalty**: _(Optional)_ Penalty to be applied to each further
     hop. Integer. Default: `10`.
   - **multihop_tombstone_delay**: Seconds (integer). Default: `7200`.
@@ -503,14 +525,22 @@ attributes.
   - **fts3tape_metadata_plugins**: _(Optional)_ Plugins to use with FTS3 to include archive 
   metadata in the transfer process. List[String]. Default: `None`. 
   - **metadata_byte_limit**: _(Optional)_ Limit applied to `archive_metadata` during a transfer. 
-  Only used with archive metadata plugins using FTS3. Integer. Defalt `None`. 
-- **virtual_placement**
+  Only used with archive metadata plugins using FTS3. Integer. Default `None`. 
+#### **virtual_placement**
   - **vp_endpoint**: _(Optional)_ Virtual Placement server. Once VP is
     integrated in Rucio it won't be needed. Default: ` `.
-- **vo-map**
+#### **vo-map**
   - ***VO***: _(Optional)_ Internal short VO name. No default.
 
 ## RSE attributes
+The RSE Attributes are set separately using `rucio.RSEClient` or `rucio-admin`, 
+and only contains information about the specific RSE's for the Rucio instance. 
+Read more about RSEs [here](../started/concepts/rucio_storage_element.md) 
+and how to set them up [here](./configuration.md#creating-new-rses). 
+The RSE Attributes are set seperately using `rucio.RSEClient` or `rucio-admin`, 
+and only contains information about the specific RSE's for the Rucio instance. 
+Read more about RSEs [here](../started/concepts/rucio_storage_element.md) 
+and how to set them up [here](./configuration.md#creating-new-rses). 
 
 - **associated_sites**: <!--??--> Separated by commas. Default: `None`.
 - **auto_approve_bytes**: Auto Approve Limit. Example: `500GB`. No default.
