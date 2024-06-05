@@ -35,6 +35,5 @@ directly via [email](mailto:rucio-contact@cern.ch)
 
 ## Social Media
 
-<!-- markdown-link-check-disable-next-line -->
-Follow us on [Twitter](https://twitter.com/RucioData) to stay updated
+Follow us on [Mastodon](https://fosstodon.org/@rucio) to stay updated
 with the latest on Rucio!
