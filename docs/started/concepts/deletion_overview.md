@@ -18,16 +18,16 @@ Deletion in rucio can be performed in broadly two ways.
 
 **The did expiration overrules the rule expiration. But the locked rules are protected.**
 
-After the tombstone is set for replicas, the actual data deletion is done by the `Repear` daemon. The reaper physically deletes the tombstoned replicas from storage.
+After the tombstone is set for replicas, the actual data deletion is done by the `Reaper` daemon. The reaper physically deletes the tombstoned replicas from storage.
 The deletion service supports two different modes: greedy and non-greedy.
 
 - Greedy
     
-    The repear daemon gets all the replicas with tombstone in the RSE and immediately delete all replicas. 
+    The reaper daemon gets all the replicas with tombstone in the RSE and immediately delete all replicas. 
     
 - Non-greedy
 
-    The repear daemon first check if the free space is needed in the RSE. The needed free space is the difference of minimum free space (attrribute set for RSE) and actual free space in RSE. Deletion only occurs once free space is needed.
+    The reaper daemon first check if the free space is needed in the RSE. The needed free space is the difference of minimum free space (attrribute set for RSE) and actual free space in RSE. Deletion only occurs once free space is needed.
     Deletions are processed by Least Recently Used (LRU) algorithm, thus oldest accessed (tombstoned) replicas are deleted first.
 
 
@@ -35,5 +35,5 @@ The deletion service supports two different modes: greedy and non-greedy.
 
 ![Undertaker chart](/img/undertaker.png)
 
-![Repear chart](/img/repear.png)
+![Reaper chart](/img/reaper.png)
 
