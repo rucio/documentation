@@ -75,16 +75,19 @@ returns a dictionary of custom algorithms implemented within the package.
 In fact, this structure should be a "dictionary of dictionaries" where
 the outer dictionary contains algorithm types, and each inner
 dictionary contains all the algorithms provided by the package for that
-type. Currently supported types are `surl` for SURL algorithms,
-`lfn2pfn` for LFN2PFN algorithms, and `scope` for scope extraction
-algorithms.
+type. Currently supported types are `lfn2pfn` for generating PFNs for
+deterministic storage, `non_deterministic_pfn` for generating PFNs for
+non-deterministic storage, and `scope` for scope extraction algorithms.
+(For backwards compatibility, `surl` can be used in place of
+`non_deterministic_pfn`, however this is not recommended for new policy
+packages).
 
 Example:
 
 ```python
 def get_algorithms():
-    return { 'surl':
-             { 'voname_surl': construct_surl_voname },
+    return { 'non_deterministic_pfn':
+             { 'voname_non_deterministic_pfn': construct_non_deterministic_pfn_voname },
          'lfn2pfn':
          { 'voname_lfn2pfn': lfn2pfn_voname },
          'scope':
@@ -94,6 +97,28 @@ def get_algorithms():
 In all cases the names used to register the functions must be prefixed
 with the name of the virtual organisation that owns the policy package,
 to avoid naming conflicts on multi-VO Rucio installations.
+
+### lfn2pfn vs. non_deterministic_pfn algorithms
+
+`lfn2pfn` algorithms and `non_deterministic_pfn` algorithms are
+conceptually similar, but there are important differences between
+them. Both produce a physical filename for use on an RSE, however
+`lfn2pfn` algorithms can only be used on deterministic RSEs (for
+example, disk systems where the appropriate physical filename is
+always predictable and can be derived whenever necessary) while
+`non_deterministic_pfn` algorithms are used on non-deterministic
+RSEs (for example, tape systems where the physical filename may be
+unpredictable and must be stored explicitly). Because files cannot be
+uploaded directly to non-deterministic storage, `non_deterministic_pfn`
+algorithms are only ever called for replications, but `lfn2pfn`
+algorithms can also be called for initial uploads.
+
+The `lfn2pfn` algorithm to be used is determined by the
+`lfn2pfn_algorithm` attribute of the relevant RSE. If this is not set,
+the `lfn2pfn_algorithm_default` value from the `[policy]` section of
+the config file is used instead. The `non_deterministic_pfn` algorithm
+to be used is determined by the `naming_convention` attribute of the
+relevant RSE.
 
 ## Adding a new algorithm class
 
@@ -109,7 +134,7 @@ relatively easily. The basic workflow is as follows:
   will differ depending on what the new class actually does and how it
   integrates with the Rucio code, but typically the algorithm name to
   be used will be selected by a value in the config file, as for the
-  current `lfn2pfn` and `surl` algorithm types.
+  current `lfn2pfn` and `non_deterministic_pfn` algorithm types.
 - Before the algorithm is called for the first time, the core Rucio
   code should call `rucio.common.utils.register_policy_package_algorithms`
   to import the algorithms for this class from the policy package and
