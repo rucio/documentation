@@ -44,6 +44,7 @@ board meetings.
 | [CMS](https://cms.cern)             | Katy Ellis, STFC      | 2023-Feb to 2025-Jan |
 | [DUNE](https://www.dunescience.org) | Mike Kirby, BNL       | 2023-Feb to 2025-Jan |
 | [ESCAPE](https://projectescape.eu)  | Xavier Espinal, CERN  | 2023-Feb to 2025-Jan |
+| [SKAO](https://www.skao.int/)       | Rosie Bolton, SKAO    | 2024-Jun to 2026-May |
 
 ### Former Rucio Advisory Board members
 
