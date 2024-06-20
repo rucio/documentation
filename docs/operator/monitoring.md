@@ -345,8 +345,7 @@ access. So the monitoring is not limitted to data transferring.
 
 4) Transmit messages from message queue to Elastisearch
 
-This could be done via Logstash. Please refer to
-[https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash].
+This could be done via Logstash. Please refer to [https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash](https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash).
 
 Alternatively you could use a simple python script `extract.py
 [https://github.com/rucio/rucio/blob/master/tools/monitoring/extract.py]`__. for
