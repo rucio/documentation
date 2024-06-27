@@ -334,10 +334,8 @@ Rucio.
 }
 ```
 
-The formats of them are defined in `rucio-transfer.json
-[https://github.com/rucio/rucio/blob/master/tools/monitoring/rucio-transfer.json]`__
-and `rucio_deletion.json
-[https://github.com/rucio/rucio/blob/master/tools/monitoring/rucio-deletion.json]`__
+The formats of them are defined in [`rucio-transfer.json`](https://github.com/rucio/rucio/blob/master/tools/monitoring/rucio-transfer.json)
+and [`rucio_deletion.json`](https://github.com/rucio/rucio/blob/master/tools/monitoring/rucio-deletion.json)
 which could be imported into Kibana.
 
 Rucio also sends messages when adding/deleting rules/DIDs and for file/dataset
@@ -345,10 +343,9 @@ access. So the monitoring is not limitted to data transferring.
 
 4) Transmit messages from message queue to Elastisearch
 
-This could be done via Logstash. Please refer to [https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash](https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash).
+This could be done via Logstash. Please refer to [Elastic's documentation.](https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash).
 
-Alternatively you could use a simple python script `extract.py
-[https://github.com/rucio/rucio/blob/master/tools/monitoring/extract.py]`__. for
+Alternatively you could use a simple python script such as [`extract.py`](https://github.com/rucio/rucio/blob/master/tools/monitoring/extract.py). for
 this after installing the required tools
 
 ```bash
@@ -365,8 +362,7 @@ exporter.py and start it. It could be made as a systemd service for convenience.
 
 5) Create Kibana dashboards based on the imported messages.
 
-A set of pre-defined dashboards can be found `here
-[https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization]`__. in
+A set of pre-defined dashboards can be found [here](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization) in
 json format which could be imported to Kibana directly. But you may have to
 resolve different UUIDs in Kibana.
 
@@ -422,12 +418,10 @@ The rse pipeline dumps data like how large is the total space, how large is the
 used space, how many files are saved on each RSE etc. Please fill in the jdbc
 connection details and Elastisearch connection details in the config file.
 
-More pipeline definitions can be found `here
-[https://github.com/rucio/rucio/tree/master/tools/monitoring/logstash-pipeline]`__,
+More pipeline definitions can be found [here](https://github.com/rucio/rucio/tree/master/tools/monitoring/logstash-pipeline),
 and users could design their own DB queries for their specific monitoring
 needs. Also users could directly import the Elasticsearch indices and Kibana
-dashboard from `these
-[https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization/db_dump]`__
+dashboard from [these](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization/db_dump).
 json files.
 
 ## Footnotes
