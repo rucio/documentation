@@ -78,8 +78,8 @@ type Graphite, choose access method to "Browser" and set URL to [http://ip:80](h
 where ip is the address of the server hosting the Graphite container
 `dev_graphite_1`.
 
-A set of pre-defined Grafana Rucio internal plots is provided here
-(https://github.com/rucio/rucio/blob/master/tools/monitoring/visualization/rucio-internal.json).
+A set of pre-defined Grafana Rucio internal plots is provided
+[here](https://github.com/rucio/rucio/blob/master/tools/monitoring/visualization/rucio-internal.json).
 Users could import them directly into Grafana.
 
 ### The list of Rucio internal metrics
@@ -339,13 +339,13 @@ and [`rucio_deletion.json`](https://github.com/rucio/rucio/blob/master/tools/mon
 which could be imported into Kibana.
 
 Rucio also sends messages when adding/deleting rules/DIDs and for file/dataset
-access. So the monitoring is not limitted to data transferring.
+access. So the monitoring is not limited to data transferring.
 
 4) Transmit messages from message queue to Elastisearch
 
 This could be done via Logstash. Please refer to [Elastic's documentation.](https://www.elastic.co/blog/integrating-jms-with-elasticsearch-service-using-logstash).
 
-Alternatively you could use a simple python script such as [`extract.py`](https://github.com/rucio/rucio/blob/master/tools/monitoring/extract.py). for
+Alternatively you could use a simple Python script such as [`extract.py`](https://github.com/rucio/rucio/blob/master/tools/monitoring/extract.py) for
 this after installing the required tools
 
 ```bash
@@ -362,7 +362,8 @@ exporter.py and start it. It could be made as a systemd service for convenience.
 
 5) Create Kibana dashboards based on the imported messages.
 
-A set of pre-defined dashboards can be found [here](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization) in
+A set of pre-defined dashboards can be found
+[here](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization) in
 json format which could be imported to Kibana directly. But you may have to
 resolve different UUIDs in Kibana.
 

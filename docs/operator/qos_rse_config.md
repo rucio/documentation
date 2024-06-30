@@ -5,7 +5,7 @@ title: QoS RSE Configuration
 
 ## QoS RSE Configuration
 
-The following steps show how to configure an RSE to use the Rucio storage-managed QoS feature (with two classes, disk-buffer and tape).  Rucio now supports a site's ability to set how long data lives on a tape or disk-buffer at the RSE level.  Data is pinned with a value (in seconds) at the time of injection/creation/buffering allowing data site operators to better tune data persistence and movement. 
+The following steps show how to configure an RSE to use the Rucio storage-managed QoS feature (with two classes, disk-buffer and tape).  Rucio now supports a site's ability to set how long data lives on a tape or disk-buffer at the RSE level.  Data is pinned with a value (in seconds) at the time of injection/creation/buffering allowing data site operators to better tune data persistence and movement.
 
 ### How to Configure an RSE for QoS
 

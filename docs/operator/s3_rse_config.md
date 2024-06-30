@@ -84,6 +84,7 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
     rucio-admin account add-attribute <accountname> --key sign-gcs --value true
     ```
 
+
     In order for this step to be effective, one has to make sure the relevant permission is given when the sign-gcs key is present for the account, for example [this](https://github.com/rucio/rucio/blob/ba102506d470c417fd2b136304e4fa4f7fc3a870/lib/rucio/core/permission/atlas.py#L1219) is the way it is currently done for ATLAS.
 
 

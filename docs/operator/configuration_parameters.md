@@ -6,12 +6,12 @@ Description of the configuration parameters splitted in three different places:
 Rucio configuration file (`rucio.cfg`), Rucio configuration table and RSE attributes.
 
 ## Rucio Configuration File (`rucio.cfg`)
-* Only the Configuration File provides information for the 
-[client connection information](#client-client_config) or the 
-[database configuration](#database-db_config), 
-this information cannot be set in a different location. 
-* If not specified in the environmental variables (as `$RUCIO_CONFIG`), 
-Rucio will look for the config in the following locations - 
+* Only the Configuration File provides information for the
+[client connection information](#client-client_config) or the
+[database configuration](#database-db_config),
+this information cannot be set in a different location.
+* If not specified in the environmental variables (as `$RUCIO_CONFIG`),
+Rucio will look for the config in the following locations -
     - `$RUCIO_HOME/etc/rucio.cfg`
     - `$VIRTUAL_ENV/etc/rucio.cfg`
     - `/opt/rucio/etc/rucio.cfg`
@@ -444,15 +444,15 @@ Rucio will look for the config in the following locations -
 ## Rucio configuration table
 * Checked only if Section/Option pair is not in the Configuration File
 
-### Updating 
-The table can be updated with the `Rucio Client`, using either 
+### Updating
+The table can be updated with the `Rucio Client`, using either
 * `rucio-admin config set [section] [option] [value]`
-* `rucio.ConfigClient().set_config_option([section], [option], [value])` 
+* `rucio.ConfigClient().set_config_option([section], [option], [value])`
 
-These changes take impact immediately without requiring a restart. 
-Using the client only updates the Configuration Table and does not overwrite 
-anything in the Configuration File, and thus will not change anything if there 
-a setting already specified in the Configuration File. 
+These changes take impact immediately without requiring a restart.
+Using the client only updates the Configuration Table and does not overwrite
+anything in the Configuration File, and thus will not change anything if there
+a setting already specified in the Configuration File.
 
 ### Options and Defaults
 #### **automatix**
@@ -509,10 +509,10 @@ a setting already specified in the Configuration File.
     hop. Integer. Default: `10`.
   - **multihop_tombstone_delay**: Seconds (integer). Default: `7200`.
   - **use_multihop**: Boolean. Default: `False`.
-  - **fts3tape_metadata_plugins**: _(Optional)_ Plugins to use with FTS3 to include archive 
-  metadata in the transfer process. List[String]. Default: `None`. 
-  - **metadata_byte_limit**: _(Optional)_ Limit applied to `archive_metadata` during a transfer. 
-  Only used with archive metadata plugins using FTS3. Integer. Default `None`. 
+  - **fts3tape_metadata_plugins**: _(Optional)_ Plugins to use with FTS3 to include archive
+  metadata in the transfer process. List[String]. Default: `None`.
+  - **metadata_byte_limit**: _(Optional)_ Limit applied to `archive_metadata` during a transfer.
+  Only used with archive metadata plugins using FTS3. Integer. Default `None`.
 #### **virtual_placement**
   - **vp_endpoint**: _(Optional)_ Virtual Placement server. Once VP is
     integrated in Rucio it won't be needed. Default: ` `.
@@ -520,14 +520,14 @@ a setting already specified in the Configuration File.
   - ***VO***: _(Optional)_ Internal short VO name. No default.
 
 ## RSE attributes
-The RSE Attributes are set separately using `rucio.RSEClient` or `rucio-admin`, 
-and only contains information about the specific RSE's for the Rucio instance. 
-Read more about RSEs [here](../started/concepts/rucio_storage_element.md) 
-and how to set them up [here](./configuration.md#creating-new-rses). 
-The RSE Attributes are set seperately using `rucio.RSEClient` or `rucio-admin`, 
-and only contains information about the specific RSE's for the Rucio instance. 
-Read more about RSEs [here](../started/concepts/rucio_storage_element.md) 
-and how to set them up [here](./configuration.md#creating-new-rses). 
+The RSE Attributes are set separately using `rucio.RSEClient` or `rucio-admin`,
+and only contains information about the specific RSE's for the Rucio instance.
+Read more about RSEs [here](../started/concepts/rucio_storage_element.md)
+and how to set them up [here](./configuration.md#creating-new-rses).
+The RSE Attributes are set seperately using `rucio.RSEClient` or `rucio-admin`,
+and only contains information about the specific RSE's for the Rucio instance.
+Read more about RSEs [here](../started/concepts/rucio_storage_element.md)
+and how to set them up [here](./configuration.md#creating-new-rses).
 
 - **associated_sites**: <!--??--> Separated by commas. Default: `None`.
 - **auto_approve_bytes**: Auto Approve Limit. Example: `500GB`. No default.

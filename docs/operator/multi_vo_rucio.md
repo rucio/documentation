@@ -60,7 +60,7 @@ submitting and polling transfers to use the correct certificates.
 
 ```yaml
 [vo_certs]
- ...  
+ ...
 [3 char vo name] = [path/to/vo/proxy]
 ```
 
@@ -251,8 +251,8 @@ can be run directly against the database using the `--commit_changes` argument;
 if this is not set then the `super_root` account should be manually deleted
 after running the SQL:
 ```bash
-$ python 
->>> from rucio.common.types import InternalAccount 
->>> from rucio.core.account import del_account 
+$ python
+>>> from rucio.common.types import InternalAccount
+>>> from rucio.core.account import del_account
 >>> del_account(InternalAccount('super_root', vo='def'))
 ```
