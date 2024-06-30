@@ -84,7 +84,9 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
     rucio-admin account add-attribute <accountname> --key sign-gcs --value true
     ```
 
-    In order for this step to be effective, one has to make sure the relevant permission is given when the sign-gcs key is present for the account, for example [this](https://github.com/rucio/rucio/blob/88984a4dbc9d8be4e254f61545c7066e6c67de56/lib/rucio/core/permission/atlas.py#L1152) is the way it is currently done for ATLAS.
+
+    In order for this step to be effective, one has to make sure the relevant permission is given when the sign-gcs key is present for the account, for example [this](https://github.com/rucio/rucio/blob/ba102506d470c417fd2b136304e4fa4f7fc3a870/lib/rucio/core/permission/atlas.py#L1219) is the way it is currently done for ATLAS.
+
 
 5. Configure FTS3 to be able to use the same access and secret keys as you did for the Rucio servers:
 
