@@ -12,9 +12,9 @@ pip install rucio-clients
 ```
 
 This command will download the latest version of Rucio and install it to your
-system. The dependencies are listed in the file
-[`requirements.txt`](https://github.com/rucio/rucio/blob/master/requirements.txt)
-and will be pulled in as necessary.
+system. The dependencies are listed in the
+[`requirements`](https://github.com/rucio/rucio/tree/master/requirements)
+directory and will be pulled in as necessary.
 
 ## Upgrade via pip
 

@@ -248,4 +248,3 @@ tools/run_pyright.sh generate {report_output_path.json}
 ```
 The first action will raise an error if your commits introduce more un-annotated types than it solves,
 and the second ensures the added types are consistent with the rest of the codebase.
-
