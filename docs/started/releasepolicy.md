@@ -86,33 +86,48 @@ server.
 
 ### WebUI
 
-The Rucio WebUI is an initiative to modernize the Rucio user interface by leveraging the latest web technologies. Built with Next.js, TailwindCSS, and React.js, this new WebUI aims to provide a robust architecture designed to serve the community for the next decade, much like its predecessor.
+The Rucio WebUI is an initiative to modernize the Rucio user interface by
+leveraging the latest web technologies. Built with Next.js, TailwindCSS, and
+React.js, this new WebUI aims to provide a robust architecture designed to
+serve the community for the next decade, much like its predecessor.
 
 #### Key Technologies
-- **Next.js**: Provides a flexible and efficient framework for server-side rendering and static site generation.
-- **TailwindCSS**: Enables rapid and responsive UI development with utility-first CSS.
-- **React.js**: Facilitates dynamic and interactive user interfaces with a component-based approach.
+
+- **Next.js**: Provides a flexible and efficient framework for server-side
+  rendering and static site generation.
+- **TailwindCSS**: Enables rapid and responsive UI development with
+  utility-first CSS.
+- **React.js**: Facilitates dynamic and interactive user interfaces with a
+  component-based approach.
 
 #### Versioning
-The versioning of the Rucio WebUI is closely aligned with the Rucio Server's release versioning. Both follow semantic versioning principles, ensuring consistency and compatibility.
 
-- **Major Version**: The major version number of the WebUI matches that of the Rucio Server. For example, Rucio Server version 35.x.x is compatible with Rucio WebUI version 35.x.x.
+The versioning of the Rucio WebUI is closely aligned with the Rucio Server's
+release versioning. Both follow semantic versioning principles, ensuring
+consistency and compatibility.
+
+- **Major Version**: The major version number of the WebUI matches that of the
+  Rucio Server. For example, Rucio Server version 35.x.x is compatible with
+  Rucio WebUI version 35.x.x.
 - **Minor and Patch Versions**: These versions follow semantic versioning:
-  - **Minor Version**: Incremented for new features and improvements that are backward-compatible.
-  - **Patch Version**: Incremented for backward-compatible bug fixes.
+   - **Minor Version**: Incremented for new features and improvements that are
+     backward-compatible.
+   - **Patch Version**: Incremented for backward-compatible bug fixes.
 
 ### JupyterLab extension
 
-The Rucio JupyterLab extension does not follow the relase policy described above.
+The Rucio JupyterLab extension does not follow the relase policy described
+above.
 
-The plugin main dependencies are the Rucio REST API, the JupyterLab environment and 
-JavaScript (Node.js and React.js). Up to date, the extension has been tested with 
-several combinations of Rucio major versions (v1.30 onwards) and JupyterLab (v&GreaterEqual;3)
-environments, with the latter indicating the extension version to install.
+The plugin's main dependencies are the Rucio REST API, the JupyterLab environment
+and JavaScript (Node.js and React.js). Up to date, the extension has been
+tested with several combinations of Rucio major versions (v1.30 onwards) and
+JupyterLab (v&GreaterEqual;3) environments, with the latter indicating the
+extension version to install.
 
- - For `JupyterLab v4.x`, use v&GreaterEqual;1.0.0.
- - For `JupyterLab v3.x` use the latest supported version (v0.10.0).
+- For `JupyterLab v4.x`, use v&GreaterEqual;1.0.0.
+- For `JupyterLab v3.x` use the latest supported version (v0.10.0).
 
-Please refer to the Rucio JypyterLab extension [repository](
-https://github.com/rucio/jupyterlab-extension) for more details on installation, 
-requirements and release policy.
+Please refer to the Rucio JupyterLab extension [repository](
+https://github.com/rucio/jupyterlab-extension) for more details on
+installation, requirements and release policy.
