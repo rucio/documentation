@@ -36,6 +36,23 @@ all replicas of any file which is declared obsolete.
 Some examples of replication rules are listed
 [here](replication_rules_examples.md).
 
+## Rule grouping and replica storage
+The following two parameters determine the way the files to be replicated
+are assigned to suitable RSEs:
+- The **rule grouping**: `ALL`, `DATASET`, `NONE`.
+- The [DID type](file_dataset_container.md): `FILE`, `DATASET`, `CONTAINER`.
+
+The table below describes the resulting replication logic
+depending on the combination of rule grouping (header row) and DID type (left column).
+
+
+|               	| **ALL**                                               	| **DATASET**                                                                                     	| **NONE**        	|
+|---------------	|-------------------------------------------------------	|-------------------------------------------------------------------------------------------------	|-----------------	|
+| **FILE**      	| All files must be on the same RSE                     	| N/A                                                                                             	| No restrictions 	|
+| **DATASET**   	| All files must be on the same RSE                     	| N/A                                                                                             	| No restrictions 	|
+| **CONTAINER** 	| All files must be on the same RSE 	| All files in a dataset must be on the same RSE, but different datasets can be on different RSEs 	| No restrictions 	|
+
+
 ## Footnotes
 
 [^1]: The system may reject rules if these violate other policies, e.g., only
