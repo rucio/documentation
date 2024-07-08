@@ -59,7 +59,7 @@ datasets/containers.
 
 The dataset/container status is reflected by a set of attributes:
 
-- `open`: True/False
+- `is_open`: True/False
 
 If a dataset/container is open, content can be added to it.  Datasets/containers
 are created open and once closed, they cannot be opened again[^1].
