@@ -81,6 +81,7 @@
                 "developer/setting_up_intellij_dev_env",
                 "developer/setting_up_vscode_dev_env",
                 "contributing",
+		"developer/dependency_management",
                 "developer/rest_api_doc",
                 "developer/type_annotation_guide",
                 "developer/dev_style_guide",
