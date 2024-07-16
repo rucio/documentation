@@ -257,7 +257,7 @@ auth_token_file_path = /path/to/token/file
 You can query the list of available RSEs:
 
 ```bash
-$ rucio list-rses
+$ rucio list rse
 SITE1_DISK
 SITE1_TAPE
 SITE2_DISK
@@ -269,7 +269,7 @@ If the RSEs are tagged with attributes you can build RSE expressions and query
 the sites matching these expressions:
 
 ```bash
-$ rucio list-rses --rses "tier=1&disk=1"
+$ rucio list rse --rse "tier=1&disk=1"
 SITE1_DISK
 SITE2_DISK
 ```
@@ -279,7 +279,7 @@ SITE2_DISK
 To list all the possible scopes:
 
 ```bash
-$ rucio list-scopes
+$ rucio list scope
 mc
 data
 user.jdoe
@@ -290,7 +290,7 @@ You can query the DIDs matching a certain pattern. It always requires to specify
 the scope in which you want to search:
 
 ```bash
-$ rucio list-dids user.jdoe:*
+$ rucio list did --did user.joe*
 +-------------------------------------------+--------------+
 | SCOPE:NAME                                | [DID TYPE]   |
 |-------------------------------------------+--------------|
@@ -307,7 +307,7 @@ $ rucio list-dids user.jdoe:*
 You can filter by key/value, e.g.:
 
 ```bash
-$ rucio list-dids --filter type=CONTAINER
+$ rucio list did --filter type=CONTAINER
 +-------------------------------------------+--------------+
 | SCOPE:NAME                                | [DID TYPE]   |
 |-------------------------------------------+--------------|
@@ -350,9 +350,10 @@ Total size : 1.316 MB:
 You can create a new rule like this:
 
 ```bash
-$ rucio add-rules --lifetime 1209600 \
-  user.jdoe:user.jdoe.test.container.1234.1 1 \
-  "tier=1&disk=1"
+$ rucio add rule --lifetime 1209600 \
+  --did user.jdoe:user.jdoe.test.container.1234.1 \
+  --copies mock1 \
+  --rse "tier=1&disk=1"
 a12e5664555a4f12b3cc6991db5accf9
 ```
 
@@ -361,7 +362,7 @@ The command returns the rule_id of the rule.
 You can list the rules for a particular DID:
 
 ```bash
-$ rucio list-rules user.jdoe:user.jdoe.test.container.1234.1
+$ rucio list rule --did user.jdoe:user.jdoe.test.container.1234.1
 ID    ACCOUNT  SCOPE:NAME  STATE[OK/REPL/STUCK]  RSE_EXPRESSION  COPIES  EXPIRES
 ----  -------  ----------  --------------------  --------------  ------  -------
 a...  jdoe     user....    OK[3/0/0]             tier=1&disk=1   1       2018...
@@ -409,3 +410,119 @@ Downloaded files :                            3
 Files already found locally :                 0
 Files that cannot be downloaded :             0
 ```
+
+# Migrating from the client versions <35.0.0
+
+In Version 35.0.0, Rucio migrated to a new CLI client.
+All commands produce the same output, but are called differently.
+The base structure of all commands follows:
+
+```bash
+rucio [--authentication args] {command verb} {main command} [{subcommand}] [--command args]
+```
+When running the old commands, a warning will be displayed, but output will be unchanged.
+This new structure replaces both `rucio-admin` and `rucio`.
+
+## Command Verbs
+
+Verb         | Description
+:----------- | :-------------
+`list`       | Read the state of an object, or view all objects under this category
+`add`        | Add a new object to the rucio database
+`remove`     | Delete an existing object, opposite of `add`
+`set`        | Update an existing object
+`unset`      | Reset the state of an object back to its default, opposite of `set`
+
+Not all verbs are implemented for all objects, but besides for a few exceptions, these are the only way to interact with Rucio using the cli.
+(The exceptions in this case are the commands `ping`, `whoami`, `upload`, `download`, which are called with `rucio {command}`).
+
+## Command Translations
+
+### `rucio`
+Version <35.0.0      | Version >=35.0.0
+:----------- | :-------------
+"rucio list-file-replicas"| "rucio list replicas"
+"rucio list-dataset-replicas"| "rucio list replica --type dataset"
+"rucio add-dataset"| "rucio add replica --type dataset"
+"rucio add-container"| "rucio add replica --type container"
+"rucio attach"| "rucio rucio add did parent"
+"rucio detach"| "rucio rucio remove did parent"
+"rucio ls"| "rucio rucio list did"
+"rucio list-dids"| "rucio list did"
+"rucio list-dids-extended"| "rucio --view info list did"
+"rucio list-parent-dids"| "rucio list did parent"
+"rucio list-parent-datasets"| "rucio list did parent --type dataset"
+"rucio list-scopes"| "rucio list scope"
+"rucio erase"| "rucio remove did"
+"rucio list-files"| "rucio list did --type file"
+"rucio list-content"| "rucio list did --type dataset"
+"rucio list-content-history"| "rucio list did history"
+"rucio get-metadata"| "rucio list did metadata"
+"rucio set-metadata"| "rucio add did metadata"
+"rucio delete-metadata"| "rucio remove did metadata"
+"rucio list-rse-usage"| "rucio list rse usage"
+"rucio list-account-limits"| "rucio list account limits"
+"rucio add-rule"| "rucio add rule"
+"rucio delete-rule"| "rucio remove rule"
+"rucio rule-info"| "rucio --view info list rule"
+"rucio list-rules"| "rucio list rule"
+"rucio list-rules-history"| "rucio --view history list rule "
+"rucio update-rule"| "rucio set rule"
+"rucio move-rule"| "rucio set rule --move"
+"rucio list-rses"| "rucio list rse"
+"rucio list-suspicious-replicas"| "rucio list replica state --suspicious"
+"rucio list-rse-attributes"| "rucio list rse attribute"
+"rucio list-datasets-rse"| "rucio list dataset"
+"rucio add-lifetime-exception"| "rucio add lifetime-exception"
+
+### `rucio-admin`
+
+Version <35.0.0      | Version >=35.0.0
+:----------- | :-------------
+"rucio-admin account list"| "rucio list account"
+"rucio-admin account list-attributes"| "rucio list account attribute"
+"rucio-admin account add-attribute"| "rucio add account attribute"
+"rucio-admin account add"| "rucio add account"
+"rucio-admin account delete"| "rucio remove account"
+"rucio-admin account info"| "rucio --view info list account"
+"rucio-admin account list-identities"| "rucio list account identities"
+"rucio-admin account set-limits"| "rucio add account limits"
+"rucio-admin account get-limits"| "list account limits"
+"rucio-admin account delete-limits"| "rucio remove account limits"
+"rucio-admin account ban"| "set account ban"
+"rucio-admin account unban"| "rucio unset account ban"
+"rucio-admin account update"| "rucio set account"
+"rucio-admin identity add" | "rucio account add identities"
+"rucio-admin delete" | "rucio remove account identities"
+"rucio-admin rses list"| "rucio list rse"
+"rucio-admin rses add"| "rucio add rse"
+"rucio-admin rses update"| "rucio set rse"
+"rucio-admin rses info"| "rucio- -view info list rse"
+"rucio-admin rses set-attribute"| "rucio add rse attribute"
+"rucio-admin rses delete-attribute"| "rucio remove rse attribute"
+"rucio-admin rses add-distance"| "rucio add rse distance"
+"rucio-admin rses update-distance"| "rucio set rse distance"
+"rucio-admin rses delete-distance"| "rucio remove rse distance"
+"rucio-admin rses get-distance"| "rucio list rse distance"
+"rucio-admin rses get-attribute"| "rucio list rse attribute"
+"rucio-admin rses add-protocol"| "rucio add rse protocol"
+"rucio-admin rses delete-protocol"| "rucio remove rse protocol"
+"rucio-admin rses delete"| "rucio remove rse"
+"rucio-admin rses add-qos-policy"| "rucio add rse qos-policy"
+"rucio-admin rses delete-qos-policy"| "rucio remove rse qos-policy"
+"rucio-admin rses list-qos-policies"| "rucio list rse qos-policy"
+"rucio-admin rses set-limit"| "rucio add rse limit"
+"rucio-admin rses delete-limit"| "rucio remove rse limit"
+"rucio-admin scope add"| "rucio add scope"
+"rucio-admin scope list"| "rucio list scope"
+"rucio-admin config get"| "rucio get config"
+"rucio-admin config set"| "rucio set config"
+"rucio-admin config delete"| "rucio unset config"
+"rucio-admin subscription list"| "rucio list subscription"
+"rucio-admin subscription add"| "rucio add subscription"
+"rucio-admin subscription update"| "rucio set subscription"
+"rucio-admin replica quarantine"| "rucio set replica state --quarantine"
+"rucio-admin replica declare-bad"| "rucio set replica state --bad"
+"rucio-admin replica declare-temporary-unavailable"| "rucio set replica state --temporary-unavailable"
+"rucio-admin replica list-pfns"| "rucio list replica pfn"
+"rucio-admin replica set-tombstone"| "rucio add replica tombstone"
