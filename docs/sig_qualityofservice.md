@@ -17,9 +17,8 @@ In the future, it can be extended to other storage systems where appropriate.
 At the end of this SIG a report will be written documenting the outcome/benefit of this
 activity.
 
-## Expected End-Date
+## End-Date
 
-~~September 30, 2023~~
 End of 2023
 
 ## Means to achieve the objective
