@@ -31,6 +31,6 @@ Each SIG must define
 
 ## Past Special Interest Groups
 
-| Name                                          | Start    | est. End | Convener                                               |
+| Name                                          | Start    | End      | Convener                                               |
 | --------------------------------------------- | -------- | -------- | ------------------------------------------------------ |
 | [Quality of Service](sig_qualityofservice.md) | Jul-2021 | Dec-2023 | [Doug Benjamin](mailto:douglas.benjamin@cern.ch)       |
