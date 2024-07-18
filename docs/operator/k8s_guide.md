@@ -600,7 +600,7 @@ To export the created configuration, execute:
 export RUCIO_CONFIG=<path-to>/rucio.cfg
 ```
 Then test it via `rucio whoami`.
-### Optional: creating a rucio client user pod in the cluster
+### (optional) Creating a rucio client user pod in the cluster
 Look at the following commits to have an example of how to create a pod in the cluster that serves as u rucio user:
 - [Creating a rucio client root account](https://gitlab.cern.ch/rucio-it/flux-compass/-/commit/7579ea6fee12609a419639d3a6390cf1f9f9ee63)
 - [Creating secrets](https://gitlab.cern.ch/rucio-it/flux-compass/-/commit/7e3075f1161c5728ca7e7d485242e152975f8b7c)
