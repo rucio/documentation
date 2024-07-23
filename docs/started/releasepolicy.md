@@ -10,7 +10,7 @@ every 4 months we produce a major release with a version number like **x.0.0**
 (with x > 0). A major release marks the start of a release line. This release
 line is maintained with minor/patch releases published every two weeks,
 containing bug fixes or minor enhancements,
-with version numbers like **32.y.z** (with y &ge; 0, z &ge; 0). Versions within
+with version numbers like **35.y.z** (with y &ge; 0, z &ge; 0). Versions within
 one release line are always backwards compatible, thus they do not include
 database schema changes, API modifications, or other backward-compatibility
 breaking changes.
@@ -31,8 +31,8 @@ deploy the new LTS release.
 
 For differences between the versions of a Rucio client and a Rucio server we guarantee
 compatibility of an older client up until the oldest supported LTS release line.
-For example, with 1.29 LTS being the oldest supported release line, a 34 Rucio server
-guarantees support of clients of the 1.29, 1.30, 1.31, 32, 33 and 34 release line. Most likely
+For example, with 1.29 LTS being the oldest supported release line, a 35 Rucio server
+guarantees support of clients of the 1.29, 1.30, 1.31, 32, 33, 34 and 35 release line. Most likely
 older clients will work, without problems, as well, however, the release policy does not
 guarantee it.
 
@@ -42,10 +42,10 @@ server.
 | Version         | Code name                                 | Release date   | Supported until      |
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
 | 36              | Donkey Unchained                          | _2024-11_      | _2025-03_            |
-| 35 LTS          | Donkey and the Data Factory               | _2024-07_      | _at least 2026-07_   |
-| **34**          | **Donkey Potter and the Data Cache**      | **2024-03**    | _2024-07_            |
+| **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | _at least 2026-07_   |
+| 34              | Donkey Potter and the Data Cache          | 2024-03        | 2024-07              |
 | 33              | Eternal Sunshine of the Donkey's Mind     | 2023-12        | 2024-03              |
-| **32 LTS**      | **The Good, The Bad and the Donkey**      | **2023-08**    | _at least 2025-08_   |
+| **32 LTS**      | **The Good, The Bad and the Donkey**      | **2023-08**    | **2025-08**          |
 | 1.31            | Donkeys of the Caribbean                  | 2023-03        | 2023-07              |
 | 1.30            | The Donkeynator                           | 2022-11        | 2023-03              |
 | **1.29 LTS**    | **Into the Donkeyverse**                  | **2022-07**    | **2024-08**          |
