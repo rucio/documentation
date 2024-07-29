@@ -103,15 +103,17 @@ to avoid naming conflicts on multi-VO Rucio installations.
 `lfn2pfn` algorithms and `non_deterministic_pfn` algorithms are
 conceptually similar, but there are important differences between
 them. Both produce a physical filename for use on an RSE, however
-`lfn2pfn` algorithms can only be used on deterministic RSEs (for
-example, disk systems where the appropriate physical filename is
-always predictable and can be derived whenever necessary) while
+`lfn2pfn` algorithms can only be used on deterministic RSEs - for
+example, disk systems where the appropriate physical filename can be
+derived from the file's scope and name alone (as well as
+protocol-specific information for the RSE in question).
 `non_deterministic_pfn` algorithms are used on non-deterministic
-RSEs (for example, tape systems where the physical filename may be
-unpredictable and must be stored explicitly). Because files cannot be
-uploaded directly to non-deterministic storage, `non_deterministic_pfn`
-algorithms are only ever called for replications, but `lfn2pfn`
-algorithms can also be called for initial uploads.
+RSEs (most often tape systems), and may use additional information
+about the file (such as its dataset, its metadata, etc.) to construct
+the physical filename. Because files cannot be uploaded directly to
+non-deterministic storage, `non_deterministic_pfn` algorithms are
+only ever called for replications, but `lfn2pfn` algorithms can also
+be called for initial uploads.
 
 The `lfn2pfn` algorithm to be used is determined by the
 `lfn2pfn_algorithm` attribute of the relevant RSE. If this is not set,
