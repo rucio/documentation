@@ -41,7 +41,7 @@ A 33 Rucio server guarantees client support of the 1.29, 1.30, 1.31, 32, and 33 
 lines, while a 32 server guarantees support of the 1.26, 1.27, 1.28, 1.29, 1.30, 1.31, and 
 32 release lines.
 
-Most likely older clients will work, without problems, as well, however, the release policy does not
+Older clients will most likely work without problems as well; however, the release policy does not
 guarantee it.
 
 Please be aware that we can not guarantee compatibility of a newer client with an older
