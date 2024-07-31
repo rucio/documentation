@@ -34,7 +34,7 @@ compatibility between a server and an older client up until the second LTS relea
 preceeding the server.
 
 For example, a 35 Rucio server guarantees client support until the second LTS release line 
-preceeding it's version, thus the 1.29 LTS release line. Therefore it guarantees support 
+preceeding its version, thus the 1.29 LTS release line. Therefore it guarantees support 
 of clients of the 1.29, 1.30, 1.31, 32, 33, 34, and 35 release lines.
 
 A 33 Rucio server guarantees client support of the 1.29, 1.30, 1.31, 32, and 33 release 
