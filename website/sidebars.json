@@ -47,6 +47,7 @@
                 "operator/installing_server",
                 "operator/installing_daemons",
                 "operator/configuration",
+                "operator/k8s_guide",
                 "operator/multi_vo_rucio",
                 "operator/monitoring",
                 "operator/database",
