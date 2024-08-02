@@ -7,7 +7,7 @@ AUTO_GENERATED=$SCRIPT_DIR/auto_generated
 DOCS=$SCRIPT_DIR/../docs
 
 echo "Generating dynamic default configuration files..."
-"$SCRIPT_DIR"/get_config.py $DOCS
+"$SCRIPT_DIR"/get_config.py "$DOCS"
 
 "$SCRIPT_DIR"/generate_dynamic_files.sh
 
