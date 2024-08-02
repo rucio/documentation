@@ -6,6 +6,8 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 AUTO_GENERATED=$SCRIPT_DIR/auto_generated
 DOCS=$SCRIPT_DIR/../docs
 
+echo "Generating dynamic default configuration files..."
+"$SCRIPT_DIR"/get_config.py $DOCS
 
 "$SCRIPT_DIR"/generate_dynamic_files.sh
 

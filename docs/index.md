@@ -51,7 +51,7 @@ pre-requisites section under each of the topics!
 - [Installing Rucio Daemons](operator/installing_daemons.md)
 - [Monitoring](operator/monitoring.md)
 - [Database](operator/database)
-- [Configuration parameters](operator/configuration_parameters.md)
+- [Configuration parameters](operator/configuration_parameters.mdx)
 
 ## Developer Documentation
 
