@@ -30,7 +30,7 @@ from rucio.transfertool.fts3_plugins import FTS3TapeMetadataPlugin
 
 class ExperimentFTSPlugins(FTS3TapeMetadataPlugin):
     def __init__(self, policy_algorithm="def"):
-        super().__init__()
+        super().__init__(policy_algorithm)
         self.register("policy_algorithm", func=self.plugin_algorithm) # Name and function for the new algorithm
 
     def plugin_algorithm(self, *hints): # Code executed at runtime
@@ -63,7 +63,7 @@ from rucio.transfertool.fts3_plugins import FTS3TapeMetadataPlugin
 
 class ExperimentFTSPlugins(FTS3TapeMetadataPlugin):
     def __init__(self, policy_algorithm="def"):
-        super().__init__()
+        super().__init__(policy_algorithm)
         self.register(
             "policy_algorithm",
             func=self.plugin_algorithm,
@@ -161,7 +161,7 @@ from rucio.transfertool.fts3_plugins import FTS3TapeMetadataPlugin
 
 class ExperimentCollocationFTSPlugins(FTS3TapeMetadataPlugin):
     def __init__(self, policy_algorithm="def"):
-        super().__init__()
+        super().__init__(policy_algorithm)
         self.register(
             "policy_collocation_algorithm",
             func= lambda x: self._collocation(self._experiment_plugin, x)
