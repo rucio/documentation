@@ -1,6 +1,6 @@
 ---
 id: configure-rucio-fts3-plugins
-title: Configure A Tool to Deterimine Rules For FTS3 Tape Transfers
+title: Configure A Tool to Determine Rules For FTS3 Tape Transfers
 sidebar_label: FTS3 Transfertool Plugins
 ---
 
