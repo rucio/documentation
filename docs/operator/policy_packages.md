@@ -109,11 +109,12 @@ derived from the file's scope and name alone (as well as
 protocol-specific information for the RSE in question).
 `non_deterministic_pfn` algorithms are used on non-deterministic
 RSEs (most often tape systems), and may use additional information
-about the file (such as its dataset, its metadata, etc.) to construct
-the physical filename. Because files cannot be uploaded directly to
-non-deterministic storage, `non_deterministic_pfn` algorithms are
-only ever called for replications, but `lfn2pfn` algorithms can also
-be called for initial uploads.
+about the file (such as its metadata, any datasets that it is a part
+of, etc.) to construct the physical filename. Because files cannot
+be uploaded directly to non-deterministic storage,
+`non_deterministic_pfn` algorithms are only ever called for
+replications, but `lfn2pfn` algorithms can also be called for
+initial uploads.
 
 The `lfn2pfn` algorithm to be used is determined by the
 `lfn2pfn_algorithm` attribute of the relevant RSE. If this is not set,
