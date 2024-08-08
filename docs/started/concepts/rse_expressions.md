@@ -37,7 +37,7 @@ particular RSE.
   IFIC-LCG2_DATADISK LIP-COIMBRA_LOCALGROUPDISK
   ```
 
-1. Whereas the next expression only returns a set containing a single
+2. Whereas the next expression only returns a set containing a single
    RSE:
 
   ```bash
@@ -47,7 +47,7 @@ particular RSE.
   ELA-UNLP_SCRATCHDISK
   ```
 
-1. Another simple RSE Expression allows to list the set of all the RSEs
+3. Another simple RSE Expression allows to list the set of all the RSEs
    in a particular site:
 
   ```bash
@@ -58,7 +58,7 @@ particular RSE.
   EELA-UNLP_SCRATCHDISK
   ```
 
-1. Or all the RSEs who's type is `SCRATCHDISK`:
+4. Or all the RSEs who's type is `SCRATCHDISK`:
 
   ```bash
   jbogadog@lxplus0058:~$ rucio list-rses --rses type=SCRATCHDISK
@@ -71,7 +71,7 @@ particular RSE.
   INFN-FRASCATI_SCRATCHDISK
   ```
 
-1. Or all the Spanish sites:
+5. Or all the Spanish sites:
 
   ```bash
   jbogadog@lxplus0058:~$ rucio list-rses --rses SPAINSITES
@@ -86,7 +86,7 @@ particular RSE.
   LIP-COIMBRA_LOCALGROUPDISK
   ```
 
-1. Also numerical comparisons with `<` and `>` are possible:
+6. Also numerical comparisons with `<` and `>` are possible:
 
   ```bash
   jbogadog@lxplus0058:~$ rucio list-rses --rses "freespace>3000"
