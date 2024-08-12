@@ -167,7 +167,7 @@ class ExperimentCollocationFTSPlugins(FTS3TapeMetadataPlugin):
             func= lambda x: self._collocation(self._experiment_plugin, x)
         )
 
-    def find_level_hints(self, level, hints)
+    def find_level_hints(self, level, hints):
         ...
 
     def _experiment_plugin(self, *hints):
