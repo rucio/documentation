@@ -16,9 +16,9 @@ parameters used in the transfer.
 ## Writing the plugin
 
 Plugins are expected to be subclasses of `rucio.transfertool.fts3_plugins.FTS3TapeMetadataPlugin`,
-and registed as `fts3_tape_metadata_plugins` algorithms.
+and registered as `fts3_tape_metadata_plugins` algorithms.
 This is done by using the
-`FTS3TapeMetadataPlugin.register` method, which tells the algoritm which code to execute during runtime.
+`FTS3TapeMetadataPlugin.register` method, which tells the algorithm which code to execute during runtime.
 
 The return type of the selected policy code must be a json-encodable dictionary.
 The only required keys are the keys that will be used by the storage endpoint, not any decorators for FTS3.
@@ -31,9 +31,9 @@ from rucio.transfertool.fts3_plugins import FTS3TapeMetadataPlugin
 class ExperimentFTSPlugins(FTS3TapeMetadataPlugin):
     def __init__(self, policy_algorithm="def"):
         super().__init__(policy_algorithm)
-        self.register("policy_algorithm", func=self.plugin_algorithm) # Name and function for the new algorithm
+        self.register("policy_algorithm", func=self.plugin_algorithm)  # Name and function for the new algorithm
 
-    def plugin_algorithm(self, *hints): # Code executed at runtime
+    def plugin_algorithm(self, *hints):  # Code executed at runtime
         return {"storage_location": "this_location"}
 ```
 
@@ -56,7 +56,7 @@ If the plugin requires set-up that would slow down transfers, using a plugin ini
 This includes things like querying the configuration file, performing a calculation that would not change
 between different transfers, or hard-coding parameters.
 
-This is done by including a `init_func` when registing the plugin.
+This is done by including a `init_func` when registering the plugin.
 
 ```python
 from rucio.transfertool.fts3_plugins import FTS3TapeMetadataPlugin
@@ -91,7 +91,7 @@ ExperimentFTSPlugins("def")
 
 Configuration set in the `rucio.cfg`. To use a plugin (here named "policy_algorithm"),
 modify the config to include the below field.
- To use mutliple plugins, their names can be listed to make each plugin algorithm run in sequence.
+ To use multiple plugins, their names can be listed to make each plugin algorithm run in sequence.
 
 ```
 [transfers]
@@ -105,10 +105,10 @@ metadata_byte_limit = <byte limit of transfer metadata>
 ```
 
 ## Pre-built plugins
-### Activity Based Transfer Prority
+### Activity Based Transfer Priority
 
-To assign archive prority based on activity, we include the `activity_hints` plugin.
-This plugin assigns an integer prority between 0 and 100 based on the activity of the transfer in question.
+To assign archive priority based on activity, we include the `activity_hints` plugin.
+This plugin assigns an integer priority between 0 and 100 based on the activity of the transfer in question.
 
 Output of the plugin follows the form of
 ```json
@@ -142,10 +142,10 @@ The collocation can be set to up to 4 different levels, such that the passed `ar
 ```json
 {
     "collocation_hints":{
-        "1": Highest level of grouping,
-        "2": Second Highest level,
+        "0": Highest level of grouping,
+        "1": Second Highest level,
         ...
-        "4": Lowest level of grouping
+        "3": Lowest level of grouping
     }
 }
 ```
@@ -154,7 +154,7 @@ Writing the plugin is similar to any other plugin, it just requires that these 4
 
 If the `collocation` wrapper is used, this format is verified and put into the `collocation_hints`
  field of the transfer parameters.
- This is done below, where `find_level_hints` is an attribary function written for an experiment's needs:
+ This is done below, where `find_level_hints` is an arbitrary function written for an experiment's needs:
 
 ```python
 from rucio.transfertool.fts3_plugins import FTS3TapeMetadataPlugin
@@ -172,10 +172,10 @@ class ExperimentCollocationFTSPlugins(FTS3TapeMetadataPlugin):
 
     def _experiment_plugin(self, *hints):
         return {
+                "0": self.find_level_hints(level=0, hints=hints),
                 "1": self.find_level_hints(level=1, hints=hints),
                 "2": self.find_level_hints(level=2, hints=hints),
                 "3": self.find_level_hints(level=3, hints=hints),
-                "4": self.find_level_hints(level=4, hints=hints),
             }
 
 ExperimentCollocationFTSPlugins("def")
