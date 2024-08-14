@@ -10,62 +10,70 @@ The tools utilised to set up and to run the cluster are chosen accordingly. Feel
 
 In order to efficiently manage the cluster and implement continuous delivery, the following tools are required.
 
-## Kubernetes: `kubectl`
-[Reference Documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/).
-## Helm Charts
-[Reference Documentation](https://helm.sh/docs/intro/install/#from-script).
-```bash
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+- **Kubernetes**: `kubectl`
+([Reference Documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)).
+- **Helm Charts**
+([Reference Documentation](https://helm.sh/docs/intro/install/#from-script)). <br/>
+To install Helm, execute:
+  ```bash
+  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 
-chmod 700 get_helm.sh
+  chmod 700 get_helm.sh
 
-./get_helm.sh
-```
+  ./get_helm.sh
+  ```
+  Also, add the `bitnami` repo: 
+  ```helm
+  helm repo add bitnami https://charts.bitnami.com/bitnami
+  ```
 
-Also, add the `bitnami` repo: 
-```helm
-helm repo add bitnami https://charts.bitnami.com/bitnami
-```
+  So that we can search the repo with `helm search repo bitnami`.
 
-So that we can search the repo with `helm search repo bitnami`.
-
-## Continuous delivery: `flux`
-[Reference Documentation](https://fluxcd.io/flux/get-started/).
-### [Install the Flux CLI](https://fluxcd.io/flux/installation/#install-the-flux-cli)
-```sh
-curl -s https://fluxcd.io/install.sh | sudo bash
-git status
-git add .
-git commit -m "first commit"
-git push
-```
-### [Bootstrap Flux](https://fluxcd.io/flux/cmd/flux_bootstrap_gitlab/)
+- **Continuous delivery**: `flux`
+([Reference Documentation](https://fluxcd.io/flux/get-started/)).
+  -  [Install the Flux CLI](https://fluxcd.io/flux/installation/#install-the-flux-cli)
+      ```sh
+      curl -s https://fluxcd.io/install.sh | sudo bash
+      git status
+      git add .
+      git commit -m "first commit"
+      git push
+      ```
+  -  [Bootstrap Flux](https://fluxcd.io/flux/cmd/flux_bootstrap_gitlab/)
 Then setup the flux in the gitlab repo, by exporting the secret and running the command
-```sh
-flux bootstrap gitlab \
-  --owner=<group> \
-  --repository=<repository name> \
-  --branch=<main branch> \
-  --path=<path> \
-```
-## (optional) Monitoring: `k9s`
-Get the binary from [here](https://github.com/derailed/k9s/releases) looking for the proper dist; extract, and move to `/usr/local/bin/
+      ```sh
+      flux bootstrap gitlab \
+        --owner=<group> \
+        --repository=<repository name> \
+        --branch=<main branch> \
+        --path=<path> \
+      ```
+- **(optional) Monitoring**: `k9s`. <br/>
+  Get the binary from [here](https://github.com/derailed/k9s/releases) looking for the proper dist; extract, and move to `/usr/local/bin/`.
 
 # Setting up the CERN infrastructure
-## Creating the cluster on Openstack
+## Creating the Rucio cluster on Openstack
 Please refer to the [documentation](https://kubernetes.docs.cern.ch/docs/getting-started/).
+
+There are two kind of operative components within the cluster: the *master* and the *worker* nodes:
+
+- The master node hosts the Kubernetes control plane and manages the cluster, including scheduling and scaling applications and maintaining the state of the cluster. 
+- The worker nodes are responsible for running the containers and executing the workloads. 
+
 It is recommended to choose a master node with a sufficient amount of memory, e.g. `m2.large`.
 
 The minimum working configuration consists of 1 master node and 5 worker nodes.
 
 ## Create the database with DBOD
-1. Create a DataBase On Demand (DBOD) using the [DBOD dashboard](https://dbod.web.cern.ch/pages/dashboard);  `postgres` is highly recommended. 
-	- Have to wait for the db to be approved. Will get a mail and will receive admin credentials (to be changed) 
-2. https://github.com/vre-hub/vre/wiki/Software-components#2-database
-3. https://codimd.web.cern.ch/s/ZFIkp7PWG#2-Database-configuration
+Create a DataBase On Demand (DBOD) using the [DBOD dashboard](https://dbod.web.cern.ch/pages/dashboard);  `postgres` is highly recommended. 
+- The operator will have to wait for the db to be approved. Will get a mail and will receive admin credentials (to be changed) as shown below.
+
+Additional resources:
+- https://github.com/vre-hub/vre/wiki/Software-components#2-database
+- https://codimd.web.cern.ch/s/ZFIkp7PWG#2-Database-configuration
 
 Once the db creation is finalised, we can use `psql`, to set up the credentials. 
-In the folllowing example, the `rucioitdb` database is used:
+In the folllowing example, we chose the name `rucioitdb` for the database; in general, the naming of the DBOD instance is the operator's choice:
 ```sh
 dnf install postgresql-server
 
@@ -143,6 +151,10 @@ Please notice that in this case, the various credentials will have to be properl
 
 ## Creating a LanDB set
 
+>In order to [protect devices connected to the CERN network](https://security.web.cern.ch/services/en/firewall.shtml) from the regular attacks initiated from off-site, **incoming connections to all CERN devices are blocked** in the CERN outer perimeter firewall by default. In addition, source ports **0-1023/TCP and 0-1023/UDP (except 500/UDP) are blocked by default** for outgoing connections. Thus, users can initiate client applications (on so-called higher ports) but not expose server processes.
+
+To comply with the CERN security rules, we need to use the so-called LANDB sets, where the firewall has static openings automatically set up. Usually, such sets are used for redudancy or large, homogeneous services. These sets are either managed by the Computer Security Team or by the service managers themselves.
+
 Create a [new LanDB set](https://landb.cern.ch/portal/sets/create), following the recommendations: 
 1. Type: Interdomain
 2. Network Domain: GPN
@@ -153,13 +165,13 @@ OPENSTACK_PROJECT=cc059d57-6e98-4688-a3be-aae2b451868b,<your-openstack-project-I
 ```
 
 :::tip[LoadBalancer tip]
-The ID `cc059d57-6e98-4688-a3be-aae2b451868b` will allow the LoadBalancer as a Service (LBaaS) instance to [assign LBs to this set](https://clouddocs.web.cern.ch/networking/load_balancing.html#adding-load-balancer-to-landb-sets). In the specific case of the COMPASS rucio instance, the `openstack-landb-set-access` is being set as a member of the `rucio-it-admins` egroup.
+The ID `cc059d57-6e98-4688-a3be-aae2b451868b` will allow the LoadBalancer as a Service (LBaaS) instance to [assign LoadBalancers to this set](https://clouddocs.web.cern.ch/networking/load_balancing.html#adding-load-balancer-to-landb-sets). In the specific case of the COMPASS rucio instance, the `openstack-landb-set-access` is being set as a member of the `rucio-it-admins` egroup.
 Please refer to the LoadBalancers section for more information.
 :::
 ![[/img/landb-set-create.png]]
 
 # Populating the cluster
-There are four main components that need to be installed in oder to have the Rucio cluster operative:
+There are four main components that need to be installed in order to have the Rucio cluster operative:
 1. Rucio Servers
 2. Rucio Authentication
 3. Rucio Daemons
@@ -293,14 +305,12 @@ spec:
       namespace: rucio
 ```
 ## Rucio Servers
-[Reference Helm chart](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/sync/rucio-servers.yaml?ref_type=heads).
-
 >The Rucio servers are the backbone of the Rucio system. They handle all core functionalities including data management, rule-based data replication, data placement, and monitoring. The servers ensure the integrity and availability of data across various storage systems.
 
 In order to setup this service, four steps are needed:
-1. Produce the Helm chart
-2. Setup the LB
-3. Produce the certificates related to the landb-alias used
+1. Produce the Helm chart.
+2. Setup the LoadBalancers (LBs).
+3. Produce the certificates related to the `landb-alias` used.
 4. Add the certificates as secrets and mount them on the k8s pods.
 
 ### Produce the Helm chart
@@ -310,7 +320,7 @@ A few remarks:
 - The db secret is being mounted on `config.database.default` in order to allow the user to correctly access it.
 - `hostcert.pem`, `hostkey.pem` and `ca.pem` are automatically detected, so they don't need to be mounted. Nevertheless, the corresponding secrets must be created (see next sections).
 - The GridCA cert is needed to verify all the other certs. Please look at this [git commit](https://gitlab.cern.ch/rucio-it/flux-compass/-/commit/688da7285833dafd1bbe25469f35c6059d7af24f) used to set the `GridCA` file in `/etc/grid-security/certificate`.
-	- Together with this, is also necessary to setup the correspoding variable `RUCIO_CA_PATH`
+  - Together with this, is also necessary to setup the correspoding variable `RUCIO_CA_PATH`
 - The `RUCIO_SSL_PROTOCOL` variable must be explicitly set.
 
 Please notice that in order to have LBs produced, ***the Helm chart must be applied***. 
@@ -325,7 +335,7 @@ The minimal configuration for LBaaS is the following:
       protocol: TCP
       name: https
 ```
-Once the Helm chart is applied, it will trigger the `openstack-cloud-controller-manager` pod, that will automatically instantiate the requested LBs. 
+Once applied, it will trigger the `openstack-cloud-controller-manager` pod, that will automatically instantiate the requested LBs. 
 
 Please notice that in order to have LBs, one must request a quota change to the openstack project:
 ![[/img/get-lbs.png]]
@@ -344,19 +354,19 @@ openstack loadbalancer set --tag main-user="rucio-it-admins" <lb-ID>
 ```
 
 Now, the LB must be added to the LanDB set from the dashboard, under IP Addresses.
-To do that, first retrieve the `vip_address` of the LB:
+To do that, first retrieve the virtual IP address, `vip_address`, of the LB:
 ```sh
  openstack loadbalancer show <lb-ID> | grep vip_address
 ```
 
-Then, retrieve the pointer to the LB:
+Then, retrieve the pointer to the LB, for instance:
 
 ```sh
 host <vip_address>
 222.xx.xxx.xxx.in-addr.arpa domain name pointer lbaas-xxx4a6c2-xxxx-xxxx-xxxx-59489ffd7xxx.cern.ch.
 ```
-
-Finally, add `lbaas-...cern.ch` as an IP address in the LanDB set dashboard. 
+where `lbaas-xxx4a6c2-xxxx-xxxx-xxxx-59489ffd7xxx.cern.ch` represents the hostname of the LB.
+Finally, add `lbaas-...cern.ch` to the list of allowed IP addresses in the LanDB set dashboard. Either the hostname or the `vip_address` used before can be used in the search bar.
 
 ### Produce the certificates related to the landb-alias
 Read the [help page](https://ca.cern.ch/ca/Help/?kbid=021002) about Grid Host certs
@@ -364,14 +374,14 @@ Read the [help page](https://ca.cern.ch/ca/Help/?kbid=021002) about Grid Host ce
 Then, request a cert using [dedicated page](https://ca.cern.ch/ca/host/HostSelection.aspx?template=EE2Host&instructions=auto). 
 In the current example, a cert for `compass-rucio.cern.ch` (corresponding to the LB `landdb-alias`) was requested:
 
-> [!tip] Certs pro move
-> Create a [grid Host certificate](https://ca.cern.ch/ca/host/Request.aspx?template=ee2host) linked to both servers and auth domains. Use the SAN box add as many domains as you want. Then you'll have one cert to rule them all:
- 
+:::tip[Certs pro move]
+> Create a [grid Host certificate](https://ca.cern.ch/ca/host/Request.aspx?template=ee2host) linked to both servers and auth domains. If you need, you can specify Subject Alternative Names (SANs) for your certificate, in DNS format in the SAN box. Then you'll have one cert to rule them all:
 ![[/img/grid-host-certs.png]]
+:::
 
 #### Create the `host`, `key`, `ca` and `GridCA` files
 
-As recommended in the [documentation](https://ca.cern.ch/ca/Help/?kbid=024100), execute:
+As recommended in the [documentation](https://ca.cern.ch/ca/Help/?kbid=024100), extract the certificate (which contains the public key) and the private key, using:
 ```sh
 openssl pkcs12 -in compass-rucio.p12 -clcerts -nokeys -out hostcert.pem
 
@@ -380,9 +390,14 @@ openssl pkcs12 -in compass-rucio.p12 -nocerts -nodes -out hostkey.pem
 chmod 400 hostkey.pem 
 chmod 644 hostcert.pem 
 ```
+Notice that to avoid protecting the key with a passphrase, the `-nodes` option is specified. Moreover, the appropriate permissions (`400`: read by owner, `644`: read by anyone, written by owner) for the extracted files are set.
+
 These files have to be stored in the same path as described by the `RAW_SECRETS_SERVERS` variable used in the secrets creation.
 ##### Important information about `ca.pem` and `GridCA.pem`
 An additional file, `ca.pem` (i.e. `CERN-bundle.pem`) must be created. 
+
+`CERN-bundle.pem` is a standard CA bundle provided by CERN, containing multiple CA certificates that CERN trusts. This file is used to verify the authenticity of other certificates within a secure communication process (e.g., SSL/TLS).
+
 This file can be retrieved from lxplus:
 ```sh
 cp /etc/pki/tls/certs/CERN-bundle.pem compass-rucio-certs/servers/ca.pem
@@ -391,6 +406,7 @@ The same goes for the `GridCA.pem` file:
 ```sh
 cp /etc/grid-security/certificates/CERN-GridCA.pem compass-rucio-certs/servers/GridCA.pem
 ```
+This file is used for the Certification Authority issuing SHA-2 certificates for Grid usage (user, host and robot certificates), in compliance with [EUGridPMA](https://www.eugridpma.org/) policies.
 
 ### Add the certificates as secrets and mount them on the k8s pods
 Now it is possible to run something similar to the [servers script](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/scripts/rucio-servers-secret.sh?ref_type=heads) to add all the secrets to the cluster.
@@ -412,19 +428,35 @@ The flux sync can be triggered by ***git pushing*** the content of the `SECRET` 
 >The authentication component of Rucio is responsible for securely verifying the identities of users and services attempting to access the Rucio system. It ensures that only authorised entities can perform actions within the system.
 
 As for the servers, four steps are needed to deploy the authentication pod:
-1. Produce the Helm chart
-2. Setup the LB
-3. Produce the certificates related to the landb-alias used
+1. Produce the Helm chart.
+2. Setup the LB.
+3. Produce the certificates related to the `landb-alias` used.
 4. Add the certificates as secrets and mount them on the k8s pods.
 
-### The `httpd` configuration block
-This block maps the certificate to an account name.
-Setting up `x509` auth can be very tricky, please make sure that the [`grid_site_enabled`](https://github.com/rucio/containers/blob/b51bbceb5aab0a1e07d48845f295cbbb175bdcb9/server/rucio.conf.j2#L104) parameter is set on `True`. 
+Based on the reference Helm chart, we can add a few remarks:
 
-This enables the `auth/x509_proxy` endpoint!
+1. Explicitly mounting secrets for `hostcert`, `hostkey`, and `ca`, via `secretMounts`.
+2. The `httpd` configuration block:
+this block maps the certificate to an account name.
+Setting up `x509` auth can be very tricky, please make sure that the [`grid_site_enabled`](https://github.com/rucio/containers/blob/b51bbceb5aab0a1e07d48845f295cbbb175bdcb9/server/rucio.conf.j2#L104) parameter is set on `True`. <br/>
+This enables the `auth/x509_proxy` endpoint! <br/>
+The endpoint can be tested by executing 
+    ```sh
+    curl -k https://compass-rucio.cern.ch/auth/x509_proxy
+    ```
+
+Another important change is related to the LB attributes:
+```sh
+openstack loadbalancer set --tag landb-set="RUCIO-IT" <lb-ID>
+openstack loadbalancer set --tag landb-alias="compass-rucio-auth.cern.ch" <lb-ID>
+openstack loadbalancer set --description="compass-rucio-auth.cern.ch" <lb-ID>
+openstack loadbalancer set --tag main-user="rucio-it-admins" <lb-ID>
+```
+Here, the `landb-alias` attribute and the `description` have been changed with respect to servers. The choice of the alias must comply with the naming used while creating the host certificates.
 
 ## Rucio Daemons
-[Reference Helm chart](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/sync/rucio-daemons.yaml?ref_type=heads).
+[Reference Helm chart](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/sync/rucio-daemons.yaml?ref_type=heads).<br/>
+[Reference installation guide](./installing_daemons.md).
 
 >Daemons in Rucio are background processes that perform various maintenance and operational tasks. They ensure that the system operates smoothly and that data management policies are enforced continuously.
 
@@ -434,7 +466,7 @@ The description of the various daemons can be found in [here](https://rucio.gith
 > [FTS](https://cs3mesh4eosc.eu/technologies/file-transfer-service-fts) is an open source software for reliable and large-scale data transfers. It provides easy user interfaces for submitting transfers: Python CLI, Python Client, WebFTS and Web Monitoring. Checksums and retries are provided per transfer and it is a flexible tool due to its multiprotocol support (Webdav/https, GridFTP, xroot, SRM). It also allows parallel transfers optimization to get the most from network without burning the storages. 
 #### How does FTS work: users' x509 certs
 
-1. Users will have to pass their own x509 cert, and this is provided by the rucio config.
+1. Users will have to pass their own x509 cert by setting its path in their rucio config.
 2. Then, the x509 is used to map the cert to an identity that must be created within rucio, which corresponds to a user.
 #### How does FTS work: service x509 cert
 
@@ -449,6 +481,7 @@ Together with the service account, we also need the corresponding user <u>grid c
 ```
 
 #### How to connect to the proper VO?
+[Reference documentation](./multi_vo_rucio.md).
 
 :::tip[VO vs VOMS]
 The VOMS (Virtual Organization Membership Service) is an attribute authority which serves as central repository for VO (Virtual Organization) user authorization information
@@ -532,10 +565,10 @@ A diagram of how the proxy certificate is created and mounted on the daemons is 
 
 As for Servers and Authentication, it is necessary to get the following components running:
 - Dedicated LB: in the example, the domain associated with it is `compass-rucio-ui.cern.ch`
-	- This value will be used in the `httpd` block: 
-	```yaml
-	rucio_hostname: "compass-rucio-ui.cern.ch"
-	```
+  - This value will be used in the `httpd` block: 
+  ```yaml
+  rucio_hostname: "compass-rucio-ui.cern.ch"
+  ```
 - Grid Host certificates for the domain.
 
 The secrets are then mounted in the following block:
@@ -600,11 +633,11 @@ To export the created configuration, execute:
 export RUCIO_CONFIG=<path-to>/rucio.cfg
 ```
 Then test it via `rucio whoami`.
-### (optional) Creating a rucio client user pod in the cluster
+### Optional: creating a rucio client user pod in the cluster
 Look at the following commits to have an example of how to create a pod in the cluster that serves as u rucio user:
 - [Creating a rucio client root account](https://gitlab.cern.ch/rucio-it/flux-compass/-/commit/7579ea6fee12609a419639d3a6390cf1f9f9ee63)
 - [Creating secrets](https://gitlab.cern.ch/rucio-it/flux-compass/-/commit/7e3075f1161c5728ca7e7d485242e152975f8b7c)
-	- Creating secrets for username, password, and cert bundle (that HAS to be the `CERN-bundle.pem` that we find in ``/etc/pki/tls/certs/CERN-bundle.pem`)
+  - Creating secrets for username, password, and cert bundle (that HAS to be the `CERN-bundle.pem` that we find in ``/etc/pki/tls/certs/CERN-bundle.pem`)
 
 > [!tip] How to I pass a cert to a pod?
 > Create a secret for the cert, and then mount the secret to a specific path, using `volumeMounts`: take a look below
