@@ -326,7 +326,7 @@ A few remarks:
 Please notice that in order to have LBs produced, ***the Helm chart must be applied***. 
 This will come with several errors related to certificates, that will be fixed in the next steps.
 ### Setup the LB
-The minimal configuration for LBaaS is the following:
+The minimal configuration for LoadBalancers is the following:
 ```yaml
     service:
       type: LoadBalancer
@@ -335,7 +335,8 @@ The minimal configuration for LBaaS is the following:
       protocol: TCP
       name: https
 ```
-Once applied, it will trigger the `openstack-cloud-controller-manager` pod, that will automatically instantiate the requested LBs. 
+With respect to the [original Helm chart](https://github.com/rucio/helm-charts/blob/7f8a7d9fb9cbcd01d645f24523a173c7f53fb101/charts/rucio-server/values.yaml#L33), that employs the Kubernetes native [`ClusterIP`](https://kubernetes.io/docs/concepts/services-networking/cluster-ip-allocation/) service, this configuration exploits the CERN native LBaaS, and exposes it over HTTPS.
+This setup will trigger the `openstack-cloud-controller-manager` pod, and will automatically instantiate the requested LBs.
 
 Please notice that in order to have LBs, one must request a quota change to the openstack project:
 ![[/img/get-lbs.png]]
