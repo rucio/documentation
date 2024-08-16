@@ -268,7 +268,6 @@ Where:
 - `RAW_SECRETS_SERVERS` is the path in which the files that will be used as secrets are stored
 - `CONTROLLER_NS` is the namespace assigned to the secrets manager.
 - `CONTROLLER_NAME` is the name of the secrets manager controller.
-- `CONTROLLER_NAME` is the name of the secrets manager controller.
 - `RUCIO_NS` is the namespace related to Rucio (in the COMPASS case, it is called `rucio`).
 - `SECRETS_STORE` path to which the files containing the encrypted secrets will be stored. These files will be used by flux.
 
