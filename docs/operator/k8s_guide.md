@@ -55,7 +55,7 @@ Then setup the flux in the gitlab repo, by exporting the secret and running the 
 ## Creating the Rucio cluster on Openstack
 Please refer to the [documentation](https://kubernetes.docs.cern.ch/docs/getting-started/).
 
-There are two kind of operative components within the cluster: the *master* and the *worker* nodes:
+There are two kinds of operative components within the cluster: the *master* and the *worker* nodes:
 
 - The master node hosts the Kubernetes control plane and manages the cluster, including scheduling and scaling applications and maintaining the state of the cluster. 
 - The worker nodes are responsible for running the containers and executing the workloads. 
@@ -73,7 +73,7 @@ Additional resources:
 - https://codimd.web.cern.ch/s/ZFIkp7PWG#2-Database-configuration
 
 Once the db creation is finalised, we can use `psql`, to set up the credentials. 
-In the folllowing example, we chose the name `rucioitdb` for the database; in general, the naming of the DBOD instance is the operator's choice:
+In the following example, we chose the name `rucioitdb` for the database; in general, the naming of the DBOD instance is the operator's choice:
 ```sh
 dnf install postgresql-server
 
@@ -267,15 +267,15 @@ Where:
 - `HELM_RELEASE` is the name of the helm release that is being used.
 - `RAW_SECRETS_SERVERS` is the path in which the files that will be used as secrets are stored
 - `CONTROLLER_NS` is the namespace assigned to the secrets manager.
-- `CONTROLLER_NAME` is the name of to the secrets manager controller.
-- `CONTROLLER_NAME` is the name of to the secrets manager controller.
+- `CONTROLLER_NAME` is the name of the secrets manager controller.
+- `CONTROLLER_NAME` is the name of the secrets manager controller.
 - `RUCIO_NS` is the namespace related to Rucio (in the COMPASS case, it is called `rucio`).
 - `SECRETS_STORE` path to which the files containing the encrypted secrets will be stored. These files will be used by flux.
 
 `kubectl create secret generic` Creates a secret from the specific file that needs to be transposed to a secret. 
 
 Then `kubeseal` perform the encryption and the encoding, saving the secret to a file stored in `SECRETS_STORE`.
-Finally, `kubectl apply` applies the secret to the cluster. Please notice that is eventually also achieved via flux, by pushing the secret file to the repository.
+Finally, `kubectl apply` applies the secret to the cluster. Please notice that this is eventually also achieved via flux, by pushing the secret file to the repository.
 
 :::tip[Secret tip]
 IF `kubeseal` returns an error, it's probably because it's not installed:
@@ -494,7 +494,7 @@ In our case, looking at lxplus we have a file named `vo.compass.cern.ch-voms-com
 "vo.compass.cern.ch" "voms-compass-auth.cern.ch" "443" "/DC=ch/DC=cern/OU=computers/CN=compass-auth.cern.ch" "vo.compass.cern.ch" "24"
 ```
 
-SO we need to create a secret with the proper content and ***mount*** it in the `ftsRenewal` daemon, under `/etc/vomses`:
+So we need to create a secret with the proper content and ***mount*** it in the `ftsRenewal` daemon, under `/etc/vomses`:
 ```yaml
 - secretName: voms-compass
   mountPath: /etc/vomses/
