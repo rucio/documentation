@@ -37,7 +37,7 @@ board meetings.
 
 ### Composition of the Rucio Advisory Board
 
-| Community                           | Member                | Term                 |
+| Community                           | Representative        | Term                 |
 | ----------------------------------- | --------------------- | -------------------- |
 | [ATLAS](https://atlas.cern)         | David South, DESY     | 2023-Apr to 2025-Mar |
 | [Belle II](https://www.belle2.org)  | Cedric Serfon, BNL    | 2023-Jun to 2025-May |
@@ -46,9 +46,9 @@ board meetings.
 | [ESCAPE](https://projectescape.eu)  | Xavier Espinal, CERN  | 2023-Feb to 2025-Jan |
 | [SKAO](https://www.skao.int/)       | Rosie Bolton, SKAO    | 2024-Jun to 2026-May |
 
-### Former Rucio Advisory Board members
+### Former Rucio Advisory Board representatives
 
-| Community                           | Member                | Term                 |
+| Community                           | Representative        | Term                 |
 | ----------------------------------- | --------------------- | -------------------- |
 | [ATLAS](https://atlas.cern)         | David Cameron, U Oslo | 2023-Feb to 2023-Apr |
 | [Belle II](https://www.belle2.org)  | Paul Laycock, BNL     | 2023-Feb to 2023-Jun |
