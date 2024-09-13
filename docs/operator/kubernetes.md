@@ -19,10 +19,10 @@ The documentation of how this (specific) instance can be set up can be found in 
 
 ## Bootstrapping the database
 
-By default no database is initialized when a new Rucio installation is set up.
-With this guide you can bootstrap the database on a Kubernetes cluster.
+By default, no database is initialized when a new Rucio installation is set up.
+An init container can be used to bootstrap the database on a Kubernetes cluster:
 
-Create a `init-pod.yaml` file and apply it as specified in the readme of the [k8s_tutorial](https://github.com/rucio/k8s-tutorial/blob/master/README.md), replace the `<PASSWORD>` with the secret needed to connect to the database:
+1. Create a `init-pod.yaml` file as in the snippet below, replacing the `<PASSWORD>` with the secret needed to connect to the database:
 
 ```yaml
 apiVersion: v1
@@ -49,9 +49,17 @@ spec:
         - name: RUCIO_PRINT_CFG
           value: "true"
 ```
+
+2. Start the init pod:
+
 ```
 kubectl apply -f init-pod.yaml
 ```
+
+For more information:
+- [Rucio Kubernetes tutorial repository README](https://github.com/rucio/k8s-tutorial/blob/master/README.md)
+- [Init container documentation](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
+
 
 ## Upgrading the database
 
