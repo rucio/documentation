@@ -5,22 +5,22 @@ title: Setting up Rucio on Kubernetes
 
 ## Helm Charts
 
-Rucio has [helm charts](https://github.com/rucio/helm-charts) available to do a set up on kubernetes.
+Rucio has [helm charts](https://github.com/rucio/helm-charts) available to do a set up on Kubernetes.
 
 ## Tutorial
 
-A tutorial for using rucio with kubernetes can be found [here](https://github.com/rucio/k8s-tutorial/blob/master/README.md)
+A tutorial for using Rucio with Kubernetes can be found [here](https://github.com/rucio/k8s-tutorial/blob/master/README.md)
 
-## Example of kubernetes deployment
+## Example of Kubernetes deployment
 
-[KM3NeT](https://www.km3net.org) runs rucio on kubernetes via [flux](https://fluxcd.io).
-The configuration deployed on their rucio server can be found [here](https://git.km3net.de/rucio/rucio-deployment).
+[KM3NeT](https://www.km3net.org) runs Rucio on Kubernetes via [flux](https://fluxcd.io).
+The configuration deployed on their Rucio server can be found [here](https://git.km3net.de/rucio/rucio-deployment).
 The documentation of how this (specific) instance can be set up can be found in the [docs](https://git.km3net.de/rucio/rucio-deployment/-/blob/main/docs/installation.md)
 
 ## Bootstrapping the database
 
-By default no database is initialized when a new rucio installation is set up.
-With this guide you can bootstrap the database on a kubernetes cluster.
+By default no database is initialized when a new Rucio installation is set up.
+With this guide you can bootstrap the database on a Kubernetes cluster.
 
 Create a `init-pod.yaml` file and apply it as specified in the readme of the [k8s_tutorial](https://github.com/rucio/k8s-tutorial/blob/master/README.md), replace the `<PASSWORD>` with the secret needed to connect to the database:
 
@@ -55,7 +55,7 @@ kubectl apply -f init-pod.yaml
 
 ## Upgrading the database
 
-After the rucio version has been upgraded, there might be database changes
+After the Rucio version has been upgraded, there might be database changes
 that have to be done. These can be done on the `rucio-server` pod of the cluster and
 are performed with the [Alembic](http://alembic.zzzcomputing.com/en/latest/) tool.
 
