@@ -15,7 +15,7 @@ A tutorial for using Rucio with Kubernetes can be found [here](https://github.co
 
 [KM3NeT](https://www.km3net.org) runs Rucio on Kubernetes via [flux](https://fluxcd.io).
 The configuration deployed on their Rucio server can be found [here](https://git.km3net.de/rucio/rucio-deployment).
-The documentation of how this (specific) instance can be set up can be found in the [docs](https://git.km3net.de/rucio/rucio-deployment/-/blob/main/docs/installation.md)
+The documentation of how this (specific) instance can be set up can be found in the [docs](https://rucio.pages.km3net.de/rucio-documentation/installation/)
 
 ## Bootstrapping the database
 
