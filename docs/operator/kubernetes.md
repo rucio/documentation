@@ -3,9 +3,9 @@ id: kubernetes
 title: Setting up Rucio on Kubernetes
 ---
 
-## Helm Charts
+## Helm charts
 
-Rucio has [helm charts](https://github.com/rucio/helm-charts) available to do a set up on Kubernetes.
+Helm charts help you define, install, and upgrade Kubernetes applications. In [this repository](https://github.com/rucio/helm-charts), you can find Helm charts for the major different components of Rucio.
 
 ## Tutorial
 
