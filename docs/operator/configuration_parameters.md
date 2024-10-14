@@ -165,6 +165,9 @@ Rucio will look for the config in the following locations -
   - **webdav_transfer_mode**: _(Optional)_. Default: `None`.
 #### **core**
   - **default_mail_from**: _(Optional)_ Default email. Default: `None`.
+  - **geoip_ignore_error**: _(Optional)_ Whether to ignore errors when
+    downloading and parsing the GeoIP database. Otherwise exceptions will be
+    raised for errors. Boolean. Default: `True`.
   - **geoip_licence_key**: _(Optional)_ License key for GeoLite2. Get a free
     licence key at [the signup page](https://www.maxmind.com/en/geolite2/signup). Default:
     `NOLICENCE`.
