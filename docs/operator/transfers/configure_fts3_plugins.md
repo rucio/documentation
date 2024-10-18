@@ -89,13 +89,13 @@ ExperimentFTSPlugins("def")
 
 ## Configuration
 
-Configuration set in the `rucio.cfg`. To use a plugin (here named "policy_algorithm"),
+Configuration set in the `rucio.cfg`. To use a plugin (here named `policy_algorithm_1`),
 modify the config to include the below field.
  To use multiple plugins, their names can be listed to make each plugin algorithm run in sequence.
 
 ```
 [transfers]
-fts3tape_metadata_plugins = ["policy_algorithm"]
+fts3tape_metadata_plugins = policy_algorithm_1, policy_algorithm_2
 ```
 
 Size constraints can be set with the below. (Default of 4096)
@@ -122,7 +122,7 @@ To set up, update your configuration as follows:
 
 ```cfg
 [transfers]
-fts3tape_metadata_plugins = ["activity"]
+fts3tape_metadata_plugins = policy_algorithm
 
 [tape_priority]
 <Activity 1> = 100
