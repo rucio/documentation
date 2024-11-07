@@ -96,6 +96,12 @@ VSCode comes with a plethora of extensions that can significantly improve your d
 - Install [Docker](https://docs.docker.com/get-docker/)
 - Install [Docker Compose](https://docs.docker.com/compose/install/)
 
+**NOTE for Docker Compose installation**: Docker had abandened `docker-compose` command and moved to `docker compose`. To turn on `docker compose` support in `docker` command, please make sure you have installed `docker-compose-plugin` package from `docker-ce-stable` repository. The full command to install `docker` and `docker compose` should be:
+
+```bash
+yum install docker-ce docker-compose-plugin
+```
+
 ### SSL Certificates
 
 If you would like to debug the rucio webui and x509 authentication capabilities of the rucio server, you will need to obtain SSL certificates for your development environment. For remote VMs, you can request them from your IT department or you can use letsencrypt to generate a certificate. For local development machines, you can use [mkcert](https://github.com/FiloSottile/mkcert) to generate a certificate.
