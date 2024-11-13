@@ -36,4 +36,3 @@ The deletion service supports two different modes: greedy and non-greedy.
 ![Undertaker chart](/img/undertaker.png)
 
 ![Reaper chart](/img/reaper.png)
-
