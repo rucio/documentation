@@ -24,18 +24,6 @@ To upgrade via pip:
 pip install --upgrade rucio-clients
 ```
 
-## Install via pip and virtualenv
-
-To install the Rucio clients in an isolated `virtualenv` environment:
-
-```bash
-wget --no-check-certificate https://raw.github.com/pypa/virtualenv/master/virtualenv.py
-python virtualenv.py rucio
-source rucio/bin/activate.csh
-pip install rucio-clients
-export RUCIO_HOME=`pwd`/rucio/
-```
-
 ## Installing using setup.py
 
 Otherwise, you can install from the distribution using the `setup.py`
