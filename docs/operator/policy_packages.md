@@ -30,33 +30,32 @@ is suffixed with the VO name (for example, `package-vo1` or
 
 ## Creating a policy package
 
-The structure of a policy package is very simple. It contains the
+The structure of a policy package is very simple. It can contain the
 following:
 
 - A `permission.py` module implementing permission
-  customisations.
-- A `schema.py` module implementing schema customisations.
+  customisations (optional).
+- A `schema.py` module implementing schema customisations (optional).
 - An `__init__.py` file that can optionally return a dictionary of
   algorithms provided by the package.
 - It should also contain a SUPPORTED_VERSION field.
 
-The easiest way to create the `permission.py` and
-`schema.py` modules is to modify the generic versions from
-the Rucio codebase. These can be found in
-`lib/rucio/core/permission/generic.py` and
+The `permission.py` and `schema.py` modules are optional; an experiment
+that does not need to customise these modules can omit one or both of
+them from the policy package and the Rucio generic versions will be
+used instead. If these modules are required, the easiest way to create
+them is to modify the generic versions from the Rucio codebase. These
+can be found in `lib/rucio/core/permission/generic.py` and
 `lib/rucio/common/schema/generic.py` respectively.
 
-In the `has_permission` function you may wish to default to
-the generic permission checks if your experiment does not need specific
-functionality for a particular action, or so that new actions added to
-Rucio will work without your policy package having to be updated. This
-fallback can be implemented with code similar to the following:
+The `has_permission` function in the permission module may return `None`
+if your experiment does not implement a custom permission check for a
+particular action. In this case, the generic permission module will be
+called for this action instead.
 
-```python
-import rucio.core.permission.generic
-if action not in perm:
-    return rucio.core.permission.generic.has_permission(issuer, action, kwargs)
-```
+The schema module of a policy package does not need to define all of
+the schema values. Any missing ones will automatically be loaded from
+the generic schema module instead.
 
 `__init__.py` should include a
 `SUPPORTED_VERSION` field indicating the major version(s) of Rucio
