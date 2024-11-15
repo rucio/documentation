@@ -59,10 +59,15 @@ module.exports={
           "position": "left"
         },
         {
+          "to": "bin/rucio",
+          "label": "Command Line Client",
+          "position": "left"
+        }, 
+        {
           "to": "pathname:///html/rest_api_doc.html",
           "label": "REST API",
           "position": "left"
-        }
+        }, 
       ]
     },
     "footer": {
