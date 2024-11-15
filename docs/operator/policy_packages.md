@@ -90,15 +90,23 @@ Example:
 
 ```python
 def get_algorithms():
-    return { 'non_deterministic_pfn':
-             { 'voname_non_deterministic_pfn': construct_non_deterministic_pfn_voname },
-         'lfn2pfn':
-         { 'voname_lfn2pfn': lfn2pfn_voname },
-         'scope':
-         { 'voname_extract_scope': extract_scope_voname } }
+    from vo_policy_package.non_deterministic_pfn import VONonDeterministicPFNAlgorithm
+    from vo_policy_package.lfn2pfn import VORSEDeterministicTranslation
+    from vo_policy_package.scope import VOScopeExtractionAlgorithm
+    return { 
+      'non_deterministic_pfn': { 
+        'voname_non_deterministic_pfn': VONonDeterministicPFNAlgorithm.construct_non_deterministic_pfn_voname 
+        },
+      'lfn2pfn': { 
+        'voname_lfn2pfn': VORSEDeterministicTranslation.lfn2pfn_voname 
+        },
+      'scope': { 
+        'voname_extract_scope': VOScopeExtractionAlgorithm.extract_scope_voname 
+        } 
+      }
 ```
 
-In all cases the names used to register the functions must be prefixed
+In all cases the names used to register the functions (e.g. `voname_extract_scope`) must be prefixed
 with the name of the virtual organisation that owns the policy package,
 to avoid naming conflicts on multi-VO Rucio installations.
 
