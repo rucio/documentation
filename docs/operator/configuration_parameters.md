@@ -378,7 +378,7 @@ Rucio will look for the config in the following locations -
     LFN2PFN translation for this server. Default: `hash`.
   - **package** <!--??-->
   - **package-*VO*** <!--??-->
-  - **permission**: Same as `policy/permission`.
+  - **permission**: Same as `permission/policy`.
   - **schema** <!--??-->
   - **scratchdisk_lifetime**: _(Optional)_ Integer. Default: `14`.
   - **support**: _(Optional)_ Contact information.
