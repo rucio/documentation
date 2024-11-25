@@ -49,6 +49,9 @@ server.
 
 | Version         | Code name                                 | Release date   | Supported until      |
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
+| 39              | Grand Theft Donkey                        | _2025-11_      | _2026-03_            |
+| 38 LTS          | Donkirk                                   | _2025-07       | _at least 2027-07_   |
+| 37              | Dungeons & Donkeys                        | _2025-03_      | _2025-07_            |
 | 36              | Donkey Unchained                          | _2024-11_      | _2025-03_            |
 | **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | _at least 2026-07_   |
 | 34              | Donkey Potter and the Data Cache          | 2024-03        | 2024-07              |
