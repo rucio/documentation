@@ -4,11 +4,22 @@ set -e
 
 echo "Generating the Client Api Docs..."
 
-#pip install --upgrade "pydoc-markdown>3" &> /dev/null
-pip install --upgrade mkdocs mkdocs-gen-files mkdocstrings-python mkdocs-material
+pip install --upgrade "pydoc-markdown>3" &> /dev/null
 
 mkdir -p /auto_generated/client_api
+for f in rucio/lib/rucio/client/*.py; do
+    if [[ $f =~ "__init__" ]]; then
+	continue
+    fi
 
-mkdocs build --clean --no-directory-urls
+    executable_name=$(basename "$f" ".py")
 
-cp -r site /auto_generated/
+    config="
+processors:
+  - type: rucio_processor.RucioProcessor
+renderer:
+  type: rucio_renderer.RucioRenderer"
+    content=$(PYTHONPATH=. pydoc-markdown -I rucio/lib/rucio/client -m "$executable_name" "$config")
+
+    echo "$content" > /auto_generated/client_api/"$executable_name".md
+done
