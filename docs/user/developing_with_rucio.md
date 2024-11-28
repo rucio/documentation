@@ -18,7 +18,7 @@ rucio_client.ping()
 ```
 
 The methods are separated per resource type. The API in full can be viewed
-[here](pathname:///html/site/client.html).
+[here](/client_api/accountclient).
 
 ### Errors and Exceptions
 
