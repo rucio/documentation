@@ -2,98 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/accountclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/accountlimitclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/baseclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/client.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/configclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/credentialclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/didclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/diracclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/downloadclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/exportclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/fileclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/importclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/lifetimeclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/lockclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/metaconventionsclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/pingclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/replicaclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/requestclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/rseclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/ruleclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/scopeclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/subscriptionclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/touchclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/auto_generated/client_api/uploadclient.html</loc>
-         <lastmod>2024-11-27</lastmod>
+         <lastmod>2024-11-28</lastmod>
     </url>
 </urlset>
