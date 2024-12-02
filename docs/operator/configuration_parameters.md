@@ -108,9 +108,9 @@ Rucio will look for the config in the following locations -
 #### **c3po-workload**
   - **panda_url**: URL for PanDA. Example:
     `http://bigpanda.cern.ch/jobs/?category=analysis&jobstatus=running`.
-  - **window**: <!--??--> Integer.
+  - **window**: Integer.
 #### **c3po-network-metrics**
-  - **prefix**: <!--??-->
+  - **prefix**:
   - **redis_host**: URL of the Redis database.
   - **redis_port**: Port of the Redis database defined in `redis_host`.
 #### **cache**
@@ -119,7 +119,7 @@ Rucio will look for the config in the following locations -
     cache provider for auth tokens. If False, use a private in-memory cache.
     Default: `False`
 #### **common**
-  - **extract_scope**: _(Optional)_ <!--??--> Default: `atlas`.
+  - **extract_scope**: _(Optional)_ Default: `def`.
   - **logdir**: Path of the directory for logs. Contains `auditor.log`.
   - **logformat**: _(Optional)_ Formatter of the log. See [the logging formatter documentation](https://docs.python.org/3/library/logging.html#logging.Formatter)
   - **loglevel**: _(Optional)_. Set the root logger level to the specified
@@ -130,7 +130,7 @@ Rucio will look for the config in the following locations -
     Default: `DEBUG`. For `rucio-auditor` default is `WARNING`.
   - **mailtemplatedir**: _(Optional)_ Path of the folder with mail templates
     (.tmpl). Example: `/opt/rucio/etc/mail_templates`.
-  - **multi_vo**: _(Optional)_ <!--??--> Default: `False`.
+  - **multi_vo**: _(Optional)_ Default: `False`.
 #### **conveyor**
   - **allow_user_oidc_tokens**: _(Optional)_ Boolean. Default: `False`.
   - **bring_online**: Integer, bring online timeout. Default: `43200`.
@@ -138,13 +138,13 @@ Rucio will look for the config in the following locations -
   - **cache_time**: _(Optional)_ Integer, expiration time in seconds passed to
     the dogpile system. Default: `600`.
   - **failover_scheme**: Failover schemes. Default: `None`.
-  - **filter_transfertool**: _(Optional)_ <!--??--> Default: `None`.
+  - **filter_transfertool**: _(Optional)_ Default: `None`.
   - **ftshosts**: URL of the [File Transfer Service
     (FTS)](https://fts.web.cern.ch/) hosts (separated by commas). Example:
     `https://fts3-pilot.cern.ch:8446, https://fts3-pilot.cern.ch:8446`. <!--NOT
     USED IN CODE-->
-  - **globus_auth_app**: _(Optional)_ <!--??--> Default: `None`.
-  - **max_time_in_queue**: _(Optional)_ <!--??--> (separated by
+  - **globus_auth_app**: _(Optional)_ Default: `None`.
+  - **max_time_in_queue**: _(Optional)_ (separated by
     commas). Default: `{}`.
   - **poll_timeout**: Float, timeout. Default: `None`.
   - **queue_mode**: _(Optional)_ Values: `{'strict', 'default'}`Default:
@@ -154,13 +154,13 @@ Rucio will look for the config in the following locations -
   - **scheme**: _(Optional)_ Schemes to process (separated by commas). Default:
     `None`.
   - **submit_timeout**: _(Optional)_ Timeout. Default: `None`.
-  - **transfertool**: _(Optional)_ <!--??--> Default: `None`.
+  - **transfertool**: _(Optional)_ Default: `None`.
   - **transfertype**: _(Optional)_. Values: `{bulk, single}`. Default: `single`.
   - **usercert**: Path to the certificate for the FTS3 implementation of a Rucio
     transfertool. Default: `None`.
-  - **user_activities**: _(Optional)_ <!--??--> Default: `['user',
+  - **user_activities**: _(Optional)_ Default: `['user',
     'user_test']`.
-  - **user_transfers**: _(Optional)_ <!--??--> Default: `None`.
+  - **user_transfers**: _(Optional)_ Default: `None`.
   - **using_memcache**: _(Optional)_ Boolean. Default: `False`.
   - **webdav_transfer_mode**: _(Optional)_. Default: `None`.
 #### **core**
@@ -240,7 +240,7 @@ Rucio will look for the config in the following locations -
     See [sqlalchemy documentation](https://docs.sqlalchemy.org/en/14/core/engines.html#sqlalchemy.create_engine.params.poolclass)
   - **schema**: _(Optional)_ Schema to be applied to a database, if not set in
     config, try to create automatically.
-  - **use_threadlocal** <!--??-->
+  - **use_threadlocal**
 #### **download**
   - **transfer_speed_timeout**: _(Optional)_ Minimum allowed average transfer
     speed (in KBps). Default: `500`. Used to dynamically compute the timeout if
@@ -280,7 +280,7 @@ Rucio will look for the config in the following locations -
 #### **logging**
   - ***CFG_OPTION***: _(Optional)_ ?. Default: `None`.
 #### **messaging-cache**
-  - **account** <!--??-->
+  - **account**
   - **broker_virtual_host**: _(Optional)_ ?
   - **brokers**: Default message broker name for `rucio-cache-client`. Ignored
     if `rucio-cache-client` executed with `--broker`.
@@ -312,12 +312,12 @@ Rucio will look for the config in the following locations -
     not set. No default.
   - **voname** <!--NOT USED IN CODE-->
 #### **messaging-hermes**
-  - **broker_virtual_host**: _(Optional)_ <!--??--> No default.
+  - **broker_virtual_host**: _(Optional)_ No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **destination**: Name of the destination topic. Example:
     `/topic/rucio.events`.
-  - **email_from**: <!--??--> Example: `Rucio <spamspamspam@cern.ch>`.
-  - **email_test**: <!--??--> Example: `spamspamspam@cern.ch`.
+  - **email_from**: Example: `Rucio <spamspamspam@cern.ch>`.
+  - **email_test**: Example: `spamspamspam@cern.ch`.
   - **nonssl_port**: _(Optional)_ Port of the broker if `use_ssl` is not set.
   - **password**: _(Optional)_ Password of the `username`. Mandatory if
     `use_ssl` is not set. No default.
@@ -364,10 +364,10 @@ Rucio will look for the config in the following locations -
 #### **oidc**
   - **admin_issuer**: Example: `wlcg`.
   - **default_jwt_refresh_lifetime**: _(Optional)_ Integer. Default: `96`.
-  - **exchange_grant_type**: _(Optional)_ <!--??--> Default:
+  - **exchange_grant_type**: _(Optional)_ Default:
     `urn:ietf:params:oauth:grant-type:token-exchange`.
-  - **expected_audience**: _(Optional)_ <!--??--> Default: `rucio`.
-  - **expected_scope**: _(Optional)_ <!--??--> Default: `openid profile`.
+  - **expected_audience**: _(Optional)_ Default: `rucio`.
+  - **expected_scope**: _(Optional)_ Default: `openid profile`.
   - **idpsecrets**: Path of the idpsecrets JSON. Example:
     `/opt/rucio/etc/idpsecrets.json`.
 #### **permission**
@@ -376,10 +376,10 @@ Rucio will look for the config in the following locations -
 #### **policy**
   - **lfn2pfn_algorithm_default**: _(Optional)_ Default algorithm name for
     LFN2PFN translation for this server. Default: `hash`.
-  - **package** <!--??-->
-  - **package-*VO*** <!--??-->
-  - **permission**: Same as `permission/policy`.
-  - **schema** <!--??-->
+  - **package**
+  - **package-*VO***
+  - **permission**: Same as `policy/permission`.
+  - **schema**
   - **scratchdisk_lifetime**: _(Optional)_ Integer. Default: `14`.
   - **support**: _(Optional)_ Contact information.
   - **support_rucio**: _(Optional)_ Rucio contact information. Default:
@@ -394,7 +394,7 @@ Rucio will look for the config in the following locations -
     `/opt/rucio/etc/web/usercert.pem`
   - **userkey**: Path of the user certificate key for tests.
 #### **trace**
-  - **broker_virtual_host**: _(Optional)_ <!--??--> No default.
+  - **broker_virtual_host**: _(Optional)_ No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **logformat**: _(Optional)_ Formatter of the log. See [logging documentation](https://docs.python.org/3/library/logging.html#logging.Formatter).
   - **loglevel**: _(Optional)_ Set the root logger level to the specified level.
@@ -408,7 +408,7 @@ Rucio will look for the config in the following locations -
     `/var/log/rucio/trace`.
   - **username**: Username of the broker.
 #### **tracer-kronos**
-  - **broker_virtual_host**: _(Optional)_ <!--??--> No default.
+  - **broker_virtual_host**: _(Optional)_ No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
   - **chunksize**: Integer
   - **excluded_usrdns**: Separated by commas. Example:
@@ -461,19 +461,19 @@ a setting already specified in the Configuration File.
 #### **automatix**
   - **account**: _(Optional)_ Account to use. Default: `root`.
   - **dataset_lifetime**: _(Optional)_. Default: `0`.
-  - **did_prefix**: _(Optional)_ <!--??--> Default: ` `.
+  - **did_prefix**: _(Optional)_ Default: ` `.
   - ***DIDTYPE*\_pattern**: _(Optional)_ Separated by `separator` char. No
     default.
   - **rses**: Separated by commas.
   - **scope**: _(Optional)_ Default: `test`.
   - **separator**: _(Optional)_ Separator char. No default.
-  - **set_metadata**: _(Optional)_ <!--??--> Default: `True`.
+  - **set_metadata**: _(Optional)_ Default: `True`.
   - **sites**: Separated by commas _(to be deprecated, please use `rses`)_.
   - **sleep_time**: _(Optional)_ Integer. Default: `30`.
 #### **clientcachemap**
-  - ***client_location['site']*** <!--??-->
+  - ***client_location['site']***
 #### **conveyor**
-  - **activity-source-strategy**: _(Optional)_ <!--??--> Default: `{}`.
+  - **activity-source-strategy**: _(Optional)_ Default: `{}`.
   - **default-source-strategy**: _(Optional)_ Default: `orderly`.
 #### **hermes**
   - **services_list**: List of services separated by commas. Values: `{activemq,
@@ -497,7 +497,7 @@ a setting already specified in the Configuration File.
     `None`.
   - **nb_workers_by_hostname**: _(Optional)_ Integer. Default: `5`.
 #### **root-proxy-internal**
-  - ***client_location['site']*** <!--??-->
+  - ***client_location['site']***
 #### **rules**
   - **apply_rule_max_partition_size**: _(Optional)_ Integer . Default: `2000`.
   - **force_epoch_when_detach**: _(Optional)_ Purge setting of the
@@ -522,46 +522,83 @@ a setting already specified in the Configuration File.
 #### **vo-map**
   - ***VO***: _(Optional)_ Internal short VO name. No default.
 
-## RSE attributes
-The RSE Attributes are set separately using `rucio.RSEClient` or `rucio-admin`,
-and only contains information about the specific RSE's for the Rucio instance.
+## RSE settings
+The RSE settings are set separately using `rucio.RSEClient.update_rse` or `rucio rse update`, and specifies RSE configuration used by the Rucio instance.
+Mutable settings are `deterministic`, `rse_type`, `staging_area`, `volatile`, `qos_class`, `availability_delete`, `availability_read`, `availability_write`, `city`, `country_name`, `latitude`, `longitude`, `region_code`, and `time_zone`.
 Read more about RSEs [here](../started/concepts/rucio_storage_element.md)
 and how to set them up [here](./configuration.md#creating-new-rses).
-The RSE Attributes are set seperately using `rucio.RSEClient` or `rucio-admin`,
+
+- **availability_delete**: Boolean. Control if this RSE allows deletions by the Reaper daemon using any protocol. Default: `True`.
+- **availability_read**: Boolean. Control if this RSE allows reads using any protocol. Default: `True`.
+- **availability_write**: Boolean. Control if this RSE allows writes using any protocol. Default: `True`.
+- **credentials**: Dictonary[String, Any]: Specify token credentials used for accessing this RSE if it is in a commercial cloud. No default.
+- **delete_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for deletions. Default: `1`.
+- **deterministic**: Boolean: Controls if the RSE is allowed to generate paths based solely on the DID (scope:filename). More info about non-deterministic RSEs [here](https://rucio.github.io/documentation/started/concepts/replica_workflow/#replica-paths-on-storage). Default: `True`.
+- **domain**: List[String]: Specifies the locations this RSE may be accessed by clients from. Cannot be changed.
+- **id**: String: Identification string of the RSE. Cannot be changed.
+- **lfn2pfn_algorithm**: String: Name of the algorithm in the configured policy package to be used for creating replica paths. Cannot be changed. If no lfn2pfn_algorithm attribute is set, then the setting defaults to lfn2pfn_algorithm_default in the configured policy package. Default: `default`.
+- **qos_class**: String: No functionality in modern Rucio. No default.
+- **read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for reads. Default: `1`.
+- **rse**: String: The name of the Rucio Storage Element as given at creation time. Cannot be changed.
+- **rse_type**: String: Specify `DISK` or `TAPE` for control of [QoS](https://rucio.github.io/documentation/operator/qos_rse_config). Default: `DISK`.
+- **sign_url**: Optional[str]. Enable cloud support for this storage element. No default.
+- **staging_area**: Boolean.Specify if this RSE is a disk buffer to a tertiary storage backend, subject to additional constraints (specifically a lifetime for rules on this RSE must be defined). Default: `False`.
+- **third_party_copy_read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for TPC reads. Default `1`.
+- **third_party_copy_write_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for TPC writes. Default `1`.
+- **verify_checksum**: Boolean: Specifies if the RSE has support for checksum verification. Default: `True`.
+- **volatile**: Boolean. Specifies if the RSE is cache storage. Subject to volatile RSE retrictions detailed [here](https://rucio.github.io/documentation/operator/qos_rse_config). Default: `False`.
+- **write_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for writes. Default: `1`.
+
+## RSE attributes
+The RSE Attributes are set separately using `rucio.RSEClient.add_rse_attribute` or `rucio rse attribute add`.
 and only contains information about the specific RSE's for the Rucio instance.
 Read more about RSEs [here](../started/concepts/rucio_storage_element.md)
 and how to set them up [here](./configuration.md#creating-new-rses).
 
-- **associated_sites**: <!--??--> Separated by commas. Default: `None`.
-- **auto_approve_bytes**: Auto Approve Limit. Example: `500GB`. No default.
-- **auto_approve_files**: <!--??--> No default.
-- **available_for_multihop**: Boolean. If True, allow to use this RSE as an
-  intermediate hop in a multi-hop transfer. Default: `False`.
-- **block_manual_approval**: <!--??--> Boolean. Default: `False`.
-- **country**: <!--??--> No default.
-- **greedyDeletion**: <!--??--> Boolean. Default: `False`.
-- **hop_penalty**: <!--??--> Integer. Cost of passing via this RSE in multi-hop
-  transfers. Overrides the global `transfers/hop_penalty` configuration
-  value for this particular RSE. Has only meaning if `available_for_multihop`
-  attribute is True on the RSE. No default value.
-- **istape**: <!--??--> Boolean. Default: `False`.
-- **mock**: <!--??--> Boolean. Default: `False`.
-- **naming_convention**: <!--??--> Default: `None`.
-- **physgroup**: <!--??--> Default: ` `.
-- **quota_approvers**: <!--??--> Separated by commas. Default: `None`.
-- **restricted_read** <!--??--> Boolean. If True, only allow transfers
-  from this RSE if started by an account with admin privileges.
-  Default: `False`
-- **restricted_write** <!--??--> Boolean. Same as `restricted_read`, but for
-  transfers towards this RSE. Default: `False`
-- **rule_approvers**: <!--??--> Separated by commas. No default.
-- **rule_deleters**: <!--??--> Separated by commas. No default.
-- **site** <!--??-->
-- **skip_upload_stat**: <!--??--> Boolean. Default: `False`.
-- **source_for_total_space**: <!--??--> Default: `storage`.
-- **source_for_used_space**: <!--??--> Default: `storage`.
-- **staging_buffer** <!--??-->
+- **associated_sites**: String. Separated by commas. Used for chaining of subscriptions so that transfers to one RSE will also be mirrored to associated_sites. No default.
+- **archive_timeout**: Integer: Only used for transfers with a tape destination. Controls the number of seconds the FTS3 transfer manager will wait for the tape archival of the file to go `FAILED` or `FINISHED`. No default.
+- **auto_approve_bytes**: String: Upper limit for the size in bytes of a DID for which rules will be automatically approved. Example: `500GB`. No default.
+- **auto_approve_files**: Integer: Upper limit for the number of files covered by a rule which will be automatically approved. No default.
+- **available_for_multihop**:  Boolean. If True, allow to use this RSE as an intermediate hop in a multi-hop transfer. Default: `False`.
+- **block_manual_approval**: Boolean. Disable manual rule approval for this RSE. Default: `False`.
+- **bittorrent_tracker_addr**: String. Used to configure the URL of the bittorrent tracker API when using the torrent transfer manager. No Default.
+- **checksum_key**: String. Used to specify an alternate RSE attribute to search for supported checksums beyond those with global support (ADLER32, MD5). Default: `supported_checksums`.
+- **country**: String. Used for country level granularity of RSE selectors. No default.
+- **decommission**: Boolean. Indicates to the RSE Decommissioning Daemon that this RSE is to be decommissioned. Default: `False`.
+- **driver_name_rse_attribute**: String. Used to specify alternate drivers when using the Bittorrent transfer manager. Default: `bittorrent_driver`.
+- **fts**: String. Specify the REST API URL of the FTS3 transfer manager. No default.
+- **greedyDeletion**: Boolean. Allow files without a rule locking them to be deleted by a Reaper Daemon. Default behavior only marks a file for deletion when there is no space on an RSE for a new required file. Default: `False`.
+- **group_by_rse_attribute**: String. Control the RSE attribute (such as `country`) which transfer source RSEs will be grouped by when determining an appopriate transfer source. Default: `UNKNOWN`.
+- **globus_endpoint_id**: String. Specify the REST API URL of the Globus transfer manager. No default.
+- **hop_penalty**: Integer. Usage cost of this RSE as an intermediate in [multihop transfers](https://rucio.github.io/documentation/operator/transfers/transfers-overview). Overrides the global `transfers/hop_penalty` configuration for this particular RSE.
+ Requires `available_for_multihop` attribute is True on the RSE. No default. 
+- **is_object_store**: Boolean. Control the auditor daemon's behavior. Instead of dumping all files, list them by date. Default: `False`.
+- **istape**: Boolean. Default: `False`.
+- **lfn2pfn_algorithm**: String. Name of the algorithm to be used for generating paths to files on the storage. Must be defined in the configured policy package. Default: `default`.
+- **mock**: Boolean. Default: `False`.
+- **multihop_tombstone_delay**: Integer. Delay before a multihop transfer intermediate rule is to be deleted. Defined in seconds. Default: `7200`.
+- **naming_convention**: String. Name of the algorithm in the configured policy package which is to be used to validate DIDs on this RSE. Default: `None`.
+- **oidc_support**: Boolean. Specifies that the RSE supports OIDC authentication for FTS3 transfers. Default: `False`.
+- **overwrite_when_only_on_disk**: Boolean. On a `TAPE` RSE, controls if a file can be overwritten. A file may only be overwritten if it has not yet been written to the tape backend. Default: `False`.
+- **overwrite**: Boolean. Controls if a file can be overwritten on the RSE. Default: `True` for `rse_type: DISK`. `False` for `rse_type: TAPE`. 
+- **physgroup**: String. Used for grouping of rules by CERN experiments. Default: ` `.
+- **qbittorrent_management_address**: String. Used to configure the URL of the bittorrent management API when using the torrent transfer manager. No Default.
+- **quota_approvers**: List[string]. List of Rucio users separated by commas. Only used in the permission layer of the policy package, and likely specific to the CERN experiments only. Default: `None`.
+- **restricted_read**: Boolean. If True, only allow transfers FROM this RSE if started by an account with admin privileges. Default: `False`
+- **restricted_write**: Boolean. If True, only allow transfers TO this RSE if started by an account with admin privileges. Default: `False`
+- **rule_approvers**: List[string]. List of Rucio users separated by commas which will be notified by email to approve rules on this RSE. Default: `None`.
+- **rule_deleters**: List[string]. List of Rucio users separated by commas. Only used in the permission layer of the policy package, and likely specific to the CERN experiments only. Default: `None`.
+- **sign_url**: Optional[str]. Controls if URLs for uploads and transfers are to be cryptographically signed by an external service. No default.
+- **simulate_multirange** Integer. Control the number of connections for multirange byte requests on commercial cloud storage. Multirange is not supported on S3. No default.
+- **site**: String. Used to determine if downloads/transfers are local or wide area network. No default.
+- **skip_upload_stat**: Boolean. Disables the use of a GFAL `stat` when calling `rucio upload` for this RSE. Default: `False`.
+- **source_for_total_space**: String. Used to specify where Rucio should obtain storage capacity information from. Default: `storage`.
+- **source_for_used_space**: String. Used to specify where Rucio should obtain storage usage information from. Default: `storage`.
+- **staging_buffer**: String. Used with `TAPE` RSEs to specify to which RSE a file on tape should be transferred to as a disk buffer. Destination RSE should have `staging_area: True`. No default.
+- **staging_required**: Boolean. Duplicates the `rse_type` RSE setting. Specifies that files on this RSE will require staging from high-latency storage. Default `False`.
+- **strict_copy**: Boolean. Instructs the transfer manager to ONLY copy the file, disabling all validation checks such as `PROPFIND` and checksumming. Default `False`.
+- **s3_url_style**: String. For S3 storage elements [specify](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) `path` or `host`. No default.
 - **tier**: Datacenter TIER. Integer (from 1 to 4). No default.
-- **type**: <!--??--> Values: `{LOCALGROUPDISK, LOCALGROUPTAPE, GROUPDISK,
-  SCRATCHDISK, MOCK, TEST, DATADISK}`. Default: ` `.
-- **verify_checksum**: Boolean. No default.
+- **type**: Values: `{LOCALGROUPDISK, LOCALGROUPTAPE, GROUPDISK, SCRATCHDISK, MOCK, TEST, DATADISK}`. Default: ` `.
+- **use_ipv4**: Boolean. Force the transfer manager to use IPv4 for transfers to this RSE. Default `False`.
+- **verify_checksum**: Boolean. Control if checksum is to be queried on transfer source and destination to confirm successful transfers. Default: `True`
