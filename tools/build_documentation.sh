@@ -35,7 +35,7 @@ mkdir -p "$SCRIPT_DIR"/../website/static/html/
 
 cp -r "$AUTO_GENERATED"/rest_api_doc_spec.yaml "$SCRIPT_DIR"/../website/static/yaml/
 cp -r "$AUTO_GENERATED"/rest_api_doc.html "$SCRIPT_DIR"/../website/static/html/
-cp -r "$AUTO_GENERATED"/client_api "$DOCS"
+cp -r "$AUTO_GENERATED"/site "$SCRIPT_DIR"/../website/static/html/
 cp -r "$AUTO_GENERATED"/bin "$DOCS"
 
 
