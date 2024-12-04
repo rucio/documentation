@@ -55,7 +55,7 @@ class RucioRenderer(Renderer):
 
     def render(self, modules: t.List[docspec.Module]) -> None:
         client_class = get_first_client_class(modules)
-        assert client_class, "Client Class should not be empty"
+        assert client_class, f"Client Class should not be empty, error with {modules[0].name}"
 
         print("---")
         print(f"title: {client_class.name}")
