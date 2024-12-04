@@ -8,7 +8,7 @@ pip install --upgrade "pydoc-markdown>3" &> /dev/null
 
 mkdir -p /auto_generated/client_api
 for f in rucio/lib/rucio/client/*.py; do
-    if [[ $f =~ "__init__" ]]; then
+    if [[ $f =~ "__init__" ]] || [[ $f =~ "richclient" ]]; then
 	continue
     fi
 
