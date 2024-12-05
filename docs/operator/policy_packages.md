@@ -36,9 +36,9 @@ following:
 - A `permission.py` module implementing permission
   customisations (optional).
 - A `schema.py` module implementing schema customisations (optional).
-- An `__init__.py` file that can optionally return a dictionary of
-  algorithms provided by the package.
-- It should also contain a SUPPORTED_VERSION field.
+- An `__init__.py` file that:
+  - indicates the supported Rucio version via the `SUPPORTED_VERSION` field;
+  - indicates the algorithms provided by the package (optional)
 
 The `permission.py` and `schema.py` modules are optional; an experiment
 that does not need to customise these modules can omit one or both of
