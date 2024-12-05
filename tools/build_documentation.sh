@@ -28,7 +28,7 @@ rm "$AUTO_GENERATED"/rest_api_doc_spec_tmp.yaml
 
 
 echo "Generating Rest Api Docs from Spec File..."
-npx --yes redoc-cli build "$AUTO_GENERATED"/rest_api_doc_spec.yaml --template "$SCRIPT_DIR"/templates/rest_api_html_template.hbs --output "$AUTO_GENERATED"/rest_api_doc.html
+npx --yes @redocly/cli build-docs "$AUTO_GENERATED"/rest_api_doc_spec.yaml --template "$SCRIPT_DIR"/templates/rest_api_html_template.hbs --output "$AUTO_GENERATED"/rest_api_doc.html
 
 mkdir -p "$SCRIPT_DIR"/../website/static/yaml/
 mkdir -p "$SCRIPT_DIR"/../website/static/html/
