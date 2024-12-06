@@ -38,7 +38,7 @@ following:
   - indicates the algorithms provided by the package (optional)
 - A `permission.py` module implementing permission
   customisations (optional).
-- A `schema.py` module implementing schema customisations (optional).
+- A `schema.py` module implementing schema customization (optional).
 
 ### `__init__.py`
 
