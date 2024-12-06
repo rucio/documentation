@@ -140,8 +140,9 @@ that does not need to customise these modules can omit one or both of
 them from the policy package and the Rucio generic versions will be
 used instead. If these modules are required, the easiest way to create
 them is to modify the generic versions from the Rucio codebase. These
-can be found in `lib/rucio/core/permission/generic.py` and
-`lib/rucio/common/schema/generic.py` respectively.
+can be found in 
+[`lib/rucio/core/permission/generic.py`](https://github.com/rucio/rucio/blob/master/lib/rucio/core/permission/generic.py) 
+and [`lib/rucio/common/schema/generic.py`](https://github.com/rucio/rucio/blob/master/lib/rucio/common/schema/generic.py) respectively.
 
 The `has_permission` function in the permission module may return `None`
 if your experiment does not implement a custom permission check for a
