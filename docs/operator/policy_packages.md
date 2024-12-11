@@ -30,46 +30,89 @@ is suffixed with the VO name (for example, `package-vo1` or
 
 ## Creating a policy package
 
-The structure of a policy package is very simple. It can contain the
-following:
+The basic elements of a policy package are the following:
 
+- An `__init__.py` file that:
+  - indicates the supported Rucio version via the `SUPPORTED_VERSION` field;
+  - indicates the algorithms provided by the package (optional)
 - A `permission.py` module implementing permission
   customisations (optional).
-- A `schema.py` module implementing schema customisations (optional).
-- An `__init__.py` file that can optionally return a dictionary of
-  algorithms provided by the package.
-- It should also contain a SUPPORTED_VERSION field.
+- A `schema.py` module implementing schema customization (optional).
+- One or more files for experiment-specific algorithms (optional).
 
-The `permission.py` and `schema.py` modules are optional; an experiment
-that does not need to customise these modules can omit one or both of
-them from the policy package and the Rucio generic versions will be
-used instead. If these modules are required, the easiest way to create
-them is to modify the generic versions from the Rucio codebase. These
-can be found in `lib/rucio/core/permission/generic.py` and
-`lib/rucio/common/schema/generic.py` respectively.
+The recommended Python package layouts can be found [here](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/). An example `src`-layout based policy package is as such:
 
-The `has_permission` function in the permission module may return `None`
-if your experiment does not implement a custom permission check for a
-particular action. In this case, the generic permission module will be
-called for this action instead.
-
-The schema module of a policy package does not need to define all of
-the schema values. Any missing ones will automatically be loaded from
-the generic schema module instead.
-
-`__init__.py` should include a
-`SUPPORTED_VERSION` field indicating the major version(s) of Rucio
-that your package supports. This is checked against the Rucio server
-version to ensure compatibility when loading the policy package. This
-field can be a string if the policy package only supports a single
-Rucio version, or a list of strings if it supports multiple versions.
-Example:
-
-```python
-SUPPORTED_VERSION = [ "1.30", "1.31", "32" ]
+```
+experiment-rucio-policy-package
+│   README.md
+│   pyproject.toml
+│
+└───src
+│   │
+│   └───experiment-rucio-policy-package
+│       │   __init__.py               # required
+│       │   permission.py             # optional
+│       │   schema.py                 # optional
+│       │   pfn2lfn.py                # optional (deterministic scope translation algorithm)
+│       │   non_deterministic_pfn.py  # optional (non-deterministic scope translation algorithm)
+│       │   ...
 ```
 
-It can also contain an optional function called `get_algorithms` that
+
+### `__init__.py`
+
+#### `SUPPORTED_VERSION`
+
+`__init__.py` should define a `str | list[str]` called `SUPPORTED_VERSION`,
+indicating the version(s) of Rucio that your package supports. 
+
+This is checked against the Rucio server
+version to ensure compatibility when loading the policy package. 
+
+##### From Rucio 36
+From Rucio 36, version checking was modified 
+to use [PEP-compliant version specifiers](https://peps.python.org/pep-0440/#version-specifiers).
+
+For example, to specify support for the entire Rucio 36 release line (so 36.1.0, 36.2.0...) 
+without yet supporting Rucio 37, 
+the [**compatible release** operator](https://peps.python.org/pep-0440/#compatible-release) `~=`
+can be used, as seen below.
+
+```python
+SUPPORTED_VERSION = '~=36.0'
+```
+
+Multiple constraints can be specified, either as a string:
+
+```python
+SUPPORTED_VERSION = '~=36.0,!=36.4.0'
+```
+
+Or as a list:
+
+```python
+SUPPORTED_VERSION = ['~=36.0','!=36.4.0']
+```
+
+##### Before Rucio 36
+
+On Rucio versions older than 36, only major versions can be specified.
+This can be done as either a string:
+
+```python
+SUPPORTED_VERSION = '35'
+```
+
+Or as a list, to indicate support for multiple major versions:
+
+```python
+SUPPORTED_VERSION = ['34', '35']
+```
+
+#### `get_algorithms`
+
+The `__init__.py` file can also contain 
+an optional function called `get_algorithms` that
 returns a dictionary of custom algorithms implemented within the package.
 In fact, this structure should be a "dictionary of dictionaries" where
 the outer dictionary contains algorithm types, and each inner
@@ -109,6 +152,44 @@ In all cases the names used to register the functions (e.g. `voname_extract_scop
 with the name of the virtual organisation that owns the policy package,
 to avoid naming conflicts on multi-VO Rucio installations.
 
+### Permission and schema modules
+
+The `permission.py` and `schema.py` modules are optional; an experiment
+that does not need to customise these modules can omit one or both of
+them from the policy package and the Rucio generic versions will be
+used instead. If these modules are required, the easiest way to create
+them is to modify the generic versions from the Rucio codebase. These
+can be found in 
+[`lib/rucio/core/permission/generic.py`](https://github.com/rucio/rucio/blob/master/lib/rucio/core/permission/generic.py) 
+and [`lib/rucio/common/schema/generic.py`](https://github.com/rucio/rucio/blob/master/lib/rucio/common/schema/generic.py) respectively.
+
+The `has_permission` function in the permission module may return `None`
+if your experiment does not implement a custom permission check for a
+particular action. In this case, the generic permission module will be
+called for this action instead.
+
+The schema module of a policy package does not need to define all of
+the schema values. Any missing ones will automatically be loaded from
+the generic schema module instead.
+
+## Policy algorithms
+
+### Adding a new algorithm class
+
+The system for registering algorithms within policy packages is
+intended to be extensible so that new algorithm classes can be added
+relatively easily. The basic workflow is as follows:
+
+- The `get_algorithms` function within the policy package (see above)
+  should return a dictionary of functions of the new class, indexed
+  by name
+- The core Rucio code should maintain a dictionary of functions of the
+  new class, ready to be called when required. The details of this
+  will differ depending on what the new class actually does and how it
+  integrates with the Rucio code, but typically the algorithm name to
+  be used will be selected by a value in the config file, as for the
+  current `lfn2pfn` and `non_deterministic_pfn` algorithm types.
+
 ### lfn2pfn vs. non_deterministic_pfn algorithms
 
 `lfn2pfn` algorithms and `non_deterministic_pfn` algorithms are
@@ -133,29 +214,6 @@ the `lfn2pfn_algorithm_default` value from the `[policy]` section of
 the config file is used instead. The `non_deterministic_pfn` algorithm
 to be used is determined by the `naming_convention` attribute of the
 relevant RSE.
-
-## Adding a new algorithm class
-
-The system for registering algorithms within policy packages is
-intended to be extensible so that new algorithm classes can be added
-relatively easily. The basic workflow is as follows:
-
-- The `get_algorithms` function within the policy package (see above)
-  should return a dictionary of functions of the new class, indexed
-  by name
-- The core Rucio code should maintain a dictionary of functions of the
-  new class, ready to be called when required. The details of this
-  will differ depending on what the new class actually does and how it
-  integrates with the Rucio code, but typically the algorithm name to
-  be used will be selected by a value in the config file, as for the
-  current `lfn2pfn` and `non_deterministic_pfn` algorithm types.
-- Before the algorithm is called for the first time, the core Rucio
-  code should call `rucio.common.utils.register_policy_package_algorithms`
-  to import the algorithms for this class from the policy package and
-  store them in its internal dictionary. This function takes care of
-  the complexities of interfacing with the policy package, such as
-  importing the package if necessary, and dealing with multiple
-  packages in multi-VO Rucio installations.
 
 ## Deploying Policy Packages in containers
 
