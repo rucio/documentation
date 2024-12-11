@@ -30,8 +30,7 @@ is suffixed with the VO name (for example, `package-vo1` or
 
 ## Creating a policy package
 
-The structure of a policy package is very simple. It can contain the
-following:
+The basic elements of a policy package are the following:
 
 - An `__init__.py` file that:
   - indicates the supported Rucio version via the `SUPPORTED_VERSION` field;
@@ -39,6 +38,26 @@ following:
 - A `permission.py` module implementing permission
   customisations (optional).
 - A `schema.py` module implementing schema customization (optional).
+- One or more files for experiment-specific algorithms (optional).
+
+The recommended Python package layouts can be found [here](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/). An example `src`-layout based policy package is as such:
+
+```
+experiment-rucio-policy-package
+│   README.md
+│   pyproject.toml
+│
+└───src
+│   │
+│   └───experiment-rucio-policy-package
+│       │   __init__.py               # required
+│       │   permission.py             # optional
+│       │   schema.py                 # optional
+│       │   pfn2lfn.py                # optional (deterministic scope translation algorithm)
+│       │   non_deterministic_pfn.py  # optional (non-deterministic scope translation algorithm)
+│       │   ...
+```
+
 
 ### `__init__.py`
 
