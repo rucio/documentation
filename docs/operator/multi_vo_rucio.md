@@ -135,7 +135,7 @@ You may specify more than one alias for a VO if required.
 
 ## Managing VOs
 
-Super_root can also change the description and email for a VO using `update_vo`
+Super_root can also change the description and email for a VO using the `update_vo`
 API call. If a VO root user loses access to their account, the super_root can
 associate a new identity with it using `recover_vo_root_identity`. Finally, a
 list of current VOs and their descriptions is accessible via `list_vos`.
