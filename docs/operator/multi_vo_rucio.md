@@ -156,7 +156,7 @@ also be renamed using `rename_vo`, or deleted using `remove_vo`. The conversion
 functions are callable by using the command line with details on what each
 function requires to be carried out, as well as various optional arguments.
 
-Rememeber after any database conversion tools are used to update the `rucio.cfg`
+Remember that after any database conversion tools are used to update the `rucio.cfg`
 appropriately, this may include adding the `multi_vo = True`, as found in
 [`changes to the rucio.cfg section`](#changes-to-the-ruciocfg-on-the-server-and-daemons).
 
