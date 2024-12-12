@@ -253,9 +253,10 @@ account_limits ADD CONSTRAINT "ACCOUNT_LIMITS_ACCOUNT_FK" FOREIGN KEY(account)
 REFERENCES accounts (account);
 ```
 
-By default data associated with any other VOs is left in the database, but will
-be inaccessible to Rucio users. By setting pass the argument `--delete_vos`,
-these entries will be deleted from the database completely:
+By default, data associated with any other VOs is left in the database, but will
+be inaccessible to Rucio users.
+These entries can be completely deleted from the database
+by pasing the `--delete_vos` argument.
 
 ```bash
 tools/convert_database_vo.py convert_to_svo old --delete_vos ...  \
