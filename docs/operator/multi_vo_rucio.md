@@ -80,7 +80,7 @@ For overall administration of Multi-VO Rucio another layer of admin role has
 been created outside of the VO structure. This means each VO has its own
 root/admin accounts still retain their administrative role within a VO, for
 example adding and editing accounts, adding and modifying RSEs for the VO.
-Functions relating to the creation and management of VOs is handled by the
+Functions relating to the creation and management of VOs are handled by the
 super_root account. It is worth noting that the super_root account **cannot** be
 used to perform individual VO administration; the roles of super_root and root
 are distinct.
