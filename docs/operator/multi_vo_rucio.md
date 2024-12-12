@@ -62,8 +62,8 @@ for one VO alone:
 multi_vo = True
 ```
 
-For the daemons files and configuration are needed to allow daemons to act on
-the various VOs, this inludes the VO specific certificates, keys, and proxies,
+For the daemons, files and configuration are needed to allow daemons to act on
+the various VOs: this inludes the VO specific certificates, keys, and proxies,
 as well as another configuration section. This section maps each VO to its
 respective x.509 authentication credentials. Rucio uses this information when
 submitting and polling transfers to use the correct certificates.
