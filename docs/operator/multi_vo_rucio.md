@@ -160,7 +160,7 @@ Remember that after any database conversion tools are used to update the `rucio.
 appropriately, this may include adding the `multi_vo = True`, as found in
 [`changes to the rucio.cfg section`](#changes-to-the-ruciocfg-on-the-server-and-daemons).
 
-These above tools will allow Rucio to change it's VO support model. However,
+These above tools will allow Rucio to change its VO support model. However,
 when converting an existing instance, any entries already in the database will
 not be associated with a VO (or associated with their old one if previously in
 M-VO mode). In order to change these, direct operations on the database are
