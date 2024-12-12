@@ -17,7 +17,7 @@ from other VOs using the instance.
 ## Changes to the Client
 
 To utilise the Rucio client against a Multi-VO Rucio the client needs to first
-know it is interacting with a multi-VO Rucio instance, then which VO the client
+know if it is interacting with a multi-VO Rucio instance, then which VO the client
 should be accessing. This is done in the `rucio.cfg` as shown below:
 
 ```cfg
