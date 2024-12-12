@@ -4,21 +4,21 @@ title: Multi-VO Rucio
 sidebar_label: Multi-VO Rucio
 ---
 
-This section provides an overview of using Rucio for multiple virtual
-organizations (VOs) on a single instance with the "Multi-VO" feature. Rather
-than each VO having to set up an entire instance by themselves, they can share
-the same server and database which are run by a central "super_root", and
-continue to use Rucio as they would a normal or "Single-VO" instance. Their
-accounts, scopes and RSEs are associated with their VO which ensures all rules
-and replicas are kept separate from other VOs using the instance.
+Multi-VO Rucio configuration allows a single instance of Rucio to support
+multiple experiments or Virtual Organisations (VOs). Multi-VO Rucio are run by a
+"super_root" which administers the Rucio instance, creating VOs within Rucio,
+each VO is then administered by VO specific "root" accounts created with the VO
+that deal with the VO requirements and needs. Each VO uses Rucio as a normal or
+"Single-VO" instance, meaning a Rucio instance can transition to support more
+VOs without significant disruption. Each VO's accounts, scopes and RSEs are
+associated with their VO which ensures all rules and replicas are kept separate
+from other VOs using the instance.
 
 ## Changes to the Client
 
-At the CLI and client level there are few changes to how Rucio is used. These
-cases, such as optional arguments for VO, are covered in documentation for the
-affected function. The main change is the addition of two options in the
-`rucio.cfg` file, one to flag that the instance is being run in M-VO mode and
-another to specify the VO the users belong to:
+To utilise the Rucio client against a Multi-VO Rucio the client needs to first
+know if it is interacting with a multi-VO Rucio instance, then which VO the client
+should be accessing. This is done in the `rucio.cfg` as shown below:
 
 ```cfg
 [common]
@@ -33,29 +33,39 @@ vo = abc
 ## Changes to the rucio.cfg on the Server and Daemons
 
 Similar settings need to be changed on the server and daemon rucio.cfg files as
-well as on the client end.  For the server `multi_vo` should also be set in the
-config file.  For the daemons another section is needed to be added, this is to
+well as on the client end. For the server, `multi_vo` should also be set in the
+config file. For the daemons, another section needs to be added: this is to
 map each VO to its own proxy certificate. Rucio uses this information when
 submitting and polling transfers to use the correct certificates.
 
 ```cfg
+[common]
+...
+multi_vo = True
+
 [vo_certs]
 ...
 <3 char vo name> = <path/to/vo/proxy>
 ```
 
-It is recommended that the proxies are placed in /tmp/x509up_[VO], and the
+It is recommended that the proxies are placed in /tmp/x509up\_[VO], and the
 certificates and keys are placed in /opt/rucio/certs/[VO]/ and
 /opt/rucio/keys/[VO]/ respectively.
 
-However, `vo` should not be set for the server or the daemons as these parts of
-Rucio are not associated with a single VO. If `multi_vo` is not set, or set to
-False, then Rucio will operate normally.
+Unlike the Rucio client, `vo` in the `client` section should not be configured
+for the server and daemons, unless specifically to ensure certain daemons act
+for one VO alone:
 
-Similar settings need to be changed on the server and daemon rucio.cfg files as
-well as on the client end.  For the server `multi_vo` should also be set in the
-config file.  For the daemons another section is needed to be added, this is to
-map each VO to its own proxy certificate. Rucio uses this information when
+```cfg
+[common]
+...
+multi_vo = True
+```
+
+For the daemons, files and configuration are needed to allow daemons to act on
+the various VOs: this inludes the VO specific certificates, keys, and proxies,
+as well as an additional configuration section which maps each VO to its
+respective x.509 authentication credentials. Rucio uses this information when
 submitting and polling transfers to use the correct certificates.
 
 ```yaml
@@ -64,26 +74,25 @@ submitting and polling transfers to use the correct certificates.
 [3 char vo name] = [path/to/vo/proxy]
 ```
 
-However, `vo` should
-not be set for the server or the daemons as these parts of Rucio are not
-associated with a single VO. If `multi_vo` is not set, or set to False, then
-Rucio will operate normally.
-
 ## Role of the super_root
 
-While root accounts still retain their administrative role within a VO, for
-example adding RSEs and accounts, functions relating to the creation and
-management of VOs is handled by the super_root account, a concept introduced
-with M-VO Rucio. It is worth noting that the super_root account **cannot** be
+For overall administration of Multi-VO Rucio another layer of admin role has
+been created outside of the VO structure. This means each VO has its own
+root/admin accounts still retain their administrative role within a VO, for
+example adding and editing accounts, adding and modifying RSEs for the VO.
+Functions relating to the creation and management of VOs are handled by the
+super_root account. It is worth noting that the super_root account **cannot** be
 used to perform individual VO administration; the roles of super_root and root
 are distinct.
 
 ## Access of super_root Functions
 
 As the super_root functions aren't intended for use by normal users of admins,
-they do not have an implementation in the client or CLI. They can be accessed
-from the core or the :ref:`vo-rest-api`, however the latter will require the VO
-endpoint to be added to the aliases file used when setting up the server as it
+they do not have an implementation in the client or CLI.
+
+The super_root functions can be accessed from the core or the
+:ref:`vo-rest-api`. Access to the functions through the API will require the VO
+endpoint to be added to the endpoints list used when setting up the server as it
 is disabled by default.
 
 ## Starting a M-VO Instance
@@ -96,20 +105,14 @@ it. The identity used to access this account can be managed in the usual way.
 ## Creating VOs
 
 When creating a new VO with the `add_vo` function you need to specify the three
-digit identifier for the new VO, which can contain letters and numbers. This
-must be unique for the instance. A more complete description can also be
-optionally included, along with an email to use for the root of this new VO. In
-addition to creating the new VO, a root account is also created for this VO, and
-has all identities associated with super_root added to it. The identities for
-the new root can then be configured as usual.
-
-## Managing VOs
-
-In addition to creating VOs, the description and email for a VO can be altered
-using `update_vo`. If the root user of a VO loses access to their account, the
-super_root can associate a new identity with it using
-`recover_vo_root_identity`. Finally, a list of current VOs and their
-descriptions is accessible via `list_vos`.
+character identifier for the new VO, which can contain letters and numbers. This
+must be unique for the instance (A long VO name can be enabled for usage if
+required, as shown in the [`Long VO Name Mapping`](#long-vo-name-mapping)
+section). A more complete description can also be optionally included, along
+with an email to use for the root of this new VO. As the new VO is created, its
+corresponding root account is also created, and has all identities associated
+with super_root added to it. The identities for the VO root can then be
+configured as usual.
 
 ## Long VO Name Mapping
 
@@ -117,11 +120,11 @@ The rucio database stores all VO references as a single three-character tag for
 performance reasons. It's possible to create aliases for these tag to allow
 users/clients to specify long VO names when getting a token (and modifying VOs)
 and have these converted to the internal tag automatically. Long VO names should
-only use the basic DNS name character set of alphanumber charaters, hyphen and
-dot (a-zA-Z0-9-.). The alias mappings are stored in the vo-map section of the
-configs database table and can be edited via the usual methods for modifying
-this config. The option name is the long VO name and the value is the short
-name; for example these can be added using the CLI:
+only use the basic DNS name character set of alphanumeric characters, hyphen
+and dot (a-zA-Z0-9-.). The alias mappings are stored in the vo-map section of
+the configs database table and can be edited via the commands below. The option
+name is the long VO name and the value is the short name; for example these can
+be added using the CLI:
 
 ```bash
 rucio-admin config set --section vo-map --option my.long.vo --value mlv
@@ -130,28 +133,44 @@ rucio-admin config set --section vo-map --option another.vo --value ant
 
 You may specify more than one alias for a VO if required.
 
+## Managing VOs
+
+Super_root can also change the description and email for a VO using the `update_vo`
+API call. If a VO root user loses access to their account, the super_root can
+associate a new identity with it using `recover_vo_root_identity`. Finally, a
+list of current VOs and their descriptions is accessible via `list_vos`.
+
 ## Converting Existing Instances
 
-As opposed to starting a new M-VO instance from scratch, it may be desirable to
-convert the database for an existing (S-VO) Rucio instance into a M-VO instance
-so that additional VOs can be added without disrupting the original VO or
-needing to create a second instance. Conversely, one VO within a M-VO instance
-may grow to the point where it needs its own dedicated instance, and so
-converting data from M-VO to S-VO may also be desirable. These operations can be
-performed using utility functions included with Rucio.
+Rather than initialising a new Rucio instance to support multiple VOs, a
+single-VO instance of Rucio can be converted to a Multi-VO instance if desired.
+This conversion allows the Rucio instance to expand the number of supported VOs
+with minimal disruption. The tools to perform this can be found in
+[`rucio/tools/convert_database_vo.py`](https://github.com/rucio/rucio/blob/master/tools/convert_database_vo.py),
+and further documentation on the [single VO to multi VO](#s-vo-to-m-vo) and
+[multi-VO to single VO](#m-vo-to-s-vo) instances are found below.
 
-As mentioned above, in order to configure a M-VO instance of Rucio only the
-config file needs to change. However for an existing instance any entries
-already in the database will not be associated with a VO (or associated with
-their old one if previously in M-VO mode). In order to change these, direct
-operations on the database are required. These commands are generated using
-SQLAlchemy, and can either be run directly on the database or printed out and
-run manually.
+The fuction `convert_to_mvo` facilitates the conversion of a single-VO instance
+to a multi-VO instance, where `convert_to_svo` performs the opposite. VOs can
+also be renamed using `rename_vo`, or deleted using `remove_vo`. The conversion
+functions are callable by using the command line with details on what each
+function requires to be carried out, as well as various optional arguments.
+
+Remember that after any database conversion tools are used to update the `rucio.cfg`
+appropriately, this may include adding the `multi_vo = True`, as found in
+[`changes to the rucio.cfg section`](#changes-to-the-ruciocfg-on-the-server-and-daemons).
+
+These above tools will allow Rucio to change its VO support model. However,
+when converting an existing instance, any entries already in the database will
+not be associated with a VO (or associated with their old one if previously in
+M-VO mode). In order to change these, direct operations on the database are
+required. These commands are generated using SQLAlchemy, and can either be run
+directly on the database or printed out and run manually.
 
 ## Practicalities
 
 Before attempting to convert existing data, it is recommended that a backup of
-the database is taken in case an issue arises. Furthermore, of the databases
+the database is taken in case any issues arise. Furthermore, of the databases
 supported by Rucio, only PostgreSQL has been tested on real data. Based on this
 test (which was performed on a machine with 64GB memory and four Intel Xeon
 E5-2430 v2), the tables with 2 columns that needed updating were converted at a
@@ -165,8 +184,8 @@ be accessed using the `super_root` account if needed.
 
 ## S-VO to M-VO
 
-Before starting, ensure that `multi_vo` is set to `True` in the config file.
-The SQL commands needed to convert the database involve dropping foreign key
+Before starting, ensure that `multi_vo` is set to `True` in the config file. The
+SQL commands needed to convert the database involve dropping foreign key
 constraints that affect accounts/scopes, then altering the relevant columns,
 before re-adding the constraints. The 3 character identifier for the VO, a full
 description and an admin email should be provided:
@@ -194,12 +213,12 @@ $ python
 >>> create_root_account(create_counters=False)
 ```
 
-Alternatively by specifying `--commit_changes` the script will attempt to
-modify the database as it runs, however this requires the account used by the
-Rucio instance to access the database to be the owner of the the tables. In
-this case, the `super_root` account can be added as part of the script by
-passing the argument `--create_super_root`. If there is an error during the
-conversion, then none of the changes will be committed.
+Alternatively by specifying `--commit_changes` the script will attempt to modify
+the database as it runs, however this requires the account used by the Rucio
+instance to access the database to be the owner of the the tables. In this case,
+the `super_root` account can be added as part of the script by passing the
+argument `--create_super_root`. If there is an error during the conversion, then
+none of the changes will be committed.
 
 ```bash
 $ tools/convert_database_vo.py --commit_changes \
@@ -223,6 +242,7 @@ Before starting, ensure that `multi_vo` is set to `True` in the config file
 the conversion is the same as before, dropping foreign key constraints and
 renaming the entries that were associated with the old VO. The name of this VO
 is the only required argument:
+
 ```bash
 $ tools/convert_database_vo.py
 convert_to_svo old ALTER TABLE account_limits DROP CONSTRAINT
@@ -233,10 +253,10 @@ account_limits ADD CONSTRAINT "ACCOUNT_LIMITS_ACCOUNT_FK" FOREIGN KEY(account)
 REFERENCES accounts (account);
 ```
 
-By default data associated with any other VOs
-is left in the database, but will be inaccessible to Rucio users. By setting
-pass the argument `--delete_vos`, these entries will be deleted from the
-database completely:
+By default, data associated with any other VOs is left in the database, but will
+be inaccessible to Rucio users.
+These entries can be completely deleted from the database
+by pasing the `--delete_vos` argument.
 
 ```bash
 tools/convert_database_vo.py convert_to_svo old --delete_vos ...  \
@@ -250,6 +270,7 @@ Once again, historical tables skipped with `--skip_history`, and the commands
 can be run directly against the database using the `--commit_changes` argument;
 if this is not set then the `super_root` account should be manually deleted
 after running the SQL:
+
 ```bash
 $ python
 >>> from rucio.common.types import InternalAccount
