@@ -109,7 +109,7 @@ character identifier for the new VO, which can contain letters and numbers. This
 must be unique for the instance (A long VO name can be enabled for usage if
 required, as shown in the [`Long VO Name Mapping`](#long-vo-name-mapping)
 section). A more complete description can also be optionally included, along
-with an email to use for the root of this new VO. As the new VO is created its
+with an email to use for the root of this new VO. As the new VO is created, its
 corresponding root account is also created, and has all identities associated
 with super_root added to it. The identities for the VO root can then be
 configured as usual.
