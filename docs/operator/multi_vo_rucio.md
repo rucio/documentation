@@ -8,7 +8,7 @@ Multi-VO Rucio configuration allows a single instance of Rucio to support
 multiple experiments or Virtual Organisations (VOs). Multi-VO Rucio are run by a
 "super_root" which administers the Rucio instance, creating VOs within Rucio,
 each VO is then administered by VO specific "root" accounts created with the VO
-that deal with the VO requirements and needs. Each VO use Rucio as a normal or
+that deal with the VO requirements and needs. Each VO uses Rucio as a normal or
 "Single-VO" instance, meaning a Rucio instance can transition to support more
 VOs without significant disruption. Each VO's accounts, scopes and RSEs are
 associated with their VO which ensures all rules and replicas are kept separate
