@@ -145,7 +145,7 @@ list of current VOs and their descriptions is accessible via `list_vos`.
 Rather than initialising a new Rucio instance to support multiple VOs, a
 single-VO instance of Rucio can be converted to a Multi-VO instance if desired.
 This conversion allows the Rucio instance to expand the number of supported VOs
-with minimal disrution. The tools to perform this can be found in
+with minimal disruption. The tools to perform this can be found in
 [`rucio/tools/convert_database_vo.py`](https://github.com/rucio/rucio/blob/master/tools/convert_database_vo.py),
 and further documentation on the [single VO to multi VO](#s-vo-to-m-vo) and
 [multi-VO to single VO](#m-vo-to-s-vo) instances are found below.
