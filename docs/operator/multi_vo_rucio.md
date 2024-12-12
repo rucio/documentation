@@ -33,8 +33,8 @@ vo = abc
 ## Changes to the rucio.cfg on the Server and Daemons
 
 Similar settings need to be changed on the server and daemon rucio.cfg files as
-well as on the client end. For the server `multi_vo` should also be set in the
-config file. For the daemons another section is needed to be added, this is to
+well as on the client end. For the server, `multi_vo` should also be set in the
+config file. For the daemons, another section needs to be added: this is to
 map each VO to its own proxy certificate. Rucio uses this information when
 submitting and polling transfers to use the correct certificates.
 
