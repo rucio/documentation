@@ -120,7 +120,7 @@ The rucio database stores all VO references as a single three-character tag for
 performance reasons. It's possible to create aliases for these tag to allow
 users/clients to specify long VO names when getting a token (and modifying VOs)
 and have these converted to the internal tag automatically. Long VO names should
-only use the basic DNS name character set of alphanumberic characters, hyphen
+only use the basic DNS name character set of alphanumeric characters, hyphen
 and dot (a-zA-Z0-9-.). The alias mappings are stored in the vo-map section of
 the configs database table and can be edited via the commands below. The option
 name is the long VO name and the value is the short name; for example these can
