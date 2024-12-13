@@ -37,7 +37,6 @@ from single files up to Petabyte sized datasets.
 
 - [Setting Up the Rucio Client](user/setting_up_the_rucio_client.md)
 - [Using the Client](user/using_the_client.md)
-- [Using the Admin Client](user/using_the_admin_client.md)
 
 ## Administration
 
