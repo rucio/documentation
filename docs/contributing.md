@@ -19,7 +19,7 @@ development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
 A contribution can be either be a **patch** or **feature**:
 
 * **Patches** include bugfixes and minor changes to the code and are included in
-  patches that are usually relased every two weeks.
+  patches that are usually released every two weeks.
 * **Features** include major developments or potentially disruptive changes and
   are included in feature releases made multiple times a year.
 
@@ -71,7 +71,7 @@ The following figure might help you with an overview:
 
   Also, the [`pre-commit` python](https://pre-commit.com/) package is configured
   for this repository. The `pre-commit` hook checks the syntax and format of the
-  files before commiting. This saves time in the development process, since
+  files before committing. This saves time in the development process, since
   minor errors are noticed before submission.
 
   To install the package and activate the hooks for the project:
@@ -229,7 +229,7 @@ variables as follows:
 
 * `PARALLEL_AUTOTESTS_PROCNUM` (1,) (default: 3)
 
-    Specifies the number of processes to run and therefor the concurrently run
+    Specifies the number of processes to run and therefore the concurrently run
     autotests. 3 will usually result in more than 8 GB RAM usage and a fair
     amount of load on the PC.
 

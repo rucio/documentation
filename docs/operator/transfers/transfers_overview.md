@@ -114,7 +114,7 @@ will be picked by the transfer machinery. Depending on the configuration value
 or by the `submitter` directly.
 
 At this stage, the transfer machinery finds all the possible sources. It
-filters out the ones which don't match different rule criterias (for example:
+filters out the ones which don't match different rule criteria (for example:
 source RSE expression) and administrative constraints (for example:
 skip blocklisted RSEs). It then computes the paths. In the previous example,
 the path `RSE1 -> RSE2 -> RSE3 -> RSE4` will be picked due to cost constraints.
@@ -126,7 +126,7 @@ documentation.
 The path will be then submitted to the transfertool either in its integrity,
 if transfertool supports multi-hopping, or in multiple iterations.
 
-The final steps are for the `reciver` or `poller` to monitor the transfer's
+The final steps are for the `receiver` or `poller` to monitor the transfer's
 completion in transfertool and `finisher` to mark the transfers as completed.
 We only described here a simple case, when the transfer is successful on the
 first try. In case of errors, multiple transitions are possible between

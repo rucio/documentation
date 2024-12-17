@@ -15,7 +15,7 @@ flake8 --extend-ignore {codes to ignore} /your/code/path
 
 ## Imports
 * Never import using `from x import *`
-* Order alphabetically, then seperated into sections for internal and external dependencies. Group internal imports at the end of the block, and group imports from the same external package.
+* Order alphabetically, then separated into sections for internal and external dependencies. Group internal imports at the end of the block, and group imports from the same external package.
 * Order modules such that `import {packageA}` is before `from {packageB} import {Module}`
 * Do not import whole packages when single modules would suffice.
 * Unused imports must be removed.

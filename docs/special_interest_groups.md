@@ -8,7 +8,7 @@ operators, and developers to discuss and plan the evolution of a specific part o
 The topic of a SIG needs to be well-defined and the community interest on the topic
 needs to be above a threshold to justify the creation of a SIG, instead of covering the
 topic just within the weekly Rucio meeting. A SIG topic can involve one or multiple
-Rucio components, or even the entire system. SIGs are open to any interrested community
+Rucio components, or even the entire system. SIGs are open to any interested community
 member.
 
 ## Structure

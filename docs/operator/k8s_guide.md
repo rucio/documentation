@@ -160,7 +160,7 @@ Please notice that in this case, the various credentials will have to be properl
 
 >In order to [protect devices connected to the CERN network](https://security.web.cern.ch/services/en/firewall.shtml) from the regular attacks initiated from off-site, **incoming connections to all CERN devices are blocked** in the CERN outer perimeter firewall by default. In addition, source ports **0-1023/TCP and 0-1023/UDP (except 500/UDP) are blocked by default** for outgoing connections. Thus, users can initiate client applications (on so-called higher ports) but not expose server processes.
 
-To comply with the CERN security rules, we need to use the so-called LANDB sets, where the firewall has static openings automatically set up. Usually, such sets are used for redudancy or large, homogeneous services. These sets are either managed by the Computer Security Team or by the service managers themselves.
+To comply with the CERN security rules, we need to use the so-called LANDB sets, where the firewall has static openings automatically set up. Usually, such sets are used for redundancy or large, homogeneous services. These sets are either managed by the Computer Security Team or by the service managers themselves.
 
 Create a [new LanDB set](https://landb.cern.ch/portal/sets/create), following the recommendations: 
 1. Type: Interdomain
@@ -347,7 +347,7 @@ A few remarks:
 - The db secret is being mounted on `config.database.default` in order to allow the user to correctly access it.
 - `hostcert.pem`, `hostkey.pem` and `ca.pem` are automatically detected, so they don't need to be mounted. Nevertheless, the corresponding secrets must be created (see next sections).
 - The GridCA cert is needed to verify all the other certs. Please look at this [git commit](https://gitlab.cern.ch/rucio-it/flux-compass/-/commit/688da7285833dafd1bbe25469f35c6059d7af24f) used to set the `GridCA` file in `/etc/grid-security/certificate`.
-  - Together with this, is also necessary to setup the correspoding variable `RUCIO_CA_PATH`
+  - Together with this, is also necessary to setup the corresponding variable `RUCIO_CA_PATH`
 - The `RUCIO_SSL_PROTOCOL` variable must be explicitly set.
 
 Please notice that in order to have LBs produced, ***the Helm chart must be applied***. 

@@ -11,7 +11,7 @@ For local development machines with limited resources `(<16 GB RAM, < 4 Cores)`,
 
 Local development has been tested only on Linux hosts.
 Remote development has been tested on Linux(for the remote VM) and Linux/MacOS(for the local instance of vscode).
-The additional steps required for setting up a remote development environment are described in the sections begininng with `Remote Only: `. These sections can be ignored if you are setting up a local development environment.
+The additional steps required for setting up a remote development environment are described in the sections beginning with `Remote Only: `. These sections can be ignored if you are setting up a local development environment.
 
 ## Prerequisites
 

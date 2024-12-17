@@ -82,7 +82,7 @@ the paths are ordered using the following simple
   decreased each time a particular source is found to have an issue to perform
   this particular transfer. It is thus equal to 0 at first try, and decreased
   at transfer failure before re-trying the transfer. This ensures that
-  problematic sources are much less likely to be re-used.
+  problematic sources are much less likely to be reused.
 - On equal source ranking, the RSE type is checked. Disk sources are preferred
   over tape.
 - On equal source RSE type, the distance between the source RSE and the
