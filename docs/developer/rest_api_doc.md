@@ -69,7 +69,7 @@ filtered and produces an error, if found.
 suite. To manually check the generated spec file, run
 
 ```bash
-rucio/tools/test/check_rest_api_documentation.sh FILE
+rucio_documentation/tools/check_rest_api_documentation.sh FILE
 ```
 
 ## Tips
