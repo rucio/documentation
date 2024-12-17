@@ -66,10 +66,10 @@ problems, e.g. typos in keywords and duplicated path specifications, get
 filtered and produces an error, if found.
 
 `openapi-cli` is integrated in the Github Actions, they run in the `syntax` test
-suite. To manually check the generated spec file, run
+suite. To manually check the generated spec file, download the [`rucio documentation` repository](https://github.com/rucio/documentation) and run
 
 ```bash
-rucio/tools/test/check_rest_api_documentation.sh FILE
+tools/check_rest_api_documentation.sh FILE
 ```
 
 ## Tips
