@@ -83,7 +83,7 @@ rules.
 #### Isort
 
 [`isort`](https://github.com/pycqa/isort) is used to sort the python
-imports. Thes imports are also grouped together by different categories, which
+imports. These imports are also grouped together by different categories, which
 makes it easier to read the source code.
 
 #### Flake8
