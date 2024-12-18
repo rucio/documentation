@@ -4,6 +4,7 @@ import re
 from collections import defaultdict
 from functools import cmp_to_key, partial
 from pathlib import Path
+from typing import Union
 
 import jinja2
 
@@ -150,7 +151,7 @@ def sort_func(a: str, b: str) -> int:
         return A.major - B.major
 
 
-def get_release_link(path: Path, version: str) -> str:
+def get_release_link(path: Union[str, Path], version: str) -> str:
     return f"{path}/{version}.md"
 
 
