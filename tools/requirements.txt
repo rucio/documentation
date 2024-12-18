@@ -1,8 +1,8 @@
-Jinja2~=2.11.3
-MarkupSafe==2.0.1
-requests~=2.27.1
-mypy~=0.961
-black~=22.3.0
-isort~=5.10.1
-flake8~=4.0.1
-types-requests~=2.27.30
+Jinja2~=3.1.4
+MarkupSafe==3.0.2
+requests~=2.32.3
+mypy~=1.13
+black~=24.10.0
+isort~=5.13.2
+flake8~=7.1.1
+types-requests~=2.32.0
