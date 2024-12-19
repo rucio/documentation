@@ -168,7 +168,7 @@ OPENSTACK_PROJECT=cc059d57-6e98-4688-a3be-aae2b451868b,<your-openstack-project-I
 The ID `cc059d57-6e98-4688-a3be-aae2b451868b` will allow the LoadBalancer as a Service (LBaaS) instance to [assign LoadBalancers to this set](https://clouddocs.web.cern.ch/networking/load_balancing.html#adding-load-balancer-to-landb-sets). In the specific case of the COMPASS rucio instance, the `openstack-landb-set-access` is being set as a member of the `rucio-it-admins` egroup.
 Please refer to the LoadBalancers section for more information.
 :::
-![[/img/landb-set-create.png]]
+![image](/img/landb-set-create.png)
 
 # Populating the cluster
 There are four main components that need to be installed in order to have the Rucio cluster operative:
@@ -338,7 +338,7 @@ With respect to the [original Helm chart](https://github.com/rucio/helm-charts/b
 This setup will trigger the `openstack-cloud-controller-manager` pod, and will automatically instantiate the requested LBs.
 
 Please notice that in order to have LBs, one must request a quota change to the openstack project:
-![[/img/get-lbs.png]]
+![image](/img/get-lbs.png)
 
 To check the status of the LBs, the CLI command can be used: 
 ```sh
@@ -376,7 +376,7 @@ In the current example, a cert for `compass-rucio.cern.ch` (corresponding to the
 
 :::tip[Certs pro move]
 > Create a [grid Host certificate](https://ca.cern.ch/ca/host/Request.aspx?template=ee2host) linked to both servers and auth domains. If you need, you can specify Subject Alternative Names (SANs) for your certificate, in DNS format in the SAN box. Then you'll have one cert to rule them all:
-![[/img/grid-host-certs.png]]
+![image](/img/grid-host-certs.png)
 :::
 
 #### Create the `host`, `key`, `ca` and `GridCA` files
@@ -557,7 +557,7 @@ additionalEnvs:
 
 A diagram of how the proxy certificate is created and mounted on the daemons is displayed below: 
 
-![[/img/daemons-chart.png]]
+![image](/img/daemons-chart.png)
 ## Rucio UI
 [Reference Helm Chart](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/sync/rucio-ui.yaml?ref_type=heads).
 

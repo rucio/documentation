@@ -27,6 +27,7 @@ and more can be found by browsing through the sub-sections of this topic.
 - [What is Rucio](started/what_is_rucio.md)
 - [Main Components](started/main_components.md)
 - [Additional Layers and Resources](started/additional_layers_and_resources.md)
+- [About Rucio Daemons](started/daemons.md)
 
 ## Client
 
@@ -60,8 +61,8 @@ Developer documentation will help you get started. Peruse some common REST API &
 Client API references that are directly derived from Rucio's python
 libraries. We also have a contribution guide for those who wish to pitch in.
 
-- [Client API Documentation](client_api/accountclient)
-- REST API Documentation
+- [Client API Documentation](pathname:///html/site/client.html)
+- [REST API Documentation](pathname:///html/rest_api_doc.html)
 - [Contributing guide](contributing)
 
 ## Contributing to the Documentation
