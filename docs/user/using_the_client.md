@@ -6,6 +6,12 @@ title: Using the Client
 Rucio provides several commands for the end-user. See [executables](bin/rucio.md).
 The command line client is called ``rucio``.
 
+Please note that these commands are not meant to be included in python scripts. 
+For such applications, we encourage using the [python client](pathname:///html/site/client.html). 
+
+If you are using a version of the client prior to ~36.0, please view the [migration guide](user/migrating_from_35_client.md).
+
+# Basic Commands
 
 ## Getting help
 
@@ -257,7 +263,7 @@ auth_token_file_path = /path/to/token/file
 You can query the list of available RSEs:
 
 ```bash
-$ rucio list-rses
+$ rucio rse list
 SITE1_DISK
 SITE1_TAPE
 SITE2_DISK
@@ -269,7 +275,7 @@ If the RSEs are tagged with attributes you can build RSE expressions and query
 the sites matching these expressions:
 
 ```bash
-$ rucio list-rses --rses "tier=1&disk=1"
+$ rucio rse list --rses "tier=1&disk=1"
 SITE1_DISK
 SITE2_DISK
 ```
@@ -279,7 +285,7 @@ SITE2_DISK
 To list all the possible scopes:
 
 ```bash
-$ rucio list-scopes
+$ rucio scope list
 mc
 data
 user.jdoe
@@ -290,7 +296,7 @@ You can query the DIDs matching a certain pattern. It always requires to specify
 the scope in which you want to search:
 
 ```bash
-$ rucio list-dids user.jdoe:*
+$ rucio did list --did user.jdoe:*
 +-------------------------------------------+--------------+
 | SCOPE:NAME                                | [DID TYPE]   |
 |-------------------------------------------+--------------|
@@ -307,7 +313,7 @@ $ rucio list-dids user.jdoe:*
 You can filter by key/value, e.g.:
 
 ```bash
-$ rucio list-dids --filter type=CONTAINER
+$ rucio did list --filter type=CONTAINER --did user.jdoe:*
 +-------------------------------------------+--------------+
 | SCOPE:NAME                                | [DID TYPE]   |
 |-------------------------------------------+--------------|
@@ -320,7 +326,7 @@ If you want to resolve a collection (CONTAINER or DATASET) into the list of its
 constituents:
 
 ```bash
-$ rucio list-content user.jdoe:user.jdoe.test.container.1234.1
+$ rucio did content list --did user.jdoe:user.jdoe.test.container.1234.1
 +------------------------------------+--------------+
 | SCOPE:NAME                         | [DID TYPE]   |
 |------------------------------------+--------------|
@@ -329,30 +335,15 @@ $ rucio list-content user.jdoe:user.jdoe.test.container.1234.1
 +------------------------------------+--------------+
 ```
 
-You can resolve also the collections (CONTAINER or DATASET) into the list of
-files:
-
-```bash
-$ rucio list-files user.jdoe:user.jdoe.test.container.1234.1
-+-----------------------+---------+-------------+------------+----------+
-| SCOPE:NAME            | GUID    | ADLER32     | FILESIZE   | EVENTS   |
-|-----------------------+---------+-------------+------------+----------|
-| user.jdoe:test.file.1 | 9DF3... | ad:56fb0723 | 39.247 kB  |          |
-| user.jdoe:test.file.2 | 67E8... | ad:e3e573b5 | 636.075 kB |          |
-| user.jdoe:test.file.3 | 32CD... | ad:22849380 | 641.427 kB |          |
-+-----------------------+---------+-------------+------------+----------+
-Total files : 3
-Total size : 1.316 MB:
-```
-
 ## Rules operations
 
 You can create a new rule like this:
 
 ```bash
 $ rucio add-rules --lifetime 1209600 \
-  user.jdoe:user.jdoe.test.container.1234.1 1 \
-  "tier=1&disk=1"
+  --did user.jdoe:user.jdoe.test.container.1234.1 \
+  --copies 1 \
+  --rses "tier=1&disk=1"
 a12e5664555a4f12b3cc6991db5accf9
 ```
 
@@ -361,7 +352,7 @@ The command returns the rule_id of the rule.
 You can list the rules for a particular DID:
 
 ```bash
-$ rucio list-rules user.jdoe:user.jdoe.test.container.1234.1
+$ rucio rule list --did user.jdoe:user.jdoe.test.container.1234.1
 ID    ACCOUNT  SCOPE:NAME  STATE[OK/REPL/STUCK]  RSE_EXPRESSION  COPIES  EXPIRES
 ----  -------  ----------  --------------------  --------------  ------  -------
 a...  jdoe     user....    OK[3/0/0]             tier=1&disk=1   1       2018...
@@ -408,4 +399,118 @@ Total files :                                 3
 Downloaded files :                            3
 Files already found locally :                 0
 Files that cannot be downloaded :             0
+```
+
+# Operator Commands 
+
+Rucio provides a CLI for administrative tasks. The get methods can be executed
+by any user, but the set methods require some admin privileges. 
+
+
+## Account and identity methods
+
+To create a new account:
+
+```bash
+  $ rucio account add --type USER --email jdoe@blahblih.com jdoe
+```
+
+You can choose different types in the list USER, GROUP, SERVICE. Different
+policies/permissions can be set depending on the account type.  Once the account
+is created, you need to create and attach an identity to this account:
+
+```bash
+  $ rucio account identity add --type X509 \
+      --id "CN=jdoe,OU=Users,OU=Organic Units,DC=blih,DC=blah" \
+      --email jdoe@blahblih.com \
+      --account jdoe
+```
+
+The list of possible identity types is X509, GSS, USERPASS, SSH, SAML, OIDC:
+
+```bash
+  $ rucio account identity list --account jdoe
+  Identity: CN=jdoe,OU=Users,OU=Organic Units,DC=blih,DC=blah,        type: X509
+```
+
+You can set attributes to the users:
+
+```bash
+  $ rucio account attribute add --key country --value xyz --account jdoe
+```
+
+And list these attributes:
+
+```bash
+  $ rucio-admin account attribute list --account jdoe
+  +---------+-------+
+  | Key     | Value |
+  |---------+-------|
+  | country | xyz   |
+  +---------+-------+
+```
+
+You can also list all the accounts matching a certain attribute using the filter
+option:
+
+```bash
+  $ rucio account list --filters "country=xyz"
+  jdoe
+```
+
+To add the quota for one account on a given RSE:
+
+```bash
+  $ rucio account limit add --account jdoe --rses SITE2_SCRATCH  --bytes 10000000000000
+  Set account limit for account jdoe on RSE SITE2_SCRATCH: 10.000 TB
+
+  $ rucio account limit list --account jdoe --rses SITE2_SCRATCH
+  Quota on SITE2_SCRATCH for jdoe : 10 TB
+```
+
+## Scope methods
+
+To create a new scope:
+
+```bash
+  $ rucio scope add --account jdoe --scope user.jdoe
+```
+
+Only the owner of the scope or privileged users can write into the scope.
+
+To list all the scopes:
+
+```bash
+  $ rucio scope list
+  user.janedoe
+  user.jdoe
+```
+
+## RSE methods
+
+To create a new RSE:
+
+```bash
+  $ rucio rse add --rse SITE2_SCRATCH
+```
+
+To add a RSE attribute:
+
+```bash
+  $ rucio rse attribute add --rse SITE2_SCRATCH --key country --value xyz
+```
+
+To check an RSE attribute:
+
+```bash
+  $ rucio rse attribute list --rse SITE2_SCRATCH
+  country: xyz
+```
+
+## Replica methods
+
+To declare bad (i.e. corrupted or lost replicas):
+
+```bash
+  $ rucio replica state update bad --reason "File corrupted" --files https//path/to/lost/file
 ```
