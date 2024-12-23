@@ -2,102 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rucio.cern.ch/documentation/accountclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/accountlimitclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/baseclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/client.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/configclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/credentialclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/didclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/diracclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/downloadclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/exportclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/fileclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/importclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/lifetimeclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/lockclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/metaconventionsclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/pingclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/replicaclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/requestclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/richclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/rseclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/ruleclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/scopeclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/subscriptionclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/touchclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/uploadclient.html</loc>
-         <lastmod>2024-12-20</lastmod>
+         <lastmod>2024-12-23</lastmod>
     </url>
 </urlset>
