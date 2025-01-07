@@ -44,7 +44,7 @@ newer use cases & user requirements in high energy physics and beyond.
 The capabilities of Rucio are:
 
 - Storage of detector data, simulator data, and user data
-- Unified interfacing of heterogenous network & storage infrastructure
+- Unified interfacing of heterogeneous network & storage infrastructure
 - Support for newer protocols in Storage & Network using plugins
 - Data Recovery
 - Adaptive Replication

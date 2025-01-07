@@ -1,0 +1,4 @@
+[codespell]
+skip = *.pdf,*.json
+count =
+quiet-level = 3

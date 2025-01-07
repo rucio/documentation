@@ -39,7 +39,7 @@ def iter_github_releases(owner: str, repo: str) -> Iterator[GitHubRelease]:
             params={"per_page": ITEMS_PER_PAGE, "page": page},
             headers={"Accept": "application/vnd.github.v3+json"},
         )
-        assert request.status_code == 200, "The request should be succesfull!"
+        assert request.status_code == 200, "The request should be successful!"
 
         releases = request.json()
 

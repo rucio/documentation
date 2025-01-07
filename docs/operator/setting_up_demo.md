@@ -187,7 +187,7 @@ dashboard. You can access it at `<http://localhost:3000>`. The default
 credentials are \"admin/admin\". Also ActiveMQ web console can be
 accessed at `<http://localhost:8161>`.
 
-If you would like to continously create some transfers and events there
+If you would like to continuously create some transfers and events there
 are scripts available for that. Open two different shells and in one
 run:
 

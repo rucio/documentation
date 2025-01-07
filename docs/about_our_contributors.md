@@ -3,7 +3,7 @@ id: about_our_contributors
 title: About Our Contributors
 ---
 
-Below is a list of contibutors who have contributed to the
+Below is a list of contributors who have contributed to the
 source code & their employers.
 
 Should you wish to contribute to the Rucio source code or the documentation,

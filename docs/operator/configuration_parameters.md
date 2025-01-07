@@ -2,7 +2,7 @@
 id: configuration_parameters
 title: Configuration parameters
 ---
-Description of the configuration parameters splitted in three different places:
+Description of the configuration parameters split in three different places:
 Rucio configuration file (`rucio.cfg`), Rucio configuration table and RSE attributes.
 
 ## Rucio Configuration File (`rucio.cfg`)
@@ -184,11 +184,11 @@ Rucio will look for the config in the following locations -
     x509_proxy, gss, ssh, saml, oidc}`.
   - **ca_cert**: Path of the cert file for HTTPS. Example:
     `/opt/rucio/etc/web/ca.crt`.
-  - **client_cert**: Path of the X.509 client cert file. This can be overwitten
+  - **client_cert**: Path of the X.509 client cert file. This can be overwritten
     by the `RUCIO_CLIENT_CERT` environment variable. Example:
     `/opt/rucio/etc/web/client.crt`.
   - **client_key**: Path of the X.509 client key file for the cert defined in
-    `client_cert`. This can be overwitten by the `RUCIO_CLIENT_KEY` environment
+    `client_cert`. This can be overwritten by the `RUCIO_CLIENT_KEY` environment
     variable. Example: `/opt/rucio/etc/web/client.key`.
   - **client_x509_proxy**: Path of the X.509 client proxy. Mandatory if
     `auth_type = x509_proxy`.
@@ -527,7 +527,7 @@ The RSE Attributes are set separately using `rucio.RSEClient` or `rucio-admin`,
 and only contains information about the specific RSE's for the Rucio instance.
 Read more about RSEs [here](../started/concepts/rucio_storage_element.md)
 and how to set them up [here](./configuration.md#creating-new-rses).
-The RSE Attributes are set seperately using `rucio.RSEClient` or `rucio-admin`,
+The RSE Attributes are set separately using `rucio.RSEClient` or `rucio-admin`,
 and only contains information about the specific RSE's for the Rucio instance.
 Read more about RSEs [here](../started/concepts/rucio_storage_element.md)
 and how to set them up [here](./configuration.md#creating-new-rses).
