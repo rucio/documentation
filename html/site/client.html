@@ -900,7 +900,42 @@
     <div class="doc doc-contents ">
 
 
-        <p>Main client class for accessing Rucio resources. Handles the authentication.</p>
+        <pre><code>Main client class for accessing Rucio resources. Handles the authentication.
+
+Note:
+    Used to access all client methods. Each entity client *can* be used to access methods, but using the main client class is recommended for ease of use.
+</code></pre>
+<p>For using general methods -</p>
+<pre><code>from rucio.client import Client
+
+client = Client()  # authenticate with config or environ settings
+client.add_replication_rule(...)
+
+client = Client(
+    rucio_host = &quot;my_host&quot;,
+    auth_host = &quot;my_auth_host&quot;,
+    account = &quot;jdoe12345&quot;,
+    auth_type = &quot;userpass&quot;,
+    creds = {
+        &quot;username&quot;: &quot;jdoe12345&quot;,
+        &quot;password&quot;: &quot;******&quot;,
+    }
+) # authenticate with kwargs
+client.list_replicas(...)
+</code></pre>
+<p>For using the upload and download clients -</p>
+<pre><code>from rucio.client import Client
+from rucio.client.uploadclient import UploadClient
+from rucio.client.downloadclient import DownloadClient
+
+client = Client(...) # Initialize a client using your preferred method
+
+upload_client = UploadClient(client) # Pass forward the initialized client
+upload_client.upload(items=...)
+
+download_client = DownloadClient(client)
+download_client.download_dids(items=...)
+</code></pre>
 
         <p>Constructor for the Rucio main client class.</p>
 
