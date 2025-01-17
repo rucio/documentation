@@ -7,10 +7,9 @@ sidebar_position: 3
 Rucio provides several commands for the end-user. See [executables](bin/rucio.md).
 The command line client is called ``rucio``.
 
-Please note that these commands are not meant to be included in python scripts. 
-For such applications, we encourage using the [python client](pathname:///html/site/client.html). 
+Note: for Python scripts, we encourage using the [Python client](pathname:///html/site/client.html) instead of the commands listed here.
 
-If you are using a version of the client prior to ~36.0, please view the [migration guide](user/migrating_from_35_client.md).
+If you are using a version of the client prior to ~36.0, please view the [migration guide](user/migrate_to_36_cli.md).
 
 # Basic Commands
 
@@ -443,7 +442,7 @@ You can set attributes to the users:
 And list these attributes:
 
 ```bash
-  $ rucio-admin account attribute list --account jdoe
+  $ rucio account attribute list --account jdoe
   +---------+-------+
   | Key     | Value |
   |---------+-------|

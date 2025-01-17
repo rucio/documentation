@@ -2,27 +2,26 @@
 title: Migrating from pre-36.0.0 Clients
 ---
 
-In Rucio 36.0.0, a new rucio client was released. 
-This new client redos the entire structure of both `rucio` and `rucio-admin`. 
-`rucio-admin` is made redundant by the update, their commands are included in the `rucio >=36.0` client. 
+In Rucio 36.0.0, a new Rucio client was released, with breaking changes to the structure of both `rucio` and `rucio-admin`.
+`rucio-admin` is made redundant by the update, and its commands are included in the `rucio >=36.0` client.
 
 Note: 
-    Please report any issues you have with the new client [on this github issue](https://github.com/rucio/rucio/issues/7224)
+    Please report any issues you have with the new client please [contact us](contact_us)
 
 # Legacy Mapping
 
 * Using `rucio-admin` or `rucio --legacy` automatically uses the old version. Old help menus are still visible with this method. 
 * Old commands still work - they display a warning.
-* Not all commands are included in the 36 Client Release. Not all are one-to-one mapped. 
-* A warning it printed (not logged) to consoles to encourage migration, along with the closest mapped command. 
+* Not all commands are migrated to the new client structure. Not all included commands are one-to-one mapped.
+* A warning is printed (not logged) to consoles to encourage migration, along with the closest mapped command. 
 
 
 # Remapping Existing Commands
 
 |`rucio <36.0`| `rucio >=36.0`|
 | ------------- | ------------- |
-| rucio list-file-replicas | rucio replica list |
-| rucio list-dataset-replicas | rucio replica dataset |
+| rucio list-file-replicas | rucio replica list file |
+| rucio list-dataset-replicas | rucio replica list dataset |
 | rucio add-dataset | rucio did add --type dataset |
 | rucio add-container | rucio did add --type container |
 | rucio attach | rucio did content add |
@@ -48,7 +47,7 @@ Note:
 | rucio list-account-limits | rucio account limit list |
 | rucio add-rule | rucio rule add |
 | rucio delete-rule | rucio rule remove |
-| rucio rule-info | rucio rule info |
+| rucio rule-info | rucio rule show |
 | rucio list-rules | rucio rule list |
 | rucio list-rules-history | rucio rule history |
 | rucio update-rule | rucio rule update |
