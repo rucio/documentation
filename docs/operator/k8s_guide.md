@@ -321,7 +321,7 @@ kubectl create namespace rucio
 ```
 And consequently create a helm repository config file `rucio-helm-repo.yaml`.
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: rucio-charts
