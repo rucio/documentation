@@ -40,14 +40,23 @@ To install Helm, execute:
       git push
       ```
   -  [Bootstrap Flux](https://fluxcd.io/flux/cmd/flux_bootstrap_gitlab/)
-Then setup the flux in the gitlab repo, by exporting the secret and running the command
+Then setup the flux in the gitlab repo (we recommend to clone it via https), run the command
       ```sh
       flux bootstrap gitlab \
-        --owner=<group> \
-        --repository=<repository name> \
-        --branch=<main branch> \
-        --path=<path> \
+        --owner=<git-user-or-group-name> \
+        --repository=<repository-name> \
+        --branch=<main-branch> \
+        --path=<path-where-to-sync> \
+        --hostname=gitlab.cern.ch \ 
+        --deploy-token-auth
       ```
+The git deploy token will be requested as part of the auth process.
+
+:::tip[Why use ` --deploy-token-auth`]
+
+When using --deploy-token-auth, the CLI generates a GitLab project deploy token and stores it in the cluster as a Kubernetes Secret named flux-system inside the flux-system namespace. [[Source](https://fluxcd.io/flux/installation/bootstrap/gitlab/#gitlab-personal-account)].
+:::
+
 - **(optional) Monitoring**: `k9s`. <br/>
   Get the binary from [here](https://github.com/derailed/k9s/releases) looking for the proper dist; extract, and move to `/usr/local/bin/`.
 
@@ -186,7 +195,6 @@ The following sections are based on the deployment of the [COMPASS Rucio instanc
 A very efficient way of managing secrets in the cluster is Bitnami's Sealed-Secrets. Install the Helm chart by executing:
 ```sh
 helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
-rucio-helm-repo.yaml sealed-secrets.yaml
 
 kubectl create namespace sealed-secrets
 
@@ -306,11 +314,33 @@ spec:
 ## Rucio Servers
 >The Rucio servers are the backbone of the Rucio system. They handle all core functionalities including data management, rule-based data replication, data placement, and monitoring. The servers ensure the integrity and availability of data across various storage systems.
 
-In order to setup this service, four steps are needed:
+First of all, create a namespace for rucio: 
+
+```sh
+kubectl create namespace rucio
+```
+And consequently create a helm repository config file `rucio-helm-repo.yaml`.
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: rucio-charts
+  namespace: rucio
+spec:
+  url: https://rucio.github.io/helm-charts
+  interval: 1m
+```
+Then apply it using kubectl: 
+```sh
+kubectl apply -f /path/rucio-helm-repo.yaml
+```
+
+At this point, in order to setup this service, four more steps are needed:
 1. Produce the Helm chart.
-2. Setup the LoadBalancers (LBs).
-3. Produce the certificates related to the `landb-alias` used.
-4. Add the certificates as secrets and mount them on the k8s pods.
+2. Create the DB secret
+3. Setup the LoadBalancers (LBs).
+4. Produce the certificates related to the `landb-alias` used.
+5. Add the certificates as secrets and mount them on the k8s pods.
 
 ### Produce the Helm chart
 Please look at the [currently used one](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/sync/rucio-servers.yaml?ref_type=heads).
@@ -324,6 +354,42 @@ A few remarks:
 
 Please notice that in order to have LBs produced, ***the Helm chart must be applied***. 
 This will come with several errors related to certificates, that will be fixed in the next steps.
+
+### Create the DB secret
+Create the file rucio-db.yaml to register the secret: 
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rucio-db
+  namespace: rucio
+stringData:
+  dbfullstring: postgresql://user:psw@dbod-instance.cern.ch:port/db
+```
+Add the secret using a script like this: 
+```sh
+#!/bin/bash
+
+# kubeseal controller namespace
+CONTROLLER_NS="sealed-secrets"
+CONTROLLER_NAME="sealed-secrets-controller" # This can be checked in k8s/Services
+
+# rucio namespace
+RUCIO_NS="rucio"
+
+# Output dir
+SECRETS_STORE="/root/flux-ams02/SECRETS/"
+
+source_file_secret="/root/flux-ams02/SECRETS/tmp_local_secrets/rucio-db.yaml"
+
+# name of output secret to apply
+OUTPUT_SECRET="rucio-ams02-db.yaml"
+cat ${source_file_secret} | kubeseal --controller-name=${CONTROLLER_NAME} --controller-namespace=${CONTROLLER_NS} --format yaml --namespace=${RUCIO_NS} > ${SECRETS_STORE}/ss_${OUTPUT_SECRET}
+kubectl apply -f ${SECRETS_STORE}/ss_${OUTPUT_SECRET}
+```
+
+
 ### Setup the LB
 The minimal configuration for LoadBalancers is the following:
 ```yaml
@@ -359,13 +425,21 @@ To do that, first retrieve the virtual IP address, `vip_address`, of the LB:
  openstack loadbalancer show <lb-ID> | grep vip_address
 ```
 
-Then, retrieve the pointer to the LB, for instance:
+:::tip[LoadBalancers are slow and automatic]
+The LB will be automatically added to the LanDB set allowed IPs. 
 
+IF this does ***not*** happen, follow the steps below:
+:::
+
+It will take a while (~10 minutes) for the LB hostname to come up online, so do not panic if `host <vip_address>` doesn't return anything immediately!
+
+Retrieve the pointer to the LB, for instance:
 ```sh
 host <vip_address>
 222.xx.xxx.xxx.in-addr.arpa domain name pointer lbaas-xxx4a6c2-xxxx-xxxx-xxxx-59489ffd7xxx.cern.ch.
 ```
 where `lbaas-xxx4a6c2-xxxx-xxxx-xxxx-59489ffd7xxx.cern.ch` represents the hostname of the LB.
+
 Finally, add `lbaas-...cern.ch` to the list of allowed IP addresses in the LanDB set dashboard. Either the hostname or the `vip_address` used before can be used in the search bar.
 
 ### Produce the certificates related to the landb-alias
