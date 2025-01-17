@@ -84,7 +84,7 @@ Details about which port to connect to, etc can be found on the DBOD dashboard.
 While inside the db instance, we can create the `rucio` user and db, and we can assign admin privileges to it:
 ```sql
 CREATE ROLE rucio WITH LOGIN PASSWORD 'xxx';
-ALTER GROUP rucio ADD USER admin;
+ALTER GROUP admin ADD USER rucio;
 CREATE DATABASE rucio;
 ```
 
