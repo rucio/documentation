@@ -210,7 +210,7 @@ metadata:
   labels:
     name: sealed-secrets
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: sealed-secrets
@@ -219,7 +219,7 @@ spec:
   interval: 5m
   url: https://bitnami-labs.github.io/sealed-secrets
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease 
 metadata:
   name: sealed-secrets
