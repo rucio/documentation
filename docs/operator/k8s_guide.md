@@ -547,12 +547,21 @@ The description of the various daemons can be found in [here](https://rucio.gith
 It is not the user's account that uploads, downloads, etc, but it's a ***service account*** that is set up normally by the collaboration or the team. 
 
 Together with the service account, we also need the corresponding user <u>grid cert</u> that is split in `cert` and `key` and is passed to the `ftsRenewal` daemon, that renews it periodically through a [specific script](https://github.com/rucio/containers/blob/master/fts-cron/renew_fts_proxy.sh.j2):
+
 ```yaml
 - secretName: fts-cert
   mountPath: /opt/rucio/certs/
 - secretName: fts-key
   mountPath: /opt/rucio/keys/
 ```
+
+In the Compass example, the service account grid certificate is named `na58dst1.p12`. To retrieve the `cert.pem` and `key.pem`, one can run the [following these commands](https://stackoverflow.com/questions/15144046/converting-pkcs12-certificate-into-pem-using-openssl):
+```sh
+openssl pkcs12 -in na58dst1.p12 -out na58dst1.usercert.pem -clcerts -nokeys
+openssl pkcs12 -in na58dst1.p12 -out na58dst1.userkey.pem -nocerts -nodes
+```
+
+
 
 #### How to connect to the proper VO?
 [Reference documentation](./multi_vo_rucio.md).
@@ -572,6 +581,13 @@ So we need to create a secret with the proper content and ***mount*** it in the 
 - secretName: voms-compass
   mountPath: /etc/vomses/
 ```
+
+:::danger[Very important information about `ca-bundles`]
+An additional secret is needed, and it's the `rucio-ca-bundle` secret.
+It can be obtained by copying the content of `/etc/grid-security/certificates` on LXPLUS matching the regex `*.0` and `*.signing_policy` into a single folder that will be used as a secret.
+
+An example can be found at [this link](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/1897a2252e98ca3f6ea54047b1a662f57d55f774/scripts/rucio-daemons-secret.sh#L36-37).
+:::
 
 In this way, we'll get something like the following output from the cron-job:
 
@@ -611,6 +627,8 @@ renew-fts-proxy: Signing request
 renew-fts-proxy: Delegation id: ef1e8a8e094bde07      
 renew-fts-proxy: Termination time: 2024-05-31T15:49:15 
 ```
+### Add the certificates as secrets and mount them on the k8s pods
+Now it is possible to run something similar to the [daemons script](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/1897a2252e98ca3f6ea54047b1a662f57d55f774/scripts/rucio-daemons-secret.sh) to add all the secrets to the cluster.
 
 ### Additional environment variables
 
@@ -628,6 +646,7 @@ additionalEnvs:
       name: rucio-daemons-fts-passphrase
       key: passphrase
 ```
+Please notice that `USERCERT_NAME` and `USERKEY_NAME` correspond to the name of `cert.pem` and `key.pem` extracted before, `RUCIO_FTS_SECRETS` doesn't need to be changed, and `GRID_PASSPHRASE` corresponds to the passphrase chosen for the service account (can be an empty string).
 
 A diagram of how the proxy certificate is created and mounted on the daemons is displayed below: 
 
