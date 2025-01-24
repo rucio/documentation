@@ -686,7 +686,7 @@ proxy:
 
 # Setting up Rucio
 ## Installing `rucio-clients`
-Please refer to the [installation page].
+Please refer to the [installation page](../user/setting_up_the_rucio_client).
 
 :::info[TL;DR]
 `pip install rucio-clients`
