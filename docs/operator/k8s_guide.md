@@ -139,8 +139,6 @@ spec:
       env:
         - name: RUCIO_CFG_DATABASE_DEFAULT
           value: postgresql://rucio:<PASSWORD>@postgres-postgresql/rucio
-        - name: RUCIO_CFG_DATABASE_SCHEMA
-          value: test
         - name: RUCIO_CFG_BOOTSTRAP_USERPASS_IDENTITY
           value: admin
         - name: RUCIO_CFG_BOOTSTRAP_USERPASS_PWD
