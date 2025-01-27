@@ -66,3 +66,6 @@ The suspicious replica recoverer has two modes of operation:
 - **Active**: the daemon is allowed to take actions on the replicas. This option has to explicitly be set when the daemon is called.
 
 
+A simplified version of the finite state diagram of the daemon can be found below:
+
+![Suspicious replica recoverer diagram](/img/suspicious_replica_recoverer_diagram.png)
