@@ -697,7 +697,7 @@ Please refer to the [installation page](../user/setting_up_the_rucio_client).
 Install `gfal2` "properly":
 https://dmc-docs.web.cern.ch/dmc-docs/gfal2-python/pip-install.html
 AND install these plugins:
-```
+```sh
  sudo dnf install gfal2-plugin-srm
  sudo dnf install gfal2-plugin-xrootd
  sudo dnf install gfal2-plugin-mock
@@ -753,45 +753,45 @@ Look at the following commits to have an example of how to create a pod in the c
 The [`rucio-admin`](https://rucio.github.io/documentation/bin/rucio-admin) command can be used to setup the Rucio instance.
 ### Create the Rucio Storage Elements (RSEs)
 ```sh
-rucio-admin rse add XRD1
-rucio-admin rse add XRD2
-rucio-admin rse add XRD3
+rucio rse add --rse XRD1
+rucio rse add --rse XRD2
+rucio rse add --rse XRD3
 ```
 
 ### Add the protocol definitions for the storage servers
 ```sh
-rucio-admin rse add-protocol --hostname xrd1 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}' XRD1
-rucio-admin rse add-protocol --hostname xrd2 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}' XRD2
-rucio-admin rse add-protocol --hostname xrd3 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}' XRD3
+rucio rse protocol add --host xrd1 --rse XRD1 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}'
+rucio rse protocol add --host xrd2 --rse XRD2 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}'
+rucio rse protocol add --host xrd3 --rse XRD3 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}'
 ```
 ### Enable FTS
 ```sh
-rucio-admin rse set-attribute --rse XRD1 --key fts --value https://fts:8446
-rucio-admin rse set-attribute --rse XRD2 --key fts --value https://fts:8446
-rucio-admin rse set-attribute --rse XRD3 --key fts --value https://fts:8446
+rucio rse attribute add --rse XRD1 --key fts --value https://fts:8446
+rucio rse attribute add --rse XRD2 --key fts --value https://fts:8446
+rucio rse attribute add --rse XRD3 --key fts --value https://fts:8446
 ```
 Note that `8446` is the port exposed by the `fts-server` pod. You can easily view ports opened by a pod by `kubectl describe pod PODNAME`.
    
 ### Fake a full mesh network
 This command will set the distance between RSEs to 1, in order to make transfers possible.
 ```sh
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD1 XRD2
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD1 XRD3
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD2 XRD1
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD2 XRD3
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD3 XRD1
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD3 XRD2
+rucio rse distance add --source XRD1 --destination XRD2 --distance 1
+rucio rse distance add --source XRD1 --destination XRD3 --distance 1
+rucio rse distance add --source XRD2 --destination XRD1 --distance 1
+rucio rse distance add --source XRD2 --destination XRD3 --distance 1
+rucio rse distance add --source XRD3 --destination XRD1 --distance 1
+rucio rse distance add --source XRD3 --destination XRD2 --distance 1
 ```
 ### Set indefinite storage quota for root
 ```sh
-rucio-admin account set-limits root XRD1 -1
-rucio-admin account set-limits root XRD2 -1
-rucio-admin account set-limits root XRD3 -1
+rucio account limit add --account root --rses XRD1 --bytes infinity
+rucio account limit add --account root --rses XRD2 --bytes infinity
+rucio account limit add --account root --rses XRD3 --bytes infinity
 ```
 
 ### Create a default scope for testing
 ```sh
-rucio-admin scope add --account root --scope test
+rucio scope add --account root --scope test
 ```
 
 ## Data management
@@ -805,45 +805,46 @@ dd if=/dev/urandom of=file4 bs=10M count=1
 
 ### Upload the files
 ```sh
-rucio upload --rse XRD1 --scope test file1
-rucio upload --rse XRD1 --scope test file2
-rucio upload --rse XRD2 --scope test file3
-rucio upload --rse XRD2 --scope test file4
+rucio upload --rse XRD1 --scope test --files file1 file2
+rucio upload --rse XRD2 --scope test --files file3 file4
 ```
 
 ### Create a few datasets and containers
 ```sh
-rucio add-dataset test:dataset1
-rucio attach test:dataset1 test:file1 test:file2
+rucio did add --type dataset --did test:dataset1
+rucio did content add --to test:dataset1 --did test:file1 test:file2
 
-rucio add-dataset test:dataset2
-rucio attach test:dataset2 test:file3 test:file4
+rucio did add --type dataset --did test:dataset2
+rucio did content add --to test:dataset2 --did test:file3 test:file4
 
-rucio add-container test:container
-rucio attach test:container test:dataset1 test:dataset2
+rucio did add --type container --did test:container
+rucio did content add --to test:container --did test:dataset1 test:dataset2
+
+rucio did add --type dataset --did test:dataset3
+rucio did content add --to test:dataset3 --did test:file4
 ```
 
 ### Create a rule and remember returned rule ID
 
+```sh
+rucio rule add --did test:container --rses XRD3 --copies 1
 ```
-rucio add-rule test:container 1 XRD3
+
+This command will output a rule ID, which can also be obtained via:
+
+```sh
+rucio rule list --did test:container
 ```
 
 Query the status of the rule until it is completed. Note that the daemons are running with long sleep cycles (e.g. 30 seconds, 60 seconds) by default, so this will take a bit. You can always watch the output of the daemon containers to see what they are doing.
 
 ```sh
-rucio rule-info <rule_id>
-```
-
-For this command, get the `rule_id` by,
-
-```sh
-rucio list-rules test:container
+rucio rule show --rule-id <rule_id>
 ```
 
 Add some more complications
 
 ```sh
-rucio add-dataset test:dataset3
+rucio did add --type dataset -d test:dataset3
 rucio attach test:dataset3 test:file4
 ```
