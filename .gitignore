@@ -73,3 +73,9 @@ __pycache__
 
 # Mac OS X Finder
 **/.DS_Store
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
