@@ -436,7 +436,7 @@ As for the servers, four steps are needed to deploy the authentication pod:
 Based on the reference Helm chart, we can add a few remarks:
 
 1. Explicitly mounting secrets for `hostcert`, `hostkey`, and `ca`, via `secretMounts`.
-2. The `httpd` configuration block:
+2. The `httpd_config` configuration block:
 this block maps the certificate to an account name.
 Setting up `x509` auth can be very tricky, please make sure that the [`grid_site_enabled`](https://github.com/rucio/containers/blob/b51bbceb5aab0a1e07d48845f295cbbb175bdcb9/server/rucio.conf.j2#L104) parameter is set on `True`. <br/>
 This enables the `auth/x509_proxy` endpoint! <br/>
