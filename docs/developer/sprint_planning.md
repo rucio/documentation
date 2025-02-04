@@ -70,3 +70,18 @@ As a sprint participant, at the beginning of the sprint you should:
 And at the end you should:
 - Respond to the sprint end thread with your review and comments
 - Update the GitHub project board accordingly
+
+## FAQ
+
+### If I am done with my tasks for this sprint and the sprint is not over, should I add more issues to the sprint?
+You can add new issues and mark them with an `unplanned` label.
+In general, we should plan sprints in a way that ensures that the work is neither delayed nor completed too much in advance. If this happens regularly, it might be an indication that we are not estimating sizes properly.
+
+### An issue is less/more work than I thought, should I change the estimate?
+The size estimate should not be changed once the issue has been added to the sprint with that estimate.
+In the sprint review phase, you can share a reflection on why you found the real effort to not match the estimated effort.
+
+### I won't be able to finish all the issues in the sprint. Should I remove them?
+It's important to leave all the issues in the sprint, in order to reflect on whether we planned correctly or not.
+We can estimate the remaining effort for the unfinished issues in case we want to move them to a subsequent sprint,
+but they should not be removed from their sprint.
