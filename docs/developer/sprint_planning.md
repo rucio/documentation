@@ -37,7 +37,7 @@ In a sprint, issues are categorised by their priority:
 - non-priority: issue is not related to the release roadmap objectives
 
 ### Size estimation
-Each issue is assigned a size based on how many days of work we estimate the issue to take.
+Each issue is assigned a size based on how many days of work the responsible developer estimates the issue to take.
 After/during the roadmap planning, the size estimates should be set for all priority issues. 
 For non-priority issues, the estimates are set when the issue is added to the project, thus ideally all issues in the project should have a size estimate.
 
