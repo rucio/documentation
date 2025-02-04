@@ -25,7 +25,9 @@ Given a two-week period, the sprint:
 ## Availability
 Sprint participants might have other responsibilities to handle, besides the development of Rucio. Because of this, they should determine their availability (i.e. total number of days) before they can plan which issues to work on for a sprint.
 
-In general, given a sprint with 10 working days, a sprint participant can estimate 2 entire days being taken by meetings, reviews and similar activities, plus any additional days needed for other tasks.
+Code review is an important, continuous, task to be done by all developers. Availability should be reduced accordingly to cover for that.
+
+For example, for a full-time developer devoting 100% of 10 working days to Rucio development, perhaps only 8 days should be reported, to cover time for reviews, meetings, etc.
 
 ## Issues
 
