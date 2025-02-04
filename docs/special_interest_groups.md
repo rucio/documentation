@@ -26,7 +26,7 @@ Each SIG must define
 
 | Name                                          | Start    | est. End | Convener                                               |
 | --------------------------------------------- | -------- | -------- | ------------------------------------------------------ |
-| [Metadata](sig_metadata.md)                   | Jul-2021 | Dec-2024 | [Rob Barnsley](https://github.com/robbarnsley)         |
+| [Metadata](sig_metadata.md)                   | Jul-2021 | Dec-2026 | [Rob Barnsley](https://github.com/robbarnsley)         |
 | [Tokens](sig_tokens.md)                       | Sep-2023 | Mar-2026 | [Dimitrios Christidis](https://github.com/dchristidis) |
 
 ## Past Special Interest Groups
