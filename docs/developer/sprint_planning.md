@@ -30,7 +30,7 @@ In general, given a sprint with 10 working days, a sprint participant can estima
 ## Issues
 
 ### Priority
-In a sprint, issues should be categorised by their priority:
+In a sprint, issues are categorised by their priority:
 - priority: issue is part of the release roadmap objectives
 - non-priority: issue is not related to the release roadmap objectives
 
