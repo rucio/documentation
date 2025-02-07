@@ -40,14 +40,23 @@ To install Helm, execute:
       git push
       ```
   -  [Bootstrap Flux](https://fluxcd.io/flux/cmd/flux_bootstrap_gitlab/)
-Then setup the flux in the gitlab repo, by exporting the secret and running the command
+Then setup the flux in the gitlab repo (we recommend to clone it via https), run the command
       ```sh
       flux bootstrap gitlab \
-        --owner=<group> \
-        --repository=<repository name> \
-        --branch=<main branch> \
-        --path=<path> \
+        --owner=<git-user-or-group-name> \
+        --repository=<repository-name> \
+        --branch=<main-branch> \
+        --path=<path-where-to-sync> \
+        --hostname=gitlab.cern.ch \ 
+        --deploy-token-auth
       ```
+The git deploy token will be requested as part of the auth process.
+
+:::tip[Why use ` --deploy-token-auth`]
+
+When using --deploy-token-auth, the CLI generates a GitLab project deploy token and stores it in the cluster as a Kubernetes Secret named flux-system inside the flux-system namespace. [[Source](https://fluxcd.io/flux/installation/bootstrap/gitlab/#gitlab-personal-account)].
+:::
+
 - **(optional) Monitoring**: `k9s`. <br/>
   Get the binary from [here](https://github.com/derailed/k9s/releases) looking for the proper dist; extract, and move to `/usr/local/bin/`.
 
@@ -130,8 +139,6 @@ spec:
       env:
         - name: RUCIO_CFG_DATABASE_DEFAULT
           value: postgresql://rucio:<PASSWORD>@postgres-postgresql/rucio
-        - name: RUCIO_CFG_DATABASE_SCHEMA
-          value: test
         - name: RUCIO_CFG_BOOTSTRAP_USERPASS_IDENTITY
           value: admin
         - name: RUCIO_CFG_BOOTSTRAP_USERPASS_PWD
@@ -186,7 +193,6 @@ The following sections are based on the deployment of the [COMPASS Rucio instanc
 A very efficient way of managing secrets in the cluster is Bitnami's Sealed-Secrets. Install the Helm chart by executing:
 ```sh
 helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
-rucio-helm-repo.yaml sealed-secrets.yaml
 
 kubectl create namespace sealed-secrets
 
@@ -202,7 +208,7 @@ metadata:
   labels:
     name: sealed-secrets
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: sealed-secrets
@@ -211,7 +217,7 @@ spec:
   interval: 5m
   url: https://bitnami-labs.github.io/sealed-secrets
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease 
 metadata:
   name: sealed-secrets
@@ -306,11 +312,33 @@ spec:
 ## Rucio Servers
 >The Rucio servers are the backbone of the Rucio system. They handle all core functionalities including data management, rule-based data replication, data placement, and monitoring. The servers ensure the integrity and availability of data across various storage systems.
 
-In order to setup this service, four steps are needed:
+First of all, create a namespace for rucio: 
+
+```sh
+kubectl create namespace rucio
+```
+And consequently create a helm repository config file `rucio-helm-repo.yaml`.
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: rucio-charts
+  namespace: rucio
+spec:
+  url: https://rucio.github.io/helm-charts
+  interval: 1m
+```
+Then apply it using kubectl: 
+```sh
+kubectl apply -f /path/rucio-helm-repo.yaml
+```
+
+At this point, in order to setup this service, four more steps are needed:
 1. Produce the Helm chart.
-2. Setup the LoadBalancers (LBs).
-3. Produce the certificates related to the `landb-alias` used.
-4. Add the certificates as secrets and mount them on the k8s pods.
+2. Create the DB secret
+3. Setup the LoadBalancers (LBs).
+4. Produce the certificates related to the `landb-alias` used.
+5. Add the certificates as secrets and mount them on the k8s pods.
 
 ### Produce the Helm chart
 Please look at the [currently used one](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/sync/rucio-servers.yaml?ref_type=heads).
@@ -324,6 +352,42 @@ A few remarks:
 
 Please notice that in order to have LBs produced, ***the Helm chart must be applied***. 
 This will come with several errors related to certificates, that will be fixed in the next steps.
+
+### Create the DB secret
+Create the file rucio-db.yaml to register the secret: 
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rucio-db
+  namespace: rucio
+stringData:
+  dbfullstring: postgresql://user:psw@dbod-instance.cern.ch:port/db
+```
+Add the secret using a script like this: 
+```sh
+#!/bin/bash
+
+# kubeseal controller namespace
+CONTROLLER_NS="sealed-secrets"
+CONTROLLER_NAME="sealed-secrets-controller" # This can be checked in k8s/Services
+
+# rucio namespace
+RUCIO_NS="rucio"
+
+# Output dir
+SECRETS_STORE="/root/flux-ams02/SECRETS/"
+
+source_file_secret="/root/flux-ams02/SECRETS/tmp_local_secrets/rucio-db.yaml"
+
+# name of output secret to apply
+OUTPUT_SECRET="rucio-ams02-db.yaml"
+cat ${source_file_secret} | kubeseal --controller-name=${CONTROLLER_NAME} --controller-namespace=${CONTROLLER_NS} --format yaml --namespace=${RUCIO_NS} > ${SECRETS_STORE}/ss_${OUTPUT_SECRET}
+kubectl apply -f ${SECRETS_STORE}/ss_${OUTPUT_SECRET}
+```
+
+
 ### Setup the LB
 The minimal configuration for LoadBalancers is the following:
 ```yaml
@@ -359,13 +423,21 @@ To do that, first retrieve the virtual IP address, `vip_address`, of the LB:
  openstack loadbalancer show <lb-ID> | grep vip_address
 ```
 
-Then, retrieve the pointer to the LB, for instance:
+:::tip[LoadBalancers are slow and automatic]
+The LB will be automatically added to the LanDB set allowed IPs. 
 
+IF this does ***not*** happen, follow the steps below:
+:::
+
+It will take a while (~10 minutes) for the LB hostname to come up online, so do not panic if `host <vip_address>` doesn't return anything immediately!
+
+Retrieve the pointer to the LB, for instance:
 ```sh
 host <vip_address>
 222.xx.xxx.xxx.in-addr.arpa domain name pointer lbaas-xxx4a6c2-xxxx-xxxx-xxxx-59489ffd7xxx.cern.ch.
 ```
 where `lbaas-xxx4a6c2-xxxx-xxxx-xxxx-59489ffd7xxx.cern.ch` represents the hostname of the LB.
+
 Finally, add `lbaas-...cern.ch` to the list of allowed IP addresses in the LanDB set dashboard. Either the hostname or the `vip_address` used before can be used in the search bar.
 
 ### Produce the certificates related to the landb-alias
@@ -473,12 +545,21 @@ The description of the various daemons can be found in [here](https://rucio.gith
 It is not the user's account that uploads, downloads, etc, but it's a ***service account*** that is set up normally by the collaboration or the team. 
 
 Together with the service account, we also need the corresponding user <u>grid cert</u> that is split in `cert` and `key` and is passed to the `ftsRenewal` daemon, that renews it periodically through a [specific script](https://github.com/rucio/containers/blob/master/fts-cron/renew_fts_proxy.sh.j2):
+
 ```yaml
 - secretName: fts-cert
   mountPath: /opt/rucio/certs/
 - secretName: fts-key
   mountPath: /opt/rucio/keys/
 ```
+
+In the Compass example, the service account grid certificate is named `na58dst1.p12`. To retrieve the `cert.pem` and `key.pem`, one can run the [following these commands](https://stackoverflow.com/questions/15144046/converting-pkcs12-certificate-into-pem-using-openssl):
+```sh
+openssl pkcs12 -in na58dst1.p12 -out na58dst1.usercert.pem -clcerts -nokeys
+openssl pkcs12 -in na58dst1.p12 -out na58dst1.userkey.pem -nocerts -nodes
+```
+
+
 
 #### How to connect to the proper VO?
 [Reference documentation](./multi_vo_rucio.md).
@@ -498,6 +579,13 @@ So we need to create a secret with the proper content and ***mount*** it in the 
 - secretName: voms-compass
   mountPath: /etc/vomses/
 ```
+
+:::danger[Very important information about `ca-bundles`]
+An additional secret is needed, and it's the `rucio-ca-bundle` secret.
+It can be obtained by copying the content of `/etc/grid-security/certificates` on LXPLUS matching the regex `*.0` and `*.signing_policy` into a single folder that will be used as a secret.
+
+An example can be found at [this link](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/1897a2252e98ca3f6ea54047b1a662f57d55f774/scripts/rucio-daemons-secret.sh#L36-37).
+:::
 
 In this way, we'll get something like the following output from the cron-job:
 
@@ -537,6 +625,8 @@ renew-fts-proxy: Signing request
 renew-fts-proxy: Delegation id: ef1e8a8e094bde07      
 renew-fts-proxy: Termination time: 2024-05-31T15:49:15 
 ```
+### Add the certificates as secrets and mount them on the k8s pods
+Now it is possible to run something similar to the [daemons script](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/1897a2252e98ca3f6ea54047b1a662f57d55f774/scripts/rucio-daemons-secret.sh) to add all the secrets to the cluster.
 
 ### Additional environment variables
 
@@ -554,6 +644,7 @@ additionalEnvs:
       name: rucio-daemons-fts-passphrase
       key: passphrase
 ```
+Please notice that `USERCERT_NAME` and `USERKEY_NAME` correspond to the name of `cert.pem` and `key.pem` extracted before, `RUCIO_FTS_SECRETS` doesn't need to be changed, and `GRID_PASSPHRASE` corresponds to the passphrase chosen for the service account (can be an empty string).
 
 A diagram of how the proxy certificate is created and mounted on the daemons is displayed below: 
 
@@ -595,7 +686,7 @@ proxy:
 
 # Setting up Rucio
 ## Installing `rucio-clients`
-Please refer to the [installation page].
+Please refer to the [installation page](../user/setting_up_the_rucio_client).
 
 :::info[TL;DR]
 `pip install rucio-clients`
@@ -606,7 +697,7 @@ Please refer to the [installation page].
 Install `gfal2` "properly":
 https://dmc-docs.web.cern.ch/dmc-docs/gfal2-python/pip-install.html
 AND install these plugins:
-```
+```sh
  sudo dnf install gfal2-plugin-srm
  sudo dnf install gfal2-plugin-xrootd
  sudo dnf install gfal2-plugin-mock
@@ -662,45 +753,45 @@ Look at the following commits to have an example of how to create a pod in the c
 The [`rucio-admin`](https://rucio.github.io/documentation/bin/rucio-admin) command can be used to setup the Rucio instance.
 ### Create the Rucio Storage Elements (RSEs)
 ```sh
-rucio-admin rse add XRD1
-rucio-admin rse add XRD2
-rucio-admin rse add XRD3
+rucio rse add --rse XRD1
+rucio rse add --rse XRD2
+rucio rse add --rse XRD3
 ```
 
 ### Add the protocol definitions for the storage servers
 ```sh
-rucio-admin rse add-protocol --hostname xrd1 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}' XRD1
-rucio-admin rse add-protocol --hostname xrd2 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}' XRD2
-rucio-admin rse add-protocol --hostname xrd3 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}' XRD3
+rucio rse protocol add --host xrd1 --rse XRD1 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}'
+rucio rse protocol add --host xrd2 --rse XRD2 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}'
+rucio rse protocol add --host xrd3 --rse XRD3 --scheme root --prefix //rucio --port 1094 --impl rucio.rse.protocols.gfal.Default --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}'
 ```
 ### Enable FTS
 ```sh
-rucio-admin rse set-attribute --rse XRD1 --key fts --value https://fts:8446
-rucio-admin rse set-attribute --rse XRD2 --key fts --value https://fts:8446
-rucio-admin rse set-attribute --rse XRD3 --key fts --value https://fts:8446
+rucio rse attribute add --rse XRD1 --key fts --value https://fts:8446
+rucio rse attribute add --rse XRD2 --key fts --value https://fts:8446
+rucio rse attribute add --rse XRD3 --key fts --value https://fts:8446
 ```
 Note that `8446` is the port exposed by the `fts-server` pod. You can easily view ports opened by a pod by `kubectl describe pod PODNAME`.
    
 ### Fake a full mesh network
 This command will set the distance between RSEs to 1, in order to make transfers possible.
 ```sh
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD1 XRD2
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD1 XRD3
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD2 XRD1
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD2 XRD3
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD3 XRD1
-rucio-admin rse add-distance --distance 1 --ranking 1 XRD3 XRD2
+rucio rse distance add --source XRD1 --destination XRD2 --distance 1
+rucio rse distance add --source XRD1 --destination XRD3 --distance 1
+rucio rse distance add --source XRD2 --destination XRD1 --distance 1
+rucio rse distance add --source XRD2 --destination XRD3 --distance 1
+rucio rse distance add --source XRD3 --destination XRD1 --distance 1
+rucio rse distance add --source XRD3 --destination XRD2 --distance 1
 ```
 ### Set indefinite storage quota for root
 ```sh
-rucio-admin account set-limits root XRD1 -1
-rucio-admin account set-limits root XRD2 -1
-rucio-admin account set-limits root XRD3 -1
+rucio account limit add --account root --rses XRD1 --bytes infinity
+rucio account limit add --account root --rses XRD2 --bytes infinity
+rucio account limit add --account root --rses XRD3 --bytes infinity
 ```
 
 ### Create a default scope for testing
 ```sh
-rucio-admin scope add --account root --scope test
+rucio scope add --account root --scope test
 ```
 
 ## Data management
@@ -714,45 +805,46 @@ dd if=/dev/urandom of=file4 bs=10M count=1
 
 ### Upload the files
 ```sh
-rucio upload --rse XRD1 --scope test file1
-rucio upload --rse XRD1 --scope test file2
-rucio upload --rse XRD2 --scope test file3
-rucio upload --rse XRD2 --scope test file4
+rucio upload --rse XRD1 --scope test --files file1 file2
+rucio upload --rse XRD2 --scope test --files file3 file4
 ```
 
 ### Create a few datasets and containers
 ```sh
-rucio add-dataset test:dataset1
-rucio attach test:dataset1 test:file1 test:file2
+rucio did add --type dataset --did test:dataset1
+rucio did content add --to test:dataset1 --did test:file1 test:file2
 
-rucio add-dataset test:dataset2
-rucio attach test:dataset2 test:file3 test:file4
+rucio did add --type dataset --did test:dataset2
+rucio did content add --to test:dataset2 --did test:file3 test:file4
 
-rucio add-container test:container
-rucio attach test:container test:dataset1 test:dataset2
+rucio did add --type container --did test:container
+rucio did content add --to test:container --did test:dataset1 test:dataset2
+
+rucio did add --type dataset --did test:dataset3
+rucio did content add --to test:dataset3 --did test:file4
 ```
 
 ### Create a rule and remember returned rule ID
 
+```sh
+rucio rule add --did test:container --rses XRD3 --copies 1
 ```
-rucio add-rule test:container 1 XRD3
+
+This command will output a rule ID, which can also be obtained via:
+
+```sh
+rucio rule list --did test:container
 ```
 
 Query the status of the rule until it is completed. Note that the daemons are running with long sleep cycles (e.g. 30 seconds, 60 seconds) by default, so this will take a bit. You can always watch the output of the daemon containers to see what they are doing.
 
 ```sh
-rucio rule-info <rule_id>
-```
-
-For this command, get the `rule_id` by,
-
-```sh
-rucio list-rules test:container
+rucio rule show --rule-id <rule_id>
 ```
 
 Add some more complications
 
 ```sh
-rucio add-dataset test:dataset3
+rucio did add --type dataset -d test:dataset3
 rucio attach test:dataset3 test:file4
 ```
