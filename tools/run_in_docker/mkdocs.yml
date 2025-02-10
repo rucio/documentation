@@ -38,6 +38,7 @@ plugins:
     default_handler: python
     handlers:
       python:
+        paths: [/run_in_docker/rucio/lib]
         options:
           members_order: "source"
           heading_level: 2
