@@ -53,7 +53,17 @@
                         "operator/transfers/transfers-throttler",
                         "operator/transfers/transfers-submitter",
                         "operator/transfers/configure-rucio-globus",
-                        "operator/transfers/configure-rucio-fts3-plugins"
+                        "operator/transfers/configure-rucio-fts3-plugins", 
+                        { 
+                            "type": "link", 
+                            "label": "TransferTools API",
+                            "href": "pathname:///html/transfer_tools/fts3.html"
+                        }, 
+                        { 
+                            "type": "link", 
+                            "label": "Transfer Protocols API",
+                            "href": "pathname:///html/transfer_protocols/posix.html"
+                        }
                     ]
                 },
                 "operator/did_meta",

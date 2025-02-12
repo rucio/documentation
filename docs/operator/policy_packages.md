@@ -28,6 +28,8 @@ VO. In this case, the configuration parameter or environment variable name
 is suffixed with the VO name (for example, `package-vo1` or
 `RUCIO_POLICY_PACKAGE_VO1`).
 
+[The API for policy packages can be found here.](pathname:///html/rse_policies/rsemanager.html)
+
 ## Creating a policy package
 
 The basic elements of a policy package are the following:
