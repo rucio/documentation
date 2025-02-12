@@ -31,8 +31,8 @@
                 "user/setting_up_the_rucio_client",
                 "user/configuring_the_client",
                 "user/using_the_client",
-                "user/using_the_admin_client",
-                "user/developing_with_rucio"
+                "user/developing_with_rucio",
+                "user/migrate_36_cli"
             ],
             "Operator": [
                 "operator/setting_up_demo",
