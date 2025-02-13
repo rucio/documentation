@@ -1,0 +1,2 @@
+::: rucio.rse.protocols.gfal
+

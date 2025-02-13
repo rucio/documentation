@@ -1,0 +1,2779 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rucio.cern.ch/documentation/fts3.html">
+      
+      
+      
+        <link rel="next" href="globus.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Fts3 - Rucio TransferTool Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rucio.transfertool.fts3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Rucio TransferTool Documentation" class="md-header__button md-logo" aria-label="Rucio TransferTool Documentation" data-md-component="logo">
+      
+  <img src="../../img/rucio_horizontaled_black_cropped.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rucio TransferTool Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fts3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/rucio/rucio/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Rucio TransferTool Documentation" class="md-nav__button md-logo" aria-label="Rucio TransferTool Documentation" data-md-component="logo">
+      
+  <img src="../../img/rucio_horizontaled_black_cropped.svg" alt="logo">
+
+    </a>
+    Rucio TransferTool Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/rucio/rucio/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Fts3
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="fts3.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Fts3
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3" class="md-nav__link">
+    <span class="md-ellipsis">
+      fts3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fts3TransferStatusReport
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fts3TransferStatusReport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._find_used_source_rse" class="md-nav__link">
+    <span class="md-ellipsis">
+      _find_used_source_rse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._dst_file_set_and_file_corrupted" class="md-nav__link">
+    <span class="md-ellipsis">
+      _dst_file_set_and_file_corrupted
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._dst_file_set_and_file_correct" class="md-nav__link">
+    <span class="md-ellipsis">
+      _dst_file_set_and_file_correct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._is_recoverable_fts_overwrite_error" class="md-nav__link">
+    <span class="md-ellipsis">
+      _is_recoverable_fts_overwrite_error
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3CompletionMessageTransferStatusReport" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS3CompletionMessageTransferStatusReport
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3ApiTransferStatusReport" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS3ApiTransferStatusReport
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS3Transfertool
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FTS3Transfertool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool._pick_fts_servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      _pick_fts_servers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.submit" class="md-nav__link">
+    <span class="md-ellipsis">
+      submit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.cancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      cancel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.update_priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_priority
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.query" class="md-nav__link">
+    <span class="md-ellipsis">
+      query
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.whoami" class="md-nav__link">
+    <span class="md-ellipsis">
+      whoami
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.version" class="md-nav__link">
+    <span class="md-ellipsis">
+      version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.bulk_query" class="md-nav__link">
+    <span class="md-ellipsis">
+      bulk_query
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.list_se_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_se_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.get_se_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_se_config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.set_se_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_se_config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.set_se_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_se_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.__get_transfer_baseid_voname" class="md-nav__link">
+    <span class="md-ellipsis">
+      __get_transfer_baseid_voname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.__get_deterministic_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      __get_deterministic_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.__query_details" class="md-nav__link">
+    <span class="md-ellipsis">
+      __query_details
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._scitags_ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      _scitags_ids
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._configured_source_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      _configured_source_strategy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._available_checksums" class="md-nav__link">
+    <span class="md-ellipsis">
+      _available_checksums
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._hop_checksum_validation_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      _hop_checksum_validation_strategy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._path_checksum_validation_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      _path_checksum_validation_strategy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._pick_fts_checksum" class="md-nav__link">
+    <span class="md-ellipsis">
+      _pick_fts_checksum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._use_tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      _use_tokens
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.build_job_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      build_job_params
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.bulk_group_transfers" class="md-nav__link">
+    <span class="md-ellipsis">
+      bulk_group_transfers
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="globus.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Globus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3" class="md-nav__link">
+    <span class="md-ellipsis">
+      fts3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fts3TransferStatusReport
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fts3TransferStatusReport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._find_used_source_rse" class="md-nav__link">
+    <span class="md-ellipsis">
+      _find_used_source_rse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._dst_file_set_and_file_corrupted" class="md-nav__link">
+    <span class="md-ellipsis">
+      _dst_file_set_and_file_corrupted
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._dst_file_set_and_file_correct" class="md-nav__link">
+    <span class="md-ellipsis">
+      _dst_file_set_and_file_correct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._is_recoverable_fts_overwrite_error" class="md-nav__link">
+    <span class="md-ellipsis">
+      _is_recoverable_fts_overwrite_error
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3CompletionMessageTransferStatusReport" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS3CompletionMessageTransferStatusReport
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3ApiTransferStatusReport" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS3ApiTransferStatusReport
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS3Transfertool
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FTS3Transfertool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool._pick_fts_servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      _pick_fts_servers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.submit" class="md-nav__link">
+    <span class="md-ellipsis">
+      submit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.cancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      cancel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.update_priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_priority
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.query" class="md-nav__link">
+    <span class="md-ellipsis">
+      query
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.whoami" class="md-nav__link">
+    <span class="md-ellipsis">
+      whoami
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.version" class="md-nav__link">
+    <span class="md-ellipsis">
+      version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.bulk_query" class="md-nav__link">
+    <span class="md-ellipsis">
+      bulk_query
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.list_se_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_se_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.get_se_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_se_config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.set_se_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_se_config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.set_se_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_se_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.__get_transfer_baseid_voname" class="md-nav__link">
+    <span class="md-ellipsis">
+      __get_transfer_baseid_voname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.__get_deterministic_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      __get_deterministic_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.FTS3Transfertool.__query_details" class="md-nav__link">
+    <span class="md-ellipsis">
+      __query_details
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._scitags_ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      _scitags_ids
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._configured_source_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      _configured_source_strategy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._available_checksums" class="md-nav__link">
+    <span class="md-ellipsis">
+      _available_checksums
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._hop_checksum_validation_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      _hop_checksum_validation_strategy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._path_checksum_validation_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      _path_checksum_validation_strategy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._pick_fts_checksum" class="md-nav__link">
+    <span class="md-ellipsis">
+      _pick_fts_checksum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3._use_tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      _use_tokens
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.build_job_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      build_job_params
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.transfertool.fts3.bulk_group_transfers" class="md-nav__link">
+    <span class="md-ellipsis">
+      bulk_group_transfers
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Fts3</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="rucio.transfertool.fts3"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="rucio.transfertool.fts3.Fts3TransferStatusReport" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">Fts3TransferStatusReport</span><span class="p">(</span><span class="n">external_host</span><span class="p">,</span> <span class="n">request_id</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.Fts3TransferStatusReport" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.Fts3TransferStatusReport._find_used_source_rse" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_find_used_source_rse</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._find_used_source_rse" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>For multi-source transfers, FTS has a choice between multiple sources.
+Find which of the possible sources FTS actually used for the transfer.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.Fts3TransferStatusReport._dst_file_set_and_file_corrupted" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_dst_file_set_and_file_corrupted</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">dst_file</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._dst_file_set_and_file_corrupted" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns True if the <code>dst_file</code> dict returned by fts was filled and its content allows to
+affirm that the file is corrupted.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.Fts3TransferStatusReport._dst_file_set_and_file_correct" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_dst_file_set_and_file_correct</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">dst_file</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._dst_file_set_and_file_correct" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns True if the <code>dst_file</code> dict returned by fts was filled and its content allows to
+affirm that the file is correct.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.Fts3TransferStatusReport._is_recoverable_fts_overwrite_error" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_is_recoverable_fts_overwrite_error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">file_metadata</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#rucio.transfertool.fts3.Fts3TransferStatusReport._is_recoverable_fts_overwrite_error" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Verify the special case when FTS cannot copy a file because destination exists and overwrite is disabled,
+but the destination file is actually correct.</p>
+<p>This can happen when some transitory error happened during a previous submission attempt.
+Hence, the transfer is correctly executed by FTS, but rucio doesn't know about it.</p>
+<p>Returns true when the request must be marked as successful even if it was reported failed by FTS.</p>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="rucio.transfertool.fts3.FTS3CompletionMessageTransferStatusReport" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">FTS3CompletionMessageTransferStatusReport</span><span class="p">(</span><span class="n">external_host</span><span class="p">,</span> <span class="n">request_id</span><span class="p">,</span> <span class="n">fts_message</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3CompletionMessageTransferStatusReport" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Parses FTS Completion messages received via the message queue</p>
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="rucio.transfertool.fts3.FTS3ApiTransferStatusReport" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">FTS3ApiTransferStatusReport</span><span class="p">(</span><span class="n">external_host</span><span class="p">,</span> <span class="n">request_id</span><span class="p">,</span> <span class="n">job_response</span><span class="p">,</span> <span class="n">file_response</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3ApiTransferStatusReport" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Parses FTS api response</p>
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="rucio.transfertool.fts3.FTS3Transfertool" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">FTS3Transfertool</span><span class="p">(</span><span class="n">external_host</span><span class="p">,</span> <span class="n">oidc_support</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group_bulk</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">group_policy</span><span class="o">=</span><span class="s1">&#39;rule&#39;</span><span class="p">,</span> <span class="n">source_strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_time_in_queue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bring_online</span><span class="o">=</span><span class="mi">43200</span><span class="p">,</span> <span class="n">default_lifetime</span><span class="o">=</span><span class="mi">172800</span><span class="p">,</span> <span class="n">archive_timeout_override</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>FTS3 implementation of a Rucio transfertool</p>
+
+        <p>Initializes the transfertool</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>external_host</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The external host where the transfertool API is running</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool._pick_fts_servers" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_pick_fts_servers</span><span class="p">(</span><span class="n">source_rse</span><span class="p">,</span> <span class="n">dest_rse</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool._pick_fts_servers" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Pick fts servers to use for submission between the two given rse</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.submit" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">submit</span><span class="p">(</span><span class="n">transfers</span><span class="p">,</span> <span class="n">job_params</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.submit" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Submit transfers to FTS3 via JSON.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>files</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of dictionaries describing the file transfers.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>job_params</code>
+            </td>
+            <td>
+                  <code>dict[str, str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary containing key/value pairs, for all transfers.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timeout in seconds.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS transfer identifier.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.cancel" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">cancel</span><span class="p">(</span><span class="n">transfer_ids</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.cancel" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Cancel transfers that have been submitted to FTS3.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>transfer_ids</code>
+            </td>
+            <td>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS transfer identifiers as list of strings.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timeout in seconds.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>True if cancellation was successful.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.update_priority" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">update_priority</span><span class="p">(</span><span class="n">transfer_id</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.update_priority" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Update the priority of a transfer that has been submitted to FTS via JSON.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>transfer_id</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS transfer identifier as a string.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>priority</code>
+            </td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS job priority as an integer from 1 to 5.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timeout in seconds.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>True if update was successful.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.query" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">transfer_ids</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.query" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Query the status of a transfer in FTS3 via JSON.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>transfer_ids</code>
+            </td>
+            <td>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS transfer identifiers as list of strings.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>details</code>
+            </td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Switch if detailed information should be listed.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timeout in seconds.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="typing.Optional">Optional</span>[dict[str, <span title="typing.Any">Any</span>]], list[dict[str, <span title="typing.Any">Any</span>]]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transfer status information as a list of dictionaries.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.whoami" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">whoami</span><span class="p">()</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.whoami" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns credential information from the FTS3 server.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Credentials as stored by the FTS3 server as a dictionary.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.version" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">version</span><span class="p">()</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.version" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns FTS3 server information.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS3 server information as a dictionary.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.bulk_query" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">bulk_query</span><span class="p">(</span><span class="n">requests_by_eid</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.bulk_query" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Query the status of a bulk of transfers in FTS3 via JSON.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>requests_by_eid</code>
+            </td>
+            <td>
+                  <code>dict[str, dict[str, dict[str, <span title="typing.Any">Any</span>]]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>dictionary {external_id1: {request_id1: request1, ...}, ...} of request to be queried</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transfer status information as a dictionary.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.list_se_status" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">list_se_status</span><span class="p">()</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.list_se_status" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the list of banned Storage Elements.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Detailed dictionary of banned Storage Elements.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.get_se_config" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_se_config</span><span class="p">(</span><span class="n">storage_element</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.get_se_config" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the Json response for the configuration of a storage element.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>storage_element</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>the storage element you want the configuration for.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>a Json result for the configuration of a storage element.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.set_se_config" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_se_config</span><span class="p">(</span><span class="n">storage_element</span><span class="p">,</span> <span class="n">inbound_max_active</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outbound_max_active</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inbound_max_throughput</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outbound_max_throughput</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">staging</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.set_se_config" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Set the configuration for a storage element. Used for alleviating transfer failures due to timeout.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>storage_element</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The storage element to be configured</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>inbound_max_active</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>the integer to set the inbound_max_active for the SE.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>outbound_max_active</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>the integer to set the outbound_max_active for the SE.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>inbound_max_throughput</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[float]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>the float to set the inbound_max_throughput for the SE.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>outbound_max_throughput</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[float]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>the float to set the outbound_max_throughput for the SE.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>staging</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>the integer to set the staging for the operation of a SE.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>dict[str, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>JSON post response in case of success, otherwise raise Exception.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.set_se_status" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_se_status</span><span class="p">(</span><span class="n">storage_element</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">ban</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.set_se_status" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Ban a Storage Element. Used when a site is in downtime.
+One can use a timeout in seconds. In that case the jobs will wait before being cancel.
+If no timeout is specified, the jobs are canceled immediately</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>storage_element</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The Storage Element that will be banned.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>message</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The reason of the ban.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ban</code>
+            </td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Boolean. If set to True, ban the SE, if set to False unban the SE.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if None, send to FTS status 'cancel' else 'waiting' + the corresponding timeout.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>0 in case of success, otherwise raise Exception</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.__get_transfer_baseid_voname" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">__get_transfer_baseid_voname</span><span class="p">()</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.__get_transfer_baseid_voname" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get transfer VO name from the external host.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.__get_deterministic_id" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">__get_deterministic_id</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.__get_deterministic_id" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get deterministic FTS job id.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>sid</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS seed id.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS transfer identifier.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.transfertool.fts3.FTS3Transfertool.__query_details" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">__query_details</span><span class="p">(</span><span class="n">transfer_id</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.FTS3Transfertool.__query_details" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Query the detailed status of a transfer in FTS3 via JSON.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>transfer_id</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>FTS transfer identifier as a string.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[dict[str, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Detailed transfer status information as a dictionary.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3._scitags_ids" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_scitags_ids</span><span class="p">(</span><span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3._scitags_ids" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Re-fetch if needed and return the scitags ids</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3._configured_source_strategy" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_configured_source_strategy</span><span class="p">(</span><span class="n">activity</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3._configured_source_strategy" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve from the configuration the source selection strategy for the given activity</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3._available_checksums" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_available_checksums</span><span class="p">(</span><span class="n">transfer</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3._available_checksums" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get checksums which can be used for file validation on the source and the destination RSE</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3._hop_checksum_validation_strategy" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_hop_checksum_validation_strategy</span><span class="p">(</span><span class="n">transfer</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3._hop_checksum_validation_strategy" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute the checksum validation strategy (none, source, destination or both) depending
+on available source and destination checksums for a single hop transfer</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3._path_checksum_validation_strategy" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_path_checksum_validation_strategy</span><span class="p">(</span><span class="n">transfer_path</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3._path_checksum_validation_strategy" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute the checksum validation strategy for the whole transfer path.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3._pick_fts_checksum" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_pick_fts_checksum</span><span class="p">(</span><span class="n">transfer</span><span class="p">,</span> <span class="n">path_strategy</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3._pick_fts_checksum" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Pick the checksum to use for validating file integrity on this particular transfer hop.
+This function will only work correctly for values of 'path_strategy' which are
+valid for the englobing multi-hop transfer path.</p>
+<p>Returns the checksum as a string in the format expected by the FTS bulks submission API.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3._use_tokens" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_use_tokens</span><span class="p">(</span><span class="n">transfer_hop</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3._use_tokens" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Whether a transfer can be performed with tokens.</p>
+<p>In order to be so, all the involved RSEs must have it explicitly enabled
+and the protocol being used must be WebDAV.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3.build_job_params" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build_job_params</span><span class="p">(</span><span class="n">transfer_path</span><span class="p">,</span> <span class="n">bring_online</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">default_lifetime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">archive_timeout_override</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_time_in_queue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.build_job_params" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Prepare the job parameters which will be passed to FTS transfertool
+Please refer to https://fts3-docs.web.cern.ch/fts3-docs/fts-rest/docs/bulk.html#parameters
+for the list of parameters.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="rucio.transfertool.fts3.bulk_group_transfers" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">bulk_group_transfers</span><span class="p">(</span><span class="n">transfer_paths</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="s1">&#39;rule&#39;</span><span class="p">,</span> <span class="n">group_bulk</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">source_strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_time_in_queue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="n">archive_timeout_override</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bring_online</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">default_lifetime</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rucio.transfertool.fts3.bulk_group_transfers" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Group transfers in bulk based on certain criteria</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>transfer_paths</code>
+            </td>
+            <td>
+                  <code><span title="collections.abc.Iterable">Iterable</span>[list[<span title="rucio.core.request.DirectTransfer">DirectTransfer</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of transfer paths to group. Each path is a list of single-hop transfers.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>policy</code>
+            </td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Policy to use to group.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;rule&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>group_bulk</code>
+            </td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Bulk sizes.</p>
+              </div>
+            </td>
+            <td>
+                  <code>200</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>source_strategy</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Strategy to group sources</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>max_time_in_queue</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[dict]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum time in queue</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>archive_timeout_override</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Override the archive_timeout parameter for any transfers with it set (0 to unset)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>logger</code>
+            </td>
+            <td>
+                  <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="logging.log">log</span></code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>list[dict[str, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of grouped transfers.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2024 CERN
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.copy", "toc.follow"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
