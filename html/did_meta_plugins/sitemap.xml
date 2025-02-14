@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rucio.cern.ch/documentation/did_column_meta.html</loc>
-         <lastmod>2025-02-13</lastmod>
+         <lastmod>2025-02-14</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/json_meta.html</loc>
-         <lastmod>2025-02-13</lastmod>
+         <lastmod>2025-02-14</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/mongo_meta.html</loc>
-         <lastmod>2025-02-13</lastmod>
+         <lastmod>2025-02-14</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/postgres_meta.html</loc>
-         <lastmod>2025-02-13</lastmod>
+         <lastmod>2025-02-14</lastmod>
     </url>
 </urlset>
