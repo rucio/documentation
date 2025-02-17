@@ -194,7 +194,7 @@ daemons.conveyor.throttler.set_rse_transfer_limits.\
   [rse].max_transfers/transfers/waitings (gauge)
 daemons.conveyor.throttler.delete_rse_transfer_limits.[rse] (counter)
 daemons.conveyor.throttler.delete_rse_transfer_limits.[activity].[rse] (counter)
-daemons.conveyor.throttler.set_rse_transfer_limits.[activitiy].[rse] (gauge)
+daemons.conveyor.throttler.set_rse_transfer_limits.[activity].[rse] (gauge)
 daemons.conveyor.throttler.release_waiting_requests.[activity].[rse].[account] (counter)
 ```
 
@@ -283,7 +283,7 @@ Rucio.
     activity: activity of the request
     bytes: size of the transferred file (byte)
     checksum-adler: checksum using adler algorithm
-    checksum-md5: checksum using md5 alrogithm
+    checksum-md5: checksum using md5 algorithm
     created_at: Time when the message was created (yyyy-MM-dd HH:mm:ss.SSSSSS)
     dst-rse: destination rse
     dst-type: type of destination rse (disk, tape)
@@ -304,7 +304,7 @@ Rucio.
     src-type: type of source rse (disk, tape)
     src-url: source file url
     started_at: start time of the transfer
-    submitted_at: submittion time of the transfer
+    submitted_at: submission time of the transfer
     tool-id: id of the transfer tool in rucio (rucio-conveyor)
     transfer-endpoint: endpoint holder of the transfer (fts)
     transfer-id: uuid of this transfer
@@ -370,7 +370,7 @@ resolve different UUIDs in Kibana.
 ## Access monitoring
 
 The traces are sent by the pilots or the rucio clients whenever a file is
-downloaded/uploaded. This is simillar with the data transferring monitoring.
+downloaded/uploaded. This is similar with the data transferring monitoring.
 
 ## Rucio database dumping
 

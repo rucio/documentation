@@ -65,7 +65,7 @@ For critical security updates, we rely on [Dependabot](https://github.com/depend
 to create alerts for dependencies listed in our requirements.
 
 Dependabot supports `pip-compile`, and is able to automatically create PRs
-to ugprade both primary and secondary dependencies.
+to upgrade both primary and secondary dependencies.
 When a primary dependency is upgraded in a `.in` file, Dependabot re-compiles
 that file into the `.txt` file as well.
 
