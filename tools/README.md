@@ -25,8 +25,8 @@ flowchart TD
     generate_docs.sh-->generate_client_api_docs.sh
     end
 
-    generate_rest_api_docs.sh-. /auto_generated/rest_api_doc_spec.yaml .->rest_api_docs
-    generate_release_notes.py-. /docs/release-notes .->generate_release_notes_index.py
+    generate_rest_api_docs.sh-. "/auto_generated/rest_api_doc_spec.yaml" .->rest_api_docs
+    generate_release_notes.py-. "/docs/release-notes" .->generate_release_notes_index.py
 
 	rest_api_docs-->rest_api_docs_html[Generate Rest Api Docs Html]
 ```
