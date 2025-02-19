@@ -220,7 +220,7 @@ For a single VO instance, create a file `idpsecrets.json` with the following con
   "def": {
       "user_auth_client": [
           {
-              "issuer": "https://mock-oidc-provider",
+              "issuer": "<issuer>",
               "client_id": "mock-client-id",
               "client_secret": "secret",
               "redirect_uris": "https://rucio/auth/oidc_code"
@@ -229,36 +229,70 @@ For a single VO instance, create a file `idpsecrets.json` with the following con
   }
 }
 ```
+And please make sure you specify the path to this file either via env var `IDP_SECRETS_FILE` or in rucio.cfg as
+```cfg
+[oidc]
+idpsecrets = /path/to/your/idpsecrets.json
+```
 
 #### Requiring extra Scopes
-If you want to add extra scope of ID token for authentication you can add it as required in server by seeting
+If you want to add extra scope of ID token for authentication you can add it as required in server.
 
-Scopes can be extended if needed using the following configuration:
-
+Scopes can be extended if needed using the following configuration and corresponding claims existence for the scopes
 ```cfg
 [oidc]
-id_token_extra_scopes= email,
+id_token_extra_scopes= email, extra_scope
+id_token_extra_claims= email, claim_of_extra_scope
 ```
 
-Add corresponding claims existence for the above scopes
-```cfg
-[oidc]
-id_token_extra_scopes= email
-id_token_extra_claims= email
-```
+Only claim existence is check for now. If you need functionality for exact claim's value match please contact us we can add that feature too.
 
 Rucio will exchange the authorization code using user_auth_client for an ID token and an access token. If additional scopes are required for the access token, configure them as follows:
 
 [oidc]
-extra_access_token_scope= extra_scopes
+extra_access_token_scope= extra_access_scopes
 
 Ensure all required scopes are included as needed.
 
-#### Allowing Refresh
-```cfg
-[oidc]
-id_token_extra_scopes= offline_access
+#### Adding user identity
+To add user oidc identity you ned to get `SUB`, Subject Identifier, of the user in the IDP. Then run the command:
+```shell
+rucio account identity add --account jdoe --type OIDC --id 'SUB=<sub> ISS=<issuer>'
 ```
+or legacy command
+```shell
+rucio-admin identity add --account jdoe --type OIDC --id 'SUB=<sub> ISS=<issuer>'
+```
+Example for IAM instance
+```shell
+rucio account identity add --account jdoe --type OIDC --id 'SUB=3ed4fg-6ff2-4097-ad3b-953e11bb52b8 ISS=https://panda-iam-doma.cern.ch/'
+```
+
+#### Multiple IDP
+To configure multiple IDPs your `idpsecrets.json` looks like:
+```json
+{
+  "def": {
+      "user_auth_client": [
+          {
+              "issuer": "<issuer>",
+              "client_id": "mock-client-id",
+              "client_secret": "secret",
+              "redirect_uris": "https://rucio/auth/oidc_code",
+              "issuer_nickname": "issuer1"
+          },
+          {
+              "issuer": "<issuer>",
+              "client_id": "mock-client-id2",
+              "client_secret": "secret2",
+              "redirect_uris": "https://rucio/auth/oidc_code",
+              "issuer_nickname": "issuer2"
+          }
+      ]
+  }
+}
+```
+Notice now we *must* add `issuer_nickname` field to each idp. This is used by client to reference which issuer it is authenticating to.
 
 ### Transfer
 To use tokens for transfers you need to register another client lets call it `client_credential_client` which needs following.
@@ -267,16 +301,16 @@ To use tokens for transfers you need to register another client lets call it `cl
 - **Scopes**: `fts`, `storage.read:/<path>` and `storage.modify:/<path>`
 - **Audience**: `<fts_hostname>` and `<RSE_hostname>`
 
-If you want to allow FTS to refresh storage token, allow refresh token to be returned too.
+If you want to allow FTS to refresh storage token, allow refresh token to be returned too i.e. add `offline_access` in the scopes.
 
-### **Configuration File Format (Single VO Syntax)**
+#### **Configuration File (idpsecrets.json) Format (Single VO Syntax)**
 
 ```json
 {
   "def": {
     "user_auth_client": [
           {
-              "issuer": "https://mock-oidc-provider",
+              "issuer": "<issuer>",
               "client_id": "mock-client-id",
               "client_secret": "secret",
               "redirect_uris": "https://rucio/auth/oidc_code"
@@ -285,83 +319,23 @@ If you want to allow FTS to refresh storage token, allow refresh token to be ret
       "client_credential_client": {
           "client_id": "<your_client_id>",
           "client_secret": "<your_client_secret>",
-          "issuer": "https://indigoiam/"
+          "issuer": "<issuer>"
       }
   }
 }
 ```
 
-### Configuration for RSE
+#### Configuration for RSE
 For RSEs which uses token, RSEs must have an attribute set as follows:
 
 ```
 oidc_support: True
 ```
 Lets say your RSE has protocol with prefix `/path/myexp/mypath` , if you want to use this as scope you needs to have `client_credential_client`
-scope `storage:read:/path/myexp/mypath` and `storage:modify:/path/myexp/mypath`. If you want to register scopes as `storage:read:/myexp/mypath` and `storage:modify:/myexp/mypath` you need to set RSE's attribute as:
+scope `storage:read:/path/myexp/mypath` and `storage:modify:/path/myexp/mypath`.
+
+If you want to register scopes as `storage:read:/myexp/mypath` and `storage:modify:/myexp/mypath` you need to set RSE's attribute as:
 ```
 oidc_base_path: /path
 ```
-### Rucio WebUI Login with CERN SSO
 
-By using the Rucio OIDC capabilities it is possible to integrate the
-[CERN SSO](https://auth.docs.cern.ch/user-documentation/oidc/oidc/) service with
-the WebUI so users will be able to login with a CERN account.
-Please note that in contrast to INDIGO IAM, the CERN IdP can only be
-used for WebUI login at the moment and not for the other operations
-that were described previously. The following steps are needed:
-
-1. The Rucio administrators need to create a new application at the
-   [Application Portal](https://application-portal.web.cern.ch/).
-   Please note that the __Application Identifier__ field will be the
-   audience claim in the tokens acquired by the CERN Authorization Service.
-
-1. In the newly created Application, a new __SSO Registration__ is needed.
-   Please select OIDC in the
-   'Which protocol does your application use for authentication?' question.
-   At the same time, the two Rucio redirect URIs are needed as
-   described in the `etc/idpsecrets.json` configuration that was mentioned previously.
-
-1. The new CERN IdP needs to be added in the `etc/idpsecrets.json` configuration,
-   with the newly acquired client secret that was given after step 2.
-   Please note that in this case the SCIM field needs to be filled even though
-   it will never be used for this IdP, one can just repeat the original
-   client_id and client_secret. The configuration will have the following format:
-
-    ```json
-    {
-        # ...
-        "cern": {
-
-            "issuer": "https://auth.cern.ch/auth/realms/cern",
-
-            "redirect_uris": [
-                "https://<auth_server_name>/auth/oidc_token",
-                "https://<auth_server_name>/auth/oidc_code"
-            ],
-
-            "client_id": "<SSO_client_id>", # Same as Application Identifier
-            "client_secret": "<SSO_client_secret>",
-
-            "SCIM": {
-                "client_id": "<SSO_client_id>",
-                "client_secret": "<SSO_client_secret>",
-            }
-        }
-        # ...
-    }
-    ```
-
-1. Finally, the CERN user identities need to be mapped to Rucio accounts
-   as it was previously described. One example mapping follows:
-
-    ```bash
-    # Add an CERN User Account Username as an OIDC identity
-    # (needs to be done for each user!)
-    # Note that the SUB field is the CERN Account username
-    rucio-admin identity add --account rucio_user_account \
-    --type OIDC \
-    --id "SUB=ridona, \
-        ISS=https://auth.cern.ch/auth/realms/cern" \
-    --email "rucio@cern.ch"
-    ```

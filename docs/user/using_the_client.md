@@ -103,26 +103,65 @@ email      : root@abc.com
 ```
 
 ## Open ID Connect authentication examples
-
 There are 2 CLI login methods. 
 
 1. Login via user's browser + fetch code:
 
-  ```bash
-  rucio -a=\<rucio_account_name\> -S=OIDC -v whoami
+     ```bash
+     rucio -a=\<rucio_account_name\> -S=OIDC -v whoami
+     ```
+     OR with rucio.cfg as:
+     ```cfg
+      [client]
+
+      rucio_host = https://\<rucio_host\>:443
+      auth_host = https://\<rucio_auth_host\>:443
+      auth_type = oidc
+      account = \<rucio_account_name\>
+     ```
+     ```bash
+      rucio -v whoami
+      ```
+
+2. Login via user's browser + polling Rucio auth server:
+
+     ```bash
+     rucio -a=\<rucio_account_name\> -S=OIDC --oidc-polling -v whoami
+     ```
+     Or with rucio.cfg as:
+     ```cfg
+      [client]
+      rucio_host = https://\<rucio_host\>:443
+      auth_host = https://\<rucio_auth_host\>:443
+      auth_type = oidc
+      oidc_polling = True
+      account = \<rucio_account_name\>
+     ```
+     ```bash
+      rucio -v whoami
+     ```
+
+
+If your rucio has multi idp setup you must specify issuer's nickname in client. You need ask you rucio provider for this value.:
+   ```bash
+   rucio -a=\<rucio_account_name\> -S=OIDC --oidc-issuer <issuer's nickname> -v whoami
+   ```
+   or with rucio.cfg as:
+   ```cfg
+   [client]
+   rucio_host = https://\<rucio_host\>:443
+   auth_host = https://\<rucio_auth_host\>:443
+   auth_type = oidc
+   oidc_polling = True
+   oidc_issuer=\<issuer's_nickname>
+   account = \<rucio_account_name\>
   ```
-
-1. Login via user's browser + polling Rucio auth server:
-
   ```bash
-  rucio -a=\<rucio_account_name\> -S=OIDC --oidc-polling -v whoami
+   rucio -v whoami
   ```
-
-
-
 Options for automatic token refresh: Assuming the one can also grant Rucio a refresh token and
 specify the time for which Rucio should act on behalf of the user (in hours)
-using the `--refresh-lifetime` option:
+using the `--refresh-lifetime` option and adding offline_access to `--oidc-scope`:
 
 ```bash
 rucio -a=\<rucio_account_name\> \
@@ -132,6 +171,7 @@ rucio -a=\<rucio_account_name\> \
   -v \
   whoami
 ```
+If you are specifying the scope all the required scope is needed . (at minimum `openid profile` but can be more if configured on server. Please check with rucio rucio provider)
 
 If Rucio Server is granted a user both valid access and refresh tokens, it is
 also possible to configure Rucio Client to ask Rucio Server for token
@@ -165,9 +205,7 @@ rucio_host = https://\<rucio_host\>:443
 auth_host = https://\<rucio_auth_host\>:443
 auth_type = oidc
 account = \<rucio_account_name\>
-oidc_audience = rucio
 oidc_scope = openid profile offline_access
-oidc_issuer = wlcg
 auth_oidc_refresh_active = true
 auth_oidc_refresh_before_exp = 20
 ```

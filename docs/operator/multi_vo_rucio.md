@@ -74,6 +74,45 @@ submitting and polling transfers to use the correct certificates.
 [3 char vo name] = [path/to/vo/proxy]
 ```
 
+## Changes to Token config
+Create a file `idpsecrets.json` with the following content:
+```json
+{
+  "<vo1>": {
+      "user_auth_client": [
+          {
+              "issuer": "<issuer>",
+              "client_id": "mock-client-id",
+              "client_secret": "secret",
+              "redirect_uris": "https://rucio/auth/oidc_code"
+          }
+      ],
+      "client_credential_client": {
+          "client_id": "<your_client_id>",
+          "client_secret": "<your_client_secret>",
+          "issuer": "<issuer_url>"
+      }
+  },
+  "<vo2>": {
+      "user_auth_client": [
+          {
+              "issuer": "<issuer>",
+              "client_id": "mock-client-id",
+              "client_secret": "secret",
+              "redirect_uris": "https://rucio/auth/oidc_code"
+          }
+      ],
+      "client_credential_client": {
+          "client_id": "<your_client_id>",
+          "client_secret": "<your_client_secret>",
+          "issuer": "<issuer>"
+      }
+  },
+}
+```
+
+Now replace `<vo1>`/`<vo2>` with your VOs that you have.
+
 ## Role of the super_root
 
 For overall administration of Multi-VO Rucio another layer of admin role has
