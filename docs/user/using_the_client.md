@@ -142,7 +142,7 @@ There are 2 CLI login methods.
      ```
 
 
-If your rucio has multi idp setup you must specify issuer's nickname in client. You need ask you rucio provider for this value.:
+If the Rucio instance is configured for multi-IDP, you must specify the issuer's nickname in the client. You can request this value from the instance's operators.
    ```bash
    rucio -a=\<rucio_account_name\> -S=OIDC --oidc-issuer <issuer's nickname> -v whoami
    ```
@@ -159,19 +159,19 @@ If your rucio has multi idp setup you must specify issuer's nickname in client. 
   ```bash
    rucio -v whoami
   ```
+
 Options for automatic token refresh: Assuming the one can also grant Rucio a refresh token and
 specify the time for which Rucio should act on behalf of the user (in hours)
-using the `--refresh-lifetime` option and adding offline_access to `--oidc-scope`:
+using the `--oidc-refresh-lifetime` option and adding `offline_access` to `--oidc-scope`:
 
-```bash
+```shell
 rucio -a=\<rucio_account_name\> \
   -S=OIDC \
-  --oidc-scope="openid profile offline_access" \
+  --oidc-scope='offline_access' \
   --oidc-refresh-lifetime=24 \
   -v \
   whoami
 ```
-If you are specifying the scope all the required scope is needed . (at minimum `openid profile` but can be more if configured on server. Please check with rucio rucio provider)
 
 If Rucio Server is granted a user both valid access and refresh tokens, it is
 also possible to configure Rucio Client to ask Rucio Server for token
@@ -191,8 +191,6 @@ gets to `auth_oidc_refresh_before_exp` minutes (20 min default) before token
 expiration, Rucio Client will ask Rucio Server for token refresh with every
 command. If the token has been refreshed in the recent 5 min already once, the
 same one will be returned (protection on the Rucio Server side). If the
-presented token has been refreshed automatically on the Rucio Server side by a
-oauth_manager daemon run, it will return this existing new token. If the
 presented token is invalid/expired/does not have refresh token in the DB, no
 refresh will be attempted.
 
@@ -205,7 +203,7 @@ rucio_host = https://\<rucio_host\>:443
 auth_host = https://\<rucio_auth_host\>:443
 auth_type = oidc
 account = \<rucio_account_name\>
-oidc_scope = openid profile offline_access
+oidc_scope = offline_access
 auth_oidc_refresh_active = true
 auth_oidc_refresh_before_exp = 20
 ```

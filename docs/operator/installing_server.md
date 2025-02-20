@@ -245,9 +245,9 @@ id_token_extra_scopes= email, extra_scope
 id_token_extra_claims= email, claim_of_extra_scope
 ```
 
-Only claim existence is check for now. If you need functionality for exact claim's value match please contact us we can add that feature too.
+Only claim existence is checked for now. Please open a [feature request](https://github.com/rucio/rucio/issues/new?template=feature.yaml) if you would be interested in having this check expanded to take into account the claim value as well.
 
-Rucio will exchange the authorization code using user_auth_client for an ID token and an access token. If additional scopes are required for the access token, configure them as follows:
+Rucio will exchange the authorization code using `user_auth_client` for an ID token and an access token. If additional scopes are required for the access token, configure them as follows:
 
 [oidc]
 extra_access_token_scope= extra_access_scopes
@@ -255,7 +255,7 @@ extra_access_token_scope= extra_access_scopes
 Ensure all required scopes are included as needed.
 
 #### Adding user identity
-To add user oidc identity you ned to get `SUB`, Subject Identifier, of the user in the IDP. Then run the command:
+To add user oidc identity you need to get the `SUB` (Subject Identifier) of the user in the IDP. Then run the command:
 ```shell
 rucio account identity add --account jdoe --type OIDC --id 'SUB=<sub> ISS=<issuer>'
 ```
@@ -269,7 +269,7 @@ rucio account identity add --account jdoe --type OIDC --id 'SUB=3ed4fg-6ff2-4097
 ```
 
 #### Multiple IDP
-To configure multiple IDPs your `idpsecrets.json` looks like:
+To configure multiple IDPs, your `idpsecrets.json` should look like:
 ```json
 {
   "def": {
@@ -292,10 +292,10 @@ To configure multiple IDPs your `idpsecrets.json` looks like:
   }
 }
 ```
-Notice now we *must* add `issuer_nickname` field to each idp. This is used by client to reference which issuer it is authenticating to.
+Notice now we *must* add an `issuer_nickname` field to each IDP. This is used by the client to reference which issuer it is authenticating to.
 
 ### Transfer
-To use tokens for transfers you need to register another client lets call it `client_credential_client` which needs following.
+To use tokens for transfers, you need to register another client `client_credential_client`, configured as such:
 
 - **Grant Type**: `client_credentials`
 - **Scopes**: `fts`, `storage.read:/<path>` and `storage.modify:/<path>`
@@ -303,7 +303,7 @@ To use tokens for transfers you need to register another client lets call it `cl
 
 If you want to allow FTS to refresh storage token, allow refresh token to be returned too i.e. add `offline_access` in the scopes.
 
-#### **Configuration File (idpsecrets.json) Format (Single VO Syntax)**
+#### Configuration File (`idpsecrets.json`) Format (Single VO Syntax)
 
 ```json
 {
@@ -326,13 +326,13 @@ If you want to allow FTS to refresh storage token, allow refresh token to be ret
 ```
 
 #### Configuration for RSE
-For RSEs which uses token, RSEs must have an attribute set as follows:
+For RSEs which use tokens, RSEs must have an attribute set as follows:
 
 ```
 oidc_support: True
 ```
-Lets say your RSE has protocol with prefix `/path/myexp/mypath` , if you want to use this as scope you needs to have `client_credential_client`
-scope `storage:read:/path/myexp/mypath` and `storage:modify:/path/myexp/mypath`.
+Let's say your RSE has protocol with prefix `/path/myexp/mypath` , if you want to use this as scope you need to have `client_credential_client`
+scopes `storage:read:/path/myexp/mypath` and `storage:modify:/path/myexp/mypath`.
 
 If you want to register scopes as `storage:read:/myexp/mypath` and `storage:modify:/myexp/mypath` you need to set RSE's attribute as:
 ```

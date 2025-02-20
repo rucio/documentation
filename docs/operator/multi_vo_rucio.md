@@ -111,7 +111,7 @@ Create a file `idpsecrets.json` with the following content:
 }
 ```
 
-Now replace `<vo1>`/`<vo2>` with your VOs that you have.
+Now replace `<vo1>`/`<vo2>` with the instance VOs.
 
 ## Role of the super_root
 
