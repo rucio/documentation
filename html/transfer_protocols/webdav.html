@@ -809,6 +809,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#rucio.rse.protocols.webdav.NoRename" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoRename
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NoRename">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.rse.protocols.webdav.NoRename.rename" class="md-nav__link">
+    <span class="md-ellipsis">
+      rename
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1050,6 +1074,30 @@
   <a href="#rucio.rse.protocols.webdav.Default.get_space_usage" class="md-nav__link">
     <span class="md-ellipsis">
       get_space_usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rucio.rse.protocols.webdav.NoRename" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoRename
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NoRename">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.rse.protocols.webdav.NoRename.rename" class="md-nav__link">
+    <span class="md-ellipsis">
+      rename
     </span>
   </a>
   
@@ -2149,6 +2197,157 @@ This method expects the document root to be a node with tag <code>{DAV:}multista
               <div class="doc-md-description">
                 <p>if some generic error occurred in the library.</p>
               </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="rucio.rse.protocols.webdav.NoRename" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">NoRename</span><span class="p">(</span><span class="n">protocol_attr</span><span class="p">,</span> <span class="n">rse_settings</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">)</span></code>
+
+<a href="#rucio.rse.protocols.webdav.NoRename" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Implementing access to RSEs using the WebDAV protocol but without
+renaming files on upload/download. Necessary for some storage endpoints.</p>
+
+        <p>Initializes the object with information about the referred RSE.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>protocol_attr</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Properties of the requested protocol.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rse_settings</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The RSE settings.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>logger</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="logging.log">log</span></code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rucio.rse.protocols.webdav.NoRename.rename" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">rename</span><span class="p">(</span><span class="n">pfn</span><span class="p">,</span> <span class="n">new_pfn</span><span class="p">)</span></code>
+
+<a href="#rucio.rse.protocols.webdav.NoRename.rename" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Allows to rename a file stored inside the connected RSE.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pfn</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Current physical file name</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
             </td>
           </tr>
       </tbody>
