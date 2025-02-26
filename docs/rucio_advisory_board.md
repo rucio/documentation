@@ -85,6 +85,6 @@ of the attendance of guests.
 
 | Version                                                                         | Creation    |
 | ------------------------------------------------------------------------------- | ----------- |
-| [v1.2](https://rucio.cern.ch/documentation/files/Rucio_Advisory_Board_v1.1.pdf) | Feb 5, 2025 |
+| [v1.2](https://rucio.cern.ch/documentation/files/Rucio_Advisory_Board_v1.2.pdf) | Feb 5, 2025 |
 | [v1.1](https://rucio.cern.ch/documentation/files/Rucio_Advisory_Board_v1.1.pdf) | May 8, 2024 |
 | [v1.0](https://rucio.cern.ch/documentation/files/Rucio_Advisory_Board_v1.0.pdf) | Nov 7, 2022 |
