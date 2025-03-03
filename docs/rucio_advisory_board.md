@@ -39,7 +39,7 @@ board meetings.
 
 | Community                           | Representative           | Term                 |
 | ----------------------------------- | ------------------------ | -------------------- |
-| [ATLAS](https://atlas.cern)         | David South, DESY        | 2023-Apr to 2025-Mar |
+| [ATLAS](https://atlas.cern)         | David South, DESY        | 2023-Apr to 2027-Mar |
 | [Belle II](https://www.belle2.org)  | Cedric Serfon, BNL       | 2023-Jun to 2025-May |
 | [CMS](https://cms.cern)             | Eric Vaandering, FNAL    | 2025-Feb to 2027-Jan |
 | [DUNE](https://www.dunescience.org) | Mike Kirby, BNL          | 2023-Feb to 2027-Jan |
