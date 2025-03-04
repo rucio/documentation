@@ -74,7 +74,7 @@ And at the end you should:
 ## FAQ
 
 ### If I am done with my tasks for this sprint and the sprint is not over, should I add more issues to the sprint?
-You can add new issues and mark them with an `unplanned` label.
+You can add new issues and mark them with an `unplanned` tag on the sprint board.
 In general, we should plan sprints in a way that ensures that the work is neither delayed nor completed too much in advance. If this happens regularly, it might be an indication that we are not estimating sizes properly.
 
 ### An issue is less/more work than I thought, should I change the estimate?
