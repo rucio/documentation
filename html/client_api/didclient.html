@@ -3537,7 +3537,7 @@
 
 
 <h3 id="rucio.client.didclient.DIDClient.get_metadata_bulk" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_metadata_bulk</span><span class="p">(</span><span class="n">dids</span><span class="p">,</span> <span class="n">inherit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_metadata_bulk</span><span class="p">(</span><span class="n">dids</span><span class="p">,</span> <span class="n">inherit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;JSON&#39;</span><span class="p">)</span></code>
 
 <a href="#rucio.client.didclient.DIDClient.get_metadata_bulk" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -3560,6 +3560,22 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <code>dids</code>
+            </td>
+            <td>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of dids.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
                 <code>inherit</code>
             </td>
             <td>
@@ -3576,18 +3592,18 @@
           </tr>
           <tr class="doc-section-item">
             <td>
-                <code>dids</code>
+                <code>plugin</code>
             </td>
             <td>
-                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  <code><span title="str">str</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of dids.</p>
+                <p>The metadata plugin to query, 'ALL' for all available plugins</p>
               </div>
             </td>
             <td>
-                <em>required</em>
+                  <code>&#39;JSON&#39;</code>
             </td>
           </tr>
       </tbody>
