@@ -1000,6 +1000,7 @@
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -1020,6 +1021,7 @@
 
 
     <div class="doc doc-contents ">
+
 
 
 
@@ -1054,6 +1056,7 @@
         <p>For multi-source transfers, FTS has a choice between multiple sources.
 Find which of the possible sources FTS actually used for the transfer.</p>
 
+
     </div>
 
 </div>
@@ -1076,6 +1079,7 @@ Find which of the possible sources FTS actually used for the transfer.</p>
         <p>Returns True if the <code>dst_file</code> dict returned by fts was filled and its content allows to
 affirm that the file is corrupted.</p>
 
+
     </div>
 
 </div>
@@ -1097,6 +1101,7 @@ affirm that the file is corrupted.</p>
 
         <p>Returns True if the <code>dst_file</code> dict returned by fts was filled and its content allows to
 affirm that the file is correct.</p>
+
 
     </div>
 
@@ -1122,6 +1127,7 @@ but the destination file is actually correct.</p>
 <p>This can happen when some transitory error happened during a previous submission attempt.
 Hence, the transfer is correctly executed by FTS, but rucio doesn't know about it.</p>
 <p>Returns true when the request must be marked as successful even if it was reported failed by FTS.</p>
+
 
     </div>
 
@@ -1149,6 +1155,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
 
 
         <p>Parses FTS Completion messages received via the message queue</p>
+
 
 
 
@@ -1190,6 +1197,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
 
 
         <p>Parses FTS api response</p>
+
 
 
 
@@ -1273,6 +1281,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -1299,6 +1308,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
     <div class="doc doc-contents ">
 
         <p>Pick fts servers to use for submission between the two given rse</p>
+
 
     </div>
 
@@ -1402,6 +1412,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -1488,6 +1499,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -1592,6 +1604,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -1695,6 +1708,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -1735,6 +1749,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -1774,6 +1789,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -1846,6 +1862,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -1885,6 +1902,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -1956,6 +1974,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -2108,6 +2127,7 @@ Hence, the transfer is correctly executed by FTS, but rucio doesn't know about i
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -2229,6 +2249,7 @@ If no timeout is specified, the jobs are canceled immediately</p>
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -2245,6 +2266,7 @@ If no timeout is specified, the jobs are canceled immediately</p>
     <div class="doc doc-contents ">
 
         <p>Get transfer VO name from the external host.</p>
+
 
     </div>
 
@@ -2317,6 +2339,7 @@ If no timeout is specified, the jobs are canceled immediately</p>
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -2388,6 +2411,7 @@ If no timeout is specified, the jobs are canceled immediately</p>
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -2414,6 +2438,7 @@ If no timeout is specified, the jobs are canceled immediately</p>
 
         <p>Re-fetch if needed and return the scitags ids</p>
 
+
     </div>
 
 </div>
@@ -2431,6 +2456,7 @@ If no timeout is specified, the jobs are canceled immediately</p>
 
         <p>Retrieve from the configuration the source selection strategy for the given activity</p>
 
+
     </div>
 
 </div>
@@ -2447,6 +2473,7 @@ If no timeout is specified, the jobs are canceled immediately</p>
     <div class="doc doc-contents ">
 
         <p>Get checksums which can be used for file validation on the source and the destination RSE</p>
+
 
     </div>
 
@@ -2466,6 +2493,7 @@ If no timeout is specified, the jobs are canceled immediately</p>
         <p>Compute the checksum validation strategy (none, source, destination or both) depending
 on available source and destination checksums for a single hop transfer</p>
 
+
     </div>
 
 </div>
@@ -2482,6 +2510,7 @@ on available source and destination checksums for a single hop transfer</p>
     <div class="doc doc-contents ">
 
         <p>Compute the checksum validation strategy for the whole transfer path.</p>
+
 
     </div>
 
@@ -2503,6 +2532,7 @@ This function will only work correctly for values of 'path_strategy' which are
 valid for the englobing multi-hop transfer path.</p>
 <p>Returns the checksum as a string in the format expected by the FTS bulks submission API.</p>
 
+
     </div>
 
 </div>
@@ -2522,6 +2552,7 @@ valid for the englobing multi-hop transfer path.</p>
 <p>In order to be so, all the involved RSEs must have it explicitly enabled
 and the protocol being used must be WebDAV.</p>
 
+
     </div>
 
 </div>
@@ -2540,6 +2571,7 @@ and the protocol being used must be WebDAV.</p>
         <p>Prepare the job parameters which will be passed to FTS transfertool
 Please refer to https://fts3-docs.web.cern.ch/fts3-docs/fts-rest/docs/bulk.html#parameters
 for the list of parameters.</p>
+
 
     </div>
 
@@ -2707,6 +2739,7 @@ for the list of parameters.</p>
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
