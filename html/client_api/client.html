@@ -369,11 +369,41 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rucio.client.client-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#rucio.client.client.Client" class="md-nav__link">
     <span class="md-ellipsis">
       Client
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.client.Client-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -860,11 +890,41 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rucio.client.client-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#rucio.client.client.Client" class="md-nav__link">
     <span class="md-ellipsis">
       Client
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.client.Client-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -913,17 +973,19 @@
 
 
 
-
+<h2 id="rucio.client.client-classes">Classes<a href="#rucio.client.client-classes" class="headerlink" title="Permanent link">&para;</a></h2>
 
 <div class="doc doc-object doc-class">
 
 
 
-<h2 id="rucio.client.client.Client" class="doc doc-heading">
-              <code class="highlight language-python"><span class="n">Client</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span></code>
+<h3 id="rucio.client.client.Client" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">Client</span>
 
-<a href="#rucio.client.client.Client" class="headerlink" title="Permanent link">&para;</a></h2>
 
+<a href="#rucio.client.client.Client" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">Client</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+</code></pre></div>
 
     <div class="doc doc-contents ">
 
@@ -968,14 +1030,11 @@ download_client.download_dids(items=...)
         <p>Constructor for the Rucio main client class.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
+<table>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
         </tr>
       </thead>
       <tbody>
@@ -983,135 +1042,108 @@ download_client.download_dids(items=...)
             <td>
                 <code>rucio_host</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>the host of the rucio system.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
                 <code>auth_host</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>the host of the rucio authentication server.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
                 <code>account</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>the rucio account that should be used to interact with the rucio system.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
                 <code>ca_cert</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>the certificate to verify the server.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
                 <code>auth_type</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>the type of authentication to use (e.g. userpass, x509 ...)</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
                 <code>creds</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>credentials needed for authentication.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
                 <code>timeout</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Float describes the timeout of the request (in seconds).</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
                 <code>vo</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The vo that the client will interact with.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
                 <code>logger</code>
             </td>
-            <td>
-            </td>
-            <td>
+            <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Logger instance to use (optional)</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
+              <p>
+              </p>
             </td>
           </tr>
       </tbody>
@@ -1134,7 +1166,7 @@ download_client.download_dids(items=...)
 
 
 
-
+<h4 id="rucio.client.client.Client-functions">Functions<a href="#rucio.client.client.Client-functions" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
 
