@@ -5,7 +5,17 @@
             "Getting Started": [
                 "started/before_you_get_started",
                 "started/what_is_rucio",
-                "started/main_components",
+                {
+                    "type": "category",
+                    "label": "Main Components",
+                    "link": {
+                        "type": "doc",
+                        "id": "started/main_components"
+                        },
+                    "items": [
+                        "started/daemons"
+                    ]
+                },
                 "started/additional_layers_and_resources",
                 "started/requirements",
                 {
