@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rucio.cern.ch/documentation/bittorrent.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/cache.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/dummy.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/gfal.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/globus.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/http_cache.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/mock.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/ngarc.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/posix.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/protocol.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/rclone.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/rfio.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/srm.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/ssh.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/storm.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/webdav.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/xrootd.html</loc>
-         <lastmod>2025-03-12</lastmod>
+         <lastmod>2025-03-13</lastmod>
     </url>
 </urlset>
