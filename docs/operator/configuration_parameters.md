@@ -2,7 +2,7 @@
 id: configuration_parameters
 title: Configuration parameters
 ---
-Description of the configuration parameters splitted in three different places:
+Description of the configuration parameters split in three different places:
 Rucio configuration file (`rucio.cfg`), Rucio configuration table and RSE attributes.
 
 ## Rucio Configuration File (`rucio.cfg`)
@@ -76,43 +76,6 @@ Rucio will look for the config in the following locations -
   - **x509_identity**: _(Optional)_ Identity of the X.509 certificate. Default:
     `emailAddress=ph-adp-ddm-lab@cern.ch,CN=DDMLAB Client
     Certificate,OU=PH-ADP-CO,O=CERN,ST=Geneva,C=CH`.
-#### **c3po**
-  - **algorithms**: _(Optional)_ Placement algorithm.
-
-    Only allows multiple algorithms if the `dry_run` mode is enabled (separated
-    by commas).
-
-    Values: `{simple, t2_free_space, t2_free_space_only_pop,
-    t2_free_space_only_pop_with_network}`.
-
-    Default: `None`.
-  - **ca_cert**: _(Optional)_ Path of the certificate for Elasticsearch.
-  Default: `False`. <!--THE VAR DOES NOTHING IN c3po.py:194-->
-  - **elastic_index**: _(Optional)_ Index (database) to use in Elasticsearch.
-  - **elastic_pass**: _(Optional)_ Password of the username defined in
-    `elastic_user` to authenticate to Elasticsearch. No default.
-  - **elastic_url**: URL of Elasticsearch. Example:
-    `http://aianalytics01.cern.ch:9200`.
-  - **elastic_user**: _(Optional)_ Username to authenticate to Elasticsearch. No
-    default.
-  - **placement_algorithm** <!--NOT USED IN CODE-->
-  - **redis_host**: URL of the Redis database.
-  - **redis_port**: Port of the Redis database defined in `redis_host`.
-#### **c3po-popularity**
-  - **elastic_url** <!--NOT USED IN CODE-->
-#### **c3po-site-mapper**
-  - **ddm_url**: URL for DDM. Example:
-    `http://atlas-agis-api.cern.ch/request/ddmendpoint/query/list/?json`.
-  - **panda_url**: URL for PanDA. Example:
-    `http://atlas-agis-api.cern.ch/request/pandaqueue/query/list/?json`.
-#### **c3po-workload**
-  - **panda_url**: URL for PanDA. Example:
-    `http://bigpanda.cern.ch/jobs/?category=analysis&jobstatus=running`.
-  - **window**: Integer.
-#### **c3po-network-metrics**
-  - **prefix**:
-  - **redis_host**: URL of the Redis database.
-  - **redis_port**: Port of the Redis database defined in `redis_host`.
 #### **cache**
   - **url**: _(Optional)_ URL of the cache. Default: `127.0.0.1:11211`.
   - **use_external_cache_for_auth_tokens**: _(Optional)_ if True, use remote
@@ -184,11 +147,11 @@ Rucio will look for the config in the following locations -
     x509_proxy, gss, ssh, saml, oidc}`.
   - **ca_cert**: Path of the cert file for HTTPS. Example:
     `/opt/rucio/etc/web/ca.crt`.
-  - **client_cert**: Path of the X.509 client cert file. This can be overwitten
+  - **client_cert**: Path of the X.509 client cert file. This can be overwritten
     by the `RUCIO_CLIENT_CERT` environment variable. Example:
     `/opt/rucio/etc/web/client.crt`.
   - **client_key**: Path of the X.509 client key file for the cert defined in
-    `client_cert`. This can be overwitten by the `RUCIO_CLIENT_KEY` environment
+    `client_cert`. This can be overwritten by the `RUCIO_CLIENT_KEY` environment
     variable. Example: `/opt/rucio/etc/web/client.key`.
   - **client_x509_proxy**: Path of the X.509 client proxy. Mandatory if
     `auth_type = x509_proxy`.
@@ -378,7 +341,7 @@ Rucio will look for the config in the following locations -
     LFN2PFN translation for this server. Default: `hash`.
   - **package**
   - **package-*VO***
-  - **permission**: Same as `policy/permission`.
+  - **permission**: Same as `permission/policy`.
   - **schema**
   - **scratchdisk_lifetime**: _(Optional)_ Integer. Default: `14`.
   - **support**: _(Optional)_ Contact information.
@@ -531,7 +494,7 @@ and how to set them up [here](./configuration.md#creating-new-rses).
 - **availability_delete**: Boolean. Control if this RSE allows deletions by the Reaper daemon using any protocol. Default: `True`.
 - **availability_read**: Boolean. Control if this RSE allows reads using any protocol. Default: `True`.
 - **availability_write**: Boolean. Control if this RSE allows writes using any protocol. Default: `True`.
-- **credentials**: Dictonary[String, Any]: Specify token credentials used for accessing this RSE if it is in a commercial cloud. No default.
+- **credentials**: Dictionary[String, Any]: Specify token credentials used for accessing this RSE if it is in a commercial cloud. No default.
 - **delete_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for deletions. Default: `1`.
 - **deterministic**: Boolean: Controls if the RSE is allowed to generate paths based solely on the DID (scope:filename). More info about non-deterministic RSEs [here](https://rucio.github.io/documentation/started/concepts/replica_workflow/#replica-paths-on-storage). Default: `True`.
 - **domain**: List[String]: Specifies the locations this RSE may be accessed by clients from. Cannot be changed.
@@ -546,7 +509,7 @@ and how to set them up [here](./configuration.md#creating-new-rses).
 - **third_party_copy_read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for TPC reads. Default `1`.
 - **third_party_copy_write_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for TPC writes. Default `1`.
 - **verify_checksum**: Boolean: Specifies if the RSE has support for checksum verification. Default: `True`.
-- **volatile**: Boolean. Specifies if the RSE is cache storage. Subject to volatile RSE retrictions detailed [here](https://rucio.github.io/documentation/operator/qos_rse_config). Default: `False`.
+- **volatile**: Boolean. Specifies if the RSE is cache storage. Subject to volatile RSE restrictions detailed [here](https://rucio.github.io/documentation/operator/qos_rse_config). Default: `False`.
 - **write_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for writes. Default: `1`.
 
 ## RSE attributes
@@ -568,10 +531,10 @@ and how to set them up [here](./configuration.md#creating-new-rses).
 - **driver_name_rse_attribute**: String. Used to specify alternate drivers when using the Bittorrent transfer manager. Default: `bittorrent_driver`.
 - **fts**: String. Specify the REST API URL of the FTS3 transfer manager. No default.
 - **greedyDeletion**: Boolean. Allow files without a rule locking them to be deleted by a Reaper Daemon. Default behavior only marks a file for deletion when there is no space on an RSE for a new required file. Default: `False`.
-- **group_by_rse_attribute**: String. Control the RSE attribute (such as `country`) which transfer source RSEs will be grouped by when determining an appopriate transfer source. Default: `UNKNOWN`.
+- **group_by_rse_attribute**: String. Control the RSE attribute (such as `country`) which transfer source RSEs will be grouped by when determining an appropriate transfer source. Default: `UNKNOWN`.
 - **globus_endpoint_id**: String. Specify the REST API URL of the Globus transfer manager. No default.
 - **hop_penalty**: Integer. Usage cost of this RSE as an intermediate in [multihop transfers](https://rucio.github.io/documentation/operator/transfers/transfers-overview). Overrides the global `transfers/hop_penalty` configuration for this particular RSE.
- Requires `available_for_multihop` attribute is True on the RSE. No default. 
+ Requires `available_for_multihop` attribute is True on the RSE. No default.
 - **is_object_store**: Boolean. Control the auditor daemon's behavior. Instead of dumping all files, list them by date. Default: `False`.
 - **istape**: Boolean. Default: `False`.
 - **lfn2pfn_algorithm**: String. Name of the algorithm to be used for generating paths to files on the storage. Must be defined in the configured policy package. Default: `default`.
@@ -580,7 +543,7 @@ and how to set them up [here](./configuration.md#creating-new-rses).
 - **naming_convention**: String. Name of the algorithm in the configured policy package which is to be used to validate DIDs on this RSE. Default: `None`.
 - **oidc_support**: Boolean. Specifies that the RSE supports OIDC authentication for FTS3 transfers. Default: `False`.
 - **overwrite_when_only_on_disk**: Boolean. On a `TAPE` RSE, controls if a file can be overwritten. A file may only be overwritten if it has not yet been written to the tape backend. Default: `False`.
-- **overwrite**: Boolean. Controls if a file can be overwritten on the RSE. Default: `True` for `rse_type: DISK`. `False` for `rse_type: TAPE`. 
+- **overwrite**: Boolean. Controls if a file can be overwritten on the RSE. Default: `True` for `rse_type: DISK`. `False` for `rse_type: TAPE`.
 - **physgroup**: String. Used for grouping of rules by CERN experiments. Default: ` `.
 - **qbittorrent_management_address**: String. Used to configure the URL of the bittorrent management API when using the torrent transfer manager. No Default.
 - **quota_approvers**: List[string]. List of Rucio users separated by commas. Only used in the permission layer of the policy package, and likely specific to the CERN experiments only. Default: `None`.

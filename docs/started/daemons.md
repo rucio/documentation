@@ -8,7 +8,7 @@ Rucio relies on several daemons (processes) to perform different logic.
 Most of the daemons connect to the DB to read some data, perform some computation, 
 and then write some data back into the DB.
 
-Usually one daemon will create some work for another daemon and viceversa.
+Usually one daemon will create some work for another daemon and vice-versa.
 In Rucio realm, daemons communicate to others by the DB.
 
 The following table represents a high level view of the responsibility of each of the daemons.

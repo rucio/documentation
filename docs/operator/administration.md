@@ -15,7 +15,7 @@ The behavior is very simple: any file found in the `/patch/*` directory inside
 the containers will be fed to the `patch` command-line tool in the order
 returned by this glob matching.
 
-The procedures described bellow are only intended for temporary fixes. If a
+The procedures described below are only intended for temporary fixes. If a
 permanent change is needed, we highly encourage you to open a pull request
 in rucio to spare you the toil related to maintaining your own local patch set.
 

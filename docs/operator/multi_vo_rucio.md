@@ -63,7 +63,7 @@ multi_vo = True
 ```
 
 For the daemons, files and configuration are needed to allow daemons to act on
-the various VOs: this inludes the VO specific certificates, keys, and proxies,
+the various VOs: this includes the VO specific certificates, keys, and proxies,
 as well as an additional configuration section which maps each VO to its
 respective x.509 authentication credentials. Rucio uses this information when
 submitting and polling transfers to use the correct certificates.
@@ -99,7 +99,7 @@ is disabled by default.
 
 When bootstrapping the database as part of the Rucio installation, if M-VO is
 enabled in `rucio.cfg` then the super_root account is created automatically. The
-default VO "def" is also created, and the super_root acccount is associated with
+default VO "def" is also created, and the super_root account is associated with
 it. The identity used to access this account can be managed in the usual way.
 
 ## Creating VOs
@@ -150,7 +150,7 @@ with minimal disruption. The tools to perform this can be found in
 and further documentation on the [single VO to multi VO](#s-vo-to-m-vo) and
 [multi-VO to single VO](#m-vo-to-s-vo) instances are found below.
 
-The fuction `convert_to_mvo` facilitates the conversion of a single-VO instance
+The function `convert_to_mvo` facilitates the conversion of a single-VO instance
 to a multi-VO instance, where `convert_to_svo` performs the opposite. VOs can
 also be renamed using `rename_vo`, or deleted using `remove_vo`. The conversion
 functions are callable by using the command line with details on what each
@@ -256,7 +256,7 @@ REFERENCES accounts (account);
 By default, data associated with any other VOs is left in the database, but will
 be inaccessible to Rucio users.
 These entries can be completely deleted from the database
-by pasing the `--delete_vos` argument.
+by passing the `--delete_vos` argument.
 
 ```bash
 tools/convert_database_vo.py convert_to_svo old --delete_vos ...  \

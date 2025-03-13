@@ -54,7 +54,7 @@ module.exports={
       },
       "items": [
         {
-          "to": "pathname:///html/site/accountclient.html",
+          "to": "pathname:///html/client_api/accountclient.html",
           "label": "Python Client API",
           "position": "left"
         },

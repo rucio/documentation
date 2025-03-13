@@ -8,7 +8,7 @@ operators, and developers to discuss and plan the evolution of a specific part o
 The topic of a SIG needs to be well-defined and the community interest on the topic
 needs to be above a threshold to justify the creation of a SIG, instead of covering the
 topic just within the weekly Rucio meeting. A SIG topic can involve one or multiple
-Rucio components, or even the entire system. SIGs are open to any interrested community
+Rucio components, or even the entire system. SIGs are open to any interested community
 member.
 
 ## Structure
@@ -26,7 +26,7 @@ Each SIG must define
 
 | Name                                          | Start    | est. End | Convener                                               |
 | --------------------------------------------- | -------- | -------- | ------------------------------------------------------ |
-| [Metadata](sig_metadata.md)                   | Jul-2021 | Dec-2024 | [Rob Barnsley](https://github.com/robbarnsley)         |
+| [Metadata](sig_metadata.md)                   | Jul-2021 | Dec-2026 | [Rob Barnsley](https://github.com/robbarnsley)         |
 | [Tokens](sig_tokens.md)                       | Sep-2023 | Mar-2026 | [Dimitrios Christidis](https://github.com/dchristidis) |
 
 ## Past Special Interest Groups

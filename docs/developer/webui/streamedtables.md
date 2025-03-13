@@ -133,7 +133,7 @@ const tablecolumns: any[] = [
                 </span>
             )
         },
-        // funxtion to render header cell of column, return JSX object
+        // function to render header cell of column, return JSX object
         // "info": context useful for the creation of a header cell -> read docs
         header: info => {
             return (
@@ -255,7 +255,7 @@ type TableFilterDiscrete<T> = JSX.IntrinsicElements["div"] & {
 }
 ```
 Explanation:
-* `keys` is a list of type `T` where `T` is the tyoe of the column entries.
+* `keys` is a list of type `T` where `T` is the type of the column entries.
   Usually a string enum.
 * `renderFunc` is the function used to render the icon to the side or below the
   text (depending on whether `state` is set).

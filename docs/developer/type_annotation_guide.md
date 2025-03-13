@@ -70,7 +70,7 @@ from some consequences. In particular:
   programming languages.
 - Type related bugs do not get noticed: Calling a function with a wrong type
   (e.g. `None`) gets spotet by typed checkers. In dynamically typed programming
-  languages this needs to be veryfied on every call.
+  languages this needs to be verified on every call.
 
 While we have strong arguments for type annotations, there are some drawbacks:
 
@@ -164,7 +164,7 @@ As of now, only the number of _missing_ type annotations will be used. The job
 does not check for wrong type hints or inconsistencies. This (specifically
 `mypy`) will be enabled once enough python type hints are added. For this
 purpose, we will always add type annotations to functions, even when the type
-can be infered.
+can be inferred.
 
 ### Best Practices
 

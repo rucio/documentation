@@ -99,3 +99,8 @@ Configuration options for Metadata are:
 # plugins = list_of_plugins,comma_separated
 plugins = rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta,escape.rucio.did_meta_plugin
 ```
+
+
+## API Documentation
+
+[The API for existing metadata plugins can be found here](pathname:///html/did_meta_plugins/did_column_meta.html)

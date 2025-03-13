@@ -39,7 +39,7 @@ board meetings.
 
 | Community                           | Representative           | Term                 |
 | ----------------------------------- | ------------------------ | -------------------- |
-| [ATLAS](https://atlas.cern)         | David South, DESY        | 2023-Apr to 2025-Mar |
+| [ATLAS](https://atlas.cern)         | David South, DESY        | 2023-Apr to 2027-Mar |
 | [Belle II](https://www.belle2.org)  | Cedric Serfon, BNL       | 2023-Jun to 2025-May |
 | [CMS](https://cms.cern)             | Eric Vaandering, FNAL    | 2025-Feb to 2027-Jan |
 | [DUNE](https://www.dunescience.org) | Mike Kirby, BNL          | 2023-Feb to 2027-Jan |
@@ -73,9 +73,18 @@ at CERN, with remote participation possibilities. The RAB members agree to
 select a secretary for each meeting who will be in charge of keeping minutes.
 Minutes are kept internal to the RAB.
 
+Should a representative be exceptionally impeded to join a board meeting, they can 
+nominate a replacement representative, from their RSC, to join the meeting. The 
+replacement must be approved by the Rucio project leader.
+
+Guests can be invited to parts, or the entirety, of a board meeting. Invitations are 
+issued by the Rucio project leader and the RAB members must be informed, in advance, 
+of the attendance of guests.
+
 ## Mandate versions
 
 | Version                                                                         | Creation    |
 | ------------------------------------------------------------------------------- | ----------- |
+| [v1.2](https://rucio.cern.ch/documentation/files/Rucio_Advisory_Board_v1.2.pdf) | Feb 5, 2025 |
 | [v1.1](https://rucio.cern.ch/documentation/files/Rucio_Advisory_Board_v1.1.pdf) | May 8, 2024 |
 | [v1.0](https://rucio.cern.ch/documentation/files/Rucio_Advisory_Board_v1.0.pdf) | Nov 7, 2022 |

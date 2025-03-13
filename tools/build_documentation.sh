@@ -35,7 +35,10 @@ mkdir -p "$SCRIPT_DIR"/../website/static/html/
 
 cp -r "$AUTO_GENERATED"/rest_api_doc_spec.yaml "$SCRIPT_DIR"/../website/static/yaml/
 cp -r "$AUTO_GENERATED"/rest_api_doc.html "$SCRIPT_DIR"/../website/static/html/
-cp -r "$AUTO_GENERATED"/site "$SCRIPT_DIR"/../website/static/html/
+for dir in rse_policies did_meta_plugins transfer_protocols transfer_tools client_api; do
+    cp -r "$AUTO_GENERATED/$dir" "$SCRIPT_DIR/../website/static/html/"
+done
+
 cp -r "$AUTO_GENERATED"/bin "$DOCS"
 
 

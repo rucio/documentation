@@ -41,3 +41,7 @@ repos:
     name: Check the file names for inconsistencies.
     entry: ./tools/check-file-names.sh
     language: system
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.2.4
+  hooks:
+  - id: codespell

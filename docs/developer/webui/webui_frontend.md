@@ -190,7 +190,7 @@ Classes are assigned to the `className` attribute as space-separated strings.
 We often make use of the `twMerge` function. This function swallows all string arguments
 and returns a single class string. Importantly, classes added later may override those added
 before them, which is not the case when we do not use `twMerge`. An example of this
-is seen in the followin code-block.
+is seen in the following code-block.
 
 ```tsx
 <div
@@ -395,7 +395,7 @@ case, branching logic is used to style the button depending on whether it is dis
 ```
 
 We will cover how we conventionally structure the contents of `className` and `twMerge`.
-We will also discuss dark mode and responsive desgin as examples of metaclasses, but
+We will also discuss dark mode and responsive design as examples of metaclasses, but
 we strongly encourage you to work through the Tailwind documentation, which is full of
 examples and very helpful. In addition, it is a good idea to look at external resources
 to fully understand the flexbox and other display models in HTML.
