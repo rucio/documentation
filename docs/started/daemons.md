@@ -1,7 +1,7 @@
 ---
 id: daemons
 title: Rucio Daemons
-sidebar_label: daemons
+sidebar_label: Rucio Daemons
 ---
 
 Rucio relies on several daemons (processes) to perform different logic.
