@@ -172,7 +172,20 @@ called for this action instead.
 
 The schema module of a policy package does not need to define all of
 the schema values. Any missing ones will automatically be loaded from
-the generic schema module instead.
+the generic schema module instead. It is also possible for the schema
+values in the policy package to reference values in the generic
+schema. For example:
+
+```python
+ACCOUNT = {"description": "Account name",
+           "type": "string",
+           "maxLength": "%%ACCOUNT_LENGTH",
+           "pattern": "^[a-z0-9-_]+$"}
+```
+
+The above example will use `ACCOUNT_LENGTH` as defined in the generic
+schema (unless it is also defined in the policy package, in which case
+the definition in the policy package will take precedence).
 
 ## Policy algorithms
 
