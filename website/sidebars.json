@@ -81,7 +81,7 @@
                 "operator/s3_rse_config",
                 "operator/qos_rse_config",
                 "operator/notifications",
-		"operator/suspicious_replica_recoverer", 
+		"operator/suspicious-replica-recoverer", 
                 {
                     "label":"Executables", 
                     "type": "category",
