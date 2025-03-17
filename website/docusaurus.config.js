@@ -2,7 +2,6 @@ module.exports={
   "title": "Rucio Documentation",
   "url": "https://rucio.github.io",
   "baseUrl": "/documentation",
-  "trailingSlash": false,
   "organizationName": "rucio",
   "projectName": "documentation",
   "scripts": [
