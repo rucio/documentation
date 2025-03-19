@@ -543,24 +543,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rucio.rse.protocols.protocol.RSEProtocol._get_path" class="md-nav__link">
-    <span class="md-ellipsis">
-      _get_path
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rucio.rse.protocols.protocol.RSEProtocol._get_path_nondeterministic_server" class="md-nav__link">
-    <span class="md-ellipsis">
-      _get_path_nondeterministic_server
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rucio.rse.protocols.protocol.RSEProtocol.parse_pfns" class="md-nav__link">
     <span class="md-ellipsis">
       parse_pfns
@@ -911,24 +893,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rucio.rse.protocols.protocol.RSEProtocol._get_path" class="md-nav__link">
-    <span class="md-ellipsis">
-      _get_path
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rucio.rse.protocols.protocol.RSEProtocol._get_path_nondeterministic_server" class="md-nav__link">
-    <span class="md-ellipsis">
-      _get_path_nondeterministic_server
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rucio.rse.protocols.protocol.RSEProtocol.parse_pfns" class="md-nav__link">
     <span class="md-ellipsis">
       parse_pfns
@@ -1129,6 +1093,10 @@ along with some of the default methods for LFN2PFN translations.</p>
                 <p>Properties of the requested protocol.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1153,6 +1121,10 @@ along with some of the default methods for LFN2PFN translations.</p>
                 <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code><span title="logging.log">log</span></code>
@@ -1232,6 +1204,9 @@ along with some of the default methods for LFN2PFN translations.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1297,6 +1272,9 @@ along with some of the default methods for LFN2PFN translations.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1306,105 +1284,6 @@ along with some of the default methods for LFN2PFN translations.</p>
           </tr>
       </tbody>
     </table>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h5 id="rucio.rse.protocols.protocol.RSEProtocol._get_path" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">_get_path</span>
-
-
-<a href="#rucio.rse.protocols.protocol.RSEProtocol._get_path" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">_get_path</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Transforms the logical file name into a PFN.
-Suitable for sites implementing the RUCIO naming convention.
-This implementation is only invoked if the RSE is deterministic.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>scope</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>filename</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>RSE specific URI of the physical file</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h5 id="rucio.rse.protocols.protocol.RSEProtocol._get_path_nondeterministic_server" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">_get_path_nondeterministic_server</span>
-
-
-<a href="#rucio.rse.protocols.protocol.RSEProtocol._get_path_nondeterministic_server" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">_get_path_nondeterministic_server</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Provides the path of a replica for non-deterministic sites. Will be assigned to get path by the <strong>init</strong> method if necessary.</p>
 
 
     </div>
@@ -1444,6 +1323,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>a list of a fully qualified PFNs</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="collections.abc.Iterable">Iterable</span>[<span title="str">str</span>], <span title="str">str</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1461,6 +1344,9 @@ This implementation is only invoked if the RSE is deterministic.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1533,6 +1419,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>Physical file name</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1550,6 +1440,9 @@ This implementation is only invoked if the RSE is deterministic.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="bool">bool</span></code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1698,6 +1591,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>Physical file name of requested file</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1710,6 +1607,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>Name and path of the files when stored at the client</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1722,6 +1623,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>Transfer timeout (in seconds)</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1822,6 +1727,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>path to the source file on the client file system</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1834,6 +1743,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>path to the destination file on the storage</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1846,6 +1759,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>Path where the to be transferred files are stored in the local file system</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1858,6 +1775,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>Transfer timeout (in seconds)</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1958,6 +1879,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>path to the to be deleted file</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2042,6 +1967,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>path to the current file on the storage</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2054,6 +1983,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>path to the new file on the storage</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2139,10 +2072,13 @@ This implementation is only invoked if the RSE is deterministic.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="tuple">tuple</span>[<span title="int">int</span>, <span title="int">int</span>]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                <p>a list with dict containing 'totalsize' and 'unusedsize'</p>
+                <p>a tuple 'totalsize' and 'unusedsize'</p>
               </div>
             </td>
           </tr>
@@ -2211,6 +2147,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>path to file</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2228,6 +2168,9 @@ This implementation is only invoked if the RSE is deterministic.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">

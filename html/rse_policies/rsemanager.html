@@ -304,6 +304,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rucio.rse.rsemanager-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rucio.rse.rsemanager-functions" class="md-nav__link">
     <span class="md-ellipsis">
       Functions
@@ -326,15 +335,6 @@
   <a href="#rucio.rse.rsemanager.get_rse_info" class="md-nav__link">
     <span class="md-ellipsis">
       get_rse_info
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rucio.rse.rsemanager._get_possible_protocols" class="md-nav__link">
-    <span class="md-ellipsis">
-      _get_possible_protocols
     </span>
   </a>
   
@@ -416,15 +416,6 @@
   <a href="#rucio.rse.rsemanager.find_matching_scheme" class="md-nav__link">
     <span class="md-ellipsis">
       find_matching_scheme
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rucio.rse.rsemanager._retry_protocol_stat" class="md-nav__link">
-    <span class="md-ellipsis">
-      _retry_protocol_stat
     </span>
   </a>
   
@@ -507,6 +498,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rucio.rse.rsemanager-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rucio.rse.rsemanager-functions" class="md-nav__link">
     <span class="md-ellipsis">
       Functions
@@ -529,15 +529,6 @@
   <a href="#rucio.rse.rsemanager.get_rse_info" class="md-nav__link">
     <span class="md-ellipsis">
       get_rse_info
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rucio.rse.rsemanager._get_possible_protocols" class="md-nav__link">
-    <span class="md-ellipsis">
-      _get_possible_protocols
     </span>
   </a>
   
@@ -625,15 +616,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rucio.rse.rsemanager._retry_protocol_stat" class="md-nav__link">
-    <span class="md-ellipsis">
-      _retry_protocol_stat
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rucio.rse.rsemanager.__check_compatible_scheme" class="md-nav__link">
     <span class="md-ellipsis">
       __check_compatible_scheme
@@ -690,7 +672,7 @@
 
 
 
-
+<h2 id="rucio.rse.rsemanager-classes">Classes<a href="#rucio.rse.rsemanager-classes" class="headerlink" title="Permanent link">&para;</a></h2>
 <h2 id="rucio.rse.rsemanager-functions">Functions<a href="#rucio.rse.rsemanager-functions" class="headerlink" title="Permanent link">&para;</a></h2>
 
 <div class="doc doc-object doc-function">
@@ -772,6 +754,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Name of the requested RSE</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -788,6 +774,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>The VO for the RSE.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;def&#39;</code>
@@ -804,6 +794,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>The id of the rse (use in server mode to avoid db calls)</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -820,6 +814,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>The eventual database session.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="sqlalchemy.orm.Session">Session</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -872,125 +870,6 @@ Call with either rse and vo, or (in server mode) rse_id</p>
             <td class="doc-raises-details">
               <div class="doc-md-description">
                 <p>if the provided RSE could not be found in the database.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="rucio.rse.rsemanager._get_possible_protocols" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">_get_possible_protocols</span>
-
-
-<a href="#rucio.rse.rsemanager._get_possible_protocols" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">_get_possible_protocols</span><span class="p">(</span>
-    <span class="n">rse_settings</span><span class="p">,</span>
-    <span class="n">operation</span><span class="p">,</span>
-    <span class="n">scheme</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">domain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">impl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Filter the list of available protocols or provided by the supported ones.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_settings</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse settings.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.types.RSESettingsDict">RSESettingsDict</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>operation</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The operation (write, read).</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scheme</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Optional filter if no specific protocol is defined in rse_setting for the provided operation.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>domain</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Optional domain (lan/wan), if not specified, both will be returned</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>The list of possible protocols.</p>
               </div>
             </td>
           </tr>
@@ -1060,6 +939,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Intended operation for this protocol</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1072,6 +955,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optional filter if no specific protocol is defined in rse_setting for the provided operation</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1088,6 +975,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optional specification of the domain</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -1104,6 +995,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optionally passing JSON Web Token (OIDC) string for authentication</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1120,6 +1015,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optionally passing the full protocol availability information to correctly select WAN/LAN</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="rucio.common.types.RSEProtocolDict">RSEProtocolDict</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1136,6 +1035,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code><span title="logging.log">log</span></code>
@@ -1157,6 +1060,9 @@ Call with either rse and vo, or (in server mode) rse_id</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="rucio.rse.protocols.protocol.RSEProtocol">RSEProtocol</span></code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1230,6 +1136,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>logical file names as a dict containing 'scope' and 'name' as keys. For bulk a list of dicts can be provided</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="list">list</span>[<span title="rucio.common.types.LFNDict">LFNDict</span>], <span title="rucio.common.types.LFNDict">LFNDict</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1242,6 +1152,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Intended operation for this protocol</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;write&#39;</code>
@@ -1258,6 +1172,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optional filter if no specific protocol is defined in rse_setting for the provided operation</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1274,6 +1192,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optional specification of the domain</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -1290,6 +1212,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optionally passing JSON Web Token (OIDC) string for authentication</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1306,6 +1232,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code><span title="logging.log">log</span></code>
@@ -1327,6 +1257,9 @@ Call with either rse and vo, or (in server mode) rse_id</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1397,6 +1330,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>list of PFNs</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="list">list</span>[<span title="str">str</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1409,6 +1346,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Intended operation for this protocol</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;read&#39;</code>
@@ -1425,6 +1366,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optional specification of the domain</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -1441,6 +1386,10 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                 <p>Optionally passing JSON Web Token (OIDC) string for authentication</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1462,6 +1411,9 @@ Call with either rse and vo, or (in server mode) rse_id</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1596,6 +1548,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>a single dict or a list with dicts containing 'scope' and 'name' if LFNs are used and only 'name' if PFNs are used. E.g. {'name': '2_rse_remote_get.raw', 'scope': 'user.jdoe'}, {'name': 'user/jdoe/5a/98/3_rse_remote_get.raw'}</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="list">list</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]], <span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1608,6 +1564,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>The network domain, either 'wan' (default) or 'lan'</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -1624,6 +1584,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optionally passing JSON Web Token (OIDC) string for authentication</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1640,6 +1604,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>The VO for the RSE</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;def&#39;</code>
@@ -1656,6 +1624,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code><span title="logging.log">log</span></code>
@@ -1677,6 +1649,9 @@ Providing a list indicates the bulk mode.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="typing.Union">Union</span>[<span title="bool">bool</span>, <span title="list">list</span>[<span title="typing.Union">Union</span>[<span title="bool">bool</span>, <span title="dict">dict</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>], <span title="bool">bool</span>]]]]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1780,6 +1755,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>a single dict or a list with dicts containing 'scope' and 'name'. Examples: [ {'name': '1_rse_local_put.raw', 'scope': 'user.jdoe', 'filesize': 42, 'adler32': '87HS3J968JSNWID'}, {'name': '2_rse_local_put.raw', 'scope': 'user.jdoe', 'filesize': 4711, 'adler32': 'RSSMICETHMISBA837464F'} ] If the 'filename' key is present, it will be used by Rucio as the actual name of the file on disk (separate from the Rucio 'name').</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="list">list</span>[<span title="rucio.common.types.LFNDict">LFNDict</span>], <span title="rucio.common.types.LFNDict">LFNDict</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1792,6 +1771,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>The network domain, either 'wan' (default) or 'lan'</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -1808,6 +1791,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>path to the local directory including the source files</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1824,6 +1811,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>use the given PFN -- can lead to dark data, use sparingly</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1840,6 +1831,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>use the given protocol scheme, overriding the protocol priority in the RSE description</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1856,6 +1851,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>set this timeout (in seconds) for the transfers, for protocols that support it</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1872,6 +1871,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>use the given service (e.g. gcs, s3, swift) to sign the URL</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1888,6 +1891,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optionally passing JSON Web Token (OIDC) string for authentication</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -1904,6 +1911,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>The VO for the RSE</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;def&#39;</code>
@@ -1920,6 +1931,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code><span title="logging.log">log</span></code>
@@ -1941,6 +1956,9 @@ Providing a list indicates the bulk mode.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="typing.Union">Union</span>[<span title="int">int</span>, <span title="str">str</span>], <span title="typing.Union">Union</span>[<span title="bool">bool</span>, <span title="str">str</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="typing.Literal">Literal</span>[True], <span title="Exception">Exception</span>]]]]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -2073,6 +2091,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>a single dict or a list with dicts containing 'scope' and 'name'. E.g. [{'name': '1_rse_remote_delete.raw', 'scope': 'user.jdoe'}, {'name': '2_rse_remote_delete.raw', 'scope': 'user.jdoe'}]</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="list">list</span>[<span title="rucio.common.types.LFNDict">LFNDict</span>], <span title="rucio.common.types.LFNDict">LFNDict</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2085,6 +2107,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>The network domain, either 'wan' (default) or 'lan'</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -2101,6 +2127,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optionally passing JSON Web Token (OIDC) string for authentication</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -2117,6 +2147,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code><span title="logging.log">log</span></code>
@@ -2138,6 +2172,9 @@ Providing a list indicates the bulk mode.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="typing.Union">Union</span>[<span title="bool">bool</span>, <span title="list">list</span>[<span title="typing.Union">Union</span>[<span title="bool">bool</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="typing.Literal">Literal</span>[True], <span title="Exception">Exception</span>]]]]]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -2258,6 +2295,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>a single dict or a list with dicts containing 'scope', 'name', 'new_scope' and 'new_name' if LFNs are used or only 'name' and 'new_name' if PFNs are used. If 'new_scope' or 'new_name' are not provided, the current one is used. Examples: [ {'name': '3_rse_remote_rename.raw', 'scope': 'user.jdoe', 'new_name': '3_rse_new.raw', 'new_scope': 'user.jdoe'}, {'name': 'user/jdoe/d9/cb/9_rse_remote_rename.raw', 'new_name': 'user/jdoe/c6/4a/9_rse_new.raw'} ]</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="list">list</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]], <span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2270,6 +2311,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>The network domain, either 'wan' (default) or 'lan'</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -2286,6 +2331,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optionally passing JSON Web Token (OIDC) string for authentication</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -2302,6 +2351,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code><span title="logging.log">log</span></code>
@@ -2323,6 +2376,9 @@ Providing a list indicates the bulk mode.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="typing.Union">Union</span>[<span title="bool">bool</span>, <span title="list">list</span>[<span title="typing.Union">Union</span>[<span title="bool">bool</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="typing.Literal">Literal</span>[True], <span title="Exception">Exception</span>]]]]]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -2454,6 +2510,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>optional filter to select which protocol to be used.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -2470,6 +2530,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>The network domain, either 'wan' (default) or 'lan'</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -2486,6 +2550,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optionally passing JSON Web Token (OIDC) string for authentication</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -2502,6 +2570,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Optional decorated logger that can be passed from the calling daemons or servers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.LoggerFunction">LoggerFunction</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code><span title="logging.log">log</span></code>
@@ -2523,6 +2595,9 @@ Providing a list indicates the bulk mode.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="list">list</span>[<span title="typing.Union">Union</span>[<span title="bool">bool</span>, <span title="typing.Union">Union</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="int">int</span>], <span title="Exception">Exception</span>]]]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -2602,6 +2677,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>RSE settings for the destination RSE.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.RSESettingsDict">RSESettingsDict</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2614,6 +2693,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>RSE settings for the src RSE.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.RSESettingsDict">RSESettingsDict</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2626,6 +2709,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Source Operation such as read, write.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2638,6 +2725,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Dest Operation such as read, write.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2650,6 +2741,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Domain such as lan, wan.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;wan&#39;</code>
@@ -2666,6 +2761,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>List of supported schemes.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="list">list</span>[<span title="str">str</span>]]]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -2687,67 +2786,14 @@ Providing a list indicates the bulk mode.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="tuple">tuple</span>[<span title="str">str</span>, <span title="str">str</span>, <span title="int">int</span>, <span title="int">int</span>]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
                 <p>Tuple of matching schemes (dest_scheme, src_scheme, dest_scheme_priority, src_scheme_priority).</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="rucio.rse.rsemanager._retry_protocol_stat" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">_retry_protocol_stat</span>
-
-
-<a href="#rucio.rse.rsemanager._retry_protocol_stat" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">_retry_protocol_stat</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">pfn</span><span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>try to stat file, on fail try again 1s, 2s, 4s, 8s, 16s, 32s later. Fail is all fail</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>protocol</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The protocol to use to reach this file</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>pfn</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Physical file name of the target for the protocol stat</p>
-              </div>
-              <p>
-              </p>
             </td>
           </tr>
       </tbody>
@@ -2791,6 +2837,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Destination scheme</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2803,6 +2853,10 @@ Providing a list indicates the bulk mode.</p>
                 <p>Source scheme</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2832,6 +2886,9 @@ Providing a list indicates the bulk mode.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="bool">bool</span></code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">

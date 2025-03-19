@@ -429,15 +429,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rucio.rse.protocols.globus.GlobusRSEProtocol._get_path" class="md-nav__link">
-    <span class="md-ellipsis">
-      _get_path
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rucio.rse.protocols.globus.GlobusRSEProtocol.parse_pfns" class="md-nav__link">
     <span class="md-ellipsis">
       parse_pfns
@@ -857,15 +848,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rucio.rse.protocols.globus.GlobusRSEProtocol._get_path" class="md-nav__link">
-    <span class="md-ellipsis">
-      _get_path
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rucio.rse.protocols.globus.GlobusRSEProtocol.parse_pfns" class="md-nav__link">
     <span class="md-ellipsis">
       parse_pfns
@@ -1129,85 +1111,6 @@
 <div class="doc doc-object doc-function">
 
 
-<h5 id="rucio.rse.protocols.globus.GlobusRSEProtocol._get_path" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">_get_path</span>
-
-
-<a href="#rucio.rse.protocols.globus.GlobusRSEProtocol._get_path" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">_get_path</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Transforms the logical file name into a PFN.
-Suitable for sites implementing the RUCIO naming convention.
-This implementation is only invoked if the RSE is deterministic.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>scope</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>filename</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>RSE specific URI of the physical file</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
 <h5 id="rucio.rse.protocols.globus.GlobusRSEProtocol.parse_pfns" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">parse_pfns</span>
 
@@ -1327,6 +1230,10 @@ This implementation is only invoked if the RSE is deterministic.</p>
                 <p>Physical file name</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1344,6 +1251,9 @@ This implementation is only invoked if the RSE is deterministic.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="bool">bool</span></code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
