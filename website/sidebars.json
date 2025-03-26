@@ -31,7 +31,8 @@
                         "started/concepts/accounting_and_quota",
                         "started/concepts/notifications",
                         "started/concepts/subscriptions",
-                        "started/concepts/replica_workflow"
+                        "started/concepts/replica_workflow",
+                        "started/concepts/deletion_overview"
                     ]
                 },
                 "started/releasepolicy",
