@@ -1,5 +1,5 @@
 ---
-id: deletion-overview
+id: deletion_overview
 title: Deletion Overview
 ---
 
@@ -27,7 +27,7 @@ The deletion service supports two different modes: greedy and non-greedy.
     
 - Non-greedy
 
-    The reaper daemon first checks if the free space is needed in the RSE. The needed free space is the difference of minimum free space (attrribute set for RSE) and actual free space in RSE. Deletion only occurs once free space is needed.
+    The reaper daemon first checks if the free space is needed in the RSE. The needed free space is the difference of minimum free space (attribute set for RSE) and actual free space in RSE. Deletion only occurs once free space is needed.
     Deletions are processed by Least Recently Used (LRU) algorithm, thus oldest accessed (tombstoned) replicas are deleted first.
 
 
