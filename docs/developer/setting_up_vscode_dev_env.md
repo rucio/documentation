@@ -120,7 +120,7 @@ Whatever route you go, you should have a `hostcert.pem` and a `hostkey.pem` file
   ```
 - Clone the vscode configuration repository
   ```
-  gh repo clone maany/rucio-vscode-dev-env
+  gh repo clone rucio/rucio-vscode-dev-env
   ```
 - Move the vscode repo inside the rucio repo
   ```
