@@ -1,5 +1,6 @@
 ---
 title: Configuring the Client
+sidebar_position: 2
 ---
 
 ## Environmental variables

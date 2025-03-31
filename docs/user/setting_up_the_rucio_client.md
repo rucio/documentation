@@ -1,5 +1,6 @@
 ---
 title: Setting Up the Rucio Client
+sidebar_position: 1
 ---
 
 ## Install via pip
