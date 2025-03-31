@@ -474,7 +474,6 @@ a setting already specified in the Configuration File.
   - **hop_penalty**: _(Optional)_ Penalty to be applied to each further
     hop. Integer. Default: `10`.
   - **multihop_tombstone_delay**: Seconds (integer). Default: `7200`.
-  - **use_multihop**: Boolean. Default: `False`.
   - **fts3tape_metadata_plugins**: _(Optional)_ Plugins to use with FTS3 to include archive
   metadata in the transfer process. List[String]. Default: `None`.
   - **metadata_byte_limit**: _(Optional)_ Limit applied to `archive_metadata` during a transfer.
