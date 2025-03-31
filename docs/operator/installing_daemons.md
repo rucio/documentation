@@ -1,6 +1,7 @@
 ---
 id: installing_daemons
 title: Installing Rucio Daemons
+sidebar_position: 4
 ---
 
 ## Prerequisites

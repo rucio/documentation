@@ -37,4 +37,4 @@ transfer requests can be made to Rucio in order to populate the cache.
 When configuring transfers between RSEs, distances must be defined for that link.
 Distances are unidirectional. To allow transfers in both directions, a distance
 has to be defined separately in each direction. Refer to the section
-[Transfers Overview](operator/transfers/transfers_overview.md) for more details.
+[Transfers Overview](transfers/transfers_overview.md) for more details.

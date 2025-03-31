@@ -1,6 +1,7 @@
 ---
 id: setting_up_demo
 title: Setting up a Rucio demo environment
+sidebar_position: 1
 ---
 
 ## Prerequisites
