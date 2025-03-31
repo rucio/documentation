@@ -1,6 +1,7 @@
 ---
 id: developing_with_rucio
 title: Developing with Rucio
+sidebar_position: 5
 ---
 
 ## Rucio Clients

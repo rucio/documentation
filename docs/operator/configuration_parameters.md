@@ -487,22 +487,22 @@ a setting already specified in the Configuration File.
 ## RSE settings
 The RSE settings are set separately using `rucio.RSEClient.update_rse` or `rucio rse update`, and specifies RSE configuration used by the Rucio instance.
 Mutable settings are `deterministic`, `rse_type`, `staging_area`, `volatile`, `qos_class`, `availability_delete`, `availability_read`, `availability_write`, `city`, `country_name`, `latitude`, `longitude`, `region_code`, and `time_zone`.
-Read more about RSEs [here](../started/concepts/rucio_storage_element.md)
-and how to set them up [here](./configuration.md#creating-new-rses).
+Read more about RSEs [here](started/concepts/rucio_storage_element.md)
+and how to set them up [here](operator/configuration.md#creating-new-rses).
 
 - **availability_delete**: Boolean. Control if this RSE allows deletions by the Reaper daemon using any protocol. Default: `True`.
 - **availability_read**: Boolean. Control if this RSE allows reads using any protocol. Default: `True`.
 - **availability_write**: Boolean. Control if this RSE allows writes using any protocol. Default: `True`.
 - **credentials**: Dictionary[String, Any]: Specify token credentials used for accessing this RSE if it is in a commercial cloud. No default.
 - **delete_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for deletions. Default: `1`.
-- **deterministic**: Boolean: Controls if the RSE is allowed to generate paths based solely on the DID (scope:filename). More info about non-deterministic RSEs [here](https://rucio.github.io/documentation/started/concepts/replica_workflow/#replica-paths-on-storage). Default: `True`.
+- **deterministic**: Boolean: Controls if the RSE is allowed to generate paths based solely on the DID (scope:filename). More info about non-deterministic RSEs [here](started/concepts/replica_workflow/#replica-paths-on-storage). Default: `True`.
 - **domain**: List[String]: Specifies the locations this RSE may be accessed by clients from. Cannot be changed.
 - **id**: String: Identification string of the RSE. Cannot be changed.
 - **lfn2pfn_algorithm**: String: Name of the algorithm in the configured policy package to be used for creating replica paths. Cannot be changed. If no lfn2pfn_algorithm attribute is set, then the setting defaults to lfn2pfn_algorithm_default in the configured policy package. Default: `default`.
 - **qos_class**: String: No functionality in modern Rucio. No default.
 - **read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for reads. Default: `1`.
 - **rse**: String: The name of the Rucio Storage Element as given at creation time. Cannot be changed.
-- **rse_type**: String: Specify `DISK` or `TAPE` for control of [QoS](https://rucio.github.io/documentation/operator/qos_rse_config). Default: `DISK`.
+- **rse_type**: String: Specify `DISK` or `TAPE` for control of [QoS](operator/qos_rse_config). Default: `DISK`.
 - **sign_url**: Optional[str]. Enable cloud support for this storage element. No default.
 - **staging_area**: Boolean.Specify if this RSE is a disk buffer to a tertiary storage backend, subject to additional constraints (specifically a lifetime for rules on this RSE must be defined). Default: `False`.
 - **third_party_copy_read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for TPC reads. Default `1`.
@@ -514,8 +514,8 @@ and how to set them up [here](./configuration.md#creating-new-rses).
 ## RSE attributes
 The RSE Attributes are set separately using `rucio.RSEClient.add_rse_attribute` or `rucio rse attribute add`.
 and only contains information about the specific RSE's for the Rucio instance.
-Read more about RSEs [here](../started/concepts/rucio_storage_element.md)
-and how to set them up [here](./configuration.md#creating-new-rses).
+Read more about RSEs [here](started/concepts/rucio_storage_element.md)
+and how to set them up [here](operator/configuration.md#creating-new-rses).
 
 - **associated_sites**: String. Separated by commas. Used for chaining of subscriptions so that transfers to one RSE will also be mirrored to associated_sites. No default.
 - **archive_timeout**: Integer: Only used for transfers with a tape destination. Controls the number of seconds the FTS3 transfer manager will wait for the tape archival of the file to go `FAILED` or `FINISHED`. No default.
@@ -532,7 +532,7 @@ and how to set them up [here](./configuration.md#creating-new-rses).
 - **greedyDeletion**: Boolean. Allow files without a rule locking them to be deleted by a Reaper Daemon. Default behavior only marks a file for deletion when there is no space on an RSE for a new required file. Default: `False`.
 - **group_by_rse_attribute**: String. Control the RSE attribute (such as `country`) which transfer source RSEs will be grouped by when determining an appropriate transfer source. Default: `UNKNOWN`.
 - **globus_endpoint_id**: String. Specify the REST API URL of the Globus transfer manager. No default.
-- **hop_penalty**: Integer. Usage cost of this RSE as an intermediate in [multihop transfers](https://rucio.github.io/documentation/operator/transfers/transfers-overview). Overrides the global `transfers/hop_penalty` configuration for this particular RSE.
+- **hop_penalty**: Integer. Usage cost of this RSE as an intermediate in [multihop transfers](transfers/transfers_overview.md). Overrides the global `transfers/hop_penalty` configuration for this particular RSE.
  Requires `available_for_multihop` attribute is True on the RSE. No default.
 - **is_object_store**: Boolean. Control the auditor daemon's behavior. Instead of dumping all files, list them by date. Default: `False`.
 - **istape**: Boolean. Default: `False`.

@@ -1,6 +1,7 @@
 ---
 id: using_the_admin_client
 title: "Using the Admin Client"
+sidebar_position: 4
 ---
 
 Rucio provides a CLI for administrative tasks. The get methods can be executed

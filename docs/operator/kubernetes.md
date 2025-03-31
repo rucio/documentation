@@ -1,6 +1,7 @@
 ---
 id: kubernetes
 title: Setting up Rucio on Kubernetes
+sidebar_position: 2
 ---
 
 ## Helm charts

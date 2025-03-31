@@ -25,9 +25,9 @@ system? Who uses it? What powers these systems? Answers to all these questions
 and more can be found by browsing through the sub-sections of this topic.
 
 - [What is Rucio](started/what_is_rucio.md)
-- [Main Components](started/main_components.md)
+- [Main Components](started/main_components/main_components.md)
 - [Additional Layers and Resources](started/additional_layers_and_resources.md)
-- [About Rucio Daemons](started/daemons.md)
+- [About Rucio Daemons](started/main_components/daemons.md)
 
 ## Client
 
