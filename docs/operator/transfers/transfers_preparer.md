@@ -50,10 +50,7 @@ either inherited from the rule, or set by another transfer daemon
 (for example: preparer)
 
 The next step is to perform the path computation. At this stage, preparer
-uses the distance between RSEs to perform shortest-path computations. If
-multi-hopping is enabled via `transfers/use_multihop`, then the configuration
-value `transfers/hop_penalty` + the RSE attributes `available_for_multihop`
-and `hop_penalty` will influence the distances for multi-hop paths.
+uses the distance between RSEs to perform shortest-path computations.
 Each hop, even for single-hop transfers, must respect the protocol
 compatibility between the source of the hop and its destination. The
 [SCHEME_MAP](https://github.com/rucio/rucio/blob/1b8ca368523d13fd11bc0b32c14528f2fcec778b/lib/rucio/common/constants.py#L48)
