@@ -496,14 +496,14 @@ and how to set them up [here](operator/configuration.md#creating-new-rses).
 - **availability_write**: Boolean. Control if this RSE allows writes using any protocol. Default: `True`.
 - **credentials**: Dictionary[String, Any]: Specify token credentials used for accessing this RSE if it is in a commercial cloud. No default.
 - **delete_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for deletions. Default: `1`.
-- **deterministic**: Boolean: Controls if the RSE is allowed to generate paths based solely on the DID (scope:filename). More info about non-deterministic RSEs [here](started/concepts/replica_workflow/#replica-paths-on-storage). Default: `True`.
+- **deterministic**: Boolean: Controls if the RSE is allowed to generate paths based solely on the DID (scope:filename). More info about non-deterministic RSEs [here](started/concepts/replica_workflow.md#replica-paths-on-storage). Default: `True`.
 - **domain**: List[String]: Specifies the locations this RSE may be accessed by clients from. Cannot be changed.
 - **id**: String: Identification string of the RSE. Cannot be changed.
 - **lfn2pfn_algorithm**: String: Name of the algorithm in the configured policy package to be used for creating replica paths. Cannot be changed. If no lfn2pfn_algorithm attribute is set, then the setting defaults to lfn2pfn_algorithm_default in the configured policy package. Default: `default`.
 - **qos_class**: String: No functionality in modern Rucio. No default.
 - **read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for reads. Default: `1`.
 - **rse**: String: The name of the Rucio Storage Element as given at creation time. Cannot be changed.
-- **rse_type**: String: Specify `DISK` or `TAPE` for control of [QoS](operator/qos_rse_config). Default: `DISK`.
+- **rse_type**: String: Specify `DISK` or `TAPE` for control of [QoS](operator/qos_rse_config.md). Default: `DISK`.
 - **sign_url**: Optional[str]. Enable cloud support for this storage element. No default.
 - **staging_area**: Boolean.Specify if this RSE is a disk buffer to a tertiary storage backend, subject to additional constraints (specifically a lifetime for rules on this RSE must be defined). Default: `False`.
 - **third_party_copy_read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for TPC reads. Default `1`.
