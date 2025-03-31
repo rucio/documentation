@@ -1,6 +1,7 @@
 ---
 id: what_is_rucio
 title: What is Rucio?
+sidebar_position: 2
 ---
 
 Rucio enables centralized management of large volumes of data backed by many

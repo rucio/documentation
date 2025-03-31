@@ -2,6 +2,7 @@
 id: releasepolicy
 title: Release Policy
 sidebar_label: Release Policy
+sidebar_position: 8
 ---
 
 Rucio follows a release policy, based on [semantic versioning](https://semver.org),

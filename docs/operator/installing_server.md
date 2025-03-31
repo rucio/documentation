@@ -1,6 +1,7 @@
 ---
 id: installing_server
 title: Installing Rucio Server
+sidebar_position: 3
 ---
 
 ## Prerequisites

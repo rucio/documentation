@@ -1,9 +1,10 @@
 ---
 id: additional_layers_and_resources
 title: Additional Layers and Resources
+sidebar_position: 4
 ---
 
-In addition to the four [main layers](started/main_components.md), we have the storage
+In addition to the four [main layers](started/main_components/main_components.md), we have the storage
 resources & transfer tools, as well as the underlying persistent layers. These
 are represented in the architecture diagram by the different *queuing systems*,
 *transactional* relational databases, & *analytics* storage on non-relational
