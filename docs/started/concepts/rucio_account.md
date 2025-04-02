@@ -15,4 +15,26 @@ accounts (N:M mapping). The Rucio authentication system checks if the used
 credentials are authorized to use the supplied Rucio account.  The figure below
 gives an example of the mapping between credentials and Rucio accounts:
 
-![Figure 1](/img/accounts.png)
+```mermaid
+graph LR
+    g["i"]
+
+    subgraph TB sgcred[Credentials]
+        b["X509 <br> (barisits)"]
+        v["X509 <br> (vgaronne)"]
+        g["X509 <br> (graemes)"]
+    end
+
+    subgraph TB sgaccount[Rucio Accounts]
+        account_b[barisits]
+        account_v[vgaronne]
+        account_p[prod]
+        account_h[higgs]
+    end
+
+    b --> account_b
+    v --> account_v
+    v --> account_h
+    g --> account_p 
+    g --> account_h
+```
