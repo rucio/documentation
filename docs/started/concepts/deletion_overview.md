@@ -31,7 +31,30 @@ The deletion service supports two different modes: greedy and non-greedy.
     Deletions are processed by Least Recently Used (LRU) algorithm, thus oldest accessed (tombstoned) replicas are deleted first.
 
 
-![Judge-cleaner chart](/img/judge-cleaner.png)
+```mermaid
+flowchart TB
+
+    A((Undertaker))-->1[Get expired dids]
+
+    1-->2[Get all rules for did]
+    2-->D{Are Rules Locked?}
+
+    D--"yes"-->f([Finished])
+    D--"no"--> sub1[Remove Rules]
+
+    subgraph sg[ ]
+        sub1[Remove Rules] --> sub2["`Set tombstones 
+                        on replicas`"]
+        sub2 --> sub3[Remove DID]
+        sub3 --> sub4{"`Does the DID 
+                        have children?`"}
+        sub4 --yes-->sub5["`Remove Child
+                             DID and Replicas`"]
+    end
+    
+    sub4 --"no"--> f
+    sub5--> f
+```
 
 ![Undertaker chart](/img/undertaker.png)
 
