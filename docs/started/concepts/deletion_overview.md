@@ -51,11 +51,29 @@ flowchart TB
         sub4 --yes-->sub5["`Remove Child
                              DID and Replicas`"]
     end
-    
+
     sub4 --"no"--> f
     sub5--> f
 ```
 
-![Undertaker chart](/img/undertaker.png)
 
-![Reaper chart](/img/reaper.png)
+```mermaid
+    graph TD
+
+    R((Reaper)) --> RSEs[Get all RSEs]
+    RSEs --> D1{RSE.availability_delete}
+    D1--"False"--> f([Finished])
+    D1--"True"--> Greedy_RSE{Greedy RSE?}
+
+    %% Non-greedy RSE Logic
+    Greedy_RSE--"no"--> MinFreeSpace{Min free space <= Actual Free Space}
+    MinFreeSpace--"no"--> f
+    MinFreeSpace--"yes"--> i[List replicas with tombstones] --> id4[Apply LRU algorithm to replicas]
+    id4 --> RemoveReplicas[Remove replicas]
+
+    %% Greedy RSE Logic
+    Greedy_RSE--"yes" --> j[List replicas with tombstones] --> RemoveReplicas --> f
+
+
+```
+
