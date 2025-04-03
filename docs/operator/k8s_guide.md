@@ -648,7 +648,26 @@ Please notice that `USERCERT_NAME` and `USERKEY_NAME` correspond to the name of 
 
 A diagram of how the proxy certificate is created and mounted on the daemons is displayed below: 
 
-![image](/img/daemons-chart.png)
+```mermaid
+graph TD
+
+    voms[VOMS]
+    fts[FTS Renewal Daemon]
+
+    A((user x509)) --> B((Rucio Identity))
+    B --> C[upload, <br> download, <br> ...]
+    C --> D[x509 Service]
+
+
+    D --> fts --"x509 service"---> voms --"auth confirmation"---> fts
+    fts --"x509 proxy"--> mount[secretMount]
+
+    mount --> i((daemon))
+    mount --> j((daemon))
+    mount --> k((daemon))
+
+```
+
 ## Rucio UI
 [Reference Helm Chart](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/sync/rucio-ui.yaml?ref_type=heads).
 
