@@ -33,9 +33,9 @@ For differences between the versions of a Rucio client and a Rucio server we gua
 compatibility between a server and an older client up until the second LTS release line
 preceding the server.
 
-For example, a 35 Rucio server guarantees client support until the second LTS release line
-preceding its version, thus the 1.29 LTS release line. Therefore it guarantees support
-of clients of the 1.29, 1.30, 1.31, 32, 33, 34, and 35 release lines.
+For example, a 37 Rucio server guarantees client support until the second LTS release line
+preceding its version, thus the 32 LTS release line. Therefore it guarantees support
+of clients of the 32, 33, 34, 35, 36 and 37 release lines.
 
 A 33 Rucio server guarantees client support of the 1.29, 1.30, 1.31, 32, and 33 release
 lines, while a 32 server guarantees support of the 1.26, 1.27, 1.28, 1.29, 1.30, 1.31, and
@@ -51,8 +51,8 @@ server.
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
 | 39              | Grand Theft Donkey                        | _2025-11_      | _2026-03_            |
 | 38 LTS          | Donkirk                                   | _2025-07_      | _at least 2027-07_   |
-| 37              | Dungeons & Donkeys                        | _2025-03_      | _2025-07_            |
-| **36**          | **Donkey Unchained**                      | **2024-12**    | _2025-03_            |
+| **37**          | **Dungeons & Donkeys**                    | **2025-04**    | _2025-07_            |
+| 36              | Donkey Unchained                          | 2024-12        | 2025-04              |
 | **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | _at least 2026-07_   |
 | 34              | Donkey Potter and the Data Cache          | 2024-03        | 2024-07              |
 | 33              | Eternal Sunshine of the Donkey's Mind     | 2023-12        | 2024-03              |
@@ -108,7 +108,7 @@ consistency and compatibility.
 
 - **Major Version**: The major version number of the WebUI matches that of the
   Rucio server it is compatible with. For example, Rucio Server version
-  **35.x.x** is compatible with Rucio WebUI version **35.x.x**.
+  **37.x.x** is compatible with Rucio WebUI version **37.x.x**.
 - **Minor and Patch Versions**: These versions follow semantic versioning:
    - **Minor Version**: Incremented for new features and improvements that are
      backward-compatible.
