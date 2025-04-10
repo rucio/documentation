@@ -19,7 +19,6 @@ installed Python interpreter.
 
 Rucio release                        | Supported python versions
 ------------------------------------ | -----------------------------------------------
-[1.29 LTS](/release-notes/1.29.0)    | `>=3.6, <=3.9`
 from [32 LTS](/release-notes/32.0.0) | `>=3.9, <=3.10`
 
 ## Database
