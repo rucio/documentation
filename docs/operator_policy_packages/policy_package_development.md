@@ -97,9 +97,11 @@ non-deterministic storage, and `scope` for scope extraction algorithms.
 `non_deterministic_pfn`, however this is not recommended for new policy
 packages).
 
-Some base algorithm classes depend on `schema` being loaded.
-To avoid circular import issues, import the algorithm classes
-as part of the `get_algorithms` function, to ensure that `schema` is loaded first.
+> [!NOTE]
+> Some base algorithm classes depend on `schema` being loaded.
+> To avoid **circular import** issues,
+> import the algorithm classes as part of the `get_algorithms` function,
+> to ensure that `schema` is loaded first.
 
 Example:
 
