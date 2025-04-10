@@ -1128,7 +1128,10 @@
 
     <div class="doc doc-contents ">
 
-        <p>List exceptions to Lifetime Model.</p>
+        <p>Lists lifetime model exceptions that allow extending data lifetimes beyond their configured policies.</p>
+<p>The lifetime model exceptions are used to override the default lifecycle policies for data identifiers
+(files, datasets, containers, or archives) that need to be kept longer than usual. These exceptions
+can be filtered by their ID or approval state (this feature is not available yet).</p>
 
 
 <table>
@@ -1141,13 +1144,21 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
-                <code>id</code>
+                <code>exception_id</code>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The id of the exception</p>
+                <p>The unique identifier of a specific exception. If provided, returns only that exception.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1157,7 +1168,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The states to filter</p>
+                <p>Filter exceptions by their states. Possible values are: - <code>A</code> (APPROVED): Exception was approved - <code>R</code> (REJECTED): Exception was rejected - <code>W</code> (WAITING): Exception is waiting for approval by an admin (or other authorized account)</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1169,6 +1180,30 @@
                       <code>None</code>
                   </span>
               </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="collections.abc.Iterator">Iterator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>An iterator of dictionaries containing the exception details: - <code>id</code>: The unique identifier of the exception - <code>scope</code>: The scope of the data identifier - <code>name</code>: The name of the data identifier - <code>did_type</code>: Type of the data identifier: <code>F</code> (file), <code>D</code> (dataset), <code>C</code> (container), <code>A</code> (archive), <code>X</code> (deleted file), <code>Y</code> (deleted dataset), <code>Z</code> (deleted container) - <code>account</code>: The account that requested the exception - <code>pattern</code>: Pattern used for matching data identifiers - <code>comments</code>: User provided comments explaining the exception - <code>state</code>: Current state of the exception - <code>created_at</code>: When the exception was created (returned as timestamp string) - <code>expires_at</code>: When the exception expires (returned as timestamp string)</p>
+              </div>
             </td>
           </tr>
       </tbody>
@@ -1192,7 +1227,10 @@
 
     <div class="doc doc-contents ">
 
-        <p>Add exceptions to Lifetime Model.</p>
+        <p>Creates a lifetime model exception request to extend the expiration date of data identifiers (DIDs).</p>
+<p>These exceptions allow requesting extensions to DIDs' lifetimes, subject to approval and configured
+maximum extension periods. The request includes details about which DIDs should have extended
+lifetimes, who is requesting it, and why it's needed.</p>
 
 
 <table>
@@ -1209,7 +1247,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The list of dids</p>
+                <p>List of dictionaries containing the data identifiers to be excepted. Each dictionary must contain: - <code>scope</code>: The scope of the data identifier - <code>name</code>: The name of the data identifier</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1225,7 +1263,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The account of the requester.</p>
+                <p>The account requesting the exception</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1241,7 +1279,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The account.</p>
+                <p>Associated pattern for the exception request</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1257,7 +1295,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The comments associated to the exception.</p>
+                <p>Justification for why the exception is needed (e.g. "Needed for my XYZ analysis..")</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1273,7 +1311,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The expiration date of the exception.  returns:            The id of the exception.</p>
+                <p>When the exception should expire (datetime object)</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1281,6 +1319,30 @@
                       <code><span title="datetime.datetime">datetime</span></code>
                   </span>
               </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>A dictionary containing: - <code>exceptions</code>: Dictionary mapping exception IDs to lists of DIDs that were successfully added - <code>unknown</code>: List of DIDs that could not be found - <code>not_affected</code>: List of DIDs that did not qualify for an exception</p>
+              </div>
             </td>
           </tr>
       </tbody>
