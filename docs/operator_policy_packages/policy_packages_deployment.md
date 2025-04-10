@@ -3,11 +3,6 @@ id: policy-package-deployment
 title: Deploying a Policy Package
 ---
 
-It is now common to deploy Rucio using containers managed by software
-such as Docker and Kubernetes. This section of the documentation is
-intended to give guidance on how policy packages can be deployed in
-this type of environment.
-
 Broadly speaking, three things must happen in order for a policy
 package to be deployed successfully:
 
@@ -15,68 +10,55 @@ package to be deployed successfully:
    (and possibly other components such as daemons).
 1. The directory containing the policy package must be in the server's
    `PYTHONPATH`.
-1. The policy package name must be set in the Rucio configuration file,
-   or using the `RUCIO_POLICY_PACKAGE` environment variable.
+1. Rucio must be configured to find the policy package.
 
-### Installing the policy package
+## Deploying a policy package
 
-There are a few possible ways to get the policy package code into the
-container where the server runs. One way is to build a custom
-experiment-specific container image based on the generic Rucio server
-image, and to install the policy package at build time in the
-`Dockerfile`, either by directly copying the files in, or by installing
-it from some sort of repository. For experiments that already customise
-the container image, this is likely to be the easiest option.
+The table below describes the different approaches you can use to deploy a policy package.
 
-Alternatively, the standard Rucio container can be used and a volume
-containing the policy package files can be mounted at run time (using
-the `-v` or `--volume` command line flag). When using Kubernetes, there
-is also a third possibility: use an
-[init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
-to install the policy package onto a shared volume, which is then mounted
-by the server container when it starts up.
+| Approach / columns                         	| Ease of setup 	| Amount of work needed for new Rucio and new policy package versions          	| Extra external dependencies at runtime                                                                                            	|
+|--------------------------------------------	|---------------	|------------------------------------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------	|
+| Kubernetes init container                  	| Easy          	|                                                                              	| Index (e.g. PyPI) or Git registry (e.g. GitLab) in question (if a new policy package version is released)                         	|
+| Pass build argument to Dockerfile          	| Easy          	| - Building + hosting the image yourself - Rebuilding the image - Redeploying 	| Registry where you host the image  (no more risk than what is already there,  assuming your registry is as reliable as DockerHub) 	|
+| Generate YAML and add as Kubernetes secret 	| Medium        	| - Need to duplicate actual policy package content into configuration         	| None                                                                                                                              	|
 
-### Adding the policy package to the server's PYTHONPATH
+### Deploying via Kubernetes init container
+In the `values.yaml` for `server` and `daemons` (and optionally for `ui` / `webui`), under `policyPackages`:
+1. Set `policyPackages.enabled` to `true`
+2. List your policy packages under `policyPackages.packages` in the following format:
+```
+    example: install from an index (default is PyPI)
+    - moduleName: vo_1_policy_package
+      requirement: vo_1_policy_package==1.4.0
+      version: 1.4.0
+    example: install from a git repository
+    - moduleName: vo_2_policy_package
+      requirement: git+https://github.com/vo-2/vo-2-policy-package@v0.1.0
+      version: 0.1.0
+```
+3. (Optional) set `policyPackages.pvc.createPvc` to true to create a PVC for the policy packages; leave false if providing it separately.
 
-It is possible to set environment variables within the container when
-starting it (using Docker's `-e` command line flag). This can be used to
-set `PYTHONPATH`, however this will replace the original value rather
-than appending to it, so there is a risk of removing other important
-items from the path. A safer option is to override Rucio's
-`docker-entrypoint.sh` script and instead use a script that appends the
-policy package's directory to `PYTHONPATH` before starting the HTTP server.
-This can be done either at build time in the `Dockerfile`, or at run time
-using the `--entrypoint` command line option.
-
-When deploying using Kubernetes and Helm charts, it is possible to specify
-the policy package directory in the `optional_config:` section of
-`values.yaml`. This is then propagated to the container as an environment
-variable, which can be added to `PYTHONPATH` by the entry point script. For
-example, include this in `values.yaml`:
-
-```yaml
-optional_config:
-  policy_pkg_path: /opt/rucio/policy
+### Deploying via Dockerfile build argument
+1. In the `server`, `clients`, `daemons`, `ui` and `init` containers, pass the `POLICY_PACKAGE_REQUIREMENTS` build argument. Example:
+Example:
+```
+docker build -t server --build-arg POLICY_PACKAGE_REQUIREMENTS=vo_1_policy_package==0.4.0,git+https://github.com/vo-2/vo-2-policy-package@v0.1.0
 ```
 
-This will appear in the container's environment as a variable called
-`POLICY_PKG_PATH`, which can be added to `PYTHONPATH` by the entry point
-script before starting the server:
+### Deploying via Kubernetes secret
+You can generate `yaml` for all the files included in your policy package,
+and add them as Kubernetes secrets.
+You can find information in the [Kubernetes guide](operator/k8s_guide.md) on how to create and manage secrets.
 
-```bash
-if [ ! -z "$POLICY_PKG_PATH" ]; then
-    export PYTHONPATH=${POLICY_PKG_PATH}:${PYTHONPATH:+:}${PYTHONPATH}
-fi
-```
+This process can be somewhat automated by having a cronjob that creates the secret policy and applies it.
 
-### Specifying the policy package in the configuration file
 
-It is likely that most experiments are already customising the Rucio
-configuration file, in which case the policy package (`package = name` in
-the `[policy]` section) can simply be added to the existing customised file.
-Alternatively, the package name can be set in the `RUCIO_POLICY_PACKAGE`
-environment variable (see previous section for how to pass environment
-variables into the server container).
+## Configuring Rucio to find a policy package
+To configure Rucio, you should either:
+1. Modify the configuration file, by adding the package name as `package = name` in
+the `[policy]` section, or
+2. Setting the the package name in the `RUCIO_POLICY_PACKAGE`
+environment variable.
 
 When deploying using Kubernetes and Helm charts, it is possible to specify
 configuration options in `values.yaml`. Values included in the `config:`
@@ -86,5 +68,5 @@ section of this file are automatically merged into `rucio.cfg` by the
 ```yaml
 config:
   policy:
-    package: packagename
+    package: name
 ```
