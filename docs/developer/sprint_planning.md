@@ -85,3 +85,9 @@ In the sprint review phase, you can share a reflection on why you found the real
 It's important to leave all the issues in the sprint, in order to reflect on whether we planned correctly or not.
 We can estimate the remaining effort for the unfinished issues in case we want to move them to a subsequent sprint,
 but they should not be removed from their sprint.
+
+### The current sprint is over and I have an unfinished item that I would like to continue in the next sprint. What should I do?
+You can move the unfinished item to the next sprint, updating its size according to how much work is estimated to be left.
+
+For example, if you would like to carry over an unfinished item of size M, and you estimate that it will need 1 more day of work,
+you can move it to the next sprint and change its size to S.
