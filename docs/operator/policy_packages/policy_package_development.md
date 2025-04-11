@@ -127,7 +127,7 @@ In all cases the names used to register the functions (e.g. `voname_extract_scop
 with the name of the virtual organisation that owns the policy package,
 to avoid naming conflicts on multi-VO Rucio installations.
 
-See [the Algorithms documentation page](operator_policy_packages/policy_package_algorithms.md) for more on developing algorithms.
+See [the Algorithms documentation page](operator/policy_packages/policy_package_algorithms.md) for more on developing algorithms.
 
 ### Permission and schema modules
 

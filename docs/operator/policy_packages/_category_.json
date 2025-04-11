@@ -1,0 +1,6 @@
+{
+    "label": "Policy Packages",
+    "collapsible": true,
+    "link": {"type": "doc", "id":"operator/policy_packages/policy_packages_overview"},
+    "position": 3
+}
