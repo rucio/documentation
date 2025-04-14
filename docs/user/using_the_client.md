@@ -104,54 +104,71 @@ email      : root@abc.com
 ```
 
 ## Open ID Connect authentication examples
-
-There are 3 CLI login methods. Two were introduced in order to avoid typing the
-password in the Rucio CLI. The default Identity Provider `(IdP)/issuer` is
-configured on the side of Rucio server. In case multiple IdPs are supported,
-user can specify which one he desires to use by `--oidc-issuer=\<IdP nickname\>`
-option (where IdP nickname is the key under which issuers are configured on
-Rucio server side in the *idpsecrets.json* file). In the following examples we
-assume that user does not want to use the rucio account name specified in the
-*rucio.cfg* file on the client side (if so `-a` parameter can be omitted).  If
-*auth_type* is specified to be "oidc" in the *rucio.cfg* file, `-S` can be
-omitted as well.  Furthermore, we use the same default issuer as configured on
-Rucio server side.
+There are 2 CLI login methods. 
 
 1. Login via user's browser + fetch code:
 
+     ```bash
+     rucio -a=\<rucio_account_name\> -S=OIDC -v whoami
+     ```
+     OR with rucio.cfg as:
+     ```cfg
+      [client]
+
+      rucio_host = https://\<rucio_host\>:443
+      auth_host = https://\<rucio_auth_host\>:443
+      auth_type = oidc
+      account = \<rucio_account_name\>
+     ```
+     ```bash
+      rucio -v whoami
+      ```
+
+2. Login via user's browser + polling Rucio auth server:
+
+     ```bash
+     rucio -a=\<rucio_account_name\> -S=OIDC --oidc-polling -v whoami
+     ```
+     Or with rucio.cfg as:
+     ```cfg
+      [client]
+      rucio_host = https://\<rucio_host\>:443
+      auth_host = https://\<rucio_auth_host\>:443
+      auth_type = oidc
+      oidc_polling = True
+      account = \<rucio_account_name\>
+     ```
+     ```bash
+      rucio -v whoami
+     ```
+
+
+If the Rucio instance is configured for multi-IDP, you must specify the issuer's nickname in the client. You can request this value from the instance's operators.
+   ```bash
+   rucio -a=\<rucio_account_name\> -S=OIDC --oidc-issuer <issuer's nickname> -v whoami
+   ```
+   or with rucio.cfg as:
+   ```cfg
+   [client]
+   rucio_host = https://\<rucio_host\>:443
+   auth_host = https://\<rucio_auth_host\>:443
+   auth_type = oidc
+   oidc_polling = True
+   oidc_issuer=\<issuer's_nickname>
+   account = \<rucio_account_name\>
+  ```
   ```bash
-  rucio -a=\<rucio_account_name\> -S=OIDC -v whoami
+   rucio -v whoami
   ```
 
-1. Login via user's browser + polling Rucio auth server:
-
-  ```bash
-  rucio -a=\<rucio_account_name\> -S=OIDC --oidc-polling -v whoami
-  ```
-
-1. Automatic login:
-
-  ```bash
-  rucio -a=\<rucio_account_name\> \
-    -S=OIDC --oidc-user=\<idp_username\> \
-    --oidc-password=\<idp_password\> \
-    --oidc-auto \
-    -v \
-    whoami
-  ```
-
-We strongly discourage this approach, typing your password in CLI does not
-comply with OAuth2/OIDC standard !
-
-Options for automatic token refresh: Assuming the rucio-oauth-manager daemon is
-running on the Rucio server side, one can also grant Rucio a refresh token and
+Options for automatic token refresh: Assuming the one can also grant Rucio a refresh token and
 specify the time for which Rucio should act on behalf of the user (in hours)
-using the `--refresh-lifetime` option:
+using the `--oidc-refresh-lifetime` option and adding `offline_access` to `--oidc-scope`:
 
-```bash
+```shell
 rucio -a=\<rucio_account_name\> \
   -S=OIDC \
-  --oidc-scope="openid profile offline_access" \
+  --oidc-scope='offline_access' \
   --oidc-refresh-lifetime=24 \
   -v \
   whoami
@@ -159,7 +176,7 @@ rucio -a=\<rucio_account_name\> \
 
 If Rucio Server is granted a user both valid access and refresh tokens, it is
 also possible to configure Rucio Client to ask Rucio Server for token
-refresh. Assuming user used one of the 3 CLI authentication methods above +
+refresh. Assuming user used one of the 2 CLI authentication methods above +
 requested offline_access in the scope, rucio.cfg file can be configured with the
 following parameters in the `[client]` section:
 
@@ -175,8 +192,6 @@ gets to `auth_oidc_refresh_before_exp` minutes (20 min default) before token
 expiration, Rucio Client will ask Rucio Server for token refresh with every
 command. If the token has been refreshed in the recent 5 min already once, the
 same one will be returned (protection on the Rucio Server side). If the
-presented token has been refreshed automatically on the Rucio Server side by a
-oauth_manager daemon run, it will return this existing new token. If the
 presented token is invalid/expired/does not have refresh token in the DB, no
 refresh will be attempted.
 
@@ -189,9 +204,7 @@ rucio_host = https://\<rucio_host\>:443
 auth_host = https://\<rucio_auth_host\>:443
 auth_type = oidc
 account = \<rucio_account_name\>
-oidc_audience = rucio
-oidc_scope = openid profile offline_access
-oidc_issuer = wlcg
+oidc_scope = offline_access
 auth_oidc_refresh_active = true
 auth_oidc_refresh_before_exp = 20
 ```
