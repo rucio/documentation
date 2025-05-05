@@ -23,12 +23,11 @@ The transfer tool to query is taken from the transfer information internally and
 The `conveyor-receiver` daemon subscribes to an ActiveMQ message queue and continuously listens for transfer status updates.  
 When it receives a message, it processes the update, changes the transfer's state accordingly, and/or updates the last access time.
 
-**To set up FTS to send transfer status updates to ActiveMQ, see the instructions [here](<link_to_be_added>).**  
-First, configure FTS to publish transfer updates to an ActiveMQ broker. More information is available in the [FTS3 Messaging Guide](https://fts3-docs.web.cern.ch/fts3-docs/docs/messaging.html).
+To set up FTS to send transfer status updates to ActiveMQ broker, see the instructions [FTS3 Messaging Guide](https://fts3-docs.web.cern.ch/fts3-docs/docs/messaging.html).
 
 > **Note:** The receiver connects to ActiveMQ using the **STOMP protocol**, so ensure your ActiveMQ instance has STOMP support enabled.
 
-In your `rucio.cfg`, include the following section:
+To configure `conveyor-receiver`, your rucio server config i.e. `rucio.cfg`, include the following section with described options:
 
 ```cfg
 [messaging-fts3]
