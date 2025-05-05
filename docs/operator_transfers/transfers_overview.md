@@ -126,7 +126,8 @@ documentation.
 The path will be then submitted to the transfertool either in its integrity,
 if transfertool supports multi-hopping, or in multiple iterations.
 
-The final steps are for the `receiver` or `poller` to monitor the transfer's
+The final steps are for the `receiver` or `poller` (refer to [Poller/Receiver](transfers_poller_receiver.md)) 
+to monitor the transfer's
 completion in transfertool and `finisher` to mark the transfers as completed.
 We only described here a simple case, when the transfer is successful on the
 first try. In case of errors, multiple transitions are possible between
