@@ -6,9 +6,9 @@ title: Transfers Poller/Receiver
 `conveyor-poller` and `conveyor-receiver` are daemons responsible for tracking transfer status and updating it in the system.  
 **You need to run one or both of them** depending on the transfer tool you are using:
 
-- If you are using only **FTS3**, it is **recommended to use the receiver** for scalability. Although poller also works.
-- If you are using only **Globus and/or BitTorrent**, you only need to run the poller.
-- If both **FTS3** and **Globus and/or BitTorrent**, you need both receiver and poller.
+- If you are using only FTS3, it is **recommended to use the receiver** for scalability. Although poller also works.
+- If you are using only Globus and/or BitTorrent, you only need to run the poller.
+- If both FTS3 and Globus and/or BitTorrent, you need both receiver and poller.
 
 ## Poller
 
@@ -25,7 +25,8 @@ When it receives a message, it processes the update, changes the transfer's stat
 
 To set up FTS to send transfer status updates to ActiveMQ broker, see the instructions [FTS3 Messaging Guide](https://fts3-docs.web.cern.ch/fts3-docs/docs/messaging.html).
 
-> **Note:** The receiver connects to ActiveMQ using the **STOMP protocol**, so ensure your ActiveMQ instance has STOMP support enabled.
+> **Note:** The receiver connects to ActiveMQ using the **STOMP protocol**, so ensure your ActiveMQ instance has STOMP support enabled. As of this writing (May 2025), CERN FTS uses [ActiveMQ-Classic](https://activemq.apache.org/components/classic/) and
+not tested with [ActiveMQ-Artemis](https://activemq.apache.org/components/artemis/). 
 
 To configure `conveyor-receiver`, your rucio server config i.e. `rucio.cfg`, include the following section with described options:
 
@@ -51,8 +52,8 @@ port = 61617
 ssl_key_file = /path/to/hostkey.pem
 ssl_cert_file = /path/to/hostcert.pem
 
-# The message topic or queue where FTS publishes transfer status updates.
-destination = /topic/transfer.fts_monitoring_queue_state
+# The message topic or queue where FTS publishes transfer status (complete) updates.
+destination = /topic/transfer.fts_monitoring_complete
 
 # Optional: virtual host name used to connect to the broker
 # This is only needed if your ActiveMQ setup requires a virtual host (e.g., in multi-tenant environments)
