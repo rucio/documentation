@@ -44,6 +44,6 @@ plugins:
             show_source: false
             allow_inspection: false
             merge_init_into_class: true
-            docstring_style: "sphinx"
+            docstring_style: "numpy"
             show_category_heading: true
             show_bases: false
