@@ -56,10 +56,10 @@ Each sprint is moderated by one of the developers. This role rotates on a volunt
 
 The moderator is in charge of:
 - Beginning the sprint:
-    - Announcing the beginning of the sprint in the [Mattermost](mattermost.md) Developers channel. An example message could be: "Sprint planning thread starts! Please announce your availability (in days), and the issues with their estimates - you choose!"
     - Validating that the GitHub project board has been correctly populated
+- Providing brief status updates during the Rucio weekly meetings
 - Ending the sprint:
-    - Announcing the end of the sprint in the same Mattermost channel. An example message could be: "Sprint review thread starts! Please share your review of this sprint, and any comments/improvements!"
+    - Reviewing the retrospective comments left by the developers
     - Validating that the GitHub project board has been correctly updated
 
 ## Participating in a sprint
