@@ -10,6 +10,7 @@ function mkdocs_build {
     echo "Generating $2..."
     yq e -i '.docs_dir = "/auto_generated/'$1'"' mkdocs.yml
     yq e -i ".site_name = \"Rucio $2 Documentation\"" mkdocs.yml
+    yq -i '.plugins[2].mkdocstrings.handlers.python.options.docstring_style = "sphinx"' mkdocs.yml
 
     mkdocs build --clean --no-directory-urls --site-dir $1
     cp -r $1 /auto_generated/
