@@ -18,7 +18,7 @@ fi
 
 cp rucio/etc/docker/test/extra/rucio_sqlite.cfg /opt/rucio/etc/rucio.cfg
 
-# "$SCRIPT_DIR"/generate_rest_api_docs.sh
-# "$SCRIPT_DIR"/generate_bin_help_docs.sh
+"$SCRIPT_DIR"/generate_rest_api_docs.sh
+"$SCRIPT_DIR"/generate_bin_help_docs.sh
 "$SCRIPT_DIR"/generate_client_api_docs.sh
 "$SCRIPT_DIR"/generate_policy_docs.sh
