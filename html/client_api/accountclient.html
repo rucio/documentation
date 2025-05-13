@@ -1469,114 +1469,11 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to create a new account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>type_</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account type</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>email</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The Email address associated with the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if account was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>Duplicate</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account already exists.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: the name of the account.
+:param type_: The account type
+:param email: The Email address associated with the account.</p>
+<p>:return: True if account was created successfully else False.
+:raises Duplicate: if account already exists.</p>
 
 
     </div>
@@ -1597,82 +1494,9 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to disable an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True is account was disabled successfully. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccountNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: the name of the account.
+:return: True is account was disabled successfully. False otherwise.
+:raises AccountNotFound: if account doesn't exist.</p>
 
 
     </div>
@@ -1693,82 +1517,9 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to get information about a given account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>a list of attributes for the account. None if failure.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccountNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: the name of the account.
+:return: a list of attributes for the account. None if failure.
+:raises AccountNotFound: if account doesn't exist.</p>
 
 
     </div>
@@ -1789,66 +1540,9 @@
     <div class="doc doc-contents ">
 
         <p>Update a property of an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Account property like status.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Property value.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Any">Any</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: Name of the account.
+:param key: Account property like status.
+:param value: Property value.</p>
 
 
     </div>
@@ -1871,118 +1565,11 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to list all rucio accounts.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>type</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account type</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>identity</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The identity key name. For example x509 DN, or a username.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>filters</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>A dictionary key:account attribute to use for the filtering</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="collections.abc.Iterator">Iterator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>a list containing account info dictionary for all rucio accounts.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccountNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param type: The account type
+:param identity: The identity key name. For example x509 DN, or a username.
+:param filters: A dictionary key:account attribute to use for the filtering</p>
+<p>:return: a list containing account info dictionary for all rucio accounts.
+:raises AccountNotFound: if account doesn't exist.</p>
 
 
     </div>
@@ -2003,54 +1590,8 @@
     <div class="doc doc-contents ">
 
         <p>Get information about account whose token is used</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>a list of attributes for the account. None if failure.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccountNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:return: a list of attributes for the account. None if failure.
+:raises AccountNotFound: if account doesn't exist.</p>
 
 
     </div>
@@ -2078,122 +1619,12 @@
     <div class="doc doc-contents ">
 
         <p>Adds a membership association between identity and account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>identity</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The identity key name. For example x509 DN, or a username.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>authtype</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The type of the authentication (x509, gss, userpass).</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>default</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>If True, the account should be used by default with the provided identity.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="bool">bool</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>email</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The Email address associated with the identity.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>password</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Password if authtype is userpass.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.
+:param identity: The identity key name. For example x509 DN, or a username.
+:param authtype: The type of the authentication (x509, gss, userpass).
+:param default: If True, the account should be used by default with the provided identity.
+:param email: The Email address associated with the identity.
+:param password: Password if authtype is userpass.</p>
 
 
     </div>
@@ -2214,66 +1645,9 @@
     <div class="doc doc-contents ">
 
         <p>Delete an identity's membership association with an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>identity</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The identity key name. For example x509 DN, or a username.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>authtype</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The type of the authentication (x509, gss, userpass).</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.
+:param identity: The identity key name. For example x509 DN, or a username.
+:param authtype: The type of the authentication (x509, gss, userpass).</p>
 
 
     </div>
@@ -2294,34 +1668,7 @@
     <div class="doc doc-contents ">
 
         <p>List all identities on an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.</p>
 
 
     </div>
@@ -2342,34 +1689,7 @@
     <div class="doc doc-contents ">
 
         <p>List the associated rules of an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.</p>
 
 
     </div>
@@ -2390,66 +1710,9 @@
     <div class="doc doc-contents ">
 
         <p>Return the correct account limits for the given locality.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_expression</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Valid RSE expression</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>locality</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The scope of the account limit. 'local' or 'global'.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account:        The account name.
+:param rse_expression: Valid RSE expression
+:param locality:       The scope of the account limit. 'local' or 'global'.</p>
 
 
     </div>
@@ -2470,50 +1733,8 @@
     <div class="doc doc-contents ">
 
         <p>List the account limit for the specific RSE expression.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_expression</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse expression.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account:        The account name.
+:param rse_expression: The rse expression.</p>
 
 
     </div>
@@ -2534,34 +1755,7 @@
     <div class="doc doc-contents ">
 
         <p>List all RSE expression limits of this account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.</p>
 
 
     </div>
@@ -2582,34 +1776,7 @@
     <div class="doc doc-contents ">
 
         <p>List the account rse limits of this account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.</p>
 
 
     </div>
@@ -2630,50 +1797,8 @@
     <div class="doc doc-contents ">
 
         <p>List the account rse limits of this account for the specific rse.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.
+:param rse:     The rse name.</p>
 
 
     </div>
@@ -2694,54 +1819,8 @@
     <div class="doc doc-contents ">
 
         <p>List the account usage for one or all rses of this account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.
+:param rse:     The rse name.</p>
 
 
     </div>
@@ -2762,54 +1841,8 @@
     <div class="doc doc-contents ">
 
         <p>List the account usage for one or all RSE expressions of this account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_expression</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse expression.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account:        The account name.
+:param rse_expression: The rse expression.</p>
 
 
     </div>
@@ -2830,50 +1863,8 @@
     <div class="doc doc-contents ">
 
         <p>List the account usage history of this account on rse.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.
+:param rse:     The rse name.</p>
 
 
     </div>
@@ -2894,34 +1885,7 @@
     <div class="doc doc-contents ">
 
         <p>List the attributes for an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.</p>
 
 
     </div>
@@ -2942,66 +1906,9 @@
     <div class="doc doc-contents ">
 
         <p>Adds an attribute to an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The attribute key.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The attribute value.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Any">Any</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.
+:param key: The attribute key.
+:param value: The attribute value.</p>
 
 
     </div>
@@ -3022,50 +1929,8 @@
     <div class="doc doc-contents ">
 
         <p>Delete an attribute for an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The attribute key.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The account name.
+:param key: The attribute key.</p>
 
 
     </div>

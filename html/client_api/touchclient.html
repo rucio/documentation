@@ -1112,130 +1112,13 @@ update accessed_at for file or dataset DIDs</p>
     <div class="doc doc-contents ">
 
         <p>Sends a touch trace for a given file or dataset.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the scope of the file/dataset to update.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of file/dataset to update.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>optional parameter if a specific replica should be touched.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>DataIdentifierNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if given dids does not exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSENotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if rse is not None and given rse does not exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>UnsupportedDIDType</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if type of the given DID is not FILE or DATASET.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RucioException</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if trace could not be sent successfully.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param scope: the scope of the file/dataset to update.
+:param name: the name of file/dataset to update.
+:param rse: optional parameter if a specific replica should be touched.
+:raises DataIdentifierNotFound: if given dids does not exist.
+:raises RSENotFound: if rse is not None and given rse does not exist.
+:raises UnsupportedDIDType: if type of the given DID is not FILE or DATASET.
+:raises RucioException: if trace could not be sent successfully.</p>
 
 
     </div>

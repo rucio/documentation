@@ -1579,82 +1579,9 @@
     <div class="doc doc-contents ">
 
         <p>Returns details about the referred RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Name of the referred RSE</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A dict containing all attributes of the referred RSE</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSENotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if the referred RSE was not found in the database</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: Name of the referred RSE</p>
+<p>:returns: A dict containing all attributes of the referred RSE</p>
+<p>:raises RSENotFound: if the referred RSE was not found in the database</p>
 
 
     </div>
@@ -1675,250 +1602,23 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to create a new RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the rse.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>deterministic</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Boolean to know if the pfn is generated deterministically.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>volatile</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Boolean for RSE cache.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>city</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>City for the RSE.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>region_code</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The region code for the RSE.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>country_name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The country.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>continent</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The continent.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>time_zone</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Timezone.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>staging_area</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Staging area.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>ISP</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Internet service provider.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_type</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>RSE type.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>latitude</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Latitude coordinate of RSE.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>longitude</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Longitude coordinate of RSE.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>ASN</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Access service network.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>availability</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Availability.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if location was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>Duplicate</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if rse already exists.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the name of the rse.
+:param deterministic: Boolean to know if the pfn is generated deterministically.
+:param volatile: Boolean for RSE cache.
+:param city: City for the RSE.
+:param region_code: The region code for the RSE.
+:param country_name: The country.
+:param continent: The continent.
+:param time_zone: Timezone.
+:param staging_area: Staging area.
+:param ISP: Internet service provider.
+:param rse_type: RSE type.
+:param latitude: Latitude coordinate of RSE.
+:param longitude: Longitude coordinate of RSE.
+:param ASN: Access service network.
+:param availability: Availability.</p>
+<p>:return: True if location was created successfully else False.
+:raises Duplicate: if rse already exists.</p>
 
 
     </div>
@@ -1939,46 +1639,8 @@
     <div class="doc doc-contents ">
 
         <p>Update RSE properties like availability or name.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the new rse.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>parameters</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>A dictionary with property (name, read, write, delete as keys).</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the name of the new rse.
+:param  parameters: A dictionary with property (name, read, write, delete as keys).</p>
 
 
     </div>
@@ -1999,58 +1661,8 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to delete a rse.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the rse.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if location was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the name of the rse.
+:return: True if location was created successfully else False.</p>
 
 
     </div>
@@ -2071,31 +1683,8 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to list all rucio locations(RSEs).</p>
-<p>:rse_expression: RSE Expression to use as filter.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="collections.abc.Iterator">Iterator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>a list containing the names of all rucio locations.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:rse_expression: RSE Expression to use as filter.
+:return:         a list containing the names of all rucio locations.</p>
 
 
     </div>
@@ -2116,114 +1705,11 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to add a RSE attribute.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the rse.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the attribute key.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the attribute value.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Any">Any</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if RSE attribute was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>Duplicate</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if RSE attribute already exists.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the name of the rse.
+:param key: the attribute key.
+:param value: the attribute value.</p>
+<p>:return: True if RSE attribute was created successfully else False.
+:raises Duplicate: if RSE attribute already exists.</p>
 
 
     </div>
@@ -2244,74 +1730,9 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to delete a RSE attribute.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the attribute key.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if RSE attribute was deleted successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param key: the attribute key.</p>
+<p>:return: True if RSE attribute was deleted successfully else False.</p>
 
 
     </div>
@@ -2332,58 +1753,8 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to get RSE attributes.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A <code>dict</code> with the RSE attribute name/value pairs.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: The RSE name.</p>
+<p>:return: A <code>dict</code> with the RSE attribute name/value pairs.</p>
 
 
     </div>
@@ -2404,146 +1775,24 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to create a new protocol for the given RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the  rse.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scheme</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>identifier of this protocol</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>params</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Attributes of the protocol. Supported are: hostname:       hostname for this protocol (default = localhost) port:           port for this protocol (default = 0) prefix:         string used as a prfeix for this protocol when generating the PFN (default = None) impl:           qualified name of the implementation class for this protocol (mandatory) read:           integer representing the priority of this procotol for read operations (default = -1) write:          integer representing the priority of this procotol for write operations (default = -1) delete:         integer representing the priority of this procotol for delete operations (default = -1) extended_attributes:  miscellaneous protocol specific information e.g. spacetoken for SRM (default = None)</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if protocol was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>Duplicate</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if protocol with same hostname, port and protocol identifier already exists for the given RSE.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSENotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if the RSE doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>KeyNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if params is missing manadtory attributes to create the protocol.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccessDenied</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if not authorized.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the name of the  rse.
+:param scheme: identifier of this protocol
+:param params: Attributes of the protocol. Supported are:
+    hostname:       hostname for this protocol (default = localhost)
+    port:           port for this protocol (default = 0)
+    prefix:         string used as a prfeix for this protocol when generating the PFN (default = None)
+    impl:           qualified name of the implementation class for this protocol (mandatory)
+    read:           integer representing the priority of this procotol for read operations (default = -1)
+    write:          integer representing the priority of this procotol for write operations (default = -1)
+    delete:         integer representing the priority of this procotol for delete operations (default = -1)
+    extended_attributes:  miscellaneous protocol specific information e.g. spacetoken for SRM (default = None)</p>
+<p>:return: True if protocol was created successfully else False.</p>
+<p>:raises Duplicate: if protocol with same hostname, port and protocol identifier
+                    already exists for the given RSE.
+:raises RSENotFound: if the RSE doesn't exist.
+:raises KeyNotFound: if params is missing manadtory attributes to create the
+                     protocol.
+:raises AccessDenied: if not authorized.</p>
 
 
     </div>
@@ -2571,186 +1820,17 @@
 
         <p>Returns protocol information. Parameter combinations are:
 (operation OR default) XOR protocol.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>protocol_domain</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The scope of the protocol. Supported are 'LAN', 'WAN', and 'ALL' (as default).</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.constants.RSE_SUPPORTED_PROTOCOL_DOMAINS_LITERAL">RSE_SUPPORTED_PROTOCOL_DOMAINS_LITERAL</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>&#39;ALL&#39;</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>operation</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the requested operation (read, write, or delete). If None, all operations are queried.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="rucio.common.constants.RSE_ALL_SUPPORTED_PROTOCOL_OPERATIONS_LITERAL">RSE_ALL_SUPPORTED_PROTOCOL_OPERATIONS_LITERAL</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>default</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Indicates if only the default operations should be returned.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="bool">bool</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scheme</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The identifier of the requested protocol.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="rucio.common.constants.SUPPORTED_PROTOCOLS_LITERAL">SUPPORTED_PROTOCOLS_LITERAL</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Any">Any</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A dict with details about each matching protocol.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSENotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if the RSE doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSEProtocolNotSupported</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if no matching protocol entry could be found.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSEOperationNotSupported</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if no matching protocol entry for the requested operation could be found.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param protocol_domain: The scope of the protocol. Supported are 'LAN', 'WAN', and 'ALL' (as default).
+:param operation: The name of the requested operation (read, write, or delete).
+                  If None, all operations are queried.
+:param default: Indicates if only the default operations should be returned.
+:param scheme: The identifier of the requested protocol.</p>
+<p>:returns: A dict with details about each matching protocol.</p>
+<p>:raises RSENotFound: if the RSE doesn't exist.
+:raises RSEProtocolNotSupported: if no matching protocol entry could be found.
+:raises RSEOperationNotSupported: if no matching protocol entry for the requested
+                                  operation could be found.</p>
 
 
     </div>
@@ -2778,182 +1858,17 @@
 
         <p>Returns PFNs that should be used at a RSE, corresponding to requested LFNs.
 The PFNs are generated for the RSE <em>regardless</em> of whether a replica exists for the LFN.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>lfns</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>A list of LFN strings to translate to PFNs.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="collections.abc.Iterable">Iterable</span>[<span title="str">str</span>]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>protocol_domain</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The scope of the protocol. Supported are 'LAN', 'WAN', and 'ALL' (as default).</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.constants.RSE_SUPPORTED_PROTOCOL_DOMAINS_LITERAL">RSE_SUPPORTED_PROTOCOL_DOMAINS_LITERAL</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>&#39;ALL&#39;</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>operation</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the requested operation (read, write, or delete). If None, all operations are queried.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="rucio.common.constants.RSE_ALL_SUPPORTED_PROTOCOL_OPERATIONS_LITERAL">RSE_ALL_SUPPORTED_PROTOCOL_OPERATIONS_LITERAL</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scheme</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The identifier of the requested protocol (gsiftp, https, davs, etc).</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="rucio.common.constants.SUPPORTED_PROTOCOLS_LITERAL">SUPPORTED_PROTOCOLS_LITERAL</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A dictionary of LFN / PFN pairs.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSENotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if the RSE doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSEProtocolNotSupported</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if no matching protocol entry could be found.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSEOperationNotSupported</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if no matching protocol entry for the requested operation could be found.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name
+:param lfns: A list of LFN strings to translate to PFNs.
+:param protocol_domain: The scope of the protocol. Supported are 'LAN', 'WAN', and 'ALL' (as default).
+:param operation: The name of the requested operation (read, write, or delete).
+                  If None, all operations are queried.
+:param scheme: The identifier of the requested protocol (gsiftp, https, davs, etc).</p>
+<p>:returns: A dictionary of LFN / PFN pairs.
+:raises RSENotFound: if the RSE doesn't exist.
+:raises RSEProtocolNotSupported: if no matching protocol entry could be found.
+:raises RSEOperationNotSupported: if no matching protocol entry for the requested
+                                  operation could be found.</p>
 
 
     </div>
@@ -2975,162 +1890,14 @@ The PFNs are generated for the RSE <em>regardless</em> of whether a replica exis
 
         <p>Deletes matching protocols from RSE. Protocols using the same identifier can be
 distinguished by hostname and port.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scheme</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>identifier of the protocol.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.constants.SUPPORTED_PROTOCOLS_LITERAL">SUPPORTED_PROTOCOLS_LITERAL</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>hostname</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>hostname of the protocol.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>port</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>port of the protocol.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if success.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSEProtocolNotSupported</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if no matching protocol entry could be found.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSENotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if the RSE doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccessDenied</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if not authorized.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param scheme: identifier of the protocol.
+:param hostname: hostname of the protocol.
+:param port: port of the protocol.</p>
+<p>:returns: True if success.</p>
+<p>:raises RSEProtocolNotSupported: if no matching protocol entry could be found.
+:raises RSENotFound: if the RSE doesn't exist.
+:raises AccessDenied: if not authorized.</p>
 
 
     </div>
@@ -3154,187 +1921,17 @@ distinguished by hostname and port.</p>
 
         <p>Updates matching protocols from RSE. Protocol using the same identifier can be
 distinguished by hostname and port.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scheme</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>identifier of the protocol.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.constants.SUPPORTED_PROTOCOLS_LITERAL">SUPPORTED_PROTOCOLS_LITERAL</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>data</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>A dict providing the new values of the protocol attributes. Keys must match column names in database.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>hostname</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>hostname of the protocol.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>port</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>port of the protocol.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if success.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSEProtocolNotSupported</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if no matching protocol entry could be found.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSENotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if the RSE doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>KeyNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if invalid data was provided for update.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccessDenied</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if not authorized.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param scheme: identifier of the protocol.
+:param data: A dict providing the new values of the protocol attributes.
+             Keys must match column names in database.
+:param hostname: hostname of the protocol.
+:param port: port of the protocol.</p>
+<p>:returns: True if success.</p>
+<p>:raises RSEProtocolNotSupported: if no matching protocol entry could be found.
+:raises RSENotFound: if the RSE doesn't exist.
+:raises KeyNotFound: if invalid data was provided for update.
+:raises AccessDenied: if not authorized.</p>
 
 
     </div>
@@ -3355,182 +1952,16 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Swaps the priorities of the provided operation.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>domain</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the domain in which priorities should be swapped i.e. wan or lan.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.constants.RSE_SUPPORTED_PROTOCOL_DOMAINS_LITERAL">RSE_SUPPORTED_PROTOCOL_DOMAINS_LITERAL</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>operation</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the operation that should be swapped i.e. read, write, or delete.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.constants.RSE_ALL_SUPPORTED_PROTOCOL_OPERATIONS_LITERAL">RSE_ALL_SUPPORTED_PROTOCOL_OPERATIONS_LITERAL</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scheme_a</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the scheme of one of the two protocols to be swapped, e.g. srm.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.constants.SUPPORTED_PROTOCOLS_LITERAL">SUPPORTED_PROTOCOLS_LITERAL</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scheme_b</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the scheme of the other of the two protocols to be swapped, e.g. http.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rucio.common.constants.SUPPORTED_PROTOCOLS_LITERAL">SUPPORTED_PROTOCOLS_LITERAL</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if success.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSEProtocolNotSupported</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if no matching protocol entry could be found.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>RSENotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if the RSE doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>KeyNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if invalid data was provided for update.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccessDenied</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if not authorized.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param domain: the domain in which priorities should be swapped i.e. wan or lan.
+:param operation: the operation that should be swapped i.e. read, write, or delete.
+:param scheme_a: the scheme of one of the two protocols to be swapped, e.g. srm.
+:param scheme_b: the scheme of the other of the two protocols to be swapped, e.g. http.</p>
+<p>:returns: True if success.</p>
+<p>:raises RSEProtocolNotSupported: if no matching protocol entry could be found.
+:raises RSENotFound: if the RSE doesn't exist.
+:raises KeyNotFound: if invalid data was provided for update.
+:raises AccessDenied: if not authorized.</p>
 
 
     </div>
@@ -3551,106 +1982,11 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Add a QoS policy from an RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_id</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The id of the RSE.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>qos_policy</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The QoS policy to add.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>session</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The database session in use.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if successful, except otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>Duplicate</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>If the QoS policy already exists.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse_id: The id of the RSE.
+:param qos_policy: The QoS policy to add.
+:param session: The database session in use.</p>
+<p>:raises Duplicate: If the QoS policy already exists.
+:returns: True if successful, except otherwise.</p>
 
 
     </div>
@@ -3671,82 +2007,10 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Delete a QoS policy from an RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_id</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The id of the RSE.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>qos_policy</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The QoS policy to delete.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>session</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The database session in use.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if successful, silent failure if QoS policy does not exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse_id: The id of the RSE.
+:param qos_policy: The QoS policy to delete.
+:param session: The database session in use.</p>
+<p>:returns: True if successful, silent failure if QoS policy does not exist.</p>
 
 
     </div>
@@ -3767,66 +2031,9 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>List all QoS policies of an RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_id</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The id of the RSE.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>session</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The database session in use.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="list">list</span>[<span title="str">str</span>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>List containing all QoS policies.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse_id: The id of the RSE.
+:param session: The database session in use.</p>
+<p>:returns: List containing all QoS policies.</p>
 
 
     </div>
@@ -3847,126 +2054,12 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Set RSE usage information.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>source</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the information source, e.g. srm.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>used</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the used space in bytes.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="int">int</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>free</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the free in bytes.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="int">int</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>files</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the number of files</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if successful</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param source: the information source, e.g. srm.
+:param used: the used space in bytes.
+:param free: the free in bytes.
+:param files: the number of files</p>
+<p>:returns: True if successful</p>
 
 
     </div>
@@ -3987,78 +2080,9 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Get RSE usage information.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>filters</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>dictionary of attributes by which the results should be filtered</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="collections.abc.Iterator">Iterator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if successful, otherwise false.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param filters: dictionary of attributes by which the results should be filtered</p>
+<p>:returns: True if successful, otherwise false.</p>
 
 
     </div>
@@ -4079,78 +2103,9 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>List RSE usage history information.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>filters</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>dictionary of attributes by which the results should be filtered.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="collections.abc.Iterator">Iterator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>list of dictionaries.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: The RSE name.
+:param filters: dictionary of attributes by which the results should be filtered.</p>
+<p>:returns:  list of dictionaries.</p>
 
 
     </div>
@@ -4171,90 +2126,10 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Set RSE limit information.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the limit.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The feature value.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="int">int</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if successful</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: The RSE name.
+:param name: The name of the limit.
+:param value: The feature value.</p>
+<p>:returns: True if successful</p>
 
 
     </div>
@@ -4275,58 +2150,8 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Get RSE limits.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="collections.abc.Iterator">Iterator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="int">int</span>]]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>An iterator of RSE limits as dicts with 'name' and 'value' as keys.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: The RSE name.</p>
+<p>:returns: An iterator of RSE limits as dicts with 'name' and 'value' as keys.</p>
 
 
     </div>
@@ -4347,74 +2172,9 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Delete RSE limit information.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the limit.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Literal">Literal</span>[True]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if successful</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: The RSE name.
+:param name: The name of the limit.</p>
+<p>:returns: True if successful</p>
 
 
     </div>
@@ -4435,66 +2195,9 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Add a src-dest distance.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>source</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The source.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>destination</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The destination.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>parameters</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>A dictionary with property.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param source: The source.
+:param destination: The destination.
+:param parameters: A dictionary with property.</p>
 
 
     </div>
@@ -4515,66 +2218,9 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Update distances with the given RSE ids.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>source</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The source.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>destination</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The destination.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>parameters</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>A dictionary with property.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param source: The source.
+:param destination: The destination.
+:param parameters: A dictionary with property.</p>
 
 
     </div>
@@ -4595,74 +2241,9 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Get distances between rses.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>source</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The source RSE.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>destination</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The destination RSE.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="list">list</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="int">int</span>]]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>List of dictionaries.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param source: The source RSE.
+:param destination: The destination RSE.</p>
+<p>:returns distance: List of dictionaries.</p>
 
 
     </div>
@@ -4683,50 +2264,8 @@ distinguished by hostname and port.</p>
     <div class="doc doc-contents ">
 
         <p>Delete distances with the given RSE ids.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>source</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The source.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>destination</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The destination.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param source: The source.
+:param destination: The destination.</p>
 
 
     </div>

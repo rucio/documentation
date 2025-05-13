@@ -1290,199 +1290,16 @@
 
         <p>Main client class for accessing Rucio resources. Handles the authentication.</p>
 
-        <p>Constructor of the BaseClient.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rucio_host</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The address of the rucio server, if None it is read from the config file.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>auth_host</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The address of the rucio authentication server, if None it is read from the config file.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The account to authenticate to rucio.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>ca_cert</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The path to the rucio server certificate.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>auth_type</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The type of authentication (e.g.: 'userpass', 'kerberos' ...)</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>creds</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Dictionary with credentials needed for authentication.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>user_agent</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Indicates the client.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>&#39;rucio-clients&#39;</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>vo</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The VO to authenticate into.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>logger</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Logger object to use. If None, use the default LOG created by the module</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="logging.Logger">Logger</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code><span title="rucio.client.baseclient.LOG">LOG</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+        <p>Constructor of the BaseClient.
+:param rucio_host: The address of the rucio server, if None it is read from the config file.
+:param auth_host: The address of the rucio authentication server, if None it is read from the config file.
+:param account: The account to authenticate to rucio.
+:param ca_cert: The path to the rucio server certificate.
+:param auth_type: The type of authentication (e.g.: 'userpass', 'kerberos' ...)
+:param creds: Dictionary with credentials needed for authentication.
+:param user_agent: Indicates the client.
+:param vo: The VO to authenticate into.
+:param logger: Logger object to use. If None, use the default LOG created by the module</p>
 
 
 
@@ -1517,30 +1334,7 @@
     <div class="doc doc-contents ">
 
         <p>Sends a request to get an auth token from the server and stores it as a class attribute. Uses username/password.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if the token was successfully received. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: True if the token was successfully received. False otherwise.</p>
 
 
     </div>
@@ -1564,30 +1358,7 @@
 either active token with expiration timestamp or requests a new
 refresh and returns new access token with new expiration timestamp
 and saves these in the token directory.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if the token was successfully received. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: True if the token was successfully received. False otherwise.</p>
 
 
     </div>
@@ -1615,30 +1386,7 @@ Access Tokens are not stored in Rucio DB.
 Refresh Tokens are granted only in case no valid access token exists in user's
 local storage, oidc_scope includes 'offline_access'. In such case, refresh token
 is stored in Rucio DB.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if the token was successfully received. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: True if the token was successfully received. False otherwise.</p>
 
 
     </div>
@@ -1659,30 +1407,7 @@ is stored in Rucio DB.</p>
     <div class="doc doc-contents ">
 
         <p>Sends a request to get an auth token from the server and stores it as a class attribute. Uses x509 authentication.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if the token was successfully received. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: True if the token was successfully received. False otherwise.</p>
 
 
     </div>
@@ -1703,30 +1428,7 @@ is stored in Rucio DB.</p>
     <div class="doc doc-contents ">
 
         <p>Sends a request to get an auth token from the server and stores it as a class attribute. Uses SSH key exchange authentication.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if the token was successfully received. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: True if the token was successfully received. False otherwise.</p>
 
 
     </div>
@@ -1747,30 +1449,7 @@ is stored in Rucio DB.</p>
     <div class="doc doc-contents ">
 
         <p>Sends a request to get an auth token from the server and stores it as a class attribute. Uses Kerberos authentication.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if the token was successfully received. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: True if the token was successfully received. False otherwise.</p>
 
 
     </div>
@@ -1791,30 +1470,7 @@ is stored in Rucio DB.</p>
     <div class="doc doc-contents ">
 
         <p>Sends a request to get an auth token from the server and stores it as a class attribute. Uses saml authentication.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if the token was successfully received. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: True if the token was successfully received. False otherwise.</p>
 
 
     </div>
@@ -1855,30 +1511,7 @@ is stored in Rucio DB.</p>
     <div class="doc doc-contents ">
 
         <p>Checks if a local token file exists and reads the token from it.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if a token could be read. False if no file exists.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:return: True if a token could be read. False if no file exists.</p>
 
 
     </div>
@@ -1948,51 +1581,8 @@ is stored in Rucio DB.</p>
     <div class="doc doc-contents ">
 
         <p>Select randomly a host</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>hosts</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Lost of hosts</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A randomly selected host.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param hosts: Lost of hosts
+:return: A randomly selected host.</p>
 
 
     </div>

@@ -1147,110 +1147,11 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to add a new scope.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the account to add the scope to.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the new scope.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if scope was created successfully.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>Duplicate</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if scope already exists.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccountNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: the name of the account to add the scope to.
+:param scope: the name of the new scope.
+:return: True if scope was created successfully.
+:raises Duplicate: if scope already exists.
+:raises AccountNotFound: if account doesn't exist.</p>
 
 
     </div>
@@ -1271,30 +1172,7 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to list all scopes.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="list">list</span>[<span title="str">str</span>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>a list containing the names of all scopes.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:return: a list containing the names of all scopes.</p>
 
 
     </div>
@@ -1315,94 +1193,10 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to list all scopes for a rucio account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the rucio account to list scopes for.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="list">list</span>[<span title="str">str</span>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>a list containing the names of all scopes for a rucio account.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccountNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>ScopeNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if no scopes exist for account.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: the rucio account to list scopes for.
+:return: a list containing the names of all scopes for a rucio account.
+:raises AccountNotFound: if account doesn't exist.
+:raises ScopeNotFound: if no scopes exist for account.</p>
 
 
     </div>

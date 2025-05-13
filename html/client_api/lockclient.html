@@ -1147,50 +1147,8 @@
     <div class="doc doc-contents ">
 
         <p>Get a dataset locks of the specified dataset.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the scope of the did of the locks to list.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name of the did of the locks to list.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param scope: the scope of the did of the locks to list.
+:param name: the name of the did of the locks to list.</p>
 
 
     </div>
@@ -1211,58 +1169,10 @@
     <div class="doc doc-contents ">
 
         <p>Get list of locks for for all the files found, recursively, in the listed datasets or containers.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>dids</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>list of dictionaries {"scope":..., "name":..., "type":...} type can be either "dataset" or "container" type is optional, but if specified, improves the query performance</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="list">list</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="list">list</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>list of dictionaries with lock info</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param dids: list of dictionaries {"scope":..., "name":..., "type":...}
+             type can be either "dataset" or "container"
+             type is optional, but if specified, improves the query performance
+:returns:    list of dictionaries with lock info</p>
 
 
     </div>
@@ -1283,34 +1193,7 @@
     <div class="doc doc-contents ">
 
         <p>Get all dataset locks of the specified rse.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the rse of the locks to list.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the rse of the locks to list.</p>
 
 
     </div>

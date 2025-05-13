@@ -1399,62 +1399,9 @@
     <div class="doc doc-contents ">
 
         <p>Add quaratined replicas for RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>replicas</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>List of replica infos: {'scope': <scope> (optional), 'name': <name> (optional), 'path':<path> (required)}.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_id</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>RSE id. Either RSE name or RSE id must be specified, but not both</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param replicas: List of replica infos: {'scope': <scope> (optional), 'name': <name> (optional), 'path':<path> (required)}.
+:param rse: RSE name.
+:param rse_id: RSE id. Either RSE name or RSE id must be specified, but not both</p>
 
 
     </div>
@@ -1475,79 +1422,10 @@
     <div class="doc doc-contents ">
 
         <p>Declare a list of bad replicas.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>replicas</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Either a list of PFNs (string) or a list of dicts {'scope': <scope>, 'name': <name>, 'rse_id': <rse_id> or 'rse': <rse_name>}</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>reason</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The reason of the loss.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>force</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>boolean, tell the serrver to ignore existing replica status in the bad_replicas table. Default: False</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>Dictionary {"rse_name": ["did: error",...]} - list of strings for DIDs failed to declare, by RSE</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param replicas: Either a list of PFNs (string) or a list of dicts {'scope': <scope>, 'name': <name>, 'rse_id': <rse_id> or 'rse': <rse_name>}
+:param reason: The reason of the loss.
+:param force: boolean, tell the serrver to ignore existing replica status in the bad_replicas table. Default: False
+:returns: Dictionary {"rse_name": ["did: error",...]} - list of strings for DIDs failed to declare, by RSE</p>
 
 
     </div>
@@ -1568,54 +1446,9 @@
     <div class="doc doc-contents ">
 
         <p>Declare a list of bad replicas.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE where the bad replicas reside</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>dids</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The DIDs of the bad replicas</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>reason</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The reason of the loss.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: The RSE where the bad replicas reside
+:param dids: The DIDs of the bad replicas
+:param reason: The reason of the loss.</p>
 
 
     </div>
@@ -1636,42 +1469,8 @@
     <div class="doc doc-contents ">
 
         <p>Declare a list of bad replicas.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>pfns</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The list of PFNs.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>reason</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The reason of the loss.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param pfns: The list of PFNs.
+:param reason: The reason of the loss.</p>
 
 
     </div>
@@ -1692,67 +1491,9 @@
     <div class="doc doc-contents ">
 
         <p>Get the DIDs associated to a PFN on one given RSE</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>pfns</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The list of PFNs.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A list of dictionaries {pfn: {'scope': scope, 'name': name}}</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param pfns: The list of PFNs.
+:param rse: The RSE name.
+:returns: A list of dictionaries {pfn: {'scope': scope, 'name': name}}</p>
 
 
     </div>
@@ -1788,243 +1529,22 @@
     <div class="doc doc-contents ">
 
         <p>List file replicas for a list of data identifiers (DIDs).</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>dids</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The list of data identifiers (DIDs) like : [{'scope': <scope1>, 'name': <name1>}, {'scope': <scope2>, 'name': <name2>}, ...]</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>schemes</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>A list of schemes to filter the replicas. (e.g. file, http, ...)</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>ignore_availability</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Also include replicas from blocked RSEs into the list</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>True</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>metalink</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p><code>False</code> (default) retrieves as JSON, <code>True</code> retrieves as metalink4+xml.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_expression</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE expression to restrict replicas on a set of RSEs.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>client_location</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Client location dictionary for PFN modification {'ip', 'fqdn', 'site', 'latitude', 'longitude'}</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>sort</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Sort the replicas: <code>geoip</code> - based on src/dst IP topographical distance</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>domain</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Define the domain. None is fallback to 'wan', otherwise 'wan, 'lan', or 'all'</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>signature_lifetime</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>If supported, in seconds, restrict the lifetime of the signed PFN.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>nrandom</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>pick N random replicas. If the initial number of replicas is smaller than N, returns all replicas.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>resolve_archives</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>When set to True, find archives which contain the replicas.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>True</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>resolve_parents</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>When set to True, find all parent datasets which contain the replicas.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>updated_after</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>epoch timestamp or datetime object (UTC time), only return replicas updated after this time</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A list of dictionaries with replica information.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param dids: The list of data identifiers (DIDs) like :
+    [{'scope': <scope1>, 'name': <name1>}, {'scope': <scope2>, 'name': <name2>}, ...]
+:param schemes: A list of schemes to filter the replicas. (e.g. file, http, ...)
+:param ignore_availability: Also include replicas from blocked RSEs into the list
+:param metalink: <code>False</code> (default) retrieves as JSON,
+                 <code>True</code> retrieves as metalink4+xml.
+:param rse_expression: The RSE expression to restrict replicas on a set of RSEs.
+:param client_location: Client location dictionary for PFN modification {'ip', 'fqdn', 'site', 'latitude', 'longitude'}
+:param sort: Sort the replicas: <code>geoip</code> - based on src/dst IP topographical distance
+:param domain: Define the domain. None is fallback to 'wan', otherwise 'wan, 'lan', or 'all'
+:param signature_lifetime: If supported, in seconds, restrict the lifetime of the signed PFN.
+:param nrandom: pick N random replicas. If the initial number of replicas is smaller than N, returns all replicas.
+:param resolve_archives: When set to True, find archives which contain the replicas.
+:param resolve_parents: When set to True, find all parent datasets which contain the replicas.
+:param updated_after: epoch timestamp or datetime object (UTC time), only return replicas updated after this time</p>
+<p>:returns: A list of dictionaries with replica information.</p>
 
 
     </div>
@@ -2047,78 +1567,10 @@
     <div class="doc doc-contents ">
 
         <p>List file replicas tagged as suspicious.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_expression</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE expression to restrict replicas on a set of RSEs.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>younger_than</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Datetime object to select the replicas which were declared since younger_than date. Default value = 10 days ago.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>nattempts</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The minimum number of replica appearances in the bad_replica DB table from younger_than date. Default value = 0.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>state</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>State of the replica, either 'BAD' or 'SUSPICIOUS'. No value returns replicas with either state.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse_expression: The RSE expression to restrict replicas on a set of RSEs.
+:param younger_than: Datetime object to select the replicas which were declared since younger_than date. Default value = 10 days ago.
+:param nattempts: The minimum number of replica appearances in the bad_replica DB table from younger_than date. Default value = 0.
+:param state: State of the replica, either 'BAD' or 'SUSPICIOUS'. No value returns replicas with either state.</p>
 
 
     </div>
@@ -2148,182 +1600,15 @@
     <div class="doc doc-contents ">
 
         <p>Add file replicas to a RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The scope of the file.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the file.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>bytes_</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The size in bytes.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="int">int</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>adler32</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>adler32 checksum.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>pfn</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>PFN of the file for non deterministic RSE.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>md5</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>md5 checksum.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>meta</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Metadata attributes.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if files were created successfully.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param scope: The scope of the file.
+:param name: The name of the file.
+:param bytes_: The size in bytes.
+:param adler32: adler32 checksum.
+:param pfn: PFN of the file for non deterministic RSE.
+:param md5: md5 checksum.
+:param meta: Metadata attributes.</p>
+<p>:return: True if files were created successfully.</p>
 
 
     </div>
@@ -2344,79 +1629,11 @@
     <div class="doc doc-contents ">
 
         <p>Bulk add file replicas to a RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>files</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The list of files. This is a list of DIDs like : [{'scope': <scope1>, 'name': <name1>}, {'scope': <scope2>, 'name': <name2>}, ...]</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>ignore_availability</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Ignore the RSE blocklsit.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>True</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if files were created successfully.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param files: The list of files. This is a list of DIDs like :
+    [{'scope': <scope1>, 'name': <name1>}, {'scope': <scope2>, 'name': <name2>}, ...]
+:param ignore_availability: Ignore the RSE blocklsit.</p>
+<p>:return: True if files were created successfully.</p>
 
 
     </div>
@@ -2437,79 +1654,11 @@
     <div class="doc doc-contents ">
 
         <p>Bulk delete file replicas from a RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>files</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The list of files. This is a list of DIDs like : [{'scope': <scope1>, 'name': <name1>}, {'scope': <scope2>, 'name': <name2>}, ...]</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>ignore_availability</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Ignore the RSE blocklist.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>True</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if files have been deleted successfully.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param files: The list of files. This is a list of DIDs like :
+    [{'scope': <scope1>, 'name': <name1>}, {'scope': <scope2>, 'name': <name2>}, ...]
+:param ignore_availability: Ignore the RSE blocklist.</p>
+<p>:return: True if files have been deleted successfully.</p>
 
 
     </div>
@@ -2530,63 +1679,17 @@
     <div class="doc doc-contents ">
 
         <p>Bulk update the file replicas states from a RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the RSE name.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>files</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The list of files. This is a list of DIDs like : [{'scope': <scope1>, 'name': <name1>, 'state': <state1>}, {'scope': <scope2>, 'name': <name2>, 'state': <state2>}, ...], where a state value can be either of: 'A' (AVAILABLE) 'U' (UNAVAILABLE) 'C' (COPYING) 'B' (BEING_DELETED) 'D' (BAD) 'T' (TEMPORARY_UNAVAILABLE)</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if replica states have been updated successfully, otherwise an exception is raised.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the RSE name.
+:param files: The list of files. This is a list of DIDs like :
+    [{'scope': <scope1>, 'name': <name1>, 'state': <state1>}, {'scope': <scope2>, 'name': <name2>, 'state': <state2>}, ...],
+    where a state value can be either of:
+      'A' (AVAILABLE)
+      'U' (UNAVAILABLE)
+      'C' (COPYING)
+      'B' (BEING_DELETED)
+      'D' (BAD)
+      'T' (TEMPORARY_UNAVAILABLE)
+:return: True if replica states have been updated successfully, otherwise an exception is raised.</p>
 
 
     </div>
@@ -2607,79 +1710,10 @@
     <div class="doc doc-contents ">
 
         <p>List dataset replicas for a did (scope:name).</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The scope of the dataset.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the dataset.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>deep</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Lookup at the file level.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A list of dict dataset replicas.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param scope: The scope of the dataset.
+:param name: The name of the dataset.
+:param deep: Lookup at the file level.</p>
+<p>:returns: A list of dict dataset replicas.</p>
 
 
     </div>
@@ -2700,51 +1734,8 @@
     <div class="doc doc-contents ">
 
         <p>List dataset replicas for a did (scope:name).</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>dids</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The list of DIDs of the datasets.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A list of dict dataset replicas.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param dids: The list of DIDs of the datasets.</p>
+<p>:returns: A list of dict dataset replicas.</p>
 
 
     </div>
@@ -2767,79 +1758,10 @@
         <p>List dataset replicas for a DID (scope:name) using the
 Virtual Placement service.</p>
 <p>NOTICE: This is an RnD function and might change or go away at any time.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The scope of the dataset.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the dataset.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>deep</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Lookup at the file level.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>If VP exists a list of dicts of sites</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param scope: The scope of the dataset.
+:param name: The name of the dataset.
+:param deep: Lookup at the file level.</p>
+<p>:returns: If VP exists a list of dicts of sites</p>
 
 
     </div>
@@ -2860,83 +1782,10 @@ Virtual Placement service.</p>
     <div class="doc doc-contents ">
 
         <p>List datasets at a RSE.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the rse name.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>filters</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>dictionary of attributes by which the results should be filtered.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>limit</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>limit number.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>A list of dict dataset replicas.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rse: the rse name.
+:param filters: dictionary of attributes by which the results should be filtered.
+:param limit: limit number.</p>
+<p>:returns: A list of dict dataset replicas.</p>
 
 
     </div>
@@ -2957,87 +1806,11 @@ Virtual Placement service.</p>
     <div class="doc doc-contents ">
 
         <p>Declare a list of bad replicas.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>pfns</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The list of PFNs.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>reason</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The reason of the loss.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>state</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The state of the replica. Either BAD, SUSPICIOUS, TEMPORARY_UNAVAILABLE</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>expires_at</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Specify a timeout for the TEMPORARY_UNAVAILABLE replicas. None for BAD files.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if PFNs were created successfully.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param pfns: The list of PFNs.
+:param reason: The reason of the loss.
+:param state: The state of the replica. Either BAD, SUSPICIOUS, TEMPORARY_UNAVAILABLE
+:param expires_at: Specify a timeout for the TEMPORARY_UNAVAILABLE replicas. None for BAD files.</p>
+<p>:return: True if PFNs were created successfully.</p>
 
 
     </div>
@@ -3058,30 +1831,7 @@ Virtual Placement service.</p>
     <div class="doc doc-contents ">
 
         <p>Set a tombstone on a list of replicas.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>replicas</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>list of replicas.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param replicas: list of replicas.</p>
 
 
     </div>

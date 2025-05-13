@@ -1219,138 +1219,12 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to add an allowed key for DID metadata (update the DID Metadata Conventions table with a new key).</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name for the new key.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>key_type</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the type of the key: all(container, dataset, file), collection(dataset or container), file, derived(compute from file for collection).</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Union">Union</span>[<span title="rucio.db.sqla.constants.KeyType">KeyType</span>, <span title="str">str</span>]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value_type</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the type of the value, if defined.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value_regexp</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the regular expression that values should match, if defined.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Optional">Optional</span>[<span title="bool">bool</span>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if key was created successfully.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>Duplicate</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if key already exists.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param key: the name for the new key.
+:param key_type: the type of the key: all(container, dataset, file), collection(dataset or container), file, derived(compute from file for collection).
+:param value_type: the type of the value, if defined.
+:param value_regexp: the regular expression that values should match, if defined.</p>
+<p>:return: True if key was created successfully.
+:raises Duplicate: if key already exists.</p>
 
 
     </div>
@@ -1371,30 +1245,7 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to list all keys for DID Metadata Conventions.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Optional">Optional</span>[<span title="list">list</span>[<span title="str">str</span>]]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>a list containing the names of all keys.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:return: a list containing the names of all keys.</p>
 
 
     </div>
@@ -1439,98 +1290,10 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to add a value for a key in DID Metadata Convention.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name for key.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the value.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="typing.Optional">Optional</span>[<span title="bool">bool</span>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if value was created successfully.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>Duplicate</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if valid already exists.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param key: the name for key.
+:param value: the value.</p>
+<p>:return: True if value was created successfully.
+:raises Duplicate: if valid already exists.</p>
 
 
     </div>
@@ -1551,42 +1314,8 @@
     <div class="doc doc-contents ">
 
         <p>Delete a key in the DID Metadata Conventions table.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name for key.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the value.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param key: the name for key.
+:param value: the value.</p>
 
 
     </div>
@@ -1607,30 +1336,7 @@
     <div class="doc doc-contents ">
 
         <p>Delete an allowed key.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name for key.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param key: the name for key.</p>
 
 
     </div>
@@ -1651,62 +1357,9 @@
     <div class="doc doc-contents ">
 
         <p>Update a key.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the name for key.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>type_</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the type of the value, if defined.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>regexp</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the regular expression that values should match, if defined.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param key: the name for key.
+:param type_: the type of the value, if defined.
+:param regexp: the regular expression that values should match, if defined.</p>
 
 
     </div>

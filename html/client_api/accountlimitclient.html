@@ -1201,106 +1201,11 @@
     <div class="doc doc-contents ">
 
         <p>Sets an account limit for a given limit scope.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>bytes_</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>An integer with the limit in bytes.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="int">int</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>locality</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The scope of the account limit. 'local' or 'global'.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Literal">Literal</span>[&#39;local&#39;, &#39;global&#39;]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if quota was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The name of the account.
+:param rse:     The rse name.
+:param bytes_:   An integer with the limit in bytes.
+:param locality: The scope of the account limit. 'local' or 'global'.
+:return:        True if quota was created successfully else False.</p>
 
 
     </div>
@@ -1321,90 +1226,10 @@
     <div class="doc doc-contents ">
 
         <p>Deletes an account limit for a given limit scope.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>locality</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The scope of the account limit. 'local' or 'global'.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Literal">Literal</span>[&#39;local&#39;, &#39;global&#39;]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if quota was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The name of the account.
+:param rse:     The rse name.
+:param locality: The scope of the account limit. 'local' or 'global'.
+:return:        True if quota was created successfully else False.</p>
 
 
     </div>
@@ -1425,90 +1250,10 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to set an account limit for an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>bytes_</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>An integer with the limit in bytes.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="int">int</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if quota was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The name of the account.
+:param rse:     The rse name.
+:param bytes_:   An integer with the limit in bytes.
+:return:        True if quota was created successfully else False.</p>
 
 
     </div>
@@ -1529,98 +1274,10 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to remove an account limit.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if quota was removed successfully. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccountNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account: The name of the account.
+:param rse:     The rse name.</p>
+<p>:return: True if quota was removed successfully. False otherwise.
+:raises AccountNotFound: if account doesn't exist.</p>
 
 
     </div>
@@ -1641,90 +1298,10 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to set a global account limit for an account.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_expression</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse expression.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>bytes_</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>An integer with the limit in bytes.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="int">int</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if quota was created successfully else False.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account:        The name of the account.
+:param rse_expression: The rse expression.
+:param bytes_:          An integer with the limit in bytes.
+:return:               True if quota was created successfully else False.</p>
 
 
     </div>
@@ -1745,98 +1322,10 @@
     <div class="doc doc-contents ">
 
         <p>Sends the request to remove a global account limit.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The name of the account.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse_expression</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The rse expression.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if quota was removed successfully. False otherwise.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>AccountNotFound</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>if account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param account:        The name of the account.
+:param rse_expression: The rse expression.</p>
+<p>:return: True if quota was removed successfully. False otherwise.
+:raises AccountNotFound: if account doesn't exist.</p>
 
 
     </div>

@@ -1057,126 +1057,15 @@ download_client.download_dids(items=...)
 </code></pre>
 
         <p>Constructor for the Rucio main client class.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rucio_host</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the host of the rucio system.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>auth_host</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the host of the rucio authentication server.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the rucio account that should be used to interact with the rucio system.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>ca_cert</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the certificate to verify the server.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>auth_type</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>the type of authentication to use (e.g. userpass, x509 ...)</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>creds</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>credentials needed for authentication.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>timeout</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Float describes the timeout of the request (in seconds).</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>vo</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The vo that the client will interact with.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>logger</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Logger instance to use (optional)</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param rucio_host: the host of the rucio system.
+:param auth_host: the host of the rucio authentication server.
+:param account: the rucio account that should be used to interact with the rucio system.
+:param ca_cert: the certificate to verify the server.
+:param auth_type: the type of authentication to use (e.g. userpass, x509 ...)
+:param creds: credentials needed for authentication.
+:param timeout: Float describes the timeout of the request (in seconds).
+:param vo: The vo that the client will interact with.
+:param logger: Logger instance to use (optional)</p>
 
 
 

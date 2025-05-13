@@ -1157,142 +1157,12 @@
 
         <p>Factory method to set logger with RichHandler.</p>
 <p>The function is a copy of the method in rucio.common.utils setup_logger() with minor changes.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>module_name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p><strong>name</strong> of the module that is calling this method</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>logger_name</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>name of the logger, typically name of the module.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>logger_level</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>if not given, fetched from config.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>verbose</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>verbose option set in bin/rucio</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="bool">bool</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>console</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Rich console object</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="rich.console.Console">Console</span>]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="logging.Logger">Logger</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>logger with RichHandler</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param module_name: <strong>name</strong> of the module that is calling this method
+:param logger_name: name of the logger, typically name of the module.
+:param logger_level: if not given, fetched from config.
+:param verbose: verbose option set in bin/rucio
+:param console: Rich console object
+:returns: logger with RichHandler</p>
 
 
     </div>
@@ -1323,138 +1193,12 @@
 Passing strings will display them as simple text, while using Rich objects
 allows you to introduce additional structure, styling, and widgets (e.g. Text, Trees) into
 the table. Strings with style markup will be rendered as styled text.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>table_format</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>style of the table</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rich.box.Box">Box</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code><span title="rucio.client.richclient.CLITheme.TABLE_FMT">TABLE_FMT</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>headers</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>list of headers</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="rich.console.RenderableType">RenderableType</span>]]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rows</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>list of rows</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="typing.Union">Union</span>[<span title="rich.console.RenderableType">RenderableType</span>, <span title="int">int</span>, <span title="float">float</span>, <span title="bool">bool</span>, <span title="datetime.datetime">datetime</span>]]]</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>col_alignments</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>list of column alignments</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="list">list</span>[<span title="rich.console.JustifyMethod">JustifyMethod</span>]]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>row_styles</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>list of row styles</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="rich.style.StyleType">StyleType</span>]]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="rich.table.Table">Table</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>a Rich Table object</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param table_format: style of the table
+:param headers: list of headers
+:param rows: list of rows
+:param col_alignments: list of column alignments
+:param row_styles: list of row styles
+:returns: a Rich Table object</p>
 
 
     </div>
@@ -1476,74 +1220,9 @@ the table. Strings with style markup will be rendered as styled text.</p>
 
         <p>Prints the objects using the specified Rich console object. Optionally disables the pager if specified.</p>
 <p>The function works similarly to Rich's <code>console.print()</code> method but provides additional control over the pager feature.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>output</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>objects to print to the terminal</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Any">Any</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>()</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>console</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Rich console object</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="rich.console.Console">Console</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>no_pager</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>flag to disable the pager</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="bool">bool</span></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:param output: objects to print to the terminal
+:param console: Rich console object
+:param no_pager: flag to disable the pager</p>
 
 
     </div>
@@ -1564,30 +1243,7 @@ the table. Strings with style markup will be rendered as styled text.</p>
     <div class="doc doc-contents ">
 
         <p>Returns the CLI type from the config file.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="str">str</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>CLI type (Rich or tabulate)</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: CLI type (Rich or tabulate)</p>
 
 
     </div>
@@ -1608,30 +1264,7 @@ the table. Strings with style markup will be rendered as styled text.</p>
     <div class="doc doc-contents ">
 
         <p>Returns the pager function based on the terminal availability.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="collections.abc.Callable">Callable</span>[[<span title="str">str</span>], None]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>pager</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p>:returns: pager</p>
 
 
     </div>
