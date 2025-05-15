@@ -14,9 +14,10 @@ mattermost client application.
 
 ## Join without a CERN account
 
-1. You will need to create a CERN lightweight account. Go to
-https://account.cern.ch/account/Externals/ and follow the procedure to create
-your account.
-
-2. Open https://mattermost.web.cern.ch/rucio/ in your browser or with a
+1. Open https://mattermost.web.cern.ch/rucio/ in your browser or with a
 mattermost client application.
+
+2. Click on "Login with CERN Single Sign-On"
+
+3. Use one of the options on the right to sign in with your eMail, organisation,
+or to sign in with a social account.
