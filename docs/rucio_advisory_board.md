@@ -42,6 +42,7 @@ board meetings.
 | [ATLAS](https://atlas.cern)         | David South, DESY        | 2023-Apr to 2027-Mar |
 | [Belle II](https://www.belle2.org)  | Cedric Serfon, BNL       | 2023-Jun to 2027-May |
 | [CMS](https://cms.cern)             | Eric Vaandering, FNAL    | 2025-Feb to 2027-Jan |
+| [CTAO](https://www.ctao.org)        | Mieke Bouwhuis, CTAO     | 2025-May to 2027-May |
 | [DUNE](https://www.dunescience.org) | Mike Kirby, BNL          | 2023-Feb to 2027-Jan |
 | [ESCAPE](https://projectescape.eu)  | Giovanni Guerrieri, CERN | 2025-Feb to 2027-Jan |
 | [SKAO](https://www.skao.int/)       | Rosie Bolton, SKAO       | 2024-Jun to 2026-May |
