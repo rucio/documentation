@@ -1,0 +1,105 @@
+---
+id: configuration_parameters
+title: Configuration parameters
+---
+import Settings from './_rucio_config_defaults.mdx';
+
+Description of the configuration parameters split in three different places:
+Rucio configuration file (`rucio.cfg`), Rucio configuration table and RSE attributes.
+
+## Rucio Configuration File (`rucio.cfg`)
+* Only the Configuration File provides information for the
+[client connection information](#client-client_config) or the
+[database configuration](#database-db_config),
+this information cannot be set in a different location.
+* If not specified in the environmental variables (as `$RUCIO_CONFIG`),
+Rucio will look for the config in the following locations -
+    - `$RUCIO_HOME/etc/rucio.cfg`
+    - `$VIRTUAL_ENV/etc/rucio.cfg`
+    - `/opt/rucio/etc/rucio.cfg`
+
+
+### Options and Defaults
+
+<Settings />
+
+## RSE settings
+The RSE settings are set separately using `rucio.RSEClient.update_rse` or `rucio rse update`, and specifies RSE configuration used by the Rucio instance.
+Mutable settings are `deterministic`, `rse_type`, `staging_area`, `volatile`, `qos_class`, `availability_delete`, `availability_read`, `availability_write`, `city`, `country_name`, `latitude`, `longitude`, `region_code`, and `time_zone`.
+Read more about RSEs [here](started/concepts/rucio_storage_element.md)
+and how to set them up [here](operator/configuration.md#creating-new-rses).
+
+- **availability_delete**: Boolean. Control if this RSE allows deletions by the Reaper daemon using any protocol. Default: `True`.
+- **availability_read**: Boolean. Control if this RSE allows reads using any protocol. Default: `True`.
+- **availability_write**: Boolean. Control if this RSE allows writes using any protocol. Default: `True`.
+- **credentials**: Dictionary[String, Any]: Specify token credentials used for accessing this RSE if it is in a commercial cloud. No default.
+- **delete_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for deletions. Default: `1`.
+- **deterministic**: Boolean: Controls if the RSE is allowed to generate paths based solely on the DID (scope:filename). More info about non-deterministic RSEs [here](started/concepts/replica_workflow.md#replica-paths-on-storage). Default: `True`.
+- **domain**: List[String]: Specifies the locations this RSE may be accessed by clients from. Cannot be changed.
+- **id**: String: Identification string of the RSE. Cannot be changed.
+- **lfn2pfn_algorithm**: String: Name of the algorithm in the configured policy package to be used for creating replica paths. Cannot be changed. If no lfn2pfn_algorithm attribute is set, then the setting defaults to lfn2pfn_algorithm_default in the configured policy package. Default: `default`.
+- **qos_class**: String: No functionality in modern Rucio. No default.
+- **read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for reads. Default: `1`.
+- **rse**: String: The name of the Rucio Storage Element as given at creation time. Cannot be changed.
+- **rse_type**: String: Specify `DISK` or `TAPE` for control of [QoS](operator/qos_rse_config.md). Default: `DISK`.
+- **sign_url**: Optional[str]. Enable cloud support for this storage element. No default.
+- **staging_area**: Boolean.Specify if this RSE is a disk buffer to a tertiary storage backend, subject to additional constraints (specifically a lifetime for rules on this RSE must be defined). Default: `False`.
+- **third_party_copy_read_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for TPC reads. Default `1`.
+- **third_party_copy_write_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for TPC writes. Default `1`.
+- **verify_checksum**: Boolean: Specifies if the RSE has support for checksum verification. Default: `True`.
+- **volatile**: Boolean. Specifies if the RSE is cache storage. Subject to volatile RSE restrictions detailed [here](https://rucio.github.io/documentation/operator/qos_rse_config). Default: `False`.
+- **write_protocol**: Integer: Cannot be changed. Controls matching of protocol priorities for writes. Default: `1`.
+
+## RSE attributes
+The RSE Attributes are set separately using `rucio.RSEClient.add_rse_attribute` or `rucio rse attribute add`.
+and only contains information about the specific RSE's for the Rucio instance.
+Read more about RSEs [here](started/concepts/rucio_storage_element.md)
+and how to set them up [here](operator/configuration.md#creating-new-rses).
+
+- **associated_sites**: String. Separated by commas. Used for chaining of subscriptions so that transfers to one RSE will also be mirrored to associated_sites. No default.
+- **archive_timeout**: Integer: Only used for transfers with a tape destination. Controls the number of seconds the FTS3 transfer manager will wait for the tape archival of the file to go `FAILED` or `FINISHED`. No default.
+- **auto_approve_bytes**: String: Upper limit for the size in bytes of a DID for which rules will be automatically approved. Example: `500GB`. No default.
+- **auto_approve_files**: Integer: Upper limit for the number of files covered by a rule which will be automatically approved. No default.
+- **available_for_multihop**:  Boolean. If True, allow to use this RSE as an intermediate hop in a multi-hop transfer. Default: `False`.
+- **block_manual_approval**: Boolean. Disable manual rule approval for this RSE. Default: `False`.
+- **bittorrent_tracker_addr**: String. Used to configure the URL of the bittorrent tracker API when using the torrent transfer manager. No Default.
+- **checksum_key**: String. Used to specify an alternate RSE attribute to search for supported checksums beyond those with global support (ADLER32, MD5). Default: `supported_checksums`.
+- **country**: String. Used for country level granularity of RSE selectors. No default.
+- **decommission**: Boolean. Indicates to the RSE Decommissioning Daemon that this RSE is to be decommissioned. Default: `False`.
+- **driver_name_rse_attribute**: String. Used to specify alternate drivers when using the Bittorrent transfer manager. Default: `bittorrent_driver`.
+- **fts**: String. Specify the REST API URL of the FTS3 transfer manager. No default.
+- **greedyDeletion**: Boolean. Allow files without a rule locking them to be deleted by a Reaper Daemon. Default behavior only marks a file for deletion when there is no space on an RSE for a new required file. Default: `False`.
+- **group_by_rse_attribute**: String. Control the RSE attribute (such as `country`) which transfer source RSEs will be grouped by when determining an appropriate transfer source. Default: `UNKNOWN`.
+- **globus_endpoint_id**: String. Specify the REST API URL of the Globus transfer manager. No default.
+- **hop_penalty**: Integer. Usage cost of this RSE as an intermediate in [multihop transfers](operator_transfers/transfers_overview.md). Overrides the global `transfers/hop_penalty` configuration for this particular RSE.
+ Requires `available_for_multihop` attribute is True on the RSE. No default.
+- **is_object_store**: Boolean. Control the auditor daemon's behavior. Instead of dumping all files, list them by date. Default: `False`.
+- **istape**: Boolean. Default: `False`.
+- **lfn2pfn_algorithm**: String. Name of the algorithm to be used for generating paths to files on the storage. Must be defined in the configured policy package. Default: `default`.
+- **mock**: Boolean. Default: `False`.
+- **multihop_tombstone_delay**: Integer. Delay before a multihop transfer intermediate rule is to be deleted. Defined in seconds. Default: `7200`.
+- **naming_convention**: String. Name of the algorithm in the configured policy package which is to be used to validate DIDs on this RSE. Default: `None`.
+- **oidc_support**: Boolean. Specifies that the RSE supports OIDC authentication for FTS3 transfers. Default: `False`.
+- **overwrite_when_only_on_disk**: Boolean. On a `TAPE` RSE, controls if a file can be overwritten. A file may only be overwritten if it has not yet been written to the tape backend. Default: `False`.
+- **overwrite**: Boolean. Controls if a file can be overwritten on the RSE. Default: `True` for `rse_type: DISK`. `False` for `rse_type: TAPE`.
+- **physgroup**: String. Used for grouping of rules by CERN experiments. Default: ` `.
+- **qbittorrent_management_address**: String. Used to configure the URL of the bittorrent management API when using the torrent transfer manager. No Default.
+- **quota_approvers**: List[string]. List of Rucio users separated by commas. Only used in the permission layer of the policy package, and likely specific to the CERN experiments only. Default: `None`.
+- **restricted_read**: Boolean. If True, only allow transfers FROM this RSE if started by an account with admin privileges. Default: `False`
+- **restricted_write**: Boolean. If True, only allow transfers TO this RSE if started by an account with admin privileges. Default: `False`
+- **rule_approvers**: List[string]. List of Rucio users separated by commas which will be notified by email to approve rules on this RSE. Default: `None`.
+- **rule_deleters**: List[string]. List of Rucio users separated by commas. Only used in the permission layer of the policy package, and likely specific to the CERN experiments only. Default: `None`.
+- **sign_url**: Optional[str]. Controls if URLs for uploads and transfers are to be cryptographically signed by an external service. No default.
+- **simulate_multirange** Integer. Control the number of connections for multirange byte requests on commercial cloud storage. Multirange is not supported on S3. No default.
+- **site**: String. Used to determine if downloads/transfers are local or wide area network. No default.
+- **skip_upload_stat**: Boolean. Disables the use of a GFAL `stat` when calling `rucio upload` for this RSE. Default: `False`.
+- **source_for_total_space**: String. Used to specify where Rucio should obtain storage capacity information from. Default: `storage`.
+- **source_for_used_space**: String. Used to specify where Rucio should obtain storage usage information from. Default: `storage`.
+- **staging_buffer**: String. Used with `TAPE` RSEs to specify to which RSE a file on tape should be transferred to as a disk buffer. Destination RSE should have `staging_area: True`. No default.
+- **staging_required**: Boolean. Duplicates the `rse_type` RSE setting. Specifies that files on this RSE will require staging from high-latency storage. Default `False`.
+- **strict_copy**: Boolean. Instructs the transfer manager to ONLY copy the file, disabling all validation checks such as `PROPFIND` and checksumming. Default `False`.
+- **s3_url_style**: String. For S3 storage elements [specify](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) `path` or `host`. No default.
+- **tier**: Datacenter TIER. Integer (from 1 to 4). No default.
+- **type**: Values: `{LOCALGROUPDISK, LOCALGROUPTAPE, GROUPDISK, SCRATCHDISK, MOCK, TEST, DATADISK}`. Default: ` `.
+- **use_ipv4**: Boolean. Force the transfer manager to use IPv4 for transfers to this RSE. Default `False`.
+- **verify_checksum**: Boolean. Control if checksum is to be queried on transfer source and destination to confirm successful transfers. Default: `True`
