@@ -1801,14 +1801,6 @@
     <div class="doc doc-contents ">
 
         <p>List all data identifiers in a scope which match a given pattern.</p>
-<p>:param scope: The scope name.
-:param filters: A nested dictionary of key/value pairs like [{'key1': 'value1', 'key2.lte': 'value2'}, {'key3.gte, 'value3'}].
-                Keypairs in the same dictionary are AND'ed together, dictionaries are OR'ed together. Keys should be suffixed
-                like <key>.<operation>, e.g. key1 &gt;= value1 is equivalent to {'key1.gte': value}, where <operation> belongs to one
-                of the set {'lte', 'gte', 'gt', 'lt', 'ne' or ''}. Equivalence doesn't require an operator.
-:param did_type: The type of the did: 'all'(container, dataset or file)|'collection'(dataset or container)|'dataset'|'container'|'file'
-:param long: Long format option to display more information for each DID.
-:param recursive: Recursively list DIDs content.</p>
 
 
     </div>
@@ -1865,15 +1857,187 @@
     <div class="doc doc-contents ">
 
         <p>Add data identifier for a dataset or container.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param did_type: The data identifier type (dataset|container).
-:param statuses: Dictionary with statuses, e.g. {'monotonic':True}.
-:param meta: Meta-data associated with the data identifier is represented using key/value pairs in a dictionary.
-:param rules: Replication rules associated with the data identifier. A list of dictionaries, e.g., [{'copies': 2, 'rse_expression': 'TIERS1'}, ].
-:param lifetime: DID's lifetime (in seconds).
-:param dids: The content.
-:param rse: The RSE name when registering replicas.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>did_type</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier type (dataset|container).</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Literal">Literal</span>[&#39;DATASET&#39;, &#39;CONTAINER&#39;]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>statuses</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Dictionary with statuses, e.g. {'monotonic':True}.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>meta</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Meta-data associated with the data identifier is represented using key/value pairs in a dictionary.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rules</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Replication rules associated with the data identifier. A list of dictionaries,
+e.g., [{'copies': 2, 'rse_expression': 'TIERS1'}, ].</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>lifetime</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>DID's lifetime (in seconds).</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rse</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The RSE name when registering replicas.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1923,14 +2087,171 @@
     <div class="doc doc-contents ">
 
         <p>Add data identifier for a dataset.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param statuses: Dictionary with statuses, e.g.g {'monotonic':True}.
-:param meta: Meta-data associated with the data identifier is represented using key/value pairs in a dictionary.
-:param rules: Replication rules associated with the data identifier. A list of dictionaries, e.g., [{'copies': 2, 'rse_expression': 'TIERS1'}, ].
-:param lifetime: DID's lifetime (in seconds).
-:param files: The content.
-:param rse: The RSE name when registering replicas.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>statuses</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Dictionary with statuses, e.g. {'monotonic':True}.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>meta</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Meta-data associated with the data identifier is represented using key/value pairs in a dictionary.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rules</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Replication rules associated with the data identifier. A list of dictionaries,
+e.g., [{'copies': 2, 'rse_expression': 'TIERS1'}, ].</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>lifetime</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>DID's lifetime (in seconds).</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>files</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rse</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The RSE name when registering replicas.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1951,7 +2272,34 @@
     <div class="doc doc-contents ">
 
         <p>Bulk add datasets.</p>
-<p>:param dsns: A list of datasets.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>dsns</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A list of datasets.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Iterable">Iterable</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1979,12 +2327,131 @@
     <div class="doc doc-contents ">
 
         <p>Add data identifier for a container.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param statuses: Dictionary with statuses, e.g.g {'monotonic':True}.
-:param meta: Meta-data associated with the data identifier is represented using key/value pairs in a dictionary.
-:param rules: Replication rules associated with the data identifier. A list of dictionaries, e.g., [{'copies': 2, 'rse_expression': 'TIERS1'}, ].
-:param lifetime: DID's lifetime (in seconds).</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>statuses</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Dictionary with statuses, e.g. {'monotonic':True}.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>meta</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Meta-data associated with the data identifier is represented using key/value pairs in a dictionary.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rules</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Replication rules associated with the data identifier. A list of dictionaries,
+e.g., [{'copies': 2, 'rse_expression': 'TIERS1'}, ].</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>lifetime</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>DID's lifetime (in seconds).</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2005,7 +2472,34 @@
     <div class="doc doc-contents ">
 
         <p>Bulk add containers.</p>
-<p>:param cnts: A list of containers.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>cnts</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A list of containers.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2026,10 +2520,86 @@
     <div class="doc doc-contents ">
 
         <p>Attach data identifier.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param dids: The content.
-:param rse: The RSE name when registering replicas.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rse</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The RSE name when registering replicas.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2049,10 +2619,71 @@
 
     <div class="doc doc-contents ">
 
-        <p>Detach data identifier</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param dids: The content.</p>
+        <p>Detach data identifier.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2073,11 +2704,56 @@
     <div class="doc doc-contents ">
 
         <p>Add dids to dids.</p>
-<p>:param attachments: The attachments.
-    attachments is: [attachment, attachment, ...]
-    attachment is: {'scope': scope, 'name': name, 'dids': dids}
-    dids is: [{'scope': scope, 'name': name}, ...]
-:param ignore_duplicate: If True, ignore duplicate entries.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>attachments</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The attachments.
+An attachment contains: "scope", "name", "dids".
+dids is: [{'scope': scope, 'name': name}, ...]</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ignore_duplicate</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If True, ignore duplicate entries.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2098,11 +2774,56 @@
     <div class="doc doc-contents ">
 
         <p>Add files to datasets.</p>
-<p>:param attachments: The attachments.
-    attachments is: [attachment, attachment, ...]
-    attachment is: {'scope': scope, 'name': name, 'dids': dids}
-    dids is: [{'scope': scope, 'name': name}, ...]
-:param ignore_duplicate: If True, ignore duplicate entries.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>attachments</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The attachments.
+An attachment contains: "scope", "name", "dids".
+dids is: [{'scope': scope, 'name': name}, ...]</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ignore_duplicate</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If True, ignore duplicate entries.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2123,10 +2844,36 @@
     <div class="doc doc-contents ">
 
         <p>Add datasets_to_containers.</p>
-<p>:param attachments: The attachments.
-    attachments is: [attachment, attachment, ...]
-    attachment is: {'scope': scope, 'name': name, 'dids': dids}
-    dids is: [{'scope': scope, 'name': name}, ...]</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>attachments</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The attachments.
+An attachment contains: "scope", "name", "dids".
+dids is: [{'scope': scope, 'name': name}, ...]</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2147,10 +2894,36 @@
     <div class="doc doc-contents ">
 
         <p>Add containers_to_containers.</p>
-<p>:param attachments: The attachments.
-    attachments is: [attachment, attachment, ...]
-    attachment is: {'scope': scope, 'name': name, 'dids': dids}
-    dids is: [{'scope': scope, 'name': name}, ...]</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>attachments</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The attachments.
+An attachment contains: "scope", "name", "dids".
+dids is: [{'scope': scope, 'name': name}, ...]</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2171,10 +2944,86 @@
     <div class="doc doc-contents ">
 
         <p>Add files to datasets.</p>
-<p>:param scope: The scope name.
-:param name: The dataset name.
-:param files: The content.
-:param rse: The RSE name when registering replicas.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The dataset name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>files</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rse</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The RSE name when registering replicas.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2195,9 +3044,66 @@
     <div class="doc doc-contents ">
 
         <p>Add files to archive.</p>
-<p>:param scope: The scope name.
-:param name: The dataset name.
-:param files: The content.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The dataset name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>files</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2218,9 +3124,66 @@
     <div class="doc doc-contents ">
 
         <p>Add datasets to container.</p>
-<p>:param scope: The scope name.
-:param name: The dataset name.
-:param dsns: The content.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The dataset name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dsns</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2241,9 +3204,66 @@
     <div class="doc doc-contents ">
 
         <p>Add containers to container.</p>
-<p>:param scope: The scope name.
-:param name: The dataset name.
-:param cnts: The content.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The dataset name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>cnts</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2264,8 +3284,50 @@
     <div class="doc doc-contents ">
 
         <p>List data identifier contents.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2286,8 +3348,50 @@
     <div class="doc doc-contents ">
 
         <p>List data identifier contents history.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2308,9 +3412,70 @@
     <div class="doc doc-contents ">
 
         <p>List data identifier file contents.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param long: A boolean to choose if GUID is returned or not.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>long</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A boolean to choose if GUID is returned or not.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="bool">bool</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2331,7 +3496,34 @@
     <div class="doc doc-contents ">
 
         <p>List data identifier file contents.</p>
-<p>:param dids: The list of DIDs.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The list of DIDs.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="list">list</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2352,11 +3544,91 @@
     <div class="doc doc-contents ">
 
         <p>Retrieve a single data identifier.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param dynamic_depth: The DID type as string ('FILE'/'DATASET') at which to stop the dynamic
-length/bytes calculation. If not set, the size will not be computed dynamically.
-:param dynamic: (Deprecated) same as dynamic_depth = 'FILE'</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dynamic_depth</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The DID type ('FILE'/'DATASET') at which to stop the dynamic
+length/bytes calculation. If not set, the size will not be computed dynamically.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dynamic</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Deprecated. Same as setting dynamic_depth='FILE'.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2376,10 +3648,71 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
 
     <div class="doc doc-contents ">
 
-        <p>Get data identifier metadata</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param plugin: Backend Metadata plugin the Rucio server should use to query data.</p>
+        <p>Get data identifier metadata.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>plugin</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Backend Metadata plugin the Rucio server should use to query data.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;DID_COLUMN&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2399,10 +3732,75 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
 
     <div class="doc doc-contents ">
 
-        <p>Bulk get data identifier metadata
-:param dids:               A list of dids.
-:param inherit:            A boolean. If set to true, the metadata of the parent are concatenated.
-:param plugin:             The metadata plugin to query, 'ALL' for all available plugins</p>
+        <p>Bulk get data identifier metadata</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A list of dids.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>inherit</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A boolean. If set to true, the metadata of the parent are concatenated.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>plugin</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The metadata plugin to query, 'ALL' for all available plugins</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;JSON&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2422,12 +3820,103 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
 
     <div class="doc doc-contents ">
 
-        <p>Set data identifier metadata</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param key: the key.
-:param value: the value.
-:param recursive: Option to propagate the metadata change to content.</p>
+        <p>Set data identifier metadata.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>key</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The metadata key.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>value</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The metadata value.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Any">Any</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>recursive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Option to propagate the metadata change to content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2448,10 +3937,86 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>Set data identifier metadata in bulk.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param meta: the metadata key-values.
-:param recursive: Option to propagate the metadata change to content.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>meta</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The metadata key-value pairs.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>recursive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Option to propagate the metadata change to content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2472,8 +4037,55 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>Set metadata to a list of data identifiers.</p>
-<p>:param dids: A list of dids including metadata, i.e. [{'scope': scope1, 'name': name1, 'meta': {key1: value1, key2: value2}] .
-:param recursive: Option to propagate the metadata update to content.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A list of dids including metadata, i.e.
+[{'scope': scope1, 'name': name1, 'meta': {key1: value1, key2: value2}}, ...].</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>recursive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Option to propagate the metadata update to content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2493,10 +4105,67 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
 
     <div class="doc doc-contents ">
 
-        <p>Set data identifier status</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param kwargs:  Keyword arguments of the form status_name=value.</p>
+        <p>Set data identifier status.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>**kwargs</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Keyword arguments of the form status_name=value.</p>
+              </div>
+              <p>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>{}</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2516,9 +4185,51 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
 
     <div class="doc doc-contents ">
 
-        <p>close dataset/container</p>
-<p>:param scope: The scope name.
-:param name: The dataset/container name.</p>
+        <p>Close dataset/container.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The dataset/container name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2538,10 +4249,67 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
 
     <div class="doc doc-contents ">
 
-        <p>Delete data identifier metadata</p>
-<p>:param scope: The scope name.
-:param name: The data identifier.
-:param key: the key.</p>
+        <p>Delete data identifier metadata.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>key</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The metadata key to be deleted.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2562,8 +4330,50 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>List the associated rules of a data identifier.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2584,8 +4394,50 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>List the associated rules a file is affected from..</p>
-<p>:param scope: The scope name.
-:param name:  The file name.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2605,9 +4457,59 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
 
     <div class="doc doc-contents ">
 
-        <p>Get the parent datasets for a given GUID.
-:param guid: The GUID.</p>
-<p>:returns: A did</p>
+        <p>Get the parent datasets for a given GUID.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>guid</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The GUID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    A did</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2628,9 +4530,74 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>List data identifiers in a scope.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.
-:param recursive: boolean, True or False.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>recursive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>boolean, True or False.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2651,8 +4618,50 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>List parent dataset/containers of a did.</p>
-<p>:param scope: The scope.
-:param name:  The name.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The name,</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2679,12 +4688,98 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>Create a sample from an input collection.</p>
-<p>:param input_scope: The scope of the input DID.
-:param input_name: The name of the input DID.
-:param output_scope: The scope of the output dataset.
-:param output_name: The name of the output dataset.
-:param account: The account.
-:param nbfiles: The number of files to register in the output dataset.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope of the input DID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The name of the input DID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>output_scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope of the output dataset.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>output_name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The name of the output dataset.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>nbfiles</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of files to register in the output dataset.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="int">int</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2705,7 +4800,34 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>Resurrect a list of dids.</p>
-<p>:param dids:  A list of dids [{'scope': scope, 'name': name}, ...]</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A list of dids [{'scope': scope, 'name': name}, ...]</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -2726,8 +4848,50 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     <div class="doc doc-contents ">
 
         <p>List archive contents.</p>
-<p>:param scope: The scope name.
-:param name: The data identifier name.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>

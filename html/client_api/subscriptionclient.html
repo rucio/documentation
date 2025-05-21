@@ -1175,16 +1175,167 @@
     <div class="doc doc-contents ">
 
         <p>Adds a new subscription which will be verified against every new added file and dataset</p>
-<p>:param name: Name of the subscription
-:param account: Account identifier
-:param filter_: Dictionary of attributes by which the input data should be filtered
-               <strong>Example</strong>: <code>{'dsn': 'data11_hi*.express_express.*,data11_hi*physics_MinBiasOverlay*', 'account': 'tzero'}</code>
-:param replication_rules: Replication rules to be set : Dictionary with keys copies, rse_expression, weight, rse_expression
-:param comments: Comments for the subscription
-:param lifetime: Subscription's lifetime (days); False if subscription has no lifetime
-:param retroactive: Flag to know if the subscription should be applied on previous data
-:param dry_run: Just print the subscriptions actions without actually executing them (Useful if retroactive flag is set)
-:param priority: The priority of the subscription (3 by default)</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Name of the subscription</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>account</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Account identifier</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>filter_</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Dictionary of attributes by which the input data should be filtered
+Example: <code>{'dsn': 'data11_hi*.express_express.*,data11_hi*physics_MinBiasOverlay*', 'account': 'tzero'}</code></p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>replication_rules</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Replication rules to be set. Dictionary with keys copies, rse_expression, weight, rse_expression</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>comments</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Comments for the subscription</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>lifetime</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Subscription's lifetime (days); False if subscription has no lifetime</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="int">int</span>, <span title="typing.Literal">Literal</span>[False]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>retroactive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Flag to know if the subscription should be applied on previous data</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dry_run</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Just print the subscriptions actions without actually executing them (Useful if retroactive flag is set)</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>priority</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The priority of the subscription (3 by default)</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="int">int</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>3</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1206,10 +1357,106 @@
 
         <p>Returns a dictionary with the subscription information :
 Examples: <code>{'status': 'INACTIVE/ACTIVE/BROKEN', 'last_modified_date': ...}</code></p>
-<p>:param name: Name of the subscription
-:param account: Account identifier
-:returns: Dictionary containing subscription parameter
-:raises: exception.NotFound if subscription is not found</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Name of the subscription</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>account</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Account identifier</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Dictionary with the subscription information</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="NotFound">NotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If subscription is not found</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1240,17 +1487,218 @@ Examples: <code>{'status': 'INACTIVE/ACTIVE/BROKEN', 'last_modified_date': ...}<
     <div class="doc doc-contents ">
 
         <p>Updates a subscription</p>
-<p>:param name: Name of the subscription
-:param account: Account identifier
-:param filter_: Dictionary of attributes by which the input data should be filtered
-               <strong>Example</strong>: <code>{'dsn': 'data11_hi*.express_express.*,data11_hi*physics_MinBiasOverlay*', 'account': 'tzero'}</code>
-:param replication_rules: Replication rules to be set : Dictionary with keys copies, rse_expression, weight, rse_expression
-:param comments: Comments for the subscription
-:param lifetime: Subscription's lifetime (days); False if subscription has no lifetime
-:param retroactive: Flag to know if the subscription should be applied on previous data
-:param dry_run: Just print the subscriptions actions without actually executing them (Useful if retroactive flag is set)
-:param priority: The priority of the subscription
-:raises: exception.NotFound if subscription is not found</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>Name of the subscription</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>account</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>Account identifier</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>filter_</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Example: <code>{'dsn': 'data11_hi*.express_express.*,data11_hi*physics_MinBiasOverlay*', 'account': 'tzero'}</code></p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>Dictionary of attributes by which the input data should be filtered</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>replication_rules</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>Replication rules to be set. Dictionary with keys copies, rse_expression, weight, rse_expression</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>comments</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>Comments for the subscription</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>lifetime</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>Subscription&#39;s lifetime (days); False if subscription has no lifetime</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>retroactive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>Flag to know if the subscription should be applied on previous data</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dry_run</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>Just print the subscriptions actions without actually executing them (Useful if retroactive flag is set)</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>priority</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code>The priority of the subscription</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="NotFound">NotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If subscription is not found</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1271,8 +1719,50 @@ Examples: <code>{'status': 'INACTIVE/ACTIVE/BROKEN', 'last_modified_date': ...}<
     <div class="doc doc-contents ">
 
         <p>List the associated rules of a subscription.</p>
-<p>:param account: Account of the subscription.
-:param name:    Name of the subscription.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>account</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Account of the subscription.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Name of the subscription.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>

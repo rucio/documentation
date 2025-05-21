@@ -1290,16 +1290,219 @@
 
         <p>Main client class for accessing Rucio resources. Handles the authentication.</p>
 
-        <p>Constructor of the BaseClient.
-:param rucio_host: The address of the rucio server, if None it is read from the config file.
-:param auth_host: The address of the rucio authentication server, if None it is read from the config file.
-:param account: The account to authenticate to rucio.
-:param ca_cert: The path to the rucio server certificate.
-:param auth_type: The type of authentication (e.g.: 'userpass', 'kerberos' ...)
-:param creds: Dictionary with credentials needed for authentication.
-:param user_agent: Indicates the client.
-:param vo: The VO to authenticate into.
-:param logger: Logger object to use. If None, use the default LOG created by the module</p>
+        <p>Constructor of the BaseClient.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rucio_host</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The address of the rucio server, if None it is read from the config file.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>auth_host</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The address of the rucio authentication server, if None it is read from the config file.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>account</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The account to authenticate to rucio.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ca_cert</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The path to the rucio server certificate.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>auth_type</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The type of authentication (e.g.: 'userpass', 'kerberos' ...)</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>creds</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Dictionary with credentials needed for authentication.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Timeout for requests.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>600</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>user_agent</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Indicates the client.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;rucio-clients&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>vo</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The VO to authenticate into.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>logger</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Logger object to use. If None, use the default LOG created by the module.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="logging.Logger">Logger</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code><span title="rucio.client.baseclient.LOG">LOG</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 

@@ -1328,27 +1328,390 @@
 
     <div class="doc doc-contents ">
 
-        <p>:param dids:                       The data identifier set.
-:param copies:                     The number of replicas.
-:param rse_expression:             Boolean string expression to give the list of RSEs.
-:param priority:                   Priority of the transfers.
-:param lifetime:                   The lifetime of the replication rules (in seconds).
-:param grouping:                   ALL -  All files will be replicated to the same RSE.
-                                   DATASET - All files in the same dataset will be replicated to the same RSE.
-                                   NONE - Files will be completely spread over all allowed RSEs without any grouping considerations at all.
-:param notify:                     Notification setting for the rule (Y, N, C).
-:param source_replica_expression:  RSE Expression for RSEs to be considered for source replicas.
-:param activity:                   Transfer Activity to be passed to FTS.
-:param account:                    The account owning the rule.
-:param meta:                       Metadata, as dictionary.
-:param ignore_availability:        Option to ignore the availability of RSEs.
-:param purge_replicas:             When the rule gets deleted purge the associated replicas immediately.
-:param ask_approval:               Ask for approval of this replication rule.
-:param asynchronous:               Create rule asynchronously by judge-injector.
-:param locked:                     If the rule is locked, it cannot be deleted.
-:param delay_injection:
-:param comment:                    Comment about the rule.
-:param weight:                     If the weighting option of the replication rule is used, the choice of RSEs takes their weight into account.</p>
+        <p>Add a replication rule.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The data identifier set.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>copies</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of replicas.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="int">int</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rse_expression</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Boolean string expression to give the list of RSEs.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>priority</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Priority of the transfers. Default is 3.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="int">int</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>3</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>lifetime</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The lifetime of the replication rules (in seconds).</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>grouping</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>ALL - All files will be replicated to the same RSE.
+DATASET - All files in the same dataset will be replicated to the same RSE.
+NONE - Files will be completely spread over all allowed RSEs without any grouping considerations at all.
+Default is 'DATASET'.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;DATASET&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>notify</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Notification setting for the rule (Y, N, C). Default is 'N'.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;N&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>source_replica_expression</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>RSE Expression for RSEs to be considered for source replicas.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>activity</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Transfer Activity to be passed to FTS.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>account</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The account owning the rule.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>meta</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Metadata, as dictionary.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ignore_availability</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Option to ignore the availability of RSEs. Default is False.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>purge_replicas</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>When the rule gets deleted purge the associated replicas immediately. Default is False.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ask_approval</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Ask for approval of this replication rule. Default is False.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>asynchronous</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Create rule asynchronously by judge-injector. Default is False.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>locked</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If the rule is locked, it cannot be deleted. Default is False.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>delay_injection</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Delay the rule injection.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>comment</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Comment about the rule.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>weight</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If the weighting option of the replication rule is used, the choice of RSEs takes their weight into account.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1369,9 +1732,90 @@
     <div class="doc doc-contents ">
 
         <p>Deletes a replication rule and all associated locks.</p>
-<p>:param rule_id:         The id of the rule to be deleted
-:param purge_replicas:  Immediately delete the replicas.
-:raises:                RuleNotFound, AccessDenied</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The id of the rule to be deleted.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>purge_replicas</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Immediate delete the replicas</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="bool">bool</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccessDenied">AccessDenied</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1392,8 +1836,58 @@
     <div class="doc doc-contents ">
 
         <p>Get a replication rule.</p>
-<p>:param rule_id:  The id of the rule to be retrieved.
-:raises:         RuleNotFound</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The id of the rule to be retrieved.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1413,9 +1907,74 @@
 
     <div class="doc doc-contents ">
 
-        <p>:param rule_id:   The id of the rule to be retrieved.
-:param options:   Options dictionary.
-:raises:          RuleNotFound</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The id of the rule to be retrieved.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>options</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Options dictionary.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1437,10 +1996,106 @@
 
     <div class="doc doc-contents ">
 
-        <p>:param rule_id:             Rule to be reduced.
-:param copies:              Number of copies of the new rule.
-:param exclude_expression:  RSE Expression of RSEs to exclude.
-:raises:                    RuleReplaceFailed, RuleNotFound</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The id of the rule to be reduced.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>copies</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Number of copies of the new rule.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="int">int</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>exclude_expression</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>RSE Expression of RSEs to exclude.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleReplaceFailed">RuleReplaceFailed</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1461,10 +2116,102 @@
     <div class="doc doc-contents ">
 
         <p>Move a replication rule to another RSE and, once done, delete the original one.</p>
-<p>:param rule_id:                    Rule to be moved.
-:param rse_expression:             RSE expression of the new rule.
-:param override:                   Configurations to update for the new rule.
-:raises:                           RuleNotFound, RuleReplaceFailed</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Rule to be moved.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rse_expression</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>RSE expression of the new rule.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>override</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Configurations to update for the new rule.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleReplaceFailed">RuleReplaceFailed</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1484,8 +2231,58 @@
 
     <div class="doc doc-contents ">
 
-        <p>:param rule_id:             Rule to be approved.
-:raises:                    RuleNotFound</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Rule to be approved.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1505,9 +2302,78 @@
 
     <div class="doc doc-contents ">
 
-        <p>:param rule_id:             Rule to be denied.
-:param reason:              Reason for denying the rule.
-:raises:                    RuleNotFound</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Rule to be denied.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>reason</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Reason for denying the rule.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1528,8 +2394,50 @@
     <div class="doc doc-contents ">
 
         <p>List the rule history of a DID.</p>
-<p>:param scope: The scope of the DID.
-:param name: The name of the DID.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope of the DID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="bytes">bytes</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The name of the DID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="bytes">bytes</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1550,8 +2458,58 @@
     <div class="doc doc-contents ">
 
         <p>Examine a replication rule for errors during transfer.</p>
-<p>:param rule_id:             Rule to be denied.
-:raises:                    RuleNotFound</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The rule to be denied</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1572,8 +2530,58 @@
     <div class="doc doc-contents ">
 
         <p>List details of all replica locks for a rule.</p>
-<p>:param rule_id:             Rule to be denied.
-:raises:                    RuleNotFound</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule_id</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The rule to be denied</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -1593,9 +2601,55 @@
 
     <div class="doc doc-contents ">
 
-        <p>List all replication rules which match a filter
-:param filters: dictionary of attributes by which the rules should be filtered</p>
-<p>:returns: True if successful, otherwise false.</p>
+        <p>List all replication rules which match a filter</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>filers</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>dictionary of attributes by which the rules should be filtered</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>True if successful, otherwise false.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>

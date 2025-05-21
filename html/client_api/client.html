@@ -1019,31 +1019,38 @@
     <div class="doc doc-contents ">
 
 
-        <pre><code>Main client class for accessing Rucio resources. Handles the authentication.
+        <p>Main client class for accessing Rucio resources. Handles the authentication.</p>
 
-Note:
-    Used to access all client methods. Each entity client *can* be used to access methods, but using the main client class is recommended for ease of use.
+
+<details class="note:" open>
+  <summary>Note:</summary>
+  <pre><code>Used to access all client methods. Each entity client *can* be used to access methods, but using the main client class is recommended for ease of use.
 </code></pre>
-<p>For using general methods -</p>
-<pre><code>from rucio.client import Client
+</details>
+
+<details class="example:" open>
+  <summary>Example:</summary>
+  <pre><code>from rucio.client import Client
 
 client = Client()  # authenticate with config or environ settings
 client.add_replication_rule(...)
 
 client = Client(
-    rucio_host = &quot;my_host&quot;,
-    auth_host = &quot;my_auth_host&quot;,
-    account = &quot;jdoe12345&quot;,
-    auth_type = &quot;userpass&quot;,
+    rucio_host = "my_host",
+    auth_host = "my_auth_host",
+    account = "jdoe12345",
+    auth_type = "userpass",
     creds = {
-        &quot;username&quot;: &quot;jdoe12345&quot;,
-        &quot;password&quot;: &quot;******&quot;,
+        "username": "jdoe12345",
+        "password": "******",
     }
 ) # authenticate with kwargs
 client.list_replicas(...)
-</code></pre>
-<p>For using the upload and download clients -</p>
-<pre><code>from rucio.client import Client
+
+
+# For using the upload and download clients
+
+from rucio.client import Client
 from rucio.client.uploadclient import UploadClient
 from rucio.client.downloadclient import DownloadClient
 
@@ -1055,17 +1062,128 @@ upload_client.upload(items=...)
 download_client = DownloadClient(client)
 download_client.download_dids(items=...)
 </code></pre>
-
+</details>
         <p>Constructor for the Rucio main client class.</p>
-<p>:param rucio_host: the host of the rucio system.
-:param auth_host: the host of the rucio authentication server.
-:param account: the rucio account that should be used to interact with the rucio system.
-:param ca_cert: the certificate to verify the server.
-:param auth_type: the type of authentication to use (e.g. userpass, x509 ...)
-:param creds: credentials needed for authentication.
-:param timeout: Float describes the timeout of the request (in seconds).
-:param vo: The vo that the client will interact with.
-:param logger: Logger instance to use (optional)</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rucio_host</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The host of the rucio system.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>auth_host</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The host of the rucio authentication server.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>account</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The rucio account that should be used to interact with the rucio system.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ca_cert</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The certificate to verify the server.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>auth_type</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The type of authentication to use (e.g. userpass, x509 ...).</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>creds</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Credentials needed for authentication.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Describes the timeout of the request (in seconds).</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>vo</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The vo that the client will interact with.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>logger</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Logger instance to use.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 

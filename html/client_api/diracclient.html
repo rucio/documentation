@@ -1113,12 +1113,79 @@
     <div class="doc doc-contents ">
 
         <p>Bulk add files :
-- Create the file and replica.
-- If doesn't exist create the dataset containing the file as well as a rule on the dataset on ANY sites.
-- Create all the ascendants of the dataset if they do not exist</p>
-<p>:param lfns: List of lfn (dictionary {'lfn': <lfn>, 'rse': <rse>, 'bytes': <bytes>, 'adler32': <adler32>, 'guid': <guid>, 'pfn': <pfn>}
-:param ignore_availability: A boolean to ignore blocked sites.
-:param parents_metadata: Metadata for selected hierarchy DIDs. (dictionary {'lpn': {key : value}}). Default=None</p>
+    * Create the file and replica.</p>
+<pre><code>* If doesn't exist create the dataset containing the file as well as a rule on the dataset on ANY sites.
+
+* Create all the ascendants of the dataset if they do not exist
+</code></pre>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>lfns</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>List of lfn (dictionary {'lfn': <lfn>, 'rse': <rse>, 'bytes': <bytes>, 'adler32': <adler32>, 'guid': <guid>, 'pfn': <pfn>}</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Iterable">Iterable</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ignore_availability</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A boolean to ignore blocked sites.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>parents_metadata</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Metadata for selected hierarchy DIDs. (dictionary {'lpn': {key : value}}). Default=None</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
