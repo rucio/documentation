@@ -20,16 +20,16 @@ rucio-abacus-account | Accounting | Account usage | ❌ | ✅ | ❌ |  [Details]
 rucio-abacus-collection-replica | Accounting |  Updates collection replicas | ❌ | ✅ | ❌ |  [Details](bin/rucio-abacus-collection-replica.md)
 rucio-abacus-rse | Accounting | Updates RSE counters | ❌ | ✅ | ❌ |  [Details](bin/rucio-abacus-rse.md)
 rucio-atropos | Replica | End the life of the rules according to the Lifetime Model | ❌ | ✅ | ❌ |  [Details](bin/rucio-atropos.md)
-rucio-auditor | Replica | Find inconsistencies on storage, for example, dark data discovery | ❌ | ❌ | ❌ |  [Details](bin/rucio-auditor.md)
+rucio-auditor | Replica | Find inconsistencies on storage, for example, dark data discovery | ❌ | ✅ | ❌ |  [Details](bin/rucio-auditor.md)
 rucio-automatix | Replica | Used for testing: injects random data in RSEs to check liveness | ❌ | ✅  | ❌ |  [Details](bin/rucio-automatix.md)
 rucio-bb8 | Replica | Rebalance data across RSEs | ❌ | ✅ | ❌ |  [Details](bin/rucio-bb8.md)
 rucio-cache-client | Replica | Populates information of replicas on volatile storage  | ❌ | ❌ | ❌ |  [Details](bin/rucio-cache-client.md)
 rucio-cache-consumer | Replica | Adds and deletes cache replicas to the Rucio catalog | ❌ | ✅ | ❌ |  [Details](bin/rucio-cache-consumer.md)
-rucio-conveyor-finisher | Transfer | Updates Rucio internal state after the file transfer has finished | ✅  | ✅ | ❌ |  [Details](bin/rucio-conveyor-finisher.md)
-rucio-conveyor-poller | Transfer | Polls updates from the transfer tool to check the transfer state | ❌ | ✅ | ❌ |  [Details](bin/rucio-conveyor-poller.md)
+rucio-conveyor-finisher | Transfer | Updates Rucio internal state after the file transfer has finished | ✅  | ✅ | ✅ |  [Details](bin/rucio-conveyor-finisher.md)
+rucio-conveyor-poller | Transfer | Polls updates from the transfer tool to check the transfer state | ✅ | ✅ | ❌ |  [Details](bin/rucio-conveyor-poller.md)
 rucio-conveyor-preparer | Transfer | Prepares data transfers | ✅ | ✅ | ❌ |  [Details](bin/rucio-conveyor-preparer.md)
-rucio-conveyor-receiver | Transfer | Sister of poller, instead of polling for updates, it reads transfer tools notifications to check transfer state | ❌ | ❌  | ❌ |  [Details](bin/rucio-conveyor-receiver.md)
-rucio-conveyor-stager | Transfer | Issues staging (bring online) requests to tape RSEs  | ✅ |❌ |  ✅ |  [Details](bin/rucio-conveyor-stager.md)
+rucio-conveyor-receiver | Transfer | Sister of poller, instead of polling for updates, it reads transfer tools notifications to check transfer state | ❌ | ✅  | ❌ |  [Details](bin/rucio-conveyor-receiver.md)
+rucio-conveyor-stager | Transfer | Issues staging (bring online) requests to tape RSEs  | ✅ | ✅ |  ✅ |  [Details](bin/rucio-conveyor-stager.md)
 rucio-conveyor-submitter | Transfer | Submit transfer requests to the transfer tool (prepares the transfer as well if the conveyor-preparer is not enabled) | ✅ | ✅ | ✅ |  [Details](bin/rucio-conveyor-submitter.md)
 rucio-conveyor-throttler | Transfer | Queues transfer requests inside Rucio, applying limits, ex: only one transfer at a time, etc ... | ❌ | ❌ | ❌ |  [Details](bin/rucio-conveyor-throttler.md)
 rucio-dark-reaper | Deletion | Deletes quarantined replicas | ✅ | ✅ | ✅ |  [Details](bin/rucio-dark-reaper.md)
@@ -44,9 +44,9 @@ rucio-kronos | Telemetry | Consumes Rucio tracing messages, updates access time 
 rucio-minos | Replica | Reads list of physical file names (PFNs) declared bad and classifies them in: temporary unavailable  and permanently unavailable (to be recovered by the necromancer daemon)  | ✅ | ✅ | ❌ |  [Details](bin/rucio-minos.md)
 rucio-minos-temporary-expiration | Replica | Moves back TEMPORARY_UNAVAILABLE replicas into AVAILABLE state  | ✅ | ✅ | ❌ |  [Details](bin/rucio-minos-temporary-expiration.md)
 rucio-necromancer | Deletion | Works on permanently unavailable replicas, it tries to recover the data from other valid replicas if any, else declares the replica as lost  | ✅ | ✅ | ❌ |  [Details](bin/rucio-necromancer.md)
-rucio-oauth-manager | Auth/Authz | Deletes expired access tokens (in case there is a valid refresh token, expired access tokens will be kept until refresh_token expires as well.) and deletion of expired OAuth session parameters | ❌ | ✅ | ❌ |  [Details](bin/rucio-oauth-manager.md)
+rucio-oauth-manager | Auth/Authz | Deletes expired access tokens (in case there is a valid refresh token, expired access tokens will be kept until refresh_token expires as well.) and deletion of expired OAuth session parameters | ✅ | ✅ | ❌ |  [Details](bin/rucio-oauth-manager.md)
 rucio-reaper | Deletion | Deletes replicas that don't have locks anymore, i.e. they have a tombstone set | ✅ | ✅ | ✅ |  [Details](bin/rucio-reaper.md)
-rucio-suspicious-replica-recoverer | Replica | Declares suspicious replicas as bad if they are found available on other RSEs, so necromancer will work on them | ❌ | ❌ | ✅ |  [Details](bin/rucio-replica-recoverer.md)
+rucio-replica-recoverer | Replica | Declares suspicious replicas as bad if they are found available on other RSEs, so necromancer will work on them | ❌ | ❌ | ✅ |  [Details](bin/rucio-replica-recoverer.md)
 rucio-rse-decommissioner | Deletion | Decommissions an RSE. The actions to perform are specified in decommissioning profiles (delete all data, move replicas, etc ...)  | ❌ | ❌ | ❌ |  [Details](bin/rucio-rse-decommissioner.md)
 rucio-storage-consistency-actions | Consistency | Applies corrective actions as a result of a consistency check on an RSE | ❌ | ✅ | ❌ |  [Details](bin/rucio-storage-consistency-actions.md)
 rucio-transmogrifier | Rule | Creates replication rules for DIDs matching a subscription | ✅ | ✅ | ❌ |  [Details](bin/rucio-transmogrifier.md)
@@ -100,10 +100,10 @@ Listed below are common definitions between different daemons.
 
 - **run-once** - Only run one iteration of the daemon. If executed with this argument the daemon will run once and close.
 - **sleep-time** - How long a daemon will sleep between iterations, mutually exclusive with `run-once`. Units of seconds. 
-- **threads**, **total-workers**, **threads-per-process** - _[Present in threaded daemons]_ Run in threaded mode. 
-- **bulk**, **chunk-size** - _[Present in batched daemons]_ Provide a limit of the number of operations a single instance of a daemon can run in an iteration. 
-- **dry-run** - Run once, showing logs of the daemon's operations without preforming any action. Useful for verifying settings of the instance and daemon. 
-- **vos** - _[Present in Multi-VO daemons]_ Provide a list VOs with which the daemon can interact. Used when VOs use different settings for their daemons. 
+- **threads**, **total-workers**, **threads-per-process**, **nprocs** - _[Present in threaded daemons]_ Run in threaded mode. 
+- **bulk**, **chunk-size**, **max-rows** - _[Present in batched daemons]_ Provide a limit of the number of operations a single instance of a daemon can run in an iteration. 
+- **dry-run** - Run once, showing logs of the daemon's operations without performing any action. Useful for verifying settings of the instance and daemon. 
+- **vos** - _[Present in Multi-VO daemons]_ Provide a list of VOs with which the daemon can interact. Used when VOs use different settings for their daemons. 
 
 ### Batched Daemons 
 
@@ -127,7 +127,7 @@ This definition doesn't apply for producer/consumer daemons. When producer/consu
 Daemons that have a `vos` option can be set to have separate settings per vo running in a multi-vo instance. 
 When this is set, the daemon will only interact with objects that are explicitly included in the specific VO. 
 
-By default, daemon with multi-VO options interact with all VOs on the instance. 
+By default, a daemon with multi-VO options interact with all VOs on the instance. 
 For example, this is the log displayed by the `replica-recoverer` daemon.
 
 ```bash
@@ -140,4 +140,4 @@ $ rucio-replica-recoverer --run-once --vos abc xyz
 ```
 
 > **_Note:_**
-Multi-VO daemons can still be used in single-VO instances, and the `vo` option does not need to be set. 
+Multi-VO daemons can still be used in single-VO instances, and the `vos` option does not need to be set. 
