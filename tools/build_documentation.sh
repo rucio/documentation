@@ -33,6 +33,8 @@ npx --yes @redocly/cli build-docs "$AUTO_GENERATED"/rest_api_doc_spec.yaml --tem
 mkdir -p "$SCRIPT_DIR"/../website/static/yaml/
 mkdir -p "$SCRIPT_DIR"/../website/static/html/
 
+echo "Moving auto generated files to docs folder..."
+
 cp -r "$AUTO_GENERATED"/rest_api_doc_spec.yaml "$SCRIPT_DIR"/../website/static/yaml/
 cp -r "$AUTO_GENERATED"/rest_api_doc.html "$SCRIPT_DIR"/../website/static/html/
 for dir in rse_policies did_meta_plugins transfer_protocols transfer_tools client_api; do
@@ -40,7 +42,7 @@ for dir in rse_policies did_meta_plugins transfer_protocols transfer_tools clien
 done
 
 cp -r "$AUTO_GENERATED"/bin "$DOCS"
-
+cp -r "$AUTO_GENERATED"/_rucio_config_defaults.mdx "$DOCS"/operator/
 
 echo "Generating Release Notes..."
 "$SCRIPT_DIR"/generate_release_notes.py
