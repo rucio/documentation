@@ -5,8 +5,9 @@ Documentation](https://github.com/rucio/documentation/actions/workflows/update_d
 [![Check external
 links](https://github.com/rucio/documentation/actions/workflows/check_external_links.yaml/badge.svg)](https://github.com/rucio/documentation/actions/workflows/check_external_links.yaml)
 
-This project contains the documentation for the [rucio](https://github.com/rucio/rucio)
-project.
+This project contains the documentation for the **[Rucio](https://github.com/rucio/rucio)** data-management
+software.
+
 
 ## Contribution
 
@@ -14,17 +15,16 @@ Every change or idea is welcome! For information on how to contribute to the
 Rucio documentation, please refer and follow our [CONTRIBUTING](CONTRIBUTING.md)
 guidelines.
 
-## Installation
+
+## Installation (prerequisites on the *host*)
 
 The following packages need to be installed to build the documentation:
 
-```text
-docker
-python3
-mdl           # markdownlint, see https://github.com/markdownlint/markdownlint
-yarn
-npx           # part of npm
-```
+* docker
+* python3
+* mdl ([markdownlint](https://github.com/markdownlint/markdownlint))
+* yarn
+* npx (part of npm)
 
 The python dependencies need to be installed. They are defined in
 `requirements.txt`. Install them via:
@@ -33,30 +33,47 @@ The python dependencies need to be installed. They are defined in
 python3 -m pip install -r tools/requirements.txt
 ```
 
-To run the server locally, the dependencies of the server need to be installed:
+For running the Docusaurus development server, you also need the website
+dependencies:
 
 ```bash
 (cd website && yarn install)
 ```
 
-## Usage
+
+## Usage – building the documentation
 
 To build the assets, run the `build_documentation.sh` script in `tools`. The
 assets need to be built in order for the server to run!
 
-```bash
-tools/build_documentation.sh
+The script supports **two** workflows:
+
+```
+A) Default              → tools/build_documentation.sh
+                          On first run, it clones rucio/rucio.
+                          On later runs, it re-uses any existing Rucio source tree.
+
+B) Use a local Rucio    → tools/build_documentation.sh `-r` / `--rucio-path` <dir>
+                          The given directory is bind-mounted read-only into the Docker container.
+                          Any changes there are persistent and picked up directly.
 ```
 
-The script might generate multiple error messages. These are forwarded from the
-build of the different components and can be ignored, as long as the process
-finishes with the exit code 0.
+### Ignoring non-fatal error output
 
-To start the development version of the server, run:
+Some building tools may emit warnings on *stderr* even when the build succeeds.
+As long as the script ends with exit-code 0 the build is considered **ok**.
+
+
+## Running the local docs website
+
+After a successful build:
 
 ```bash
 (cd website && yarn start)
 ```
+
+then open the printed URL (usually <http://localhost:3000>).
+
 
 ## Documentation Structure
 
@@ -66,7 +83,7 @@ contribute improvements to any of them, follow the guidelines below.
 ### Markdown documentation
 
 The source for this section lives in the ``docs`` folder within the main branch
-of the this GitHub repository. Improvements may be suggested by submitting an
+of this GitHub repository. Improvements may be suggested by submitting an
 issue or pull request to the **main** branch of the repository.  Once the
 changes are approved, GitHub Actions will trigger the build process and publish
 on to GitHub pages.
@@ -75,7 +92,7 @@ on to GitHub pages.
 
 The source for this section lives in the
 [``rucio/rucio``](https://github.com/rucio/rucio/) GitHub repository. There are
-two sub-categories that we document:
+two subcategories that we document:
 
 - [__Rest
   API__](https://github.com/rucio/rucio/tree/master/lib/rucio/web/rest/flaskapi/v1)
@@ -85,5 +102,5 @@ Since the documentation is directly derived from the source, any change to the
 documentation needs to be made in the source code.  Please submit an issue or
 pull request to the [``rucio/rucio``](https://github.com/rucio/rucio/)
 repository with your suggestions for contribution.  Once the changes have been
-approved & pushed into the main branch, the changes will be available at
+approved and pushed into the main branch, the changes will be available at
 <https://rucio.cern.ch/documentation> on the next day.
