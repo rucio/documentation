@@ -750,6 +750,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rucio.client.requestclient.RequestClient.list_transfer_limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_transfer_limits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.requestclient.RequestClient.set_transfer_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_transfer_limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.requestclient.RequestClient.delete_transfer_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_transfer_limit
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1030,6 +1057,33 @@
   <a href="#rucio.client.requestclient.RequestClient.list_request_history_by_did" class="md-nav__link">
     <span class="md-ellipsis">
       list_request_history_by_did
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.requestclient.RequestClient.list_transfer_limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_transfer_limits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.requestclient.RequestClient.set_transfer_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_transfer_limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.requestclient.RequestClient.delete_transfer_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_transfer_limit
     </span>
   </a>
   
@@ -1497,6 +1551,95 @@
           </tr>
       </tbody>
     </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.client.requestclient.RequestClient.list_transfer_limits" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_transfer_limits</span>
+
+
+<a href="#rucio.client.requestclient.RequestClient.list_transfer_limits" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_transfer_limits</span><span class="p">()</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Returns all the transfer limits</p>
+<p>:returns: transfer limits</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.client.requestclient.RequestClient.set_transfer_limit" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">set_transfer_limit</span>
+
+
+<a href="#rucio.client.requestclient.RequestClient.set_transfer_limit" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">set_transfer_limit</span><span class="p">(</span>
+    <span class="n">rse_expression</span><span class="p">,</span>
+    <span class="n">activity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">direction</span><span class="o">=</span><span class="n">TransferLimitDirection</span><span class="o">.</span><span class="n">DESTINATION</span><span class="p">,</span>
+    <span class="n">max_transfers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">volume</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">deadline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">transfers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">waitings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Set the transfer limit for a given RSE</p>
+<p>:param rse_expression: RSE expression string.
+:param activity: The activity.
+:param direction: The direction in which this limit applies (source/destination)
+:param max_transfers: Maximum transfers.
+:param volume: Maximum transfer volume in bytes.
+:param deadline: Maximum waiting time in hours until a datasets gets released.
+:param strategy: defines how to handle datasets: <code>fifo</code> (each file released separately) or <code>grouped_fifo</code> (wait for the entire dataset to fit)
+:param transfers: Current number of active transfers
+:param waitings: Current number of waiting transfers</p>
+<p>:returns: True if the transfer limit was deleted</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.client.requestclient.RequestClient.delete_transfer_limit" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_transfer_limit</span>
+
+
+<a href="#rucio.client.requestclient.RequestClient.delete_transfer_limit" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_transfer_limit</span><span class="p">(</span>
+    <span class="n">rse_expression</span><span class="p">,</span>
+    <span class="n">activity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">direction</span><span class="o">=</span><span class="n">TransferLimitDirection</span><span class="o">.</span><span class="n">DESTINATION</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Delete the transfer limit for a given RSE</p>
+<p>:param rse_expression: RSE expression string.
+:param activity: The activity.
+:param direction: The direction in which this limit applies (source/destination)</p>
+<p>:returns: True if the transfer limit was deleted</p>
 
 
     </div>
