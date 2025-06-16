@@ -1081,9 +1081,106 @@
     <div class="doc doc-contents ">
 
 
-        <p>Initialises the basic settings for an UploadClient object</p>
-<p>:param _client:     - Optional: rucio.client.client.Client object. If None, a new object will be created.
-:param logger:      - Optional: logging.Logger object. If None, default logger will be used.</p>
+        <p>Initialize the UploadClient with the necessary configuration to manage file uploads.</p>
+<p>This method is used to create a new UploadClient instance that can upload files. It
+allows the use of an existing Rucio Client, a custom logger, and tracing for debug
+information during the upload process.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>_client</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>An existing Rucio <code>Client</code> instance to reuse. If not provided, a new one is created.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="Client (rucio.client.client.Client)" href="client.html#rucio.client.client.Client">Client</a>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>logger</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A logger function. If not provided, the default Python logger is used.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="rucio.common.types.LoggerFunction">LoggerFunction</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tracing</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Indicates whether to enable tracing to capture upload activity details.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="rucio.common.exception.InputValidationError">InputValidationError</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the client account is not found or is invalid, preventing upload setup.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
@@ -1123,32 +1220,381 @@
 
     <div class="doc doc-contents ">
 
-        <p>:param items: List of dictionaries. Each dictionary describing a file to upload. Keys:
-    path                  - path of the file that will be uploaded
-    rse                   - rse expression/name (e.g. 'CERN-PROD_DATADISK') where to upload the file
-    did_scope             - Optional: custom did scope (Default: user.<account>)
-    did_name              - Optional: custom did name (Default: name of the file)
-    dataset_scope         - Optional: custom dataset scope
-    dataset_name          - Optional: custom dataset name
-    dataset_meta          - Optional: custom metadata for dataset
-    impl                  - Optional: name of the protocol implementation to be used to upload this item.
-    force_scheme          - Optional: force a specific scheme (if PFN upload this will be overwritten) (Default: None)
-    pfn                   - Optional: use a given PFN (this sets no_register to True, and no_register becomes mandatory)
-    no_register           - Optional: if True, the file will not be registered in the rucio catalogue
-    register_after_upload - Optional: if True, the file will be registered after successful upload
-    lifetime              - Optional: the lifetime of the file after it was uploaded
-    transfer_timeout      - Optional: time after the upload will be aborted
-    guid                  - Optional: guid of the file
-    recursive             - Optional: if set, parses the folder structure recursively into collections
-:param summary_file_path: Optional: a path where a summary in form of a json file will be stored
-:param traces_copy_out: reference to an external list, where the traces should be uploaded
-:param ignore_availability: ignore the availability of a RSE
-:param activity: the activity set to the rule if no dataset is specified</p>
-<p>:returns: 0 on success</p>
-<p>:raises InputValidationError: if any input arguments are in a wrong format
-:raises RSEWriteBlocked: if a given RSE is not available for writing
-:raises NoFilesUploaded: if no files were successfully uploaded
-:raises NotAllFilesUploaded: if not all files were successfully uploaded</p>
+        <p>Uploads one or more files to an RSE (Rucio Storage Element) and optionally registers them.</p>
+<p>An overview of this method's performed actions:
+1. Collects and validates file info from the passed <code>items</code> (directories may be
+    also included), ensuring valid paths exist on the local filesystem. If an RSE
+    expression is provided, a single RSE is picked at random from it.</p>
+<ol>
+<li>
+<p>Checks the RSE's availability for writing (unless <code>ignore_availability</code> is True).</p>
+</li>
+<li>
+<p>Optionally registers each file in the Rucio Catalog, handling the DID creation,
+    dataset creation/attachment, and replication rules as needed.</p>
+</li>
+<li>
+<p>Uploads the files using the underlying protocol handlers and verifies checksums
+    if desired/possible. Partial or failed uploads raise exceptions.</p>
+</li>
+<li>
+<p>(Optional) Produces a JSON summary file at <code>summary_file_path</code>, listing the final
+    PFNs, checksums, and other info for all successfully uploaded files.</p>
+</li>
+</ol>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>items</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A sequence of dictionaries, each describing a file to upload (or a
+directory to be scanned). For each item, the supported keys are:</p>
+<ul>
+<li>
+<p><strong><code>path</code></strong> (PathTypeAlias, required):
+    The local path to the file or directory. If this is a directory and
+    <code>recursive</code> is True, the directory (and its subdirectories) are traversed.</p>
+</li>
+<li>
+<p><strong><code>rse</code></strong> (str, required):
+    The target RSE or an RSE expression where the upload should be placed. If
+    an expression is provided (e.g., "tier=1"), one RSE from that expression
+    is chosen randomly.</p>
+</li>
+<li>
+<p><strong><code>did_scope</code></strong> (str, not required):
+    The Rucio scope in which to register the file DID. Defaults to <code>user.&lt;account&gt;</code>.</p>
+</li>
+<li>
+<p><strong><code>did_name</code></strong> (str, not required):
+    The logical filename in Rucio. Defaults to the local basename if not provided.</p>
+</li>
+<li>
+<p><strong><code>lifetime</code></strong> (int, not required):
+    The lifetime (in seconds) to apply when creating a new replication rule.
+    For file uploads without a dataset, a new rule with that lifetime is created
+    if the file DID does not already exist in Rucio. For a new dataset, the
+    dataset is created with a rule using this lifetime, but if the dataset
+    already exists and you specify a lifetime, an error is raised.</p>
+<p><em><strong>Note:</strong></em> <strong><code>lifetime</code></strong> is not automatically applied to nested containers
+or datasets in recursive mode.</p>
+</li>
+<li>
+<p><strong><code>impl</code></strong> (str, not required):
+    Name of the protocol implementation to be used for uploading this item.
+    For example, <code>"rucio.rse.protocols.gfal.Default"</code>.</p>
+</li>
+<li>
+<p><strong><code>pfn</code></strong> (str, not required):
+    Allows you to explicitly set the Physical File Name (PFN) for the upload,
+    determining exactly where the file is placed on the storage. However, for
+    deterministic RSEs, specifying a PFN causes the client to skip registering
+    the file under the usual deterministic scheme. For non-deterministic RSEs,
+    you can still force the file to be registered in the Rucio catalog after
+    being uploaded, using <code>no_register=False</code> along with <code>register_after_upload=True</code>
+    (or by manually handling the registration later).</p>
+</li>
+<li>
+<p><strong><code>force_scheme</code></strong> (str, not required):
+    Enforces the use of a specific protocol scheme (e.g., davs, https) during
+    file uploads. If the selected protocol is not compatible, the upload will
+    stop and raise an error instead of falling back to any other scheme.</p>
+</li>
+<li>
+<p><strong><code>transfer_timeout</code></strong> (int, not required):
+    A maximum duration (in seconds) to wait for each individual file transfer
+    to complete. If the file transfer does not finish before this timeout
+    elapses, the operation will be aborted and retried one last time. When
+    transfer_timeout is None, no specific timeout is enforced, and the transfer
+    may continue until it completes or fails for another reason.</p>
+</li>
+<li>
+<p><strong><code>guid</code></strong> (str, not required):
+    If provided, Rucio will use this GUID. If not provided and the file is
+    “pool.root” with <code>no_register</code> unset, Rucio tries to extract the GUID via
+    <code>pool_extractFileIdentifier</code>, raising an error if that fails. Otherwise, a
+    random GUID will be generated.</p>
+</li>
+<li>
+<p><strong><code>no_register</code></strong> (bool, not required, default=False):
+    If set to True, the file is not registered in the Rucio Catalog, i.e., there
+    is no DID creation, no replica entry, and no rules. This is appropriate if
+    you plan to register the replica or create rules separately.</p>
+<p><em><strong>Note:</strong></em> If <strong><code>recursive</code></strong>=True, the method still creates datasets
+and/or containers for the directories when needed.</p>
+</li>
+<li>
+<p><strong><code>register_after_upload</code></strong> (bool, not required, default=False):
+    If set to True, the file is uploaded first, and only then is the DID created
+    or updated in the Catalog. This can be useful when you want the actual data
+    on storage before finalizing the registration. By default (False), the file
+    is registered in Rucio before the physical upload if <code>no_register</code> is False.</p>
+</li>
+<li>
+<p><strong><code>recursive</code></strong> (bool, not required, default=False):
+    If set to <code>True</code>, the method treats the specified path as a directory and
+    (depending on the combination with other parameters) recursively traverses
+    its subdirectories, mapping them into container/dataset hierarchies. Single
+    top-level file paths are ignored, but individual files found in subdirectories
+    are processed. Empty directories or non-existent paths also produce a warning.
+    If <code>False</code>, then top-level file paths or the direct children-files of the
+    given top-level directory are only processed (subdirectories are ignored,
+    and no container structure is created).</p>
+</li>
+<li>
+<p><strong><code>dataset_scope</code></strong> / <strong><code>dataset_name</code></strong> (str, not required):
+    To register uploaded files into a dataset DID, you need to specify both
+    dataset_name and dataset_scope. With no_register=False, the client ensures
+    {dataset_scope}:{dataset_name} exists (creating it with a replication rule
+    if it doesn't), or simply attaching new files if it does. If the dataset
+    already exists and you specify a new lifetime, or if a checksum mismatch
+    is detected, registration fails. In non-recursive mode, only files in the
+    top-level directory are attached to the dataset and subdirectories are
+    skipped with a warning. In recursive mode, the client aims to create
+    containers for directories containing only subdirectories and datasets for
+    directories containing only files (raising an error if the top-level folder
+    mixes files and directories). If the top-level directory has subdirectories,
+    the user-supplied dataset_name is effectively ignored at that level (each
+    subdirectory becomes its own dataset or container); if there are no
+    subdirectories, the entire folder is registered as a single dataset.</p>
+</li>
+<li>
+<p><strong><code>dataset_meta</code></strong> (dict, not required):
+    Additional metadata (e.g., <code>{'project': 'myProject'}</code>) to attach to the
+    newly created dataset when: the dataset does not already exist, <code>recursive=False</code>,
+    <code>no_register=False</code> and both <code>dataset_scope</code> and <code>dataset_name</code> are provided.</p>
+<p><em><strong>Note:</strong></em> If multiple files share the same <code>dataset_scope</code> and <code>dataset_name</code>,
+then if a dataset is created, it considers only the first item’s dataset_meta.</p>
+</li>
+</ul>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Iterable">Iterable</span>[<span title="rucio.common.types.FileToUploadDict">FileToUploadDict</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>summary_file_path</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If specified, a JSON file is created with a summary of each successfully
+uploaded file, including checksum, PFN, scope, and name entries.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="os.PathLike">PathLike</span>[<span title="str">str</span>]]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>traces_copy_out</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A list reference for collecting the trace dictionaries that Rucio generates
+while iterating over each file. A new trace dictionary is appended to this list
+for each file considered (even those ultimately skipped or already on the RSE).</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="list">list</span>[<span title="rucio.common.types.TraceBaseDict">TraceBaseDict</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ignore_availability</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If set to True, the RSE's "write availability" is not enforced. By default,
+this is False, and an RSE marked as unavailable for writing will raise an error.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>activity</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If you are uploading files without a parent dataset, this string sets the “activity”
+on the replication rule that Rucio creates for each file (e.g., "Analysis"),
+which can affect RSE queue priorities.</p>
+<p><em><strong>Note:</strong></em> If your files are uploaded into a dataset, the dataset’s replication
+rule does not use this activity parameter.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="int">int</span></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>Status code (<code>0</code> if all files were uploaded successfully).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="rucio.common.exception.NoFilesUploaded">NoFilesUploaded</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Raised if none of the requested files could be uploaded.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="rucio.common.exception.NotAllFilesUploaded">NotAllFilesUploaded</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Raised if some files were successfully uploaded, but others failed.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="rucio.common.exception.RSEWriteBlocked">RSEWriteBlocked</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Raised if <code>ignore_availability=False</code> but the chosen RSE does not allow writing.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="rucio.common.exception.InputValidationError">InputValidationError</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Raised if mandatory fields are missing, if conflicting DIDs are found,
+or if no valid files remain after input parsing.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Upload a single local file to the <em>CERN-PROD</em> RSE and write a JSON summary to
+<code>upload_summary.json</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.uploadclient</span><span class="w"> </span><span class="kn">import</span> <span class="n">UploadClient</span>
+<span class="n">upload_client</span> <span class="o">=</span> <span class="n">UploadClient</span><span class="p">()</span>
+<span class="n">items</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;/data/file1.txt&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;rse&quot;</span><span class="p">:</span> <span class="s2">&quot;CERN-PROD&quot;</span><span class="p">,</span>            <span class="c1"># target RSE</span>
+     <span class="s2">&quot;did_scope&quot;</span><span class="p">:</span> <span class="s2">&quot;user.alice&quot;</span><span class="p">,</span>     <span class="c1"># optional; defaults to user.&lt;account&gt;</span>
+     <span class="s2">&quot;did_name&quot;</span><span class="p">:</span> <span class="s2">&quot;file1.txt&quot;</span><span class="p">}</span>       <span class="c1"># optional; defaults to basename</span>
+<span class="p">]</span>
+<span class="n">upload_client</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">summary_file_path</span><span class="o">=</span><span class="s2">&quot;upload_summary.json&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Recursively upload every file found under <code>/data/dataset</code> into a new
+dataset <code>user.alice:mydataset</code> on a random RSE that matches the
+expression <code>tier=1</code>; collect per-file <em>trace</em> dictionaries for later
+inspection:</p>
+<div class="highlight"><pre><span></span><code><span class="n">traces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TraceBaseDict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">dir_item</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;/data/dataset&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rse&quot;</span><span class="p">:</span> <span class="s2">&quot;tier=1&quot;</span><span class="p">,</span>                <span class="c1"># RSE expression; one will be chosen</span>
+    <span class="s2">&quot;recursive&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;dataset_scope&quot;</span><span class="p">:</span> <span class="s2">&quot;user.alice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dataset_name&quot;</span><span class="p">:</span> <span class="s2">&quot;mydataset&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dataset_meta&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;project&quot;</span><span class="p">:</span> <span class="s2">&quot;demo&quot;</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="n">upload_client</span><span class="o">.</span><span class="n">upload</span><span class="p">([</span><span class="n">dir_item</span><span class="p">],</span> <span class="n">traces_copy_out</span><span class="o">=</span><span class="n">traces</span><span class="p">)</span>
+</code></pre></div>
+</details>
 
 
     </div>
@@ -1168,11 +1614,84 @@
 
     <div class="doc doc-contents ">
 
-        <p>Finds the optimum protocol impl preferred by the client and
-supported by the remote RSE.</p>
-<p>:param rse_settings: dictionary containing the RSE settings
-:param domain:     The network domain, either 'wan' (default) or 'lan'</p>
-<p>:raises RucioException(msg): general exception with msg for more details.</p>
+        <p>Select a suitable protocol implementation for read, write, and delete operations on
+the given RSE and domain.</p>
+<p>This method checks the local client configuration (under the <code>[upload] preferred_impl</code>
+setting) and compares it against the list of protocols declared in <code>rse_settings</code>.
+It attempts to find a protocol that supports the required I/O operations (read,
+write, delete) in the specified domain. If multiple preferred protocols are listed
+in the config, it iterates in order and returns the first viable match.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rse_settings</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A dictionary describing RSE details, including available protocols and their
+domains.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.RSESettingsDict">RSESettingsDict</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>domain</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The network domain (e.g., 'lan' or 'wan') in which the protocol must support
+all operations.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The name of a protocol implementation that can handle read/write/delete
+for the specified domain, or None if no suitable protocol was found.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
