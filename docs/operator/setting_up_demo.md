@@ -87,7 +87,7 @@ PostgreSQL database and the Graphite monitoring.
 Finally, you can jump into the container with:
 
 ```bash
-docker exec -it dev_rucio_1 /bin/bash
+docker exec -it dev-rucio-1 /bin/bash
 ```
 
 To verify that everything is in order, you can now either run the full
@@ -223,7 +223,7 @@ From your host, get a separate Terminal 1 (the Rucio \"server log
 show\"):
 
 ```bash
-docker exec -it dev_rucio_1 /bin/bash
+docker exec -it dev-rucio-1 /bin/bash
 logshow
 ```
 
@@ -231,7 +231,7 @@ Terminal 1 can now be left open, and then from your host go into a new
 Terminal 2 (the \"interactive\" terminal):
 
 ```bash
-docker exec -it dev_rucio_1 /bin/bash
+docker exec -it dev-rucio-1 /bin/bash
 rucio whoami
 ```
 
@@ -241,7 +241,7 @@ debug output will be shown in Terminal 1.
 The same `logshow` is also available in the FTS container:
 
 ```bash
-docker exec -it dev_fts_1 /bin/bash
+docker exec -it dev-fts-1 /bin/bash
 logshow
 ```
 
