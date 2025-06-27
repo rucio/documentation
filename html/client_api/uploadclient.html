@@ -1221,11 +1221,13 @@ information during the upload process.</p>
     <div class="doc doc-contents ">
 
         <p>Uploads one or more files to an RSE (Rucio Storage Element) and optionally registers them.</p>
-<p>An overview of this method's performed actions:
-1. Collects and validates file info from the passed <code>items</code> (directories may be
+<p>An overview of this method's performed actions:</p>
+<ol>
+<li>
+<p>Collects and validates file info from the passed <code>items</code> (directories may be
     also included), ensuring valid paths exist on the local filesystem. If an RSE
     expression is provided, a single RSE is picked at random from it.</p>
-<ol>
+</li>
 <li>
 <p>Checks the RSE's availability for writing (unless <code>ignore_availability</code> is True).</p>
 </li>

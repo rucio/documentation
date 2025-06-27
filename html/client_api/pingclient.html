@@ -1110,7 +1110,19 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends a ping request to the rucio server.</p>
+        <p>This is a light‑weight “are you alive?” call (<em>ping</em> request) to the configured Rucio.</p>
+<p>A quick way to verify (without any required authentication):</p>
+<ul>
+<li>
+<p>Network connectivity between the client and the server.</p>
+</li>
+<li>
+<p>Whether the server process is running and able to respond.</p>
+</li>
+<li>
+<p>The server’s build / version.</p>
+</li>
+</ul>
 
 
 <table>
@@ -1124,17 +1136,57 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    Dictionary with server information</code>
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
                 </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                
+                <p>A dictionary with a single key: the server version (e.g. {'version': '37.0.0'})</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="rucio.common.exception.RucioException">RucioException</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the HTTP status code is not <em>200 OK</em>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Basic connectivity check:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.pingclient</span><span class="w"> </span><span class="kn">import</span> <span class="n">PingClient</span>
+<span class="n">ping_client</span> <span class="o">=</span> <span class="n">PingClient</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">ping_client</span><span class="o">.</span><span class="n">ping</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connected to Rucio </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ping failed: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
 
 
     </div>
