@@ -689,7 +689,7 @@
 
 
 <a href="#rucio.rse.rsemanager.get_scope_protocol" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_scope_protocol</span><span class="p">(</span><span class="n">vo</span><span class="o">=</span><span class="s1">&#39;def&#39;</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_scope_protocol</span><span class="p">(</span><span class="n">vo</span><span class="o">=</span><span class="n">DEFAULT_VO</span><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -734,7 +734,9 @@
 
 
 <a href="#rucio.rse.rsemanager.get_rse_info" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_rse_info</span><span class="p">(</span><span class="n">rse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vo</span><span class="o">=</span><span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="n">rse_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_rse_info</span><span class="p">(</span>
+    <span class="n">rse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vo</span><span class="o">=</span><span class="n">DEFAULT_VO</span><span class="p">,</span> <span class="n">rse_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -786,7 +788,7 @@ Call with either rse and vo, or (in server mode) rse_id</p>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
-                      <code>&#39;def&#39;</code>
+                      <code><span title="rucio.common.constants.DEFAULT_VO">DEFAULT_VO</span></code>
                   </span>
               </p>
             </td>
@@ -1510,7 +1512,7 @@ Call with either rse and vo, or (in server mode) rse_id</p>
     <span class="n">scheme</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">impl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">auth_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">vo</span><span class="o">=</span><span class="s2">&quot;def&quot;</span><span class="p">,</span>
+    <span class="n">vo</span><span class="o">=</span><span class="n">DEFAULT_VO</span><span class="p">,</span>
     <span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -1616,7 +1618,7 @@ Providing a list indicates the bulk mode.</p>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
-                      <code>&#39;def&#39;</code>
+                      <code><span title="rucio.common.constants.DEFAULT_VO">DEFAULT_VO</span></code>
                   </span>
               </p>
             </td>
@@ -1716,7 +1718,7 @@ Providing a list indicates the bulk mode.</p>
     <span class="n">delete_existing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">sign_service</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">auth_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">vo</span><span class="o">=</span><span class="s2">&quot;def&quot;</span><span class="p">,</span>
+    <span class="n">vo</span><span class="o">=</span><span class="n">DEFAULT_VO</span><span class="p">,</span>
     <span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">,</span>
     <span class="n">impl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1923,7 +1925,7 @@ Providing a list indicates the bulk mode.</p>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
-                      <code>&#39;def&#39;</code>
+                      <code><span title="rucio.common.constants.DEFAULT_VO">DEFAULT_VO</span></code>
                   </span>
               </p>
             </td>
