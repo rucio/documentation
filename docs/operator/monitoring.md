@@ -52,8 +52,8 @@ git clone https://github.com/rucio/rucio.git
 docker-compose --file etc/docker/dev/docker-compose.yml up -d
 ```
 
-The command will fire up four containers: dev_rucio_1, dev_graphite_1,
-dev_mysql_1, dev_activemq_1. Dev_graphite_1 is the one collecting internal
+The command will fire up various containers such as `dev-rucio-1`, `dev-graphite-1`, and
+`dev-activemq-1`. `dev-graphite-1` is the one collecting internal
 metrics from Rucio. The configurations of Rucio internal metrics sender are
 defined under the [monitor] section of rucio.cfg. Change the carbon_server and
 carbon_port according to your setting
@@ -76,7 +76,7 @@ docker run -d --name=grafana -p 3000:3000 grafana/grafana
 The Grafana web-portal is on port 3000 of the host. Add one data source of the
 type Graphite, choose access method to "Browser" and set URL to [http://ip:80](http://ip:80),
 where ip is the address of the server hosting the Graphite container
-`dev_graphite_1`.
+`dev-graphite-1`.
 
 A set of pre-defined Grafana Rucio internal plots is provided
 [here](https://github.com/rucio/rucio/blob/master/tools/monitoring/visualization/rucio-internal.json).

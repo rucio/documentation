@@ -24,6 +24,10 @@ module.exports={
     ]
   },
   "onBrokenLinks": "throw",
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   "onBrokenMarkdownLinks": "throw",
   "presets": [
     [

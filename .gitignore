@@ -1,27 +1,33 @@
 # -*- mode: gitignore; -*-
-node_modules/
-/website/translated_docs
-/website/build/
 /website/.docusaurus/
-/website/yarn.lock
-/website/i18n/*
 
-# rucio repo for generating API docs
-/rucio
-
-# generated API docs
-/docs/rucio_client_api.md
-/docs/rucio_rest_api.md
+# Exclude specific directories in /docs/
 /docs/bin
 /docs/release-notes/
+
+# Exclude all directories in /tools/run_in_docker/
+/tools/run_in_docker/*/
+# And specifically also /tools/run_in_docker/rucio in case it is a symlink instead of a dir
+/tools/run_in_docker/rucio
+
+# Exclude everything in /tools/auto_generated/
+/tools/auto_generated/*
+
+# Exclude everything in specified directories in /website/static/
+/website/static/html/*
+/website/static/yaml/*
+
+# Exclude node_modules
+/tools/openapi_examples/node_modules
+/website/node_modules/
+
 /docs/release-notes.md
-/docs/client_api
+*.lock
 
 # emacs
 *~
 \#*\#
 /.emacs.desktop
-/.emacs.desktop.lock
 *.elc
 auto-save-list
 tramp
