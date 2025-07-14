@@ -22,6 +22,38 @@ please see below for how to create custom algorithms.
 For `FTS3TapeMetadataPlugin` in particular,
 please check the (FTS3 Transfertool Plugin documentation)[operator_transfers/configure_fts3_plugins.md].
 
+## Default algorithms
+
+If your experiment always uses the same custom algorithm
+for one of these classes, it can be implemented in your
+policy package as a 'default algorithm'. This means it
+will be discovered and used without requiring any special
+registration or configuration.
+
+A default algorithm must be implemented by a function
+with the same name as the algorithm type, in a module with
+the same name as the algorithm type. For example, to
+implement a default `lfn2pfn` algorithm, create a module
+named `lfn2pfn.py` within your policy package, and create
+a function inside it with the following signature:
+
+```python
+def lfn2pfn(scope, name, rse, rse_attrs, protocol_attrs):
+    # Implement default lfn2pfn algorithm here
+    return pfn
+```
+
+This function will then be called every time a
+logical-to-physical filename translation is required,
+without any special configuration or registration.
+Defaults for the other algorithm classes
+(`pfn2lfn`, `non_deterministic_pfn`, `scope`,
+`auto_approve` and `fts3_tape_metadata_plugins`) can be
+provided in the same way. For more complex scenarios,
+for example if you require multiple custom algorithms
+that need to be called in different scenarios, please
+see the sections below.
+
 ## Developing a custom algorithm
 To develop a custom algorithm:
 
