@@ -24,18 +24,22 @@ please check the (FTS3 Transfertool Plugin documentation)[operator_transfers/con
 
 ## Default algorithms
 
-If your experiment always uses the same custom algorithm
-for one of these classes, it can be implemented in your
-policy package as a 'default algorithm'. This means it
-will be discovered and used without requiring any special
-registration or configuration.
+Default algorithms are useful when your experiment always
+uses the same custom implementation for one of the core
+algorithms listed above. When this is the case, it can be
+implemented in your policy package as a 'default algorithm'.
+This means it will be discovered and used without requiring
+any special registration or configuration.
 
 A default algorithm must be implemented by a function
 with the same name as the algorithm type, in a module with
-the same name as the algorithm type. For example, to
-implement a default `lfn2pfn` algorithm, create a module
-named `lfn2pfn.py` within your policy package, and create
-a function inside it with the following signature:
+the same name as the algorithm type. The algorithm type
+names are `non_deterministic_pfn`, `auto_approve`, `scope`,
+`pfn2lfn`, `lfn2pfn` and `fts3_tape_metadata_plugins`.
+For example, to implement a default `lfn2pfn` algorithm,
+create a module named `lfn2pfn.py` within your policy
+package, and create a function inside it with the following
+signature:
 
 ```python
 def lfn2pfn(scope, name, rse, rse_attrs, protocol_attrs):
@@ -46,13 +50,11 @@ def lfn2pfn(scope, name, rse, rse_attrs, protocol_attrs):
 This function will then be called every time a
 logical-to-physical filename translation is required,
 without any special configuration or registration.
-Defaults for the other algorithm classes
-(`pfn2lfn`, `non_deterministic_pfn`, `scope`,
-`auto_approve` and `fts3_tape_metadata_plugins`) can be
+Defaults for the other algorithm classes can be
 provided in the same way. For more complex scenarios,
-for example if you require multiple custom algorithms
-that need to be called in different scenarios, please
-see the sections below.
+for example if you require multiple `lfn2pfn` algorithms
+that apply to different RSEs, please see the sections
+below.
 
 ## Developing a custom algorithm
 To develop a custom algorithm:
