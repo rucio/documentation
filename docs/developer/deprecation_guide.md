@@ -8,9 +8,9 @@ When this has to be done, two key things need to be taken into consideration:
 
 * According to the [LTS policy](/docs/started/releasepolicy.md#client--server-compatibility), any client version must be compatible with all server versions since the second to last LTS release. 
 
-This includes considerations like - keeping API endpoints in place, providing redirection for old client functions, including client side handing for arguments older servers may not handle.  
+This includes considerations like - keeping API endpoints in place, providing redirection for old client functions, including client side handling for arguments older servers may not handle.  
 
-* When a feature is planned to be deprecated, an issue to do so much be made and linked in code
+* When a feature is planned to be deprecated, an issue to do so must be made and linked in code
 
 Calculate the release in which the functionality should be removed, and make a `TODO` comment with that release. 
 Make an issue that corresponds to this `TODO` and link it in the issue. 
