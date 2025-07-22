@@ -1054,7 +1054,10 @@
     <div class="doc doc-contents ">
 
 
-        <p>DataIdentifier client class for working with data identifiers</p>
+        <p>Client for the DIRAC integration layer.</p>
+<p>This client wraps the REST calls used by the <code>RucioFileCatalog</code> plugin in DIRAC.
+Only <code>add_files</code> is currently provided and it behaves like any other <code>BaseClient</code>
+method by handling authentication tokens and host selection automatically.</p>
 
 
 
@@ -1090,12 +1093,15 @@
 
     <div class="doc doc-contents ">
 
-        <p>Bulk add files:</p>
+        <p>Register files and create missing parent structures.</p>
+<p>For each entry in <code>lfns</code> the method:</p>
 <ul>
-<li>Create the file and replica.</li>
-<li>If doesn't exist, create the dataset containing the file as well as a rule on the dataset on ANY sites.</li>
-<li>Create all the ascendants of the dataset if they do not exist</li>
-<li>Attach metadata defined in <code>parents_metadata</code></li>
+<li>Creates the file and its replica on the specified RSE.</li>
+<li>If the containing dataset does not exist, it is created with a replication
+  rule using the RSE expression <code>ANY=true</code>. This places the dataset on any
+  RSE advertising the <code>ANY</code> attribute.</li>
+<li>Creates all ancestor containers when needed.</li>
+<li>Attaches metadata from <code>parents_metadata</code> to those parents.</li>
 </ul>
 
 
@@ -1113,7 +1119,14 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>List of lfn (dictionary {'lfn': <lfn>, 'rse': <rse>, 'bytes': <bytes>, 'adler32': <adler32>, 'guid': <guid>, 'pfn': <pfn>}</p>
+                <p>Iterable of dictionaries describing the files. Each dictionary must contain:</p>
+<ul>
+<li><strong><code>lfn</code></strong>  full logical file name with scope</li>
+<li><strong><code>rse</code></strong>  destination RSE name</li>
+<li><strong><code>bytes</code></strong>  file size in bytes</li>
+<li><strong><code>adler32</code></strong>  Adler‑32 checksum</li>
+</ul>
+<p>Optional keys include <code>guid</code> <code>pfn</code> and <code>meta</code>.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1129,7 +1142,8 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>A boolean to ignore blocked sites.</p>
+                <p>When <code>True</code>, the availability status of RSEs is ignored and blocked RSEs are
+still accepted. Defaults to <code>False</code> which rejects blocked RSEs.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1149,7 +1163,9 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Metadata for selected hierarchy DIDs. (dictionary {'lpn': {key : value}}). Default=None</p>
+                <p>Mapping of parent logical path names to metadata {'lpn': {key : value}}.
+Entries are only applied when new datasets or containers are created.
+Defaults to None.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1165,6 +1181,78 @@
           </tr>
       </tbody>
     </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="typing.Literal">Literal</span>[True]</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>When the server confirms the creation.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RucioException">RucioException</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Raised when the HTTP request is not successful.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Register a file using the DIRAC naming style. Dirac's scope extraction is
+required to be set for this to work:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.diracclient</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiracClient</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">rucio.common.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_uuid</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">dc</span> <span class="o">=</span> <span class="n">DiracClient</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">lfn</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/belle/mock/cont_</span><span class="si">{</span><span class="n">generate_uuid</span><span class="p">()</span><span class="si">}</span><span class="s2">/dataset_</span><span class="si">{</span><span class="n">generate_uuid</span><span class="p">()</span><span class="si">}</span><span class="s2">/file_</span><span class="si">{</span><span class="n">generate_uuid</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">files</span> <span class="o">=</span> <span class="p">[{</span>
+<span class="o">...</span>     <span class="s2">&quot;lfn&quot;</span><span class="p">:</span> <span class="n">lfn</span><span class="p">,</span>
+<span class="o">...</span>     <span class="s2">&quot;rse&quot;</span><span class="p">:</span> <span class="s2">&quot;XRD1&quot;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="o">...</span>     <span class="s2">&quot;adler32&quot;</span><span class="p">:</span> <span class="s2">&quot;0cc737eb&quot;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="s1">&#39;guid&#39;</span><span class="p">:</span> <span class="n">generate_uuid</span><span class="p">()</span>
+<span class="o">...</span> <span class="p">}]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">dc</span><span class="o">.</span><span class="n">add_files</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+<span class="kc">True</span>
+</code></pre></div>
+</details>
 
 
     </div>
