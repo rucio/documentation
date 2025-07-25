@@ -15,6 +15,7 @@ Deletion in Rucio can be performed in broadly two ways.
 
     Additionally, each DID also has a lifetime associated with it (default is None). The metadata `expires_at` of the DID is calculated similarly to a rule.
     The `Undertaker` daemon is responsible for handling expired DIDs. The daemon checks if none of the associated rules to the DID are locked, if not it removes all rules of the DID (see section above). The DID itself is then removed from the catalog.
+    If all the DIDs in a collection type dataset are deleted, the collection itself is not removed unless it also has an expired lifetime.
 
 **The DID expiration overrules the rule expiration. But the locked rules are protected.**
 
