@@ -5,7 +5,8 @@ title: Setting up a Rucio Developer environment on Mac with Apple Silicon
 
 ## Setting up a Rucio Developer environment on Mac with Apple Silicon
 
-Currently Rucio packages and containers are only available for the `x86_64` architecture.
+All production Rucio packages and containers are also available for the `linux/arm64` architecture, and are thus compatible with Apple Silicon.
+However, some of the other packages used in the development environment might not be compatible with this architecture.
 
 A Mac equipped with Apple Silicon can execute code compiled for the `x86_64` instruction set via a translation mechanism known as [Rosetta 2](https://support.apple.com/en-gb/guide/security/secebb113be1/web).
 
