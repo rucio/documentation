@@ -90,11 +90,14 @@ psql -h dbod-rucioitdb.cern.ch -U admin -p <port> -c '\password'
 ```
 Details about which port to connect to, etc can be found on the DBOD dashboard.
 
-While inside the db instance, we can create the `rucio` user and db, and we can assign admin privileges to it:
+While connected to the PostgreSQL instance, we can create the rucio database and assign ownership to a dedicated rucio user as follows:
+
 ```sql
-CREATE ROLE rucio WITH LOGIN PASSWORD 'xxx';
-ALTER GROUP admin ADD USER rucio;
 CREATE DATABASE rucio;
+
+CREATE ROLE rucio WITH LOGIN PASSWORD 'xxx';
+GRANT rucio TO admin;
+ALTER DATABASE rucio OWNER TO rucio;
 ```
 
 Then, modify the `pg.hba.conf` configuration file on the DBOD dashboard with the following values, to allow `rucio` to access the db:
