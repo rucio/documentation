@@ -84,7 +84,6 @@ As such, we believe that the benefits outweigh the downsides.
 ### Variable Assignment
 
 SQL statements should be assigned to a variable, then executed separately.
-The name `stmt` is a common choice.
 
 ```python
 # Wrong
@@ -95,6 +94,31 @@ stmt = select(
     models.RSE
 )
 rses = session.execute(stmt).scalars().all()
+```
+
+If a single query is executed inside a namespace, then the name `stmt` is a common choice.
+Otherwise, distinct names should be used.
+
+```python
+# Wrong
+stmt = select(
+    models.AccountLimit
+)
+local_limits = session.execute(stmt).scalars().all()
+stmt = select(
+    models.AccountGlobalLimit
+)
+global_limits = session.execute(stmt).scalars().all()
+
+# Right
+local_limits_stmt = select(
+    models.AccountLimit
+)
+local_limits = session.execute(local_limits_stmt).scalars().all()
+global_limits_stmt = select(
+    models.AccountGlobalLimit
+)
+global_limits = session.execute(global_limits_stmt).scalars().all()
 ```
 
 ### SQLAlchemy Syntax
