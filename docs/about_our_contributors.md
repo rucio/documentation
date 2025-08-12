@@ -71,6 +71,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Dimitris Xenakis [d.xenakis@ieee.org](mailto:d.xenakis@ieee.org), 2024
 - Fabio Luchetti [fabio.luchetti@cern.ch](mailto:fabio.luchetti@cern.ch), 2021
 - Giovanni Guerrieri [giovanni.guerrieri@cern.ch](mailto:giovanni.guerrieri@cern.ch), 2024
+- Luis Obis [luis.obis@cern.ch](mailto:luis.obis@cern.ch), 2025
 
 # Organisations employing contributors
 
