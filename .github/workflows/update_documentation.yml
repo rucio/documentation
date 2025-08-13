@@ -21,6 +21,14 @@ jobs:
       - name: Lint docs
         run: |
           ./tools/check-docs.sh
+  check_spelling:
+    name: Check Spelling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check spelling
+        uses: codespell-project/actions-codespell@v2
   check_file_names:
     name: Check File Names
     runs-on: ubuntu-latest
