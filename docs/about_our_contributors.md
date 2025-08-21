@@ -67,6 +67,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Anton Schwarz [anton.schwarz@cern.ch](mailto:anton.schwarz@cern.ch), 2022
 - Johannes Lange [johannes.lange@uni-hamburg.de](mailto:johannes.lange@uni-hamburg.de), 2022-2023
 - Domenic Gosein [domenic.gosein@cern.ch](mailto:domenic.gosein@cern.ch), 2023
+- Maggie Voetberg [maggiev@fnal.gov](mailto:maggiev@fnal.gov), 2024
 - Eraldo Junior [esilvaju@cern.ch](mailto:esilvaju@cern.ch), 2021-2024
 - Dimitris Xenakis [d.xenakis@ieee.org](mailto:d.xenakis@ieee.org), 2024
 - Fabio Luchetti [fabio.luchetti@cern.ch](mailto:fabio.luchetti@cern.ch), 2021
