@@ -242,6 +242,34 @@ over
   approach over the `Generator` one because it's more understandable and easier
   to read.
 
+**`__init__` should always have a return annotation**
+
+You might think that adding the `-> None` return annotation to `_init_` functions is unnecessary. However, from [PEP-484](https://peps.python.org/pep-0484/):
+> Note that the return type of `__init__` ought to be annotated with `-> None`. The reason for this is subtle.
+> If `__init__` assumed a return annotation of `-> None`, would that mean that an argument-less, un-annotated `__init__` method should still be type-checked?
+> Rather than leaving this ambiguous or introducing an exception to the exception, we simply say that `__init__` ought to have a return annotation; the default behavior is thus the same as for other methods.
+
+Mypy explains this with this code example:
+
+```python
+class UntypedExample:
+    # This method is not type-checked at all!
+    def __init__(self):
+        self.voltage = 0.0
+
+class TypedExample:
+    # This is how to ensure that a 0-argument __init__ is type-checked:
+    def __init__(self) -> None:
+        self.voltage = 0.0
+```
+
+(from the [mypy 0.641 release notes](https://mypy-lang.blogspot.com/2018/10/mypy-0640-released.html))
+
+Some more info:
+- https://typing.python.org/en/latest/spec/annotations.html
+
+
+
 ### Common Types
 
 To ensure a consistent use of type annotations in Rucio, here is a list of
