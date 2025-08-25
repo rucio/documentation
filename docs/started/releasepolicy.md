@@ -34,9 +34,9 @@ For differences between the versions of a Rucio client and a Rucio server we gua
 compatibility between a server and an older client up until the second LTS release line
 preceding the server.
 
-For example, a 37 Rucio server guarantees client support until the second LTS release line
+For example, a 38 Rucio server guarantees client support until the second LTS release line
 preceding its version, thus the 32 LTS release line. Therefore it guarantees support
-of clients of the 32, 33, 34, 35, 36 and 37 release lines.
+of clients of the 32, 33, 34, 35, 36, 37, and 38 release lines.
 
 A 33 Rucio server guarantees client support of the 1.29, 1.30, 1.31, 32, and 33 release
 lines, while a 32 server guarantees support of the 1.26, 1.27, 1.28, 1.29, 1.30, 1.31, and
@@ -51,13 +51,13 @@ server.
 | Version         | Code name                                 | Release date   | Supported until      |
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
 | 39              | Grand Theft Donkey                        | _2025-11_      | _2026-03_            |
-| 38 LTS          | Donkirk                                   | _2025-07_      | _at least 2027-07_   |
-| **37**          | **Dungeons & Donkeys**                    | **2025-04**    | _2025-07_            |
+| **38 LTS**      | **Donkirk**                               | **2025-08**    | _at least 2027-08_   |
+| 37              | Dungeons & Donkeys                        | 2025-04        | 2025-08              |
 | 36              | Donkey Unchained                          | 2024-12        | 2025-04              |
-| **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | _at least 2026-07_   |
+| **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | _at least 2026-08_   |
 | 34              | Donkey Potter and the Data Cache          | 2024-03        | 2024-07              |
 | 33              | Eternal Sunshine of the Donkey's Mind     | 2023-12        | 2024-03              |
-| **32 LTS**      | **The Good, The Bad and the Donkey**      | **2023-08**    | **2025-08**          |
+| 32 LTS          | The Good, The Bad and the Donkey          | 2023-08        | 2025-08              |
 | 1.31            | Donkeys of the Caribbean                  | 2023-03        | 2023-07              |
 | 1.30            | The Donkeynator                           | 2022-11        | 2023-03              |
 | 1.29 LTS        | Into the Donkeyverse                      | 2022-07        | 2024-08              |
