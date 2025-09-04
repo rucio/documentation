@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap">
 <script src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/documentation/assets/css/styles.ed5c0398.css">
-<script src="/documentation/assets/js/runtime~main.315d917a.js" defer="defer"></script>
+<script src="/documentation/assets/js/runtime~main.fae4bff0.js" defer="defer"></script>
 <script src="/documentation/assets/js/main.3e4b657b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -30,6 +30,7 @@
 <ol>
 <li>Create <code>dids_opendata</code> table, <code>OPENDATA_DID_UPDATED_AT_IDX</code> index, <code>OPENDATA_DID_CREATED_AT_IDX</code> index, <code>OPENDATA_DID_STATE_IDX</code> index, <code>OPENDATA_DID_STATE_UPDATED_AT_IDX</code> index, <code>dids_opendata_doi</code> table, <code>OPENDATA_DOI_UPDATED_AT_IDX</code> index, <code>OPENDATA_DOI_CREATED_AT_IDX</code> index, <code>dids_opendata_meta</code> table. (Alembic revision <code>a62db546a1f1</code>)</li>
 </ol>
+<p>Moreover, any SQLAlchemy connection URLs (that previously looked like <code>oracle://user:pass@dsn</code> or <code>oracle+cx_oracle://user:pass@dsn</code>) <strong>must</strong> be updated to <code>oracle+oracledb://user:pass@dsn</code>. Example update in commit [<a href="https://github.com/rucio/rucio/issues/6467" target="_blank" rel="noopener noreferrer">#6467</a>](<a href="https://github.com/rucio/rucio/pull/7760/commits/15db1082abf04a950e705c1087b6db68e2782cd5" target="_blank" rel="noopener noreferrer">https://github.com/rucio/rucio/pull/7760/commits/15db1082abf04a950e705c1087b6db68e2782cd5</a>).</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="general">General<a href="#general" class="hash-link" aria-label="Direct link to General" title="Direct link to General">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="features">Features<a href="#features" class="hash-link" aria-label="Direct link to Features" title="Direct link to Features">​</a></h3>
 <ul>
