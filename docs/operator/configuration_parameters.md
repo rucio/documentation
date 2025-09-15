@@ -478,6 +478,8 @@ a setting already specified in the Configuration File.
   metadata in the transfer process. List[String]. Default: `None`.
   - **metadata_byte_limit**: _(Optional)_ Limit applied to `archive_metadata` during a transfer.
   Only used with archive metadata plugins using FTS3. Integer. Default `None`.
+  - **stats_enabled**: _(Optional)_ Boolean. Enable logging of transfer stats. Default: `True`.
+  - **stats_downsample_period**: _(Optional)_ Integer. Period at which higher-resolution transfer samples are downsampled into lower-resolution (but higher-retention) samples. Note: some randomness is always introduced to this value, in order to reduce the likelihood of performing the related database operations multiple times in parallel.
 #### **virtual_placement**
   - **vp_endpoint**: _(Optional)_ Virtual Placement server. Once VP is
     integrated in Rucio it won't be needed. Default: ` `.
