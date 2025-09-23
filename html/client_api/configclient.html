@@ -455,6 +455,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rucio.client.configclient.ConfigClient.delete_config_section" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_config_section
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1017,6 +1026,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rucio.client.configclient.ConfigClient.delete_config_section" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete_config_section
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1392,6 +1410,78 @@ values via the request body.</p>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The name of the option.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    True if option was removed successfully.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.client.configclient.ConfigClient.delete_config_section" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_config_section</span>
+
+
+<a href="#rucio.client.configclient.ConfigClient.delete_config_section" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_config_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Delete a whole section from the config</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>section</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The name of the section.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">

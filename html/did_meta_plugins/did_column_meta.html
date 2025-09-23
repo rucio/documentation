@@ -348,6 +348,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.set_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.set_metadata_bulk" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_metadata_bulk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.list_dids" class="md-nav__link">
     <span class="md-ellipsis">
       list_dids
@@ -360,6 +378,15 @@
   <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.delete_metadata" class="md-nav__link">
     <span class="md-ellipsis">
       delete_metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.manages_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      manages_key
     </span>
   </a>
   
@@ -567,6 +594,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.set_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.set_metadata_bulk" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_metadata_bulk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.list_dids" class="md-nav__link">
     <span class="md-ellipsis">
       list_dids
@@ -579,6 +624,15 @@
   <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.delete_metadata" class="md-nav__link">
     <span class="md-ellipsis">
       delete_metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.manages_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      manages_key
     </span>
   </a>
   
@@ -681,6 +735,8 @@
 
         <p>A metadata plugin to interact with the base DID table metadata.</p>
 
+        <p>Initialize the DID column metadata plugin.</p>
+
 
 
 
@@ -715,7 +771,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Get data identifier metadata.</p>
+        <p>Get all the metadata of some data identifier.</p>
 
 
 <table>
@@ -732,9 +788,13 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The scope name.</p>
+                <p>The scope of the DID.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.InternalScope">InternalScope</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -744,9 +804,289 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The data identifier name.</p>
+                <p>The name of the DID.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>session</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The database session in use.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="sqlalchemy.orm.Session">Session</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>DID metadata as a dictionary.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.set_metadata" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">set_metadata</span>
+
+
+<a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.set_metadata" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">set_metadata</span><span class="p">(</span>
+    <span class="n">scope</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span>
+<span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Add a single key-value metadata pair to a data identifier.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope of the DID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.InternalScope">InternalScope</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The name of the DID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>key</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The metadata key.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>value</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The metadata value.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Any">Any</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>recursive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Option to propagate the metadata updates to child content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>session</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The database session in use.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="sqlalchemy.orm.Session">Session</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.set_metadata_bulk" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">set_metadata_bulk</span>
+
+
+<a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.set_metadata_bulk" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">set_metadata_bulk</span><span class="p">(</span>
+    <span class="n">scope</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span>
+<span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Add multiple key-value metadata pairs to a data identifier.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>scope</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The scope of the DID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.InternalScope">InternalScope</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The name of the DID.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>metadata</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>All key-value metadata pairs to set.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>recursive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Option to propagate the metadata updates to child content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -800,6 +1140,9 @@
     <div class="doc doc-contents ">
 
         <p>Search data identifiers.</p>
+<p>:yields:
+    - If long is False: DID names (str).
+    - If long is True: dicts with keys: {'scope', 'name', 'did_type', 'bytes', 'length'}.</p>
 
 
 <table>
@@ -816,9 +1159,13 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>the scope name.</p>
+                <p>The scope of the DIDs to list.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.InternalScope">InternalScope</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -828,9 +1175,13 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>dictionary of attributes by which the results should be filtered.</p>
+                <p>A single dict or a list of dicts representing OR groups (disjunction). Each group can include a semantic 'type' expanded into did_type filters.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Union">Union</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>], <span title="list">list</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -840,9 +1191,13 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>the type of the DID: all(container, dataset, file), collection(dataset or container), dataset, container, file.</p>
+                <p>Option to filter by a specific DID type: all(container, dataset, file), collection(dataset or container), dataset, container, file.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Literal">Literal</span>[&#39;all&#39;, &#39;collection&#39;, &#39;dataset&#39;, &#39;container&#39;, &#39;file&#39;]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;collection&#39;</code>
@@ -856,9 +1211,13 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>ignore case distinctions.</p>
+                <p>Has no effect.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>False</code>
@@ -872,9 +1231,13 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>limit number.</p>
+                <p>Option to limit the number of returned results.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -888,9 +1251,13 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>offset number.</p>
+                <p>Has no effect.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -904,12 +1271,56 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Long format option to display more information for each DID.</p>
+                <p>Option to display more information for each DID.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>recursive</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Option to recursively list child-DIDs content.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ignore_dids</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A set of 'scope:name' strings to de-duplicate results across OR groups and recursion.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="set">set</span>[<span title="str">str</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
                   </span>
               </p>
             </td>
@@ -926,38 +1337,6 @@
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
                       <code><span title="sqlalchemy.orm.Session">Session</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>recursive</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Recursively list DIDs content.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>ignore_dids</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>List of DIDs to refrain from yielding.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
                   </span>
               </p>
             </td>
@@ -983,7 +1362,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Deletes the metadata stored for the given key.</p>
+        <p>Deletes the metadata stored for the given key. (Currently not implemented)</p>
 
 
 <table>
@@ -1003,6 +1382,10 @@
                 <p>The scope of the DID.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="rucio.common.types.InternalScope">InternalScope</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1015,6 +1398,10 @@
                 <p>The name of the DID.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -1027,7 +1414,123 @@
                 <p>Key of the metadata.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>session</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The database session in use.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="sqlalchemy.orm.Session">Session</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.manages_key" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">manages_key</span>
+
+
+<a href="#rucio.core.did_meta_plugins.did_column_meta.DidColumnMeta.manages_key" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">manages_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Return whether a metadata key is managed by this plugin.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>key</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Key of the metadata.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>session</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Unused; accepted for interface compatibility.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="sqlalchemy.orm.Session">Session</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="bool">bool</span></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p><code>True</code> if the key is managed by this plugin, else <code>False</code>.</p>
+              </div>
             </td>
           </tr>
       </tbody>
@@ -1051,7 +1554,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Returns a unique identifier for this plugin. This can be later used for filtering down results to this plugin only.</p>
+        <p>Return a unique identifier for this plugin.</p>
 
 
 <table>
@@ -1064,6 +1567,9 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="str">str</span></code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
