@@ -1,5 +1,5 @@
 Jinja2~=3.1.6
-MarkupSafe==3.0.2
+MarkupSafe==3.0.3
 requests~=2.32.5
 mypy~=1.18
 black~=25.9.0
