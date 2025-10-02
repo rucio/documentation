@@ -82,4 +82,4 @@ Open a bash prompt on the pod
 kubectl exec rucio-server-<pod identifier> --container rucio-server -it -- bash
 ```
 
-Then perform the upgrade with the Alembic tool as described in the database [documentation](./database#upgrading-and-downgrading-the-database-schema)
+Then perform the upgrade with the Alembic tool as described in the database [documentation](/operator/database#upgrading-and-downgrading-the-database-schema)
