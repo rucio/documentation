@@ -22,7 +22,7 @@ create.
 username@host:~$ rucio rule add --copies 2 --rses 'tier=1' scope:first_dataset scope:second_dataset
 ```
 
-To see all possible targets, the command `rucio rse list` can be uses with the same RSE expression:
+To see all possible targets, the command `rucio rse list` can be used with the same RSE expression:
 
 ```bash
 username@host:~$ rucio rse list --rses 'tier=1'
