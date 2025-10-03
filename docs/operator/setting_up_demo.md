@@ -202,6 +202,23 @@ And in the other run:
 run_daemons
 ```
 
+## Exposing ports
+For testing purposes, it can be helpful to expose the container ports on the localhost.
+In order to do so, you can use the optional `docker-compose.ports.yml` file,
+which defines the ports each service exposes.
+
+If manually setting up the environment, you just need to pass this extra file on top of the main compose file, e.g. in the following way:
+
+```sh
+docker-compose --file etc/docker/dev/docker-compose.yml --file etc/docker/dev/docker-compose.ports.yml up -d
+```
+
+If using the `bootstrap_dev.sh` script, you can pass the `-x / --expose-ports` flag, e.g.:
+
+```sh
+./tools/bootstrap_dev.sh --master --expose-ports
+```
+
 ## Development
 
 The idea for containerised development is that you use your host machine
