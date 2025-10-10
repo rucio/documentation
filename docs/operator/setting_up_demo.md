@@ -19,7 +19,7 @@ support some features we rely on.
 
 Start the Docker daemon with `sudo systemctl start docker`.
 You can confirm that Docker is running properly by executing (might need
-`sudo`:
+`sudo`):
 
 ```bash
 docker run hello-world
