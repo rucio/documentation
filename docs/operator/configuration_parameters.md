@@ -1,6 +1,6 @@
 ---
 id: configuration_parameters
-title: Configuration parameters
+title: Configuration Parameters
 ---
 Description of the configuration parameters split in three different places:
 Rucio configuration file (`rucio.cfg`), Rucio configuration table and RSE attributes.
