@@ -97,7 +97,20 @@ If this server is accessible to other services related to Open Data such as the 
 
 ## REST API
 
-The [REST API for Open Data](https://rucio.cern.ch/documentation/html/rest_api_doc.html#tag/Opendata) is available as part of the Rucio REST API documentation.
+The [REST API for Open Data](https://rucio.cern.ch/documentation/html/rest_api_doc.html#tag/open_data) is available as part of the Rucio REST API documentation.
 
 The most important feature is that users are able to send requests to the public Open Data endpoint without any kind of authentication.
 This can be used to establish synchronization between Rucio and a third party app such as an Open Data Portal.
+
+## Open Data replication rules
+
+It is possible to trigger the creation of a replication rule when an Open Data DID is set to `public`.
+
+All the available rucio configuration options for the Open Data replication rules can be seen [in the rucio config parameters documentation page](https://rucio.cern.ch/documentation/operator/configuration_parameters#opendata).
+
+The rule option needs to be enabled and a valid RSE expression must be provided. Other options related to the rule can be set via configuration parameters, such as the rule account, number of copies or activity.
+
+The rule will be created when the Open Data DID is set to public and the rule **will not be deleted** if the Open Data DID is set to another state or deleted from the Rucio Open Data catalog, the rule will still remain.
+The rule can be deleted the same as with any other replication rule.
+
+It is possible to view the associated Open Data replication rule via the `rucio opendata show` command.
