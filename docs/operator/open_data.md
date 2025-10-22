@@ -106,7 +106,7 @@ This can be used to establish synchronization between Rucio and a third party ap
 
 It is possible to trigger the creation of a replication rule when an Open Data DID is set to `public`.
 
-All the available rucio configuration options for the Open Data replication rules can be seen [in the rucio config parameters documentation page](https://rucio.cern.ch/documentation/operator/configuration_parameters#opendata).
+All the available Rucio configuration options for the Open Data replication rules can be seen [in the Rucio config parameters documentation page](https://rucio.cern.ch/documentation/operator/configuration_parameters#opendata).
 
 The rule option needs to be enabled and a valid RSE expression must be provided. Other options related to the rule can be set via configuration parameters, such as the rule account, number of copies or activity.
 
