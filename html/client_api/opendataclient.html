@@ -1305,7 +1305,13 @@ The private opendata host is the regular rucio server, while the public opendata
 
 <a href="#rucio.client.opendataclient.OpenDataClient.update_opendata_did" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_opendata_did</span><span class="p">(</span>
-    <span class="o">*</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">doi</span><span class="o">=</span><span class="kc">None</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">scope</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">doi</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">record_id</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -1317,7 +1323,8 @@ The private opendata host is the regular rucio server, while the public opendata
     name: The name of the DID.
     state: The new state to set for the DID.
     meta: Metadata to update for the DID. Must be a valid JSON object.
-    doi: DOI to associate with the DID. Must be a valid DOI string (e.g., "10.1234/foo.bar").</p>
+    doi: DOI to associate with the DID. Must be a valid DOI string (e.g., "10.1234/foo.bar") and unique across all DIDs.
+    record_id: The record ID of the DID to update. This can be used to cross-reference with external systems. Must be unique across all DIDs.</p>
 <p>Returns:
     True if the update was successful.</p>
 <p>Raises:
@@ -1344,6 +1351,7 @@ The private opendata host is the regular rucio server, while the public opendata
     <span class="n">include_files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">include_metadata</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">include_doi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">include_record_id</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">public</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -1357,6 +1365,7 @@ The private opendata host is the regular rucio server, while the public opendata
     include_files: If True, include a list of associated files. Defaults to False.
     include_metadata: If True, include extended metadata. Defaults to False.
     include_doi: If True, include DOI (Digital Object Identifier) information. Defaults to True.
+    include_record_id: If True, include the record ID of the DID. Defaults to True.
     public: If True, only return data if the DID is publicly accessible. Defaults to False.</p>
 <p>Returns:
     A dictionary containing metadata about the specified DID.
