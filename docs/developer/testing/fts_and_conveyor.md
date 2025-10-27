@@ -19,6 +19,15 @@ Once the containers are running, you should initialize the tests.
 Most of the Conveyor tests require the default test RSEs to be set up.
 If using the `tools/run_tests.sh` script, you should pass the `-r` flag to set the RSEs up.
 
+## Submitting a transfer
+Running the `conveyor-submitter` daemon will submit transfers to FTS. You can find documentation for this daemon [here](https://rucio.github.io/documentation/bin/rucio-conveyor-submitter)
+
+You can also use the `fts-rest-transfer-submit` command to manually submit a transfer. For example:
+
+```sh
+fts-rest-transfer-submit --checksum-mode both -s https://fts3-pilot.cern.ch:8446/ "mock://source.ch/file?size=1024&checksum=1234abcd" "mock://destination.ch/file?size_post=1024&checksum=1234abcd" adler32:1234abcd
+```
+
 ## Where to find logs
 Most of the Conveyor tests found in [`tests/test_conveyor.py`](https://github.com/rucio/rucio/blob/master/tests/test_conveyor.py)
 submit their transfers via FTS, so you can find the logs as part of the FTS and ActiveMQ containers.
