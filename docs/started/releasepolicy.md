@@ -57,7 +57,7 @@ server.
 | **38 LTS**      | **Donkirk**                               | **2025-08**    | _at least 2027-08_   |
 | 37              | Dungeons & Donkeys                        | 2025-04        | 2025-08              |
 | 36              | Donkey Unchained                          | 2024-12        | 2025-04              |
-| **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | _at least 2026-08_   |
+| **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | **2026-08**          |
 | 34              | Donkey Potter and the Data Cache          | 2024-03        | 2024-07              |
 | 33              | Eternal Sunshine of the Donkey's Mind     | 2023-12        | 2024-03              |
 | 32 LTS          | The Good, The Bad and the Donkey          | 2023-08        | 2025-08              |
