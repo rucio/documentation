@@ -50,6 +50,9 @@ server.
 
 | Version         | Code name                                 | Release date   | Supported until      |
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
+| 42              | How to Train Your Donkey                  | _2026-11_      | _2027-03_            |
+| 41 LTS          | Donkémon                                  | _2026-07_      | _at least 2028-07_   |
+| 40              | Guardians of the Donkeyverse              | _2026-03_      | _2026-07_            |
 | 39              | Grand Theft Donkey                        | _2025-11_      | _2026-03_            |
 | **38 LTS**      | **Donkirk**                               | **2025-08**    | _at least 2027-08_   |
 | 37              | Dungeons & Donkeys                        | 2025-04        | 2025-08              |
