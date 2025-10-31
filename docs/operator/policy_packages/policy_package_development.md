@@ -3,6 +3,10 @@ id: policy-package-development
 title: Developing a Policy Package
 ---
 
+## Template repository
+A template policy package repository can be found [here](https://github.com/rucio/policy-package-template).
+
+## Project structure
 The basic elements of a policy package are the following:
 
 - An `__init__.py` file that:
