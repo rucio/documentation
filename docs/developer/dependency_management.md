@@ -36,6 +36,7 @@ of a CI issue that was caused by an unpinned secondary dependency.
 3. Run `pip-compile requirements.dev.in`
   - (`dev` dependencies include dependencies from `requirements.server.txt`,
   so make sure to do these steps in order)
+4. Update the dependencies in `setuputil.py` according to the changes
 
 ### I want to add/remove/upgrade a `dev` dependency. What should I do?
 1. Make your changes in the `requirements.dev.in` file
@@ -57,7 +58,7 @@ To perform this major dependency upgrade:
     1. `requirements.server.in`
     2. `requirements.dev.in`
     3. `requirements.client.txt`
-2. Run `pip-compile --upgrade requirements.server.in`
+2. Run `pip-compile --upgrade requirements.server.in` (and update the dependencies in `setuputil.py` according to the changes)
 3. Run `pip-compile --upgrade requirements.dev.in`
 
 ## Security updates
