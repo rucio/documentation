@@ -821,15 +821,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rucio.client.scopeclient.ScopeClient.update_scope_ownership" class="md-nav__link">
-    <span class="md-ellipsis">
-      update_scope_ownership
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rucio.client.scopeclient.ScopeClient.list_scopes_for_account" class="md-nav__link">
     <span class="md-ellipsis">
       list_scopes_for_account
@@ -1012,15 +1003,6 @@
   <a href="#rucio.client.scopeclient.ScopeClient.list_scopes" class="md-nav__link">
     <span class="md-ellipsis">
       list_scopes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rucio.client.scopeclient.ScopeClient.update_scope_ownership" class="md-nav__link">
-    <span class="md-ellipsis">
-      update_scope_ownership
     </span>
   </a>
   
@@ -1312,142 +1294,6 @@
             <td class="doc-returns-details">
               <div class="doc-md-description">
                 
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h5 id="rucio.client.scopeclient.ScopeClient.update_scope_ownership" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">update_scope_ownership</span>
-
-
-<a href="#rucio.client.scopeclient.ScopeClient.update_scope_ownership" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_scope_ownership</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">scope</span><span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Change the ownership of a scope</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>account</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>New account to assign as scope owner</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>scope</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Scope to change ownership of</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><span title="bool">bool</span></code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>True if the operation was successful</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code><span title="AccountNotFound">AccountNotFound</span></code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>If account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code><span title="ScopeNotFound">ScopeNotFound</span></code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>If scope doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code>(<span title="CannotAuthenticate">CannotAuthenticate</span>, <span title="AccessDenied">AccessDenied</span>)</code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>Insufficient permission/incorrect credentials to change ownership.</p>
               </div>
             </td>
           </tr>
