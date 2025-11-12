@@ -7,10 +7,10 @@ sidebar_label: Monitoring
 
 Rucio provides multiple monitoring components to observe its internal operations, data transfers, file access, and database state. These components include:
 
-- **Internal Monitoring:** Observing Rucio server and daemon performance.
-- **Transfers, Deletion, and More Monitoring:** Tracking transfers, deletions, and other Rucio events.
-- **File/Dataset Access Monitoring:** Using traces to monitor client interactions.
-- **Database Dump and Visualization:** Extracting database-level metrics for visualization.
+- [**Internal Monitoring**](#internal-monitoring): Observing Rucio server and daemon performance.
+- [**Transfers, Deletion, and Other Monitoring**](#transfers-deletion-and-other-monitoring): Tracking transfers, deletions, and other Rucio events.
+- [**File/Dataset Access Monitoring**](#traces):Using traces to monitor client interactions.
+- [**Database Dump and Visualization**](#rucio-database-dump) Extracting database-level metrics for visualization.
 
 
 ## Internal Monitoring
@@ -110,8 +110,8 @@ These events are collected and delivered by the Hermes daemon, which can forward
   'lineColor': '#90a4ae'
 }}}%%
 flowchart TB
-  subgraph RucioTransfer["**Transfer,&nbsp;Deletion&nbsp;Traces&nbsp;&amp;&nbsp;Other&nbsp;Monitoring**"]
-        A2["Hermes Daemon"]
+  subgraph RucioTransfer["**Transfer,&nbsp;Deletion&nbsp;&amp;&nbsp;Other&nbsp;Monitoring**"]
+        A2["Rucio Daemon: Hermes"]
         Q1["ActiveMQ"]
         ETL["ETL / Data Pipeline"]
         OS1["OpenSearch / Elasticsearch / InfluxDB"]
@@ -232,6 +232,7 @@ Different options are shown in figure and described below.
       smtp_keyfile = 
       ```
 ### Event Types
+Different event types are listed below with their payload structure.
 1. Transfer Events
    ```
    {
@@ -375,10 +376,10 @@ flowchart TB
   class ETL etl;
 ```
 
-## Rucio database dumping
+## Rucio database dump
 Database-level monitoring extracts different information directly from the Rucio database. This includes insights such as RSE usage statistics, account quotas, and other metadata relevant to experiments. These data are periodically queried and exported to external storage backends for visualization and long-term monitoring.
 
-Some Logstash pipeline definitions are given [here](https://github.com/rucio/rucio/tree/master/tools/monitoring/logstash-pipeline). These example pipelines use the Logstash JDBC input plugin to connect to the Rucio PostgreSQL database, execute SQL queries, and extract structured data periodically. The retrieved records are then sent to Elasticsearch but can be changed to other storage backends such as OpenSearch.
+Some Logstash pipeline definitions are given [here](https://github.com/rucio/rucio/tree/master/tools/monitoring/logstash-pipeline). These example pipelines use the Logstash JDBC input plugin to connect to the Rucio PostgreSQL database, execute SQL queries, and extract structured data periodically. The retrieved records are then sent to Elasticsearch but can be changed to other storage backends such as OpenSearch. The following diagram shows the high-level flow for database-level monitoring using Logstash.
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {
@@ -417,29 +418,44 @@ A typical Logstash configuration consists of three sections — input, filter, a
 ```
 input {
    jdbc {
-      jdbc_connection_string => ""
+      jdbc_connection_string => "jdbc:postgresql://host:5432/<dbname>""
       jdbc_user => ""
       jdbc_password => ""
-      jdbc_driver_library => "/usr/share/logstash/java/postgresql-42.2.6.jar"
+      jdbc_driver_library => "/usr/share/logstash/java/postgresql-<version>.jar"
       jdbc_driver_class => "org.postgresql.Driver"
       statement => "SELECT rses.rse, rse_usage.source, rse_usage.used, rse_usage.free, rse_usage.files FROM rse_usage INNER JOIN rses ON rse_usage.rse_id=rses.id WHERE rse_usage.files IS NOT NULL AND rse_usage.files!=0;"
       schedule => "0 0 * * *"
    }
 }
-```
-The output section defines where the extracted data are delivered. In most deployments, these are indexed into OpenSearch or Elasticsearch for analytics dashboards in Grafana or Kibana:
-```
+
+filter {
+   # Placeholder for transformations or enrichments
+   # Examples:
+   # - Add computed fields
+   # - Rename fields
+   # - Convert units (e.g., bytes to GB)
+   # - Drop unwanted fields
+}
+
+
 output {
   elasticsearch {
     hosts => ["http://elasticsearh:9200"]
     action => "index"
-    index => "rucio_account"
+    index => "rucio_rse"
     user => "elastic"
     password => "password"
   }
 }
 ```
+Few points:
+- jdbc_driver_library: Can downloaded from [jdbc.postgresql.org](https://jdbc.postgresql.org/), choose the version that you want to use and enable that in logstash.
+- schedule: Defines how often the query runs (Cron-like syntax).
+- output: Defines where the extracted data are delivered. In most deployments, these are indexed into OpenSearch or Elasticsearch for analytics dashboards in Grafana or Kibana:
+- filter: This is optional. It helps in preprocessing your data before indexing
+
 
 Some [Kibana dashboard](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization/db_dump) example given.
 [Grafana dashboard](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Dashboards/Rucio-Storage.json) example for rse given.
+
 Note: Dashboard example is just for giving some idea, they might need to be tweaked according to your setup and needs. They might be also be on old versions. 
