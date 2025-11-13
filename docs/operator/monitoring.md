@@ -10,7 +10,8 @@ Rucio provides multiple monitoring components to observe its internal operations
 - [**Internal Monitoring**](#internal-monitoring): Observing Rucio server and daemon performance.
 - [**Transfers, Deletion, and Other Monitoring**](#transfers-deletion-and-other-monitoring): Tracking transfers, deletions, and other Rucio events.
 - [**File/Dataset Access Monitoring**](#traces):Using traces to monitor client interactions.
-- [**Database Dump and Visualization**](#rucio-database-dump) Extracting database-level metrics for visualization.
+- [**Database Dump and Visualization**](#rucio-database-dump): Extracting database-level metrics for visualization.
+- [**Probes**](#rucio-monitoring-probes): Automated checks and using Nagios or Prometheus Pushgateway.
 
 
 ## Internal Monitoring
@@ -119,21 +120,21 @@ flowchart TB
   end
 
   A2 -- direct write --> OS1
-  A2 -- publish --> Q1
+  A2 -- publish(STOMP) --> Q1
   Q1 -- consume --> ETL
   ETL --> OS1
   OS1 --> KB
 
   classDef mono fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
   classDef grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
-  classDef opensearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
+  classDef OpenSearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
   classDef mq fill:#f69f03,stroke:#b35c00,color:#fff,font-weight:bold;
   classDef etl fill:#4CAF50,stroke:#2E7D32,color:#fff,font-weight:bold;
 
 
   class A2,A3 mono;
   class Q1 mq;
-  class OS1 opensearch;
+  class OS1 OpenSearch;
   class KB grafana;
   class ETL etl;
 ```
@@ -142,7 +143,7 @@ Different options are shown in figure and described below.
 
 1. Queue-Based Pipelines
 
-     Hermes publishes events to a queue or topic in message queue (ActiveMQ). Multiple consumers can process events independently. Enables real-time, decoupled processing pipelines. These events from ActiveMQ can be consumed by ETL pipelines. These Pipelines allow aggregation, transformation, enrichment, and forwarding to different storage backends of your choice.
+     Hermes publishes events to a queue or topic in message queue (like ActiveMQ) via STOMP. Multiple consumers can process events independently. Enables real-time, decoupled processing pipelines. These events from ActiveMQ can be consumed by ETL pipelines. These Pipelines allow aggregation, transformation, enrichment, and forwarding to different storage backends of your choice.
 
      Example pipeline : ActiveMQ -> Logstash -> OpenSearch
 
@@ -185,7 +186,7 @@ Different options are shown in figure and described below.
 2. Direct Delivery
    
      These options send events directly to storage or alerting systems, bypassing queues.
-     Hermes can write events straight to Elasticsearch, OpenSearch, or InfluxDB. In addtion can also deliver events via email which supports custom SMTP servers, credentials, and SSL/TLS.
+     Hermes can write events straight to Elasticsearch, OpenSearch, or InfluxDB. In addition can also deliver events via email which supports custom SMTP servers, credentials, and SSL/TLS.
 
      Configuration option for each type is described below.
 
@@ -214,7 +215,7 @@ Different options are shown in figure and described below.
       influxdb_token = my-secret-influxdb-token
 
       # Elasticsearch endpoint for sending events
-      elastic_endpoint = https://elasticsearch-host:9200/rucio-eic-event/_bulk
+      elastic_endpoint = https://Elasticsearch-host:9200/rucio-eic-event/_bulk
       # Optional credentials if Elasticsearch is secured
       elastic_username = admin
       elastic_password = password
@@ -252,7 +253,7 @@ Different event types are listed below with their payload structure.
        dst-url: destination url of the transferred file
        duration: duration of the transfer (second)
        event_type: type of this event (transfer-submitted, \
-         transfer-submittion_failed, transfer-queued, \
+         transfer-submission_failed, transfer-queued, \
          transfer-failed, transfer-done)
        file-size: same as bytes
        guid: guid of the transfer
@@ -325,13 +326,13 @@ Different event types are listed below with their payload structure.
 There are other event for replicas, dids etc  not stated here.
 
 ### Dashboard
-[Kibana Dashbaord](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization) example was given.
-[Grafana Dashboard](https://github.com/rucio/monitoring-templates/blob/main/message-monitoring/Dashboards/Rucio-Transfer.json) for transfer for elaticsearch/opensearch example given.
+[Kibana Dashboard](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization) example was given.
+[Grafana Dashboard](https://github.com/rucio/monitoring-templates/blob/main/message-monitoring/Dashboards/Rucio-Transfer.json) for transfer for Elasticsearch/OpenSearch example given.
 
 Note: Dashboard example is just for giving some idea, they might need to be tweaked according to your setup and needs. They might be also be on old versions. 
 
 ## Traces
-The traces are sent by the pilots or the rucio clients whenever a file is downloaded/uploaded. These trace events are sent to the Rucio server via the /traces endpoint using HTTPS POST, where they are forwarded to messaging backends such as ActiveMQ. ActiveMQ acts as the messaging broker, delivering trace events to Kronos daemon. Any consumer like logstash can the be used for relaying traces to data pipelines for further processing if needed. And then directly or after processing be sent to storage backends such as OpenSearch, Elasticsearch, or InfluxDB, which allow querying, aggregation, and analytics. Finally, visualization tools like Grafana and Kibana can be used.
+The traces are sent by the pilots or the rucio clients whenever a file is downloaded/uploaded. These trace events are sent to the Rucio server via the /traces endpoint using HTTPS POST, where they are forwarded to messaging backends such as ActiveMQ via STOMP. ActiveMQ acts as the messaging broker, delivering trace events to Kronos daemon. Any consumer like logstash can the be used for relaying traces to data pipelines for further processing if needed. And then directly or after processing be sent to storage backends such as OpenSearch, Elasticsearch, or InfluxDB, which allow querying, aggregation, and analytics. Finally, visualization tools like Grafana and Kibana can be used.
 
 This is shown in figure below. Schemas of the traces can be found in [trace.py](https://github.com/rucio/rucio/blob/master/lib/rucio/core/trace.py) which can be used for dashboards.
 
@@ -357,21 +358,21 @@ flowchart TB
   end
 
   C1 -- traces (HTTPS POST) --> RS
-  RS -- publish --> Q1
-  Q1 -- consume --> KR
+  RS -- publish(STOMP) --> Q1
+  Q1 -- consume(STOMP) --> KR
   Q1 -- consume --> ETL
   ETL --> OS1
   OS1 --> KB
 
   classDef mono fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
   classDef grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
-  classDef opensearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
+  classDef OpenSearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
   classDef mq fill:#f69f03,stroke:#b35c00,color:#fff,font-weight:bold;
   classDef etl fill:#4CAF50,stroke:#2E7D32,color:#fff,font-weight:bold;
 
   class C1,RS,KR mono;
   class Q1 mq;
-  class OS1 opensearch;
+  class OS1 OpenSearch;
   class KB grafana;
   class ETL etl;
 ```
@@ -380,6 +381,8 @@ flowchart TB
 Database-level monitoring extracts different information directly from the Rucio database. This includes insights such as RSE usage statistics, account quotas, and other metadata relevant to experiments. These data are periodically queried and exported to external storage backends for visualization and long-term monitoring.
 
 Some Logstash pipeline definitions are given [here](https://github.com/rucio/rucio/tree/master/tools/monitoring/logstash-pipeline). These example pipelines use the Logstash JDBC input plugin to connect to the Rucio PostgreSQL database, execute SQL queries, and extract structured data periodically. The retrieved records are then sent to Elasticsearch but can be changed to other storage backends such as OpenSearch. The following diagram shows the high-level flow for database-level monitoring using Logstash.
+
+Note: While the examples above use Logstash for database-level monitoring, you can replace Logstash with other data ingestion options depending on your requirements.
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {
@@ -404,13 +407,13 @@ flowchart TB
 
   classDef mono fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
   classDef grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
-  classDef opensearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
+  classDef OpenSearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
   classDef logstash fill:#b34700,stroke:#b34700,color:#fff,font-weight:bold;
 
 
   class DB1,LS mono;
   class LS logstash;
-  class OS2 opensearch;
+  class OS2 OpenSearch;
   class GD grafana;
 ```
 
@@ -459,3 +462,85 @@ Some [Kibana dashboard](https://github.com/rucio/rucio/tree/master/tools/monitor
 [Grafana dashboard](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Dashboards/Rucio-Storage.json) example for rse given.
 
 Note: Dashboard example is just for giving some idea, they might need to be tweaked according to your setup and needs. They might be also be on old versions. 
+
+## Rucio Monitoring Probes
+
+Rucio provides a collection of **monitoring probes** that check the different status metrics of the Rucio.
+The list of probes is available [here](https://github.com/rucio/probes/tree/master).  
+There are [common](https://github.com/rucio/probes/tree/master/common) probes shared across experiments, and you can also create your own experiment-specific probes for custom monitoring.
+
+Rucio provides a prebuilt container on [Docker Hub](https://hub.docker.com/r/rucio/probes) that includes:
+
+- All dependencies for running the probes.
+- A lightweight **Jobber** daemon for scheduling probe execution.
+- The full Rucio probe repository. You can add extra probes as well.
+
+The container can push results either to a **Prometheus Pushgateway** or export data for **Nagios** alerting.
+
+Probe Execution Workflow is:
+
+- **Probes** are Python scripts under `rucio/probes/`.
+- **Jobber** acts as a cron-like scheduler inside the container.
+- **Output options:**
+  - **Prometheus Pushgateway:** for time-series metrics. Alert in prometheus Alert manager or Grafana Alert manager.
+  - **Nagios:** for exit-code–based alerting.
+
+Make sure you can your rucio.cfg file mounted to `/opt/rucio/etc/rucio.cfg` inside the container with db options and extra section for prometheus (if choosen) as:
+```cfg
+[monitor]
+prometheus_servers = "https://prometheuserver:port"
+prometheus_prefix = "" # default empty
+prometheus_labels = "" # default empty
+```
+
+For adding cron-like scheduling fo each probe in jobber, make sure you have added needed config in [dot-jobber](https://github.com/rucio/containers/blob/master/probes/dot-jobber). Minimal config needed is defined jobs
+```
+Example snippet from `.jobber`:
+```yaml
+version: 1.4
+jobs:
+  - name: CheckExpiredDIDs
+    cmd: ./check_expired_dids
+    time: '*/5 * * * *'    # every 5 minutes
+    onError: Continue
+  - name: CheckStuckRules
+    cmd: ./check_stuck_rules
+    time: '0 * * * *'      # hourly
+    onError: Continue
+```
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#d8e3e7',
+  'edgeLabelBackground': '#ffffff',
+  'tertiaryColor': '#cdd5d9',
+  'fontFamily': 'monospace',
+  'primaryBorderColor': '#90a4ae',
+  'lineColor': '#90a4ae'
+}}}%%
+flowchart TB
+  Probe["Rucio Probes"]
+  Nagios["Nagios Monitoring Server"]
+  Alert["Alerting (Email / Teams / Slack)"]
+  PromPush["Prometheus Pushgateway"]
+  Prometheus["Prometheus server"]
+  Grafana["Grafana Dashboards"]
+
+  Probe -- Exit code + stdout --> Nagios
+  Nagios -- Alert triggered if CRITICAL/WARNING --> Alert
+  Probe -- Gauge metrics --> PromPush
+  PromPush --> Prometheus
+  Prometheus --> Grafana
+
+  classDef probe fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
+  classDef nagios fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
+  classDef alert fill:#f44336,stroke:#b71c1c,color:#fff,font-weight:bold;
+  classDef prom fill:#009688,stroke:#00695C,color:#fff,font-weight:bold;
+  classDef graf fill:#FF9800,stroke:#E65100,color:#fff,font-weight:bold;
+
+  class Probe probe;
+  class Nagios nagios;
+  class Alert alert;
+  class PromPush,prometheus prom;
+  class Grafana graf;
+```
