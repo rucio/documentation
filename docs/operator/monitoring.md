@@ -477,6 +477,36 @@ Rucio provides a prebuilt container on [Docker Hub](https://hub.docker.com/r/ruc
 
 The container can push results either to a **Prometheus Pushgateway** or export data for **Nagios** alerting.
 
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#d8e3e7',
+  'edgeLabelBackground': '#ffffff',
+  'tertiaryColor': '#cdd5d9',
+  'fontFamily': 'monospace',
+  'primaryBorderColor': '#90a4ae',
+  'lineColor': '#90a4ae'
+}}}%%
+flowchart LR
+  Probe["Rucio Probes (Schedule via Jabber or others)"]
+  Nagios["Nagios"]
+  Prometheus["Prometheus"]
+  Grafana["Grafana Dashboards"]
+
+  Probe -- Exit code + stdout --> Nagios
+  Probe -- Gauge metrics  via Pushgateway--> Prometheus
+  Prometheus --> Grafana
+
+  classDef probe fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
+  classDef nagios fill:#E53935,stroke:#B71C1C,color:#fff,font-weight:bold;
+  classDef prom fill:#00868,stroke:#00695C,color:#fff,font-weight:bold;
+  classDef graf fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
+
+  class Probe probe;
+  class Nagios nagios;
+  class prometheus prom;
+  class Grafana graf;
+```
+
 Probe Execution Workflow is:
 
 - **Probes** are Python scripts under `rucio/probes/`.
@@ -494,8 +524,7 @@ prometheus_labels = "" # default empty
 ```
 
 For adding cron-like scheduling fo each probe in jobber, make sure you have added needed config in [dot-jobber](https://github.com/rucio/containers/blob/master/probes/dot-jobber). Minimal config needed is defined jobs
-```
-Example snippet from `.jobber`:
+
 ```yaml
 version: 1.4
 jobs:
@@ -507,40 +536,4 @@ jobs:
     cmd: ./check_stuck_rules
     time: '0 * * * *'      # hourly
     onError: Continue
-```
-
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#d8e3e7',
-  'edgeLabelBackground': '#ffffff',
-  'tertiaryColor': '#cdd5d9',
-  'fontFamily': 'monospace',
-  'primaryBorderColor': '#90a4ae',
-  'lineColor': '#90a4ae'
-}}}%%
-flowchart TB
-  Probe["Rucio Probes"]
-  Nagios["Nagios Monitoring Server"]
-  Alert["Alerting (Email / Teams / Slack)"]
-  PromPush["Prometheus Pushgateway"]
-  Prometheus["Prometheus server"]
-  Grafana["Grafana Dashboards"]
-
-  Probe -- Exit code + stdout --> Nagios
-  Nagios -- Alert triggered if CRITICAL/WARNING --> Alert
-  Probe -- Gauge metrics --> PromPush
-  PromPush --> Prometheus
-  Prometheus --> Grafana
-
-  classDef probe fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
-  classDef nagios fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
-  classDef alert fill:#f44336,stroke:#b71c1c,color:#fff,font-weight:bold;
-  classDef prom fill:#009688,stroke:#00695C,color:#fff,font-weight:bold;
-  classDef graf fill:#FF9800,stroke:#E65100,color:#fff,font-weight:bold;
-
-  class Probe probe;
-  class Nagios nagios;
-  class Alert alert;
-  class PromPush,prometheus prom;
-  class Grafana graf;
 ```
