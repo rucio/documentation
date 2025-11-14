@@ -165,7 +165,7 @@ Please notice that in this case, the various credentials will have to be properl
 
 To comply with the CERN security rules, we need to use the so-called LANDB sets, where the firewall has static openings automatically set up. Usually, such sets are used for redundancy or large, homogeneous services. These sets are either managed by the Computer Security Team or by the service managers themselves.
 
-Create a [new LanDB set](https://landb.cern.ch/portal/sets/create), following the recommendations: 
+Create a new LanDB set according to [CERN documentation](https://clouddocs.web.cern.ch/networking/landb_network_management.html), following the recommendations: 
 1. Type: Interdomain
 2. Network Domain: GPN
 3. Responsible: `<your-egroup>`
