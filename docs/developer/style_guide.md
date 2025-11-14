@@ -6,7 +6,7 @@ title: Style Guide
 **TL;DR**  - Install the provided pre-commits, follow their recommendations
 
 # General Style
-Rucio follows [flake8](https://flake8.pycqa.org/en/latest/user/index.html) style, ([with exclusions listed here](https://github.com/rucio/rucio/blob/master/.flake8)).
+Rucio follows [flake8](https://flake8.pycqa.org/en/latest/user/index.html) style, ([with exclusions listed here](https://github.com/rucio/rucio/blob/6f87396ff372eff25224341987568792457c016a/pyproject.toml#L86)).
 To use them to lint your code, run:
 ```
 python{version} -m pip install flake8
