@@ -435,11 +435,10 @@ a setting already specified in the Configuration File.
   - **did_prefix**: _(Optional)_ Default: ` `.
   - ***DIDTYPE*\_pattern**: _(Optional)_ Separated by `separator` char. No
     default.
-  - **rses**: Separated by commas.
+  - **rses**: The RSE expression to work on.
   - **scope**: _(Optional)_ Default: `test`.
   - **separator**: _(Optional)_ Separator char. No default.
   - **set_metadata**: _(Optional)_ Default: `True`.
-  - **sites**: Separated by commas _(to be deprecated, please use `rses`)_.
   - **sleep_time**: _(Optional)_ Integer. Default: `30`.
 #### **clientcachemap**
   - ***client_location['site']***
