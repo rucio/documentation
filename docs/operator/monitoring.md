@@ -9,7 +9,7 @@ Rucio provides multiple monitoring components to observe its internal operations
 
 - [**Internal Monitoring**](#internal-monitoring): Observing Rucio server and daemon performance.
 - [**Transfers, Deletion, and Other Monitoring**](#transfers-deletion-and-other-monitoring): Tracking transfers, deletions, and other Rucio events.
-- [**File/Dataset Access Monitoring**](#traces):Using traces to monitor client interactions.
+- [**File/Dataset Access Monitoring**](#traces): Using traces to monitor client interactions.
 - [**Database Dump and Visualization**](#rucio-database-dump): Extracting database-level metrics for visualization.
 - [**Probes**](#rucio-monitoring-probes): Automated checks and using Nagios or Prometheus Pushgateway.
 
@@ -94,7 +94,7 @@ The used metrics can be found in following links (code search)
 [Grafana Dashboard JSON](https://github.com/rucio/rucio/blob/master/tools/monitoring/visualization/rucio-internal.json) for Graphite is given here. 
 [Grafana Dashboard JSON](https://github.com/rucio/monitoring-templates/blob/main/prometheus-monitoring/Dashboards/Rucio-Internal.json) for prometheus is given here. 
 
-Note: Dashboard example is just for giving some idea, they might need to be tweaked according to your setup and needs.
+Note: This example is given as a suggestion, it might need to be tweaked according to your setup and needs.
 
 ## Transfers, Deletion and Other Monitoring
 Rucio generates a large volume of operational events for activities such as: transfers, deletions, rule evaluations, replication tasks, etc., originating from daemons like conveyor, reaper, judge, and others.
@@ -143,7 +143,7 @@ Different options are shown in figure and described below.
 
 1. Queue-Based Pipelines
 
-     Hermes publishes events to a queue or topic in message queue (like ActiveMQ) via STOMP. Multiple consumers can process events independently. Enables real-time, decoupled processing pipelines. These events from ActiveMQ can be consumed by ETL pipelines. These Pipelines allow aggregation, transformation, enrichment, and forwarding to different storage backends of your choice.
+     Hermes publishes events to a queue or topic in message queue (like ActiveMQ) via STOMP. Multiple consumers can process events independently, which enables real-time, decoupled processing pipelines. These events from ActiveMQ can be consumed by ETL pipelines. These Pipelines allow aggregation, transformation, enrichment, and forwarding to different storage backends of your choice.
 
      Example pipeline : ActiveMQ -> Logstash -> OpenSearch
 
@@ -233,7 +233,37 @@ Different options are shown in figure and described below.
       smtp_keyfile = 
       ```
 ### Event Types
-Different event types are listed below with their payload structure.
+Different event types are created
+  - Transfers: `transfer-submitted`, `transfer-submission_failed`, `transfer-queued`, `transfer-failed`, `transfer-done`
+  - Deletions: `deletion-done`, `deletion-not-found`, `deletion-failed`
+  - Rules: `RULE_OK`, and `RULE_PROGRESS`
+  - Locks: `DATASETLOCK_OK`
+  - DIDs: `CREATE_CNT` and `CREATE_DTS`
+  - Replicas: `INCOMPLETE` and `ERASE`
+
+:::warning
+Above list might not be complete list.
+:::
+
+The structure of events is:
+```json
+{
+  "id": "UUID4",
+  "services": "<service_name>",
+  "event_type": "<event_type>",
+  "created_at": "yyyy-MM-dd HH:mm:ss.SSSSSS",
+  "payload": {},
+  "payload_nolimit": {},
+}
+```
+where:
+- id: UUID string
+- event_type: string describing the event_type listed before
+- payload: small JSON object (max 4000 chars), structure varies by event type
+- payload_nolimit: optional large JSON object. Only if payload larger than 4000 characters
+- services: optional comma string identifying the service. (elastic, activemq, influx)
+- created_at: When the message was created. ISO 8601 timestamps
+
 1. Transfer Events
    ```
    {
@@ -332,7 +362,7 @@ There are other event for replicas, dids etc  not stated here.
 Note: Dashboard example is just for giving some idea, they might need to be tweaked according to your setup and needs. They might be also be on old versions. 
 
 ## Traces
-The traces are sent by the pilots or the rucio clients whenever a file is downloaded/uploaded. These trace events are sent to the Rucio server via the /traces endpoint using HTTPS POST, where they are forwarded to messaging backends such as ActiveMQ via STOMP. ActiveMQ acts as the messaging broker, delivering trace events to Kronos daemon. Any consumer like logstash can the be used for relaying traces to data pipelines for further processing if needed. And then directly or after processing be sent to storage backends such as OpenSearch, Elasticsearch, or InfluxDB, which allow querying, aggregation, and analytics. Finally, visualization tools like Grafana and Kibana can be used.
+Rucio clients can send trace events on every file upload or download. These are posted to the /traces endpoint and forwarded to a message broker such as ActiveMQ via STOMP. Messages are consumed by Rucio’s Kronos daemon or by external consumers.
 
 This is shown in figure below. Schemas of the traces can be found in [trace.py](https://github.com/rucio/rucio/blob/master/lib/rucio/core/trace.py) which can be used for dashboards.
 
@@ -466,14 +496,13 @@ Note: Dashboard example is just for giving some idea, they might need to be twea
 ## Rucio Monitoring Probes
 
 Rucio provides a collection of **monitoring probes** that check the different status metrics of the Rucio.
-The list of probes is available [here](https://github.com/rucio/probes/tree/master).  
-There are [common](https://github.com/rucio/probes/tree/master/common) probes shared across experiments, and you can also create your own experiment-specific probes for custom monitoring.
+The list of probes is available [here](https://github.com/rucio/probes/tree/master/common) probes shared across experiments. Also can create experiment-specific probes for custom monitoring like [ATLAS](https://github.com/rucio/probes/tree/master/atlas) and [CMS](https://github.com/rucio/probes/tree/master/cms).
 
 Rucio provides a prebuilt container on [Docker Hub](https://hub.docker.com/r/rucio/probes) that includes:
 
 - All dependencies for running the probes.
 - A lightweight **Jobber** daemon for scheduling probe execution.
-- The full Rucio probe repository. You can add extra probes as well.
+- The full Rucio probe repository. Custom probes can be added by introducing them to your own Rucio instance.
 
 The container can push results either to a **Prometheus Pushgateway** or export data for **Nagios** alerting.
 
@@ -512,10 +541,11 @@ Probe Execution Workflow is:
 - **Probes** are Python scripts under `rucio/probes/`.
 - **Jobber** acts as a cron-like scheduler inside the container.
 - **Output options:**
-  - **Prometheus Pushgateway:** for time-series metrics. Alert in prometheus Alert manager or Grafana Alert manager.
-  - **Nagios:** for exit-code–based alerting.
+  - **Prometheus Pushgateway:** for time-series metrics. Alerts can be added with [Prometheus](https://prometheus.io/docs/alerting/latest/alertmanager/) and [Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/configure-alertmanager/) alert management.
+  - **Nagios:** Used mainly as a cron-style runner where exit codes trigger Nagios alerts, while probe metrics are sent to Prometheus.
 
-Make sure you can your rucio.cfg file mounted to `/opt/rucio/etc/rucio.cfg` inside the container with db options and extra section for prometheus (if choosen) as:
+To make use of prometheus functionality, make sure your `rucio.cfg` inside the container with the probes has the extra sections and options:
+
 ```cfg
 [monitor]
 prometheus_servers = "https://prometheuserver:port"
@@ -523,7 +553,7 @@ prometheus_prefix = "" # default empty
 prometheus_labels = "" # default empty
 ```
 
-For adding cron-like scheduling fo each probe in jobber, make sure you have added needed config in [dot-jobber](https://github.com/rucio/containers/blob/master/probes/dot-jobber). Minimal config needed is defined jobs
+For adding cron-like scheduling fo each probe in jobber, make sure you have added needed config in [dot-jobber](https://github.com/rucio/containers/blob/master/probes/dot-jobber). An example config is given below, running the probes `check_expired_dids` and `check_stuck_rules`. This config assumes your probes are in the top level directory of the container. 
 
 ```yaml
 version: 1.4
