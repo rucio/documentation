@@ -10,27 +10,27 @@ Example:
 
 ```bash
 # Create a dataset to use on the Example
-$ rucio add-dataset mock:testing_metadata
+$ rucio did add --type dataset mock:testing_metadata
 
 # Add 'optimized' metadata that exist as columns in the did table
-$ rucio set-metadata --did mock:testing_metadata --key panda_id --value 9999
+$ rucio did metadata add mock:testing_metadata --key panda_id --value 9999
 
 # Add 'generic' metadata. If there is no custom metadata plugin,
 # the plugin 'JSON' will be used
-$ rucio set-metadata --did mock:testing_metadata --key random_key_name --value 8888
+$ rucio did metadata add mock:testing_metadata --key random_key_name --value 8888
 
 # Get the 'optimized' metadata
-$ rucio get-metadata mock:testing_metadata
+$ rucio did metadata list mock:testing_metadata
 
 # Get the Generic metadata
-$ rucio get-metadata mock:testing_metadata --plugin JSON
+$ rucio did metadata list mock:testing_metadata --plugin JSON
 
 # Get all the metadata
-$ rucio get-metadata mock:testing_metadata --plugin ALL
+$ rucio did metadata list mock:testing_metadata --plugin ALL
 
 # List dids according to metadata
-$ rucio list-dids-extended mock:* --filter "type=ALL,panda_id=9999"
-$ rucio list-dids-extended mock:* --filter "type=ALL,random_key_name=8888"
+$ rucio did list mock:* --filter "type=ALL,panda_id=9999"
+$ rucio did list mock:* --filter "type=ALL,random_key_name=8888"
 ```
 
 Even though regular users use metadata out of the box using the CLI, advanced
