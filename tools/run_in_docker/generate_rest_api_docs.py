@@ -89,6 +89,24 @@ Exceptions`](https://github.com/rucio/rucio/blob/58efd21b5e21182df80bef3dbe8befa
 """
 
 
+def collect_enums() -> dict: 
+    """Create a dictionary of all the enumerate types that can be used for spec API docs"""
+    enum_specs = {}
+    from rucio.db.sqla import constants 
+    from inspect import isclass
+
+    for k, v in constants.__dict__.items():
+        if isclass(v):
+            try: 
+                enum_specs[k] = {
+                    "type": "string",
+                    "enum": [e.value for e in v]
+                }
+            except TypeError: 
+                pass
+
+    return enum_specs
+
 spec = APISpec(
     title="Rucio",
     version=VERSION_INFO["version"],
@@ -116,6 +134,7 @@ spec = APISpec(
                 "description": "The Rucio Token obtained by one of the /auth endpoints.",  # noqa: E501
             },
         },
+        "schemas": collect_enums()
     },
     security=[{"AuthToken": []}],
 )
