@@ -13,9 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from enum import Enum
+from inspect import isclass
+
 from apispec import APISpec
 from apispec_webframeworks.flask import FlaskPlugin
-from rucio.vcsversion import VERSION_INFO
+from rucio.db.sqla import constants
+from rucio.vcsversion import VERSION
 from rucio.web.rest.flaskapi.v1.main import application
 
 description_text = """Each resource can be accessed or modified using specially
@@ -89,27 +93,23 @@ Exceptions`](https://github.com/rucio/rucio/blob/58efd21b5e21182df80bef3dbe8befa
 """
 
 
-def collect_enums() -> dict: 
+def collect_enums() -> dict:
     """Create a dictionary of all the enumerate types that can be used for spec API docs"""
     enum_specs = {}
-    from rucio.db.sqla import constants 
-    from inspect import isclass
 
     for k, v in constants.__dict__.items():
-        if isclass(v):
-            try: 
-                enum_specs[k] = {
-                    "type": "string",
-                    "enum": [e.value for e in v]
-                }
-            except TypeError: 
+        if isclass(v) and issubclass(v, Enum):
+            try:
+                enum_specs[k] = {"type": "string", "enum": [e.value for e in v]}
+            except TypeError:
                 pass
 
     return enum_specs
 
+
 spec = APISpec(
     title="Rucio",
-    version=VERSION_INFO["version"],
+    version=VERSION,
     openapi_version="3.0.2",
     plugins=[FlaskPlugin()],
     info={
@@ -134,7 +134,7 @@ spec = APISpec(
                 "description": "The Rucio Token obtained by one of the /auth endpoints.",  # noqa: E501
             },
         },
-        "schemas": collect_enums()
+        "schemas": collect_enums(),
     },
     security=[{"AuthToken": []}],
 )
