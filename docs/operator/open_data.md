@@ -8,6 +8,21 @@ Rucio has native support for Open Data which was introduced in `v38.0.0`.
 It is an evolving feature and allows to tag already registered Rucio DIDs as Open Data and to add additional metadata (json-compatible).
 Rucio is able to expose these Open Data DIDs in a dedicated Open Data endpoint, returning useful information such as a list with all Open Data DIDs or the Open Data details of a given DID.
 
+## Configuration
+
+There are multiple configuration options available for Open Data which can be found in the [Rucio configuration parameters documentation](https://rucio.cern.ch/documentation/operator/configuration_parameters/#opendata).
+Most of these configuration options are global to the Rucio deployment, not specific to a given Rucio server instance, so they should be set in the database (via `rucio config` command) instead of the `rucio.cfg` file.
+
+The most important configuration option is `RSE_EXPRESSION`:
+
+```sh
+rucio config add -s opendata --key rse_expression --value='OpenData=True'
+```
+
+which is used to match the RSEs where Open Data files are stored. This will be used for the automatic replication rules (if enabled) and to return a list of Open Data files.
+
+It is recommended that these RSEs are publicly accessible and without any kind of authentication needed in order to facilitate the access to Open Data files.
+
 ## Open Data CLI
 
 ### Adding a DID to the Open Data catalog
@@ -108,7 +123,11 @@ It is possible to trigger the creation of a replication rule when an Open Data D
 
 All the available Rucio configuration options for the Open Data replication rules can be seen [in the Rucio config parameters documentation page](https://rucio.cern.ch/documentation/operator/configuration_parameters#opendata).
 
-The rule option needs to be enabled and a valid RSE expression must be provided. Other options related to the rule can be set via configuration parameters, such as the rule account, number of copies or activity.
+The rule option needs to be enabled (`rule_enable=True`) and a valid RSE expression must be provided.
+The RSE expression under `rse_expression` in the `opendata` section of the configuration will be used.
+This can be overridden by `rule_rse_expression` if defined but in most cases just defining `rse_expression` is enough.
+
+Other options related to the rule can be set via configuration parameters, such as the rule account, number of copies or activity.
 
 The rule will be created when the Open Data DID is set to public and the rule **will not be deleted** if the Open Data DID is set to another state or deleted from the Rucio Open Data catalog, the rule will still remain.
 The rule can be deleted the same as with any other replication rule.
