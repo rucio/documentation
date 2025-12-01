@@ -1,0 +1,80 @@
+name: Deploy PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    paths:
+      - 'docs/**'
+      - 'website/**'
+      - 'tools/**'
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: read
+
+jobs:
+  # Run checks first (reuse from main workflow)
+  check_markdown_syntax:
+    name: Check Markdown Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+      - name: Install markdownlint
+        run: gem install mdl
+      - name: Lint docs
+        run: ./tools/check-docs.sh
+
+  check_file_names:
+    name: Check File Names
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check file names
+        run: ./tools/check-file-names.sh
+
+  # Build preview (matches main workflow)
+  build-preview:
+    name: Build Preview
+    needs: [check_markdown_syntax, check_file_names]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      
+      - uses: actions/checkout@v6
+        with:
+          repository: rucio/rucio
+          ref: master
+          path: tools/run_in_docker/rucio
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install rucio-api generation dependencies
+        run: |
+          python3 -m pip install -U pip setuptools
+          python3 -m pip install -U -r tools/requirements.txt
+          docker login https://docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+          ./tools/build_documentation.sh
+          docker logout https://docker.pkg.github.com
+
+      - name: Build Docusaurus site
+        working-directory: website
+        run: |
+          yarn install
+          yarn build
+
+      - name: Deploy PR Preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: website/build
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
