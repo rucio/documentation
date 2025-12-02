@@ -407,8 +407,9 @@ Rucio will look for the config in the following locations -
   - **urls**: A CSV specifying urls of Rucio WebUI 2.0 clients. Required for
     correctly handling pre-flight CORS requests.
 #### **opendata**
+- **rse_expression**: _(Optional)_ Mandatory in order to use most of the Open Data features. This defines the RSEs where Open Data is stored. It is used by the file listing feature and the automatic rule creation among others.
 - **rule_enable**: _(Optional)_ Boolean. Enables automatic Open Data rule creation. Default: `False`.
-- **rule_rse_expression**: _(Optional)_ Mandatory if `rule_enable=True`. RSE expression defining where data should be replicated.
+- **rule_rse_expression**: _(Optional)_ Override the RSE expression in `rse_expression` for rule creation only.
 - **rule_asynchronous**: _(Optional)_ Boolean. If `True`, rules are created asynchronously. Default: `False`.  
 - **rule_activity**: _(Optional)_. Specifies the activity name used for rule creation. Defaults to Rucio's default activity name. 
 - **rule_account**: _(Optional)_. Account name used to create rules. Default: `"root"`.  
