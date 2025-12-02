@@ -99,3 +99,24 @@ The OpenAPI Tools are a collection of tools to support writing, verifying and
 displaying Rest API Documentations. They also provide some ideas on how to
 further integrate the documentation into other parts of your code base, e.g. for
 input validation.
+
+### Use Existing Enumerates
+
+If the endpoint requests or returns a common enumerate type, you can use the `schemas` 
+generated from Rucio's codebase, such that: 
+```yaml
+properties:
+  options:
+    description: "..."
+    type: object
+    properties:
+      object1:
+        description: "..."
+        $ref: '#/components/schemas/Object1'
+      object2:
+        description: "..."
+        $ref: '#/components/schemas/Object2'
+
+```
+Where `Object1` and `Object2` can reference any enumerate type in 
+[constants.py](https://github.com/rucio/rucio/blob/master/lib/rucio/db/sqla/constants.py)
