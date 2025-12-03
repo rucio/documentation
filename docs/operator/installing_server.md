@@ -350,7 +350,7 @@ FTS must be configured to accept `fts` scope and `<fts_hostname>` audience.
 
 1. Transfer job submission to FTS
 For TPC transfer rucio sends 3 tokens to FTS.
-<fts_token>, <src_token> and <destination_token>.
+`fts token [F]`, `src storage token [S]` and `destination storage token [D]`.
 If the lifetime of token is short like 6 hours your transfer can take longer than that. So you have to configure FTS to manage your token.
 More info [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/token_support.html) and [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.14.html).
 ```mermaid
