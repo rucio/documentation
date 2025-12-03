@@ -328,16 +328,16 @@ Token-based operations require:
       rucio rse attribute add --key oidc_support --value True RSE_NAME
       ```
 
-#### Defining <path> for Storage Capabilities:
-Each storage enforces a specific prefix for storage.<capability>:<path> scopes.
+#### Defining `<path>` for Storage Capabilities:
+Each storage enforces a specific prefix for `storage.<capability>:<path>` scopes.
 There are two cases:
   1. Storage accepts the full RSE protocol prefix
   2. Storage expects part of the RSE protocol prefix
       Set the oidc_base_path RSE attribute to remove the unwanted leading prefix.
 
       Example:
-        - RSE protocol prefix: /path/to/vo
-        - Storage expects: /vo
+        - RSE protocol prefix: `/path/to/vo`
+        - Storage expects: `/vo`
       Then add:
         ```bash
         rucio rse attribute add --key oidc_base_path --value '/path/to' RSE_NAME
