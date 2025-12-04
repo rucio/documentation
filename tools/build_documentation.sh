@@ -173,6 +173,7 @@ for dir in rse_policies did_meta_plugins transfer_protocols transfer_tools clien
 done
 
 cp -r "${AUTO_GENERATED}/bin" "${DOCS}"
+cp -r "${AUTO_GENERATED}/rse-attributes.mdx" "${DOCS}/operator"
 
 echo "[INFO] Generating Release Notes..."
 "${SCRIPT_DIR}/generate_release_notes.py"
