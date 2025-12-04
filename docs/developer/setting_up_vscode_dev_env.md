@@ -217,22 +217,22 @@ To debug the rucio webui, you will need to start the rucio server in non-debug m
 - Open the Command Palette (Ctrl+Shift+P)
 - Run the command `Tasks: Run Task`
 - Select `rucio-ui:debug`
-- Attach the debugger to the rucio webui by clicking on the `Debug` icon in the left sidebar and selecting `UI: Debug` from the dropdown menu.
-- Press `F5` to start debugging the rucio webui.
+- Attach the debugger to the Rucio WebUI by clicking on the `Debug` icon in the left sidebar and selecting `UI: Debug` from the dropdown menu.
+- Press `F5` to start debugging the Rucio WebUI.
 
 ### Debugging Rucio CLI Clients ( `rucio-admin` and `rucio`)
 
-#### Debug rucio cli client
+#### Debug Rucio CLI client
 
-After you have run the `start-rucio` task, you can start debugging the rucio cli clients.
+After you have run the `start-rucio` task, you can start debugging the Rucio CLI clients.
 
-To debug the rucio cli clients, you will need to start the rucio server in non-debug mode
+To debug the Rucio CLI clients, you will need to start the Rucio server in non-debug mode
 
 - Open the Command Palette (Ctrl+Shift+P)
 - Run the command `Tasks: Run Task`
 - Select `rucio-server` to start a rucio-server in non-debug mode
 
-Then, you need to start the `rucio-cli:pre-debug` task to inject the debug configuration into the rucio cli clients.
+Then, you need to start the `rucio-cli:pre-debug` task to inject the debug configuration into the Rucio CLI clients.
 
 - Open the Command Palette (Ctrl+Shift+P)
 - Run the command `Tasks: Run Task`
@@ -240,7 +240,7 @@ Then, you need to start the `rucio-cli:pre-debug` task to inject the debug confi
 
 - Start the `Rucio:CLI Debug` launch configuration by clicking on the `Debug` icon in the left sidebar and selecting `Rucio:CLI Debug` from the dropdown menu.
 
-- Press `F5` to start debugging the rucio cli clients.
+- Press `F5` to start debugging the Rucio CLI clients.
 
 - After that, you should open a shell inside the `rucio-dev` container
 
@@ -248,14 +248,14 @@ Then, you need to start the `rucio-cli:pre-debug` task to inject the debug confi
   docker exec -it rucio-dev bash
   ```
 
-- Insert breakpoints in the rucio cli clients code.
+- Insert breakpoints in the Rucio CLI clients code.
 
-- Run a rucio cli command to trigger the breakpoint.
+- Run a Rucio CLI command to trigger the breakpoint.
 
 After you are finished debugging, you should remember to
 
 - detach the debugger from the debug process
-- run the `rucio-cli:post-debug` task to remove the debug configuration from the rucio cli clients.
+- run the `rucio-cli:post-debug` task to remove the debug configuration from the Rucio CLI clients.
 - run the `cleanup` task to remove all processes inside the container that were used for debugging.
 
 #### Debug rucio-admin client
@@ -266,9 +266,9 @@ After debugging, you should run the `rucio-admin:post-debug` task to remove the 
 
 ### Debugging Rucio Tests
 
-After you have run the `start-rucio` task, you can start debugging the rucio tests.
+After you have run the `start-rucio` task, you can start debugging the Rucio tests.
 
-To debug the rucio tests, you will need to start the rucio server in non-debug mode
+To debug the Rucio tests, you will need to start the Rucio server in non-debug mode
 
 - Open the Command Palette (Ctrl+Shift+P)
 - Run the command `Tasks: Run Task`

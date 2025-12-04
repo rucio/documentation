@@ -116,7 +116,7 @@ available variables and their behavior:
 
 ### RUCIO_ENABLE_SSL
 
-By default, the rucio server runs without SSL on port 80. If you want to enable
+By default, the Rucio server runs without SSL on port 80. If you want to enable
 SSL set this variable to `True`. If you enable SSL you will also have to provide
 the host certificate and key and the certificate authority file. The server will
 look for `hostcert.pem`, `hostkey.pem` and `ca.pem` under `/etc/grid-security`
@@ -153,7 +153,7 @@ variable.
 
 ### RUCIO_LOG_FORMAT
 
-The default rucio log format is
+The default Rucio log format is
 `%ht%tt%{X-Rucio-Forwarded-For}it%Tt%Dt\"%{X-Rucio-Auth-Token}i\"t%{X-Rucio-RequestId}it%{X-Rucio-Client-Ref}it\"%r\"t%\>st%b`
 You can set your own format using this variable.
 

@@ -25,9 +25,9 @@ command and re-logining should be enough:
 
       sudo gpasswd -a $USER docker
 
-## Open the rucio project in IntelliJ
+## Open the Rucio project in IntelliJ
 
-Open the existing rucio project in intellij. This should be trivial. However,
+Open the existing Rucio project in intellij. This should be trivial. However,
 if you need help with it, refer to the
 [official documentation](https://www.jetbrains.com/help/idea/import-project-or-module-wizard.html)
 

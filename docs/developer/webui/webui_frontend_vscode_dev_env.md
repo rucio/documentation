@@ -84,12 +84,12 @@ We begin by starting all the Docker containers required.
 :::note
 
 Starting the docker containers using `docker-compose-storage.yml` will also
-create several RSEs, DIDs, etc. on the rucio instance which are quite helpful
+create several RSEs, DIDs, etc. on the Rucio instance which are quite helpful
 when running tests.
 
 :::
 
-We must now connect the dev container to the rucio container network.
+We must now connect the dev container to the Rucio container network.
 1. Figure out the docker name of the dev container. Run `docker ps` and search
   for name which does not contain the string `rucio`
 2. Connect using `docker network connect dev_default <container name>`.
@@ -98,7 +98,7 @@ We must now connect the dev container to the rucio container network.
 
 Finally, we must change the `RUCIO_AUTH_HOST` and `RUCIO_HOST` in the
 `.env.development.local` file at the root level of the WebUI repository to point
-to the rucio container. By default, this should be `https://dev-rucio-1:443`.
+to the Rucio container. By default, this should be `https://dev-rucio-1:443`.
 
 Test the setup by logging in using the credentials username `ddmlab`/ password
 `secret`/ account `root` under the VO `Default`.

@@ -175,7 +175,7 @@ OPENSTACK_PROJECT=cc059d57-6e98-4688-a3be-aae2b451868b,<your-openstack-project-I
 ```
 
 :::tip[LoadBalancer tip]
-The ID `cc059d57-6e98-4688-a3be-aae2b451868b` will allow the LoadBalancer as a Service (LBaaS) instance to [assign LoadBalancers to this set](https://clouddocs.web.cern.ch/networking/load_balancing.html#adding-load-balancer-to-landb-sets). In the specific case of the COMPASS rucio instance, the `openstack-landb-set-access` is being set as a member of the `rucio-it-admins` egroup.
+The ID `cc059d57-6e98-4688-a3be-aae2b451868b` will allow the LoadBalancer as a Service (LBaaS) instance to [assign LoadBalancers to this set](https://clouddocs.web.cern.ch/networking/load_balancing.html#adding-load-balancer-to-landb-sets). In the specific case of the COMPASS Rucio instance, the `openstack-landb-set-access` is being set as a member of the `rucio-it-admins` egroup.
 Please refer to the LoadBalancers section for more information.
 :::
 ![image](/img/landb-set-create.png)
@@ -746,8 +746,8 @@ To export the created configuration, execute:
 export RUCIO_CONFIG=<path-to>/rucio.cfg
 ```
 Then test it via `rucio whoami`.
-### Optional: creating a rucio client user pod in the cluster
-Look at the following commits to have an example of how to create a pod in the cluster that serves as u rucio user:
+### Optional: creating a Rucio client user pod in the cluster
+Look at the following commits to have an example of how to create a pod in the cluster that serves as u Rucio user:
 - [Creating a rucio client root account](https://gitlab.cern.ch/rucio-it/flux-compass/-/commit/7579ea6fee12609a419639d3a6390cf1f9f9ee63)
 - [Creating secrets](https://gitlab.cern.ch/rucio-it/flux-compass/-/commit/7e3075f1161c5728ca7e7d485242e152975f8b7c)
   - Creating secrets for username, password, and cert bundle (that HAS to be the `CERN-bundle.pem` that we find in ``/etc/pki/tls/certs/CERN-bundle.pem`)
