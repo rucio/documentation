@@ -242,7 +242,7 @@ Rucio requires two clients at the IdP:
 Please save the client_id and client_secret from both of [C1] and [C2].
 
 ### Preparing idpsecrets.json
-Create an `idpsecrets.json` file containing the configuration of the two IdP clients. The mount this file to server and daemons.
+Create an `idpsecrets.json` file containing the configuration of the two IdP clients. Then mount this file to Rucio server and daemons.
 If using Helm Chart then use mounting as [described here](https://github.com/rucio/helm-charts/tree/master/charts/rucio-server#additional-secrets).
 
 > **Security:** Never commit `idpsecrets.json` to version control. Store the file securely (Kubernetes Secret, encrypted backup or password manager). Mount secrets as read-only in production.
@@ -297,7 +297,6 @@ The Rucio Auth Client (C1) is used for user login. Enable OIDC in `rucio.cfg`:
 idpsecrets = /path/to/your/idpsecrets.json 
 
 # Required: Matches the <IdP_nickname> key in idpsecrets.json. 
-# example config above make it 'wlcg'
 admin_issuer = <IdP_nickname>
 
 # Optional: Expected 'aud' value in the user JWT. Defaults to 'rucio'.
@@ -310,8 +309,8 @@ expected_scope = 'openid profile email'
 ```
 
 Each user must have an OIDC identity linked to their Rucio account. The OIDC identity consists of:
-  - sub claim (unique subject ID)
-  - issuer URL of the IdP
+  - `sub` claim which is subject claim of user.
+  - `iss` claim which is issuer URL of the IdP.
 
 Example:
 ```bash
@@ -321,6 +320,8 @@ rucio account identity add --account rucio_user_account \
     ISS=https://wlcg.cloud.cnaf.infn.it/" \
   --email "wlcg-doma-rucio@cern.ch"
 ```
+
+**Note**: `5b5e5d37-926b-4b42-8a98-a0b4b28baf18` is subject claim of user and `https://wlcg.cloud.cnaf.infn.it/` is issuer url  of IdP.
 
 ### Enabling OIDC for Transfers & Deletions
 Rucio uses WLCG profile with [Capability based authorization](https://github.com/WLCG-AuthZ-WG/common-jwt-profile/blob/master/profile.md#221-capability-based-authorization-scope) for token-based interactions with storage and FTS.
@@ -333,6 +334,11 @@ Token-based operations require:
       ```bash
       rucio rse attribute add --key oidc_support --value True RSE_NAME
       ```
+  3. The RSE must be able to accept token with WLCG profile and audience as its `hostname` 
+  4. The RSE must allow permission for [`<path>`](#defining-path-for-storage-capabilities)
+  5. FTS must be configured to accept token `fts` scope and `<fts_hostname>` audience.
+      - FTS audience config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#configuring-the-fts-rest-component).
+      - FTS scope config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#add-tokenprovider-information-to-the-database) 
 
 #### Defining `<path>` for Storage Capabilities:
 Each storage enforces a specific prefix for `storage.<capability>:<path>` scopes.
@@ -349,7 +355,6 @@ There are two cases:
         rucio rse attribute add --key oidc_base_path --value '/path/to' RSE_NAME
         ```
 
-FTS must be configured to accept `fts` scope and `<fts_hostname>` audience.
 
 #### Transfer daemon token flow.
 
@@ -366,7 +371,7 @@ sequenceDiagram
     participant I as Identity Provider
     participant F as FTS
 
-    Note over D,I: Client ID: C2 (Rucio Admin Client)
+    Note over D,I: Client C2 (Rucio Admin Client)
 
     alt Tokens NOT cached
         D->>+I: 1. Request FTS token
@@ -387,7 +392,8 @@ sequenceDiagram
 ```
 
 2. Poller Daemon Token Support
-   For poller to use token to communicate with fts we need
+
+   For Poller to use tokens to communicate with FTS, modify to config with the following: 
    ```cfg
    [conveyor]
    poller_oidc_support = True
@@ -398,6 +404,7 @@ sequenceDiagram
        participant D as Poller Daemon
        participant I as Identity Provider
        participant F as FTS
+       Note over D,I: Client C2 (Rucio Admin Client)
        alt Tokens NOT cached
            D->>I: Request fts token
            I-->>D: [F]
@@ -411,21 +418,23 @@ sequenceDiagram
    ```
 
 3. Reaper (deletion) Daemon Token support.
-If the criteria for RSE to support token interaction described before, that enough for deletion via token
-```mermaid
-sequenceDiagram
-    participant D as Reaper Daemon
-    participant I as Identity Provider
-    participant S as Storage
-    
-    alt Tokens NOT cached
-        D->>I: Request storage token
-        I-->>D: Token [S]
-    else Tokens cached
-        Note over D: Load [S] from cache
-    end
 
-    loop Delete files
-        D->>S: [S]
-    end
-```
+   If the RSE has token enabled and meet the criteria then its enough for deletion via token.
+   ```mermaid
+   sequenceDiagram
+       participant D as Reaper Daemon
+       participant I as Identity Provider
+       participant S as Storage
+       Note over D,I: Client C2 (Rucio Admin Client)
+       
+       alt Tokens NOT cached
+           D->>I: Request storage token
+           I-->>D: Token [S]
+       else Tokens cached
+           Note over D: Load [S] from cache
+       end
+
+       loop Delete files
+           D->>S: [S]
+       end
+   ```
