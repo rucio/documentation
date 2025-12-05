@@ -244,7 +244,6 @@ Please save the client_id and client_secret from both of [C1] and [C2].
 ### Preparing idpsecrets.json
 Create an `idpsecrets.json` file containing the configuration of the two IdP clients. The mount this file to server and daemons.
 If using Helm Chart then use mounting as [described here](https://github.com/rucio/helm-charts/tree/master/charts/rucio-server#additional-secrets).
-We could include some security recommendations after this:
 
 > **Security:** Never commit `idpsecrets.json` to version control. Store the file securely (Kubernetes Secret, encrypted backup or password manager). Mount secrets as read-only in production.
 
