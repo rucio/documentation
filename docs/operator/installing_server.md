@@ -220,11 +220,14 @@ Rucio requires two clients at the IdP:
       - Default in rucio `openid` `profile` and `email` .
     - redirect_uris : 
       - `https://<auth_server_name>/auth/oidc_token` 
-      - `https://<auth_server_name>/auth/oidc_code` 
+      - `https://<auth_server_name>/auth/oidc_code`
+
+    > **Note:** use https for redirect_uris .
+
   
 2. [C2] Rucio Admin Client
    This client is responsible interaction to storages and FTS. Used by transfer and deletion daemons.
-   - Grant Type: `client_credential`
+   - Grant Type: `client_credentials`
    - Audience: 
        - `<storage_hostname>` 
        - `fts`
@@ -241,6 +244,9 @@ Please save the client_id and client_secret from both of [C1] and [C2].
 ### Preparing idpsecrets.json
 Create an `idpsecrets.json` file containing the configuration of the two IdP clients. The mount this file to server and daemons.
 If using Helm Chart then use mounting as [described here](https://github.com/rucio/helm-charts/tree/master/charts/rucio-server#additional-secrets).
+We could include some security recommendations after this:
+
+> **Security:** Never commit `idpsecrets.json` to version control. Store the file securely (Kubernetes Secret, encrypted backup or password manager). Mount secrets as read-only in production.
 
 Example:
 
@@ -295,13 +301,13 @@ idpsecrets = /path/to/your/idpsecrets.json
 # example config above make it 'wlcg'
 admin_issuer = <IdP_nickname>
 
-# Optional: # Optional: Expected 'aud' value in the user JWT. Defaults to 'rucio'.
+# Optional: Expected 'aud' value in the user JWT. Defaults to 'rucio'.
 # if different from default then put what you have for [C1]
 expected_audience = 'rucio' 
 
 # Optional: Expected scopes in the JWT. Defaults to 'openid profile email'.
 # if different from default then put what you have for [c1]
-expected_scope = 'openid profile'
+expected_scope = 'openid profile email'
 ```
 
 Each user must have an OIDC identity linked to their Rucio account. The OIDC identity consists of:
@@ -319,6 +325,7 @@ rucio account identity add --account rucio_user_account \
 
 ### Enabling OIDC for Transfers & Deletions
 Rucio uses WLCG profile with [Capability based authorization](https://github.com/WLCG-AuthZ-WG/common-jwt-profile/blob/master/profile.md#221-capability-based-authorization-scope) for token-based interactions with storage and FTS.
+Authorization is applied at the RSE level: This means tokens are scoped to the RSE's storage path prefix described [here](#defining-path-for-storage-capabilities), not to individual files or datasets. A single token grants access to perform operations on any file under the RSE's path based on its capabilities (read, create, modify).
 
 Token-based operations require:
   1. The RSE must have the davs protocol enabled.
@@ -343,7 +350,6 @@ There are two cases:
         rucio rse attribute add --key oidc_base_path --value '/path/to' RSE_NAME
         ```
 
-
 FTS must be configured to accept `fts` scope and `<fts_hostname>` audience.
 
 #### Transfer daemon token flow.
@@ -351,8 +357,10 @@ FTS must be configured to accept `fts` scope and `<fts_hostname>` audience.
 1. Transfer job submission to FTS
 For TPC transfer rucio sends 3 tokens to FTS.
 `fts token [F]`, `src storage token [S]` and `destination storage token [D]`.
-If the lifetime of token is short like 6 hours your transfer can take longer than that. So you have to configure FTS to manage your token.
-More info [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/token_support.html) and [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.14.html).
+> **Note:** All tokens sent to FTS (`[F]`, `[S]`, `[D]`) are **managed tokens**.  
+> This requires configuring FTS to perform **token exchange and Just in Time token refresh**, so long-running transfers continue even after the original tokens sent from Rucio expires.
+> More info [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/token_support.html) and [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.14.html).
+
 ```mermaid
 sequenceDiagram
     participant D as Transfer Daemon
@@ -422,4 +430,3 @@ sequenceDiagram
         D->>S: [S]
     end
 ```
-
