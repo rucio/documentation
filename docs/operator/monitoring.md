@@ -91,10 +91,8 @@ The used metrics can be found in following links (code search)
 - [Gauge](https://github.com/search?q=repo%3Arucio%2Frucio+Metrics.gauge&type=code)
 - [Timer](https://github.com/search?q=repo%3Arucio%2Frucio+Metrics.timer&type=code)
 
-[Grafana Dashboard JSON](https://github.com/rucio/rucio/blob/master/tools/monitoring/visualization/rucio-internal.json) for Graphite is given here. 
 [Grafana Dashboard JSON](https://github.com/rucio/monitoring-templates/blob/main/prometheus-monitoring/Dashboards/Rucio-Internal.json) for prometheus is given here. 
 
-Note: This example is given as a suggestion, it might need to be tweaked according to your setup and needs.
 
 ## Transfers, Deletion and Other Monitoring
 Rucio generates a large volume of operational events for activities such as: transfers, deletions, rule evaluations, replication tasks, etc., originating from daemons like conveyor, reaper, judge, and others.
@@ -183,6 +181,7 @@ Different options are shown in figure and described below.
       username = 
       password =
       ```
+
 2. Direct Delivery
    
      These options send events directly to storage or alerting systems, bypassing queues.
@@ -241,11 +240,8 @@ Different event types are created
   - DIDs: `CREATE_CNT` and `CREATE_DTS`
   - Replicas: `INCOMPLETE` and `ERASE`
 
-:::warning
-Above list might not be complete list.
-:::
 
-The structure of events is:
+The structure of messages table which is extracted by Hermes is:
 ```json
 {
   "id": "UUID4",
@@ -264,102 +260,30 @@ where:
 - services: optional comma string identifying the service. (elastic, activemq, influx)
 - created_at: When the message was created. ISO 8601 timestamps
 
-1. Transfer Events
-   ```
-   {
-     created_at: when the message was created (yyyy-MM-ddTHH:mm:ss.SSSSSS)
-     event_type: type of this event (transfer-submitted, \
-       transfer-submission_failed, transfer-queued, transfer-failed, \
-       transfer-done)
-     payload: {
-       account: account submitting the request
-       activity: activity of the request
-       bytes: size of the transferred file (byte)
-       checksum-adler: checksum using adler algorithm
-       checksum-md5: checksum using md5 algorithm
-       created_at: Time when the message was created (yyyy-MM-dd HH:mm:ss.SSSSSS)
-       dst-rse: destination rse
-       dst-type: type of destination rse (disk, tape)
-       dst-url: destination url of the transferred file
-       duration: duration of the transfer (second)
-       event_type: type of this event (transfer-submitted, \
-         transfer-submission_failed, transfer-queued, \
-         transfer-failed, transfer-done)
-       file-size: same as bytes
-       guid: guid of the transfer
-       name: name of transferred file
-       previous-request-id: id of previous request
-       protocol: transfer protocol
-       reason: reason of the failure
-       request-id: id of this request
-       scope: scope of the transferred data
-       src-rse: source rse
-       src-type: type of source rse (disk, tape)
-       src-url: source file url
-       started_at: start time of the transfer (yyyy-MM-dd HH:mm:ss.SSSSSS)
-       submitted_at: submission time of the transfer (yyyy-MM-dd HH:mm:ss.SSSSSS)
-       tool-id: id of the transfer tool in rucio (rucio-conveyor)
-       transfer-endpoint: endpoint holder of the transfer (fts)
-       transfer-id: uuid of this transfer
-       transfer-link: link of this transfer (in form of fts url)
-       transferred_at: done time of this transfer
-     }
-   }
-   ```
-2. Deletion Event
-   ```
-   {
-     created_at: when the message was created (yyyy-MM-ddTHH:mm:ss.SSSSSS)
-     event_type: type of this event (deletion-done,deletion-failed, deletion-not-found)
-     payload: {
-       scope: scope of the deleted replica
-       name: name of the deleted replica
-       rse: rse holding the deleted replica
-       file-size: size of the file
-       bytes: size of the file
-       url: url of the file
-       duration: duration of the deletion
-       protocol: prococol used in the deletion
-       reason: reason of the failure
-     }
-   }
-   ```
-3. Rule Event
-   ```
-    created_at: when the message was created (yyyy-MM-ddTHH:mm:ss.SSSSSS)
-    event_type: 'RULE_OK' or 'RULE_PROGRESS'
-    payload:{
-      'scope': scope.external,
-      'name': name,
-      'rule_id': rule_id, # only for RULE_OK and RULE_PROGRESS
-      'vo': vo # only if not default
-      'progress': int #replication progress # only for RULE_PROGRESS
-      'dataset_name': dataset_name, # only for LOST
-      'dataset_scope': dataset_scope # only for LOST
-    }
-   ```
-4. Dataset Lock Event
-   ```
-   {
-     created_at: when the message was created (yyyy-MM-ddTHH:mm:ss.SSSSSS)
-     event_type: 'DATASETLOCK_OK'
-     payload: {
-       'scope': did_scope,
-       'name': did_name,
-       'rse': rse,
-       'rse_id': rse_id,
-       'rule_id': rule_id
-       'vo': vo if not default
-      }
-   }
-   ```
-There are other event for replicas, dids etc  not stated here.
 
-### Dashboard
-[Kibana Dashboard](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization) example was given.
-[Grafana Dashboard](https://github.com/rucio/monitoring-templates/blob/main/message-monitoring/Dashboards/Rucio-Transfer.json) for transfer for Elasticsearch/OpenSearch example given.
+To quickly inspect the payloads of these event types:
+```sql
+SELECT id, created_at, payload
+FROM messages
+WHERE event_type = '<event_type>'
+ORDER BY created_at DESC
+LIMIT 2;
+```
+replace event_type with actual name that you want to inspect. We can also check `messages_history` table.
 
-Note: Dashboard example is just for giving some idea, they might need to be tweaked according to your setup and needs. They might be also be on old versions. 
+### Format of Messages Delivered by Hermes 
+The final format of the message is determined by the destination service, as Hermes transforms the raw database message into the required wire protocol for external systems.
+
+- ActiveMQ (STOMP Message): The body is a streamlined JSON object containing only event_type, payload, and created_at. The message uses STOMP headers to set the event_type and flag the message as persistent.
+
+- Elasticsearch / OpenSearch (Bulk API): Hermes sends the raw database JSON message (including id and services) as a document, wrapped in the two-line Elasticsearch Bulk API format (i.e., {"index":{}} followed by the source JSON).
+
+- InfluxDB (Line Protocol): Hermes performs on-the-fly aggregation of transfers and deletions, counting successes/failures and bytes. It does not send the raw event JSON. The final format is the InfluxDB Line Protocol, which consists of a single text line combining the measurement, tags (e.g., RSE, activity), fields (e.g., nb_done=10), and a timestamp.
+
+
+Example Grafana dashboard for transfer is provided [here](https://github.com/rucio/monitoring-templates/blob/main/message-monitoring/Dashboards/Rucio-Transfer.json)
+
+> **Note**: Please make changes to dashboard according to your setup and needs.
 
 ## Traces
 Rucio clients can send trace events on every file upload or download. These are posted to the /traces endpoint and forwarded to a message broker such as ActiveMQ via STOMP. Messages are consumed by Rucio’s Kronos daemon or by external consumers.
@@ -410,9 +334,9 @@ flowchart TB
 ## Rucio database dump
 Database-level monitoring extracts different information directly from the Rucio database. This includes insights such as RSE usage statistics, account quotas, and other metadata relevant to experiments. These data are periodically queried and exported to external storage backends for visualization and long-term monitoring.
 
-Some Logstash pipeline definitions are given [here](https://github.com/rucio/rucio/tree/master/tools/monitoring/logstash-pipeline). These example pipelines use the Logstash JDBC input plugin to connect to the Rucio PostgreSQL database, execute SQL queries, and extract structured data periodically. The retrieved records are then sent to Elasticsearch but can be changed to other storage backends such as OpenSearch. The following diagram shows the high-level flow for database-level monitoring using Logstash.
+Some example Logstash pipeline definitions are given [here](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Pipelines/pipelines.yml). These example pipelines use the Logstash JDBC input plugin to connect to the Rucio PostgreSQL database, execute SQL queries, and extract structured data periodically. The retrieved records are then sent to Elasticsearch but can be changed to other storage backends such as OpenSearch. The following diagram shows the high-level flow for database-level monitoring using Logstash.
 
-Note: While the examples above use Logstash for database-level monitoring, you can replace Logstash with other data ingestion options depending on your requirements.
+> **Note** : While this example uses Logstash, you can use other data collector options like [fluentd](https://www.fluentd.org/) with [plugin](https://github.com/fluent/fluent-plugin-sql) depending on your requirements.
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {
@@ -488,10 +412,7 @@ Few points:
 - filter: This is optional. It helps in preprocessing your data before indexing
 
 
-Some [Kibana dashboard](https://github.com/rucio/rucio/tree/master/tools/monitoring/visualization/db_dump) example given.
-[Grafana dashboard](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Dashboards/Rucio-Storage.json) example for rse given.
-
-Note: Dashboard example is just for giving some idea, they might need to be tweaked according to your setup and needs. They might be also be on old versions. 
+[Grafana dashboard](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Dashboards/Rucio-Storage.json) example for rse given. 
 
 ## Rucio Monitoring Probes
 
