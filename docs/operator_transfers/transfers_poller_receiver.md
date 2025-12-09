@@ -28,7 +28,7 @@ To set up FTS to send transfer status updates to ActiveMQ broker, see the instru
 > **Note:** The receiver connects to ActiveMQ using the **STOMP protocol**, so ensure your ActiveMQ instance has STOMP support enabled. As of this writing (May 2025), CERN FTS uses [ActiveMQ-Classic](https://activemq.apache.org/components/classic/) and
 not tested with [ActiveMQ-Artemis](https://activemq.apache.org/components/artemis/). 
 
-To configure `conveyor-receiver`, your rucio server config i.e. `rucio.cfg`, include the following section with described options:
+To configure `conveyor-receiver`, your Rucio server config i.e. `rucio.cfg`, include the following section with described options:
 
 ```cfg
 [messaging-fts3]

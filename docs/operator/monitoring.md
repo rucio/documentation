@@ -45,7 +45,7 @@ gauge value, it will be a flat line on the graph until you change it again.
 
 ### Set up the Rucio internal monitoring dashboard
 
-Set up a rucio server for development
+Set up a Rucio server for development
 
 ```bash
 git clone https://github.com/rucio/rucio.git
@@ -369,7 +369,7 @@ resolve different UUIDs in Kibana.
 
 ## Access monitoring
 
-The traces are sent by the pilots or the rucio clients whenever a file is
+The traces are sent by the pilots or the Rucio clients whenever a file is
 downloaded/uploaded. This is similar with the data transferring monitoring.
 
 ## Rucio database dumping

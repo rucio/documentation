@@ -73,6 +73,7 @@ flycheck_*.el
 /network-security.data
 
 __pycache__
+.venv
 
 # JetBrains project params
 .idea/

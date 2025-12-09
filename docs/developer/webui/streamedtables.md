@@ -306,8 +306,8 @@ The selection here is quite limited right now, but shall be extended in order to
 keep a common design language. It is also much easier to keep the project
 accessible if the total number of unique components is kept low.
 
-* `TableInternalLink` for links within the rucio webui
-* `TableExternalLink` for links pointing outside of the rucio webui.
+* `TableInternalLink` for links within the Rucio WebUI
+* `TableExternalLink` for links pointing outside of the Rucio WebUI.
 
 ### TableStyling
 
