@@ -276,7 +276,7 @@ The final format of the message is determined by the destination service, as Her
 
 - ActiveMQ (STOMP Message): The body is a streamlined JSON object containing only event_type, payload, and created_at. The message uses STOMP headers to set the event_type and flag the message as persistent.
 
-- Elasticsearch / OpenSearch (Bulk API): Hermes sends the raw database JSON message (including id and services) as a document, wrapped in the two-line Elasticsearch Bulk API format (i.e., {"index":{}} followed by the source JSON).
+- Elasticsearch / OpenSearch (Bulk API): Hermes sends the raw database JSON message (including id and services) as a document using Bulk API format (via a POST request).
 
 - InfluxDB (Line Protocol): Hermes performs on-the-fly aggregation of transfers and deletions, counting successes/failures and bytes. It does not send the raw event JSON. The final format is the InfluxDB Line Protocol, which consists of a single text line combining the measurement, tags (e.g., RSE, activity), fields (e.g., nb_done=10), and a timestamp.
 
