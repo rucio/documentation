@@ -17,3 +17,4 @@ export PYTHONPATH="/run_in_docker/rucio/lib:${PYTHONPATH}"
 "$SCRIPT_DIR"/generate_bin_help_docs.sh
 "$SCRIPT_DIR"/generate_client_api_docs.sh
 "$SCRIPT_DIR"/generate_policy_docs.sh
+"$SCRIPT_DIR/"generate_configuration_pages.sh
