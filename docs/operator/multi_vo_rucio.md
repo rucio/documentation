@@ -116,7 +116,7 @@ configured as usual.
 
 ## Long VO Name Mapping
 
-The rucio database stores all VO references as a single three-character tag for
+The Rucio database stores all VO references as a single three-character tag for
 performance reasons. It's possible to create aliases for these tag to allow
 users/clients to specify long VO names when getting a token (and modifying VOs)
 and have these converted to the internal tag automatically. Long VO names should

@@ -73,6 +73,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Fabio Luchetti [fabio.luchetti@cern.ch](mailto:fabio.luchetti@cern.ch), 2021
 - Giovanni Guerrieri [giovanni.guerrieri@cern.ch](mailto:giovanni.guerrieri@cern.ch), 2024
 - Luis Obis [luis.obis@cern.ch](mailto:luis.obis@cern.ch), 2025
+- Matti Jansson [karl.jansson@ucloouvain.be](mailto:karl.jansson@uclouvain.be), 2025
 
 # Organisations employing contributors
 
@@ -101,3 +102,4 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Institut Teknologi Bandung (Indonesia)
 - Universität Hamburg (Germany)
 - Brazilian Center for Research in Physics (Brazil)
+- Université Catholique de Louvain (Belgium)

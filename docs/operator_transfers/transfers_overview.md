@@ -3,13 +3,13 @@ id: transfers-overview
 title: Transfers Overview
 ---
 
-Rucio has a set of daemons in charge of transfers between rucio storage elements
+Rucio has a set of daemons in charge of transfers between Rucio storage elements
 (RSE). Historically, these daemons were grouped under the name of `conveyor`,
 so a big part of the documentation and source code still uses this naming
 when referring to the transfer machinery.
 
 Rucio doesn't execute the actual physical data movement between storage
-elements. It relies on external tools for this scope. Currently, rucio supports
+elements. It relies on external tools for this scope. Currently, Rucio supports
 [fts3](https://fts3-docs.web.cern.ch/fts3-docs/docs/overview.html) and
 [globus](https://www.globus.org/data-transfer). Rucio builds on top of these
 "TransferTools" and provides additional services like recovery from a transfer
@@ -19,14 +19,14 @@ type) and others.
 
 ## Daemon overview
 
-The following transfer-related daemons exist in rucio, presented in the order
+The following transfer-related daemons exist in Rucio, presented in the order
 they intervene in a transfer lifecycle:
 
 - **preparer**: a strongly recommended optional daemon which is required for
   many advanced usages, like multiple transfertools together.
   It is also required to be able to use throttler. If active, performs part
   of the source selection and path computation work instead of the submitter.
-  For all new rucio installation, it is recommended to run this daemon and
+  For all new Rucio installation, it is recommended to run this daemon and
   activate it by setting the `conveyor/use_preparer = True` configuration
   option.
 - **throttler**: an optional daemon which can throttle request submissions
@@ -49,12 +49,12 @@ The minimal list of daemons needed for transfer execution is:
 # Lifecycle of transfer requests
 
 There is no user-facing way to schedule a transfer. All transfer requests are
-created internally by rucio as result of rule evaluations. The lifetime of a
-rucio transfer is thus strongly bound to the rule which created it.
-Hereafter is a simple example which gives the intuition of how rucio proceeds
+created internally by Rucio as result of rule evaluations. The lifetime of a
+Rucio transfer is thus strongly bound to the rule which created it.
+Hereafter is a simple example which gives the intuition of how Rucio proceeds
 with a replication/transfer of a file as part of a rule.
 
-In the rest of this example we'll assume the following 4 rucio storage
+In the rest of this example we'll assume the following 4 Rucio storage
 elements:
 
 ```text
@@ -74,7 +74,7 @@ elements:
 ```
 
 The numbers on the arrows represent the administrative cost which is set
-by the rucio administrator. Cost is unidirectional, but, in this example,
+by the Rucio administrator. Cost is unidirectional, but, in this example,
 we assume that the cost was configured identical in both directions.
 For example:
 
@@ -94,7 +94,7 @@ Assume a certain dataset `someScope:dsName`, which has two files
 `someScope:file1` and `someScope:file2`, and both files are located on `RSE1`.
 
 The destination of the transfer will be decided on the rule evaluation phase,
-For example the user adds a rule to ensure that rucio maintains two copies
+For example the user adds a rule to ensure that Rucio maintains two copies
 for each of the files on any of the RSEs.
 
 ```shell
@@ -118,7 +118,7 @@ filters out the ones which don't match different rule criteria (for example:
 source RSE expression) and administrative constraints (for example:
 skip blocklisted RSEs). It then computes the paths. In the previous example,
 the path `RSE1 -> RSE2 -> RSE3 -> RSE4` will be picked due to cost constraints.
-Note that it's possible to make rucio prefer shorter parts by setting the RSE
+Note that it's possible to make Rucio prefer shorter parts by setting the RSE
 attribute `hop_penalty`, or the global configuration value with the same name.
 For more details about how a source is selected, refer to the [Preparer](transfers_preparer.md)
 documentation.
