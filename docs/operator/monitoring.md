@@ -50,15 +50,15 @@ flowchart TB
 
   %% Style definitions
   classDef mono fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
-  classDef grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
-  classDef graphite fill:#555555,stroke:#333333,color:#fff,font-weight:bold;  %% Dark gray for Graphite
-  classDef prometheus fill:#009688,stroke:#00695C,color:#fff,font-weight:bold; %% Teal, distinct
+  classDef Grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
+  classDef Graphite fill:#555555,stroke:#333333,color:#fff,font-weight:bold;  %% Dark gray for Graphite
+  classDef Prometheus fill:#009688,stroke:#00695C,color:#fff,font-weight:bold; %% Teal, distinct
 
   %% Apply styles
   class A1 mono;
-  class G1 graphite;
-  class P1 prometheus;
-  class GF grafana;
+  class G1 Graphite;
+  class P1 Prometheus;
+  class GF Grafana;
 ```
 
 There are two options:
@@ -91,7 +91,7 @@ The used metrics can be found in following links (code search)
 - [Gauge](https://github.com/search?q=repo%3Arucio%2Frucio+Metrics.gauge&type=code)
 - [Timer](https://github.com/search?q=repo%3Arucio%2Frucio+Metrics.timer&type=code)
 
-[Grafana Dashboard JSON](https://github.com/rucio/monitoring-templates/blob/main/prometheus-monitoring/Dashboards/Rucio-Internal.json) for prometheus is given here. 
+[Grafana Dashboard JSON](https://github.com/rucio/monitoring-templates/blob/main/prometheus-monitoring/Dashboards/Rucio-Internal.json) for Prometheus is given here. 
 
 
 ## Transfers, Deletion and Other Monitoring
@@ -124,7 +124,7 @@ flowchart TB
   OS1 --> KB
 
   classDef mono fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
-  classDef grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
+  classDef Grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
   classDef OpenSearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
   classDef mq fill:#f69f03,stroke:#b35c00,color:#fff,font-weight:bold;
   classDef etl fill:#4CAF50,stroke:#2E7D32,color:#fff,font-weight:bold;
@@ -133,7 +133,7 @@ flowchart TB
   class A2,A3 mono;
   class Q1 mq;
   class OS1 OpenSearch;
-  class KB grafana;
+  class KB Grafana;
   class ETL etl;
 ```
 
@@ -253,12 +253,12 @@ The structure of messages table which is extracted by Hermes is:
 }
 ```
 where:
-- id: UUID string
-- event_type: string describing the event_type listed before
-- payload: small JSON object (max 4000 chars), structure varies by event type
-- payload_nolimit: optional large JSON object. Only if payload larger than 4000 characters
-- services: optional comma string identifying the service. (elastic, activemq, influx)
-- created_at: When the message was created. ISO 8601 timestamps
+- `id`: UUID string
+- `event_type`: string describing the event_type listed before
+- `payload`: small JSON object (max 4000 chars), structure varies by event type
+- `payload_nolimit`: optional large JSON object. Only if payload larger than 4000 characters
+- `services`: string identifying the service. (elastic, activemq, influx)
+- `created_at`: When the message was created. ISO 8601 timestamps
 
 
 To quickly inspect the payloads of these event types:
@@ -269,26 +269,26 @@ WHERE event_type = '<event_type>'
 ORDER BY created_at DESC
 LIMIT 2;
 ```
-replace event_type with actual name that you want to inspect. We can also check `messages_history` table.
+replace `event_type` with actual name that you want to inspect. We can also check `messages_history` table.
 
 ### Format of Messages Delivered by Hermes 
 The final format of the message is determined by the destination service, as Hermes transforms the raw database message into the required wire protocol for external systems.
 
-- ActiveMQ (STOMP Message): The body is a streamlined JSON object containing only event_type, payload, and created_at. The message uses STOMP headers to set the event_type and flag the message as persistent.
+- ActiveMQ (STOMP Message): The body is a streamlined JSON object containing only `event_type`, `payload`, and `created_at`. The message uses STOMP headers to set the event_type and flag the message as persistent.
 
-- Elasticsearch / OpenSearch (Bulk API): Hermes sends the raw database JSON message (including id and services) as a document using Bulk API format (via a POST request).
+- Elasticsearch / OpenSearch (Bulk API): Hermes sends the raw database JSON message (including `id` and `services`) as a document using Bulk API format (via a POST request).
 
-- InfluxDB (Line Protocol): Hermes performs on-the-fly aggregation of transfers and deletions, counting successes/failures and bytes. It does not send the raw event JSON. The final format is the InfluxDB Line Protocol, which consists of a single text line combining the measurement, tags (e.g., RSE, activity), fields (e.g., nb_done=10), and a timestamp.
+- InfluxDB (Line Protocol): Hermes performs on-the-fly aggregation of transfers and deletions, counting successes/failures and bytes. It does not send the raw event JSON. The final format is the InfluxDB Line Protocol, which consists of a single text line combining the measurement, tags (e.g., RSE, activity), fields (e.g., `nb_done=10`), and a timestamp.
 
 
 Example Grafana dashboard for transfer is provided [here](https://github.com/rucio/monitoring-templates/blob/main/message-monitoring/Dashboards/Rucio-Transfer.json)
 
-> **Note**: Please make changes to dashboard according to your setup and needs.
+> **Note**: Please make changes to the dashboard according to your setup and needs.
 
 ## Traces
-Rucio clients can send trace events on every file upload or download. These are posted to the /traces endpoint and forwarded to a message broker such as ActiveMQ via STOMP. Messages are consumed by Rucio’s Kronos daemon or by external consumers.
+Rucio clients can send trace events on every file upload or download. These are posted to the `/traces` endpoint and forwarded to a message broker such as ActiveMQ via STOMP. Messages are consumed by Rucio’s Kronos daemon or by external consumers.
 
-This is shown in figure below. Schemas of the traces can be found in [trace.py](https://github.com/rucio/rucio/blob/master/lib/rucio/core/trace.py) which can be used for dashboards.
+This is shown in figure below. Schemas of the traces can be found in [`trace.py`](https://github.com/rucio/rucio/blob/master/lib/rucio/core/trace.py) which can be used for dashboards.
 
 
 ```mermaid
@@ -319,7 +319,7 @@ flowchart TB
   OS1 --> KB
 
   classDef mono fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
-  classDef grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
+  classDef Grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
   classDef OpenSearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
   classDef mq fill:#f69f03,stroke:#b35c00,color:#fff,font-weight:bold;
   classDef etl fill:#4CAF50,stroke:#2E7D32,color:#fff,font-weight:bold;
@@ -327,7 +327,7 @@ flowchart TB
   class C1,RS,KR mono;
   class Q1 mq;
   class OS1 OpenSearch;
-  class KB grafana;
+  class KB Grafana;
   class ETL etl;
 ```
 
@@ -360,15 +360,15 @@ flowchart TB
   OS2 --> GD
 
   classDef mono fill:#d8e3e7,stroke:#607d8b,color:#000,font-size:12px;
-  classDef grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
+  classDef Grafana fill:#F05A28,stroke:#b03e16,color:#fff,font-weight:bold;
   classDef OpenSearch fill:#005EB8,stroke:#003E75,color:#fff,font-weight:bold;
-  classDef logstash fill:#b34700,stroke:#b34700,color:#fff,font-weight:bold;
+  classDef Logstash fill:#b34700,stroke:#b34700,color:#fff,font-weight:bold;
 
 
   class DB1,LS mono;
-  class LS logstash;
+  class LS Logstash;
   class OS2 OpenSearch;
-  class GD grafana;
+  class GD Grafana;
 ```
 
 A typical Logstash configuration consists of three sections — input, filter, and output. For example, the input section defines the PostgreSQL connection and SQL query to fetch data:
@@ -406,13 +406,13 @@ output {
 }
 ```
 Few points:
-- jdbc_driver_library: Can downloaded from [jdbc.postgresql.org](https://jdbc.postgresql.org/), choose the version that you want to use and enable that in logstash.
-- schedule: Defines how often the query runs (Cron-like syntax).
-- output: Defines where the extracted data are delivered. In most deployments, these are indexed into OpenSearch or Elasticsearch for analytics dashboards in Grafana or Kibana:
-- filter: This is optional. It helps in preprocessing your data before indexing
+- `jdbc_driver_library`: Can be downloaded from [jdbc.postgresql.org](https://jdbc.postgresql.org/), choose the version that you want to use and enable that in Logstash.
+- `schedule`: Defines how often the query runs (Cron-like syntax).
+- `output`: Defines where the extracted data are delivered. In most deployments, these are indexed into OpenSearch or Elasticsearch for analytics dashboards in Grafana or Kibana.
+- `filter`: This is optional. It helps in preprocessing your data before indexing
 
 
-[Grafana dashboard](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Dashboards/Rucio-Storage.json) example for rse given. 
+[Grafana dashboard](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Dashboards/Rucio-Storage.json) example for RSE given. 
 
 ## Rucio Monitoring Probes
 
@@ -437,7 +437,7 @@ The container can push results either to a **Prometheus Pushgateway** or export 
   'lineColor': '#90a4ae'
 }}}%%
 flowchart LR
-  Probe["Rucio Probes (Schedule via Jabber or others)"]
+  Probe["Rucio Probes (Schedule via Jobber or others)"]
   Nagios["Nagios"]
   Prometheus["Prometheus"]
   Grafana["Grafana Dashboards"]
@@ -465,7 +465,7 @@ Probe Execution Workflow is:
   - **Prometheus Pushgateway:** for time-series metrics. Alerts can be added with [Prometheus](https://prometheus.io/docs/alerting/latest/alertmanager/) and [Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/configure-alertmanager/) alert management.
   - **Nagios:** Used mainly as a cron-style runner where exit codes trigger Nagios alerts, while probe metrics are sent to Prometheus.
 
-To make use of prometheus functionality, make sure your `rucio.cfg` inside the container with the probes has the extra sections and options:
+To make use of Prometheus functionality, make sure your `rucio.cfg` inside the container with the probes has the extra sections and options:
 
 ```cfg
 [monitor]
