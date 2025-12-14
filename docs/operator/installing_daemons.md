@@ -37,9 +37,9 @@ start a simple `judge-cleaner` daemon using a database on
 `mysql.db` without any additional parameters just run this:
 
 ```bash
-docker run --name=rucio-judge-cleaner \
-  -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" \
-  -e RUCIO_DAEMON=judge-cleaner \
+docker run --name rucio-judge-cleaner \
+  --env RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" \
+  --env RUCIO_DAEMON=judge-cleaner \
   rucio/rucio-daemons
 ```
 
@@ -54,9 +54,9 @@ complete rucio.cfg it can also be mounted. This will then ignore the
 The rucio.cfg is used to configure the database backend and the daemons:
 
 ```bash
-docker run --name=rucio-judge-cleaner \
-  -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
-  -e RUCIO_DAEMON=judge-cleaner \
+docker run --name rucio-judge-cleaner \
+  --volume /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
+  --env RUCIO_DAEMON=judge-cleaner \
   rucio/rucio-daemons
 ```
 
@@ -65,10 +65,11 @@ to write to a file you can use `RUCIO_ENABLE_LOGS` like
 this:
 
 ```bash
-docker run --name=rucio-judge-cleaner \
-  -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
-  -v /tmp/logs:/var/log/rucio -e RUCIO_DAEMON=judge-cleaner \
-  -e RUCIO_ENABLE_LOGS=True \
+docker run --name rucio-judge-cleaner \
+  --volume /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
+  --volume /tmp/logs:/var/log/rucio \
+  --env RUCIO_DAEMON=judge-cleaner \
+  --env RUCIO_ENABLE_LOGS=True \
   rucio/rucio-daemons
 ```
 

@@ -30,5 +30,5 @@ Set Docker default platform to `linux/amd64`:
 
 Or run it as part of the command a single time:
 ```bash
-    DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose -f <docker-compose-file.yml>
+    DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose --file <docker-compose-file.yml>
 ```

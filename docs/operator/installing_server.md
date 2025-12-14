@@ -29,7 +29,7 @@ and will be pulled in as necessary.
 A simple server without SSL can be started like this:
 
 ```bash
-docker run --name=rucio-server -p 80:80 -d rucio/rucio-server
+docker run --name rucio-server --publish 80:80 --detach rucio/rucio-server
 ```
 
 This will start up a simple server using sqlite based on an automatically
@@ -52,10 +52,10 @@ container connecting to a MySQL DB running at `mysql.db` you could use something
 like this:
 
 ```bash
-docker run --name=rucio-server \
-  -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" \
-  -p 80:80 \
-  -d \
+docker run --name rucio-server \
+  --env RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" \
+  --publish 80:80 \
+  --detach \
   rucio/rucio-server
 ```
 
@@ -68,10 +68,10 @@ if you have a rucio.cfg ready on your host system under `/tmp/rucio.cfg` you
 could start a container like this:
 
 ```bash
-docker run --name=rucio-server \
-  -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
-  -p 80:80 \
-  -d \
+docker run --name rucio-server \
+  --volume /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
+  --publish 80:80 \
+  --detach \
   rucio/rucio-server
 ```
 
@@ -82,14 +82,14 @@ and also need to include the host certificate, key and the the CA certificate as
 volumes. E.g.,:
 
 ```bash
-docker run --name=rucio-server \
-  -v /tmp/ca.pem:/etc/grid-security/ca.pem \
-  -v /tmp/hostcert.pem:/etc/grid-security/hostcert.pem \
-  -v /tmp/hostkey.pem:/etc/grid-security/hostkey.pem \
-  -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
-  -p 443:443 \
-  -e RUCIO_ENABLE_SSL=True \
-  -d \
+docker run --name rucio-server \
+  --volume /tmp/ca.pem:/etc/grid-security/ca.pem \
+  --volume /tmp/hostcert.pem:/etc/grid-security/hostcert.pem \
+  --volume /tmp/hostkey.pem:/etc/grid-security/hostkey.pem \
+  --volume /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
+  --publish 443:443 \
+  --env RUCIO_ENABLE_SSL=True \
+  --detach \
   rucio/rucio-server
 ```
 
@@ -99,12 +99,12 @@ the `RUCIO_ENABLE_LOGS` variable. The storage folder of the logs can be used as
 a volume:
 
 ```bash
-docker run --name=rucio-server \
-  -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
-  -v /tmp/logs:/var/log/httpd \
-  -p 80:80 \
-  -e RUCIO_ENABLE_LOGS=True \
-  -d \
+docker run --name rucio-server \
+  --volume /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
+  --volume /tmp/logs:/var/log/httpd \
+  --publish 80:80 \
+  --env RUCIO_ENABLE_LOGS=True \
+  --detach \
   rucio/rucio-server
 ```
 
