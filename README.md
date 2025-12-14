@@ -8,6 +8,7 @@ links](https://github.com/rucio/documentation/actions/workflows/check_external_l
 This project contains the documentation for the **[Rucio](https://github.com/rucio/rucio)** data-management
 software.
 
+> **Quick Start**: A [devcontainer](.devcontainer/devcontainer.json) is available with all tools pre-installed. Open in IDEs supporting devcontainers (e.g. VS Code with Dev Containers extension).
 
 ## Contribution
 
