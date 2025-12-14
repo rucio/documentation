@@ -104,9 +104,9 @@ modules, test case groups, or even single test cases, for example:
 
 ```bash
 tools/run_tests.sh -i
-pytest -v --full-trace lib/rucio/tests/test_replica.py
-pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore
-pytest -v --full-trace lib/rucio/tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
+pytest -v --full-trace tests/test_replica.py
+pytest -v --full-trace tests/test_replica.py:TestReplicaCore
+pytest -v --full-trace tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
 ```
 
 ## Using the environment including storage
