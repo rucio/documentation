@@ -8,11 +8,11 @@ To test FTS and the Conveyor, you should start the development environment, incl
 see [Setting up a Rucio demo environment](operator/setting_up_demo.md) for more information.
 
 The required profiles are `storage` (for the FTS and XRD containers) and `iam` (for the token-related Conveyor tests).
-Make sure to pass `-f etc/docker/dev/docker-compose.ports.yml` if you want to access the FTS Web Monitoring UI (see below).
+Make sure to pass `--file etc/docker/dev/docker-compose.ports.yml` if you want to access the FTS Web Monitoring UI (see below).
 The recommended setup command is as follows:
 
 ```sh
-docker compose -f etc/docker/dev/docker-compose.yml -f etc/docker/dev/docker-compose.ports.yml --profile storage --profile iam up -d
+docker compose --file etc/docker/dev/docker-compose.yml --file etc/docker/dev/docker-compose.ports.yml --profile storage --profile iam up --detach
 ```
 
 Once the containers are running, you should initialize the tests.
@@ -38,7 +38,7 @@ To set this up, make sure to pass the `docker-compose.ports.yml` file to the Doc
 
 ```sh
 # Note: specify profiles as well, if needed
-docker compose -f etc/docker/dev/docker-compose.yml -f etc/docker/dev/docker-compose.ports.yml up -d
+docker compose --file etc/docker/dev/docker-compose.yml --file etc/docker/dev/docker-compose.ports.yml up --detach
 ```
 
 Once running, you should be able to access the WebUI locally at https://localhost:8449/fts3/ftsmon/#/.

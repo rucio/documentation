@@ -30,7 +30,7 @@ The python dependencies need to be installed. They are defined in
 `requirements.txt`. Install them via:
 
 ```bash
-python3 -m pip install -r tools/requirements.txt
+python3 -m pip install --requirement tools/requirements.txt
 ```
 
 For running the Docusaurus development server, you also need the website

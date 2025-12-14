@@ -72,7 +72,7 @@ Run the containers using docker-compose (again might need
 `sudo`):
 
 ```bash
-docker-compose --file etc/docker/dev/docker-compose.yml up -d
+docker-compose --file etc/docker/dev/docker-compose.yml up --detach
 ```
 
 And verify that it is running properly:
@@ -104,9 +104,9 @@ modules, test case groups, or even single test cases, for example:
 
 ```bash
 tools/run_tests.sh -i
-pytest -v --full-trace tests/test_replica.py
-pytest -v --full-trace tests/test_replica.py:TestReplicaCore
-pytest -v --full-trace tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
+pytest --verbose --full-trace tests/test_replica.py
+pytest --verbose --full-trace tests/test_replica.py:TestReplicaCore
+pytest --verbose --full-trace tests/test_replica.py:TestReplicaCore.test_delete_replicas_from_datasets
 ```
 
 ## Using the environment including storage
@@ -114,7 +114,7 @@ pytest -v --full-trace tests/test_replica.py:TestReplicaCore.test_delete_replica
 Again run the containers using docker-compose:
 
 ```bash
-docker-compose --file etc/docker/dev/docker-compose.yml --profile storage up -d
+docker-compose --file etc/docker/dev/docker-compose.yml --profile storage up --detach
 ```
 
 This should show you a few more running containers: the Rucio server,
@@ -151,7 +151,7 @@ On the second display of the rule, its state has cleared to OK.
 Again run the containers using docker-compose:
 
 ```bash
-docker-compose --file etc/docker/dev/docker-compose.yml --profile storage --profile monitoring up -d
+docker-compose --file etc/docker/dev/docker-compose.yml --profile storage --profile monitoring up --detach
 ```
 
 Now you will have the same containers as before plus a full monitoring
@@ -210,7 +210,7 @@ which defines the ports each service exposes.
 If manually setting up the environment, you just need to pass this extra file on top of the main compose file, e.g. in the following way:
 
 ```sh
-docker-compose --file etc/docker/dev/docker-compose.yml --file etc/docker/dev/docker-compose.ports.yml up -d
+docker-compose --file etc/docker/dev/docker-compose.yml --file etc/docker/dev/docker-compose.ports.yml up --detach
 ```
 
 If using the `bootstrap_dev.sh` script, you can pass the `-x / --expose-ports` flag, e.g.:
@@ -325,14 +325,14 @@ RUN git clone https://github.com/rucio/rucio.git /tmp/rucio
 # to e.g.:
 RUN git clone --single-branch --branch next https://github.com/rucio/rucio.git /tmp/rucio
 #build your docker
-sudo docker build -t rucio/rucio-dev
+sudo docker build --tag rucio/rucio-dev
 ```
 
 Compose as usual using docker-compose:
 
 ```bash
 cd /opt/rucio
-sudo docker-compose --file etc/docker/dev/docker-compose.yml up -d
+sudo docker-compose --file etc/docker/dev/docker-compose.yml up --detach
 ```
 
 Start the daemons

@@ -66,7 +66,7 @@ Rucio using a patch file created in the previous section, follow these steps:
 Create a kubernetes secret from the hotfix patch:
 
 ```bash
-kubectl -n rucio create secret generic hotfix-conveyor-poller-patch --from-file=hotfix_conveyor_poller.patch
+kubectl --namespace rucio create secret generic hotfix-conveyor-poller-patch --from-file=hotfix_conveyor_poller.patch
 ```
 
 *Note:* if you have more than one cluster, don't forget to create the

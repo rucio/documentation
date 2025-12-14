@@ -49,7 +49,7 @@ Set up a Rucio server for development
 
 ```bash
 git clone https://github.com/rucio/rucio.git
-docker-compose --file etc/docker/dev/docker-compose.yml up -d
+docker-compose --file etc/docker/dev/docker-compose.yml up --detach
 ```
 
 The command will fire up various containers such as `dev-rucio-1`, `dev-graphite-1`, and
@@ -70,7 +70,7 @@ Grafana and enable the graphite data source
 
 ```bash
 docker pull grafana/grafana
-docker run -d --name=grafana -p 3000:3000 grafana/grafana
+docker run --detach --name grafana --publish 3000:3000 grafana/grafana
 ```
 
 The Grafana web-portal is on port 3000 of the host. Add one data source of the
@@ -250,16 +250,16 @@ Next is to setup and configure Elasticsearch and Kibana for storing and
 visualising the messages. This is an example of creating them in containers
 
 ```bash
-docker run -d \
-  -p 9200:9200 \
-  -p 9300:9300 \
-  -e "discovery.type=single-node" \
+docker run --detach \
+  --publish 9200:9200 \
+  --publish 9300:9300 \
+  --env "discovery.type=single-node" \
   --name elasticsearch \
   docker.elastic.co/elasticsearch/elasticsearch:7.8.1
 
-docker run -d \
+docker run --detach \
   --link elasticsearch \
-  -p 5601:5601 \
+  --publish 5601:5601 \
   --name kibana \
   docker.elastic.co/kibana/kibana:7.8.1
 ```
@@ -352,7 +352,7 @@ this after installing the required tools
 pip install --upgrade pip
 pip install elasticsearch
 wget https://files.pythonhosted.org/packages/52/7e/22ca617f61e0d5904e06c1ebd5d453adf30099526c0b64dca8d74fff0cad/stomp.py-4.1.22.tar.gz
-tar -zxvf stomp.py-4.1.22.tar.gz
+tar --extract --gzip --verbose --file stomp.py-4.1.22.tar.gz
 cd stomp.py-4.1.22
 python setup.py install
 ```
