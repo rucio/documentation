@@ -11,7 +11,7 @@ every 4 months we produce a major release with a version number like **x.0.0**
 (with x > 0). A major release marks the start of a release line. This release
 line is maintained with minor/patch releases published every two weeks,
 containing bug fixes or minor enhancements,
-with version numbers like **35.y.z** (with y &ge; 0, z &ge; 0). Versions within
+with version numbers like **39.y.z** (with y &ge; 0, z &ge; 0). Versions within
 one release line are always backwards compatible, thus they do not include
 database schema changes, API modifications, or other backward-compatibility
 breaking changes.
@@ -34,9 +34,9 @@ For differences between the versions of a Rucio client and a Rucio server we gua
 compatibility between a server and an older client up until the second LTS release line
 preceding the server.
 
-For example, a 38 Rucio server guarantees client support until the second LTS release line
-preceding its version, thus the 32 LTS release line. Therefore it guarantees support
-of clients of the 32, 33, 34, 35, 36, 37, and 38 release lines.
+For example, a 39 Rucio server guarantees client support until the second LTS release line
+preceding its version, thus the 35 LTS release line. Therefore it guarantees support
+of clients of the 35, 36, 37, 38, and 39 release lines.
 
 A 33 Rucio server guarantees client support of the 1.29, 1.30, 1.31, 32, and 33 release
 lines, while a 32 server guarantees support of the 1.26, 1.27, 1.28, 1.29, 1.30, 1.31, and
@@ -53,7 +53,7 @@ server.
 | 42              | How to Train Your Donkey                  | _2026-11_      | _2027-03_            |
 | 41 LTS          | Donkémon                                  | _2026-07_      | _at least 2028-07_   |
 | 40              | Guardians of the Donkeyverse              | _2026-03_      | _2026-07_            |
-| 39              | Grand Theft Donkey                        | _2025-11_      | _2026-03_            |
+| **39**          | **Grand Theft Donkey**                    | **2025-12**    | _2026-03_            |
 | **38 LTS**      | **Donkirk**                               | **2025-08**    | _at least 2027-08_   |
 | 37              | Dungeons & Donkeys                        | 2025-04        | 2025-08              |
 | 36              | Donkey Unchained                          | 2024-12        | 2025-04              |
