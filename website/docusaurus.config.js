@@ -48,7 +48,31 @@ module.exports={
       }
     ]
   ],
-  "plugins": [],
+  "plugins": [
+    [
+      "docusaurus-plugin-remote-content",
+      {
+        name: "jupyterlab-extension",
+        sourceBaseUrl: "https://raw.githubusercontent.com/rucio/jupyterlab-extension/refs/heads/master/",
+        outDir: "../docs/_jupyterlab-extension",
+        documents: ["CONFIGURATION.md"],
+        modifyContent: (filename, content) => {
+          // Remove first-level headings from the fetched markdown files
+          // Define a regex to match H1 lines
+          const h1Regex = /^#\s+(.*)$/m;
+
+          // Remove the H1 line from the content
+          const cleanContent = content.replace(h1Regex, '');
+
+          // Return the modified content
+          return {
+            filename,
+            content: `${cleanContent}`
+          };
+        },
+      },
+    ],
+  ],
   "themeConfig": {
     "navbar": {
       "title": "Rucio Documentation",
