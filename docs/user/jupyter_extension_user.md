@@ -150,14 +150,6 @@ with open(my_data, 'r') as f:
     data = np.load(f)
 ```
 
-## Session Configuration
-
-When spawning a JupyterLab session:
-1. You can choose to activate the Rucio extension
-2. A configuration form allows you to select:
-   - Which experiment's Rucio cluster to connect to
-   - Which RSE to use as local storage for your files
-
 ## Terminal Usage
 
 To use Rucio commands in your terminal within the JupyterLab environment:
