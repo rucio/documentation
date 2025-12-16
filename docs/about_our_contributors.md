@@ -74,6 +74,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Giovanni Guerrieri [giovanni.guerrieri@cern.ch](mailto:giovanni.guerrieri@cern.ch), 2024
 - Luis Obis [luis.obis@cern.ch](mailto:luis.obis@cern.ch), 2025
 - Matti Jansson [karl.jansson@ucloouvain.be](mailto:karl.jansson@uclouvain.be), 2025
+- Riccardo Di Maio [riccardodimaio11@gmail.com](mailto:riccardodimaio11@gmail.com), 2024-2025
 
 # Organisations employing contributors
 
