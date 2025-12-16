@@ -117,31 +117,137 @@ fetch master and create these branches for you:
 
 ### 4. Commit your changes
 
-Commit your change. The commit command must include a specific message format:
+Commit your changes using the Conventional Commits format. All commits must follow the format described in the [Conventional Commits](#conventional-commits) section below and include proper git trailers for issue tracking.
 
+**Basic commit format:**
 ```bash
-git commit -m "<component>: <change_message> #<issue number>"
+git commit -m "<type>(<scope>): <description>" --trailer "Closes: #<issue_number>"
 ```
 
-Valid component names are listed in the [__label
-list__](https://github.com/rucio/rucio/labels) and are usually specified on the
-issue of the change.
+**Example:**
+```bash
+git commit -m "feat(Core): Add new rule evaluation engine" --trailer "Closes: #1234"
+```
 
 Add additional explanations to the body of the commit, such as motivation for
 certain decisions and background information. [Here are some general rules.](https://cbea.ms/git-commit/).
 
-If you add a [__github-recognised
-keyword__](https://help.github.com/articles/closing-issues-using-keywords/) then
-the associated issue can be closed automatically once the pull request is
-merged, e.g.:
-
-```bash
-<component>: <change_message> Fix #<issue number>
-```
-
 Using multiple commits is allowed as long as they achieve an independent,
 well-defined, change and are well-described. Otherwise multiple commits should
 be squashed.
+
+### **Conventional Commits**
+
+Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) specification to ensure consistent and meaningful commit messages across the project. This is enforced through [commitlint](https://commitlint.js.org/) during CI checks and can be enabled locally via pre-commit hooks.
+
+**Commit Message Format:**
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**Rules:**
+
+1. **Type**: Must be one of the following allowed types:
+   - `feat`: New feature
+   - `fix`: Bug fix
+   - `perf`: Code change that improves performance
+   - `docs`: Documentation only changes
+   - `style`: Changes that do not affect the meaning of the code
+   - `refactor`: Code change that neither fixes a bug nor adds a feature
+   - `test`: Adding missing tests or correcting existing tests
+   - `build`: Changes that affect the build system or external dependencies
+   - `ci`: Changes to CI configuration files and scripts
+   - `chore`: Other changes that don't modify src or test files
+   - `revert`: Reverts a previous commit
+
+2. **Scope**: Must be one of the predefined Rucio components (PascalCase). The available scopes are:
+   - `Auth`: Authentication & Authorisation
+   - `Clients`: Client libraries and tools
+   - `Consistency`: Consistency checks
+   - `CI`: Continous Integration
+   - `Core`: Core & Internals
+   - `Database`: Database-related changes
+   - `DatasetDeletion`: Dataset deletion functionality
+   - `Deletion`: File deletion functionality
+   - `DIRAC`: DIRAC integration
+   - `Docker`: Docker related functionality
+   - `Documentation`: Documentation updates
+   - `Kubernetes`:  Kubernetes deployment related functionality
+   - `Lifetime`: Life time model processing
+   - `Messaging`: Messaging system
+   - `Metadata`: Metadata workflows
+   - `Monitoring`: Monitoring and observability
+   - `MultiVO`: Multi-VO functionality
+   - `Opendata`: Open data functionality
+   - `Policies`: Policy management
+   - `Probes`: Probes & Alarms
+   - `Protocols`: Upload, Download, Deletion protocols
+   - `Rebalancing`: Data rebalancing
+   - `Recovery`: Data recovery
+   - `Replicas`: Replica workflows
+   - `REST`: REST & API
+   - `Rules`: Replication rules and rule daemons
+   - `Subscriptions`: Subscription daemon
+   - `Testing`: Regression and Unit tests
+   - `Traces`: Monitoring & Traces
+   - `Transfers`: Transfer daemons
+   - `WebUI`: Web user interface
+
+   **Note**: Any changes to this list should also be applied to the [GitHub labels](https://github.com/rucio/rucio/issues/labels) and the [commitlint config](https://github.com/rucio/rucio/blob/master/commitlint.config.js)
+
+3. **Description**: 
+   - Should not end with a period
+   - Should be concise but descriptive
+   - Use imperative mood ("add feature" not "added feature")
+
+4. **Line Length**: Header must not exceed 100 characters to prevent truncation in GitHub UI
+
+**Examples:**
+```bash
+feat(Core): Add new rule evaluation engine
+fix(DatasetDeletion): Resolve deletion timeout issues
+docs(Documentation): Update API documentation
+chore(CI): Update Node.js version to 24
+```
+
+### **Git Trailers**
+
+All commits must reference a GitHub issue using git trailers. This ensures proper traceability and automatic issue closure.
+
+**Supported Trailers:**
+- `Closes: #<issue_number>` - Automatically closes the issue when PR is merged
+- `Issue: #<issue_number>` - References an issue without closing it
+
+**Adding Git Trailers:**
+
+**Method 1: Using git commit command**
+```bash
+git commit -m "feat(Core): Add new rule evaluation engine" --trailer "Closes: #1234"
+```
+
+**Method 2: Adding to commit body**
+```bash
+git commit -m "feat(Core): Add new rule evaluation engine
+
+This commit introduces a new rule evaluation engine that improves
+performance and adds support for complex rule conditions.
+
+Closes: #1234"
+```
+
+**Complete Example:**
+```bash
+feat(Core): Add new rule evaluation engine
+
+This commit introduces a new rule evaluation engine that improves
+performance and adds support for complex rule conditions.
+
+Closes: #1234
+```
 
 ### 5. Push changes and create a Pull Request
 
