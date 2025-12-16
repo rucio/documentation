@@ -9,9 +9,7 @@ The **Rucio JupyterLab Extension** brings scientific data management directly in
 
 ## How It Works
 
-The extension integrates Rucio's data discovery and management capabilities into JupyterLab through a sidebar interface. When you spawn a JupyterLab session, you can choose to activate the extension and configure which experiment's Rucio cluster to connect to, as well as select a dedicated Rucio Storage Element (RSE) to be used as local storage for files.
-
-The extension leverages the existing Rucio Storage Elements (RSEs) provided by your experiment, typically available at Tier-0 infrastructure facilities.
+The **Rucio Jupyterlab Extension** integrates Rucio's data discovery and management capabilities into JupyterLab through a sidebar interface. The extension supports interaction with many Rucio instances. A Rucio Storage Element (RSE) for each instance can be chosen to serve as the destination for local file storage, leveraging the existing RSEs provided by your experiment.
 
 From the JupyterLab sidebar, you can:
 - **Browse Rucio datasets** by scope and name
@@ -132,21 +130,22 @@ Once data becomes available on your session's RSE:
 
 1. **Open a notebook** in your JupyterLab session
 2. An **Add to notebook** link appears in the extension sidebar
-3. Click the link to add the dataset to your notebook
-4. **Provide a variable name** for the dataset (e.g., `my_data`)
+3. Click the link to add the data to your notebook
+4. **Provide a variable name** for the data (e.g., `my_data`)
 5. Click **Confirm**
-6. A new variable containing the path to the dataset is automatically added to your notebook
+6. A new variable containing the path to the data is automatically added to your notebook
 
 ![image](/img/rucio_jupyter_add.png)
 
-The variable will contain the local file path where the data is available, allowing you to use it directly in your analysis code:
+The variable will contain the local file path where the data is available. It will be a single string with the path, in case of files, or a list of paths, in case of datasets and containers. This allows you to use the data directly in your analysis code:
 
 ```python
 # After adding data via the extension
 import numpy as np
 
-# my_data is now a variable containing the path to your dataset
-with open(my_data, 'r') as f:
+# my_data is now a variable containing the local paths to the files in the data
+# my_data = ["/tmp/rucio_xrd1/test/80/25/file1"]
+with open(my_data[0], 'r') as f:
     data = np.load(f)
 ```
 
