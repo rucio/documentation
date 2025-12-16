@@ -4,6 +4,7 @@
 # Exclude specific directories in /docs/
 /docs/bin
 /docs/release-notes/
+/docs/_jupyterlab-extension/
 
 # Exclude all directories in /tools/run_in_docker/
 /tools/run_in_docker/*/
