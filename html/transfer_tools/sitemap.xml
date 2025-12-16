@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rucio.cern.ch/documentation/fts3.html</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2025-12-16</lastmod>
     </url>
     <url>
          <loc>https://rucio.cern.ch/documentation/globus.html</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2025-12-16</lastmod>
     </url>
 </urlset>
