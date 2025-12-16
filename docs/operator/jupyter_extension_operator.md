@@ -45,17 +45,7 @@ In this mode, files are transferred by Rucio to a storage mounted to the Jupyter
 
 **Requirements:**
 - At least one Rucio instance
-- A storage system attached to the JupyterLab installation via FUSE (Filesystem in Userspace):
-  - The storage must be mounted on the host machine or Kubernetes nodes where JupyterLab pods run
-  - Common FUSE implementations include:
-    - **EOS**: CERN's disk-based storage system (via [`eos fuse mount`](https://eos-docs.web.cern.ch/configuration/fuse.html))
-    - **CephFS**: Distributed filesystem (via [`ceph-fuse`](https://docs.ceph.com/en/latest/man/8/ceph-fuse/))
-    - **XRootD**: High-performance data access protocol (via [`xrootdfs`](https://manpages.debian.org/testing/xrootd-fuse/xrootdfs.1.en.html))
-  - The mounted storage must be registered as a Rucio Storage Element (RSE) in your Rucio instance
-  - Should be shared among multiple users with read permissions for all users
-  - It's recommended that quotas be disabled, as the extension does not handle quota errors gracefully
-
-  For mounting examples, see the [ESCAPE VRE infrastructure documentation](https://github.com/vre-hub/vre/tree/master/infrastructure)
+- A POSIX-compliant filesystem mount attached to the JupyterLab server  registered as a Rucio Storage Element (RSE) in your Rucio instance
 
 **Configuration Parameters:**
 - `destination_rse`: The name of the Rucio Storage Element mounted to the JupyterLab server
