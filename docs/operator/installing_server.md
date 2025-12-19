@@ -267,7 +267,7 @@ Example:
 
         "SCIM": {
             "client_id": "random",
-            "client_secret": "random",
+            "client_secret": "random"
         }
     },
 
@@ -285,7 +285,7 @@ Example:
 
         "SCIM": {
             "client_id": "random",
-            "client_secret": "random",
+            "client_secret": "random"
         }
     }
 }
