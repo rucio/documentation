@@ -202,53 +202,66 @@ becomes `RUCIO_CFG_DATABASE_DEFAULT`. All available environment variables are:
 - RUCIO_CFG_WEBUI_USERCERT
 
 ## Enable OIDC
+
 This section describes how to enable authentication and authorization in Rucio using OpenID Connect (OIDC), OAuth2, and JSON Web Tokens (JWTs).
 
 Rucio currently provides full support for INDIGO IAM, and has been tested with CILogon.
-A OIDC client must be registered in the Identity Provider (IdP): one for user authentication and one for daemon/service authorization.
+A OIDC client must be registered in the Identity Provider (IdP) with required [info](#registering-oidc-clients-to-identity-provider-idp).
 
 ### Registering OIDC Clients to Identity provider (IdP)
 
 Rucio requires a client at the IdP with following info.
+
 - Grant Type: `authorization_code` and `client_credentials`
-  
 - Scopes:
-    - Auth scopes:
-      - At minimum `openid` .
-      - Default in rucio `openid` and `profile`.
-    - Transfer and Deletion related scopes:
-      - `fts`
-      - `storage.modify:<path>`
-      - `storage.create:<path>` 
-      - `storage.read:<path>`
-      - `offline_access`
 
-- redirect_uris : 
-    - `https://<RUCIO_AUTH_SERVER_HOSTNAME>/auth/oidc_token` 
-    - `https://<RUCIO_AUTH_SERVER_HOSTNAME>/auth/oidc_code`
+  - Auth scopes:
+    - At minimum `openid` .
+    - Default in rucio `openid` and `profile`.
+  - Transfer and Deletion related scopes:
+    - `fts`
+    - `storage.modify:<path>`
+    - `storage.create:<path>`
+    - `storage.read:<path>`
+    - `offline_access`
 
-> **Note:** use https for redirect_uris . Replace `<RUCIO_AUTH_SERVER_HOSTNAME>` with proper hostname.
-
-> **Note:** 
-> - The audience value (default `rucio`) is set by the Rucio auth server during the authorization request. Some IdPs require this audience to be pre-registered with the client, while others don't (like IndigoIAM).
-> - The audience set in the client_credentials token request corresponds to the storage hostname(s) and FTS hostname. Some IdPs require this audience to be pre-registered with the client, while others don't (like IndigoIAM).
+- redirect_uris :
+  - `https://<RUCIO_AUTH_SERVER_HOSTNAME>/auth/oidc_token`
+  - `https://<RUCIO_AUTH_SERVER_HOSTNAME>/auth/oidc_code`
 
 
+:::tip
+use https for redirect_uris . Replace `<RUCIO_AUTH_SERVER_HOSTNAME>` with proper hostname.
+:::
 
- The `<path>` to register depends upon your IdP's scope matching algorithm in combination
- with configuration for RSEs as described [here](#configuring-path-for-storage-capabilities-in-rucio)
+:::info
+- The audience value (default `rucio`) is set by the Rucio auth server during the authorization request.
+- The audience set in the `client_credentials` grant's token request corresponds to the storage hostname(s) and FTS hostname.
+- **Some IdPs require these audience to be pre-registered with the client, while others don't (like IndigoIAM).**
+:::
 
-   
+Use case of different grant types:
 
-Please save the value of client_id and client_secret after registration.
+- `authorization_code`: This grant type is used for interactive user authentication to rucio. User must use `OIDC` authorization type.
+- `client_credentials`: This grant is machine-machine interaction (daemons-IdP interactions). It is used for getting tokens for FTS and Storage(s). This is used by transfer and deletion daemons.
+
+The `<path>` to register depends upon your IdP's scope matching algorithm in combination
+with configuration for RSEs as described [here](#configuring-path-for-storage-capabilities-in-rucio)
+
+Please save the value of `client_id` and `client_secret` after registration.
 
 ### Preparing idpsecrets.json
+
 Create an `idpsecrets.json` file containing the configuration of the two IdP clients. Then mount this file to Rucio server and daemons. The path to the mounted file have to be set in [configuration](#configuring-rucio-server-for-oidc-based-authentication)
 If using Helm Chart then use mounting as [described here](https://github.com/rucio/helm-charts/tree/master/charts/rucio-server#additional-secrets).
 
-> **Security:** Never commit `idpsecrets.json` to version control. Store the file securely (Kubernetes Secret, encrypted backup or password manager). Mount secrets as read-only in production.
+:::danger[Security]
+Never commit `idpsecrets.json` to version control. Store the file securely (Kubernetes Secret, encrypted backup or password manager). Mount secrets as read-only in production.
+:::
 
-> **warning:** The `SCIM` section of json file is **not used but required to be present due to some legacy code still present**. Thus please set some random value for it.
+:::warning
+The `SCIM` section of json file is **not used but required to be present due to some legacy code still present**. Thus please set some random value for it.
+:::
 
 Example:
 
@@ -292,19 +305,20 @@ Example:
 ```
 
 ### Configuring Rucio Server for OIDC based authentication
+
 Enable OIDC in `rucio.cfg`:
 
 ```cfg
 [oidc]
 # Required: Path to the idpsecrets JSON file.
-idpsecrets = /opt/rucio/etc/idpsecrets.json 
+idpsecrets = /opt/rucio/etc/idpsecrets.json
 
-# Required: Matches the <IdP_nickname> key in idpsecrets.json. 
+# Required: Matches the <IdP_nickname> key in idpsecrets.json.
 admin_issuer = <IdP_nickname>
 
 # Optional: Expected 'aud' value in the user JWT. Defaults to 'rucio'.
 # if different from default then put what you have
-expected_audience = 'rucio' 
+expected_audience = 'rucio'
 
 # Optional: Expected scopes in the JWT. Defaults to 'openid profile'.
 # if different from default then put what you have
@@ -312,10 +326,12 @@ expected_scope = 'openid profile'
 ```
 
 Each user must have an OIDC identity linked to their Rucio account. The OIDC identity consists of:
-  - `sub` claim which is subject claim of user.
-  - `iss` claim which is issuer URL of the IdP.
+
+- `sub` claim which is subject claim of user.
+- `iss` claim which is issuer URL of the IdP.
 
 Example:
+
 ```bash
 rucio account identity add --account rucio_user_account \
   --type OIDC \
@@ -323,51 +339,58 @@ rucio account identity add --account rucio_user_account \
   --email "wlcg-doma-rucio@cern.ch"
 ```
 
-> **Note**: 
-> `5b5e5d37-926b-4b42-8a98-a0b4b28baf18` is subject claim of user and `https://wlcg.cloud.cnaf.infn.it/` is issuer url  of IdP.
-> The format of `id` has single space after the comma, so be mindful of that.
+:::info
+
+- `5b5e5d37-926b-4b42-8a98-a0b4b28baf18` is subject claim of user and `https://wlcg.cloud.cnaf.infn.it/` is issuer url of IdP.
+- The format of `id` has single space after the comma, so be mindful of that.
+  :::
 
 ### Enabling OIDC for Transfers & Deletions
+
 Rucio uses WLCG profile with [Capability based authorization](https://github.com/WLCG-AuthZ-WG/common-jwt-profile/blob/master/profile.md#221-capability-based-authorization-scope) for token-based interactions with storage.
 Authorization is applied at the RSE level: This means tokens are scoped to the RSE's storage path prefix described [here](#defining-path-for-storage-capabilities), not to individual files or datasets. A single token grants access to perform operations on any file under the RSE's path based on its capabilities (read, create, modify).
 
 Token-based operations require:
-  1. The RSE must have the davs protocol enabled.
-  2. The RSE must have the oidc_support attribute set to True.
 
-      ```bash
-      rucio rse attribute add --key oidc_support --value True RSE_NAME
-      ```
-  3. The RSE must be able to accept token with WLCG profile and audience as its `hostname` 
-  4. The RSE must allow permission for [`<path>`](#defining-path-for-storage-capabilities)
-  5. FTS must be configured to accept token `fts` scope and `<fts_hostname>` audience.
-      - FTS audience config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#configuring-the-fts-rest-component).
-      - FTS scope config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#add-tokenprovider-information-to-the-database) 
+1. The RSE must have the davs protocol enabled.
+2. The RSE must have the oidc_support attribute set to True.
+
+   ```bash
+   rucio rse attribute add --key oidc_support --value True RSE_NAME
+   ```
+
+3. The RSE must be able to accept token with WLCG profile and audience as its `hostname`
+4. The RSE must allow permission for [`<path>`](#defining-path-for-storage-capabilities)
+5. FTS must be configured to accept token `fts` scope and `<fts_hostname>` audience.
+   - FTS audience config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#configuring-the-fts-rest-component).
+   - FTS scope config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#add-tokenprovider-information-to-the-database)
 
 #### Configuring `<path>` for Storage Capabilities in Rucio:
+
 Each storage enforces a specific prefix for `storage.<capability>:<path>` scopes. There are two scenarios:
 
 **Scenario 1: Storage Accepts Full RSE Protocol Prefix**
 
-   If your storage accepts the full RSE protocol prefix as-is, no additional configuration is needed.
+If your storage accepts the full RSE protocol prefix as-is, no additional configuration is needed.
 
-   Example:
-   - RSE protocol prefix: `/path/to/vo`
-   - Storage expects: `/path/to/vo`
+Example:
+
+- RSE protocol prefix: `/path/to/vo`
+- Storage expects: `/path/to/vo`
 
 **Scenario 2: Storage Expects Partial RSE Protocol Prefix**
 
-   If your storage expects only part of the RSE protocol prefix, use the `oidc_base_path` RSE attribute to strip the unwanted leading prefix.
+If your storage expects only part of the RSE protocol prefix, use the `oidc_base_path` RSE attribute to strip the unwanted leading prefix.
 
-   Example:
-   - RSE protocol prefix: `/path/to/vo`
-   - Storage expects: `/vo`
-   - Action: Set `oidc_base_path` to remove `/path/to` as shown below.
+Example:
 
-   ```bash
-   rucio rse attribute add --key oidc_base_path --value '/path/to' RSE_NAME
-   ```
+- RSE protocol prefix: `/path/to/vo`
+- Storage expects: `/vo`
+- Action: Set `oidc_base_path` to remove `/path/to` as shown below.
 
+```bash
+rucio rse attribute add --key oidc_base_path --value '/path/to' RSE_NAME
+```
 
 #### Transfer daemon token flow.
 
@@ -375,9 +398,12 @@ Each storage enforces a specific prefix for `storage.<capability>:<path>` scopes
 
 For TPC transfer rucio sends 3 tokens to FTS.
 `fts token [F]`, `src storage token [S]` and `destination storage token [D]`.
-> **Note:** All tokens sent to FTS (`[F]`, `[S]`, `[D]`) are **managed tokens**.  
-> This requires configuring FTS to perform **token exchange and Just in Time token refresh**, so long-running transfers continue even after the original tokens sent from Rucio expires.
-> More info [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/token_support.html) and [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.14.html).
+
+:::info
+All tokens sent to FTS (`[F]`, `[S]`, `[D]`) are **managed tokens**.  
+This requires configuring FTS to perform **token exchange and Just in Time token refresh**, so long-running transfers continue even after the original tokens sent from Rucio expires.
+More info [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/token_support.html) and [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.14.html).
+:::
 
 ```mermaid
 sequenceDiagram
@@ -407,7 +433,8 @@ sequenceDiagram
 
 2. Poller Daemon Token Support
 
-   For Poller to use tokens to communicate with FTS, modify to config with the following: 
+   For Poller to use tokens to communicate with FTS, add following to the config:
+
    ```cfg
    [conveyor]
    poller_oidc_support = True
@@ -440,7 +467,7 @@ sequenceDiagram
        participant I as Identity Provider
        participant S as Storage
        Note over D,I: client_credentials
-       
+
        alt Tokens NOT cached
            D->>I: Request storage token
            I-->>D: Token [S]
