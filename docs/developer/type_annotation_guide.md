@@ -235,7 +235,7 @@ over
 [`collections.abc.Generator`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)**
 
   - `collections.abc.Generator[YieldType, SendType, ReturnType]` takes three Type Vars:
-  The Type that gets yielded, the type that gets send back to the yield, and the
+  The type that gets yielded, the type that gets sent back to the yield, and the
   return type of the function. If a function does only yield values, but does
   not take back values from the yield and also does not return anything with the
   `return` keyword, the type is `collections.abc.Generator[YieldType, None, None]`. This
