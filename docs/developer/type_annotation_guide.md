@@ -173,7 +173,7 @@ following best practices:
 
 **Use _bare_ type hints over [ones with
 quotes](https://peps.python.org/pep-0484/#runtime-or-type-checking) and `if
-tying.TYPE_CHECKING:`**
+typing.TYPE_CHECKING:`**
 
   - Quoted type hints enable "forward references". This enables us to not
   execute expensive code while still having type checks.
