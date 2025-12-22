@@ -121,7 +121,7 @@ our dependencies. All of our frequently used dependencies provide type
 annotations out of the box or via extensions:
 
 - _Python standard library_
-    - Typehints were added in 3.5.0
+    - Type hints were added in 3.5.0
 - `sqlalchemy`
     - Type hints were introduced in version 2.0
     - `sqlalchemy-stubs` provide types for versions < 2.0
@@ -131,10 +131,10 @@ annotations out of the box or via extensions:
 - `flask`
     - Type hints are provided
 - `six`
-    - The `types-six` package provides typehints.
+    - The `types-six` package provides type hints.
     - `six` might be removed from the repository in the future.
 - `requests`
-    - The `types-requests` package provides typehints.
+    - The `types-requests` package provides type hints.
 
 Some types from our dependencies, like the _sqlalchemy_ `orm.session.Session`,
 can be used directly. It is not needed to create our own equivalent then, except
