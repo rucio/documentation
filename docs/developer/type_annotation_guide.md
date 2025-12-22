@@ -3,7 +3,7 @@ title: Type Annotation Guide
 ---
 
 The purpose of this document is to collaboratively create the developer
-guidelines for static type checking of rucio's codebase.
+guidelines for static type checking of Rucio's codebase.
 
 **TL;DR** New code has to be type annotated, old code should be migrated. Look
 into [Best Practices](#Best-Practices) for specific instructions on how to use
@@ -23,11 +23,6 @@ allow us to automatically check the code for type mismatches. Type-related bugs
 will thereby be checked at compile time (pre-runtime), rather than at
 runtime. Type hints also increase the descriptiveness of our code and make it
 easier to read.
-
-Rucio does not have type hints at the moment. The plan is to introduce them
-consistently to the entire project. Adding type hints to a big project is
-challenging. Since the code-base is too large to introduce them with only one
-PR, we will introduce the hints incrementally.
 
 ## Type Annotations
 
@@ -107,9 +102,6 @@ The following modules will **not** be type annotated:
       would help fixing bugs, the code itself is not shipped and will not be run
       in a production environment.
     - We could add support later, however this is not our main concern atm.
-- `bin`
-    - The Rucio executables don't call the core or api call directly, but rather
-      use the client. We could activate it once to Python2 support is dropped.
 - `lib/rucio/tests`
     - The tests are volatile and should be easy to change. Type annotations
       would just add clutter and very little benefits.
@@ -129,7 +121,7 @@ our dependencies. All of our frequently used dependencies provide type
 annotations out of the box or via extensions:
 
 - _Python standard library_
-    - Typehints were added in 3.5.0
+    - Type hints were added in 3.5.0
 - `sqlalchemy`
     - Type hints were introduced in version 2.0
     - `sqlalchemy-stubs` provide types for versions < 2.0
@@ -139,22 +131,22 @@ annotations out of the box or via extensions:
 - `flask`
     - Type hints are provided
 - `six`
-    - The `types-six` package provides typehints.
+    - The `types-six` package provides type hints.
     - `six` might be removed from the repository in the future.
 - `requests`
-    - The `types-requests` package provides typehints.
+    - The `types-requests` package provides type hints.
 
 Some types from our dependencies, like the _sqlalchemy_ `orm.session.Session`,
 can be used directly. It is not needed to create our own equivalent then, except
-if they get translated to a rucio owned type.
+if they get translated to a Rucio owned type.
 
 ### GitHub Actions
 
-A GitHub actions job ensures that newly written code contains type hints:
+A GitHub Actions job ensures that newly written code contains type hints:
 
 The `Check Python Type Annotations` job in the autotests checks, if new code
 contains type annotations. It does this by comparing the number of missing
-python type annotations before the changes with the number of missing python
+Python type annotations before the changes with the number of missing Python
 type annotations after the changes. If the number before is less than the number
 after, new code, which is not typed, was added. The script then exits with a
 non-zero exit code. If it is equals or bigger, type annotations have been added
@@ -162,7 +154,7 @@ to the repository.
 
 As of now, only the number of _missing_ type annotations will be used. The job
 does not check for wrong type hints or inconsistencies. This (specifically
-`mypy`) will be enabled once enough python type hints are added. For this
+`mypy`) will be enabled once enough Python type hints are added. For this
 purpose, we will always add type annotations to functions, even when the type
 can be inferred.
 
@@ -179,15 +171,24 @@ following best practices:
   - E.g. favor `def add_rse(rse: str, vo: str = 'def', ...) -> str:` over `def
   add_rse(rse, vo='def', ...): # type: (str, str, ...) -> str`
 
-**Use _bare_ type hints over [ones with
-quotes](https://peps.python.org/pep-0484/#runtime-or-type-checking) and `if
-tying.TYPE_CHECKING:`**
+**Use `typing.TYPE_CHECKING` for code that must be seen by a type checker, but not executed at runtime**
 
-  - Quoted type hints enable "forward references". This enables us to not
-  execute expensive code while still having type checks.
-  - As long as the performance is immesurable small and not a problem, this
-should be avoided, since it > [name=Joel Dierkes] Dunno about this part. Should
-we use `if typing.TYPE_CHECKING:` and quoted types or avoid them?
+[PEP-484](https://peps.python.org/pep-0484/#runtime-or-type-checking) provides this example:
+
+```python
+import typing
+
+if typing.TYPE_CHECKING:
+    import expensive_mod
+
+def a_func(arg: 'expensive_mod.SomeClass') -> None:
+    a_var = arg  # type: expensive_mod.SomeClass
+    ...
+```
+
+Essentially, in the context in which a type is used for nothing other than
+type checking, then you should use `typing.TYPE_CHECKING`,
+so that the type is not imported during regular execution.
 
 **Be as specific as possible**
 
@@ -234,7 +235,7 @@ over
 [`collections.abc.Generator`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)**
 
   - `collections.abc.Generator[YieldType, SendType, ReturnType]` takes three Type Vars:
-  The Type that gets yielded, the type that gets send back to the yield, and the
+  The type that gets yielded, the type that gets sent back to the yield, and the
   return type of the function. If a function does only yield values, but does
   not take back values from the yield and also does not return anything with the
   `return` keyword, the type is `collections.abc.Generator[YieldType, None, None]`. This
@@ -277,7 +278,7 @@ common variables with their corresponding type:
 
 | Code section | Variable | Type | Description |
 | ------------ | -------- | ------------------------------ | ----------------------- |
-| * | session | sqlalchemy.orm.session.Session | The sqlalchemy session. |
+| * | session | `sqlalchemy.orm.session.Session` | The sqlalchemy session. |
 | DID | scope | `str` | The scope of a DID.  |
 | DID | name | `str` | The name of a DID.  |
 | DID | account | `str` | The account name.  |
