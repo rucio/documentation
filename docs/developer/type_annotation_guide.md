@@ -278,7 +278,7 @@ common variables with their corresponding type:
 
 | Code section | Variable | Type | Description |
 | ------------ | -------- | ------------------------------ | ----------------------- |
-| * | session | sqlalchemy.orm.session.Session | The sqlalchemy session. |
+| * | session | `sqlalchemy.orm.session.Session` | The sqlalchemy session. |
 | DID | scope | `str` | The scope of a DID.  |
 | DID | name | `str` | The name of a DID.  |
 | DID | account | `str` | The account name.  |
