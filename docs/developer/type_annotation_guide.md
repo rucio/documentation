@@ -102,9 +102,6 @@ The following modules will **not** be type annotated:
       would help fixing bugs, the code itself is not shipped and will not be run
       in a production environment.
     - We could add support later, however this is not our main concern atm.
-- `bin`
-    - The Rucio executables don't call the core or api call directly, but rather
-      use the client. We could activate it once to Python2 support is dropped.
 - `lib/rucio/tests`
     - The tests are volatile and should be easy to change. Type annotations
       would just add clutter and very little benefits.
