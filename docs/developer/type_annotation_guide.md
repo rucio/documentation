@@ -24,11 +24,6 @@ will thereby be checked at compile time (pre-runtime), rather than at
 runtime. Type hints also increase the descriptiveness of our code and make it
 easier to read.
 
-Rucio does not have type hints at the moment. The plan is to introduce them
-consistently to the entire project. Adding type hints to a big project is
-challenging. Since the code-base is too large to introduce them with only one
-PR, we will introduce the hints incrementally.
-
 ## Type Annotations
 
 ### General Information
