@@ -3,7 +3,7 @@ title: Type Annotation Guide
 ---
 
 The purpose of this document is to collaboratively create the developer
-guidelines for static type checking of rucio's codebase.
+guidelines for static type checking of Rucio's codebase.
 
 **TL;DR** New code has to be type annotated, old code should be migrated. Look
 into [Best Practices](#Best-Practices) for specific instructions on how to use
@@ -138,15 +138,15 @@ annotations out of the box or via extensions:
 
 Some types from our dependencies, like the _sqlalchemy_ `orm.session.Session`,
 can be used directly. It is not needed to create our own equivalent then, except
-if they get translated to a rucio owned type.
+if they get translated to a Rucio owned type.
 
 ### GitHub Actions
 
-A GitHub actions job ensures that newly written code contains type hints:
+A GitHub Actions job ensures that newly written code contains type hints:
 
 The `Check Python Type Annotations` job in the autotests checks, if new code
 contains type annotations. It does this by comparing the number of missing
-python type annotations before the changes with the number of missing python
+Python type annotations before the changes with the number of missing Python
 type annotations after the changes. If the number before is less than the number
 after, new code, which is not typed, was added. The script then exits with a
 non-zero exit code. If it is equals or bigger, type annotations have been added
@@ -154,7 +154,7 @@ to the repository.
 
 As of now, only the number of _missing_ type annotations will be used. The job
 does not check for wrong type hints or inconsistencies. This (specifically
-`mypy`) will be enabled once enough python type hints are added. For this
+`mypy`) will be enabled once enough Python type hints are added. For this
 purpose, we will always add type annotations to functions, even when the type
 can be inferred.
 
