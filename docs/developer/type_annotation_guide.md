@@ -171,15 +171,24 @@ following best practices:
   - E.g. favor `def add_rse(rse: str, vo: str = 'def', ...) -> str:` over `def
   add_rse(rse, vo='def', ...): # type: (str, str, ...) -> str`
 
-**Use _bare_ type hints over [ones with
-quotes](https://peps.python.org/pep-0484/#runtime-or-type-checking) and `if
-typing.TYPE_CHECKING:`**
+**Use `typing.TYPE_CHECKING` for code that must be seen by a type checker, but not executed at runtime**
 
-  - Quoted type hints enable "forward references". This enables us to not
-  execute expensive code while still having type checks.
-  - As long as the performance is immesurable small and not a problem, this
-should be avoided, since it > [name=Joel Dierkes] Dunno about this part. Should
-we use `if typing.TYPE_CHECKING:` and quoted types or avoid them?
+[PEP-484](https://peps.python.org/pep-0484/#runtime-or-type-checking) provides this example:
+
+```python
+import typing
+
+if typing.TYPE_CHECKING:
+    import expensive_mod
+
+def a_func(arg: 'expensive_mod.SomeClass') -> None:
+    a_var = arg  # type: expensive_mod.SomeClass
+    ...
+```
+
+Essentially, in the context in which a type is used for nothing other than
+type checking, then you should use `typing.TYPE_CHECKING`,
+so that the type is not imported during regular execution.
 
 **Be as specific as possible**
 
