@@ -231,7 +231,7 @@ Rucio requires a client at the IdP with following info.
 
 
 :::tip
-use https for redirect_uris . Replace `<RUCIO_AUTH_SERVER_HOSTNAME>` with proper hostname.
+Ensure your server uses HTTPS, as most Identity Providers will reject non-secure redirect URIs
 :::
 
 :::info
@@ -311,7 +311,7 @@ Enable OIDC in `rucio.cfg`:
 ```cfg
 [oidc]
 # Required: Path to the idpsecrets JSON file.
-idpsecrets = /opt/rucio/etc/idpsecrets.json
+idpsecrets = /path/to/your/idpsecrets.json
 
 # Required: Matches the <IdP_nickname> key in idpsecrets.json.
 admin_issuer = <IdP_nickname>
