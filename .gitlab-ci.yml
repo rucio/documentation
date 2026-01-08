@@ -1,0 +1,23 @@
+# GitLab CI configuration for CERN GitLab Pages
+# ==============================================
+# Build happens on GitHub Actions, this only deploys pre-built artifacts through CERN's gitlab instance.
+#
+# How it works:
+# 1. GitHub Actions builds the Docusaurus site and pushes to gh-pages branch
+# 2. CERN GitLab pulls/mirrors the gh-pages branch
+# 3. This CI pipeline deploys the pre-built files to GitLab Pages
+#
+
+image: alpine:latest
+
+pages:
+  stage: deploy
+  script:
+    # GitLab Pages expects files in a 'public' directory
+    - mkdir -p public
+    - cp -r * public/ 2>/dev/null || true
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "gh-pages"
