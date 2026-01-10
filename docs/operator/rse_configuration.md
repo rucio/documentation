@@ -174,10 +174,10 @@ DAVLockDB /var/lib/dav/lockdb
         SSLVerifyDepth 2
         SSLOptions +StdEnvVars
         SSLCACertificateFile /etc/grid-security/ca.pem
-        
+
         # For x509 authentication (recommended)
         Require valid-user
-        
+
         # For open access (NOT RECOMMENDED for production)
         # Require all granted
     </Directory>
