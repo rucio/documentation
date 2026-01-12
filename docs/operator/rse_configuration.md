@@ -27,6 +27,43 @@ Rucio supports several types of RSEs, each suited for different use cases:
 - Long-term archival storage
 - Higher latency but larger capacity
 - Examples: CTA (CERN Tape Archive)
+
+## RSE Configuration Concepts
+Before diving into the setup methods, it's important to understand the main concepts that define RSE configuration:
+
+### RSE Attributes
+
+RSE attributes are key-value pairs that control the behavior and capabilities of an RSE. They define how Rucio interacts with the storage system.
+
+**Common attributes include:**
+- Storage characteristics (type, capacity, availability)
+- File naming and organization conventions
+- Transfer and checksum policies
+- Integration endpoints (FTS, monitoring)
+
+An exhaustive list of RSE attributes can be found in the [RSE attributes page](configuration_parameters/#rse-attributes).
+
+### Protocols
+
+Protocols define the methods clients use to access data on an RSE. Each protocol specifies:
+- **Scheme**: The access protocol (e.g., `https`, `root`, `davs`)
+- **Hostname/Port**: Network endpoint for the storage system
+- **Prefix**: Base path for file storage
+- **Implementation**: Python class handling protocol operations
+- **Domains**: Separate configurations for local (LAN) and remote (WAN) access
+- **Operations**: Supported operations (read, write, delete, third-party copy)
+
+Multiple protocols can be configured for a single RSE, allowing different access methods for different use cases.
+
+### Account Limits
+
+Account limits (also called quotas) control how much storage space a Rucio account can consume on a specific RSE. Limits are:
+- Set per account per RSE
+- Specified in bytes (or as `infinity` for unlimited)
+- Enforced by Rucio's replication rules and placement decisions
+
+Without appropriate limits, accounts cannot create replicas on an RSE.
+
 ---
 
 ## RSE Setup Methods
@@ -64,24 +101,27 @@ rucio rse protocol add --host hostname --scheme scheme --prefix /path \
 rucio account limit add account_name --rse RSE_NAME --bytes quota
 ```
 
-### Method 2: Using the Python API
+### Method 2: Using the Python Client API
 
-The Python API is useful for automation, complex configurations, or when integrating with other Python tools.
+The Python Client API is the recommended approach for automation, complex configurations, or when integrating with other Python tools.
 
 **Basic workflow:**
 
 ```python
 #!/usr/bin/env python
-from rucio.core.rse import add_rse, add_protocol, get_rse_id, add_rse_attribute
-from rucio.core.account import set_account_limit
+from rucio.client.rseclient import RSEClient
+from rucio.client.accountlimitclient import AccountLimitClient
+
+# Initialize clients
+rse_client = RSEClient()
+account_limit_client = AccountLimitClient()
 
 # 1. Add the RSE
-add_rse('RSE_NAME')
-rse_id = get_rse_id('RSE_NAME')
+rse_client.add_rse('RSE_NAME')
 
 # 2. Add attributes
-add_rse_attribute(rse_id, key='rse_type', value='DISK')
-add_rse_attribute(rse_id, key='attribute_name', value='attribute_value')
+rse_client.add_rse_attribute('RSE_NAME', 'rse_type', 'DISK')
+rse_client.add_rse_attribute('RSE_NAME', 'attribute_name', 'attribute_value')
 
 # 3. Add protocol
 params = {
@@ -96,10 +136,10 @@ params = {
                 'third_party_copy_read': 1, 'third_party_copy_write': 1}
     }
 }
-add_protocol(rse_id, params)
+rse_client.add_protocol('RSE_NAME', params)
 
 # 4. Set account limits
-set_account_limit('account_name', rse_id, bytes_limit)
+account_limit_client.set_account_limit('account_name', 'RSE_NAME', bytes_limit)
 ```
 
 ---
@@ -237,11 +277,14 @@ rucio rse protocol add --host $HOST $RUCIO_RSE_NAME \
 rucio account limit add root --rse $RUCIO_RSE_NAME --bytes infinity
 ```
 
-**Using Python API:**
+**Using Python Client API:**
 
 ```python
 #!/usr/bin/env python
-from rucio.core.rse import add_rse, add_protocol, get_rse_id, add_rse_attribute
+from rucio.client.rseclient import RSEClient
+
+# Initialize client
+rse_client = RSEClient()
 
 # Protocol parameters
 params = {
@@ -269,16 +312,15 @@ params = {
 }
 
 # Add RSE
-add_rse('WEBDAV_RSE')
-rse_id = get_rse_id('WEBDAV_RSE')
+rse_client.add_rse('WEBDAV_RSE')
 
 # Setup protocol
-add_protocol(rse_id, params)
+rse_client.add_protocol('WEBDAV_RSE', params)
 
 # Set attributes
-add_rse_attribute(rse_id, key='istape', value='False')
-add_rse_attribute(rse_id, key='verify_checksum', value='False')
-add_rse_attribute(rse_id, key='greedyDeletion', value='True')
+rse_client.add_rse_attribute('WEBDAV_RSE', 'istape', 'False')
+rse_client.add_rse_attribute('WEBDAV_RSE', 'verify_checksum', 'False')
+rse_client.add_rse_attribute('WEBDAV_RSE', 'greedyDeletion', 'True')
 ```
 
 ---
@@ -291,8 +333,8 @@ Disk RSEs provide fast access to active data and are typically backed by systems
 
 ```bash
 RUCIO_RSE_NAME="EXAMPLE_DISK_RSE"
-HOST="eospublic.cern.ch"
-PREFIX="//eos/workspace/e/experiment/tmp"
+HOST="storage.example.com"
+PREFIX="/storage/rucio" # If using EOS, note that the path is //eos/your-path
 
 # Create RSE
 rucio rse add $RUCIO_RSE_NAME
@@ -300,7 +342,7 @@ rucio rse add $RUCIO_RSE_NAME
 # Set RSE type and attributes
 rucio rse update $RUCIO_RSE_NAME --key rse_type --value DISK
 rucio rse attribute add $RUCIO_RSE_NAME --key lfn2pfn_algorithm --value identity
-rucio rse attribute add $RUCIO_RSE_NAME --key fts --value https://fts3-pilot.cern.ch:8446
+rucio rse attribute add $RUCIO_RSE_NAME --key fts --value https://fts.example.com:8446
 
 # Add HTTPS protocol (primary for transfers)
 rucio rse protocol add --host $HOST $RUCIO_RSE_NAME \
@@ -322,27 +364,29 @@ rucio rse protocol add --host $HOST $RUCIO_RSE_NAME \
 rucio account limit add root --rse $RUCIO_RSE_NAME --bytes infinity
 ```
 
-**Using Python API:**
+**Using Python Client API:**
 
 ```python
 #!/usr/bin/env python
-from rucio.core.rse import add_rse, add_protocol, get_rse_id, add_rse_attribute
+from rucio.client.rseclient import RSEClient
+
+# Initialize client
+rse_client = RSEClient()
 
 # Add RSE
-add_rse('EXAMPLE_DISK_RSE')
-rse_id = get_rse_id('EXAMPLE_DISK_RSE')
+rse_client.add_rse('EXAMPLE_DISK_RSE')
 
 # Set attributes
-add_rse_attribute(rse_id, key='rse_type', value='DISK')
-add_rse_attribute(rse_id, key='lfn2pfn_algorithm', value='identity')
-add_rse_attribute(rse_id, key='fts', value='https://fts3-pilot.cern.ch:8446')
+rse_client.add_rse_attribute('EXAMPLE_DISK_RSE', 'rse_type', 'DISK')
+rse_client.add_rse_attribute('EXAMPLE_DISK_RSE', 'lfn2pfn_algorithm', 'identity')
+rse_client.add_rse_attribute('EXAMPLE_DISK_RSE', 'fts', 'https://fts.example.com:8446')
 
 # Add HTTPS protocol
 https_params = {
     'scheme': 'https',
-    'hostname': 'eospublic.cern.ch',
+    'hostname': 'storage.example.com',
     'port': 8444,
-    'prefix': '//eos/workspace/e/experiment/tmp',
+    'prefix': '/storage/rucio',
     'impl': 'rucio.rse.protocols.gfal.Default',
     'domains': {
         'lan': {'read': 1, 'write': 1, 'delete': 1},
@@ -350,14 +394,14 @@ https_params = {
                 'third_party_copy_read': 1, 'third_party_copy_write': 1}
     }
 }
-add_protocol(rse_id, https_params)
+rse_client.add_protocol('EXAMPLE_DISK_RSE', https_params)
 
 # Add ROOT protocol
 root_params = {
     'scheme': 'root',
-    'hostname': 'eospublic.cern.ch',
+    'hostname': 'storage.example.com',
     'port': 1094,
-    'prefix': '//eos/workspace/e/experiment/tmp',
+    'prefix': '/storage/rucio',
     'impl': 'rucio.rse.protocols.gfal.Default',
     'domains': {
         'lan': {'read': 1, 'write': 1, 'delete': 1},
@@ -365,7 +409,7 @@ root_params = {
                 'third_party_copy_read': 1, 'third_party_copy_write': 1}
     }
 }
-add_protocol(rse_id, root_params)
+rse_client.add_protocol('EXAMPLE_DISK_RSE', root_params)
 ```
 
 :::info
@@ -384,16 +428,17 @@ Tape RSEs are used for long-term archival storage with higher latency but larger
 
 ```bash
 RUCIO_RSE_NAME="EXAMPLE_TAPE_RSE"
-HOST="eosctaatlaspps.cern.ch"
-PREFIX="//eos/ctaatlaspps/archivetest/experiment/tmp"
+HOST="tape-storage.example.com"
+PREFIX="/tape/archive" # If using EOS, note that the path is //eos/your-path
 
 # Create RSE
 rucio rse add $RUCIO_RSE_NAME
 
 # Set RSE type and attributes
 rucio rse update $RUCIO_RSE_NAME --key rse_type --value TAPE
+rucio rse attribute add $RUCIO_RSE_NAME --key istape --value True
 rucio rse attribute add $RUCIO_RSE_NAME --key lfn2pfn_algorithm --value identity
-rucio rse attribute add $RUCIO_RSE_NAME --key fts --value https://fts3-pilot.cern.ch:8446
+rucio rse attribute add $RUCIO_RSE_NAME --key fts --value https://fts.example.com:8446
 rucio rse attribute add $RUCIO_RSE_NAME --key archive_timeout --value 86400
 
 # Add HTTPS protocol only (root protocol can cause issues with tape)
@@ -408,28 +453,30 @@ rucio rse protocol add --host $HOST $RUCIO_RSE_NAME \
 rucio account limit add root --rse $RUCIO_RSE_NAME --bytes infinity
 ```
 
-**Using Python API:**
+**Using Python Client API:**
 
 ```python
 #!/usr/bin/env python
-from rucio.core.rse import add_rse, add_protocol, get_rse_id, add_rse_attribute
+from rucio.client.rseclient import RSEClient
+
+# Initialize client
+rse_client = RSEClient()
 
 # Add RSE
-add_rse('EXAMPLE_TAPE_RSE')
-rse_id = get_rse_id('EXAMPLE_TAPE_RSE')
+rse_client.add_rse('EXAMPLE_TAPE_RSE')
 
 # Set attributes
-add_rse_attribute(rse_id, key='rse_type', value='TAPE')
-add_rse_attribute(rse_id, key='lfn2pfn_algorithm', value='identity')
-add_rse_attribute(rse_id, key='fts', value='https://fts3-pilot.cern.ch:8446')
-add_rse_attribute(rse_id, key='archive_timeout', value='86400')
+rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'rse_type', 'TAPE')
+rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'lfn2pfn_algorithm', 'identity')
+rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'fts', 'https://fts.example.com:8446')
+rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'archive_timeout', '86400')
 
 # Add HTTPS protocol
 params = {
     'scheme': 'https',
-    'hostname': 'eosctaatlaspps.cern.ch',
+    'hostname': 'tape-storage.example.com',
     'port': 8444,
-    'prefix': '//eos/ctaatlaspps/archivetest/experiment/tmp',
+    'prefix': '/tape/archive',
     'impl': 'rucio.rse.protocols.gfal.Default',
     'domains': {
         'lan': {'read': 1, 'write': 1, 'delete': 1},
@@ -437,7 +484,7 @@ params = {
                 'third_party_copy_read': 1, 'third_party_copy_write': 1}
     }
 }
-add_protocol(rse_id, params)
+rse_client.add_protocol('EXAMPLE_TAPE_RSE', params)
 ```
 
 **Key Differences from Disk RSEs:**
@@ -445,36 +492,20 @@ add_protocol(rse_id, params)
 - `archive_timeout` attribute specifies maximum time for file staging (86400 = 24 hours)
 - Typically only `https` protocol is defined (avoid `root` protocol for tape)
 
-**Testing Environment:**
-At CERN, the path `//eos/ctaatlaspps/archivetest/experiment/tmp` can be used for tape testing. This is a temporary space where data is not expected to be kept long-term.
+
 
 ---
 
-## RSE Attributes
-
-RSE attributes control behavior and capabilities. Common attributes include:
-
-| Attribute | Description | Example Values |
-|-----------|-------------|----------------|
-| `rse_type` | Type of storage | `DISK`, `TAPE` |
-| `lfn2pfn_algorithm` | Logical to physical name mapping | `identity`, `hash` |
-| `fts` | FTS (File Transfer Service) endpoint | `https://fts3-pilot.cern.ch:8446` |
-| `istape` | Is this a tape system? | `True`, `False` |
-| `verify_checksum` | Enable checksum verification | `True`, `False` |
-| `greedyDeletion` | Delete files immediately when removed | `True`, `False` |
-| `archive_timeout` | Timeout for tape staging (seconds) | `86400` (24 hours) |
-| `naming_convention` | Custom naming scheme | Custom algorithm name |
-
-### Setting Attributes
+### Setting RSE Attributes
 
 ```bash
 # Using rucio CLI
 rucio rse attribute add RSE_NAME --key attribute_name --value attribute_value
 
-# Using Python API
-from rucio.core.rse import add_rse_attribute, get_rse_id
-rse_id = get_rse_id('RSE_NAME')
-add_rse_attribute(rse_id, key='attribute_name', value='attribute_value')
+# Using Python Client API
+from rucio.client.rseclient import RSEClient
+rse_client = RSEClient()
+rse_client.add_rse_attribute('RSE_NAME', 'attribute_name', 'attribute_value')
 ```
 
 ---
@@ -482,16 +513,7 @@ add_rse_attribute(rse_id, key='attribute_name', value='attribute_value')
 ## Protocols
 
 Protocols define how clients access data on an RSE. Multiple protocols can be defined for the same RSE.
-
-### Common Protocol Schemes
-
-- `file://` - Local filesystem (POSIX)
-- `https://` - HTTP with SSL/TLS
-- `davs://` - WebDAV with SSL/TLS
-- `root://` - ROOT protocol (XRootD)
-- `srm://` - Storage Resource Manager
-- `s3://` - S3 compatible storage; for more information, refer to the [Rucio S3 Protocol Documentation](s3_rse_config/#how-to-setup-an-s3-rse).
-- `gridftp://` - GridFTP protocol
+See the [RSE Protocols Documentation](https://rucio.cern.ch/documentation/html/transfer_protocols/posix.html) for a full list of parameters.
 
 ### Protocol Priority
 
@@ -595,9 +617,9 @@ rucio rse distance add --distance 1 SOURCE_RSE DEST_RSE
 ### 3. Prefix Planning
 
 When using the `identity` lfn2pfn algorithm, the scope is appended to the prefix:
-- Use generic prefixes like `//eos/workspace/e/experiment/tmp`
+- Use generic prefixes like `/storage/rucio` or `/data/experiment`
 - Each deployment can use the same prefix with different scopes
-- Example: Files with scope `ams` will be under `//eos/ams/`
+- Example: Files with scope `mydata` will be under `/storage/rucio/mydata/`
 
 ### 4. Security
 
