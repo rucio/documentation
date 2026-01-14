@@ -136,7 +136,7 @@ Using multiple commits is allowed as long as they achieve an independent,
 well-defined, change and are well-described. Otherwise multiple commits should
 be squashed.
 
-### **Conventional Commits**
+#### **Conventional Commits**
 
 Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) specification to ensure consistent and meaningful commit messages across the project. This is enforced through [commitlint](https://commitlint.js.org/) during CI checks and can be enabled locally via pre-commit hooks.
 
@@ -154,12 +154,10 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
 1. **Type**: Must be one of the following allowed types:
    - `feat`: New feature
    - `fix`: Bug fix
-   - `perf`: Code change that improves performance
    - `docs`: Documentation only changes
    - `style`: Changes that do not affect the meaning of the code
    - `refactor`: Code change that neither fixes a bug nor adds a feature
    - `test`: Adding missing tests or correcting existing tests
-   - `build`: Changes that affect the build system or external dependencies
    - `ci`: Changes to CI configuration files and scripts
    - `chore`: Other changes that don't modify src or test files
    - `revert`: Reverts a previous commit
@@ -208,13 +206,13 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
 
 **Examples:**
 ```bash
-feat(Core): Add new rule evaluation engine
+feat(Database): Add rules deleted_at column
 fix(DatasetDeletion): Resolve deletion timeout issues
 docs(Documentation): Update API documentation
 chore(CI): Update Node.js version to 24
 ```
 
-### **Git Trailers**
+#### **Git Trailers**
 
 All commits must reference a GitHub issue using git trailers. This ensures proper traceability and automatic issue closure.
 
