@@ -159,7 +159,6 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
    - `refactor`: Code change that neither fixes a bug nor adds a feature
    - `test`: Adding missing tests or correcting existing tests
    - `ci`: Changes to CI configuration files and scripts
-   - `chore`: Other changes that don't modify src or test files
    - `revert`: Reverts a previous commit
 
 2. **Scope**: Must be one of the predefined Rucio components (PascalCase). The available scopes are:
@@ -206,10 +205,63 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
 
 **Examples:**
 ```bash
-feat(Database): Add rules deleted_at column
-fix(DatasetDeletion): Resolve deletion timeout issues
-docs(Documentation): Update API documentation
-chore(CI): Update Node.js version to 24
+feat(Transfers): Group bulk transfers by authentication method
+fix(Core): Fix exception when attaching nonexistent DID to container
+docs(Documentation): Update API endpoint descriptions
+style(Transfers): Touch up comments
+refactor(Transfers): Simplify group key construction
+```
+
+**Choosing the Right Type:**
+
+Sometimes it's unclear which type to use. Consider the **intent** and **impact** of your change:
+
+| Ambiguity | Choose | When |
+|-----------|--------|------|
+| `style` vs `refactor` | `style` | Formatting, whitespace, comment tweaks |
+| `style` vs `refactor` | `refactor` | Modernizing syntax, restructuring code |
+| `fix` vs `refactor` | `fix` | Correcting incorrect behavior |
+| `fix` vs `refactor` | `refactor` | Improving code without fixing a bug |
+| `docs` vs `style` | `docs` | Updating documentation files or docstrings |
+| `docs` vs `style` | `style` | Minor comment formatting within code |
+| `test` vs `fix` | `fix` | Fixing flaky test due to race condition |
+| `test` vs `fix` | `test` | Adding new test cases or correcting test logic |
+
+**Examples:**
+
+| Scenario | Preferred | Rationale |
+|----------|-----------|-----------|
+| Replacing `Union[X, None]` with `Optional[X]` across 60+ files | `refactor(Core): Remove deprecated constructs from the typing module` | Modernizes codebase to newer Python conventions |
+| Adding type hints to function signatures | `style(Core): Add type hints to transfer functions` | Improves code documentation without changing behavior |
+| Fixing a test that fails intermittently due to timing | `fix(Testing): Resolve judge evaluator test flakiness` | Corrects broken behavior in test suite |
+| Adding new test cases for edge cases | `test(Testing): Add tests for attaching nonexistent DIDs` | Extends test coverage |
+| Updating README with new installation steps | `docs(Documentation): Update installation instructions` | Documentation-only change |
+| Fixing typos in code comments | `style(Core): Fix typos in transfer module comments` | Minor stylistic improvement |
+
+#### **Breaking Changes**
+
+Commits that introduce breaking API or behavioral changes must use `!` after the type/scope in the header and include a corresponding `BREAKING CHANGE` footer.
+
+**Format:**
+```
+<type>(<scope>)!: <description>
+
+[optional body]
+
+BREAKING CHANGE: <description of the breaking change and its impact>
+```
+
+**Requirement:** A breaking change commit must include **both** the `!` marker in the header (e.g., `feat(Core)!: ...`) **and** a `BREAKING CHANGE` footer with a description explaining the impact.
+
+**Example:**
+```bash
+refactor(Core)!: Make session a mandatory keyword-only argument
+
+BREAKING CHANGE: The session argument is now mandatory and keyword-only
+for all core functions. Callers must explicitly pass session=<session>
+instead of relying on positional arguments or default values.
+
+Closes: #5947
 ```
 
 #### **Git Trailers**
