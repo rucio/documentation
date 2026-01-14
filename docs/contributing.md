@@ -126,7 +126,7 @@ git commit -m "<type>(<scope>): <description>" --trailer "Closes: #<issue_number
 
 **Example:**
 ```bash
-git commit -m "feat(Core): Add new rule evaluation engine" --trailer "Closes: #1234"
+git commit -m "feat(Transfers): Group bulk transfers by authentication method" --trailer "Closes: #8199"
 ```
 
 Add additional explanations to the body of the commit, such as motivation for
@@ -276,28 +276,32 @@ All commits must reference a GitHub issue using git trailers. This ensures prope
 
 **Method 1: Using git commit command**
 ```bash
-git commit -m "feat(Core): Add new rule evaluation engine" --trailer "Closes: #1234"
+git commit -m "feat(Transfers): Group bulk transfers by authentication method" --trailer "Closes: #8199"
 ```
 
 **Method 2: Adding to commit body**
 ```bash
-git commit -m "feat(Core): Add new rule evaluation engine
+git commit -m "feat(Transfers): Group bulk transfers by authentication method
 
-This commit introduces a new rule evaluation engine that improves
-performance and adds support for complex rule conditions.
+The authentication method is a property of the FTS job. If Rucio does
+not partition the transfers based on it, then some may be done with an
+incorrect authentication method.
 
-Closes: #1234"
+Closes: #8199"
 ```
 
 **Complete Example:**
 ```bash
-feat(Core): Add new rule evaluation engine
+feat(Transfers): Group bulk transfers by authentication method
 
-This commit introduces a new rule evaluation engine that improves
-performance and adds support for complex rule conditions.
+The authentication method is a property of the FTS job. If Rucio does
+not partition the transfers based on it, then some may be done with an
+incorrect authentication method.
 
-Closes: #1234
+Closes: #8199
 ```
+
+*See the [original commit](https://github.com/rucio/rucio/commit/6ba2559) for reference.*
 
 ### 5. Push changes and create a Pull Request
 
