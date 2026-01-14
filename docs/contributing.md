@@ -165,32 +165,29 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
    - `Auth`: Authentication & Authorisation
    - `Clients`: Client libraries and tools
    - `Consistency`: Consistency checks
-   - `CI`: Continous Integration
    - `Core`: Core & Internals
    - `Database`: Database-related changes
    - `DatasetDeletion`: Dataset deletion functionality
    - `Deletion`: File deletion functionality
    - `DIRAC`: DIRAC integration
-   - `Docker`: Docker related functionality
+   - `Containerization`: Docker, Kubernetes, and container-related functionality
    - `Documentation`: Documentation updates
-   - `Kubernetes`:  Kubernetes deployment related functionality
    - `Lifetime`: Life time model processing
    - `Messaging`: Messaging system
    - `Metadata`: Metadata workflows
-   - `Monitoring`: Monitoring and observability
+   - `Monitoring`: Monitoring, observability, and traces
    - `MultiVO`: Multi-VO functionality
-   - `Opendata`: Open data functionality
+   - `OpenData`: Open data functionality
    - `Policies`: Policy management
    - `Probes`: Probes & Alarms
    - `Protocols`: Upload, Download, Deletion protocols
    - `Rebalancing`: Data rebalancing
    - `Recovery`: Data recovery
    - `Replicas`: Replica workflows
-   - `REST`: REST & API
+   - `API`: REST & API
    - `Rules`: Replication rules and rule daemons
    - `Subscriptions`: Subscription daemon
-   - `Testing`: Regression and Unit tests
-   - `Traces`: Monitoring & Traces
+   - `Testing`: Regression tests, Unit tests, and CI
    - `Transfers`: Transfer daemons
    - `WebUI`: Web user interface
 
