@@ -164,6 +164,24 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
    | `ci` | Non-functional | Modifies CI/CD pipelines or scripts |
    | `revert` | Non-functional | Undoes a previous commit |
 
+<details>
+<summary><strong>Quick guide: How to choose the right type</strong></summary>
+
+Ask yourself these questions in order:
+
+1. Are you adding a **new feature or capability** that didn't exist before? → `feat`
+2. Are you fixing **broken or incorrect behavior**? → `fix`
+3. Are you **only updating documentation** (README, docstrings, comments)? → `docs`
+4. Are you making **cosmetic changes** like formatting, whitespace, or linting fixes? → `style`
+5. Are you **reorganizing or cleaning up code** without changing what it does? → `refactor`
+6. Are you **adding, updating, or fixing tests**? → `test`
+7. Are you modifying **CI/CD pipelines, workflows, or build scripts**? → `ci`
+8. Are you **reverting a previous commit**? → `revert`
+
+> **Tip:** If none of these fit, consider splitting your commit into smaller, focused changes.
+
+</details>
+
 2. **Scope**: Must be one of the predefined Rucio components (PascalCase). The available scopes are:
    - `Auth`: Authentication & Authorisation
    - `Clients`: Client libraries and tools
