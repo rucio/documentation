@@ -4,30 +4,6 @@ This section provides an overview of Rucio Storage Elements (RSEs) from an opera
 
 The Rucio Storage Elements (RSEs) are the fundamental storage endpoints in a Rucio deployment. They represent physical or logical storage locations where data files are stored.
 
-## RSE Types
-
-Rucio supports several types of RSEs, each suited for different use cases:
-
-### 1. FILE/POSIX RSEs
-- Simple local filesystem access
-- Limited to local machine access
-- Best for testing or single-node deployments
-
-### 2. WebDAV RSEs
-- Web-based access via HTTP/HTTPS
-- Supports remote access
-- Requires web server configuration
-
-### 3. DISK RSEs
-- Standard disk-based storage
-- Fast access for active data
-- Examples: EOS, dCache, local filesystem
-
-### 4. TAPE RSEs
-- Long-term archival storage
-- Higher latency but larger capacity
-- Examples: CTA (CERN Tape Archive)
-
 ## RSE Configuration Concepts
 Before diving into the setup methods, it's important to understand the main concepts that define RSE configuration:
 
@@ -41,12 +17,19 @@ RSE attributes are key-value pairs that control the behavior and capabilities of
 - Transfer and checksum policies
 - Integration endpoints (FTS, monitoring)
 
+:::danger[Mandatory attributes]
+To ensure proper operation of Rucio with the RSE, these attributes must be set:
+1. `rse_type`: Defines whether the RSE is of type `DISK` or `TAPE`.
+2. `fts`: URL of the FTS (File Transfer Service) endpoint used for managing transfers.
+3. `lfn2pfn_algorithm`: Algorithm for mapping logical file names (LFNs) to physical file names (PFNs).
+:::
+
 An exhaustive list of RSE attributes can be found in the [RSE attributes page](configuration_parameters/#rse-attributes).
 
 ### Protocols
 
 Protocols define the methods clients use to access data on an RSE. Each protocol specifies:
-- **Scheme**: The access protocol (e.g., `https`, `root`, `davs`)
+- **Scheme**: The access protocol (e.g., `https`, `root`, `davs`, see [RSE Protocols Documentation](https://rucio.cern.ch/documentation/html/transfer_protocols/posix.html) for more information)
 - **Hostname/Port**: Network endpoint for the storage system
 - **Prefix**: Base path for file storage
 - **Implementation**: Python class handling protocol operations
@@ -261,7 +244,8 @@ rucio rse add $RUCIO_RSE_NAME
 
 # Set attributes
 rucio rse update $RUCIO_RSE_NAME --key rse_type --value DISK
-rucio rse attribute add $RUCIO_RSE_NAME --key istape --value False
+rucio rse attribute add $RUCIO_RSE_NAME --key lfn2pfn_algorithm --value identity
+rucio rse attribute add $RUCIO_RSE_NAME --key fts --value https://fts.example.com:8446
 rucio rse attribute add $RUCIO_RSE_NAME --key verify_checksum --value False
 rucio rse attribute add $RUCIO_RSE_NAME --key greedyDeletion --value True
 
@@ -269,7 +253,7 @@ rucio rse attribute add $RUCIO_RSE_NAME --key greedyDeletion --value True
 rucio rse protocol add --host $HOST $RUCIO_RSE_NAME \
   --scheme davs \
   --prefix $PREFIX \
-  --port 443 \
+  --port 8443 \
   --impl rucio.rse.protocols.gfal.Default \
   --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}'
 
@@ -291,7 +275,7 @@ params = {
     'scheme': 'davs',
     'prefix': '/webdav',
     'hostname': 'webdav.example.com',
-    'port': 443,
+    'port': 8443,
     'impl': 'rucio.rse.protocols.gfal.Default',
     'domains': {
         "lan": {
@@ -318,7 +302,8 @@ rse_client.add_rse('WEBDAV_RSE')
 rse_client.add_protocol('WEBDAV_RSE', params)
 
 # Set attributes
-rse_client.add_rse_attribute('WEBDAV_RSE', 'istape', 'False')
+rse_client.add_rse_attribute('WEBDAV_RSE', 'lfn2pfn_algorithm', 'identity')
+rse_client.add_rse_attribute('WEBDAV_RSE', 'fts', 'https://fts.example.com:8446')
 rse_client.add_rse_attribute('WEBDAV_RSE', 'verify_checksum', 'False')
 rse_client.add_rse_attribute('WEBDAV_RSE', 'greedyDeletion', 'True')
 ```
@@ -436,7 +421,6 @@ rucio rse add $RUCIO_RSE_NAME
 
 # Set RSE type and attributes
 rucio rse update $RUCIO_RSE_NAME --key rse_type --value TAPE
-rucio rse attribute add $RUCIO_RSE_NAME --key istape --value True
 rucio rse attribute add $RUCIO_RSE_NAME --key lfn2pfn_algorithm --value identity
 rucio rse attribute add $RUCIO_RSE_NAME --key fts --value https://fts.example.com:8446
 rucio rse attribute add $RUCIO_RSE_NAME --key archive_timeout --value 86400

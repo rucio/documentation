@@ -545,7 +545,7 @@ and how to set them up [here](operator/configuration.md#creating-new-rses).
 - **hop_penalty**: Integer. Usage cost of this RSE as an intermediate in [multihop transfers](operator_transfers/transfers_overview.md). Overrides the global `transfers/hop_penalty` configuration for this particular RSE.
  Requires `available_for_multihop` attribute is True on the RSE. No default.
 - **is_object_store**: Boolean. Control the auditor daemon's behavior. Instead of dumping all files, list them by date. Default: `False`.
-- **istape**: Boolean. Default: `False`.
+- **istape**: Boolean. Default: `False`. Historically used within RSE expressions. Not needed by Rucio itself. Refer to `rse_type` instead.
 - **lfn2pfn_algorithm**: String. Name of the algorithm to be used for generating paths to files on the storage. Must be defined in the configured policy package. Default: `default`.
 - **mock**: Boolean. Default: `False`.
 - **multihop_tombstone_delay**: Integer. Delay before a multihop transfer intermediate rule is to be deleted. Defined in seconds. Default: `7200`.
