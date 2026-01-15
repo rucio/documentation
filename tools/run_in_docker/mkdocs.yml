@@ -2,7 +2,7 @@ site_name: "Rucio Python Client Documentation"
 repo_url: https://github.com/rucio/rucio/
 site_url: https://rucio.cern.ch/documentation/
 copyright: "Copyright © 2024 CERN"
-docs_dir: /auto_generated/client_api
+docs_dir: /auto_generated/client_api/
 use_directory_urls: true
 not_in_nav: /auto_generated
 theme:
@@ -10,7 +10,12 @@ theme:
   logo: ../../img/rucio_horizontaled_black_cropped.svg
   extra_css: ../../../src/customTheme.css
   extra:
-    homepage: /documentation/
+    homepage: /documentation/client.html
+  version:
+    provider: mike
+    alias: true
+    default:
+      - latest
   features:
     - content.code.copy
     - toc.follow

@@ -400,7 +400,7 @@ For TPC transfer rucio sends 3 tokens to FTS.
 `fts token [F]`, `src storage token [S]` and `destination storage token [D]`.
 
 :::info
-All tokens sent to FTS (`[F]`, `[S]`, `[D]`) are **managed tokens**.  
+All tokens sent to FTS (`[F]`, `[S]`, `[D]`) are **managed tokens**.
 This requires configuring FTS to perform **token exchange and Just in Time token refresh**, so long-running transfers continue even after the original tokens sent from Rucio expires.
 More info [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/token_support.html) and [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.14.html).
 :::

@@ -64,11 +64,11 @@ A JSON object may be added as Open Data metadata
 rucio opendata did update $DID --meta '{"key":"value"}'
 ```
 
-This Open Data metadata will be available in the `show` command and in the 
+This Open Data metadata will be available in the `show` command and in the
 
 ## Public Open Data
 
-An Open Data DID can be marked as `public`. 
+An Open Data DID can be marked as `public`.
 Public Open Data DIDs will be exposed publicly in the Rucio server without the need of any kind of authentication.
 
 In order to become public, the DID must be closed if not a file.

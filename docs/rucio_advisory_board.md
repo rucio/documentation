@@ -74,12 +74,12 @@ at CERN, with remote participation possibilities. The RAB members agree to
 select a secretary for each meeting who will be in charge of keeping minutes.
 Minutes are kept internal to the RAB.
 
-Should a representative be exceptionally impeded to join a board meeting, they can 
-nominate a replacement representative, from their RSC, to join the meeting. The 
+Should a representative be exceptionally impeded to join a board meeting, they can
+nominate a replacement representative, from their RSC, to join the meeting. The
 replacement must be approved by the Rucio project leader.
 
-Guests can be invited to parts, or the entirety, of a board meeting. Invitations are 
-issued by the Rucio project leader and the RAB members must be informed, in advance, 
+Guests can be invited to parts, or the entirety, of a board meeting. Invitations are
+issued by the Rucio project leader and the RAB members must be informed, in advance,
 of the attendance of guests.
 
 ## Mandate versions

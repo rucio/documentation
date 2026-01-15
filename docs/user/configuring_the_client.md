@@ -28,7 +28,7 @@ Corresponds to the `--account` command-line option and the `clients.account` con
 
 Which mechanism to use to authenticate to Rucio.
 Corresponds to the `--auth-strategy` command-line option and the `clients.auth_type` configuration-file option.
-Valid options are `gss`, `oidc`, `saml`, `ssh`, `userpass`, `x509`, and `x509_proxy`. 
+Valid options are `gss`, `oidc`, `saml`, `ssh`, `userpass`, `x509`, and `x509_proxy`.
 
 ### RUCIO_CLIENT_MODE
 
@@ -84,7 +84,7 @@ See [RUCIO_HOME](#RUCIO_HOME).
 
 ### X509_CERT_DIR
 
-The path to the directory or certificate bundle to use to verify the Rucio servers. 
+The path to the directory or certificate bundle to use to verify the Rucio servers.
 Corresponds to the `--ca-certificate` command-line option and the `client.ca_cert` configuration-file option.
 Defaults to using the Mozilla certificate collection (Certifi).
 On Red Hat Enterprise Linux (and derivatives), depending on the method of installation, the system trust may be the default instead.

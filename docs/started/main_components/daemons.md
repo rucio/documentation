@@ -5,7 +5,7 @@ sidebar_label: Rucio Daemons
 ---
 
 Rucio relies on several daemons (processes) to perform different logic.
-Most of the daemons connect to the DB to read some data, perform some computation, 
+Most of the daemons connect to the DB to read some data, perform some computation,
 and then write some data back into the DB.
 
 Usually one daemon will create some work for another daemon and vice-versa.
@@ -77,7 +77,7 @@ The dumper will create a dump of all the files in an RSE that will be passed to 
 Dark reaper is the one deleting this dark data to free up space from the quarantined replicas table.
 
 ### How is data deleted?
-When replicas are healthy, the judge-cleaner will set a tombstone on replicas where the lifetime has expired. These replicas are taken by the reaper and they are deleted. 
+When replicas are healthy, the judge-cleaner will set a tombstone on replicas where the lifetime has expired. These replicas are taken by the reaper and they are deleted.
 Sometimes, replicas can become unhealthy. A dump is created by the dumper daemon. The auditor checks these dumps and declares replicas as suspicious.
 
 ### How is a replica declared bad?
@@ -95,39 +95,39 @@ A dataset is "never" deleted, however, when the dataset is known to be bad, ther
 An operator will set an expiration date in the past of the DIDs and this daemon will delete the dataset from the DB. If there were any replicas attached, the replicas will be deleted as well.
 
 ## Daemon arguments
-A full description for each daemon's arguments can be found by running `rucio-{daemon} --help` or viewing the `Details` in the daemon description table above. 
-Listed below are common definitions between different daemons. 
+A full description for each daemon's arguments can be found by running `rucio-{daemon} --help` or viewing the `Details` in the daemon description table above.
+Listed below are common definitions between different daemons.
 
 - **run-once** - Only run one iteration of the daemon. If executed with this argument the daemon will run once and close.
-- **sleep-time** - How long a daemon will sleep between iterations, mutually exclusive with `run-once`. Units of seconds. 
-- **threads**, **total-workers**, **threads-per-process**, **nprocs** - _[Present in threaded daemons]_ Run in threaded mode. 
-- **bulk**, **chunk-size**, **max-rows** - _[Present in batched daemons]_ Provide a limit of the number of operations a single instance of a daemon can run in an iteration. 
-- **dry-run** - Run once, showing logs of the daemon's operations without performing any action. Useful for verifying settings of the instance and daemon. 
-- **vos** - _[Present in Multi-VO daemons]_ Provide a list of VOs with which the daemon can interact. Used when VOs use different settings for their daemons. 
+- **sleep-time** - How long a daemon will sleep between iterations, mutually exclusive with `run-once`. Units of seconds.
+- **threads**, **total-workers**, **threads-per-process**, **nprocs** - _[Present in threaded daemons]_ Run in threaded mode.
+- **bulk**, **chunk-size**, **max-rows** - _[Present in batched daemons]_ Provide a limit of the number of operations a single instance of a daemon can run in an iteration.
+- **dry-run** - Run once, showing logs of the daemon's operations without performing any action. Useful for verifying settings of the instance and daemon.
+- **vos** - _[Present in Multi-VO daemons]_ Provide a list of VOs with which the daemon can interact. Used when VOs use different settings for their daemons.
 
-### Batched Daemons 
+### Batched Daemons
 
 Some daemons can run over large backlogs depending on the traffic of an instance.
-To prevent the daemon from running too long, or submitting too many requests at once to an external system, a daemon's workload can be batched. 
-Between batches of work, the daemon sleeps for `sleep-time`. 
+To prevent the daemon from running too long, or submitting too many requests at once to an external system, a daemon's workload can be batched.
+Between batches of work, the daemon sleeps for `sleep-time`.
 
-This setting is present in daemons that either submit requests (e.g. transfer requests) or process multiple replicas or DIDs (e.g. setting statuses, running deletion). 
+This setting is present in daemons that either submit requests (e.g. transfer requests) or process multiple replicas or DIDs (e.g. setting statuses, running deletion).
 
-### Threaded Daemons 
+### Threaded Daemons
 
 When daemons are run with threaded arguments, the database query used by the daemons has a `threads` argument applied to the query string.
-This is applicable to `oracle`, `postgres` and `mysql` databases. 
+This is applicable to `oracle`, `postgres` and `mysql` databases.
 
-> **_Note:_** 
-This definition doesn't apply for producer/consumer daemons. When producer/consumer daemons are run in threaded mode, it creates multiple instances of producers and consumers. This includes the threaded `conveyor` daemons. 
+> **_Note:_**
+This definition doesn't apply for producer/consumer daemons. When producer/consumer daemons are run in threaded mode, it creates multiple instances of producers and consumers. This includes the threaded `conveyor` daemons.
 
 
 ### Multi-VO Daemons
 
-Daemons that have a `vos` option can be set to have separate settings per vo running in a multi-vo instance. 
-When this is set, the daemon will only interact with objects that are explicitly included in the specific VO. 
+Daemons that have a `vos` option can be set to have separate settings per vo running in a multi-vo instance.
+When this is set, the daemon will only interact with objects that are explicitly included in the specific VO.
 
-By default, a daemon with multi-VO options interact with all VOs on the instance. 
+By default, a daemon with multi-VO options interact with all VOs on the instance.
 For example, this is the log displayed by the `replica-recoverer` daemon.
 
 ```bash
@@ -140,4 +140,4 @@ $ rucio-replica-recoverer --run-once --vos abc xyz
 ```
 
 > **_Note:_**
-Multi-VO daemons can still be used in single-VO instances, and the `vos` option does not need to be set. 
+Multi-VO daemons can still be used in single-VO instances, and the `vos` option does not need to be set.
