@@ -152,14 +152,17 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
 **Rules:**
 
 1. **Type**: Must be one of the following allowed types:
-   - `feat`: New feature
-   - `fix`: Bug fix
-   - `docs`: Documentation only changes
-   - `style`: Changes that do not affect the meaning of the code
-   - `refactor`: Code change that neither fixes a bug nor adds a feature
-   - `test`: Adding missing tests or correcting existing tests
-   - `ci`: Changes to CI configuration files and scripts
-   - `revert`: Reverts a previous commit
+
+   | Type | Category | Description |
+   |------|----------|-------------|
+   | `feat` | Functional | Introduces a new feature or capability |
+   | `fix` | Functional | Corrects a bug or unexpected behavior |
+   | `docs` | Non-functional | Updates documentation or code comments |
+   | `style` | Non-functional | Formatting, whitespace, or cosmetic changes |
+   | `refactor` | Non-functional | Restructures code without changing its behavior |
+   | `test` | Non-functional | Adds, updates, or fixes tests |
+   | `ci` | Non-functional | Modifies CI/CD pipelines or scripts |
+   | `revert` | Non-functional | Undoes a previous commit |
 
 2. **Scope**: Must be one of the predefined Rucio components (PascalCase). The available scopes are:
    - `Auth`: Authentication & Authorisation
