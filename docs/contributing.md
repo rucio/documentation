@@ -353,8 +353,8 @@ This testing includes multiple [suites of testing](https://github.com/rucio/ruci
 all of which are required to pass.
 Please enable testing on your fork of the main repository to see the status of your tests as you develop.
 
-
 ###  Writing Tests
+
 For every feature added, there should be a set of corresponding tests that verify
 its functionality and integration with the rest of the codebase.
 
@@ -370,58 +370,6 @@ tests should be entirely self-contained besides for the before-mentioned fixture
 (use the same database table, interact with a queue), mark it as `noparallel`.
 * If a test is specific to a VO, mark it as such using a [`skip_non_{vo}`](https://github.com/rucio/rucio/blob/master/lib/rucio/tests/common.py) fixture,
 or mark it as `skip_multivo` if the test only is intended to work in single-vo settings.
-
-### Local automatic testing
-
-There is also a local shell script to run the same autotests:
-`tools/run_autotests.sh`. For manual local testing within containers, please see
-[__the docker
-README__](https://github.com/rucio/rucio/blob/master/etc/docker/dev/README.rst).
-
-**WARNING:** Because of the nature of using the same scripts as continuous
-integration, some containers may be left running after a test run or when
-aborting the test run. This is especially the case for running this script
-without podman.
-
-By default the tool uses 3 worker processes to run all tests that are defined in
-`etc/docker/test/matrix.yml`. Feel free to modify the matrix to your needs, but
-be sure to not unintentionally commit your changes to it. The tests run at most
-6 hours - after that a TimeoutError will be raised, causing the script to
-fail. Running the autotests like this can be parameterized with environment
-variables as follows:
-
-* `USE_PODMAN` 0/1 (default: depends on whether the docker command points to
-  podman)
-
-    Use podman and therefore pods to run the tests.
-
-* `PARALLEL_AUTOTESTS` 0/1 (default: 1)
-
-    1 enables multiple processes to run autotests and 0 disables it.  When
-    enabled, logs of the running autotests will be written to the `.autotest`
-    directory created in the working directory. Otherwise the log output will be
-    written to the console (stderr).
-
-    *Note that when tests are not running in parallel mode, the test run will
-    always fail fast.*
-
-* `PARALLEL_AUTOTESTS_PROCNUM` (1,) (default: 3)
-
-    Specifies the number of processes to run and therefore the concurrently run
-    autotests. 3 will usually result in more than 8 GB RAM usage and a fair
-    amount of load on the PC.
-
-* `PARALLEL_AUTOTESTS_FAILFAST` 0/1 (default: 0)
-
-    Will abort the parallel run of autotests as soon as possible after at least
-    one autotest failed. Enabling this will leave containers running in case of
-    a failure even on podman.
-
-* `COPY_AUTOTEST_LOGS` 0/1 (default: 0)
-
-    Copies `/var/log` from the rucio container into the `.autotest` directory
-    after the test run. Each test case will have it’s specific naming as with
-    the logs from the parallel run above.
 
 ## Human Review
 
