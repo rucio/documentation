@@ -64,7 +64,14 @@ It is important to know the following:
 * The finisher analyzes this new state and updates the state.
 
 ### What happens when a rule is stuck?
-The judge repairer will analyze why the transfer is stuck and try to unstuck it, eventually resubmitting the request.
+Please mind that STUCK is not a terminal state (only OK and SUSPENDED are).
+If a rule is STUCK, it means that the associated transfers attempts failed three times (or more) already, or that Rucio was unable to create a transfer request (e.g. the destination is unavailable for writing).
+When this happens, the judge-repairer daemon will analyse the reasons and try to "unstuck" such rules (very quickly the first time they are encountered and with some extra delay for each subsequent attempt) possibly transitioning them from STUCK to REPLICATING during the repair process.
+Eventually the rule will transition either to OK (if all the locks become OK) either to SUSPENDED (after two continuous weeks as STUCK have passed).
+An operator can speedup the reevaluation of a stuck rule by issuing the cli command:
+```
+rucio rule update --stuck --boost-rule RULE_ID
+```
 
 ### What happens when new data is added to an existing dataset that already has replicas?
 The judge evaluator will keep track of new data added to datasets that are already replicated to trigger the necessary transfer requests to ensure all new data is copied to the RSEs.
