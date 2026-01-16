@@ -35,6 +35,6 @@ graph LR
     b --> account_b
     v --> account_v
     v --> account_h
-    g --> account_p 
+    g --> account_p
     g --> account_h
 ```

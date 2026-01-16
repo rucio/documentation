@@ -23,9 +23,9 @@ After the tombstone is set for replicas, the actual data deletion is done by the
 The deletion service supports two different modes: greedy and non-greedy.
 
 - Greedy
-    
-    The reaper daemon gets all the replicas with tombstone in the RSE and immediately deletes all replicas. 
-    
+
+    The reaper daemon gets all the replicas with tombstone in the RSE and immediately deletes all replicas.
+
 - Non-greedy
 
     The reaper daemon first checks if the free space is needed in the RSE. The needed free space is the difference of minimum free space (attribute set for RSE) and actual free space in RSE. Deletion only occurs once free space is needed.
@@ -44,10 +44,10 @@ flowchart TB
     D--"no"--> sub1[Remove Rules]
 
     subgraph sg[ ]
-        sub1[Remove Rules] --> sub2["`Set tombstones 
+        sub1[Remove Rules] --> sub2["`Set tombstones
                         on replicas`"]
         sub2 --> sub3[Remove DID]
-        sub3 --> sub4{"`Does the DID 
+        sub3 --> sub4{"`Does the DID
                         have children?`"}
         sub4 --yes-->sub5["`Remove Child
                              DID and Replicas`"]
@@ -77,4 +77,3 @@ flowchart TB
 
 
 ```
-

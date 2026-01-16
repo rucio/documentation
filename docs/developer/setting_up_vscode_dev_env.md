@@ -97,8 +97,8 @@ VSCode comes with a plethora of extensions that can significantly improve your d
 - Install [Docker Compose](https://docs.docker.com/compose/install/)
 
 #### If you get a `docker-compose: command not found` error
-Docker has deprecated the `docker-compose` command in favour of `docker compose`. 
-To turn on `docker compose` support in `docker` command, please make sure you have installed the `docker-compose-plugin` package from the `docker-ce-stable` repository. 
+Docker has deprecated the `docker-compose` command in favour of `docker compose`.
+To turn on `docker compose` support in `docker` command, please make sure you have installed the `docker-compose-plugin` package from the `docker-ce-stable` repository.
 
 The full command to install `docker` and `docker compose` on RPM-based installations is:
 

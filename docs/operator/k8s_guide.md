@@ -22,7 +22,7 @@ To install Helm, execute:
 
   ./get_helm.sh
   ```
-  Also, add the `bitnami` repo: 
+  Also, add the `bitnami` repo:
   ```helm
   helm repo add bitnami https://charts.bitnami.com/bitnami
   ```
@@ -47,7 +47,7 @@ Then setup the flux in the gitlab repo (we recommend to clone it via https), run
         --repository=<repository-name> \
         --branch=<main-branch> \
         --path=<path-where-to-sync> \
-        --hostname=gitlab.cern.ch \ 
+        --hostname=gitlab.cern.ch \
         --deploy-token-auth
       ```
 The git deploy token will be requested as part of the auth process.
@@ -66,22 +66,22 @@ Please refer to the [documentation](https://kubernetes.docs.cern.ch/docs/getting
 
 There are two kinds of operative components within the cluster: the *master* and the *worker* nodes:
 
-- The master node hosts the Kubernetes control plane and manages the cluster, including scheduling and scaling applications and maintaining the state of the cluster. 
-- The worker nodes are responsible for running the containers and executing the workloads. 
+- The master node hosts the Kubernetes control plane and manages the cluster, including scheduling and scaling applications and maintaining the state of the cluster.
+- The worker nodes are responsible for running the containers and executing the workloads.
 
 It is recommended to choose a master node with a sufficient amount of memory, e.g. `m2.large`.
 
 The minimum working configuration consists of 1 master node and 5 worker nodes.
 
 ## Create the database with DBOD
-Create a DataBase On Demand (DBOD) using the [DBOD dashboard](https://dbod.web.cern.ch/pages/dashboard);  `postgres` is highly recommended. 
+Create a DataBase On Demand (DBOD) using the [DBOD dashboard](https://dbod.web.cern.ch/pages/dashboard);  `postgres` is highly recommended.
 - The operator will have to wait for the db to be approved. Will get a mail and will receive admin credentials (to be changed) as shown below.
 
 Additional resources:
 - https://github.com/vre-hub/vre/wiki/Software-components#2-database
 - https://codimd.web.cern.ch/s/ZFIkp7PWG#2-Database-configuration
 
-Once the db creation is finalised, we can use `psql`, to set up the credentials. 
+Once the db creation is finalised, we can use `psql`, to set up the credentials.
 In the following example, we chose the name `rucioitdb` for the database; in general, the naming of the DBOD instance is the operator's choice:
 ```sh
 dnf install postgresql-server
@@ -165,11 +165,11 @@ Please notice that in this case, the various credentials will have to be properl
 
 To comply with the CERN security rules, we need to use the so-called LANDB sets, where the firewall has static openings automatically set up. Usually, such sets are used for redundancy or large, homogeneous services. These sets are either managed by the Computer Security Team or by the service managers themselves.
 
-Create a new LanDB set according to [CERN documentation](https://clouddocs.web.cern.ch/networking/landb_network_management.html), following the recommendations: 
+Create a new LanDB set according to [CERN documentation](https://clouddocs.web.cern.ch/networking/landb_network_management.html), following the recommendations:
 1. Type: Interdomain
 2. Network Domain: GPN
 3. Responsible: `<your-egroup>`
-4. Description: use the following fields: 
+4. Description: use the following fields:
 ```
 OPENSTACK_PROJECT=cc059d57-6e98-4688-a3be-aae2b451868b,<your-openstack-project-ID>
 ```
@@ -199,7 +199,7 @@ helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
 
 kubectl create namespace sealed-secrets
 
-kubectl apply -f sealed-secrets.yaml 
+kubectl apply -f sealed-secrets.yaml
 ```
 
 An example of the `sealed-secrets.yaml` configuration file is provided below:
@@ -221,7 +221,7 @@ spec:
   url: https://bitnami-labs.github.io/sealed-secrets
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease 
+kind: HelmRelease
 metadata:
   name: sealed-secrets
   namespace: sealed-secrets
@@ -280,7 +280,7 @@ Where:
 - `RUCIO_NS` is the namespace related to Rucio (in the COMPASS case, it is called `rucio`).
 - `SECRETS_STORE` path to which the files containing the encrypted secrets will be stored. These files will be used by flux.
 
-`kubectl create secret generic` Creates a secret from the specific file that needs to be transposed to a secret. 
+`kubectl create secret generic` Creates a secret from the specific file that needs to be transposed to a secret.
 
 Then `kubeseal` perform the encryption and the encoding, saving the secret to a file stored in `SECRETS_STORE`.
 Finally, `kubectl apply` applies the secret to the cluster. Please notice that this is eventually also achieved via flux, by pushing the secret file to the repository.
@@ -294,7 +294,7 @@ sudo install -m 755 kubeseal /usr/local/bin/kubeseal
 ```
 Adjust the version and the build details according to your machine.
 :::
-The content of the secret will be of this type: 
+The content of the secret will be of this type:
 ```yaml ss_rucio-servers-hostcert.yaml
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
@@ -315,7 +315,7 @@ spec:
 ## Rucio Servers
 >The Rucio servers are the backbone of the Rucio system. They handle all core functionalities including data management, rule-based data replication, data placement, and monitoring. The servers ensure the integrity and availability of data across various storage systems.
 
-First of all, create a namespace for rucio: 
+First of all, create a namespace for rucio:
 
 ```sh
 kubectl create namespace rucio
@@ -331,7 +331,7 @@ spec:
   url: https://rucio.github.io/helm-charts
   interval: 1m
 ```
-Then apply it using kubectl: 
+Then apply it using kubectl:
 ```sh
 kubectl apply -f /path/rucio-helm-repo.yaml
 ```
@@ -353,11 +353,11 @@ A few remarks:
   - Together with this, is also necessary to setup the corresponding variable `RUCIO_CA_PATH`
 - The `RUCIO_SSL_PROTOCOL` variable must be explicitly set.
 
-Please notice that in order to have LBs produced, ***the Helm chart must be applied***. 
+Please notice that in order to have LBs produced, ***the Helm chart must be applied***.
 This will come with several errors related to certificates, that will be fixed in the next steps.
 
 ### Create the DB secret
-Create the file rucio-db.yaml to register the secret: 
+Create the file rucio-db.yaml to register the secret:
 
 ```yaml
 apiVersion: v1
@@ -368,7 +368,7 @@ metadata:
 stringData:
   dbfullstring: postgresql://user:psw@dbod-instance.cern.ch:port/db
 ```
-Add the secret using a script like this: 
+Add the secret using a script like this:
 ```sh
 #!/bin/bash
 
@@ -407,7 +407,7 @@ This setup will trigger the `openstack-cloud-controller-manager` pod, and will a
 Please notice that in order to have LBs, one must request a quota change to the openstack project:
 ![image](/img/get-lbs.png)
 
-To check the status of the LBs, the CLI command can be used: 
+To check the status of the LBs, the CLI command can be used:
 ```sh
 openstack loadbalancer list
 ```
@@ -427,7 +427,7 @@ To do that, first retrieve the virtual IP address, `vip_address`, of the LB:
 ```
 
 :::tip[LoadBalancers are slow and automatic]
-The LB will be automatically added to the LanDB set allowed IPs. 
+The LB will be automatically added to the LanDB set allowed IPs.
 
 IF this does ***not*** happen, follow the steps below:
 :::
@@ -446,7 +446,7 @@ Finally, add `lbaas-...cern.ch` to the list of allowed IP addresses in the LanDB
 ### Produce the certificates related to the landb-alias
 Read the [help page](https://ca.cern.ch/ca/Help/?kbid=021002) about Grid Host certs
 
-Then, request a cert using [dedicated page](https://ca.cern.ch/ca/host/HostSelection.aspx?template=EE2Host&instructions=auto). 
+Then, request a cert using [dedicated page](https://ca.cern.ch/ca/host/HostSelection.aspx?template=EE2Host&instructions=auto).
 In the current example, a cert for `compass-rucio.cern.ch` (corresponding to the LB `landdb-alias`) was requested:
 
 :::tip[Certs pro move]
@@ -462,14 +462,14 @@ openssl pkcs12 -in compass-rucio.p12 -clcerts -nokeys -out hostcert.pem
 
 openssl pkcs12 -in compass-rucio.p12 -nocerts -nodes -out hostkey.pem
 
-chmod 400 hostkey.pem 
-chmod 644 hostcert.pem 
+chmod 400 hostkey.pem
+chmod 644 hostcert.pem
 ```
 Notice that to avoid protecting the key with a passphrase, the `-nodes` option is specified. Moreover, the appropriate permissions (`400`: read by owner, `644`: read by anyone, written by owner) for the extracted files are set.
 
 These files have to be stored in the same path as described by the `RAW_SECRETS_SERVERS` variable used in the secrets creation.
 ##### Important information about `ca.pem` and `GridCA.pem`
-An additional file, `ca.pem` (i.e. `CERN-bundle.pem`) must be created. 
+An additional file, `ca.pem` (i.e. `CERN-bundle.pem`) must be created.
 
 `CERN-bundle.pem` is a standard CA bundle provided by CERN, containing multiple CA certificates that CERN trusts. This file is used to verify the authenticity of other certificates within a secure communication process (e.g., SSL/TLS).
 
@@ -477,7 +477,7 @@ This file can be retrieved from lxplus:
 ```sh
 cp /etc/pki/tls/certs/CERN-bundle.pem compass-rucio-certs/servers/ca.pem
 ```
-The same goes for the `GridCA.pem` file: 
+The same goes for the `GridCA.pem` file:
 ```sh
 cp /etc/grid-security/certificates/CERN-GridCA.pem compass-rucio-certs/servers/GridCA.pem
 ```
@@ -486,7 +486,7 @@ This file is used for the Certification Authority issuing SHA-2 certificates for
 ### Add the certificates as secrets and mount them on the k8s pods
 Now it is possible to run something similar to the [servers script](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/master/scripts/rucio-servers-secret.sh?ref_type=heads) to add all the secrets to the cluster.
 
-The output should be of this form: 
+The output should be of this form:
 ```sh
 Create and apply SERVER secrets
 sealedsecret.bitnami.com/rucio-servers-server-hostcert configured
@@ -515,7 +515,7 @@ Based on the reference Helm chart, we can add a few remarks:
 this block maps the certificate to an account name.
 Setting up `x509` auth can be very tricky, please make sure that the [`grid_site_enabled`](https://github.com/rucio/containers/blob/b51bbceb5aab0a1e07d48845f295cbbb175bdcb9/server/rucio.conf.j2#L104) parameter is set on `True`. <br/>
 This enables the `auth/x509_proxy` endpoint! <br/>
-The endpoint can be tested by executing 
+The endpoint can be tested by executing
     ```sh
     curl -k https://compass-rucio.cern.ch/auth/x509_proxy
     ```
@@ -538,14 +538,14 @@ Here, the `landb-alias` attribute and the `description` have been changed with r
 The description of the various daemons can be found in [here](https://rucio.github.io/documentation/bin/rucio-abacus-account).
 ### FTS renewal and delegation
 
-> [FTS](https://cs3mesh4eosc.eu/technologies/file-transfer-service-fts) is an open source software for reliable and large-scale data transfers. It provides easy user interfaces for submitting transfers: Python CLI, Python Client, WebFTS and Web Monitoring. Checksums and retries are provided per transfer and it is a flexible tool due to its multiprotocol support (Webdav/https, GridFTP, xroot, SRM). It also allows parallel transfers optimization to get the most from network without burning the storages. 
+> [FTS](https://cs3mesh4eosc.eu/technologies/file-transfer-service-fts) is an open source software for reliable and large-scale data transfers. It provides easy user interfaces for submitting transfers: Python CLI, Python Client, WebFTS and Web Monitoring. Checksums and retries are provided per transfer and it is a flexible tool due to its multiprotocol support (Webdav/https, GridFTP, xroot, SRM). It also allows parallel transfers optimization to get the most from network without burning the storages.
 #### How does FTS work: users' x509 certs
 
 1. Users will have to pass their own x509 cert by setting its path in their rucio config.
 2. Then, the x509 is used to map the cert to an identity that must be created within rucio, which corresponds to a user.
 #### How does FTS work: service x509 cert
 
-It is not the user's account that uploads, downloads, etc, but it's a ***service account*** that is set up normally by the collaboration or the team. 
+It is not the user's account that uploads, downloads, etc, but it's a ***service account*** that is set up normally by the collaboration or the team.
 
 Together with the service account, we also need the corresponding user <u>grid cert</u> that is split in `cert` and `key` and is passed to the `ftsRenewal` daemon, that renews it periodically through a [specific script](https://github.com/rucio/containers/blob/master/fts-cron/renew_fts_proxy.sh.j2):
 
@@ -593,40 +593,40 @@ An example can be found at [this link](https://gitlab.cern.ch/rucio-it/flux-comp
 In this way, we'll get something like the following output from the cron-job:
 
 ```sh
-renew-fts-proxy: =================== Delegating ========================    
+renew-fts-proxy: =================== Delegating ========================
 renew-fts-proxy:  Proxy certificate file : /tmp/x509up
 renew-fts-proxy:  User certificate file: /tmp/cert.pem
-renew-fts-proxy:  User key file: /tmp/key.pem         
-renew-fts-proxy: Output to /tmp/x509up  
+renew-fts-proxy:  User key file: /tmp/key.pem
+renew-fts-proxy: Output to /tmp/x509up
 renew-fts-proxy: Enter GRID pass phrase:
-renew-fts-proxy: Your identity: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=na58dst1/CN=698253/CN=Robot: compass production 
-renew-fts-proxy: Using configuration file /root/.glite/vomses       
-renew-fts-proxy: Using configuration file /etc/vomses 
-renew-fts-proxy: .........+++           
+renew-fts-proxy: Your identity: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=na58dst1/CN=698253/CN=Robot: compass production
+renew-fts-proxy: Using configuration file /root/.glite/vomses
+renew-fts-proxy: Using configuration file /etc/vomses
+renew-fts-proxy: .........+++
 renew-fts-proxy: ....................+++
-renew-fts-proxy: Creating temporary proxy to /tmp/tmp_x509up_u0_317  Done 
-renew-fts-proxy: Contacting  voms-compass-auth.cern.ch:443 [/DC=ch/DC=cern/OU=computers/CN=compass-auth.cern.ch] "vo.compass.cern.ch" Done   
+renew-fts-proxy: Creating temporary proxy to /tmp/tmp_x509up_u0_317  Done
+renew-fts-proxy: Contacting  voms-compass-auth.cern.ch:443 [/DC=ch/DC=cern/OU=computers/CN=compass-auth.cern.ch] "vo.compass.cern.ch" Done
 
 renew-fts-proxy: Warning: WARNING: vo.compass.cern.ch : The validity period of the issued attributes has been shortened to the maximum allowed by this VOMS server
 
-renew-fts-proxy: Creating proxy to /tmp/x509up        
-renew-fts-proxy: No policy language specified, Gsi impersonation proxy assumed. Done            
-       
-renew-fts-proxy: Your proxy is valid until Fri May 31 15:49:15 2024 
-renew-fts-proxy: Error: verification failed.          
-         
-renew-fts-proxy: User certificate: /tmp/x509up        
-renew-fts-proxy: User private key: /tmp/x509up        
-renew-fts-proxy: Loaded DC=ch, DC=cern, OU=Organic Units, OU=Users, CN=na58dst1, CN=698253, CN=Robot: compass production, CN=2643790443   
-renew-fts-proxy: Loaded DC=ch, DC=cern, OU=Organic Units, OU=Users, CN=na58dst1, CN=698253, CN=Robot: compass production    
-renew-fts-proxy: Using endpoint: https://fts3-pilot.cern.ch:8446    
-renew-fts-proxy: REST API version: 3.13.0             
-renew-fts-proxy: Delegation ID: ef1e8a8e094bde07      
-renew-fts-proxy: No previous delegation found         
-renew-fts-proxy: Delegating             
-renew-fts-proxy: Signing request        
-renew-fts-proxy: Delegation id: ef1e8a8e094bde07      
-renew-fts-proxy: Termination time: 2024-05-31T15:49:15 
+renew-fts-proxy: Creating proxy to /tmp/x509up
+renew-fts-proxy: No policy language specified, Gsi impersonation proxy assumed. Done
+
+renew-fts-proxy: Your proxy is valid until Fri May 31 15:49:15 2024
+renew-fts-proxy: Error: verification failed.
+
+renew-fts-proxy: User certificate: /tmp/x509up
+renew-fts-proxy: User private key: /tmp/x509up
+renew-fts-proxy: Loaded DC=ch, DC=cern, OU=Organic Units, OU=Users, CN=na58dst1, CN=698253, CN=Robot: compass production, CN=2643790443
+renew-fts-proxy: Loaded DC=ch, DC=cern, OU=Organic Units, OU=Users, CN=na58dst1, CN=698253, CN=Robot: compass production
+renew-fts-proxy: Using endpoint: https://fts3-pilot.cern.ch:8446
+renew-fts-proxy: REST API version: 3.13.0
+renew-fts-proxy: Delegation ID: ef1e8a8e094bde07
+renew-fts-proxy: No previous delegation found
+renew-fts-proxy: Delegating
+renew-fts-proxy: Signing request
+renew-fts-proxy: Delegation id: ef1e8a8e094bde07
+renew-fts-proxy: Termination time: 2024-05-31T15:49:15
 ```
 ### Add the certificates as secrets and mount them on the k8s pods
 Now it is possible to run something similar to the [daemons script](https://gitlab.cern.ch/rucio-it/flux-compass/-/blob/1897a2252e98ca3f6ea54047b1a662f57d55f774/scripts/rucio-daemons-secret.sh) to add all the secrets to the cluster.
@@ -649,7 +649,7 @@ additionalEnvs:
 ```
 Please notice that `USERCERT_NAME` and `USERKEY_NAME` correspond to the name of `cert.pem` and `key.pem` extracted before, `RUCIO_FTS_SECRETS` doesn't need to be changed, and `GRID_PASSPHRASE` corresponds to the passphrase chosen for the service account (can be an empty string).
 
-A diagram of how the proxy certificate is created and mounted on the daemons is displayed below: 
+A diagram of how the proxy certificate is created and mounted on the daemons is displayed below:
 
 ```mermaid
 graph TD
@@ -678,7 +678,7 @@ graph TD
 
 As for Servers and Authentication, it is necessary to get the following components running:
 - Dedicated LB: in the example, the domain associated with it is `compass-rucio-ui.cern.ch`
-  - This value will be used in the `httpd` block: 
+  - This value will be used in the `httpd` block:
   ```yaml
   rucio_hostname: "compass-rucio-ui.cern.ch"
   ```
@@ -793,7 +793,7 @@ rucio rse attribute add --rse XRD2 --key fts --value https://fts:8446
 rucio rse attribute add --rse XRD3 --key fts --value https://fts:8446
 ```
 Note that `8446` is the port exposed by the `fts-server` pod. You can easily view ports opened by a pod by `kubectl describe pod PODNAME`.
-   
+
 ### Fake a full mesh network
 This command will set the distance between RSEs to 1, in order to make transfers possible.
 ```sh

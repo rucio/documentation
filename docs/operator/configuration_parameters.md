@@ -409,9 +409,9 @@ Rucio will look for the config in the following locations -
 #### **opendata**
 - **rule_enable**: _(Optional)_ Boolean. Enables automatic Open Data rule creation. Default: `False`.
 - **rule_rse_expression**: _(Optional)_ Mandatory if `rule_enable=True`. RSE expression defining where data should be replicated.
-- **rule_asynchronous**: _(Optional)_ Boolean. If `True`, rules are created asynchronously. Default: `False`.  
-- **rule_activity**: _(Optional)_. Specifies the activity name used for rule creation. Defaults to Rucio's default activity name. 
-- **rule_account**: _(Optional)_. Account name used to create rules. Default: `"root"`.  
+- **rule_asynchronous**: _(Optional)_ Boolean. If `True`, rules are created asynchronously. Default: `False`.
+- **rule_activity**: _(Optional)_. Specifies the activity name used for rule creation. Defaults to Rucio's default activity name.
+- **rule_account**: _(Optional)_. Account name used to create rules. Default: `"root"`.
 - **rule_vo**: _(Optional)_. Virtual Organization (VO) under which rules are created. Defaults to Rucio's default VO.
 - **rule_copies**: _(Optional)_ Integer. Number of copies to be created by the rule. Default: `1`.
 

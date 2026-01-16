@@ -214,7 +214,7 @@ Ask yourself these questions in order:
 
    **Note**: Any changes to this list should also be applied to the [GitHub labels](https://github.com/rucio/rucio/issues/labels) and the [commitlint config](https://github.com/rucio/rucio/blob/master/commitlint.config.js)
 
-3. **Description**: 
+3. **Description**:
    - Should not end with a period
    - Should be concise but descriptive
    - Use imperative mood ("add feature" not "added feature")

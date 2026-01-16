@@ -114,9 +114,9 @@ consistency and compatibility.
   Rucio server it is compatible with. For example, Rucio Server version
   **37.x.x** is compatible with Rucio WebUI version **37.x.x**.
 - **Minor and Patch Versions**: These versions follow semantic versioning:
-   - **Minor Version**: Incremented for new features and improvements that are
+- **Minor Version**: Incremented for new features and improvements that are
      backward-compatible.
-   - **Patch Version**: Incremented for backward-compatible bug fixes.
+- **Patch Version**: Incremented for backward-compatible bug fixes.
 
 ### JupyterLab extension
 

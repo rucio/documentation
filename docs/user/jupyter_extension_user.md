@@ -41,7 +41,7 @@ If you have a grid proxy certificate, the extension can use it directly. This is
    ```bash
    voms-proxy-init --voms <your-experiment>
    ```
-   
+
    You can add additional arguments:
    - `--cert`: Path to your certificate if not in `~/.globus`
    - `--key`: Path to your key if not in `~/.globus`
