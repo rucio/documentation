@@ -166,70 +166,6 @@ rucio account limit add root --rse POSIX_RSE --bytes infinity
 
 WebDAV RSEs provide remote access where external clients need to upload and download files.
 
-#### Apache Configuration
-
-WebDAV RSEs require an Apache web server with WebDAV and SSL modules enabled.
-
-**File:** `/etc/httpd/conf.d/rse.conf`
-
-```apache
-DAVLockDB /var/lib/dav/lockdb
-
-<IfModule mod_ssl.c>
-<VirtualHost *:443>
-    ServerAdmin admin@hostname
-    ServerName hostname
-    ServerAlias hostname
-    DocumentRoot /path/to/rse
-
-    SSLEngine on
-    SSLCertificateFile /etc/grid-security/hostcert.pem
-    SSLCertificateKeyFile /etc/grid-security/hostkey.pem
-    SSLCACertificateFile /etc/grid-security/ca.pem
-
-    Alias /webdav /path/to/rse
-
-    <Directory /path/to/rse>
-        DAV On
-        AllowOverride None
-        Options None
-        SSLVerifyClient require
-        SSLVerifyDepth 2
-        SSLOptions +StdEnvVars
-        SSLCACertificateFile /etc/grid-security/ca.pem
-
-        # For x509 authentication (recommended)
-        Require valid-user
-
-        # For open access (NOT RECOMMENDED for production)
-        # Require all granted
-    </Directory>
-
-</VirtualHost>
-</IfModule>
-```
-
-**File System Permissions:**
-
-Apache requires correct ownership and SELinux context:
-
-```bash
-# Set ownership
-chown -R apache:apache /path/to/rse
-chmod -R 755 /path/to/rse
-
-# Set SELinux context
-semanage fcontext -a -t httpd_sys_rw_content_t "/path/to/rse(/.*)?"
-restorecon -Rv /path/to/rse
-```
-
-:::note
-If `semanage` is not available, install it with:
-```bash
-dnf install policycoreutils-python-utils
-```
-:::
-
 #### Rucio Configuration
 
 **Using CLI:**
@@ -582,14 +518,19 @@ rucio rse attribute add $RUCIO_RSE_NAME --key naming_convention --value escape_t
 ## Best Practices
 
 ### 1. RSE Distance Configuration
+RSE distance must be properly configured for transfers to work between RSEs.
 
 :::danger[Critical]
-RSE distance must be properly configured for transfers to work between RSEs.
+Please ensure to set distances in both directions if transfers are bidirectional.
+
+See the [**related storage documentation**](../started/concepts/rucio_storage_element/#distances-between-rses) for more details.
 :::
 
 ```bash
 # Set distance between RSEs (lower value = closer)
 rucio rse distance add --distance 1 SOURCE_RSE DEST_RSE
+# Set reverse distance if needed
+rucio rse distance add --distance 1 DEST_RSE SOURCE_RSE
 ```
 
 ### 2. Protocol Selection
