@@ -7,7 +7,7 @@ sidebar_position: 4
 ## Prerequisites
 
 The Rucio daemons require a supported Python version.
-See the [Python requirements](../started/requirements.md#python) for the currently supported versions.
+See the [Python requirements](started/requirements.md#python) for the currently supported versions.
 
 ## Install via pip
 
