@@ -11,8 +11,7 @@ packages. Use your best judgment, and feel free to propose changes to this
 document.
 
 If you have questions, you can reach the core development team on our
-[__Mattermost__](mattermost.md) channel, or send an email to our
-development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
+[__Mattermost__](mattermost.md) channel.
 
 ## What should I know before I get started
 
@@ -31,8 +30,7 @@ branches:
   releases.
 
 Release branches only exist for the currently maintained release
-versions. Hotfix branches are created on demand. Please communicate to the Rucio
-maintainers, if you wish to hotfix a previous release.
+versions.
 
 Generally all [__pull requests__](https://github.com/rucio/rucio/pulls) are to
 be created against the Rucio **master** branch. Features will end up in the
@@ -98,26 +96,9 @@ happen there). No pull request will be merged without an associated issue
 (release notes are generated from issues). Each issue gets a **unique issue
 number**.
 
-### 3. Create a local working branch
+### 3. Commit your changes
 
-Create a local branch that corresponds to the issue. To easily
-identify the purpose of branches different keywords must be used:
-
-* Patch branches must be named **patch-[issue number]-[short description]**
-* Feature branches must be named **feature-[issue number]-[short description]**
-
-If you create these branches by hand please check the spelling because otherwise
-the test automation might misidentify your branch. There are utility scripts to
-fetch master and create these branches for you:
-
-```bash
-./tools/create-patch-branch <unique issue number> '<short_change_message>'
-./tools/create-feature-branch <unique issue number> '<short_change_message>'
-```
-
-### 4. Commit your changes
-
-Commit your changes using the Conventional Commits format. All commits must follow the format described in the [Conventional Commits](#conventional-commits) section below and include proper git trailers for issue tracking.
+Create a local branch that corresponds to the issue, then commit your changes using the Conventional Commits format. All commits must follow the format described in the [Conventional Commits](#conventional-commits) section below and include proper git trailers for issue tracking.
 
 **Basic commit format:**
 ```bash
@@ -132,7 +113,7 @@ git commit -m "feat(Transfers): Group bulk transfers by authentication method" -
 Add additional explanations to the body of the commit, such as motivation for
 certain decisions and background information. [Here are some general rules.](https://cbea.ms/git-commit/).
 
-Using multiple commits is allowed as long as they achieve an independent,
+Using multiple commits is encouraged as long as they achieve an independent,
 well-defined, change and are well-described. Otherwise multiple commits should
 be squashed.
 
@@ -321,9 +302,10 @@ Closes: #8199
 
 *See the [original commit](https://github.com/rucio/rucio/commit/6ba2559) for reference.*
 
-### 5. Push changes and create a Pull Request
+### 4. Push changes and create a Pull Request
 
-Push the commit to your forked repository and create the pull request. Try to
+Push the commit to your forked repository and create the pull request. A template
+will guide you through the creation process, please fill out all required information. Try to
 keep the Pull Request simple, it should achieve the single objective described
 in the issue. Multiple enhancements/fixes should be split into multiple Pull
 Requests.
@@ -340,10 +322,13 @@ The format of the pull request title must be:
 <component>: <short_change_message> #<issue number>
 ```
 
-### 6. Watch the Pull Request for reviews
+### 5. Watch the Pull Request for reviews
 
-Watch the pull request for comments and reviews. For any pull requests update,
-please try to squash/amend your commits to avoid “in-between” commits.
+Watch the pull request for comments and reviews. We expect that all continuous integration
+test-cases run through, if they do not either close the pull request and re-submit
+at a later time or fix them right away. Stale pull requests will be closed automatically.
+
+For any pull requests update, please try to squash/amend your commits to avoid “in-between” commits.
 
 ## Automatic Testing
 
@@ -376,8 +361,8 @@ or mark it as `skip_multivo` if the test only is intended to work in single-vo s
 Anyone is welcome to review merge requests and make comments!
 
 The Rucio development team can approve, request changes, or close pull
-requests. Merging of approved pull requests is done by the Rucio development
-lead.
+requests. Merging of approved pull requests is done, after a second review,  by the Rucio
+merge team.
 
 ## Coding Style
 
