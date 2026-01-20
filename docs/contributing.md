@@ -30,7 +30,7 @@ branches:
   releases.
 
 Release branches only exist for the currently maintained release
-versions. 
+versions.
 
 Generally all [__pull requests__](https://github.com/rucio/rucio/pulls) are to
 be created against the Rucio **master** branch. Features will end up in the
