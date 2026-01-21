@@ -6,8 +6,8 @@ sidebar_position: 4
 
 ## Prerequisites
 
-The Rucio daemons run on Python 2.7, 3.6 and 3.7 on any Unix-like
-platform.
+The Rucio daemons require a supported Python version.
+See the [Python requirements](started/requirements.md#python) for the currently supported versions.
 
 ## Install via pip
 
