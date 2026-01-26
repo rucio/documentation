@@ -2,6 +2,11 @@
     "docs": [
         "index",
         {
+            "label": "Contributing Guide",
+            "type": "doc",
+            "id": "contributing"
+        },
+        {
             "label": "Getting Started",
             "type": "category",
             "items": [
