@@ -76,7 +76,7 @@ module.exports={
     },
     "footer": {
       "links": [],
-      "copyright": "Copyright © 2023 CERN",
+      "copyright": `Copyright © ${new Date().getFullYear()} CERN`,
       "logo": {
         "src": "img/rucio_horizontaled_black.svg",
         "srcDark": "img/rucio_horizontaled_white.svg"
