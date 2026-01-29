@@ -1,14 +1,16 @@
+const baseUrl = process.env.BASE_URL || "/documentation";
+
 module.exports={
   "title": "Rucio Documentation",
   "url": "https://rucio.github.io",
-  "baseUrl": "/documentation",
+  "baseUrl": baseUrl,
   "organizationName": "rucio",
   "projectName": "documentation",
   "scripts": [
     "https://buttons.github.io/buttons.js",
   ],
   "stylesheets": [
-    "/documentation/css/custom.css",
+    baseUrl + "/css/custom.css",
     "https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap",
     "https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap",
     "https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
