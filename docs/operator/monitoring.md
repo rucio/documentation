@@ -397,7 +397,7 @@ filter {
 
 output {
   elasticsearch {
-    hosts => ["http://elasticsearh:9200"]
+    hosts => ["http://elasticsearch:9200"]
     action => "index"
     index => "rucio_rse"
     user => "elastic"
@@ -474,7 +474,7 @@ prometheus_prefix = "" # default empty
 prometheus_labels = "" # default empty
 ```
 
-For adding cron-like scheduling fo each probe in jobber, make sure you have added needed config in [dot-jobber](https://github.com/rucio/containers/blob/master/probes/dot-jobber). An example config is given below, running the probes `check_expired_dids` and `check_stuck_rules`. This config assumes your probes are in the top level directory of the container. 
+For adding cron-like scheduling for each probe in jobber, make sure you have added needed config in [dot-jobber](https://github.com/rucio/containers/blob/master/probes/dot-jobber). An example config is given below, running the probes `check_expired_dids` and `check_stuck_rules`. This config assumes your probes are in the top level directory of the container. 
 
 ```yaml
 version: 1.4
