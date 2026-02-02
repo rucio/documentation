@@ -64,9 +64,9 @@ flowchart TB
 There are two options:
 
 1. Graphite
-   
+
    Metrics are pushed to a Graphite server.
-   
+
      ```cfg
      [monitor]
      # specify the hostname for carbon server
@@ -91,7 +91,7 @@ The used metrics can be found in following links (code search)
 - [Gauge](https://github.com/search?q=repo%3Arucio%2Frucio+Metrics.gauge&type=code)
 - [Timer](https://github.com/search?q=repo%3Arucio%2Frucio+Metrics.timer&type=code)
 
-[Grafana Dashboard JSON](https://github.com/rucio/monitoring-templates/blob/main/prometheus-monitoring/Dashboards/Rucio-Internal.json) for Prometheus is given here. 
+[Grafana Dashboard JSON](https://github.com/rucio/monitoring-templates/blob/main/prometheus-monitoring/Dashboards/Rucio-Internal.json) for Prometheus is given here.
 
 
 ## Transfers, Deletion and Other Monitoring
@@ -178,12 +178,12 @@ Different options are shown in figure and described below.
       # SSL port (used if use_ssl=True)
       port = 61614
       # ActiveMQ username/password (used if use_ssl=False)
-      username = 
+      username =
       password =
       ```
 
 2. Direct Delivery
-   
+
      These options send events directly to storage or alerting systems, bypassing queues.
      Hermes can write events straight to Elasticsearch, OpenSearch, or InfluxDB. In addition can also deliver events via email which supports custom SMTP servers, credentials, and SSL/TLS.
 
@@ -228,8 +228,8 @@ Different options are shown in figure and described below.
       smtp_password = my-smtp-pass
       smtp_usessl = False
       smtp_usetls = True
-      smtp_certfile = 
-      smtp_keyfile = 
+      smtp_certfile =
+      smtp_keyfile =
       ```
 ### Event Types
 Different event types are created
@@ -271,7 +271,7 @@ LIMIT 2;
 ```
 replace `event_type` with actual name that you want to inspect. We can also check `messages_history` table.
 
-### Format of Messages Delivered by Hermes 
+### Format of Messages Delivered by Hermes
 The final format of the message is determined by the destination service, as Hermes transforms the raw database message into the required wire protocol for external systems.
 
 - ActiveMQ (STOMP Message): The body is a streamlined JSON object containing only `event_type`, `payload`, and `created_at`. The message uses STOMP headers to set the event_type and flag the message as persistent.
@@ -412,7 +412,7 @@ Few points:
 - `filter`: This is optional. It helps in preprocessing your data before indexing
 
 
-[Grafana dashboard](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Dashboards/Rucio-Storage.json) example for RSE given. 
+[Grafana dashboard](https://github.com/rucio/monitoring-templates/blob/main/logstash-monitoring/Dashboards/Rucio-Storage.json) example for RSE given.
 
 ## Rucio Monitoring Probes
 
@@ -474,7 +474,7 @@ prometheus_prefix = "" # default empty
 prometheus_labels = "" # default empty
 ```
 
-For adding cron-like scheduling for each probe in jobber, make sure you have added needed config in [dot-jobber](https://github.com/rucio/containers/blob/master/probes/dot-jobber). An example config is given below, running the probes `check_expired_dids` and `check_stuck_rules`. This config assumes your probes are in the top level directory of the container. 
+For adding cron-like scheduling for each probe in jobber, make sure you have added needed config in [dot-jobber](https://github.com/rucio/containers/blob/master/probes/dot-jobber). An example config is given below, running the probes `check_expired_dids` and `check_stuck_rules`. This config assumes your probes are in the top level directory of the container.
 
 ```yaml
 version: 1.4
