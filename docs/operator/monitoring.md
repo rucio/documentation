@@ -348,7 +348,7 @@ Some example Logstash pipeline definitions are given [here](https://github.com/r
   'lineColor': '#90a4ae'
 }}}%%
 flowchart TB
-  subgraph DB["**Database&nbsp;Level&nbsp;Accouting/Monitoring**"]
+  subgraph DB["**Database&nbsp;Level&nbsp;Accounting/Monitoring**"]
         DB1[("Rucio DB")]
         LS["Logstash JDBC Input"]
         OS2["OpenSearch / Elasticsearch"]
