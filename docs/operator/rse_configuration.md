@@ -7,24 +7,32 @@ The Rucio Storage Elements (RSEs) are the fundamental storage endpoints in a Ruc
 ## RSE Configuration Concepts
 Before diving into the setup methods, it's important to understand the main concepts that define RSE configuration:
 
-### RSE Attributes
+### RSE Settings vs Attributes
 
-RSE attributes are key-value pairs that control the behavior and capabilities of an RSE. They define how Rucio interacts with the storage system.
+Rucio distinguishes between **RSE settings** (properties of the RSE record itself) and **RSE attributes** (key-value metadata).
 
-**Common attributes include:**
-- Storage characteristics (type, capacity, availability)
-- File naming and organization conventions
-- Transfer and checksum policies
-- Integration endpoints (FTS, monitoring)
+**RSE Settings** (configured via `rucio rse update` or `RSEClient.update_rse()`):
+- `rse_type`: Defines whether the RSE is `DISK` or `TAPE` (defaults to `DISK`)
+- `verify_checksum`: Boolean controlling checksum verification
+- `deterministic`: Boolean controlling whether RSE uses deterministic file paths
+- Geographic fields: `city`, `country_name`, `latitude`, `longitude`, `region_code`, `time_zone`
 
-:::danger[Mandatory attributes]
-To ensure proper operation of Rucio with the RSE, these attributes must be set:
-1. `rse_type`: Defines whether the RSE is of type `DISK` or `TAPE`.
-2. `fts`: URL of the FTS (File Transfer Service) endpoint used for managing transfers.
-3. `lfn2pfn_algorithm`: Algorithm for mapping logical file names (LFNs) to physical file names (PFNs).
+More can be found in the [RSE Settings configuration page](configuration_parameters/#rse-settings).
+
+**RSE Attributes** (configured via `rucio rse attribute add` or `RSEClient.add_rse_attribute()`):
+- `lfn2pfn_algorithm`: Algorithm name for generating physical paths on **deterministic RSEs** (defaults to `lfn2pfn_algorithm_default` from policy config if not set)
+- `naming_convention`: Algorithm name for generating physical file names on **non-deterministic RSEs** (typically tape systems)
+- `fts`: FTS endpoint URL (required only if using FTS for third-party transfers)
+- `archive_timeout`: Timeout for tape archival completion
+- Storage characteristics, transfer policies, monitoring endpoints
+
+:::danger[Important Configuration Notes]
+1. **RSE Type**: Set via `rucio rse update --rse RSE_NAME --rse-type TAPE` (not as an attribute). Defaults to `DISK` if omitted.
+2. **FTS Endpoint**: Only required if your deployment uses FTS for transfers. Set as an attribute: `rucio rse attribute add --rse RSE_NAME --key fts --value https://fts.example.com:8446`
+3. **LFN2PFN Algorithm**: Must be set as an RSE attribute during initial setup. This is effectively immutable and should be chosen carefully based on whether your RSE is deterministic.
 :::
 
-An exhaustive list of RSE attributes can be found in the [RSE attributes page](configuration_parameters/#rse-attributes).
+An exhaustive list of RSE attributes can be found in the [configuration parameters page](configuration_parameters/#rse-settings).
 
 ### Protocols
 
@@ -100,11 +108,11 @@ rse_client = RSEClient()
 account_limit_client = AccountLimitClient()
 
 # 1. Add the RSE
-rse_client.add_rse('RSE_NAME')
+rse_client.add_rse('RSE_NAME', rse_type='DISK')  # or rse_type='TAPE'
 
 # 2. Add attributes
-rse_client.add_rse_attribute('RSE_NAME', 'rse_type', 'DISK')
-rse_client.add_rse_attribute('RSE_NAME', 'attribute_name', 'attribute_value')
+rse_client.add_rse_attribute('RSE_NAME', 'lfn2pfn_algorithm', 'identity')
+#rse_client.add_rse_attribute('RSE_NAME', 'attribute_name', 'attribute_value')
 
 # 3. Add protocol
 params = {
@@ -132,7 +140,7 @@ account_limit_client.set_account_limit('account_name', 'RSE_NAME', bytes_limit)
 ### FILE/POSIX RSEs
 
 :::warning
-POSIX RSEs are the simplest type but cannot be accessed from remote machines. They are suitable for testing or single-node deployments only.
+POSIX RSEs use the `file://` protocol and require direct filesystem access. They work when the Rucio server and clients can access the same filesystem path (e.g., via a shared mount). They are suitable for testing, single-node deployments, or when all components share a filesystem.
 :::
 
 **Using CLI:**
@@ -142,22 +150,19 @@ POSIX RSEs are the simplest type but cannot be accessed from remote machines. Th
 rucio rse add POSIX_RSE
 
 # Set backend type
-rucio rse attribute add POSIX_RSE --key backend_type --value POSIX
+rucio rse attribute add --key backend_type --value POSIX POSIX_RSE
 
 # Configure storage usage monitoring
-rucio rse attribute add POSIX_RSE --key storage_usage_tool \
-  --value 'rucio.rse.protocols.posix.Default.getSpace'
-
+rucio rse attribute add --key storage_usage_tool \
+  --value 'rucio.rse.protocols.posix.Default.getSpace' POSIX_RSE
 # Add protocol
 rucio rse protocol add --host localhost \
-  --scheme file \
-  --prefix '/data/posix-rse-1' \
+  --scheme file --prefix '/data/posix-rse-1' \
   --impl 'rucio.rse.protocols.posix.Default' \
-  --domain-json '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1}}' \
-  POSIX_RSE
+  --domain-json '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1}}' POSIX_RSE
 
 # Set account limits
-rucio account limit add root --rse POSIX_RSE --bytes infinity
+rucio account limit add --rse POSIX_RSE --bytes infinity root
 ```
 
 ---
@@ -178,23 +183,25 @@ PREFIX="/webdav"
 # Add RSE
 rucio rse add $RUCIO_RSE_NAME
 
+# Set RSE type if needed (defaults to DISK)
+# rucio rse update --rse-type DISK $RUCIO_RSE_NAME
+
 # Set attributes
-rucio rse update $RUCIO_RSE_NAME --key rse_type --value DISK
-rucio rse attribute add $RUCIO_RSE_NAME --key lfn2pfn_algorithm --value identity
-rucio rse attribute add $RUCIO_RSE_NAME --key fts --value https://fts.example.com:8446
-rucio rse attribute add $RUCIO_RSE_NAME --key verify_checksum --value False
-rucio rse attribute add $RUCIO_RSE_NAME --key greedyDeletion --value True
+rucio rse attribute add --key lfn2pfn_algorithm --value identity $RUCIO_RSE_NAME
+rucio rse attribute add --key fts --value https://fts.example.com:8446 $RUCIO_RSE_NAME
+rucio rse attribute add --key greedyDeletion --value true $RUCIO_RSE_NAME
+
+# Update settings
+rucio rse update --verify-checksum false $RUCIO_RSE_NAME
 
 # Add davs protocol
 rucio rse protocol add --host $HOST $RUCIO_RSE_NAME \
-  --scheme davs \
-  --prefix $PREFIX \
-  --port 8443 \
+  --scheme davs --prefix $PREFIX --port 8443 \
   --impl rucio.rse.protocols.gfal.Default \
   --domain-json '{"wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}, "lan": {"read": 1, "write": 1, "delete": 1}}'
 
 # Set account limits
-rucio account limit add root --rse $RUCIO_RSE_NAME --bytes infinity
+rucio account limit add --rse $RUCIO_RSE_NAME --bytes infinity root
 ```
 
 **Using Python Client API:**
@@ -205,6 +212,17 @@ from rucio.client.rseclient import RSEClient
 
 # Initialize client
 rse_client = RSEClient()
+
+# Add RSE (defaults to DISK type)
+rse_client.add_rse('WEBDAV_RSE')
+
+# Set attributes
+rse_client.add_rse_attribute('WEBDAV_RSE', 'lfn2pfn_algorithm', 'identity')
+rse_client.add_rse_attribute('WEBDAV_RSE', 'fts', 'https://fts.example.com:8446')
+rse_client.add_rse_attribute('WEBDAV_RSE', 'greedyDeletion', True)
+
+# Update settings
+rse_client.update_rse('WEBDAV_RSE', {'verify_checksum': False})
 
 # Protocol parameters
 params = {
@@ -231,17 +249,8 @@ params = {
     }
 }
 
-# Add RSE
-rse_client.add_rse('WEBDAV_RSE')
-
 # Setup protocol
 rse_client.add_protocol('WEBDAV_RSE', params)
-
-# Set attributes
-rse_client.add_rse_attribute('WEBDAV_RSE', 'lfn2pfn_algorithm', 'identity')
-rse_client.add_rse_attribute('WEBDAV_RSE', 'fts', 'https://fts.example.com:8446')
-rse_client.add_rse_attribute('WEBDAV_RSE', 'verify_checksum', 'False')
-rse_client.add_rse_attribute('WEBDAV_RSE', 'greedyDeletion', 'True')
 ```
 
 ---
@@ -294,11 +303,10 @@ from rucio.client.rseclient import RSEClient
 # Initialize client
 rse_client = RSEClient()
 
-# Add RSE
+# Add RSE (defaults to DISK type)
 rse_client.add_rse('EXAMPLE_DISK_RSE')
 
 # Set attributes
-rse_client.add_rse_attribute('EXAMPLE_DISK_RSE', 'rse_type', 'DISK')
 rse_client.add_rse_attribute('EXAMPLE_DISK_RSE', 'lfn2pfn_algorithm', 'identity')
 rse_client.add_rse_attribute('EXAMPLE_DISK_RSE', 'fts', 'https://fts.example.com:8446')
 
@@ -382,14 +390,13 @@ from rucio.client.rseclient import RSEClient
 # Initialize client
 rse_client = RSEClient()
 
-# Add RSE
-rse_client.add_rse('EXAMPLE_TAPE_RSE')
+# Add RSE with TAPE type
+rse_client.add_rse('EXAMPLE_TAPE_RSE', rse_type='TAPE')
 
 # Set attributes
-rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'rse_type', 'TAPE')
 rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'lfn2pfn_algorithm', 'identity')
 rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'fts', 'https://fts.example.com:8446')
-rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'archive_timeout', '86400')
+rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'archive_timeout', 86400)
 
 # Add HTTPS protocol
 params = {
@@ -408,8 +415,8 @@ rse_client.add_protocol('EXAMPLE_TAPE_RSE', params)
 ```
 
 **Key Differences from Disk RSEs:**
-- `rse_type` is set to `TAPE`
-- `archive_timeout` attribute specifies maximum time for file staging (86400 = 24 hours)
+- `rse_type` is set to `TAPE` at creation time
+- `archive_timeout` attribute controls maximum time for tape archival operations (86400 = 24 hours)
 - Typically only `https` protocol is defined (avoid `root` protocol for tape)
 
 
@@ -437,10 +444,12 @@ See the [RSE Protocols Documentation](https://rucio.cern.ch/documentation/html/t
 
 ### Protocol Priority
 
-The priority values in the `domain-json` determine which protocol is preferred:
-- Higher numbers indicate higher priority
-- Priority `1` is standard for active protocols
-- Priority `0` or omitted disables the protocol
+The priority values in the `domain-json` determine which protocol operations are enabled:
+- Use `1` to enable an operation
+- Use `0` to disable an operation
+- Omitting an operation key indicates it's not supported
+
+**Example:** For a read-only RSE, set `"write": 0, "delete": 0` in the domains configuration.
 
 ### Domain Configuration
 
@@ -478,40 +487,56 @@ Account limits control how much space an account can use on an RSE.
 rucio account limit add root --rse RSE_NAME --bytes infinity
 
 # Set specific quota (in bytes)
-rucio account limit add user_account --rse RSE_NAME --bytes 1099511627776  # 1 TB
-```
-
-### Common Quota Values
-
-```bash
-1 TB  = 1099511627776 bytes
-1 PB  = 1125899906842624 bytes
-infinity = unlimited
+rucio account limit add user_account --rse RSE_NAME --bytes 1TB
 ```
 
 ---
 
 ## Non-Deterministic RSEs
 
-Non-deterministic RSEs don't follow the standard logical-to-physical naming convention. This is common for tape systems where files may be stored with system-generated names.
+Non-deterministic RSEs don't follow the standard deterministic logical-to-physical file naming convention. This is most common for tape systems where physical filenames are generated based on file metadata, dataset membership, or other factors beyond just scope and name.
+
+### Key Differences from Deterministic RSEs
+
+**Deterministic RSEs** (typical disk systems):
+- Use `lfn2pfn_algorithm` **setting** to derive physical paths from scope and name alone
+- Support both direct uploads and replications
+- Physical file path can be computed on-demand from the logical file name
+- Example: File `scope:name` → `/storage/rucio/scope/name`
+
+**Non-Deterministic RSEs** (typical tape systems):
+- Use `naming_convention` **attribute** to generate physical filenames
+- The algorithm may use file metadata, dataset membership, creation time, etc.
+- Only support replications (not direct uploads from clients)
+- Physical file paths must be registered explicitly when files are replicated
+- Example: File might be stored as `/tape/2026/02/03/archive_12345.tar`
 
 ### Setup Example
 
 ```bash
-RUCIO_RSE_NAME="ESCAPE_TAPE_RSE"
+RUCIO_RSE_NAME="EXPERIMENT_TAPE_RSE"
 
-# Add as non-deterministic
+# Add as non-deterministic RSE
 rucio rse add --non-deterministic $RUCIO_RSE_NAME
 
 # Set type and attributes
-rucio rse update $RUCIO_RSE_NAME --key rse_type --value TAPE
-rucio rse attribute add $RUCIO_RSE_NAME --key naming_convention --value escape_tape
+rucio rse update --key rse_type --value TAPE $RUCIO_RSE_NAME
+rucio rse attribute add --key naming_convention --value experiment_tape $RUCIO_RSE_NAME
 ```
 
 **When to Use:**
-- Tape systems with internal file organization
+- Tape systems with internal file organization requiring metadata-driven naming
 - Storage systems that don't support directory structures
-- Systems requiring custom naming schemes
+- Systems where physical file names must be generated using business logic beyond scope/name
+- Any storage backend where the physical filename cannot be deterministically computed from LFN alone
+
+:::warning
+For non-deterministic RSEs:
+1. Physical file paths must be registered explicitly during replication
+2. Files cannot be uploaded directly by clients (only via replication)
+3. The `naming_convention` attribute must reference a `non_deterministic_pfn` algorithm in your policy package
+4. Do NOT set `lfn2pfn_algorithm` setting on non-deterministic RSEs
+:::
 
 ---
 
@@ -560,8 +585,8 @@ When using the `identity` lfn2pfn algorithm, the scope is appended to the prefix
 
 ### 6. Tape-Specific
 
-- Set reasonable `archive_timeout` values (24 hours recommended)
-- Use staging-aware clients
+- Set reasonable `archive_timeout` values (24 hours recommended). This controls how long FTS waits for tape archival operations to complete
+- Use staging-aware clients for file retrieval
 - Avoid `root://` protocol for tape systems
 - Monitor staging queue length
 
@@ -600,16 +625,10 @@ Before deploying to production:
 rucio rse list
 
 # Show RSE details
-rucio rse info RSE_NAME
+rucio rse show RSE_NAME
 
 # List RSE attributes
 rucio rse attribute list RSE_NAME
-
-# List RSE protocols
-rucio rse protocol list RSE_NAME
-
-# Check RSE usage
-rucio rse usage RSE_NAME
 
 # List account limits
 rucio account limit list ACCOUNT_NAME
