@@ -9,7 +9,7 @@ Before diving into the setup methods, it's important to understand the main conc
 
 ### RSE Settings vs Attributes
 
-Rucio distinguishes between **RSE settings** (properties of the RSE record itself) and **RSE attributes** (key-value metadata).
+Rucio distinguishes between **RSE settings** (properties of the RSE itself) and **RSE attributes** (key-value metadata).
 
 **RSE Settings** (configured via `rucio rse update` or `RSEClient.update_rse()`):
 - `rse_type`: Defines whether the RSE is `DISK` or `TAPE` (defaults to `DISK`)
@@ -32,7 +32,7 @@ More can be found in the [RSE Settings configuration page](configuration_paramet
 3. **LFN2PFN Algorithm**: Must be set as an RSE attribute during initial setup. This is effectively immutable and should be chosen carefully based on whether your RSE is deterministic.
 :::
 
-An exhaustive list of RSE attributes can be found in the [configuration parameters page](configuration_parameters/#rse-settings).
+An exhaustive list of RSE attributes can be found in the [configuration parameters page](configuration_parameters/#rse-attributes).
 
 ### Protocols
 
@@ -108,11 +108,11 @@ rse_client = RSEClient()
 account_limit_client = AccountLimitClient()
 
 # 1. Add the RSE
-rse_client.add_rse('RSE_NAME', rse_type='DISK')  # or rse_type='TAPE'
+rse_client.add_rse(rse='RSE_NAME', rse_type='DISK')  # or rse_type='TAPE'
 
 # 2. Add attributes
-rse_client.add_rse_attribute('RSE_NAME', 'lfn2pfn_algorithm', 'identity')
-#rse_client.add_rse_attribute('RSE_NAME', 'attribute_name', 'attribute_value')
+rse_client.add_rse_attribute(rse='RSE_NAME', key='lfn2pfn_algorithm', value='identity')
+#rse_client.add_rse_attribute(rse='RSE_NAME', key='attribute_name', value='attribute_value')
 
 # 3. Add protocol
 params = {
@@ -146,7 +146,7 @@ POSIX RSEs use the `file://` protocol and require direct filesystem access. They
 **Using CLI:**
 
 ```bash
-# Add the RSE
+# Add the RSE, named POSIX_RSE
 rucio rse add POSIX_RSE
 
 # Set backend type
@@ -217,12 +217,12 @@ rse_client = RSEClient()
 rse_client.add_rse('WEBDAV_RSE')
 
 # Set attributes
-rse_client.add_rse_attribute('WEBDAV_RSE', 'lfn2pfn_algorithm', 'identity')
-rse_client.add_rse_attribute('WEBDAV_RSE', 'fts', 'https://fts.example.com:8446')
-rse_client.add_rse_attribute('WEBDAV_RSE', 'greedyDeletion', True)
+rse_client.add_rse_attribute(rse='WEBDAV_RSE', key='lfn2pfn_algorithm', value='identity')
+rse_client.add_rse_attribute(rse='WEBDAV_RSE', key='fts', value='https://fts.example.com:8446')
+rse_client.add_rse_attribute(rse='WEBDAV_RSE', key='greedyDeletion', value=True)
 
 # Update settings
-rse_client.update_rse('WEBDAV_RSE', {'verify_checksum': False})
+rse_client.update_rse(rse='WEBDAV_RSE', parameters={'verify_checksum': False})
 
 # Protocol parameters
 params = {
@@ -307,8 +307,8 @@ rse_client = RSEClient()
 rse_client.add_rse('EXAMPLE_DISK_RSE')
 
 # Set attributes
-rse_client.add_rse_attribute('EXAMPLE_DISK_RSE', 'lfn2pfn_algorithm', 'identity')
-rse_client.add_rse_attribute('EXAMPLE_DISK_RSE', 'fts', 'https://fts.example.com:8446')
+rse_client.add_rse_attribute(rse='EXAMPLE_DISK_RSE', key='lfn2pfn_algorithm', value='identity')
+rse_client.add_rse_attribute(rse='EXAMPLE_DISK_RSE', key='fts', value='https://fts.example.com:8446')
 
 # Add HTTPS protocol
 https_params = {
@@ -394,9 +394,9 @@ rse_client = RSEClient()
 rse_client.add_rse('EXAMPLE_TAPE_RSE', rse_type='TAPE')
 
 # Set attributes
-rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'lfn2pfn_algorithm', 'identity')
-rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'fts', 'https://fts.example.com:8446')
-rse_client.add_rse_attribute('EXAMPLE_TAPE_RSE', 'archive_timeout', 86400)
+rse_client.add_rse_attribute(rse='EXAMPLE_TAPE_RSE', key='lfn2pfn_algorithm', value='identity')
+rse_client.add_rse_attribute(rse='EXAMPLE_TAPE_RSE', key='fts', value='https://fts.example.com:8446')
+rse_client.add_rse_attribute(rse='EXAMPLE_TAPE_RSE', key='archive_timeout', value=86400)
 
 # Add HTTPS protocol
 params = {
@@ -416,7 +416,7 @@ rse_client.add_protocol('EXAMPLE_TAPE_RSE', params)
 
 **Key Differences from Disk RSEs:**
 - `rse_type` is set to `TAPE` at creation time
-- `archive_timeout` attribute controls maximum time for tape archival operations (86400 = 24 hours)
+- `archive_timeout` attribute specifies maximum time for file staging (86400 = 24 hours)
 - Typically only `https` protocol is defined (avoid `root` protocol for tape)
 
 
@@ -432,7 +432,7 @@ rucio rse attribute add RSE_NAME --key attribute_name --value attribute_value
 # Using Python Client API
 from rucio.client.rseclient import RSEClient
 rse_client = RSEClient()
-rse_client.add_rse_attribute('RSE_NAME', 'attribute_name', 'attribute_value')
+rse_client.add_rse_attribute(rse='RSE_NAME', key='attribute_name', value='attribute_value')
 ```
 
 ---
@@ -527,14 +527,13 @@ rucio rse attribute add --key naming_convention --value experiment_tape $RUCIO_R
 **When to Use:**
 - Tape systems with internal file organization requiring metadata-driven naming
 - Storage systems that don't support directory structures
-- Systems where physical file names must be generated using business logic beyond scope/name
 - Any storage backend where the physical filename cannot be deterministically computed from LFN alone
 
 :::warning
 For non-deterministic RSEs:
 1. Physical file paths must be registered explicitly during replication
 2. Files cannot be uploaded directly by clients (only via replication)
-3. The `naming_convention` attribute must reference a `non_deterministic_pfn` algorithm in your policy package
+3. The `naming_convention` attribute must reference a `non_deterministic_pfn` algorithm in your [policy package](policy_packages/policy_packages_overview)
 4. Do NOT set `lfn2pfn_algorithm` setting on non-deterministic RSEs
 :::
 
@@ -585,7 +584,7 @@ When using the `identity` lfn2pfn algorithm, the scope is appended to the prefix
 
 ### 6. Tape-Specific
 
-- Set reasonable `archive_timeout` values (24 hours recommended). This controls how long FTS waits for tape archival operations to complete
+- Set reasonable `archive_timeout` values (24 hours recommended). This controls how long FTS waits for file staging to complete
 - Use staging-aware clients for file retrieval
 - Avoid `root://` protocol for tape systems
 - Monitor staging queue length

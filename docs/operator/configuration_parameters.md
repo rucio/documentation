@@ -497,7 +497,7 @@ a setting already specified in the Configuration File.
 ## RSE settings
 The RSE settings are set separately using `rucio.RSEClient.update_rse` or `rucio rse update`, and specify RSE configuration used by the Rucio instance.
 Mutable settings are `deterministic`, `rse_type`, `staging_area`, `volatile`, `qos_class`, `availability_delete`, `availability_read`, `availability_write`, `city`, `country_name`, `latitude`, `longitude`, `region_code`, and `time_zone`.
-Geographic fields (`city`, `country_name`, `latitude`, `longitude`, `region_code`, `time_zone`) can also be set at RSE creation time via API parameters, though they are stored and returned as part of the RSESettingsDict structure.
+Geographic fields (`city`, `country_name`, `latitude`, `longitude`, `region_code`, `time_zone`) can also be set at RSE creation time via API parameters.
 Read more about RSEs [here](started/concepts/rucio_storage_element.md)
 and how to set them up [here](operator/configuration.md#creating-new-rses).
 
@@ -512,7 +512,6 @@ and how to set them up [here](operator/configuration.md#creating-new-rses).
 - **domain**: List[String]. Specifies the locations this RSE may be accessed by clients from. Cannot be changed.
 - **id**: String. Identification string of the RSE. Cannot be changed.
 - **latitude**: Optional[Float]. Latitude coordinate of the RSE location. Used for geographic calculations. No default.
-- **lfn2pfn_algorithm**: String. Name of the algorithm in the configured policy package to be used for creating replica paths. This field is populated from the RSE attribute of the same name. If the attribute is not set, it defaults to `lfn2pfn_algorithm_default` from the configured policy package. Default: `default`.
 - **longitude**: Optional[Float]. Longitude coordinate of the RSE location. Used for geographic calculations. No default.
 - **protocols**: List[RSEProtocolDict]. List of protocol configurations for accessing this RSE. Cannot be changed directly; use protocol-specific methods.
 - **qos_class**: Optional[String]. No functionality in modern Rucio. No default.
