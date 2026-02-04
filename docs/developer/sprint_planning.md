@@ -37,7 +37,7 @@ This is indicated by the presence of a `priority` label on the issue.
 
 Sub-issues of `priority` issues should also be labeled as `priority`.
 This is because a `priority` issue might be too large (see the [Size estimation](#size-estimation) section) to fit in a single sprint,
-and it should be broken down into sub-issues, which should still be prioritised over non-priority issues.
+and are broken down into sub-issues, which should still be prioritised over non-priority issues.
 
 
 ### Size estimation
@@ -54,6 +54,8 @@ The following labels are available for size estimation:
 - **L**: about one week (5 days) of work. This issue **should** be broken down into individual sub-issues
 - **XL**: more than one week (5 days) of work. This issue **must** be broken down into individual sub-issues
 
+For **LARGE** and **XLARGE** issues it is mandatory to select/nominate a reviewer/co-author at the time of creation of the issue. This is to ensure
+that the approach and planned work is discussed already before the implementation is started.
 
 ## Moderating a sprint
 Each sprint is moderated by one of the developers. This role rotates on a voluntary basis.
