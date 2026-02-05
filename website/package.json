@@ -18,6 +18,7 @@
     "@docusaurus/theme-mermaid": "3.8.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.1",
+    "docusaurus-plugin-remote-content": "^4.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   }
