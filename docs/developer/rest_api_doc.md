@@ -102,8 +102,8 @@ input validation.
 
 ### Use Existing Enumerates
 
-If the endpoint requests or returns a common enumerate type, you can use the `schemas` 
-generated from Rucio's codebase, such that: 
+If the endpoint requests or returns a common enumerate type, you can use the `schemas`
+generated from Rucio's codebase, such that:
 ```yaml
 properties:
   options:
@@ -118,5 +118,5 @@ properties:
         $ref: '#/components/schemas/Object2'
 
 ```
-Where `Object1` and `Object2` can reference any enumerate type in 
+Where `Object1` and `Object2` can reference any enumerate type in
 [constants.py](https://github.com/rucio/rucio/blob/master/lib/rucio/db/sqla/constants.py)
