@@ -933,7 +933,22 @@ Call with either rse and vo, or (in server mode) rse_id</p>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                <p>a dict object with the following attributes: id                ...     an internal identifier rse               ...     the name of the RSE as string type              ...     the storage type odf the RSE e.g. DISK volatile          ...     boolean indicating if the RSE is volatile verify_checksum   ...     boolean indicating whether RSE supports requests for checksums deterministic      ...     boolean indicating of the naming of the files follows the defined determinism domain            ...     indicating the domain that should be assumed for transfers. Values are 'ALL', 'LAN', or 'WAN' protocols         ...     all supported protocol in form of a list of dict objects with the following structure - scheme              ...     protocol scheme e.g. http, srm, ... - hostname            ...     hostname of the site - prefix              ...     path to the folder where the files are stored - port                ...     port used for this protocol - impl                ...     naming the python class of the protocol implementation - extended_attributes ...     additional information for the protocol - domains             ...     a dict naming each domain and the priority of the protocol for each operation (lower is higher priority, None means not supported)</p>
+                <p>a dict object with the following attributes:
+id                ...     an internal identifier
+rse               ...     the name of the RSE as string
+type              ...     the storage type odf the RSE e.g. DISK
+volatile          ...     boolean indicating if the RSE is volatile
+verify_checksum   ...     boolean indicating whether RSE supports requests for checksums
+deterministic      ...     boolean indicating of the naming of the files follows the defined determinism
+domain            ...     indicating the domain that should be assumed for transfers. Values are 'ALL', 'LAN', or 'WAN'
+protocols         ...     all supported protocol in form of a list of dict objects with the following structure
+- scheme              ...     protocol scheme e.g. http, srm, ...
+- hostname            ...     hostname of the site
+- prefix              ...     path to the folder where the files are stored
+- port                ...     port used for this protocol
+- impl                ...     naming the python class of the protocol implementation
+- extended_attributes ...     additional information for the protocol
+- domains             ...     a dict naming each domain and the priority of the protocol for each operation (lower is higher priority, None means not supported)</p>
               </div>
             </td>
           </tr>
@@ -1633,7 +1648,9 @@ Providing a list indicates the bulk mode.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>a single dict or a list with dicts containing 'scope' and 'name' if LFNs are used and only 'name' if PFNs are used. E.g. {'name': '2_rse_remote_get.raw', 'scope': 'user.jdoe'}, {'name': 'user/jdoe/5a/98/3_rse_remote_get.raw'}</p>
+                <p>a single dict or a list with dicts containing 'scope' and 'name'
+if LFNs are used and only 'name' if PFNs are used.
+E.g. {'name': '2_rse_remote_get.raw', 'scope': 'user.jdoe'}, {'name': 'user/jdoe/5a/98/3_rse_remote_get.raw'}</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1840,7 +1857,13 @@ Providing a list indicates the bulk mode.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>a single dict or a list with dicts containing 'scope' and 'name'. Examples: [ {'name': '1_rse_local_put.raw', 'scope': 'user.jdoe', 'filesize': 42, 'adler32': '87HS3J968JSNWID'}, {'name': '2_rse_local_put.raw', 'scope': 'user.jdoe', 'filesize': 4711, 'adler32': 'RSSMICETHMISBA837464F'} ] If the 'filename' key is present, it will be used by Rucio as the actual name of the file on disk (separate from the Rucio 'name').</p>
+                <p>a single dict or a list with dicts containing 'scope' and 'name'.
+Examples:
+[
+{'name': '1_rse_local_put.raw', 'scope': 'user.jdoe', 'filesize': 42, 'adler32': '87HS3J968JSNWID'},
+{'name': '2_rse_local_put.raw', 'scope': 'user.jdoe', 'filesize': 4711, 'adler32': 'RSSMICETHMISBA837464F'}
+]
+If the 'filename' key is present, it will be used by Rucio as the actual name of the file on disk (separate from the Rucio 'name').</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2380,7 +2403,14 @@ Providing a list indicates the bulk mode.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>a single dict or a list with dicts containing 'scope', 'name', 'new_scope' and 'new_name' if LFNs are used or only 'name' and 'new_name' if PFNs are used. If 'new_scope' or 'new_name' are not provided, the current one is used. Examples: [ {'name': '3_rse_remote_rename.raw', 'scope': 'user.jdoe', 'new_name': '3_rse_new.raw', 'new_scope': 'user.jdoe'}, {'name': 'user/jdoe/d9/cb/9_rse_remote_rename.raw', 'new_name': 'user/jdoe/c6/4a/9_rse_new.raw'} ]</p>
+                <p>a single dict or a list with dicts containing 'scope', 'name', 'new_scope' and 'new_name'
+if LFNs are used or only 'name' and 'new_name' if PFNs are used.
+If 'new_scope' or 'new_name' are not provided, the current one is used.
+Examples:
+[
+{'name': '3_rse_remote_rename.raw', 'scope': 'user.jdoe', 'new_name': '3_rse_new.raw', 'new_scope': 'user.jdoe'},
+{'name': 'user/jdoe/d9/cb/9_rse_remote_rename.raw', 'new_name': 'user/jdoe/c6/4a/9_rse_new.raw'}
+]</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
