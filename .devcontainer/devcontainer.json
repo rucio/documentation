@@ -1,6 +1,6 @@
 {
 	"name": "Rucio-Docs",
-	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
 			"version": "latest",
@@ -10,5 +10,14 @@
 		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/devcontainers/features/python:1": {},
 		"ghcr.io/devcontainers/features/ruby:1": {}
+	},
+	"forwardPorts": [3000],
+	"postCreateCommand": "gem install mdl && python3 -m pip install --break-system-packages -r tools/requirements.txt pre-commit && cd website && yarn install",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"davidanson.vscode-markdownlint"
+			]
+		}
 	}
 }
