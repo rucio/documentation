@@ -231,7 +231,7 @@ Sometimes it's unclear which type to use. Consider the **intent** and **impact**
 | Scenario | Preferred | Rationale |
 |----------|-----------|-----------|
 | Replacing `Union[X, None]` with `Optional[X]` across 60+ files | `refactor(Core): Remove deprecated constructs from the typing module` | Modernizes codebase to newer Python conventions |
-| Adding type hints to function signatures | `style(Core): Add type hints to transfer functions` | Improves code documentation without changing behavior |
+| Adding type hints to function signatures | `refactor(Core): Add type hints to transfer functions` | Improves code without changing behavior |
 | Fixing a test that fails intermittently due to timing | `fix(Testing): Resolve judge evaluator test flakiness` | Corrects broken behavior in test suite |
 | Adding new test cases for edge cases | `test(Testing): Add tests for attaching nonexistent DIDs` | Extends test coverage |
 | Updating README with new installation steps | `docs(Documentation): Update installation instructions` | Documentation-only change |
