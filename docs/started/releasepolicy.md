@@ -118,7 +118,7 @@ consistency and compatibility.
      backward-compatible.
 - **Patch Version**: Incremented for backward-compatible bug fixes.
 
-### WebUI LTS Policy
+#### WebUI LTS Policy
 
 Starting from **release 38**, the Rucio WebUI follows the same LTS strategy as
 the Rucio server. Release 38 is the first WebUI **Long-term Support (LTS)**
