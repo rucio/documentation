@@ -16,7 +16,7 @@ Most of these configuration options are global to the Rucio deployment, not spec
 The most important configuration option is `RSE_EXPRESSION`:
 
 ```sh
-rucio config add -s opendata --key rse_expression --value='OpenData=True'
+rucio config add -s opendata --key rse_expression --value={rse expression for all OpenData rses}
 ```
 
 which is used to match the RSEs where Open Data files are stored. This will be used for the automatic replication rules (if enabled) and to return a list of Open Data files.
