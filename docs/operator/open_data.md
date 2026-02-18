@@ -13,7 +13,7 @@ Rucio is able to expose these Open Data DIDs in a dedicated Open Data endpoint, 
 There are multiple configuration options available for Open Data which can be found in the [Rucio configuration parameters documentation](https://rucio.cern.ch/documentation/operator/configuration_parameters/#opendata).
 These settings must be consistent between server and clients, so ensure any configuration is set on the server exclusively. 
 
-The most important configuration option is `RSE_EXPRESSION`:
+The most important configuration option is `rse_expression`:
 
 ```sh
 rucio config add -s opendata --key rse_expression --value={rse expression for all OpenData rses}
