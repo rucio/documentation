@@ -407,12 +407,13 @@ Rucio will look for the config in the following locations -
   - **urls**: A CSV specifying urls of Rucio WebUI 2.0 clients. Required for
     correctly handling pre-flight CORS requests.
 #### **opendata**
+- **rse_expression**: _(Optional)_ String. Mandatory in order to use most of the Open Data features. This defines the RSEs where Open Data is stored. It is used by the file listing feature and the automatic rule creation among others. Example: `OpenData=True`.
 - **rule_enable**: _(Optional)_ Boolean. Enables automatic Open Data rule creation. Default: `False`.
-- **rule_rse_expression**: _(Optional)_ Mandatory if `rule_enable=True`. RSE expression defining where data should be replicated.
+- **rule_rse_expression**: _(Optional)_ Mandatory if `rule_enable=True`. RSE expression defining where data should be replicated. Example: `OpenData=True`.
 - **rule_asynchronous**: _(Optional)_ Boolean. If `True`, rules are created asynchronously. Default: `False`.
-- **rule_activity**: _(Optional)_. Specifies the activity name used for rule creation. Defaults to Rucio's default activity name.
-- **rule_account**: _(Optional)_. Account name used to create rules. Default: `"root"`.
-- **rule_vo**: _(Optional)_. Virtual Organization (VO) under which rules are created. Defaults to Rucio's default VO.
+- **rule_activity**: _(Optional)_. String. Specifies the activity name used for rule creation. Defaults to Rucio's default activity name.
+- **rule_account**: _(Optional)_. String. Account name used to create rules. Default: `"root"`.
+- **rule_vo**: _(Optional)_. String. Virtual Organization (VO) under which rules are created. Defaults to Rucio's default VO.
 - **rule_copies**: _(Optional)_ Integer. Number of copies to be created by the rule. Default: `1`.
 
 ## Rucio configuration table
@@ -426,7 +427,7 @@ The table can be updated with the `Rucio Client`, using either
 These changes take impact immediately without requiring a restart.
 Using the client only updates the Configuration Table and does not overwrite
 anything in the Configuration File, and thus will not change anything if there
-a setting already specified in the Configuration File.
+is a setting already specified in the Configuration File.
 
 ### Options and Defaults
 #### **automatix**
