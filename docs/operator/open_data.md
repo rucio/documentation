@@ -123,11 +123,11 @@ It is possible to trigger the creation of a replication rule when an Open Data D
 
 All the available Rucio configuration options for the Open Data replication rules can be seen [in the Rucio config parameters documentation page](https://rucio.cern.ch/documentation/operator/configuration_parameters#opendata).
 
-The rule option needs to be enabled (`rule_enable=True`) and a valid RSE expression must be provided.
+The rule option needs to be enabled (`rule_enable=True`) in the configuration and a valid RSE expression must be provided.
 The RSE expression under `rse_expression` in the `opendata` section of the configuration will be used.
-This can be overridden by `rule_rse_expression` if defined but in most cases just defining `rse_expression` is enough.
+The RSE expression used for replication rules is overridden by `rule_rse_expression` if defined, otherwise `rse_expression` is used.
 
-Other options related to the rule can be set via configuration parameters, such as the rule account, number of copies or activity.
+Other settings related to the Open Data rule can also be set, such as the rule account, number of copies or activity (check out the [documentation](https://rucio.cern.ch/documentation/operator/configuration_parameters#opendata) for more details).
 
 The rule will be created when the Open Data DID is set to public and the rule **will not be deleted** if the Open Data DID is set to another state or deleted from the Rucio Open Data catalog, the rule will still remain.
 The rule can be deleted the same as with any other replication rule.
