@@ -118,6 +118,20 @@ consistency and compatibility.
      backward-compatible.
 - **Patch Version**: Incremented for backward-compatible bug fixes.
 
+### WebUI LTS Policy
+
+Starting from **release 38**, the Rucio WebUI follows the same LTS strategy as
+the Rucio server. Release 38 is the first WebUI **Long-term Support (LTS)**
+release.
+
+> **Note:** Although Rucio 35 is an LTS release, the corresponding WebUI
+> release 35 is **not** designated as LTS. This is due to significant changes
+> in the WebUI project architecture and lack of feature completeness at that
+> time. Release 38 marks the first stable, feature-complete WebUI LTS release.
+
+Any future deviations from the Rucio server LTS strategy will be announced in
+the Rucio community channels or on this page.
+
 ### JupyterLab extension
 
 The Rucio Jupyterlab extension follows it's own release policy described below.
