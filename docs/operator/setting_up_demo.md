@@ -10,26 +10,21 @@ We provide a containerised version of the Rucio development environment
 for a quick start. Our containers are ready-made for Docker, which means
 you need to have a working Docker installation. To install Docker for
 your platform, please refer to the [__Docker installation
-guide__](https://docs.docker.com/install/), for example, for CentOS
+guide__](https://docs.docker.com/engine/install/), for example, for Alma Linux 9
 [__follow these instructions for the Docker Community
-Edition__](https://docs.docker.com/install/linux/docker-ce/centos/).
-Please make sure that you install this recent Docker version especially
-if you are on CentOS, i.e. its default version is ancient and does not
-support some features we rely on.
+Edition__](https://docs.docker.com/engine/install/rhel/).
+Please make sure that you install this recent Docker version.
 
 Start the Docker daemon with `sudo systemctl start docker`.
-You can confirm that Docker is running properly by executing (might need
-`sudo`):
+You can confirm that Docker is running properly by executing (needs
+`sudo` if your user is not part of the `docker` group):
 
 ```bash
 docker run hello-world
 ```
 
 If successful, this will print an informational message telling you that
-you are ready to go. Now, also install the `docker-compose`
-helper tool with `sudo yum install docker-compose` (might
-need [__EPEL__](https://fedoraproject.org/wiki/EPEL) enabled). You are now
-ready to install the Rucio development environment.
+you are ready to go.
 
 ## Preparing the environment
 
@@ -57,7 +52,7 @@ mentioning your full name and email address, and create the
 `.githubtoken` file that contains a full access token from
 [__Github Account Settings__](https://github.com/settings/tokens).
 
-Next, startup the Rucio development environment with docker-compose.
+Next, startup the Rucio development environment with docker compose.
 There are three different types: a standard one to just run the
 unittests and do basic development, which includes just Rucio without
 any transfer capabilities. One slightly larger one, which includes the
@@ -68,17 +63,28 @@ Grafana.
 
 ## Using the standard environment
 
-Run the containers using docker-compose (again might need
-`sudo`):
+Run the containers using docker compose (again might need `sudo`):
 
 ```bash
-docker-compose --file etc/docker/dev/docker-compose.yml up --detach
+docker compose --file etc/docker/dev/docker-compose.yml up --detach
 ```
+
+To avoid adding the ``--file`` argument to all ``docker compose`` calls,
+you might want to run:
+
+```bash
+export COMPOSE_FILE=$(pwd)/etc/docker/dev/docker-compose.yml
+```
+the following examples expect this variable to be set.
+To make this available permanently in your Rucio repository, you can add
+this line into a `.env` file in the root of the repository. This file
+is automatically read by `docker compose`.
+
 
 And verify that it is running properly:
 
 ```bash
-docker ps
+docker compose ps
 ```
 
 This should show you a few running containers: the Rucio server, the
@@ -87,7 +93,7 @@ PostgreSQL database and the Graphite monitoring.
 Finally, you can jump into the container with:
 
 ```bash
-docker exec -it dev-rucio-1 /bin/bash
+docker compose exec rucio /bin/bash
 ```
 
 To verify that everything is in order, you can now either run the full
@@ -111,10 +117,10 @@ pytest --verbose --full-trace tests/test_replica.py:TestReplicaCore.test_delete_
 
 ## Using the environment including storage
 
-Again run the containers using docker-compose:
+Again run the containers using docker compose:
 
 ```bash
-docker-compose --file etc/docker/dev/docker-compose.yml --profile storage up --detach
+docker compose --profile storage up --detach
 ```
 
 This should show you a few more running containers: the Rucio server,
@@ -148,10 +154,10 @@ On the second display of the rule, its state has cleared to OK.
 
 ## Using the environment including monitoring
 
-Again run the containers using docker-compose:
+Again run the containers using docker compose:
 
 ```bash
-docker-compose --file etc/docker/dev/docker-compose.yml --profile storage --profile monitoring up --detach
+docker compose --profile storage --profile monitoring up --detach
 ```
 
 Now you will have the same containers as before plus a full monitoring
@@ -277,7 +283,7 @@ echo 'flush_all' | nc localhost 11211 && httpd -k graceful**
 
 ### Database access
 
-The default database is PostgreSQL, and `docker-compose` is
+The default database is PostgreSQL, and `docker compose` is
 configured to open its port to the host machine. Using your favourite
 SQL navigator, e.g., [__DBeaver__](https://dbeaver.io), you can connect to
 the database using the default access on `localhost:5432` to
@@ -311,9 +317,7 @@ In such cases, you can download the Rucio container files and e.g. choose
 to modify the dev container before build:
 
 ```bash
-cd /opt
-sudo git clone https://github.com/rucio/containers
-cd ../containers/dev
+git clone https://github.com/rucio/containers
 ```
 
 Change anything you need, e.g. the code branch cloned to your docker
@@ -325,14 +329,13 @@ RUN git clone https://github.com/rucio/rucio.git /tmp/rucio
 # to e.g.:
 RUN git clone --single-branch --branch next https://github.com/rucio/rucio.git /tmp/rucio
 #build your docker
-sudo docker build --tag rucio/rucio-dev
+docker build --tag rucio/rucio-dev
 ```
 
-Compose as usual using docker-compose:
+Compose as usual using docker compose, in the rucio repository:
 
 ```bash
-cd /opt/rucio
-sudo docker-compose --file etc/docker/dev/docker-compose.yml up --detach
+docker compose --file etc/docker/dev/docker-compose.yml up --detach
 ```
 
 Start the daemons
