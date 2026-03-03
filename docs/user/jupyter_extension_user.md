@@ -168,7 +168,7 @@ To use Rucio commands in your terminal within the JupyterLab environment:
    rucio whoami
    ```
 
-The extension configuration is different from the terminal client configuration. To have `rucio` commands properly working in your terminal, follow your experiment's setup instructions (e.g., [ATLAS Rucio Guide](https://atlassoftwaredocs.web.cern.ch/internal-links/grid-tutorial/rucio-basics/)).
+The extension configuration is different from the terminal client configuration. To have `rucio` commands properly working in your terminal, follow your experiment's setup instructions (e.g., [ATLAS Rucio Guide](https://atlas-software.docs.cern.ch/analysis/analysis_tutorial/AnalysisSWTutorial/rucio_basics/)).
 
 ## Advanced Settings
 
