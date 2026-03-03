@@ -52,7 +52,7 @@ mentioning your full name and email address, and create the
 `.githubtoken` file that contains a full access token from
 [__Github Account Settings__](https://github.com/settings/tokens).
 
-Next, startup the Rucio development environment with docker compose.
+Next, start up the Rucio development environment with `docker compose`.
 There are three different types: a standard one to just run the
 unittests and do basic development, which includes just Rucio without
 any transfer capabilities. One slightly larger one, which includes the
@@ -63,7 +63,7 @@ Grafana.
 
 ## Using the standard environment
 
-Run the containers using docker compose (again might need `sudo`):
+Run the containers using `docker compose` (again might need `sudo`):
 
 ```bash
 docker compose --file etc/docker/dev/docker-compose.yml up --detach
@@ -117,7 +117,7 @@ pytest --verbose --full-trace tests/test_replica.py:TestReplicaCore.test_delete_
 
 ## Using the environment including storage
 
-Again run the containers using docker compose:
+Again run the containers using `docker compose`:
 
 ```bash
 docker compose --profile storage up --detach
@@ -154,7 +154,7 @@ On the second display of the rule, its state has cleared to OK.
 
 ## Using the environment including monitoring
 
-Again run the containers using docker compose:
+Again run the containers using `docker compose`:
 
 ```bash
 docker compose --profile storage --profile monitoring up --detach
@@ -332,7 +332,7 @@ RUN git clone --single-branch --branch next https://github.com/rucio/rucio.git /
 docker build --tag rucio/rucio-dev
 ```
 
-Compose as usual using docker compose, in the rucio repository:
+Compose as usual using `docker compose`, in the Rucio repository:
 
 ```bash
 docker compose --file etc/docker/dev/docker-compose.yml up --detach
