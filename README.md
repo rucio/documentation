@@ -51,7 +51,7 @@ The script supports **two** workflows:
 ```
 A) Default              → tools/build_documentation.sh
                           On first run, it clones rucio/rucio.
-                          On later runs, it re-uses any existing Rucio source tree.
+                          On later runs, it reuses any existing Rucio source tree.
 
 B) Use a local Rucio    → tools/build_documentation.sh `-r` / `--rucio-path` <dir>
                           The given directory is bind-mounted read-only into the Docker container.
