@@ -9,7 +9,7 @@ This page lists functionality, or features, which the development team intends t
 Rucio at a future point in time. The aim of this list is to give the community an early warning,
 but also to call for feedback about impact of such deprecations the development team might not
 be aware of. This feedback might range from giving additional information, to adapting timelines
-of deprecations, up to reverting the planned deprecation all together. Please [reach out](../contact_us.md)
+of deprecations, up to reverting the planned deprecation altogether. Please [reach out](../contact_us.md)
 to us to give feedback.
 
 ## Deprecation watchlist
