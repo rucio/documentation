@@ -79,10 +79,10 @@ The following figure might help you with an overview:
   pre-commit install
   ```
 
-  If you only want to run the hooks on a push, run:
+  To enable full local checks, install instead `commit-msg` and `pre-push` hook types too:
 
   ```bash
-  pre-commit install --hook-type pre-push
+  pre-commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
   ```
 
   More information [please view the pre-commit documentation](https://pre-commit.com/#confining-hooks-to-run-at-certain-stages)
