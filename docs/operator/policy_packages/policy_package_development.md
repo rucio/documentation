@@ -152,3 +152,26 @@ called for this action instead.
 The schema module of a policy package does not need to define all of
 the schema values. Any missing ones will automatically be loaded from
 the generic schema module instead.
+
+The schema has a hierarchical structure. If you wish to reference a
+schema value from within another schema value, you can use the
+`SchemaRef` class. This class ensures that schema values are loaded
+from the appropriate place, even when some members of the hierarchy
+are overridden in the policy package and others are not.
+
+For example, if you wanted to increase the maximum number of items
+in an array of accounts to 2000 but re-use the default definition of
+`ACCOUNT` from the generic schema, you could refer to it using
+`SchemaRef`:
+
+```python
+from rucio.common.schema.schema_ref import SchemaRef
+
+ACCOUNTS = {"description": "Array of accounts",
+            "type": "array",
+            "items": SchemaRef("ACCOUNT"),
+            "minItems": 0,
+            "maxItems": 2000}
+```
+
+You can find the generic schema at [`lib/rucio/common/schema/generic.py`](https://github.com/rucio/rucio/blob/master/lib/rucio/common/schema/generic.py).
