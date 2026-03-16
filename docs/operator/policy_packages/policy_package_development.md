@@ -160,7 +160,7 @@ from the appropriate place, even when some members of the hierarchy
 are overridden in the policy package and others are not.
 
 For example, if you wanted to increase the maximum number of items
-in an array of accounts to 2000 but re-use the default definition of
+in an array of accounts to 2000 but reuse the default definition of
 `ACCOUNT` from the generic schema, you could refer to it using
 `SchemaRef`:
 
