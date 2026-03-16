@@ -84,7 +84,7 @@ alembic init alembic
 First, check the current migration state of your database:
 
 ```bash
-alembic -c path-to/alembic.ini current
+alembic --config path-to/alembic.ini current
 ```
 :::tip[Manual migration state check]
 If the output is blank, it means your database is at the base state (no migrations applied).
@@ -94,13 +94,13 @@ This could interfere with the upgrade process if your database schema is not act
 To verify the changes that will be applied during a schema upgrade:
 
 ```bash
-alembic -c path-to/alembic.ini upgrade --sql $(alembic -c path-to/alembic.ini current | cut -d' '-f1):head
+alembic --config path-to/alembic.ini upgrade --sql $(alembic --config path-to/alembic.ini current | awk '{print $1}'):head
 ```
 
 You can edit and then apply the SQL directly on your database, or run the automatic upgrade:
 
 ```bash
-alembic -c path-to/alembic.ini upgrade head
+alembic --config path-to/alembic.ini upgrade head
 ```
 
 We do not advise running automatic upgrades/downgrades with alembic in production environments.
@@ -120,7 +120,7 @@ If `alembic upgrade head` fails or reports no pending migrations when you expect
 #### Checking current migration state
 
 ```bash
-alembic -c path-to/alembic.ini current
+alembic --config path-to/alembic.ini current
 ```
 
 #### Understanding migration revisions
@@ -151,7 +151,7 @@ To find the migration sequence, use:
 
 ```bash
 # Find which revision comes after a given one
-grep -ri 'a6eb23955c28' lib/rucio/db/sqla/migrate_repo/versions | grep "down_revision = 'a6eb23955c28'"
+grep --recursive --ignore-case 'a6eb23955c28' lib/rucio/db/sqla/migrate_repo/versions | grep "down_revision = 'a6eb23955c28'"
 ```
 
 Or use this bash script to trace the full migration chain from a starting revision:
@@ -162,7 +162,7 @@ export I_REVISION=$1
 export NEXT_REV=$I_REVISION
 while [[ -n $NEXT_REV ]]; do
     echo $NEXT_REV
-    NEXT_REV=$(grep -ri ${NEXT_REV} lib/rucio/db/sqla/migrate_repo/versions | grep "down_revision = '${NEXT_REV}'" | cut -d'_' -f1)
+    NEXT_REV=$(grep --recursive --ignore-case ${NEXT_REV} lib/rucio/db/sqla/migrate_repo/versions | grep "down_revision = '${NEXT_REV}'" | awk FS='_' '{print $1}')
 done
 ```
 
@@ -172,7 +172,7 @@ If you need to reset your database to a specific migration state (for debugging 
 
 ```bash
 # Connect to your Rucio database
-psql -h <DB_HOST> -U rucio -p <PORT> -d rucio
+psql --host <DB_HOST> --username rucio --port <PORT> --dbname rucio
 
 # Check the current recorded migration version
 SELECT * FROM alembic_version;
@@ -189,7 +189,7 @@ INSERT INTO alembic_version (version_num) VALUES ('140fef722e91');
 Then verify with Alembic:
 
 ```bash
-alembic -c path-to/alembic.ini current
+alembic --config path-to/alembic.ini current
 ```
 
 #### Applying migrations incrementally
@@ -197,15 +197,15 @@ alembic -c path-to/alembic.ini current
 After resetting the `alembic_version`, you can apply migrations one at a time to identify which one fails:
 
 ```bash
-alembic -c path-to/alembic.ini upgrade <revision_id>
+alembic --config path-to/alembic.ini upgrade <revision_id>
 ```
 
 Example sequence:
 
 ```bash
-alembic -c path-to/alembic.ini upgrade fb28a95fe288
-alembic -c path-to/alembic.ini upgrade a6eb23955c28
-alembic -c path-to/alembic.ini upgrade 295289b5a800
+alembic --config path-to/alembic.ini upgrade fb28a95fe288
+alembic --config path-to/alembic.ini upgrade a6eb23955c28
+alembic --config path-to/alembic.ini upgrade 295289b5a800
 # ... continue until head
 ```
 
@@ -214,7 +214,7 @@ alembic -c path-to/alembic.ini upgrade 295289b5a800
 To verify if a specific migration has been applied, check the database directly:
 
 ```bash
-psql -h <DB_HOST> -U rucio -p <PORT> -d rucio
+psql --host <DB_HOST> --username rucio --port <PORT> --dbname rucio
 \d requests  # List table structure
 ```
 
@@ -225,7 +225,7 @@ Compare the columns against the `upgrade()` function in the relevant migration f
 If you want to create an upgrade path for the schema, you need to generate a
 schema upgrade+downgrade file:
 
-`alembic revision -m 'schema change message'`
+`alembic revision --message 'schema change message'`
 
 This will output the name of the file that has been generated with two functions
 `def upgrade()` and `def downgrade()` that need to be implemented. These should
