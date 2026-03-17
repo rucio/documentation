@@ -162,7 +162,10 @@ export I_REVISION=$1
 export NEXT_REV=$I_REVISION
 while [[ -n $NEXT_REV ]]; do
     echo $NEXT_REV
-    NEXT_REV=$(grep --recursive --ignore-case ${NEXT_REV} lib/rucio/db/sqla/migrate_repo/versions | grep "down_revision = '${NEXT_REV}'" | awk FS='_' '{print $1}')
+    NEXT_REV=$(grep --recursive --ignore-case "down_revision = '${NEXT_REV}'" lib/rucio/db/sqla/migrate_repo/versions \
+      | awk -F'/' '{print $NF}' \
+      | awk -F'_' '{print $1}' \
+      | head -n1)
 done
 ```
 
@@ -177,11 +180,8 @@ psql --host <DB_HOST> --username rucio --port <PORT> --dbname rucio
 # Check the current recorded migration version
 SELECT * FROM alembic_version;
 
-# Insert or update to a specific revision (be cautious!)
-INSERT INTO alembic_version (version_num) VALUES ('140fef722e91')
-  ON CONFLICT (id) DO UPDATE SET version_num = '140fef722e91';
-
-# Or for older PostgreSQL versions without ON CONFLICT:
+# Forcefully reset to a specific revision by replacing the current record (be cautious!)
+# (Note: The alembic_version table typically contains a single row with the version_num column)
 DELETE FROM alembic_version;
 INSERT INTO alembic_version (version_num) VALUES ('140fef722e91');
 ```
