@@ -623,14 +623,26 @@ Before deploying to production:
 # List all RSEs
 rucio rse list
 
+# Add a new RSE
+rucio rse add RSE_NAME
+
+# Add a new protocol
+rucio rse protocol add [OPTIONS] RSE_NAME
+
 # Show RSE details
 rucio rse show RSE_NAME
 
 # List RSE attributes
 rucio rse attribute list RSE_NAME
 
+# Add a new RSE attribute or update an existing one
+rucio rse attribute add RSE_NAME --key ATTRIBUTE --value VALUE
+
 # List account limits
 rucio account limit list ACCOUNT_NAME
+
+# Modify quota to an account
+rucio account limit add ACCOUNT_NAME --rse RSE_NAME --bytes LIMIT
 
 # Test file upload
 rucio upload --rse RSE_NAME --scope SCOPE file.txt
