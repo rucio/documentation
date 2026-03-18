@@ -136,7 +136,7 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
 
    | Type | Category | Description |
    |------|----------|-------------|
-   | `feat` | Functional | Introduces a new feature or capability |
+   | `feat` | Functional | Introduces a new feature or capability (including changes resulting from removing a functionality) |
    | `fix` | Functional | Corrects a bug or unexpected behavior |
    | `docs` | Non-functional | Updates documentation or code comments |
    | `style` | Non-functional | Formatting, whitespace, or cosmetic changes |
