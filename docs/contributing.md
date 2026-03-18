@@ -174,7 +174,7 @@ Ask yourself these questions in order:
    - `DIRAC`: DIRAC integration
    - `Containerization`: Docker, Kubernetes, and container-related functionality
    - `Documentation`: Documentation updates
-   - `Lifetime`: Life time model processing
+   - `LifetimeModel`: Life time model processing
    - `Messaging`: Messaging system
    - `Metadata`: Metadata workflows
    - `Monitoring`: Monitoring, observability, and traces
