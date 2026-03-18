@@ -268,6 +268,8 @@ All commits must reference a GitHub issue using git trailers. This ensures prope
 
 **Note:** Do not add empty lines between trailers; trailers must be a contiguous block at the end of the commit message.
 
+**Tip:** Avoid adding `Closes:` to every commit in a PR. Use `Issue:` for intermediate commits, and reserve `Closes:` for the commit you intend to close the issue.
+
 **Supported Trailers:**
 - `Closes: #<issue_number>` - Automatically closes the issue when PR is merged
 - `Issue: #<issue_number>` - References an issue without closing it
