@@ -303,7 +303,7 @@ incorrect authentication method.
 Closes: #8199
 ```
 
-*See the [original commit](https://github.com/rucio/rucio/commit/6ba2559) for reference.*
+*See the [original PR #8202](https://github.com/rucio/rucio/pull/8202) for reference.*
 
 ### 4. Push changes and create a Pull Request
 
