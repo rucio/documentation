@@ -127,7 +127,7 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
 
 [optional body]
 
-[optional footer(s)]
+[footer(s)]
 ```
 
 **Rules:**
