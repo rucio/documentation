@@ -259,7 +259,6 @@ refactor(Core)!: Make session a mandatory keyword-only argument
 BREAKING CHANGE: The session argument is now mandatory and keyword-only
 for all core functions. Callers must explicitly pass session=<session>
 instead of relying on positional arguments or default values.
-
 Closes: #5947
 ```
 
