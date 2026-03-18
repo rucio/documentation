@@ -266,6 +266,8 @@ Closes: #5947
 
 All commits must reference a GitHub issue using git trailers. This ensures proper traceability and automatic issue closure.
 
+**Note:** Do not add empty lines between trailers; trailers must be a contiguous block at the end of the commit message.
+
 **Supported Trailers:**
 - `Closes: #<issue_number>` - Automatically closes the issue when PR is merged
 - `Issue: #<issue_number>` - References an issue without closing it
