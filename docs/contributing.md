@@ -127,7 +127,7 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
 
 [optional body]
 
-[optional footer(s)]
+[footer(s)]
 ```
 
 **Rules:**
@@ -136,7 +136,7 @@ Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) 
 
    | Type | Category | Description |
    |------|----------|-------------|
-   | `feat` | Functional | Introduces a new feature or capability |
+   | `feat` | Functional | Introduces a new feature or capability (including changes resulting from removing a functionality) |
    | `fix` | Functional | Corrects a bug or unexpected behavior |
    | `docs` | Non-functional | Updates documentation or code comments |
    | `style` | Non-functional | Formatting, whitespace, or cosmetic changes |
@@ -174,7 +174,7 @@ Ask yourself these questions in order:
    - `DIRAC`: DIRAC integration
    - `Containerization`: Docker, Kubernetes, and container-related functionality
    - `Documentation`: Documentation updates
-   - `Lifetime`: Life time model processing
+   - `LifetimeModel`: Life time model processing
    - `Messaging`: Messaging system
    - `Metadata`: Metadata workflows
    - `Monitoring`: Monitoring, observability, and traces
@@ -259,13 +259,16 @@ refactor(Core)!: Make session a mandatory keyword-only argument
 BREAKING CHANGE: The session argument is now mandatory and keyword-only
 for all core functions. Callers must explicitly pass session=<session>
 instead of relying on positional arguments or default values.
-
 Closes: #5947
 ```
 
 #### **Git Trailers**
 
 All commits must reference a GitHub issue using git trailers. This ensures proper traceability and automatic issue closure.
+
+**Note:** Do not add empty lines between trailers; trailers must be a contiguous block at the end of the commit message.
+
+**Tip:** Avoid adding `Closes:` to every commit in a PR. Use `Issue:` for intermediate commits, and reserve `Closes:` for the commit you intend to close the issue.
 
 **Supported Trailers:**
 - `Closes: #<issue_number>` - Automatically closes the issue when PR is merged
@@ -300,7 +303,7 @@ incorrect authentication method.
 Closes: #8199
 ```
 
-*See the [original commit](https://github.com/rucio/rucio/commit/6ba2559) for reference.*
+*See the [original PR #8202](https://github.com/rucio/rucio/pull/8202) for reference.*
 
 ### 4. Push changes and create a Pull Request
 
