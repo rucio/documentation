@@ -467,6 +467,14 @@ is a setting already specified in the Configuration File.
   - **max_evaluator_backlog_duration**: _(Optional)_ Minutes (integer). Default:
     `None`.
   - **nb_workers_by_hostname**: _(Optional)_ Integer. Default: `5`.
+#### **repairer**
+  - **updated_at_delta**: The minimum time in seconds since the last update to stuck rules
+    for the repairer to consider repairing rules.
+    This value is a trade-off between how often the repairer attempts to repair permanently
+    stuck rules and how long it takes for rules to be repaired that were "unstuck" by an update.
+    Set to -1 to completely disable age checks, which is needed to repair datasets that are
+    continuously being attached to.
+    Float. Default: `1800.0`.
 #### **root-proxy-internal**
   - ***client_location['site']***
 #### **rules**
