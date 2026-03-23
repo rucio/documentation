@@ -629,4 +629,3 @@ Monitor the rule status with:
 ```bash
 rucio rule list --account root
 ```
-
