@@ -42,6 +42,9 @@ The following figure might help you with an overview:
 
 ![Branching Strategy Graph](/img/branching_strategy.svg)
 
+You are expected to read, and follow, the [Rucio AI Policy](./developer/ai_policy.md) when
+contributing (Creating code, documentation, etc.) to the project.
+
 ## How can I Contribute
 
 ### 1. Prerequisite
