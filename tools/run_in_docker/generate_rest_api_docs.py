@@ -140,6 +140,13 @@ spec = APISpec(
 )
 
 with application.test_request_context():
-    for view_func in application.view_functions.values():
-        spec.path(view=view_func)
+    for view_func_name, view_func in application.view_functions.items():
+        try:
+            spec.path(view=view_func)
+        except (TypeError, AttributeError) as e:
+            print(
+                f"WARNING: Skipping view '{view_func_name}' due to error: {e}",
+                file=__import__("sys").stderr,
+            )
+            raise e
 print(spec.to_yaml())
