@@ -1,6 +1,6 @@
 ---
 id: component_leads
-title: Component development leads
+title: Component leads
 sidebar_label: Component leads
 ---
 
@@ -43,3 +43,45 @@ efforts and be the point of contact in case of problems.
 |[Testing](https://github.com/rucio/rucio/issues?q=label%3A%22Testing%22+is%3Aissue+is%3Aopen) | [Mayank Sharma](https://github.com/maany) | Regression and Unit tests, automatic tests of submissions|
 |[Transfers](https://github.com/rucio/rucio/issues?q=label%3A%22Transfers%22+is%3Aissue+is%3Aopen) | [Hugo Gonzalez Labrador](https://github.com/labkode) | Transfer daemons: conveyor and functional transfer tests |
 |[WebUI](https://github.com/rucio/rucio/issues?q=label%3A%22WebUI%22+is%3Aissue+is%3Aopen) | [Mayank Sharma](https://github.com/maany) | Web user interface: Rucio Web UI|
+
+# Component lead duties
+
+This guide should give prospective, and current, Rucio component leads a better understanding what is expected from them in their role. 
+Component leads, together with the project leader, form the Core Development team of Rucio. The main responsibility of a component lead 
+is to take formal responsibility in planning and developing contributions for their respective component. They are the core experts and 
+the point-of-contact in case of issues as well as to guide new developments within their components.
+
+However, their responsibility as a member of the Rucio Core Development team goes further than that. Every Core Development team member 
+should be focused on improving the Rucio software and project at large, beyond the limits of their component.
+
+There is no expectation that the component lead (or deputies) implement any arbitrary feature request to their component, however, they 
+should advise other contributors in their efforts.
+
+## As a component lead you must
+
+- Take responsibility for the evolution and maintenance of your component;
+  - This means making an effort to actively improve the component, rather than solely reacting to bug submissions;
+- Take an active role in the Rucio project, be open to share your opinion how your component, but also the wider Rucio project, should evolve;
+  - Participate in the major release planning;
+- Regularly join the weekly Rucio meeting;
+- Be present on the Rucio Mattermost channel;
+- Give advise and guide other developers in their contributions to Rucio, especially concerning your component;
+- Give advise to Rucio operators in their usage of Rucio, especially concerning areas of your component;
+- Actively participate in code reviews; Be the default code reviewer of contributions to your component;
+- Participate in the bi-weekly sprints and volunteer for the role of sprint moderator;
+- On GitHub
+  - Actively read and react to Github notifications;
+  - Assign maintenance issues (to yourself, or if agreed to others) which fall into your component;
+  - Advise on feature requests or proposed developments of your component;
+  - Close issues (if duplicate, unsuitable) of your component;
+  - Comment issues, especially the ones of your component;
+  - Review pull requests, especially the ones of your component;
+  - Merge issues ...
+    - ... in the core repository, if you are part of the merge team;
+    - ... in the secondary repositories, if they fall into the responsibility of your component;
+
+## As a deputy component lead you must
+
+- Collaborate with and support the component lead in their duties;
+  - For large components it is acceptable to agree on a partition of different work areas of a component assigned to the different deputies;
+- Replace the component lead in their absence;
