@@ -20,16 +20,22 @@ theme:
     - content.code.copy
     - toc.follow
   palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
     - scheme: default
+      media: "(prefers-color-scheme: light)"
       primary: white
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
+      media: "(prefers-color-scheme: dark)"
       primary: white
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: Switch to system preference
 markdown_extensions:
   - admonition
   - pymdownx.details

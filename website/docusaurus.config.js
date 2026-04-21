@@ -50,6 +50,9 @@ module.exports={
   ],
   "plugins": [],
   "themeConfig": {
+    "colorMode": {
+      "respectPrefersColorScheme": true
+    },
     "navbar": {
       "title": "Rucio Documentation",
       "logo": {
