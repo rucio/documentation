@@ -143,20 +143,6 @@ Rucio server side.
 We strongly discourage this approach, typing your password in CLI does not
 comply with OAuth2/OIDC standard !
 
-Options for automatic token refresh: Assuming the rucio-oauth-manager daemon is
-running on the Rucio server side, one can also grant Rucio a refresh token and
-specify the time for which Rucio should act on behalf of the user (in hours)
-using the `--refresh-lifetime` option:
-
-```bash
-rucio -a=\<rucio_account_name\> \
-  -S=OIDC \
-  --oidc-scope="openid profile offline_access" \
-  --oidc-refresh-lifetime=24 \
-  -v \
-  whoami
-```
-
 If Rucio Server is granted a user both valid access and refresh tokens, it is
 also possible to configure Rucio Client to ask Rucio Server for token
 refresh. Assuming user used one of the 3 CLI authentication methods above +
