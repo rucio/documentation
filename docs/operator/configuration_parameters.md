@@ -259,21 +259,22 @@ Rucio will look for the config in the following locations -
     `--certificate-key`.
   - **voname** <!--NOT USED IN CODE-->
 #### **messaging-fts3**
-  - **broker_virtual_host**: _(Optional)_ ?. No default.
-  - **brokers**: Brokers separated by commas. Example: `dashb-test-mb.cern.ch`.
-  - **destination**: Name of the destination topic. Example:
-    `/topic/transfer.fts_monitoring_queue_state`.
-  - **nonssl_port**: _(Optional)_ Port of the broker if `use_ssl` is not set.
-  - **password**: _(Optional)_ Password of the `username`. Only used if
-    `use_ssl` is not set. No default.
-  - **port** <!--NOT USED IN CODE-->
-  - **ssl_cert_file**: _(Optional)_ Path of the certificate file. No default.
-  - **ssl_key_file**: _(Optional)_ Path of the certificate key file defined in
-    `ssl_cert_file`. No default.
+  - **broker_virtual_host**: _(Optional)_ Logical namespace in a message broker. No default.
+  - **brokers**: Brokers hostname separated by commas. Example: `dashb-test-mb.cern.ch`.
+  - **destination**: Name of the destination topic.
+    `/topic/transfer.fts_monitoring_complete`.
   - **use_ssl**: _(Optional)_ Boolean. Default: `True`.
+  - **port** Port of the broker if `use_ssl` is set.
+  - **ssl_cert_file**: _(Optional)_ Path of the certificate file if `use_ssl` is set. No default.
+  - **ssl_key_file**: _(Optional)_ Path of the certificate key file defined in
+    `ssl_cert_file` if `use_ssl` is set. No default.
+  - **nonssl_port**: _(Optional)_ Port of the broker if `use_ssl` is not set.
   - **username**: _(Optional)_ Username of the broker. Only used if `use_ssl` is
     not set. No default.
-  - **voname** <!--NOT USED IN CODE-->
+  - **password**: _(Optional)_ Password of the `username`. Only used if
+    `use_ssl` is not set. No default.
+  - **voname** _(Unused)_  This parameter is not actually used. The receiver uses the policy name as voname,
+    which can be set by the POLICY environment variable or permission.policy configuration parameter.
 #### **messaging-hermes**
   - **broker_virtual_host**: _(Optional)_ No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
