@@ -35,6 +35,63 @@ For JupyterLab 3.x, please use the latest supported version.
 pip install rucio-jupyterlab==0.10.0
 ```
 
+## Configuration Responsibilities: Who Does What
+
+Before going further, it is important to make clear which parts of the setup are expected to be handled by the **facility / site administrator** and which parts are left to the **end user**.
+A common source of confusion when deploying the extension at a new facility is the assumption that users are expected to fill in the connection details themselves — they are not.
+
+### The site administrator is responsible for:
+
+- Building (or selecting) the single-user Jupyter image with the `rucio-jupyterlab` extension installed and the required system dependencies (e.g. `voms-clients-java`, `gfal2`, a Rucio CA bundle — see [Prerequisites](#prerequisites-and-dependencies)).
+- Providing the `jupyter_server_config.json` file that lists the available Rucio instances and RSEs.
+  This file must be populated **before** the Jupyter server starts (see [Configuration File Location](#configuration-file-location)).
+- Choosing how that file is delivered to user sessions: baked into the image, injected via a `before-notebook.d` hook, or sourced from a shared filesystem such as CVMFS (see [Distributing Configuration via CVMFS](#distributing-configuration-via-cvmfs)).
+- Deciding which RSE(s) make sense locally.
+  Pointing users at an RSE that is not mounted at the facility (for example, using a CERN-hosted RSE from a US Tier-3) will not work — the destination RSE must be one that is FUSE mounted on the JupyterLab server.
+
+### The end user is responsible for:
+
+- Authenticating against Rucio.
+  Depending on the facility this means either:
+  - Generating a VOMS / X.509 proxy with `voms-proxy-init` from inside the notebook environment, or
+  - Providing an existing proxy file (e.g. uploaded to the session), or
+  - Logging in with username/password or OpenID Connect, when configured.
+- They are **not** expected to know or fill in the Rucio base URL, auth URL, CA cert path, RSE name, mount path, etc.
+  Those values come from the administrator-provided configuration file.
+
+## Quick Start for Facility Administrators
+
+If you are deploying the extension at a new Tier-2 / Tier-3 / analysis facility for the first time, the typical steps are:
+
+1. **Pick (or build) a single-user Jupyter image.**
+   The reference image at [`docker/container/Dockerfile`](https://github.com/rucio/jupyterlab-extension/blob/master/docker/container/Dockerfile) is a good starting point.
+   It is based on `quay.io/jupyter/docker-stacks-foundation:python-3.12` and installs the extension plus `python-gfal2`.
+   You will additionally want `voms-clients-java` if your users authenticate with a VOMS proxy.
+
+2. **Identify a destination RSE that is locally mounted.**
+   In Replica mode, the extension can only present data that physically lives on a filesystem your users can read.
+   Pick an RSE that is FUSE mounted on the JupyterLab nodes (EOS, CephFS, XRootD, …).
+   If you have no such RSE, configure the instance with `mode: download` instead.
+
+3. **Decide where the configuration lives.**
+   Three common patterns:
+
+   - **Bake it into the image** for a single-instance, single-RSE setup.
+     Simple but not portable.
+   - **Inject it via `before-notebook.d`** for JupyterHub / Z2JH deployments.
+     The hook can read environment variables set by the spawner — see [`docker/container/configure.py`](https://github.com/rucio/jupyterlab-extension/blob/master/docker/container/configure.py) for the full list of `RUCIO_*` variables that are honoured out of the box.
+   - **Source it from CVMFS** when many sites share the same configuration; see [Distributing Configuration via CVMFS](#distributing-configuration-via-cvmfs).
+
+4. **Decide on an authentication strategy** (`x509`, `x509_proxy`, `userpass`, or `oidc`) and ship the matching prerequisites in the image (Step 1) and the matching options in the config (Step 3).
+
+5. **Smoke-test as a real user.**
+   Spawn a session, open the Rucio panel on the left side bar, and confirm:
+   - The *Active Instance* drop-down is populated.
+   - You can authenticate.
+   - You can browse a known scope and queue a small test DID.
+
+   If the *Active Instance* drop-down is empty, jump to [Troubleshooting](#troubleshooting) — this is almost always a config timing problem, not a content problem.
+
 ## Operation Modes
 
 The extension supports two distinct operation modes, which determine how files are made available to users.
@@ -72,15 +129,71 @@ In this mode, the extension downloads files directly to the user's home director
 - Network access to Rucio Storage Elements (RSE) from the notebook server to download files
 - Sufficient local storage space available in the user directory for downloaded files
 
+## Prerequisites and Dependencies
+
+Beyond installing the `rucio-jupyterlab` Python package, the single-user Jupyter image needs a small number of system dependencies.
+These are easy to miss and are a common cause of "the extension is installed but doesn't work" reports.
+
+### For VOMS / X.509 proxy authentication
+
+If the facility uses VOMS or X.509 proxy authentication (`default_auth_type: x509` or `x509_proxy`, or `voms_enabled: true`), the image must provide the `voms-proxy-init` and `grid-proxy-init` executables.
+On Debian/Ubuntu and on EPEL-based images:
+
+```bash
+# Debian / Ubuntu
+apt install voms-clients-java
+
+# RHEL / CentOS / AlmaLinux
+yum install epel-release
+yum install voms-clients-java
+```
+
+Without this package, users cannot generate a proxy from inside the notebook environment and authentication will fail silently.
+As an alternative, the facility may pre-stage a proxy file in a known location and instruct users to upload their own proxy to the session — but in that case the documentation shipped with the image should make this explicit.
+
+### For Download mode
+
+Download mode also needs `gfal2` and its Python bindings, available from conda-forge or EPEL:
+
+```bash
+conda install -c conda-forge python-gfal2
+# OR
+yum install gfal2-all gfal2-python
+```
+
+### A Rucio CA bundle
+
+The path given by `rucio_ca_cert` must point to a PEM file accessible from inside the user's session.
+There are several reasonable strategies:
+
+- **Bake it into the image** at build time, e.g. `/opt/rucio/rucio_ca.pem`.
+  This is the simplest option and the one used by the reference image at [`docker/container/Dockerfile`](https://github.com/rucio/jupyterlab-extension/blob/master/docker/container/Dockerfile).
+- **Reuse a CVMFS-distributed bundle** such as `/cvmfs/grid.cern.ch/etc/grid-security/certificates/`, when CVMFS is available at the facility.
+  This avoids the need to ship and maintain the certificate independently of the image.
+- **Mount it as a Kubernetes secret** for JupyterHub / Z2JH deployments.
+
+Whichever option is chosen, the path itself is set centrally in the `jupyter_server_config.json` provided by the administrator — users should not have to know about it.
+
 ## Configuration
 
 The extension can be configured locally or remotely via a JSON configuration file.
 
 ### Configuration File Location
 
-The extension is configured via a `.json` file, usually located in `$HOME/.jupyter/` and named `jupyter_server_config.json`. This file must be present before the Jupyter server session starts and can be added via:
-- Jupyter `before-notebook.d` hooks
-- Docker `CMD` instruction or entrypoint scripts
+The extension is configured via a `.json` file, usually located in `$HOME/.jupyter/` and named `jupyter_server_config.json`.
+This file must be present **before the Jupyter server session starts** and can be added via:
+- Jupyter `before-notebook.d` hooks (recommended for JupyterHub / Z2JH)
+- A Docker `CMD` instruction or entrypoint script that runs before `jupyter lab` (as done in [`docker/container/configure.sh`](https://github.com/rucio/jupyterlab-extension/blob/master/docker/container/configure.sh))
+- Bake-in at image build time
+
+:::warning Configuration must be in place before the extension loads
+
+The extension reads its configuration once, at server-extension load time.
+If the `jupyter_server_config.json` file is written (or modified) **after** the Jupyter server has already started and the extension has initialised, the extension will not pick up the new values and the form on the left-hand side of JupyterLab will show empty drop-downs ("Active Instance" with no options to choose from).
+
+This is the single most common cause of the "I copy-pasted the example JSON but nothing shows up in the extension" symptom.
+Always make sure the config file is written from a `before-notebook.d` hook or equivalent pre-start mechanism, not from inside the running notebook.
+:::
 
 ### Base Local Configuration
 
@@ -184,6 +297,36 @@ In the JSON file pointed to by `$url`, use a configuration similar to:
 **Note:** Attributes `name`, `display_name`, and `mode` must be defined locally (either in the configuration file or as environment variables). If an attribute is defined in both local and remote configuration, the local one takes precedence.
 
 For a complete list of configuration parameters, see the next section or the [Rucio JupyterLab Extension GitHub repository](https://github.com/rucio/jupyterlab-extension/blob/master/CONFIGURATION.md)
+
+### Distributing Configuration via CVMFS
+
+For experiments where many sites share an essentially identical configuration (for example, all ATLAS or all CMS facilities pointing at the same Rucio instance), it is often more practical to distribute the configuration through CVMFS than to maintain it inside every site's image.
+
+The pattern used at SWAN is:
+
+1. Ship a small configuration script and a per-instance JSON snippet on a CVMFS repository — for example `/cvmfs/sw.escape.eu/etc/jupyter/`.
+   The script reads selections made by the user at session-spawn time (Rucio instance, RSE, etc.) and writes the resulting `jupyter_server_config.json`.
+2. Invoke that script from a `before-notebook.d` hook (or from the spawner) so that it runs **before** `jupyter lab` starts.
+   This is the same timing constraint described in the warning above — once the extension is loaded, later edits to the JSON are not picked up.
+
+A minimal hook script looks like:
+
+```bash
+#!/bin/bash
+# /usr/local/bin/before-notebook.d/10-rucio-config.sh
+set -e
+
+CONFIG_SRC=/cvmfs/sw.experiment.org/etc/jupyter/rucio
+mkdir -p "${HOME}/.jupyter"
+# pick the right snippet based on a spawner-set env var, with a fallback
+INSTANCE="${RUCIO_INSTANCE:-default}"
+cp "${CONFIG_SRC}/${INSTANCE}.json" "${HOME}/.jupyter/jupyter_server_config.json"
+```
+
+This keeps the per-site image minimal: it only needs the extension itself and the system dependencies.
+Both the instance list and the CA bundle path can live in CVMFS and be updated centrally.
+
+If CVMFS is not available, the same approach works with any read-only shared filesystem mounted on the JupyterLab nodes.
 
 ## Configuration Parameters
 
@@ -439,6 +582,57 @@ singleuser:
 **5. Build the Docker image and install the Helm Chart with the specified values.**
 
 *Note: This configuration works in replica mode and maps an EOS RSE as the target RSE, FUSE mounted on the JupyterHub nodes.*
+
+## Troubleshooting
+
+### The "Active Instance" drop-down is empty
+
+**Symptom:** The Rucio panel loads on the left side of JupyterLab, but the *Active Instance* selector shows "No options" and there is nothing to choose.
+
+**Most common cause:** The `jupyter_server_config.json` file was written *after* the Jupyter server (and the Rucio server extension) had already started.
+The extension reads its configuration once at startup and does not poll the file for changes.
+
+**Check:**
+
+1. From a notebook cell, inspect what the server actually has on disk:
+
+   ```bash
+   !cat $HOME/.jupyter/jupyter_server_config.json
+   ```
+
+   If the `RucioConfig.instances` block is present and looks correct, the problem is timing, not contents.
+
+2. Confirm the server extension is actually loaded:
+
+   ```bash
+   !jupyter server extension list
+   ```
+
+   `rucio_jupyterlab` should appear as enabled and OK.
+
+**Fix:** Move the configuration step to a `before-notebook.d` hook, an image entrypoint, or a JupyterHub spawner pre-spawn step — anywhere that runs before `jupyter lab`.
+Then restart the session (not just the kernel).
+
+### `voms-proxy-init: command not found`
+
+The single-user image is missing `voms-clients-java` (or equivalent).
+See [Prerequisites and Dependencies](#prerequisites-and-dependencies) above.
+As a short-term workaround, users can generate the proxy outside the session and upload the resulting file to the notebook environment.
+
+### `%load_ext rucio_jupyterlab.kernels.ipython` fails
+
+This usually means the IPython kernel extension was never installed in the image, or its automatic activation was not configured.
+Check that `rucio-jupyterlab` is importable in the kernel's Python environment, and see [IPython Kernel Extension](#ipython-kernel-extension).
+
+### A configured RSE never shows up as a destination
+
+The `destination_rse` named in the configuration must be:
+
+- Registered in the target Rucio instance, **and**
+- Actually FUSE mounted at the path given by `rse_mount_path` on the JupyterLab node where the user's session is running.
+
+Pointing at a remote RSE that is not mounted at the facility (a frequent copy-paste mistake when reusing the SWAN example for a different site) will not work in Replica mode.
+In that situation, either pick a locally mounted RSE or switch the relevant instance to `mode: download`.
 
 ## Further Reading
 
