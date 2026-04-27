@@ -76,7 +76,7 @@ should advise other contributors in their efforts.
   - Close issues (if duplicate, unsuitable) of your component;
   - Comment issues, especially the ones of your component;
   - Review pull requests, especially the ones of your component;
-  - Merge issues ...
+  - Merge pull requests ...
     - ... in the core repository, if you are part of the merge team;
     - ... in the secondary repositories, if they fall into the responsibility of your component;
 
