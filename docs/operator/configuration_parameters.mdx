@@ -81,6 +81,11 @@ Rucio will look for the config in the following locations -
   - **use_external_cache_for_auth_tokens**: _(Optional)_ if True, use remote
     cache provider for auth tokens. If False, use a private in-memory cache.
     Default: `False`
+#### **cli**
+  - **endpoints**: _(Optional)_ Explicitly set the commands accessed from the CLI. `ping`, `whoami`, `test-server` cannot be added or removed.
+  Choose from `account`, `config`, `did`, `download`, `lifetime-exception`, `replica`, `rse`, `rule`, `scope`, `subscription`, `upload`, `opendata`. Default: `account`, `config`, `did`, `download`, `replica`, `rse`, `rule`, `scope`, `subscription`, `upload`, `opendata`
+  - **endpoints_add**: _(Optional)_ Additional commands to include in the CLI. Default: `[]`
+  - **endpoints_remove**: _(Optional)_ Remove commands from CLI access. Default: `[]`
 #### **common**
   - **extract_scope**: _(Optional)_ Default: `def`.
   - **logdir**: Path of the directory for logs. Contains `auditor.log`.
