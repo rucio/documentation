@@ -30,7 +30,7 @@ lack.
 
 1. You **MAY** use AI tools for contributing to Rucio, as long as you follow the principles described below.
 2. You **MUST** disclose the usage of AI tools. This includes any pull request to the codebase, as well as any type
-of communication in the project, such as documentation, github issues, answering support requests, etc.
+of communication in the project, such as documentation, GitHub issues, answering support requests, etc.
 3. You **MUST** take full responsibility for your contributions. We expect all contributions, whether entirely human
 authored or assisted by AI tools, to meet the project's quality standards. This means, you **MUST** understand and
 be able to explain the details of all changes proposed in your pull request. Your primary aim of using AI tools
