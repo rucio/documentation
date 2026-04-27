@@ -6,7 +6,7 @@ title: AI Policy
 The key words "MAY", "MUST", "MUST NOT", and "SHOULD" in this document are to be interpreted as described
 in [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
-# Motivation
+## Motivation
 
 - We see an increased amount of contributions which are entirely generated, or at least assisted, by AI tools.
 - This policy aims to appeal to the contributors to understand the impact of usage of AI tools to the codebase,
@@ -26,7 +26,7 @@ which creates an additional burden to the reviewers, as the code is harder to re
 faster generated, AI assisted, pull requests which require disproportionally more effort for review, which we already
 lack.
 
-# Policy
+## Policy
 
 1. You **MAY** use AI tools for contributing to Rucio, as long as you follow the principles described below.
 2. You **MUST** disclose the usage of AI tools. This includes any pull request to the codebase, as well as any type
