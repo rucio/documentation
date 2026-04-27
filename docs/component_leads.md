@@ -66,7 +66,7 @@ should advise other contributors in their efforts.
 - Regularly join the weekly Rucio meeting;
 - Be present on the Rucio Mattermost channel;
 - Give advice and guide other developers in their contributions to Rucio, especially concerning your component;
-- Give advise to Rucio operators in their usage of Rucio, especially concerning areas of your component;
+- Give advice to Rucio operators in their usage of Rucio, especially concerning areas of your component;
 - Actively participate in code reviews; Be the default code reviewer of contributions to your component;
 - Participate in the bi-weekly sprints and volunteer for the role of sprint moderator;
 - On GitHub
