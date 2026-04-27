@@ -61,7 +61,7 @@ should advise other contributors in their efforts.
 
 - Take responsibility for the evolution and maintenance of your component;
   - This means making an effort to actively improve the component, rather than solely reacting to bug submissions;
-- Take an active role in the Rucio project, be open to share your opinion how your component, but also the wider Rucio project, should evolve;
+- Take an active role in the Rucio project, be open to share your opinion on how your component, but also the wider Rucio project, should evolve;
   - Participate in the major release planning;
 - Regularly join the weekly Rucio meeting;
 - Be present on the Rucio Mattermost channel;
