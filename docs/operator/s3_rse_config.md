@@ -81,12 +81,12 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
 4. Give every Rucio account the following attribute to be able to sign URLs:
 
     ```bash
-    rucio-admin account add-attribute <accountname> --key sign-gcs --value true
+    rucio-admin account add-attribute <accountname> --key sign-url --value true
     ```
 
+    In order for this step to be effective, one has to make sure the relevant permission is given when the `sign-url` attribute is present (and `True`) for the account, as it is done in the default permission policies (`core/permissions/generic.py` and `core/permissions/generic_multi_vò.py`).
 
-    In order for this step to be effective, one has to make sure the relevant permission is given when the sign-gcs key is present for the account, for example [this](https://github.com/rucio/rucio/blob/ba102506d470c417fd2b136304e4fa4f7fc3a870/lib/rucio/core/permission/atlas.py#L1219) is the way it is currently done for ATLAS.
-
+*Note: an [implementation](https://github.com/rucio/rucio/blob/ba102506d470c417fd2b136304e4fa4f7fc3a870/lib/rucio/core/permission/atlas.py#L1219) by ATLAS is using the attribute name `sign-gcs`.*
 
 5. Configure FTS3 to be able to use the same access and secret keys as you did for the Rucio servers:
 
