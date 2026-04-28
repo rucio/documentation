@@ -106,7 +106,7 @@ the [Rucio helm charts](https://github.com/rucio/helm-charts).
 
 The versioning of these software packages is closely aligned with the versioning
 of the Rucio server. The **major version** of the package matches that of the
-Rucio server it is compatible with. For example, Rucio WebUI version **40.x.y** is 
+Rucio server it is compatible with. For example, Rucio WebUI version **40.x.y** is
 compatible with any server of the version **40.*.***
 
 The minor and patch versions of these secondary software packages are however
@@ -116,7 +116,7 @@ follow semantic versioning.
 ### Support period
 
 The support period policy is the same as the support period policy stated above.
-Thus, once a year a release line is designated a **Long-term Support** (LTS) release 
+Thus, once a year a release line is designated a **Long-term Support** (LTS) release
 line, which will be supported with **critical** and **security** patches for
 two years.
 
