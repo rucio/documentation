@@ -60,9 +60,9 @@ should advise other contributors in their efforts.
 ## As a component lead you must
 
 - Take responsibility for the evolution and maintenance of your component;
-  - This means making an effort to actively improve the component, rather than solely reacting to bug submissions;
+   - This means making an effort to actively improve the component, rather than solely reacting to bug submissions;
 - Take an active role in the Rucio project, be open to share your opinion on how your component, but also the wider Rucio project, should evolve;
-  - Participate in the major release planning;
+   - Participate in the major release planning;
 - Regularly join the weekly Rucio meeting;
 - Be present on the Rucio Mattermost team;
 - Give advice and guide other developers in their contributions to Rucio, especially concerning your component;
@@ -70,18 +70,18 @@ should advise other contributors in their efforts.
 - Actively participate in code reviews; Be the default code reviewer of contributions to your component;
 - Participate in the bi-weekly sprints and volunteer for the role of sprint moderator;
 - On GitHub
-  - Actively read and react to Github notifications;
-  - Assign maintenance issues (to yourself, or if agreed to others) which fall into your component;
-  - Advise on feature requests or proposed developments of your component;
-  - Close issues (if duplicate, unsuitable) of your component;
-  - Comment issues, especially the ones of your component;
-  - Review pull requests, especially the ones of your component;
-  - Merge pull requests ...
-    - ... in the core repository, if you are part of the merge team;
-    - ... in the secondary repositories, if they fall into the responsibility of your component;
+   - Actively read and react to Github notifications;
+   - Assign maintenance issues (to yourself, or if agreed to others) which fall into your component;
+   - Advise on feature requests or proposed developments of your component;
+   - Close issues (if duplicate, unsuitable) of your component;
+   - Comment issues, especially the ones of your component;
+   - Review pull requests, especially the ones of your component;
+   - Merge pull requests ...
+      - ... in the core repository, if you are part of the merge team;
+      - ... in the secondary repositories, if they fall into the responsibility of your component;
 
 ## As a deputy component lead you must
 
 - Collaborate with and support the component lead in their duties;
-  - For large components it is acceptable to agree on a partition of different work areas of a component assigned to the different deputies;
+   - For large components it is acceptable to agree on a partition of different work areas of a component assigned to the different deputies;
 - Replace the component lead in their absence;
