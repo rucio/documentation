@@ -13,7 +13,7 @@ without disrupting existing deployments.
 
 ## Expected End-Date
 
-April 2027  
+April 2027
 
 ## Means to achieve the objective
 
