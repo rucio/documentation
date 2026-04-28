@@ -45,7 +45,7 @@ board meetings.
 | [CTAO](https://www.ctao.org)        | Mieke Bouwhuis, CTAO     | 2025-May to 2027-May |
 | [DUNE](https://www.dunescience.org) | Mike Kirby, BNL          | 2023-Feb to 2027-Jan |
 | [ESCAPE](https://projectescape.eu)  | Giovanni Guerrieri, CERN | 2025-Feb to 2027-Jan |
-| [SKAO](https://www.skao.int/)       | Rosie Bolton, SKAO       | 2024-Jun to 2026-May |
+| [SKAO](https://www.skao.int/)       | Rosie Bolton, SKAO       | 2024-Jun to 2028-May |
 
 ### Former Rucio Advisory Board representatives
 
