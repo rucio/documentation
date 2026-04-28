@@ -64,7 +64,7 @@ should advise other contributors in their efforts.
 - Take an active role in the Rucio project, be open to share your opinion on how your component, but also the wider Rucio project, should evolve;
   - Participate in the major release planning;
 - Regularly join the weekly Rucio meeting;
-- Be present on the Rucio Mattermost channel;
+- Be present on the Rucio Mattermost team;
 - Give advice and guide other developers in their contributions to Rucio, especially concerning your component;
 - Give advice to Rucio operators in their usage of Rucio, especially concerning areas of your component;
 - Actively participate in code reviews; Be the default code reviewer of contributions to your component;
