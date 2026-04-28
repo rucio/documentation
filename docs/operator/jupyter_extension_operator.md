@@ -47,6 +47,7 @@ A common source of confusion when deploying the extension at a new facility is t
   This file must be populated **before** the Jupyter server starts (see [Configuration File Location](#configuration-file-location)).
 - Choosing how that file is delivered to user sessions: baked into the image, injected via a `before-notebook.d` hook, or sourced from a shared filesystem such as CVMFS (see [Distributing Configuration via CVMFS](#distributing-configuration-via-cvmfs)).
 - Deciding which RSE(s) make sense locally.
+  This step is community specific; it is recommended to consult with the Rucio administrators at the facility to identify the list of RSEs that should be accessed by users.
   Pointing users at an RSE that is not mounted at the facility (for example, using a CERN-hosted RSE from a US Tier-3) will not work — the destination RSE must be one that is FUSE mounted on the JupyterLab server.
 
 ### The end user is responsible for:
