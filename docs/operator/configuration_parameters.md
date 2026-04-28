@@ -273,8 +273,8 @@ Rucio will look for the config in the following locations -
     not set. No default.
   - **password**: _(Optional)_ Password of the `username`. Only used if
     `use_ssl` is not set. No default.
-  - **voname** _(Unused)_  This parameter is not actually used. The receiver uses the policy name as voname,
-    which can be set by the POLICY environment variable or permission.policy configuration parameter.
+  - **voname**: _(Optional)_ The name of the VO to filter received messages. Only messages for this VO will be handled.
+    If this value is not set, the policy name as set by the  POLICY environment variable or permission.policy configuration parameter is used.
 #### **messaging-hermes**
   - **broker_virtual_host**: _(Optional)_ No default.
   - **brokers**: Brokers separated by commas. Example: `atlas-test-mb.cern.ch`.
