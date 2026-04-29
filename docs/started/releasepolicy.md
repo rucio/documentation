@@ -124,8 +124,7 @@ two years.
 > release 35 is **not** designated as LTS. This is due to significant changes
 > in the WebUI project architecture and lack of feature completeness at that
 > time. Release 38 marks the first stable, feature-complete WebUI LTS release.
-
-
+>
 > **Jupyterlab Extension Note:** The Rucio Jupyerlab Extension started to follow
 > the LTS support period with the 40 Rucio release. Thus at the moment, there is
 > no LTS support given for the Jupyerlab Extension. The first Jupyerlab Extension
