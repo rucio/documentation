@@ -8,6 +8,9 @@
 	},
 	{
 	    "pattern": "https?://ip:"
+	},
+	{
+	    "pattern": "https://www.ctao.org"
 	}
     ],
 	"retryOn429": true,
