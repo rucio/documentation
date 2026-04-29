@@ -118,4 +118,3 @@ flowchart TD
 The transmogrifier daemon is central to Rucio’s automated data management, ensuring that new data is promptly and correctly distributed according to organizational policies and user-defined subscriptions. Its sophisticated logic—including split, chained, and algorithmic rule selection—supports even the most advanced data placement strategies, while robust error handling and metrics allow for reliable, scalable operation.
 
 ---
-

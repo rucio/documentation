@@ -131,14 +131,14 @@ The two main chained subscription algorithms are:
 
 ### 1. `associated_site`
 
-**Purpose:**  
+**Purpose:**
 Selects an associated RSE based on the `associated_site` attribute from the parent rule's RSE.
 
-**How it works:**  
+**How it works:**
 - When a rule is created on an RSE that has the `associated_site` attribute, the algorithm will select one of the associated sites based on the given index (`associated_site_idx`).
 - This enables multi-step workflows where the child rule is coordinated with the parent’s site.
 
-**Usage Example:**  
+**Usage Example:**
 If a parent rule is on an RSE with `associated_site="T1_FR_CCIN2P3,T1_DE_KIT"`, and you want the child rule to go to the first associated site:
 ```json
 {
@@ -151,14 +151,14 @@ If a parent rule is on an RSE with `associated_site="T1_FR_CCIN2P3,T1_DE_KIT"`, 
 
 ### 2. `exclude_site`
 
-**Purpose:**  
+**Purpose:**
 Places the child rule on an RSE that does **not** match the site of the parent rule.
 
-**How it works:**  
+**How it works:**
 - The algorithm finds the `site` attribute of the parent rule's RSE.
 - Modifies the RSE expression to exclude this site, ensuring the child rule lands elsewhere.
 
-**Usage Example:**  
+**Usage Example:**
 Used when you need to guarantee data is not replicated to the same site in multiple workflow stages.
 
 ---
@@ -167,7 +167,7 @@ Used when you need to guarantee data is not replicated to the same site in multi
 
 While not an "algorithm" per se, the `split_rule` filter option is often used to create one rule per matching RSE, useful for fine-grained placement and accounting. It can be combined with chained subscriptions for even more advanced workflows.
 
-**Purpose:**  
+**Purpose:**
 - When `split_rule` is specified in a subscription filter, rules are created separately for each RSE matching the expression.
 - The number of rules created is equal to the number of RSEs matching the expression.
 - If `"copies": "*"` is specified, the number of copies is set to the number of matched RSEs.
