@@ -32,6 +32,8 @@ def get_release_title(version: str) -> str:
     # We hardcode the minor release titles for now, since there is no easy
     # way to automatically get them.
     HARD_CODED_RELEASE_NOTE_TITLE = {
+        "41": "Donkémon",
+        "40": "Guardians of the Donkeyverse",
         "39": "Grand Theft Donkey",
         "38": "Donkirk",
         "37": "Dungeons & Donkeys",

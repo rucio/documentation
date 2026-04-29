@@ -11,7 +11,7 @@ every 4 months we produce a major release with a version number like **x.0.0**
 (with x > 0). A major release marks the start of a release line. This release
 line is maintained with minor/patch releases published every two weeks,
 containing bug fixes or minor enhancements,
-with version numbers like **35.y.z** (with y &ge; 0, z &ge; 0). Versions within
+with version numbers like **40.y.z** (with y &ge; 0, z &ge; 0). Versions within
 one release line are always backwards compatible, thus they do not include
 database schema changes, API modifications, or other backward-compatibility
 breaking changes.
@@ -34,9 +34,9 @@ For differences between the versions of a Rucio client and a Rucio server we gua
 compatibility between a server and an older client up until the second LTS release line
 preceding the server.
 
-For example, a 37 Rucio server guarantees client support until the second LTS release line
-preceding its version, thus the 32 LTS release line. Therefore it guarantees support
-of clients of the 32, 33, 34, 35, 36 and 37 release lines.
+For example, a 40 Rucio server guarantees client support until the second LTS release line
+preceding its version, thus the 35 LTS release line. Therefore it guarantees support
+of clients of the 35, 36, 37, 38, 39, and 40 release lines.
 
 A 33 Rucio server guarantees client support of the 1.29, 1.30, 1.31, 32, and 33 release
 lines, while a 32 server guarantees support of the 1.26, 1.27, 1.28, 1.29, 1.30, 1.31, and
@@ -50,14 +50,17 @@ server.
 
 | Version         | Code name                                 | Release date   | Supported until      |
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
-| 39              | Grand Theft Donkey                        | _2025-11_      | _2026-03_            |
-| 38 LTS          | Donkirk                                   | _2025-07_      | _at least 2027-07_   |
-| **37**          | **Dungeons & Donkeys**                    | **2025-04**    | _2025-07_            |
+| 42              | How to Train Your Donkey                  | _2026-11_      | _2027-03_            |
+| 41 LTS          | Donkémon                                  | _2026-07_      | _at least 2028-07_   |
+| **40**          | **Guardians of the Donkeyverse**          | **2026-04**    | _2026-07_            |
+| 39              | Grand Theft Donkey                        | 2025-12        | 2026-04              |
+| **38 LTS**      | **Donkirk**                               | **2025-08**    | _at least 2027-08_   |
+| 37              | Dungeons & Donkeys                        | 2025-04        | 2025-08              |
 | 36              | Donkey Unchained                          | 2024-12        | 2025-04              |
-| **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | _at least 2026-07_   |
+| **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | **2026-08**          |
 | 34              | Donkey Potter and the Data Cache          | 2024-03        | 2024-07              |
 | 33              | Eternal Sunshine of the Donkey's Mind     | 2023-12        | 2024-03              |
-| **32 LTS**      | **The Good, The Bad and the Donkey**      | **2023-08**    | **2025-08**          |
+| 32 LTS          | The Good, The Bad and the Donkey          | 2023-08        | 2025-08              |
 | 1.31            | Donkeys of the Caribbean                  | 2023-03        | 2023-07              |
 | 1.30            | The Donkeynator                           | 2022-11        | 2023-03              |
 | 1.29 LTS        | Into the Donkeyverse                      | 2022-07        | 2024-08              |
@@ -94,40 +97,35 @@ server.
 | (0.2)           |                                           | 2014-10        | 2015-03              |
 | (0.1.7)         |                                           | 2014-01        | 2014-10              |
 
-## Secondary Rucio Software Policy
+## Release policy for secondary Rucio packages
 
-### WebUI
+Next to the server and client the Rucio project provides several other,
+secondary, software packages. Namely the [Rucio WebUI](https://github.com/rucio/webui),
+the [Rucio Jupyterlab extension](https://github.com/rucio/jupyterlab-extension), and
+the [Rucio helm charts](https://github.com/rucio/helm-charts).
 
-The [Rucio WebUI](
-https://rucio.github.io/documentation/developer/webui/webui_frontend) is an
-initiative to modernize the Rucio user interface by leveraging the latest web
-technologies, built with Next.js, TailwindCSS, and React.js.
+The versioning of these software packages is closely aligned with the versioning
+of the Rucio server. The **major version** of the package matches that of the
+Rucio server it is compatible with. For example, Rucio WebUI version **40.x.y** is
+compatible with any server of the version **40.*.***
 
-The versioning of the Rucio WebUI is closely aligned with the Rucio Server's
-release versioning. Both follow semantic versioning principles, ensuring
-consistency and compatibility.
+The minor and patch versions of these secondary software packages are however
+independent from the minor and patch versions of the server. They do as well
+follow semantic versioning.
 
-- **Major Version**: The major version number of the WebUI matches that of the
-  Rucio server it is compatible with. For example, Rucio Server version
-  **37.x.x** is compatible with Rucio WebUI version **37.x.x**.
-- **Minor and Patch Versions**: These versions follow semantic versioning:
-   - **Minor Version**: Incremented for new features and improvements that are
-     backward-compatible.
-   - **Patch Version**: Incremented for backward-compatible bug fixes.
+### Support period
 
-### JupyterLab extension
+The support period policy is the same as the support period policy stated above.
+Thus, once a year a release line is designated a **Long-term Support** (LTS) release
+line, which will be supported with **critical** and **security** patches for
+two years.
 
-The Rucio Jupyterlab extension follows it's own release policy described below.
-
-The plugin's main dependencies are the Rucio REST API, the JupyterLab environment
-and JavaScript (Node.js and React.js). Up to date, the extension has been
-tested with several combinations of Rucio major versions (v1.30 onwards) and
-JupyterLab (v&GreaterEqual;3) environments, with the latter indicating the
-extension version to install (which follows the semantic versioning schema).
-
-- For `JupyterLab v4.x`, use v&GreaterEqual;1.0.0.
-- For `JupyterLab v3.x` use the latest supported version (v0.10.0).
-
-Please refer to the Rucio JupyterLab extension [project](
-https://github.com/rucio/jupyterlab-extension) for more details on
-installation, requirements and release policy.
+> **WebUI Note:** Although Rucio 35 is an LTS release, the corresponding WebUI
+> release 35 is **not** designated as LTS. This is due to significant changes
+> in the WebUI project architecture and lack of feature completeness at that
+> time. Release 38 marks the first stable, feature-complete WebUI LTS release.
+>
+> **Jupyterlab Extension Note:** The Rucio Jupyerlab Extension started to follow
+> the LTS support period with the 40 Rucio release. Thus at the moment, there is
+> no LTS support given for the Jupyerlab Extension. The first Jupyerlab Extension
+> release covered by the LTS support period will be the 41 release.

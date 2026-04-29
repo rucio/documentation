@@ -100,109 +100,47 @@ To list all the scopes:
 
 ## Creating new RSEs
 
-To create a new RSE:
+A complete configuration guide for RSEs can be found [here](/operator/rse_configuration), including CLI and Python API instructions.
+Below is a check-list of things to do when creating a new RSE.
 
+1. Create a new RSE:
 ```bash
-  $ rucio-admin rse add SITE3_DISK
-  Added new RSE: SITE3_DISK
+$ rucio rse add $RSE_NAME
 ```
 
-Then you can attach protocols to this RSE. In the following example, a file
-protocol is added to the site created previously:
+2. Attach a transfer protocol
+
+Below is the protocol for a posix RSE (suitable for testing and single-node deployments). Other configurations can be found [here](/operator/rse_configuration#rse-configuration-examples).
 
 ```bash
-  $ rucio-admin rse add-protocol --hostname blahblah --scheme file \
-      --impl rucio.rse.protocols.posix.Default --domain-json \
+$ rucio rse protocol add \
+  --hostname $HOSTNAME \
+  --scheme $SCHEME \
+  --impl rucio.rse.protocols.posix.Default \
+  --domain-json \
       '{"wan": {"read": 1, "write": 1, "third_party_copy": 0, "delete": 1}, \
       "lan": {"read": 1, "write": 1, "third_party_copy": 0, "delete": 1}}' \
-      --prefix /tmp/SITE3_DISK/ SITE3_DISK
+  --prefix /tmp/$RSE_NAME/ $RSE_NAME
 ```
 
-The different parameters are explained in more details if you use the --help
-option.
+3. Set RSE Attributes
 
-Last step is to create RSE attributes that can be used to build RSE expressions:
+Different RSE attributes and their uses are listed [here](/operator/configuration_parameters#rse-attributes). Other RSE attributes can be added and used for plugins, policies, and organization via [RSE Expressions](/started/concepts/rse_expressions).
 
 ```bash
-  $ rucio-admin rse set-attribute --rse SITE3_DISK --key tier --value 1
-  Added new RSE attribute for SITE3_DISK: tier-1
-  $ rucio-admin rse set-attribute --rse SITE3_DISK --key disk --value 1
-  Added new RSE attribute for SITE3_DISK: disk-1
-  $ rucio list-rses --rses "disk=1&tier=1"
-  SITE3_DISK
+$ rucio rse attribute add $RSE_NAME --key tier --value 1
 ```
 
-Let's check that everything is properly defined:
+4. Verify main settings
 
+List the protocols, settings, and attributes for the RSE.
 ```bash
-  $ rucio-admin rse info SITE3_DISK
-  Settings:
-  =========
-    third_party_copy_protocol: 1
-    rse_type: DISK
-    domain: [u'lan', u'wan']
-    availability_delete: True
-    delete_protocol: 1
-    rse: SITE3_DISK
-    deterministic: True
-    write_protocol: 1
-    read_protocol: 1
-    staging_area: False
-    credentials: None
-    availability_write: True
-    lfn2pfn_algorithm: default
-    availability_read: True
-    volatile: False
-    id: 4079d6873603462b8867e4a49674cc11
-  Attributes:
-  ===========
-    tier: True
-    disk: True
-    istape: False
-    SITE3_DISK: True
-  Protocols:
-  ==========
-    file
-      extended_attributes: None
-      hostname: blahblih
-      prefix: /tmp/SITE3_DISK/
-      domains: {u'wan': {u'read': 1, u'write': 1, u'third_party_copy': 0, \
-        u'delete': 1}, u'lan': {u'read': 1, u'write': 1, u'delete': 1}}
-      scheme: file
-      port: 0
-      impl: rucio.rse.protocols.posix.Default
-  Usage:
-  ======
-    rucio
-      used: 0
-      rse: SITE3_DISK
-      updated_at: 2018-02-22 13:05:45
-      free: None
-      source: rucio
-      total: 0
+$ rucio rse show $RSE_NAME
 ```
 
-## Setting quota and permissions
-
-The root account has all the privileges. You can define other admin accounts by
-setting the account attribute admin:
+5. Set user limits
+Sets how much an account can write to an RSE. If no limit has been set for an account, it cannot be used to write to the given RSE.
 
 ```bash
-  $ rucio-admin account add-attribute --key admin --value 1 jdoe
-  $ rucio-admin account list --filter "admin=1"
-  jdoe
-```
-
-The permissions are easily tunable by overloading the [generic permission file](https://github.com/rucio/rucio/blob/master/lib/rucio/core/permission/generic.py).
-
-This is an advanced feature that is not explained there, for more details get in
-touch with the developers.
-
-To set the quota for one account on a given RSE:
-
-```bash
-  $ rucio-admin account set-limits jdoe SITE3_DISK 10000000000000
-  Set account limit for account jdoe on SITE3_DISK: 10.000 TB
-  $ rucio-admin account get-limits jdoe SITE3_DISK
-  Quota on SITE3_DISK for jdoe : 10 TB
+$ rucio account limit add $USER --rse $RSE_NAME --bytes 10GB
 ```

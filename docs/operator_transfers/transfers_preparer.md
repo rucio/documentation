@@ -6,7 +6,7 @@ title: Transfers Preparer
 `conveyor-preparer` (transfer preparer) is the main entry point into the
 transfer machinery. It leverages topological information to pick the best source
 replica for the transfer. It also decides if the transfer has to be handled by
-the throttler or not. For all new rucio installations, it is recommended to run
+the throttler or not. For all new Rucio installations, it is recommended to run
 this daemon and activate it by setting the `conveyor/use_preparer = True`
 configuration option.
 

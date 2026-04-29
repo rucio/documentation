@@ -68,7 +68,7 @@ We require that all requests(except for the ping) are done over SSL.
 ### Response formats
 
 The currently-available response format for all REST endpoints is the
-string-based format JavaScript Object Notation ([JSON](http://www.json.org/)).
+string-based format JavaScript Object Notation ([JSON](https://www.json.org/json-en.html)).
 The server answer can be one of the following content-type in the http Header:
 
 ```text

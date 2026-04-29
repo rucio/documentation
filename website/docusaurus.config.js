@@ -66,17 +66,17 @@ module.exports={
           "to": "bin/rucio",
           "label": "Command Line Client",
           "position": "left"
-        }, 
+        },
         {
           "to": "pathname:///html/rest_api_doc.html",
           "label": "REST API",
           "position": "left"
-        }, 
+        },
       ]
     },
     "footer": {
       "links": [],
-      "copyright": "Copyright © 2023 CERN",
+      "copyright": `Copyright © ${new Date().getFullYear()} CERN`,
       "logo": {
         "src": "img/rucio_horizontaled_black.svg",
         "srcDark": "img/rucio_horizontaled_white.svg"

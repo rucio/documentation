@@ -12,7 +12,7 @@ of token functionality in Rucio.
 
 ## Expected End-Date
 
-March 2026, in line with the [WLCG Token Transition](https://zenodo.org/record/7014668)
+March ~~2026~~ 2028, in line with the [WLCG Token Transition](https://indico.cern.ch/event/1484669/timetable/#77-token-transition-overview)
 timeline. By then token functionality in Rucio will have reached a level of maturity
 and the further development can be coordinated without the SIG.
 

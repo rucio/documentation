@@ -29,7 +29,7 @@ and will be pulled in as necessary.
 A simple server without SSL can be started like this:
 
 ```bash
-docker run --name=rucio-server -p 80:80 -d rucio/rucio-server
+docker run --name rucio-server --publish 80:80 --detach rucio/rucio-server
 ```
 
 This will start up a simple server using sqlite based on an automatically
@@ -52,10 +52,10 @@ container connecting to a MySQL DB running at `mysql.db` you could use something
 like this:
 
 ```bash
-docker run --name=rucio-server \
-  -e RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" \
-  -p 80:80 \
-  -d \
+docker run --name rucio-server \
+  --env RUCIO_CFG_DATABASE_DEFAULT="mysql+pymysql://rucio:rucio@mysql.db/rucio" \
+  --publish 80:80 \
+  --detach \
   rucio/rucio-server
 ```
 
@@ -68,10 +68,10 @@ if you have a rucio.cfg ready on your host system under `/tmp/rucio.cfg` you
 could start a container like this:
 
 ```bash
-docker run --name=rucio-server \
-  -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
-  -p 80:80 \
-  -d \
+docker run --name rucio-server \
+  --volume /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
+  --publish 80:80 \
+  --detach \
   rucio/rucio-server
 ```
 
@@ -82,14 +82,14 @@ and also need to include the host certificate, key and the the CA certificate as
 volumes. E.g.,:
 
 ```bash
-docker run --name=rucio-server \
-  -v /tmp/ca.pem:/etc/grid-security/ca.pem \
-  -v /tmp/hostcert.pem:/etc/grid-security/hostcert.pem \
-  -v /tmp/hostkey.pem:/etc/grid-security/hostkey.pem \
-  -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
-  -p 443:443 \
-  -e RUCIO_ENABLE_SSL=True \
-  -d \
+docker run --name rucio-server \
+  --volume /tmp/ca.pem:/etc/grid-security/ca.pem \
+  --volume /tmp/hostcert.pem:/etc/grid-security/hostcert.pem \
+  --volume /tmp/hostkey.pem:/etc/grid-security/hostkey.pem \
+  --volume /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
+  --publish 443:443 \
+  --env RUCIO_ENABLE_SSL=True \
+  --detach \
   rucio/rucio-server
 ```
 
@@ -99,12 +99,12 @@ the `RUCIO_ENABLE_LOGS` variable. The storage folder of the logs can be used as
 a volume:
 
 ```bash
-docker run --name=rucio-server \
-  -v /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
-  -v /tmp/logs:/var/log/httpd \
-  -p 80:80 \
-  -e RUCIO_ENABLE_LOGS=True \
-  -d \
+docker run --name rucio-server \
+  --volume /tmp/rucio.cfg:/opt/rucio/etc/rucio.cfg \
+  --volume /tmp/logs:/var/log/httpd \
+  --publish 80:80 \
+  --env RUCIO_ENABLE_LOGS=True \
+  --detach \
   rucio/rucio-server
 ```
 
@@ -116,7 +116,7 @@ available variables and their behavior:
 
 ### RUCIO_ENABLE_SSL
 
-By default, the rucio server runs without SSL on port 80. If you want to enable
+By default, the Rucio server runs without SSL on port 80. If you want to enable
 SSL set this variable to `True`. If you enable SSL you will also have to provide
 the host certificate and key and the certificate authority file. The server will
 look for `hostcert.pem`, `hostkey.pem` and `ca.pem` under `/etc/grid-security`
@@ -153,7 +153,7 @@ variable.
 
 ### RUCIO_LOG_FORMAT
 
-The default rucio log format is
+The default Rucio log format is
 `%ht%tt%{X-Rucio-Forwarded-For}it%Tt%Dt\"%{X-Rucio-Auth-Token}i\"t%{X-Rucio-RequestId}it%{X-Rucio-Client-Ref}it\"%r\"t%\>st%b`
 You can set your own format using this variable.
 
@@ -201,189 +201,86 @@ becomes `RUCIO_CFG_DATABASE_DEFAULT`. All available environment variables are:
 - RUCIO_CFG_PERMISSION_SUPPORT_RUCIO
 - RUCIO_CFG_WEBUI_USERCERT
 
-## Server Configuration for Open ID Connect AuthN/Z
+## Enable OIDC
 
-In order to be able to use [OIDC](https://openid.net/connect/)
-JSON Web Tokens ([JWTs](https://en.wikipedia.org/wiki/JSON_Web_Token)) and
-related [OAuth2.0](https://oauth.net/2/) authentication and authorization with Rucio,
-one first needs to have an account with an Identity Provider (IdP)
-which will act as Rucio admin account representing the Rucio Application.
-Currently, the only fully supported IdP is [INDIGO IAM](https://indigo-iam.github.io/v/current/).
-Once you have got your Rucio Service IAM Account [A]
-(and its subject claim identifier), you will need to [register two IAM Rucio
-clients](https://indigo-iam.github.io/docs/v/current/user-guide/client-registration.html)
-linked to this account. Please save the relevant __client_id__,
-__client_secret__, and __registration access token (RAT)__ in
-a safe place, as you will be needing them.
+This section describes how to enable authentication and authorization in Rucio using OpenID Connect (OIDC), OAuth2, and JSON Web Tokens (JWTs).
 
-In both clients, one needs to setup the __redirect_uris__ to
-include the following paths:
+Rucio currently provides full support for INDIGO IAM, and has been tested with CILogon.
+A OIDC client must be registered in the Identity Provider (IdP) with required [info](#registering-oidc-clients-to-identity-provider-idp).
 
-```bash
-https://<your_server_name>/auth/oidc_token
-https://<your_server_name>/auth/oidc_code
-```
+### Registering OIDC Clients to Identity provider (IdP)
 
-We will use one client as
-__Rucio Auth IAM Client__ [C1] (i.e. client for the authentication and
-authorization on the Rucio server). This client needs to have __token_exchange__,
-__token_refresh__, and __authorization_code__ grants enabled. For __token_exchange__
-and __token_refresh__ you might need to contact the IAM admin as such settings are
-usually not accessible to IAM users. In addition, you will need to request your
-IAM admin to allow your client returning refresh tokens with lifetime being visible
-in their unverified header. In addition Rucio assumes refresh tokens to expire
-immediately after their first use, which has to be also confirmed by your IAM admin.
+Rucio requires a client at the IdP with following info.
 
-The second
-client, let's call it __Rucio Admin IAM Client__ [C2], can be used by a Rucio probe
-script (e.g. [check_scim](https://github.com/rucio/probes/blob/master/attic/check_scim),
-[sync_iam_rucio](https://github.com/ESCAPE-WP2/Utilities-and-Operations-Scripts/blob/master/iam-rucio-sync/sync_iam_rucio.py))
-in order to synchronize existing Rucio accounts with Rucio
-identities. Rucio will also use this client's credentials in order to request
-tokens for itself. The IAM administrator must include the __scim:read__ scope and
-allow the __client_credentials__ grant type for [C2] in order
-to grant you rights to pre-provision IAM users for Rucio. Examples of the
-configuration of these two clients follow below:
+- Grant Type: `authorization_code` and `client_credentials`
+- Scopes:
 
-Example of the __Rucio Auth IAM Client__ [C1] configuration:
+  - Auth scopes:
+    - At minimum `openid` .
+    - Default in rucio `openid` and `profile`.
+  - Transfer and Deletion related scopes:
+    - `fts`
+    - `storage.modify:<path>`
+    - `storage.create:<path>`
+    - `storage.read:<path>`
+    - `offline_access`
 
-```json
-{
-  "client_id": "AbcCDe123...",
-  "registration_access_token": "AbcCDe123...",
-  "redirect_uris": [
-    "https://rucio-auth.cern.ch/auth/oidc_token",
-    "https://rucio-auth.cern.ch/auth/oidc_code",
-  ],
-  "client_name": "rucio-admin-client",
-  "client_uri": null,
-  "logo_uri": null,
-  "contacts": [
-    "jaroslav.guenther@gmail.com"
-  ],
-  "tos_uri": null,
-  "token_endpoint_auth_method": "client_secret_basic",
-  "scope": "address fts phone openid profile offline_access \
-    rucio email wlcg wlcg.groups fts:submit-transfer",
-  "grant_types": [
-    "refresh_token",
-    "urn:ietf:params:oauth:grant-type:token-exchange",
-    "authorization_code"
-  ],
-  "response_types": [
-    "code"
-  ],
-  "policy_uri": null,
-  "jwks_uri": null,
-  "jwks": null,
-  "jwksType": "URI",
-  "application_type": null,
-  "sector_identifier_uri": null,
-  "subject_type": null,
-  "request_object_signing_alg": null,
-  "userinfo_signed_response_alg": null,
-  "userinfo_encrypted_response_alg": null,
-  "userinfo_encrypted_response_enc": null,
-  "id_token_signed_response_alg": null,
-  "id_token_encrypted_response_alg": null,
-  "id_token_encrypted_response_enc": null,
-  "default_max_age": 60000,
-  "require_auth_time": true,
-  "default_acr_values": null,
-  "initiate_login_uri": null,
-  "post_logout_redirect_uris": null,
-  "claims_redirect_uris": [],
-  "request_uris": [],
-  "software_statement": null,
-  "software_id": null,
-  "software_version": null,
-  "code_challenge_method": null,
-  "registration_client_uri": "https://wlcg.cloud.cnaf.infn.it/register/fdc297fc-0907-4a68-9022-3ccc7dd2501a",
-  "client_secret_expires_at": 0,
-  "client_id_issued_at": 1574700620
-}
-```
+- redirect_uris :
+  - `https://<RUCIO_AUTH_SERVER_HOSTNAME>/auth/oidc_token`
+  - `https://<RUCIO_AUTH_SERVER_HOSTNAME>/auth/oidc_code`
 
-Example of the __Rucio Admin IAM Client__ [C2] configuration:
 
-```bash
-{
-  "client_id": "AbcDe123...",
-  "registration_access_token": "AbcDe123...",
-  "client_secret": "AbcDe123...",
-  "redirect_uris": [],
-  "client_name": null,
-  "client_uri": null,
-  "logo_uri": null,
-  "contacts": [
-    "jaroslav.guenther@gmail.com"
-  ],
-  "tos_uri": null,
-  "token_endpoint_auth_method": "client_secret_basic",
-  "scope": "address scim:read phone email wlcg profile \
-    fts:submit-transfer rucio fts fts:submit-transfer",
-  "grant_types": [
-    "client_credentials"
-  ],
-  "response_types": [],
-  "policy_uri": null,
-  "jwks_uri": null,
-  "jwks": null,
-  "jwksType": "URI",
-  "application_type": null,
-  "sector_identifier_uri": null,
-  "subject_type": null,
-  "request_object_signing_alg": null,
-  "userinfo_signed_response_alg": null,
-  "userinfo_encrypted_response_alg": null,
-  "userinfo_encrypted_response_enc": null,
-  "id_token_signed_response_alg": null,
-  "id_token_encrypted_response_alg": null,
-  "id_token_encrypted_response_enc": null,
-  "default_max_age": 60000,
-  "require_auth_time": true,
-  "default_acr_values": null,
-  "initiate_login_uri": null,
-  "post_logout_redirect_uris": null,
-  "claims_redirect_uris": [],
-  "request_uris": [],
-  "software_statement": null,
-  "software_id": null,
-  "software_version": null,
-  "code_challenge_method": null,
-  "registration_client_uri": "https://wlcg.cloud.cnaf.infn.it/register/5b5e5d37-926b-4b42-8a98-a0b4b28baf18",
-  "client_secret_expires_at": 0,
-  "client_id_issued_at": 1574700703
-}
-```
+:::tip
+Ensure your server uses HTTPS, as most Identity Providers will reject non-secure redirect URIs
+:::
 
-To make the Rucio server aware of the two clients above, one has to exchange the
-empty dictionary in `etc/idpsecrets.json` file with one containing the
-relevant information. Example of such dictionary (for multiple IdPs) follows:
+:::info
+- The audience value (default `rucio`) is set by the Rucio auth server during the authorization request.
+- The audience set in the `client_credentials` grant's token request corresponds to the storage hostname(s) and FTS hostname.
+- **Some IdPs require these audience to be pre-registered with the client, while others don't (like IndigoIAM).**
+:::
+
+Use case of different grant types:
+
+- `authorization_code`: This grant type is used for interactive user authentication to rucio. User must use `OIDC` authorization type.
+- `client_credentials`: This grant is machine-machine interaction (daemons-IdP interactions). It is used for getting tokens for FTS and Storage(s). This is used by transfer and deletion daemons.
+
+The `<path>` to register depends upon your IdP's scope matching algorithm in combination
+with configuration for RSEs as described [here](#configuring-path-for-storage-capabilities-in-rucio)
+
+Please save the value of `client_id` and `client_secret` after registration.
+
+### Preparing idpsecrets.json
+
+Create an `idpsecrets.json` file containing the configuration of the two IdP clients. Then mount this file to Rucio server and daemons. The path to the mounted file have to be set in [configuration](#configuring-rucio-server-for-oidc-based-authentication)
+If using Helm Chart then use mounting as [described here](https://github.com/rucio/helm-charts/tree/master/charts/rucio-server#additional-secrets).
+
+:::danger[Security]
+Never commit `idpsecrets.json` to version control. Store the file securely (Kubernetes Secret, encrypted backup or password manager). Mount secrets as read-only in production.
+:::
+
+:::warning
+The `SCIM` section of json file is **not used but required to be present due to some legacy code still present**. Thus please set some random value for it.
+:::
+
+Example:
 
 ```json
 {
-    "<IdP nickname>": {
+    "<IdP_nickname>": {
 
-        "issuer": "https://<issuer_server_name>",
+        "issuer": "<issuer_url_of_idp>",
 
         "redirect_uris": [
             "https://<auth_server_name>/auth/oidc_token",
             "https://<auth_server_name>/auth/oidc_code"
         ],
-
-        "client_id": "<C1_client_id>",
-        "client_secret": "<C1_client_secret>",
-
-        # this is not really needed for the OIDC functionality
-        # but it is suggested to store it anyway as it is required
-        # to edit the client in INDIGO IAM
-        "registration_access_token": "<C1_client_RAT_string>",
+        "client_id": "<client_id>",
+        "client_secret": "<client_secret>",
 
         "SCIM": {
-            "client_id": "<C2_client_id>",
-            "client_secret": "<C2_client_secret>",
-            "registration_access_token": "<C2_client_RAT_string>"
+            "client_id": "random",
+            "client_secret": "random"
         }
     },
 
@@ -398,232 +295,187 @@ relevant information. Example of such dictionary (for multiple IdPs) follows:
 
         "client_id": "fdc297fc-09 ...",
         "client_secret": "APFVcga_X ...",
-        "registration_access_token": "eyJraWQiOi ...",
 
         "SCIM": {
-            "client_id": "5b5e5d3 ...",
-            "client_secret": "IQqAcMOa ...",
-            "registration_access_token": "eyJraW ..."
+            "client_id": "random",
+            "client_secret": "random"
         }
-    },
-
-    "xdc": { ... },
+    }
 }
 ```
 
-After this is done, please make sure your `rucio.cfg` file contains the
-following section:
+### Configuring Rucio Server for OIDC based authentication
+
+Enable OIDC in `rucio.cfg`:
 
 ```cfg
 [oidc]
+# Required: Path to the idpsecrets JSON file.
 idpsecrets = /path/to/your/idpsecrets.json
+
+# Required: Matches the <IdP_nickname> key in idpsecrets.json.
 admin_issuer = <IdP_nickname>
-expected_audience = '<rucio>'
+
+# Optional: Expected 'aud' value in the user JWT. Defaults to 'rucio'.
+# if different from default then put what you have
+expected_audience = 'rucio'
+
+# Optional: Expected scopes in the JWT. Defaults to 'openid profile'.
+# if different from default then put what you have
 expected_scope = 'openid profile'
 ```
 
-Parameters __idpsecrets__ and __admin_issuer__ have to be present.
-__IdP nickname__ stands for your preferred IdP (e.g. 'wlcg'). The IdP
-specified under __admin_issuer__ will be contacted to get information about Rucio
-Users (SCIM) and to request tokens for the Rucio __root__ account.  The
-__expected_scope__ and __expected_audence__ parameters are optional and if not filled,
-the Rucio server will set them to `openid profile` and `rucio`
-respectively. The expected scopes and audiences have to be configured
-correspondingly on the side of your registered clients at your IdP (usually you
-can control accepted scopes and audiences for your clients via an IdP web
-interface).
+Each user must have an OIDC identity linked to their Rucio account. The OIDC identity consists of:
 
-To finalize the process, one should assign the OIDC identities to the relevant
-Rucio __admin_account__ (e.g. 'root', 'ddmadmin'). This identity ID is
-composed of the Rucio Service IAM Account [A] subject claim and
-issuer url such as demonstrated below:
+- `sub` claim which is subject claim of user.
+- `iss` claim which is issuer URL of the IdP.
+
+Example:
 
 ```bash
-# Add the Rucio Service IAM Account ID as an OIDC identity
-rucio-admin identity add --account rucio_admin_account \
+rucio account identity add --account rucio_user_account \
   --type OIDC \
-  --id "SUB=b3127dc7-2be3-417b-9647-6bf61238ad01, \
-    ISS=https://wlcg.cloud.cnaf.infn.it/" \
+  --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, ISS=https://wlcg.cloud.cnaf.infn.it/" \
   --email "wlcg-doma-rucio@cern.ch"
 ```
 
-A second identity has to be added to the same __admin_account__ representing
-the __client_credentials__ flow of the Rucio application, i.e.  of the
-__Rucio Admin IAM Client__ [C2] from above. This identity consists of
-the __client_id__ of [C2] and the issuer (the token obtained via the
-client credentials flow using [C2] will contain in the __sub__ claim the
-__client_id__ of [C2] instead of Rucio Service IAM Account [A] __sub__ claim):
+:::info
+
+- `5b5e5d37-926b-4b42-8a98-a0b4b28baf18` is subject claim of user and `https://wlcg.cloud.cnaf.infn.it/` is issuer url of IdP.
+- The format of `id` has single space after the comma, so be mindful of that.
+  :::
+
+### Enabling OIDC for Transfers & Deletions
+
+Rucio uses WLCG profile with [Capability based authorization](https://github.com/WLCG-AuthZ-WG/common-jwt-profile/blob/master/profile.md#221-capability-based-authorization-scope) for token-based interactions with storage.
+Authorization is applied at the RSE level: This means tokens are scoped to the RSE's storage path prefix described [here](#defining-path-for-storage-capabilities), not to individual files or datasets. A single token grants access to perform operations on any file under the RSE's path based on its capabilities (read, create, modify).
+
+Token-based operations require:
+
+1. The RSE must have the davs protocol enabled.
+2. The RSE must have the oidc_support attribute set to True.
+
+   ```bash
+   rucio rse attribute add --key oidc_support --value True RSE_NAME
+   ```
+
+3. The RSE must be able to accept token with WLCG profile and audience as its `hostname`
+4. The RSE must allow permission for [`<path>`](#defining-path-for-storage-capabilities)
+5. FTS must be configured to accept token `fts` scope and `<fts_hostname>` audience.
+   - FTS audience config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#configuring-the-fts-rest-component).
+   - FTS scope config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#add-tokenprovider-information-to-the-database)
+
+#### Configuring `<path>` for Storage Capabilities in Rucio:
+
+Each storage enforces a specific prefix for `storage.<capability>:<path>` scopes. There are two scenarios:
+
+**Scenario 1: Storage Accepts Full RSE Protocol Prefix**
+
+If your storage accepts the full RSE protocol prefix as-is, no additional configuration is needed.
+
+Example:
+
+- RSE protocol prefix: `/path/to/vo`
+- Storage expects: `/path/to/vo`
+
+**Scenario 2: Storage Expects Partial RSE Protocol Prefix**
+
+If your storage expects only part of the RSE protocol prefix, use the `oidc_base_path` RSE attribute to strip the unwanted leading prefix.
+
+Example:
+
+- RSE protocol prefix: `/path/to/vo`
+- Storage expects: `/vo`
+- Action: Set `oidc_base_path` to remove `/path/to` as shown below.
 
 ```bash
-# Add the Rucio Admin IAM Client client_id as an OIDC identity
-rucio-admin identity add --account rucio_admin_account \
-  --type OIDC \
-  --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, \
-    ISS=https://wlcg.cloud.cnaf.infn.it/" \
-  --email "wlcg-doma-rucio@cern.ch"
+rucio rse attribute add --key oidc_base_path --value '/path/to' RSE_NAME
 ```
 
-Note: In case you can not/will not run any IAM -> Rucio user mapping tool in
-order to sync Rucio accounts with their IAM identities, you should assign the
-appropriate OIDC identity manually (as in the example above) to each Rucio
-account which is meant to use the OIDC authN/Z:
+#### Transfer daemon token flow.
 
-```bash
-# Add an IAM User Account ID as an OIDC identity
-# (needs to be done for each user!)
-rucio-admin identity add --account rucio_user_account \
-  --type OIDC \
-  --id "SUB=5b5e5d37-926b-4b42-8a98-a0b4b28baf18, \
-    ISS=https://wlcg.cloud.cnaf.infn.it/" \
-  --email "wlcg-doma-rucio@cern.ch"
+1. Transfer job submission to FTS
+
+For TPC transfer rucio sends 3 tokens to FTS.
+`fts token [F]`, `src storage token [S]` and `destination storage token [D]`.
+
+:::info
+All tokens sent to FTS (`[F]`, `[S]`, `[D]`) are **managed tokens**.
+This requires configuring FTS to perform **token exchange and Just in Time token refresh**, so long-running transfers continue even after the original tokens sent from Rucio expires.
+More info [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/token_support.html) and [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.14.html).
+:::
+
+```mermaid
+sequenceDiagram
+    participant D as Transfer Daemon
+    participant I as Identity Provider
+    participant F as FTS
+
+    Note over D,I: client_credentials
+
+    alt Tokens NOT cached
+        D->>+I: 1. Request FTS token
+        I-->>-D: [F]
+
+        D->>+I: 2. Request SRC token
+        I-->>-D: [S]
+
+        D->>+I: 3. Request DEST token
+        I-->>-D: [D]
+    else Tokens cached
+        activate D
+        Note right of D: Load tokens<br/>from cache
+        deactivate D
+    end
+
+    D->>F: 4. Submit job [F], [S], [D]
 ```
 
-Finally, in order to ensure the correct lifetime management of the tokens and auth
-sessions, one has to run the __oauth-manager__ daemon.
+2. Poller Daemon Token Support
 
-### Configuration for Daemons
+   For Poller to use tokens to communicate with FTS, add following to the config:
 
-OIDC authN/Z is also supported by the Rucio conveyor daemons and more
-specifically by the __conveyor-submitter__ and __conveyor-poller__ ones.
-__Conveyor-submitter__ is responsible for submission of the transfers created in
-connection with an existing Rucio rule. __Conveyor-poller__ is responsible for
-polling the state of the transfers that have been submitted and updating the
-relevant state in the database.
+   ```cfg
+   [conveyor]
+   poller_oidc_support = True
+   ```
 
-In order to enable this functionality, RSEs must have an attribute set as follows:
+   ```mermaid
+   sequenceDiagram
+       participant D as Poller Daemon
+       participant I as Identity Provider
+       participant F as FTS
+       Note over D,I: client_credentials
+       alt Tokens NOT cached
+           D->>I: Request fts token
+           I-->>D: [F]
+       else Tokens cached
+           Note over D: Load [F] from cache
+       end
+       loop Poll for status
+           D->>F: [F]
+           F-->>D: Status
+       end
+   ```
 
-```cfg
-oidc_support: True
-```
+3. Reaper (deletion) Daemon Token support.
 
-In general, the Rucio account which created such a rule will be used to request a
-JWT token for OAuth2 authentication with FTS3. More specifically, there
-are three Rucio authentication flows that are possible:
+   If the RSE has token enabled and meet the criteria then its enough for deletion via token.
+   ```mermaid
+   sequenceDiagram
+       participant D as Reaper Daemon
+       participant I as Identity Provider
+       participant S as Storage
+       Note over D,I: client_credentials
 
-1. __User Token Exchange__: In this case, a valid OIDC token that the user authenticated
-   with in Rucio is getting [exchanged](https://indigo-iam.github.io/docs/v/current/user-guide/api/oauth-token-exchange.html)
-   with an appropriate token that is intended to be served to the FTS3 server.
-   This FTS3 intended token must have a specific audience [*] as well as
-   specific scopes [**] that the FTS3 server expects, this applies for the next
-   authentication flows as well. It is also worth noting that the acquired FTS3
-   intended token includes all original claims that were present in the initial token.
+       alt Tokens NOT cached
+           D->>I: Request storage token
+           I-->>D: Token [S]
+       else Tokens cached
+           Note over D: Load [S] from cache
+       end
 
-1. __Admin Flow__: In this Rucio authN/Z flow, the [client_credentials](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow)
-   flow is used with the __Rucio Admin IAM Client__ [C2]. The __sub__ claim of the
-   acquired token becomes the __client_id__ of [C2]. In this case any group membership
-   that was present in the original token is not included in the new FTS3 intended
-   token. Additionally, for this flow to be successful a valid user OIDC token
-   must already be present in the database.
-
-1. __Admin Root Flow__: This scenario has the same logic as flow 2, with the
-   difference that it is used when the relevant rule is created by the
-   Rucio __admin_account__ (e.g. 'root').
-   No other user token is involved in this case.
-
-In all three formerly mentioned cases, if a valid FTS3 intended token
-already exists in the Rucio database then a new token is not requested
-and the existing one is used.
-
-The OIDC authentication mechanism shall be configured by the
-following parameters in the `rucio.cfg` file:
-
-```cfg
-[conveyor]
-# if set to True, then only flow 1 will be tried
-# if set to False, then flow 1 will never be tried
-allow_user_oidc_tokens = False (default)
-
-# FTS3 intended audience [*]
-request_oidc_audience = 'fts:example' (default)
-
-# FTS3 intended scopes [**]
-request_oidc_scope = 'fts:submit-transfer' (default)
-```
-
-For the __conveyor-poller__ to work an additional configuration is needed:
-
-```cfg
-[conveyor]
-poller_oidc_account = rucio_admin_account
-```
-
-On an another level, the __reaper__ daemon can be also configured to
-perform deletions of files on the storage by using an OIDC token,
-the following configuration is needed:
-
-```cfg
-[reaper]
-oidc_account = rucio_admin_account
-oidc_audience = same logic as [*] but for the storage
-oidc_scope = same logic as [**] but for the storage
-```
-
-Note aside: For some IdPs it may happen that the scope and audience claims are
-not a part of the token payload. For this reason Rucio has a fall-back mechanism
-to get this information using the IdPs introspection endpoint. To allow Rucio to
-introspect tokens that were not issued by its clients, please talk to the IdP
-admin who should enable this functionality for your clients.
-
-### Rucio WebUI Login with CERN SSO
-
-By using the Rucio OIDC capabilities it is possible to integrate the
-[CERN SSO](https://auth.docs.cern.ch/user-documentation/oidc/oidc/) service with
-the WebUI so users will be able to login with a CERN account.
-Please note that in contrast to INDIGO IAM, the CERN IdP can only be
-used for WebUI login at the moment and not for the other operations
-that were described previously. The following steps are needed:
-
-1. The Rucio administrators need to create a new application at the
-   [Application Portal](https://application-portal.web.cern.ch/).
-   Please note that the __Application Identifier__ field will be the
-   audience claim in the tokens acquired by the CERN Authorization Service.
-
-1. In the newly created Application, a new __SSO Registration__ is needed.
-   Please select OIDC in the
-   'Which protocol does your application use for authentication?' question.
-   At the same time, the two Rucio redirect URIs are needed as
-   described in the `etc/idpsecrets.json` configuration that was mentioned previously.
-
-1. The new CERN IdP needs to be added in the `etc/idpsecrets.json` configuration,
-   with the newly acquired client secret that was given after step 2.
-   Please note that in this case the SCIM field needs to be filled even though
-   it will never be used for this IdP, one can just repeat the original
-   client_id and client_secret. The configuration will have the following format:
-
-    ```json
-    {
-        # ...
-        "cern": {
-
-            "issuer": "https://auth.cern.ch/auth/realms/cern",
-
-            "redirect_uris": [
-                "https://<auth_server_name>/auth/oidc_token",
-                "https://<auth_server_name>/auth/oidc_code"
-            ],
-
-            "client_id": "<SSO_client_id>", # Same as Application Identifier
-            "client_secret": "<SSO_client_secret>",
-
-            "SCIM": {
-                "client_id": "<SSO_client_id>",
-                "client_secret": "<SSO_client_secret>",
-            }
-        }
-        # ...
-    }
-    ```
-
-1. Finally, the CERN user identities need to be mapped to Rucio accounts
-   as it was previously described. One example mapping follows:
-
-    ```bash
-    # Add an CERN User Account Username as an OIDC identity
-    # (needs to be done for each user!)
-    # Note that the SUB field is the CERN Account username
-    rucio-admin identity add --account rucio_user_account \
-    --type OIDC \
-    --id "SUB=ridona, \
-        ISS=https://auth.cern.ch/auth/realms/cern" \
-    --email "rucio@cern.ch"
-    ```
+       loop Delete files
+           D->>S: [S]
+       end
+   ```

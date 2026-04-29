@@ -61,7 +61,7 @@ Developer documentation will help you get started. Peruse some common REST API &
 Client API references that are directly derived from Rucio's python
 libraries. We also have a contribution guide for those who wish to pitch in.
 
-- [Client API Documentation](pathname:///html/site/client.html)
+- [Client API Documentation](pathname:///html/client_api/accountclient.html)
 - [REST API Documentation](pathname:///html/rest_api_doc.html)
 - [Contributing guide](contributing)
 

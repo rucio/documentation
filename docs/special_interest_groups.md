@@ -24,10 +24,11 @@ Each SIG must define
 
 ## Current Special Interest Groups
 
-| Name                                          | Start    | est. End | Convener                                               |
-| --------------------------------------------- | -------- | -------- | ------------------------------------------------------ |
-| [Metadata](sig_metadata.md)                   | Jul-2021 | Dec-2026 | [Rob Barnsley](https://github.com/robbarnsley)         |
-| [Tokens](sig_tokens.md)                       | Sep-2023 | Mar-2026 | [Dimitrios Christidis](https://github.com/dchristidis) |
+| Name                                                      | Start    | est. End | Convener                                               |
+| --------------------------------------------------------- | -------- | -------- | ------------------------------------------------------ |
+| [Hierarchical Namespaces](sig_hierarchical_namespaces.md) | Apr-2026 | Apr-2027 | [Maximilian Linhoff](https://github.com/maxnoe)        |
+| [Metadata](sig_metadata.md)                               | Jul-2021 | May-2027 | [Rob Barnsley](https://github.com/robbarnsley)         |
+| [Tokens](sig_tokens.md)                                   | Sep-2023 | Mar-2028 | [Dimitrios Christidis](https://github.com/dchristidis) |
 
 ## Past Special Interest Groups
 

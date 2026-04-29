@@ -11,8 +11,7 @@ packages. Use your best judgment, and feel free to propose changes to this
 document.
 
 If you have questions, you can reach the core development team on our
-[__Mattermost__](mattermost.md) channel, or send an email to our
-development mailing list [__rucio-dev@cern.ch__](mailto:rucio-dev@cern.ch).
+[__Mattermost__](mattermost.md) channel.
 
 ## What should I know before I get started
 
@@ -31,8 +30,7 @@ branches:
   releases.
 
 Release branches only exist for the currently maintained release
-versions. Hotfix branches are created on demand. Please communicate to the Rucio
-maintainers, if you wish to hotfix a previous release.
+versions.
 
 Generally all [__pull requests__](https://github.com/rucio/rucio/pulls) are to
 be created against the Rucio **master** branch. Features will end up in the
@@ -43,6 +41,9 @@ might be needed if e.g. cherry-picking to the last release was not successful.
 The following figure might help you with an overview:
 
 ![Branching Strategy Graph](/img/branching_strategy.svg)
+
+You are expected to read, and follow, the [Rucio AI Policy](./developer/ai_policy.md) when
+contributing (Creating code, documentation, etc.) to the project.
 
 ## How can I Contribute
 
@@ -81,10 +82,10 @@ The following figure might help you with an overview:
   pre-commit install
   ```
 
-  If you only want to run the hooks on a push, run:
+  To enable full local checks, install instead `commit-msg` and `pre-push` hook types too:
 
   ```bash
-  pre-commit install --hook-type pre-push
+  pre-commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
   ```
 
   More information [please view the pre-commit documentation](https://pre-commit.com/#confining-hooks-to-run-at-certain-stages)
@@ -98,54 +99,219 @@ happen there). No pull request will be merged without an associated issue
 (release notes are generated from issues). Each issue gets a **unique issue
 number**.
 
-### 3. Create a local working branch
+### 3. Commit your changes
 
-Create a local branch that corresponds to the issue. To easily
-identify the purpose of branches different keywords must be used:
+Create a local branch that corresponds to the issue, then commit your changes using the Conventional Commits format. All commits must follow the format described in the [Conventional Commits](#conventional-commits) section below and include proper git trailers for issue tracking.
 
-* Patch branches must be named **patch-[issue number]-[short description]**
-* Feature branches must be named **feature-[issue number]-[short description]**
-
-If you create these branches by hand please check the spelling because otherwise
-the test automation might misidentify your branch. There are utility scripts to
-fetch master and create these branches for you:
-
+**Basic commit format:**
 ```bash
-./tools/create-patch-branch <unique issue number> '<short_change_message>'
-./tools/create-feature-branch <unique issue number> '<short_change_message>'
+git commit -m "<type>(<scope>): <description>" --trailer "Closes: #<issue_number>"
 ```
 
-### 4. Commit your changes
-
-Commit your change. The commit command must include a specific message format:
-
+**Example:**
 ```bash
-git commit -m "<component>: <change_message> #<issue number>"
+git commit -m "feat(Transfers): Group bulk transfers by authentication method" --trailer "Closes: #8199"
 ```
-
-Valid component names are listed in the [__label
-list__](https://github.com/rucio/rucio/labels) and are usually specified on the
-issue of the change.
 
 Add additional explanations to the body of the commit, such as motivation for
 certain decisions and background information. [Here are some general rules.](https://cbea.ms/git-commit/).
 
-If you add a [__github-recognised
-keyword__](https://help.github.com/articles/closing-issues-using-keywords/) then
-the associated issue can be closed automatically once the pull request is
-merged, e.g.:
-
-```bash
-<component>: <change_message> Fix #<issue number>
-```
-
-Using multiple commits is allowed as long as they achieve an independent,
+Using multiple commits is encouraged as long as they achieve an independent,
 well-defined, change and are well-described. Otherwise multiple commits should
 be squashed.
 
-### 5. Push changes and create a Pull Request
+#### **Conventional Commits**
 
-Push the commit to your forked repository and create the pull request. Try to
+Rucio enforces the [Conventional Commits](https://www.conventionalcommits.org/) specification to ensure consistent and meaningful commit messages across the project. This is enforced through [commitlint](https://commitlint.js.org/) during CI checks and can be enabled locally via pre-commit hooks.
+
+**Commit Message Format:**
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[footer(s)]
+```
+
+**Rules:**
+
+1. **Type**: Must be one of the following allowed types:
+
+   | Type | Category | Description |
+   |------|----------|-------------|
+   | `feat` | Functional | Introduces a new feature or capability (including changes resulting from removing a functionality) |
+   | `fix` | Functional | Corrects a bug or unexpected behavior |
+   | `docs` | Non-functional | Updates documentation or code comments |
+   | `style` | Non-functional | Formatting, whitespace, or cosmetic changes |
+   | `refactor` | Non-functional | Restructures code without changing its behavior |
+   | `test` | Non-functional | Adds, updates, or fixes tests |
+   | `ci` | Non-functional | Modifies CI/CD pipelines or scripts |
+   | `revert` | Non-functional | Undoes a previous commit |
+
+<details>
+<summary><strong>Quick guide: How to choose the right type</strong></summary>
+
+Ask yourself these questions in order:
+
+1. Are you adding a **new feature or capability** that didn't exist before? → `feat`
+2. Are you fixing **broken or incorrect behavior**? → `fix`
+3. Are you **only updating documentation** (README, docstrings, comments)? → `docs`
+4. Are you making **cosmetic changes** like formatting, whitespace, or linting fixes? → `style`
+5. Are you **reorganizing or cleaning up code** without changing what it does? → `refactor`
+6. Are you **adding, updating, or fixing tests**? → `test`
+7. Are you modifying **CI/CD pipelines, workflows, or build scripts**? → `ci`
+8. Are you **reverting a previous commit**? → `revert`
+
+> **Tip:** If none of these fit, consider splitting your commit into smaller, focused changes.
+
+</details>
+
+2. **Scope**: Must be one of the predefined Rucio components (PascalCase). The available scopes are:
+   - `Auth`: Authentication & Authorisation
+   - `Clients`: Client libraries and tools
+   - `Consistency`: Consistency checks
+   - `Core`: Core & Internals
+   - `Database`: Database-related changes
+   - `DatasetDeletion`: Dataset deletion functionality
+   - `Deletion`: File deletion functionality
+   - `DIRAC`: DIRAC integration
+   - `Containerization`: Docker, Kubernetes, and container-related functionality
+   - `Documentation`: Documentation updates
+   - `LifetimeModel`: Life time model processing
+   - `Messaging`: Messaging system
+   - `Metadata`: Metadata workflows
+   - `Monitoring`: Monitoring, observability, and traces
+   - `MultiVO`: Multi-VO functionality
+   - `OpenData`: Open data functionality
+   - `Policies`: Policy management
+   - `Probes`: Probes & Alarms
+   - `Protocols`: Upload, Download, Deletion protocols
+   - `Rebalancing`: Data rebalancing
+   - `Recovery`: Data recovery
+   - `Replicas`: Replica workflows
+   - `API`: REST & API
+   - `Rules`: Replication rules and rule daemons
+   - `Subscriptions`: Subscription daemon
+   - `Testing`: Regression tests, Unit tests, and CI
+   - `Transfers`: Transfer daemons
+   - `WebUI`: Web user interface
+
+   **Note**: Any changes to this list should also be applied to the [GitHub labels](https://github.com/rucio/rucio/issues/labels) and the [commitlint config](https://github.com/rucio/rucio/blob/master/commitlint.config.js)
+
+3. **Description**:
+   - Should not end with a period
+   - Should be concise but descriptive
+   - Use imperative mood ("add feature" not "added feature")
+
+4. **Line Length**: Header must not exceed 100 characters to prevent truncation in GitHub UI
+
+**Examples:**
+```bash
+feat(Transfers): Group bulk transfers by authentication method
+fix(Core): Fix exception when attaching nonexistent DID to container
+docs(Documentation): Update API endpoint descriptions
+style(Transfers): Touch up comments
+refactor(Transfers): Simplify group key construction
+```
+
+**Choosing the Right Type:**
+
+Sometimes it's unclear which type to use. Consider the **intent** and **impact** of your change:
+
+| Ambiguity | Choose | When |
+|-----------|--------|------|
+| `style` vs `refactor` | `style` | Formatting, whitespace, comment tweaks |
+| `style` vs `refactor` | `refactor` | Modernizing syntax, restructuring code |
+| `fix` vs `refactor` | `fix` | Correcting incorrect behavior |
+| `fix` vs `refactor` | `refactor` | Improving code without fixing a bug |
+| `docs` vs `style` | `docs` | Updating documentation files or docstrings |
+| `docs` vs `style` | `style` | Minor comment formatting within code |
+| `test` vs `fix` | `fix` | Fixing flaky test due to race condition |
+| `test` vs `fix` | `test` | Adding new test cases or correcting test logic |
+
+**Examples:**
+
+| Scenario | Preferred | Rationale |
+|----------|-----------|-----------|
+| Replacing `Union[X, None]` with `Optional[X]` across 60+ files | `refactor(Core): Remove deprecated constructs from the typing module` | Modernizes codebase to newer Python conventions |
+| Adding type hints to function signatures | `refactor(Core): Add type hints to transfer functions` | Improves code without changing behavior |
+| Fixing a test that fails intermittently due to timing | `fix(Testing): Resolve judge evaluator test flakiness` | Corrects broken behavior in test suite |
+| Adding new test cases for edge cases | `test(Testing): Add tests for attaching nonexistent DIDs` | Extends test coverage |
+| Updating README with new installation steps | `docs(Documentation): Update installation instructions` | Documentation-only change |
+| Fixing typos in code comments | `style(Core): Fix typos in transfer module comments` | Minor stylistic improvement |
+
+#### **Breaking Changes**
+
+Commits that introduce breaking API or behavioral changes must use `!` after the type/scope in the header and include a corresponding `BREAKING CHANGE` footer.
+
+**Format:**
+```
+<type>(<scope>)!: <description>
+
+[optional body]
+
+BREAKING CHANGE: <description of the breaking change and its impact>
+```
+
+**Requirement:** A breaking change commit must include **both** the `!` marker in the header (e.g., `feat(Core)!: ...`) **and** a `BREAKING CHANGE` footer with a description explaining the impact.
+
+**Example:**
+```bash
+refactor(Core)!: Make session a mandatory keyword-only argument
+
+BREAKING CHANGE: The session argument is now mandatory and keyword-only
+for all core functions. Callers must explicitly pass session=<session>
+instead of relying on positional arguments or default values.
+Closes: #5947
+```
+
+#### **Git Trailers**
+
+All commits must reference a GitHub issue using git trailers. This ensures proper traceability and automatic issue closure.
+
+**Note:** Do not add empty lines between trailers; trailers must be a contiguous block at the end of the commit message.
+
+**Tip:** Avoid adding `Closes:` to every commit in a PR. Use `Issue:` for intermediate commits, and reserve `Closes:` for the commit you intend to close the issue.
+
+**Supported Trailers:**
+- `Closes: #<issue_number>` - Automatically closes the issue when PR is merged
+- `Issue: #<issue_number>` - References an issue without closing it
+
+**Adding Git Trailers:**
+
+**Method 1: Using git commit command**
+```bash
+git commit -m "feat(Transfers): Group bulk transfers by authentication method" --trailer "Closes: #8199"
+```
+
+**Method 2: Adding to commit body**
+```bash
+git commit -m "feat(Transfers): Group bulk transfers by authentication method
+
+The authentication method is a property of the FTS job. If Rucio does
+not partition the transfers based on it, then some may be done with an
+incorrect authentication method.
+
+Closes: #8199"
+```
+
+**Complete Example:**
+```bash
+feat(Transfers): Group bulk transfers by authentication method
+
+The authentication method is a property of the FTS job. If Rucio does
+not partition the transfers based on it, then some may be done with an
+incorrect authentication method.
+
+Closes: #8199
+```
+
+*See the [original PR #8202](https://github.com/rucio/rucio/pull/8202) for reference.*
+
+### 4. Push changes and create a Pull Request
+
+Push the commit to your forked repository and create the pull request. A template
+will guide you through the creation process, please fill out all required information. Try to
 keep the Pull Request simple, it should achieve the single objective described
 in the issue. Multiple enhancements/fixes should be split into multiple Pull
 Requests.
@@ -162,10 +328,13 @@ The format of the pull request title must be:
 <component>: <short_change_message> #<issue number>
 ```
 
-### 6. Watch the Pull Request for reviews
+### 5. Watch the Pull Request for reviews
 
-Watch the pull request for comments and reviews. For any pull requests update,
-please try to squash/amend your commits to avoid “in-between” commits.
+Watch the pull request for comments and reviews. We expect that all continuous integration
+test-cases run through, if they do not either close the pull request and re-submit
+at a later time or fix them right away. Stale pull requests will be closed automatically.
+
+For any pull requests update, please try to squash/amend your commits to avoid “in-between” commits.
 
 ## Automatic Testing
 
@@ -175,8 +344,8 @@ This testing includes multiple [suites of testing](https://github.com/rucio/ruci
 all of which are required to pass.
 Please enable testing on your fork of the main repository to see the status of your tests as you develop.
 
-
 ###  Writing Tests
+
 For every feature added, there should be a set of corresponding tests that verify
 its functionality and integration with the rest of the codebase.
 
@@ -193,65 +362,13 @@ tests should be entirely self-contained besides for the before-mentioned fixture
 * If a test is specific to a VO, mark it as such using a [`skip_non_{vo}`](https://github.com/rucio/rucio/blob/master/lib/rucio/tests/common.py) fixture,
 or mark it as `skip_multivo` if the test only is intended to work in single-vo settings.
 
-### Local automatic testing
-
-There is also a local shell script to run the same autotests:
-`tools/run_autotests.sh`. For manual local testing within containers, please see
-[__the docker
-README__](https://github.com/rucio/rucio/blob/master/etc/docker/dev/README.rst).
-
-**WARNING:** Because of the nature of using the same scripts as continuous
-integration, some containers may be left running after a test run or when
-aborting the test run. This is especially the case for running this script
-without podman.
-
-By default the tool uses 3 worker processes to run all tests that are defined in
-`etc/docker/test/matrix.yml`. Feel free to modify the matrix to your needs, but
-be sure to not unintentionally commit your changes to it. The tests run at most
-6 hours - after that a TimeoutError will be raised, causing the script to
-fail. Running the autotests like this can be parameterized with environment
-variables as follows:
-
-* `USE_PODMAN` 0/1 (default: depends on whether the docker command points to
-  podman)
-
-    Use podman and therefore pods to run the tests.
-
-* `PARALLEL_AUTOTESTS` 0/1 (default: 1)
-
-    1 enables multiple processes to run autotests and 0 disables it.  When
-    enabled, logs of the running autotests will be written to the `.autotest`
-    directory created in the working directory. Otherwise the log output will be
-    written to the console (stderr).
-
-    *Note that when tests are not running in parallel mode, the test run will
-    always fail fast.*
-
-* `PARALLEL_AUTOTESTS_PROCNUM` (1,) (default: 3)
-
-    Specifies the number of processes to run and therefore the concurrently run
-    autotests. 3 will usually result in more than 8 GB RAM usage and a fair
-    amount of load on the PC.
-
-* `PARALLEL_AUTOTESTS_FAILFAST` 0/1 (default: 0)
-
-    Will abort the parallel run of autotests as soon as possible after at least
-    one autotest failed. Enabling this will leave containers running in case of
-    a failure even on podman.
-
-* `COPY_AUTOTEST_LOGS` 0/1 (default: 0)
-
-    Copies `/var/log` from the rucio container into the `.autotest` directory
-    after the test run. Each test case will have it’s specific naming as with
-    the logs from the parallel run above.
-
 ## Human Review
 
 Anyone is welcome to review merge requests and make comments!
 
 The Rucio development team can approve, request changes, or close pull
-requests. Merging of approved pull requests is done by the Rucio development
-lead.
+requests. Merging of approved pull requests is done, after a second review,  by the Rucio
+merge team.
 
 ## Coding Style
 

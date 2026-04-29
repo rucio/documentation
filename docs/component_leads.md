@@ -1,6 +1,6 @@
 ---
 id: component_leads
-title: Component development leads
+title: Component leads
 sidebar_label: Component leads
 ---
 
@@ -20,10 +20,10 @@ efforts and be the point of contact in case of problems.
 |[Database](https://github.com/rucio/rucio/issues?q=label%3A%22Database%22+is%3Aissue+is%3Aopen) | [Dimitrios Xenakis](https://github.com/Geogouz), [Mario Lassnig](https://github.com/mlassnig), [Martin Barisits](https://github.com/bari12) | Database (Compatibility and optimisation) and SQLAlchemy framework specific issues|
 |[Dataset deletion](https://github.com/rucio/rucio/issues?q=label%3A%22Dataset+deletion%22+is%3Aissue+is%3Aopen) | [Alexander Richards](https://github.com/alexanderrichards), [Martin Barisits](https://github.com/bari12) | Dataset deletion daemon: Undertaker|
 |[Deletion](https://github.com/rucio/rucio/issues?q=label%3A%22Deletion%22+is%3Aissue+is%3Aopen) | [Hugo Gonzalez Labrador](https://github.com/labkode), [Cedric Serfon](https://github.com/cserf) | File deletion daemon: Reaper|
-|[DIRAC](https://github.com/rucio/rucio/issues?q=label%3A%22Dirac%22+is%3Aissue+is%3Aopen) | [Cedric Serfon](https://github.com/cserf) | Rucio integration with [Dirac](https://github.com/DIRACGrid/)|
-|[Docker & Kubernetes](https://github.com/rucio/rucio/issues?q=is%3Aopen+is%3Aissue+label%3A%22Docker+%26+Kubernetes%22) | [Riccardo Di Maio](https://github.com/rdimaio), [Mario Lassnig](https://github.com/mlassnig), [Eric Vaandering](https://github.com/ericvaandering), [Hugo Gonzalez Labrador](https://github.com/labkode) | Docker & Kubernetes deployment|
+|[DIRAC](https://github.com/rucio/rucio/issues?q=label%3A%22Dirac%22+is%3Aissue+is%3Aopen) | [Maximilian Linhoff](https://github.com/maxnoe), [Cedric Serfon](https://github.com/cserf) | Rucio integration with [Dirac](https://github.com/DIRACGrid/)|
+|[Docker & Kubernetes](https://github.com/rucio/rucio/issues?q=is%3Aopen+is%3Aissue+label%3A%22Docker+%26+Kubernetes%22) | [Mario Lassnig](https://github.com/mlassnig), [Eric Vaandering](https://github.com/ericvaandering), [Hugo Gonzalez Labrador](https://github.com/labkode) | Docker & Kubernetes deployment|
 |[Documentation](https://github.com/rucio/rucio/issues?q=label%3A%22Documentation%22+is%3Aissue+is%3Aopen) | [Martin Barisits](https://github.com/bari12), [Maggie Voetberg](https://github.com/voetberg) | General documentation|
-|[Jupyterlab extension](https://github.com/rucio/jupyterlab-extension/issues) | [Francesc Torradeflot](https://github.com/ftorradeflot), [Enrique Garcia Garcia](https://github.com/garciagenrique) | Rucio Jupyterlab extension|
+|[Jupyterlab extension](https://github.com/rucio/jupyterlab-extension/issues) | [Francesc Torradeflot](https://github.com/ftorradeflot), [Giovanni Guerrieri](https://github.com/Soap2G) | Rucio Jupyterlab extension|
 |[Life time model](https://github.com/rucio/rucio/issues?q=label%3A%22Life+time+model%22+is%3Aissue+is%3Aopen) | [Dimitrios Christidis](https://github.com/dchristidis) | Life time model processing and exceptions|
 |[Messaging](https://github.com/rucio/rucio/issues?q=label%3A%22Messaging%22+is%3Aissue+is%3Aopen) | [Alexander Richards](https://github.com/alexanderrichards), [Mario Lassnig](https://github.com/mlassnig) | Messaging daemon: Hermes, Creation of eMails and ActiveMQ messages|
 |[Metadata](https://github.com/rucio/rucio/issues?q=label%3A%22Metadata%22+is%3Aissue+is%3Aopen) | [Rob Barnsley](https://github.com/robbarnsley), [Dimitrios Xenakis](https://github.com/Geogouz) | Metadata workflows|
@@ -35,10 +35,53 @@ efforts and be the point of contact in case of problems.
 |[Rebalancing](https://github.com/rucio/rucio/issues?q=label%3A%22Rebalancing%22+is%3Aissue+is%3Aopen) | [Cedric Serfon](https://github.com/cserf) | Data rebalancing daemon: BB8|
 |[Recovery](https://github.com/rucio/rucio/issues?q=label%3A%22Recovery%22+is%3Aissue+is%3Aopen) | [Cedric Serfon](https://github.com/cserf) | Data recovery daemon: Necromancer and suspicious replica recovery |
 |[Release management](https://github.com/rucio/rucio/issues?q=label%3A%22Release+management%22+is%3Aissue+is%3Aopen) | [Martin Barisits](https://github.com/bari12), [Dimitrios Christidis](https://github.com/dchristidis) | Packaging of new versions, package configuration|
-|[Replicas](https://github.com/rucio/rucio/issues?q=is%3Aopen+is%3Aissue+label%3AReplicas) | [Riccardo Di Maio](https://github.com/rdimaio), [Alexander Richards](https://github.com/alexanderrichards) | Replicas related workflows (list_replicas, add_replica, ...)|
+|[Replicas](https://github.com/rucio/rucio/issues?q=is%3Aopen+is%3Aissue+label%3AReplicas) | [Alexander Richards](https://github.com/alexanderrichards) | Replicas related workflows (list_replicas, add_replica, ...)|
 |[REST & API](https://github.com/rucio/rucio/issues?q=is%3Aopen+is%3Aissue+label%3A%22REST+%26+API%22) | [Maggie Voetberg](https://github.com/voetberg), [Martin Barisits](https://github.com/bari12) | Web-Framework (Web.py & Flask)|
-|[Rules](https://github.com/rucio/rucio/issues?q=label%3A%22Rules%22+is%3Aissue+is%3Aopen) | [Riccardo Di Maio](https://github.com/rdimaio), [Martin Barisits](https://github.com/bari12) | Replication rules and rule daemons: Judge|
+|[Rules](https://github.com/rucio/rucio/issues?q=label%3A%22Rules%22+is%3Aissue+is%3Aopen) | [Martin Barisits](https://github.com/bari12) | Replication rules and rule daemons: Judge|
+|[Security](https://github.com/rucio/rucio/security/policy) | [Benedikt Ziemons](https://github.com/bziemons) | Overseeing software security in Rucio project, setting and monitoring the security policy in the project, reacting to incidents, advising project leader and component leads in matters of security |
 |[Subscriptions](https://github.com/rucio/rucio/issues?q=label%3A%22Subscriptions%22+is%3Aissue+is%3Aopen) | [Cedric Serfon](https://github.com/cserf) | Subscription daemon: Transmogrifier|
-|[Testing](https://github.com/rucio/rucio/issues?q=label%3A%22Testing%22+is%3Aissue+is%3Aopen) | [Mayank Sharma](https://github.com/maany), [Riccardo Di Maio](https://github.com/rdimaio) | Regression and Unit tests, automatic tests of submissions|
-|[Transfers](https://github.com/rucio/rucio/issues?q=label%3A%22Transfers%22+is%3Aissue+is%3Aopen) | [Riccardo Di Maio](https://github.com/rdimaio), [Hugo Gonzalez Labrador](https://github.com/labkode) | Transfer daemons: conveyor and functional transfer tests |
-|[WebUI](https://github.com/rucio/rucio/issues?q=label%3A%22WebUI%22+is%3Aissue+is%3Aopen) | [Mayank Sharma](https://github.com/maany), [Eraldo Silva Junior](https://github.com/esilvaju) | Web user interface: Rucio Web UI|
+|[Testing](https://github.com/rucio/rucio/issues?q=label%3A%22Testing%22+is%3Aissue+is%3Aopen) | [Mayank Sharma](https://github.com/maany) | Regression and Unit tests, automatic tests of submissions|
+|[Transfers](https://github.com/rucio/rucio/issues?q=label%3A%22Transfers%22+is%3Aissue+is%3Aopen) | [Hugo Gonzalez Labrador](https://github.com/labkode) | Transfer daemons: conveyor and functional transfer tests |
+|[WebUI](https://github.com/rucio/rucio/issues?q=label%3A%22WebUI%22+is%3Aissue+is%3Aopen) | [Mayank Sharma](https://github.com/maany) | Web user interface: Rucio Web UI|
+
+# Component lead duties
+
+This guide should give prospective, and current, Rucio component leads a better understanding of what is expected from them in their role.
+Component leads, together with the project leader, form the Core Development team of Rucio. The main responsibility of a component lead
+is to take formal responsibility in planning and developing contributions for their respective component. They are the core experts and
+the point-of-contact in case of issues as well as to guide new developments within their components.
+
+However, their responsibility as a member of the Rucio Core Development team goes further than that. Every Core Development team member
+should be focused on improving the Rucio software and project at large, beyond the limits of their component.
+
+There is no expectation that the component lead (or deputies) implement any arbitrary feature request to their component, however, they
+should advise other contributors in their efforts.
+
+## As a component lead you must
+
+- Take responsibility for the evolution and maintenance of your component;
+   - This means making an effort to actively improve the component, rather than solely reacting to bug submissions;
+- Take an active role in the Rucio project, be open to share your opinion on how your component, but also the wider Rucio project, should evolve;
+   - Participate in the major release planning;
+- Regularly join the weekly Rucio meeting;
+- Be present on the Rucio Mattermost team;
+- Give advice and guide other developers in their contributions to Rucio, especially concerning your component;
+- Give advice to Rucio operators in their usage of Rucio, especially concerning areas of your component;
+- Actively participate in code reviews; Be the default code reviewer of contributions to your component;
+- Participate in the bi-weekly sprints and volunteer for the role of sprint moderator;
+- On GitHub
+   - Actively read and react to Github notifications;
+   - Assign maintenance issues (to yourself, or if agreed to others) which fall into your component;
+   - Advise on feature requests or proposed developments of your component;
+   - Close issues (if duplicate, unsuitable) of your component;
+   - Comment issues, especially the ones of your component;
+   - Review pull requests, especially the ones of your component;
+   - Merge pull requests ...
+      - ... in the core repository, if you are part of the merge team;
+      - ... in the secondary repositories, if they fall into the responsibility of your component;
+
+## As a deputy component lead you must
+
+- Collaborate with and support the component lead in their duties;
+   - For large components it is acceptable to agree on a partition of different work areas of a component assigned to the different deputies;
+- Replace the component lead in their absence;

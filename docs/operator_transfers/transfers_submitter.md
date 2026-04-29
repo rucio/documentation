@@ -3,14 +3,14 @@ id: transfers-submitter
 title: Transfers Submitter
 ---
 
-The `conveyor-submitter` (transfer submitter) is the rucio daemon in charge
+The `conveyor-submitter` (transfer submitter) is the Rucio daemon in charge
 of submitting transfers for execution by an external third-party-copy
 trasfertool. As input, it gets the transfer requests in `queued` state and
 performs multiple tasks on them with the end goal of submitting the actual
 transfer to one or more transfertools.
 
 Historically, submitter was the main entry point into the transfer machinery
-instead of the preparer. Because of that, many old rucio installations don't
+instead of the preparer. Because of that, many old Rucio installations don't
 run the preparer daemon. To allow running in such configuration, submitter
 automatically detects if preparer is running and, if it's not running, will
 perform the "Source replica selection". See the preparer documentation for more

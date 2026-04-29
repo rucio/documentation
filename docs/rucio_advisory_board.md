@@ -45,7 +45,7 @@ board meetings.
 | [CTAO](https://www.ctao.org)        | Mieke Bouwhuis, CTAO     | 2025-May to 2027-May |
 | [DUNE](https://www.dunescience.org) | Mike Kirby, BNL          | 2023-Feb to 2027-Jan |
 | [ESCAPE](https://projectescape.eu)  | Giovanni Guerrieri, CERN | 2025-Feb to 2027-Jan |
-| [SKAO](https://www.skao.int/)       | Rosie Bolton, SKAO       | 2024-Jun to 2026-May |
+| [SKAO](https://www.skao.int/)       | Rosie Bolton, SKAO       | 2024-Jun to 2028-May |
 
 ### Former Rucio Advisory Board representatives
 
@@ -74,12 +74,12 @@ at CERN, with remote participation possibilities. The RAB members agree to
 select a secretary for each meeting who will be in charge of keeping minutes.
 Minutes are kept internal to the RAB.
 
-Should a representative be exceptionally impeded to join a board meeting, they can 
-nominate a replacement representative, from their RSC, to join the meeting. The 
+Should a representative be exceptionally impeded to join a board meeting, they can
+nominate a replacement representative, from their RSC, to join the meeting. The
 replacement must be approved by the Rucio project leader.
 
-Guests can be invited to parts, or the entirety, of a board meeting. Invitations are 
-issued by the Rucio project leader and the RAB members must be informed, in advance, 
+Guests can be invited to parts, or the entirety, of a board meeting. Invitations are
+issued by the Rucio project leader and the RAB members must be informed, in advance,
 of the attendance of guests.
 
 ## Mandate versions

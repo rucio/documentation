@@ -9,7 +9,7 @@ An overview of the typical workflow for a replica before it reaches the suspicio
 
 ## Suspicious Replicas
 
-Replicas can have various states, two of which are `SUSPICIOUS` and `BAD`. Files that are `BAD` need to either be replaced or removed. The job of the suspicious replica recoverer is to decide how a suspicious replica should be handled. 
+Replicas can have various states, two of which are `SUSPICIOUS` and `BAD`. Files that are `BAD` need to either be replaced or removed. The job of the suspicious replica recoverer is to decide how a suspicious replica should be handled.
 
 A replica can be declared suspicious multiple times: each time an attempt to access the replica results in an error message, the replica is declared suspicious. This allows the daemon to handle replicas differently depending on how many times it has been declared suspicious. As long as a file has been declared suspicious less than a certain number of times (referred to as `nattempts`), it's assumed that there is nothing wrong with the replica and that the errors can be ignored. Once there are more that `nattempts` suspicious declarations, the replica is handled by the daemon.
 

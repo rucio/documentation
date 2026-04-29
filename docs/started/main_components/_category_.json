@@ -1,6 +1,6 @@
 {
-    "label": "Main Components", 
-    "collapsible": true, 
-    "link": {"type": "doc", "id":"started/main_components/main_components"}, 
+    "label": "Main Components",
+    "collapsible": true,
+    "link": {"type": "doc", "id":"started/main_components/main_components"},
     "position": 3
 }

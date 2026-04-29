@@ -42,7 +42,7 @@ In the `values.yaml` for `server` and `daemons` (and optionally for `ui` / `webu
 1. In the `server`, `clients`, `daemons`, `ui` and `init` containers, pass the `POLICY_PACKAGE_REQUIREMENTS` build argument. Example:
 Example:
 ```
-docker build -t server --build-arg POLICY_PACKAGE_REQUIREMENTS=vo_1_policy_package==0.4.0,git+https://github.com/vo-2/vo-2-policy-package@v0.1.0
+docker build --tag server --build-arg POLICY_PACKAGE_REQUIREMENTS=vo_1_policy_package==0.4.0,git+https://github.com/vo-2/vo-2-policy-package@v0.1.0
 ```
 
 ### Deploying via Kubernetes secret

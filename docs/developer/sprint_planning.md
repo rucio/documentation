@@ -32,13 +32,17 @@ For example, for a full-time developer devoting 100% of 10 working days to Rucio
 ## Issues
 
 ### Priority
-In a sprint, issues are categorised by their priority:
-- priority: issue is part of the release roadmap objectives
-- non-priority: issue is not related to the release roadmap objectives
+The **priority** of an issue indicates whether the issue is part of the release roadmap objectives or not.
+This is indicated by the presence of a `priority` label on the issue.
+
+Sub-issues of `priority` issues should also be labeled as `priority`.
+This is because a `priority` issue might be too large (see the [Size estimation](#size-estimation) section) to fit in a single sprint,
+and are broken down into sub-issues, which should still be prioritised over non-priority issues.
+
 
 ### Size estimation
 Each issue is assigned a size based on how many days of work the responsible developer estimates the issue to take.
-After/during the roadmap planning, the size estimates should be set for all priority issues. 
+After/during the roadmap planning, the size estimates should be set for all priority issues.
 For non-priority issues, the estimates are set when the issue is added to the project, thus ideally all issues in the project should have a size estimate.
 
 Given a sprint period, a developer should plan issues totaling their available days for that week (see the [Availability](#availability) section.)
@@ -50,6 +54,8 @@ The following labels are available for size estimation:
 - **L**: about one week (5 days) of work. This issue **should** be broken down into individual sub-issues
 - **XL**: more than one week (5 days) of work. This issue **must** be broken down into individual sub-issues
 
+For **LARGE** and **XLARGE** issues it is mandatory to select/nominate a reviewer/co-author at the time of creation of the issue. This is to ensure
+that the approach and planned work is discussed already before the implementation is started.
 
 ## Moderating a sprint
 Each sprint is moderated by one of the developers. This role rotates on a voluntary basis.
