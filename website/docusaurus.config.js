@@ -21,14 +21,21 @@ module.exports={
     "disableTitleTagline": true,
     "preconnect": [
       "https://fonts.gstatic.com"
-    ]
+    ],
   },
-  "onBrokenLinks": "throw",
-  markdown: {
-    mermaid: true,
+  "future":
+    {"v4": {
+      "fasterByDefault": true,
+      "removeLegacyPostBuildHeadAttribute": true,
+    },
+  },
+  "markdown": {
+    "mermaid": true,
+    "hooks": {
+      "onBrokenMarkdownLinks": "throw"
+    }
   },
   themes: ['@docusaurus/theme-mermaid'],
-  "onBrokenMarkdownLinks": "throw",
   "presets": [
     [
       "@docusaurus/preset-classic",
