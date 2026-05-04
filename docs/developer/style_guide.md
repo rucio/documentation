@@ -263,7 +263,7 @@ pre-commit install
 # GitHub Actions
 Code style is checked during a pull request with a GitHub action.
 The action checks the header and type annotations (including a count and veracity).
-More information about type annotations can be found [here](./type_annotation_guide.md).
+More information about type annotations can be found [here](/developer/type_annotation_guide).
 These checks can also be run locally using
 
 ```shell

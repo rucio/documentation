@@ -246,7 +246,7 @@ Use case of different grant types:
 - `client_credentials`: This grant is machine-machine interaction (daemons-IdP interactions). It is used for getting tokens for FTS and Storage(s). This is used by transfer and deletion daemons.
 
 The `<path>` to register depends upon your IdP's scope matching algorithm in combination
-with configuration for RSEs as described [here](#configuring-path-for-storage-capabilities-in-rucio)
+with configuration for RSEs as described [here](#defining-path-for-storage-capabilities)
 
 Please save the value of `client_id` and `client_secret` after registration.
 
@@ -365,7 +365,7 @@ Token-based operations require:
    - FTS audience config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#configuring-the-fts-rest-component).
    - FTS scope config described [here](https://fts3-docs.web.cern.ch/fts3-docs/docs/install/token_configuration.html#add-tokenprovider-information-to-the-database)
 
-#### Configuring `<path>` for Storage Capabilities in Rucio:
+#### Configuring `<path>` for Storage Capabilities in Rucio: {#defining-path-for-storage-capabilities}
 
 Each storage enforces a specific prefix for `storage.<capability>:<path>` scopes. There are two scenarios:
 

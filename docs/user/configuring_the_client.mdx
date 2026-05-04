@@ -9,15 +9,15 @@ Please note that the underlying libraries that the Rucio client uses (e.g. GFAL)
 
 ### ATLAS_SITE_NAME
 
-See [SITE_NAME](#SITE_NAME).
+See [SITE_NAME](#SITE-NAME).
 
 ### CONDA_PREFIX
 
-See [RUCIO_HOME](#RUCIO_HOME).
+See [RUCIO_HOME](#RUCIO-HOME).
 
 ### OSG_SITE_NAME
 
-See [SITE_NAME](#SITE_NAME).
+See [SITE_NAME](#SITE-NAME).
 
 ### RUCIO_ACCOUNT
 
@@ -41,12 +41,12 @@ Any non-empty value is treated as true.
 The path to the main Rucio configuration file.
 Defaults to `$RUCIO_HOME/rucio.cfg`.
 
-### RUCIO_HOME
+### RUCIO_HOME {#RUCIO-HOME}
 
 The directory where the Rucio configuration files are located.
 Defaults to `/opt/rucio/`.
 
-### RUCIO_LATITUDE
+### RUCIO_LATITUDE {#RUCIO-LATITUDE}
 
 The geographical location where the client is run.
 Used to potentially prefer replicas on RSEs which are closer geographically.
@@ -61,7 +61,7 @@ Refer to the [Python logging documentation](https://docs.python.org/3/library/lo
 
 ### RUCIO_LONGITUDE
 
-See [RUCIO_LATITUDE](#RUCIO_LATITUDE).
+See [RUCIO_LATITUDE](#RUCIO-LATITUDE).
 
 ### RUCIO_VO
 
@@ -70,7 +70,7 @@ It matters for multi-VO Rucio instances.
 Corresponds to the `--vo` command-line option and the `client.vo` configuration-file option.
 Defaults to `def`.
 
-### SITE_NAME
+### SITE_NAME {#SITE-NAME}
 
 The name of the site on which the Rucio client is run.
 It matters for sites which have different RSE protocols for WAN and LAN.
@@ -80,7 +80,7 @@ Defaults to `ROAMING`.
 
 ### VIRTUAL_ENV
 
-See [RUCIO_HOME](#RUCIO_HOME).
+See [RUCIO_HOME](#RUCIO-HOME).
 
 ### X509_CERT_DIR
 
