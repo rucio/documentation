@@ -8,7 +8,7 @@ sidebar_position: 5
 ## Prerequisites
 
 You need to have a Rucio server up and running with the root account
-created. Please refer to [installation documentation](operator/installing_server.md) for
+created. Please refer to [installation documentation](/operator/installing_server) for
 further information
 
 ## Creating new users

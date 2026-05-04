@@ -48,11 +48,11 @@ CLI. Take a deep dive, but not before you ensure you've read through the
 pre-requisites section under each of the topics!
 
 - [Setting up a Rucio demo environment](operator/setting_up_demo.md)
-- [Installing Rucio Server](operator/installing_server.md)
+- [Installing Rucio Server](/operator/installing_server)
 - [Installing Rucio Daemons](operator/installing_daemons.md)
 - [Monitoring](operator/monitoring.md)
 - [Database](operator/database)
-- [Configuration parameters](operator/configuration_parameters.md)
+- [Configuration parameters](/operator/configuration_parameters)
 
 ## Developer Documentation
 
