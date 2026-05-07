@@ -8,6 +8,7 @@ links](https://github.com/rucio/documentation/actions/workflows/check_external_l
 This project contains the documentation for the **[Rucio](https://github.com/rucio/rucio)** data-management
 software.
 
+Responsible for PR merging in [rucio/documentation](https://github.com/rucio/documentation/): [Maggie Voetberg](https://github.com/voetberg), [Martin Barisits](https://github.com/bari12)
 
 ## Contribution
 
