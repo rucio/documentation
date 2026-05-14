@@ -452,7 +452,7 @@ Example: `RUCIO_ACCESS_TOKEN`
 ### Global Configuration
 
 #### Default Instance - `default_instance`
-The instance to be pre-selected in the settings menu of the extension.
+The instance to be preselected in the settings menu of the extension.
 
 Example: `atlas.cern.ch`
 
