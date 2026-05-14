@@ -14,7 +14,7 @@ Deletion in Rucio can be performed in broadly two ways.
 
     - Obsolete Tombstone (1970-01-01):
       Set when `purge_replicas=True` or when the replica state is `UNAVAILABLE`. These replicas are prioritized for immediate deletion.
-  
+
     - Standard Tombstone:
       Set using the replica’s `accessed_at` (or `created_at`) timestamp. This supports Least Recently Used (LRU) based cleanup.
 
