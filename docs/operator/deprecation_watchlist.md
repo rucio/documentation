@@ -25,4 +25,3 @@ Wherever possible, we will give a deprecation warning of, at least, one year for
 | Support for MySQL              |                                      | 43.0 / 2027-Mar           |
 | Follower daemon                |                                      | 43.0 / 2027-Mar           |
 | AccountLimits REST Route       |                                      | 44.0 LTS / 2027-Aug       |
-
