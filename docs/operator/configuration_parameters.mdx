@@ -348,6 +348,10 @@ Rucio will look for the config in the following locations -
   - **support**: _(Optional)_ Contact information.
   - **support_rucio**: _(Optional)_ Rucio contact information. Default:
     `https://github.com/rucio/rucio/issues`.
+#### **repairer**
+  - **updated_at_delta**: _(Optional)_ The minimum time in seconds since the last update of a rule
+    for STUCK rules to be considered for repairing. Can be set to ``-1`` to ignore the ``updated_at``
+    timestamp and always try repairing STUCK rules. Default: `1800`.
 #### **saml**
   - **config_path**: Path to the SAML config folder. Example:
     `/opt/rucio/lib/rucio/web/ui/common/saml/`.
