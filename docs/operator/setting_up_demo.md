@@ -431,7 +431,7 @@ $ rucio list-file-replicas test:mynewdataset
 
 This tutorial covers how to register S3-compatible storage (MinIO) as Rucio Storage Elements (RSEs), configure credentials for both Rucio and FTS, and set up RSE distances to enable multi-hop transfers between S3 and XRootD endpoints.
 
-The examples use a Docker Compose playground environment with two MinIO instances (MINIO1, MINIO2) and three XRootD servers (XRD1, XRD2, XRD3). The commands assume you are already have an rucio instance with an admin account. 
+The examples use a Docker Compose playground environment with two MinIO instances (MINIO1, MINIO2) and three XRootD servers (XRD1, XRD2, XRD3). The commands assume you are already have an rucio instance with an admin account.
 
 ## Enabling HTTPS on XRD3 for Multi-Hop
 
@@ -530,7 +530,7 @@ JSON
 
 ### Configuring RSE Distances for Multi-Hop
 
-RSE distances establish transfer paths between RSEs. Setting a distance of 1 between the source and an intermediate will ensure the intermediate transfer will always be preferred over longer direct transfers.  
+RSE distances establish transfer paths between RSEs. Setting a distance of 1 between the source and an intermediate will ensure the intermediate transfer will always be preferred over longer direct transfers.
 
 
 ```bash
