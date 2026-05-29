@@ -498,7 +498,7 @@ for i in 1 2; do
   rucio rse attribute add "${RSE}" --key fts --value https://fts:8446
   rucio account limit add root --rse "${RSE}" --bytes infinity
 done
-``` 
+```
 
 ### Setting RSE Credentials
 
@@ -656,7 +656,7 @@ rucio rule list --account root
 ```
 ## RustFS: Validating Storage Portability
 
-RustFS can be used as an alternative S3-compatible backend for the same workflow. 
+RustFS can be used as an alternative S3-compatible backend for the same workflow.
 To evaluate the portability of the workflow, the testbed was additionally deployed against
 RustFS. The transition required only minimal configuration changes, confirming that the
 Rucio integration is largely independent of the underlying storage backend.
