@@ -264,11 +264,11 @@ Rucio will look for the config in the following locations -
   - **destination**: Name of the destination topic.
     `/topic/transfer.fts_monitoring_complete`.
   - **use_ssl**: _(Optional)_ Boolean. Default: `True`.
-  - **port** Port of the broker if `use_ssl` is set.
+  - **port** Port of the broker. For `>=41.0.0`, used for all connections. See `nonssl_port`.
   - **ssl_cert_file**: _(Optional)_ Path of the certificate file if `use_ssl` is set. No default.
   - **ssl_key_file**: _(Optional)_ Path of the certificate key file defined in
     `ssl_cert_file` if `use_ssl` is set. No default.
-  - **nonssl_port**: _(Optional)_ Port of the broker if `use_ssl` is not set.
+  - **nonssl_port**: _(Optional)_ For `<41.0.0`, used  to specify ports when `use_ssl`=False. See `port`
   - **username**: _(Optional)_ Username of the broker. Only used if `use_ssl` is
     not set. No default.
   - **password**: _(Optional)_ Password of the `username`. Only used if
