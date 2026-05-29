@@ -431,7 +431,7 @@ $ rucio list-file-replicas test:mynewdataset
 
 This tutorial covers how to register S3-compatible storage (MinIO) as Rucio Storage Elements (RSEs), configure credentials for both Rucio and FTS, and set up RSE distances to enable multi-hop transfers between S3 and XRootD endpoints.
 
-The examples use a Docker Compose playground environment with two MinIO instances (MINIO1, MINIO2) and three XRootD servers (XRD1, XRD2, XRD3). The commands assume you are already have an rucio instance with an admin account.
+The examples use a Docker Compose playground environment with two MinIO instances (MINIO1, MINIO2) and three XRootD servers (XRD1, XRD2, XRD3). The commands assume you already have a rucio instance with an admin account.
 
 ## Enabling HTTPS on XRD3 for Multi-Hop
 
@@ -468,48 +468,44 @@ mc mb local/rucio
 ## Registering MinIO RSEs
 
 Register both MinIO instances as RSEs with S3 protocol configuration. The `gfal.NoRename` implementation is used because S3 does not support server-side rename operations.
+Each RSE is configured with the following attributes:
+
+- `sign_url`: enables S3 presigned URL generation for this RSE.
+- `s3_url_style`: uses path-style S3 URLs, which are suitable for the local MinIO endpoints.
+- `verify_checksum`: disables checksum verification for this local demonstration setup.
+- `skip_upload_stat`: avoids relying on an upload stat call for the S3 endpoint.
+- `strict_copy`: enables stricter transfer handling for this RSE.
+- `fts`: points Rucio to the FTS endpoint used for third-party transfers.
 
 ```bash
-rucio rse add MINIO1
-rucio rse protocol add MINIO1 \
-  --host minio1 \
-  --port 9001 \
-  --scheme https \
-  --prefix /rucio/ \
-  --impl rucio.rse.protocols.gfal.NoRename \
-  --domain-json '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}}'
-rucio rse attribute add MINIO1 --key sign_url --value s3
-rucio rse attribute add MINIO1 --key s3_url_style --value path
-rucio rse attribute add MINIO1 --key verify_checksum --value False
-rucio rse attribute add MINIO1 --key skip_upload_stat --value True
-rucio rse attribute add MINIO1 --key strict_copy --value True
-rucio rse attribute add MINIO1 --key fts --value https://fts:8446
-rucio account limit add root --rse MINIO1 --bytes infinity
-
-rucio rse add MINIO2
-rucio rse protocol add MINIO2 \
-  --host minio2 \
-  --port 9002 \
-  --scheme https \
-  --prefix /rucio/ \
-  --impl rucio.rse.protocols.gfal.NoRename \
-  --domain-json '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}}'
-rucio rse attribute add MINIO2 --key sign_url --value s3
-rucio rse attribute add MINIO2 --key s3_url_style --value path
-rucio rse attribute add MINIO2 --key verify_checksum --value False
-rucio rse attribute add MINIO2 --key skip_upload_stat --value True
-rucio rse attribute add MINIO2 --key strict_copy --value True
-rucio rse attribute add MINIO2 --key fts --value https://fts:8446
-rucio account limit add root --rse MINIO2 --bytes infinity
-```
+for i in 1 2; do
+  RSE="MINIO${i}"
+  HOST="minio${i}"
+  PORT="900${i}"
+  rucio rse add "${RSE}"
+  rucio rse protocol add "${RSE}" \
+    --host "${HOST}" \
+    --port "${PORT}" \
+    --scheme https \
+    --prefix /rucio/ \
+    --impl rucio.rse.protocols.gfal.NoRename \
+    --domain-json '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}}'
+  rucio rse attribute add "${RSE}" --key sign_url --value s3
+  rucio rse attribute add "${RSE}" --key s3_url_style --value path
+  rucio rse attribute add "${RSE}" --key verify_checksum --value False
+  rucio rse attribute add "${RSE}" --key skip_upload_stat --value True
+  rucio rse attribute add "${RSE}" --key strict_copy --value True
+  rucio rse attribute add "${RSE}" --key fts --value https://fts:8446
+  rucio account limit add root --rse "${RSE}" --bytes infinity
+done
+``` 
 
 ### Setting RSE Credentials
 
 Rucio needs S3 credentials to generate presigned URLs for transfers. These are stored in `rse-accounts.cfg`, keyed by RSE ID:
-
 ```bash
-ID1=$(rucio rse show MINIO1 | grep '^  id:' | awk '{print$2}')
-ID2=$(rucio rse show MINIO2 | grep '^  id:' | awk '{print$2}')
+ID1=$(rucio rse show MINIO1 | grep '^  id:' | awk '{print $2}')
+ID2=$(rucio rse show MINIO2 | grep '^  id:' | awk '{print $2}')
 cat >/opt/rucio/etc/rse-accounts.cfg <<JSON
 {
   "$ID1": {
@@ -527,11 +523,39 @@ cat >/opt/rucio/etc/rse-accounts.cfg <<JSON
 }
 JSON
 ```
+The resulting configuration can be inspected with:
+```console
+$ cat /opt/rucio/etc/rse-accounts.cfg
+{
+  "<MINIO1_RSE_ID>": {
+    "access_key": "admin",
+    "secret_key": "password",
+    "signature_version": "s3v4",
+    "region": "us-east-1"
+  },
+  "<MINIO2_RSE_ID>": {
+    "access_key": "admin",
+    "secret_key": "password",
+    "signature_version": "s3v4",
+    "region": "us-east-1"
+  }
+}
+```
 
 ### Configuring RSE Distances for Multi-Hop
 
 RSE distances establish transfer paths between RSEs. Setting a distance of 1 between the source and an intermediate will ensure the intermediate transfer will always be preferred over longer direct transfers.
 
+```mermaid
+graph TD
+    MINIO[MINIO RSE]
+    XRD1[XRD1 RSE]
+    XRD2[XRD2 RSE]
+    XRD3[XRD3 RSE]
+    MINIO -.->|distance=1| XRD3
+    XRD3 -.->|distance=1| XRD1
+    XRD3 -.->|distance=1| XRD2
+```
 
 ```bash
 rucio rse distance add XRD3 MINIO1 --distance 1
@@ -630,3 +654,58 @@ Monitor the rule status with:
 ```bash
 rucio rule list --account root
 ```
+## RustFS: Validating Storage Portability
+
+RustFS can be used as an alternative S3-compatible backend for the same workflow. 
+To evaluate the portability of the workflow, the testbed was additionally deployed against
+RustFS. The transition required only minimal configuration changes, confirming that the
+Rucio integration is largely independent of the underlying storage backend.
+
+### Starting RustFS
+
+Generate a self-signed TLS certificate and add RustFS to the stack as a Docker Compose override service, mounting the certificate into the container:
+
+```yaml
+services:
+  rustfs:
+    image: rustfs/rustfs:latest
+    hostname: rustfs
+    environment:
+      RUSTFS_ACCESS_KEY: admin
+      RUSTFS_SECRET_KEY: password
+      RUSTFS_DOMAIN: ""        # enforce path-style URLs
+    command: server --address :9003 --certs-dir /certs /data
+    ports:
+      - "9003:9003"
+```
+
+### Trusting the Certificate
+
+After the containers are running, inject the self-signed certificate into the Rucio CA bundle. Without this, GFAL2 rejects the certificate on upload.
+
+```bash
+docker cp rustfs/public.crt \
+  dev-rucio-1:/etc/pki/ca-trust/source/anchors/rustfs.pem
+docker exec dev-rucio-1 update-ca-trust
+```
+
+### Registering the RSE
+
+The RSE is registered similarly to MinIO, using `--scheme https` and the same set of S3 attributes:
+
+```bash
+rucio rse add RUSTFS_EU
+rucio rse protocol add RUSTFS_EU \
+  --host rustfs --port 9003 --scheme https --prefix /rucio/ \
+  --impl rucio.rse.protocols.gfal.NoRename \
+  --domain-json '{"lan": {"read": 1, "write": 1, "delete": 1},
+                  "wan": {"read": 1, "write": 1, "delete": 1,
+                          "third_party_copy_read": 1, "third_party_copy_write": 1}}'
+rucio rse attribute add RUSTFS_EU --key sign_url         --value s3
+rucio rse attribute add RUSTFS_EU --key s3_url_style     --value path
+rucio rse attribute add RUSTFS_EU --key verify_checksum  --value False
+rucio rse attribute add RUSTFS_EU --key skip_upload_stat --value True
+rucio rse attribute add RUSTFS_EU --key fts              --value https://fts:8446
+```
+
+Add credentials to `rse-accounts.cfg` and register the FTS cloud-storage entry and GFAL2 `s3.conf` section following the same pattern as for MinIO, replacing the hostname with `rustfs`.
