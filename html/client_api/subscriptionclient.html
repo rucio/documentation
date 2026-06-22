@@ -992,6 +992,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rucio.client.subscriptionclient.SubscriptionClient.list_subscription_rule_states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_subscription_rule_states
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1200,6 +1211,17 @@
     <span class="md-ellipsis">
       
         list_subscription_rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.subscriptionclient.SubscriptionClient.list_subscription_rule_states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list_subscription_rule_states
       
     </span>
   </a>
@@ -2030,6 +2052,144 @@ Examples: <code>{'status': 'INACTIVE/ACTIVE/BROKEN', 'last_modified_date': ...}<
                       <code><span title="str">str</span></code>
                   </span>
               </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.client.subscriptionclient.SubscriptionClient.list_subscription_rule_states" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_subscription_rule_states</span>
+
+
+<a href="#rucio.client.subscriptionclient.SubscriptionClient.list_subscription_rule_states" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_subscription_rule_states</span><span class="p">(</span>
+    <span class="n">account</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">include_details</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>List the aggregated rule states for subscriptions.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>account</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Account identifier</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Name of the subscription (optional)</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>include_details</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Include subscription metadata (state, last_processed, lifetime, expired_at, comments)</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Iterator of dictionaries with subscription rule state information</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="NotFound">NotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If subscription is not found</p>
+              </div>
             </td>
           </tr>
       </tbody>
