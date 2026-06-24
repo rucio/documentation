@@ -16,8 +16,21 @@ remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSIT
 rm -rf "${OUTPUT_DIRECTORY}"
 git clone --branch "${INPUT_BRANCH}" "${remote_repo}" "${OUTPUT_DIRECTORY}"
 mv "${OUTPUT_DIRECTORY}/.git" output.git
+
+# Preserve pr-preview directory if it exists
+if [ -d "${OUTPUT_DIRECTORY}/pr-preview" ]; then
+    echo "Preserving PR preview directory..."
+    mv "${OUTPUT_DIRECTORY}/pr-preview" pr-preview-backup
+fi
+
 rm -rf "${OUTPUT_DIRECTORY}"
 cp -r "${INPUT_DIRECTORY}" "${OUTPUT_DIRECTORY}"
+
+# Restore pr-preview directory
+if [ -d "pr-preview-backup" ]; then
+    echo "Restoring PR preview directory..."
+    mv pr-preview-backup "${OUTPUT_DIRECTORY}/pr-preview"
+fi
 
 mv output.git "${OUTPUT_DIRECTORY}/.git"
 cd "${OUTPUT_DIRECTORY}"
