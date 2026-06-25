@@ -431,6 +431,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#rucio.client.baseclient.BaseClient.__initialize_oidc_token_refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __initialize_oidc_token_refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rucio.client.baseclient.BaseClient.__get_token_x509" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1268,6 +1279,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#rucio.client.baseclient.BaseClient.__initialize_oidc_token_refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __initialize_oidc_token_refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rucio.client.baseclient.BaseClient.__get_token_x509" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1779,6 +1801,27 @@ Refresh Tokens are granted only in case no valid access token exists in user's
 local storage, oidc_scope includes 'offline_access'. In such case, refresh token
 is stored in Rucio DB.</p>
 <p>:returns: True if the token was successfully received. False otherwise.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.client.baseclient.BaseClient.__initialize_oidc_token_refresh" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">__initialize_oidc_token_refresh</span>
+
+
+<a href="#rucio.client.baseclient.BaseClient.__initialize_oidc_token_refresh" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">__initialize_oidc_token_refresh</span><span class="p">()</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>A freshly issued OIDC token carries no expiration, so reset the stored epoch
+and refresh to get one the auto-refresh mechanism can track.</p>
 
 
     </div>
