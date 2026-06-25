@@ -14,6 +14,17 @@ together. Please [reach out](../contact_us.md) to us to give feedback.
 
 Wherever possible, we will give a deprecation warning of, at least, one year for removals.
 
+## What belongs on this list
+
+This watchlist is intended for high-level, operator- or user-facing features that are
+removed in their entirety. These are changes with no drop-in replacement, where operators
+or users need advance notice to plan a migration. Typical examples are the removal of a
+transfer protocol, a daemon, support for a database backend, or a user interface.
+
+It is not intended for lower-level or internal deprecations that come with a clear
+migration path, such as the removal of a single REST API endpoint that has been superseded
+by a new one.
+
 ## Deprecation watchlist
 
 | Feature                        | Note                                 | Removed in version / date |
