@@ -9,6 +9,6 @@
 		},
 		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/devcontainers/features/python:1": {},
-		"ghcr.io/devcontainers/features/ruby:1": {}
+		"ghcr.io/devcontainers/features/ruby:2": {}
 	}
 }
