@@ -10,7 +10,7 @@ development pipeline.
 
 ## Purpose
 
-The number of open issues across the Rucio trackers has been growing in an
+The number of open issues across the Rucio trackers can grow in an
 uncontrolled way. This is bad for two groups:
 
 * **The development team**, because an ever-growing backlog makes it hard to
@@ -41,26 +41,22 @@ This has two consequences:
 
 ## Scope
 
-This guideline applies to the core and secondary Rucio repositories, including
-(non-exhaustively):
-
-* `rucio/rucio`
-* `rucio/webui`
-* `rucio/documentation`
-* `rucio/containers`
-* `rucio/helm-charts`
-* … and other repositories maintained by the project.
-
-The [component leads](../component_leads.md) who maintain these repositories are
+This guideline applies to the actively maintained repositories under the
+[Rucio GitHub organisation](https://github.com/rucio), i.e. the core
+`rucio/rucio` repository together with the secondary repositories such as
+`webui`, `documentation`, `containers`, and `helm-charts`. The
+[component leads](../component_leads.md) who maintain these repositories are
 responsible for applying this guideline to the issues in their area.
 
 ## The rules
 
 ### Twelve-month delivery horizon
 
-Every open issue in the tracker is expected to be addressed and closed within
-**twelve months** of being opened. The tracker is intended as a working pipeline
-of achievable goals, not an open-ended backlog.
+Every open issue is expected to be **resolved and closed within twelve months**
+of being opened. This twelve-month window is the delivery horizon for completing
+the work, not the time to respond: issues are triaged promptly (see
+[Prompt triage](#prompt-triage) below). The tracker is intended as a working
+pipeline of achievable goals, not an open-ended backlog.
 
 ### Maximum lifetime of open issues
 
