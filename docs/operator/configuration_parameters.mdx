@@ -57,8 +57,6 @@ Rucio will look for the config in the following locations -
   - **gss_email**: _(Optional)_ Email of the Kerberos auth method which identity
     is specified in `gss_identity`.
   - **gss_identity**: _(Optional)_ Identity of the Kerberos auth method.
-  - **saml_email** <!--NOT USED IN CODE-->
-  - **saml_id** <!--NOT USED IN CODE-->
   - **ssh_email**: _(Optional)_ Email of the SSH auth method which identity is
     specified in `ssh_identity`. Default: `ph-adp-ddm-lab@cern.ch`.
   - **ssh_identity**: _(Optional)_ SSH auth using an RSA key. Default: ```
@@ -149,7 +147,7 @@ Rucio will look for the config in the following locations -
     rucio.cfg file, use that file. Currently this prevents authenticating as
     another user or VO. Default: `None`.
   - **auth_type**: Type of authentication in rucio. Values: `{userpass, x509,
-    x509_proxy, gss, ssh, saml, oidc}`.
+    x509_proxy, gss, ssh, oidc}`.
   - **ca_cert**: Path of the cert file for HTTPS. Example:
     `/opt/rucio/etc/web/ca.crt`.
   - **client_cert**: Path of the X.509 client cert file. This can be overwritten
@@ -175,7 +173,7 @@ Rucio will look for the config in the following locations -
   - **oidc_username**: _(Optional)_ Only used if `auth_type = oidc`. Default:
     `None`.
   - **password**: Password of the user specified in `username`. Mandatory if
-    `auth_type = userpass` or `auth_type = saml`.
+    `auth_type = userpass`.
   - **protocol_stat_retries**: _(Optional)_ Integer, number of retries if stat
     file fails. The time of the retries are: 1s, 2s, 4s, 8s, 16s, 32s
     later. Default: `6`.
@@ -185,7 +183,7 @@ Rucio will look for the config in the following locations -
     `https://rucio-server-prod.cern.ch:443`.
   - **ssh_private_key**: Path of the SSH private key. Mandatory if `auth_type =
     ssh`. Example: `$HOME/.ssh/id_rsa`.
-  - **username**: Mandatory if `auth_type = userpass` or `auth_type = saml`.
+  - **username**: Mandatory if `auth_type = userpass`.
   - **vo**: _(Optional)_ VO name. Default: `def`.
 #### **credentials**
   - **gcs**: _(Optional)_ Path of the Google Cloud Storage credentials. Default:
@@ -357,9 +355,6 @@ Rucio will look for the config in the following locations -
   - **updated_at_delta**: _(Optional)_ The minimum time in seconds since the last update of a rule
     for STUCK rules to be considered for repairing. Can be set to ``-1`` to ignore the ``updated_at``
     timestamp and always try repairing STUCK rules. Default: `1800`.
-#### **saml**
-  - **config_path**: Path to the SAML config folder. Example:
-    `/opt/rucio/lib/rucio/web/ui/common/saml/`.
 #### **test**
   - **cacert**: Path of the CA certificate for tests. Example:
     `/opt/rucio/etc/web/ca.crt`
