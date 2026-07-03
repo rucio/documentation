@@ -82,12 +82,12 @@ SSLOptions +StdEnvVars +LegacyDNStringFormat
 
 ### OIDC_ALL identity format
 
-OIDC_ALL identities are used to enable access to data without managing individual 
-user. For example two experiments having a memorandum of understanding and sharing 
-data while not keep track of each others users. 
+OIDC_ALL identities are used to enable access to data without managing individual
+user. For example two experiments having a memorandum of understanding and sharing
+data while not keep track of each others users.
 
 It is configured using only the OIDC provider as the identity and all users having
-valid OIDC tokens will be mapped to one account. 
+valid OIDC tokens will be mapped to one account.
 
 Example
 ```bash
