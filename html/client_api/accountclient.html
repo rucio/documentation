@@ -498,6 +498,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="set_account_limit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.accountclient.AccountClient.set_account_limit--see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1521,6 +1538,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="set_account_limit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rucio.client.accountclient.AccountClient.set_account_limit--see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1789,7 +1823,7 @@
 
 
 
-        <p>Account client class for working with rucio accounts</p>
+        <p>Account client class for working with Rucio accounts</p>
 
 
 
@@ -1825,7 +1859,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to create a new account.</p>
+        <p>Create a new account. Accounts can be used to set permissions, identities, and quotas.</p>
 
 
 <table>
@@ -1858,12 +1892,15 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The account type.</p>
+                <p>The account type.
+Choose from USER (for a single user),
+GROUP (an account shared across multiple users)
+or SERVICE (operator or for automated processes).</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
+                      <code><span title="typing.Literal">Literal</span>[&#39;USER&#39;, &#39;GROUP&#39;, &#39;SERVICE&#39;]</code>
                   </span>
               </p>
             </td>
@@ -1874,7 +1911,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The Email address associated with the account.</p>
+                <p>The email address associated with the account.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1899,7 +1936,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if account was created successfully else False.</code>
+                    <code>    True if account was created.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -1936,6 +1973,25 @@
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Create a new user account for jdoe.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">add_account</span><span class="p">(</span><span class="s1">&#39;jdoe&#39;</span><span class="p">,</span> <span class="s1">&#39;USER&#39;</span><span class="p">,</span> <span class="s1">&#39;jdoe@cern.ch&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.delete_account
+rucio.client.accountclient.AccountClient.get_account
+rucio.client.accountclient.AccountClient.add_identity
+rucio.client.accountclient.AccountClient.set_account_limit</p>
+</details>
+
     </div>
 
 </div>
@@ -1953,7 +2009,9 @@
 
     <div class="doc doc-contents ">
 
-        <p>Send the request to disable an account.</p>
+        <p>Disable an account.
+When an account is disabled, the account can no longer be used for authentication, but it will still exist in the system.
+Alternatively, an account can temporary disabled by suspending the account via <code>update_account(account, 'status', 'suspended')</code>.</p>
 
 
 <table>
@@ -1995,7 +2053,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if account was disabled successfully. False otherwise.</code>
+                    <code>    True if account was disabled successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -2031,6 +2089,25 @@
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Delete the 'jdoe' account.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">delete_account</span><span class="p">(</span><span class="s1">&#39;jdoe&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.add_account
+rucio.client.accountclient.AccountClient.get_account
+rucio.client.accountclient.AccountClient.list_accounts
+rucio.client.accountclient.AccountClient.update_account</p>
+</details>
 
     </div>
 
@@ -2091,12 +2168,19 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    A dictionary of attributes for the account. None if failure.</code>
+                    <code>    A dictionary of settings for an account.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                
+                <p>** <code>account</code><strong> [str]: The name of the account.
+** <code>type</code></strong> [str]: The account type (USER, GROUP, or SERVICE).
+** <code>email</code><strong> [str]: The email address associated with the account.
+** <code>status</code></strong> [str]: The account status (active, disabled, or suspended).
+** <code>created_at</code><strong> [datetime.datetime]: When the account was created.
+** <code>updated_at</code></strong> [datetime.datetime]: When the account was last updated.
+** <code>deleted_at</code><strong> [datetime.datetime]: When the account was deleted. None if the account is not deleted.
+** <code>suspended_at</code></strong> [datetime.datetime]: When the account was suspended. None if the account is not suspended.</p>
               </div>
             </td>
           </tr>
@@ -2127,6 +2211,13 @@
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.add_account
+rucio.client.accountclient.AccountClient.update_account
+rucio.client.accountclient.AccountClient.add_account_attribute</p>
+</details>
 
     </div>
 
@@ -2178,12 +2269,12 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Account property like status.</p>
+                <p>Account property. Choose from <code>status</code> (active, disabled, or suspended) or <code>account_type</code> (USER, GROUP, or SERVICE), or email.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
+                      <code><span title="typing.Literal">Literal</span>[&#39;status&#39;, &#39;account_type&#39;, &#39;email&#39;]</code>
                   </span>
               </p>
             </td>
@@ -2243,17 +2334,36 @@
           <tr class="doc-section-item">
             <td>
               <span class="doc-raises-annotation">
-                  <code><span title="Exception">Exception</span></code>
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
               </span>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
-                <p>If update fails.</p>
+                <p>If account doesn't exist.</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Suspend the 'jdoe' account, can be used a 'ban' operation to temporarily disable an account.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">update_account</span><span class="p">(</span><span class="s1">&#39;jdoe&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;suspended&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example</summary>
+<p>Change the email associated with a service account</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">update_account</span><span class="p">(</span><span class="s1">&#39;my_service_account&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;new.services@cern.ch&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
 
 
     </div>
@@ -2275,7 +2385,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Send the request to list all rucio accounts.</p>
+        <p>List all accounts, with the ablity to filter based on type, identity, or other account attributes.</p>
 
 
 <table>
@@ -2312,7 +2422,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The identity key name. For example x509 DN, or a username.</p>
+                <p>The identity key name. For example, x509 DN or a username.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2332,7 +2442,8 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>A dictionary key:account attribute to use for the filtering.</p>
+                <p>A dictionary of key-value pairs to filter on accounts.
+Can be an acount setting or an account attribute.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2361,12 +2472,16 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    An iterator of dictionaries containing account information.</code>
+                    <code>    An iterator of dictionaries of settings for accounts.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                
+                <pre><code>** `account`** [str]: The name of the account.
+** `type`** [str]: The account type (USER, GROUP, or SERVICE).
+** `email`** [str]: The email address associated with the account.
+</code></pre>
+<p>If no accounts match the provided criteria, an empty iterator is returned.</p>
               </div>
             </td>
           </tr>
@@ -2374,28 +2489,27 @@
     </table>
 
 
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code><span title="AccountNotFound">AccountNotFound</span></code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>If account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>List all 'USER' account names.
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">user_accounts</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">(</span><span class="n">account_type</span><span class="o">=</span><span class="s1">&#39;USER&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">user_accounts</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">account</span><span class="p">[</span><span class="s1">&#39;account&#39;</span><span class="p">])</span>
+</code></pre></div></p>
+</details>
+<details class="example">
+<summary>Example</summary>
+<p>List all service account names with an 'admin' attribute
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">service_accounts</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">(</span><span class="n">account_type</span><span class="o">=</span><span class="s1">&#39;SERVICE&#39;</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;admin&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<span class="k">for</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">service_accounts</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">account</span><span class="p">[</span><span class="s1">&#39;account&#39;</span><span class="p">])</span>
+</code></pre></div></p>
+</details>
 
 
     </div>
@@ -2415,7 +2529,8 @@
 
     <div class="doc doc-contents ">
 
-        <p>Get information about account whose token is used.</p>
+        <p>Get information about account whose token is used.
+Recommended as a debugging tool to check authentication via client.</p>
 
 
 <table>
@@ -2429,12 +2544,19 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    A dictionary of attributes for the account. None if failure.</code>
+                    <code>    Settings for the authenticated account.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                
+                <p>** <code>account</code><strong> [str]: The name of the account.
+** <code>type</code></strong> [str]: The account type (USER, GROUP, or SERVICE).
+** <code>email</code><strong> [str]: The email address associated with the account.
+** <code>status</code></strong> [str]: The account status (active, disabled, or suspended).
+** <code>created_at</code><strong> [datetime.datetime]: When the account was created.
+** <code>updated_at</code></strong> [datetime.datetime]: When the account was last updated.
+** <code>deleted_at</code><strong> [datetime.datetime]: When the account was deleted. None if the account is not deleted.
+** <code>suspended_at</code></strong> [datetime.datetime]: When the account was suspended. None if the account is not suspended.</p>
               </div>
             </td>
           </tr>
@@ -2442,29 +2564,10 @@
     </table>
 
 
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RAISES</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
-                  <code><span title="AccountNotFound">AccountNotFound</span></code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>If account doesn't exist.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.get_account</p>
+</details>
 
     </div>
 
@@ -2633,6 +2736,42 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="IdentityError">IdentityError</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If you are missing a required element of the identity</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="Duplicate">Duplicate</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the identity is already associated with the account.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
     </div>
 
 </div>
@@ -2737,6 +2876,30 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="IdentityError">IdentityError</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Identity does not exist or is not associated with the account.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
     </div>
 
 </div>
@@ -2785,6 +2948,56 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    An iterator of dictionaries of settings for identities associated with the account.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>** <code>type</code> ** [str]: The type of the authentication (x509, gss, userpass).
+** <code>identity</code> ** [str]: The identity key name. For example x509 DN, or a username.
+** <code>email</code> ** [str]: The Email address associated with the identity.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
     </div>
 
 </div>
@@ -2802,7 +3015,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>List the associated rules of an account.</p>
+        <p>List the associated rules that an account owns.</p>
 
 
 <table>
@@ -2833,6 +3046,36 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    An iterator of dictionaries of settings for rules associated with the account.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>Keys are the attributes of the rule as given by <code>RuleClient.get_replication_rule</code></p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.ruleclient.RuleClient.get_replication_rule
+rucio.client.ruleclient.RuleClient.add_replication_rule</p>
+</details>
+
     </div>
 
 </div>
@@ -2850,7 +3093,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Return the correct account limits for the given locality.</p>
+        <p>Return the account limits for the given rse and locality.</p>
 
 
 <table>
@@ -2913,6 +3156,72 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    Dictionary with keys of the RSEs and the account limit for each RSE in bytes.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>If the RSE expression resolves to no RSEs, {rse_expression: None} is returned.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="UnsupportedOperation">UnsupportedOperation</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the provided locality is not 'local' or 'global'.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.get_global_account_limit
+rucio.client.accountclient.AccountClient.get_local_account_limit</p>
+</details>
+
     </div>
 
 </div>
@@ -2930,7 +3239,10 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sets an account limit for a given limit scope.</p>
+        <p>Sets an account limit for a given limit scope.
+Limits are defined as a combination of rse{_expression} and locality.
+A "local" limit applied a limit to a specific RSE,
+while a "global" limit applies to all RSEs that match the provided RSE expression.</p>
 
 
 <table>
@@ -2963,7 +3275,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The rse name.</p>
+                <p>The rse name or expression.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -3020,7 +3332,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if quota was created successfully, False otherwise.</code>
+                    <code>    True if quota was created successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -3031,6 +3343,68 @@
           </tr>
       </tbody>
     </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="UnsupportedOperation">UnsupportedOperation</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the provided locality is not 'local' or 'global'.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Set a local account limit of 10GB for the 'jdoe' account on the 'MOCK' RSE.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">set_account_limit</span><span class="p">(</span><span class="s1">&#39;jdoe&#39;</span><span class="p">,</span> <span class="s1">&#39;MOCK&#39;</span><span class="p">,</span> <span class="mf">1e10</span><span class="p">,</span> <span class="s1">&#39;local&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example</summary>
+<p>Set a global account limit of 1TB for the 'jdoe' account on all RSEs that match the expression 'MOCK*'.
+If a local limit already exists for an RSE that matches the expression,
+the local limit will override the global limit for that RSE.</p>
+<p>So if the previous example's limit is already place,
+this will result in a 10GB limit for 'jdoe' on 'MOCK' and a 1TB limit for 'jdoe' on all other RSEs that match 'MOCK*'.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">set_account_limit</span><span class="p">(</span><span class="s1">&#39;jdoe&#39;</span><span class="p">,</span> <span class="s1">&#39;MOCK*&#39;</span><span class="p">,</span> <span class="mf">1e12</span><span class="p">,</span> <span class="s1">&#39;global&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<h6 id="rucio.client.accountclient.AccountClient.set_account_limit--see-also">See Also<a class="headerlink" href="#rucio.client.accountclient.AccountClient.set_account_limit--see-also" title="Permanent link">&para;</a></h6>
+<p>rucio.client.accountclient.AccountClient.set_local_account_limit
+rucio.client.accountclient.AccountClient.set_global_account_limit</p>
 
 
     </div>
@@ -3124,7 +3498,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if quota was deleted successfully, False otherwise.</code>
+                    <code>    True if limit was deleted successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -3136,6 +3510,47 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="UnsupportedOperation">UnsupportedOperation</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the provided locality is not 'local' or 'global'.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.set_account_limit</p>
+</details>
 
     </div>
 
@@ -3201,6 +3616,37 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    Dictionary with keys of the RSE Expression and the account limit for the RSE Expression in bytes.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>Does not resolve each RSE Expression to RSEs.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.get_account_limits
+rucio.client.accountclient.AccountClient.get_local_account_limits
+rucio.client.rseclient.RSEClient.list_rses</p>
+</details>
+
     </div>
 
 </div>
@@ -3249,6 +3695,48 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="InvalidRSEExpression">InvalidRSEExpression</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the account has a limit with a RSE Expression limits that do not resolve to RSEs</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.get_account_limits
+rucio.client.accountclient.AccountClient.get_local_account_limits</p>
+</details>
+
     </div>
 
 </div>
@@ -3266,7 +3754,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>List the account rse limits of this account.</p>
+        <p>List the all local rse limits of this account.</p>
 
 
 <table>
@@ -3297,6 +3785,60 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    Dictionary with keys of the RSEs and the account limit for each RSE in bytes</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.get_account_limits
+rucio.client.accountclient.AccountClient.get_global_account_limits</p>
+</details>
+
     </div>
 
 </div>
@@ -3314,7 +3856,8 @@
 
     <div class="doc doc-contents ">
 
-        <p>List the account rse limits of this account for the specific rse.</p>
+        <p>Get the local limit for this account on a specified RSE.
+Equivalent to <code>get_local_account_limits(account)[rse]</code></p>
 
 
 <table>
@@ -3360,6 +3903,71 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    Dictionary with keys of the RSE and the account limit for the RSE in bytes.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSENotFound">RSENotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If RSE doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.get_account_limits</p>
+</details>
 
     </div>
 
@@ -3452,7 +4060,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if quota was created successfully, False otherwise.</code>
+                    <code>    True if quota was created successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -3464,6 +4072,49 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSENotFound">RSENotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If RSE doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.set_global_account_limit
+rucio.client.accountclient.AccountClient.get_local_account_limit
+rucio.client.accountclient.AccountClient.get_account_limits</p>
+</details>
 
     </div>
 
@@ -3482,7 +4133,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to remove an account limit.</p>
+        <p>Remove a local account limit</p>
 
 
 <table>
@@ -3540,7 +4191,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if quota was removed successfully, False otherwise.</code>
+                    <code>    True if quota was removed successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -3573,9 +4224,29 @@
               </div>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSENotFound">RSENotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If RSE doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.set_account_limit
+rucio.client.accountclient.AccountClient.set_local_account_limit
+rucio.client.accountclient.AccountClient.get_local_account_limit
+rucio.client.accountclient.AccountClient.delete_account_limit</p>
+</details>
 
     </div>
 
@@ -3594,7 +4265,9 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to set a global account limit for an account.</p>
+        <p>Set a global account limit for an account.
+A global limit applies to all RSEs that match the RSE Expression.
+If a local limit exists that matches the expression, the local limit takes precedence.</p>
 
 
 <table>
@@ -3668,7 +4341,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if quota was created successfully, False otherwise.</code>
+                    <code>    True if quota was created successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -3680,6 +4353,36 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.set_local_account_limit
+rucio.client.accountclient.AccountClient.get_global_account_limit</p>
+</details>
 
     </div>
 
@@ -3698,7 +4401,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to remove a global account limit.</p>
+        <p>Remove a global account limit.</p>
 
 
 <table>
@@ -3756,7 +4459,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if quota was removed successfully, False otherwise.</code>
+                    <code>    True if quota was removed successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -3792,6 +4495,13 @@
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.set_account_limit
+rucio.client.accountclient.AccountClient.set_global_account_limit
+rucio.client.accountclient.AccountClient.get_global_account_limit</p>
+</details>
 
     </div>
 
@@ -3843,7 +4553,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The rse name.</p>
+                <p>The rse name, used to filter the usage to a specific RSE. If None, all RSEs used by the account are returned.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -3860,6 +4570,63 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    An iterator of dictionaries with the keys:</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p><strong><code>rse</code> </strong>: RSE Name.
+** <code>bytes</code> <strong>: Number of bytes used on the RSE.
+** <code>'files</code> </strong>: Number of files on the RSE belonging to the account.
+** <code>bytes_limit</code> <strong>: If a limit is set, the usage limit for the account.
+** <code>bytes_remaining</code> </strong>: <code>bytes_limit</code> - <code>bytes_used</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.get_global_account_usage</p>
+</details>
 
     </div>
 
@@ -3928,6 +4695,63 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    An iterator of dictionaries with the keys:</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p><strong><code>rse</code> </strong>: RSE Name.
+** <code>bytes</code> <strong>: Number of bytes used on the RSE.
+** <code>'files</code> </strong>: Number of files on the RSE belonging to the account.
+** <code>bytes_limit</code> <strong>: If a limit is set, the usage limit for the account.
+** <code>bytes_remaining</code> </strong>: <code>bytes_limit</code> - <code>bytes_used</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.get_local_account_usage</p>
+</details>
 
     </div>
 
@@ -4010,7 +4834,9 @@
 
     <div class="doc doc-contents ">
 
-        <p>List the attributes for an account.</p>
+        <p>List the attributes for an account.
+Attributes are attribute key-value pairs that can be added to accounts.
+They can be used in permission policies or for other custom uses.</p>
 
 
 <table>
@@ -4040,6 +4866,49 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    An iterator of list of dictionaries of account attributes, as key-value pairs.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>List all attributes for the 'jdoe' account.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">attributes</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list_account_attributes</span><span class="p">(</span><span class="s1">&#39;jdoe&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span> <span class="c1"># Each attribute is returned as a list of dictionaries</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attribute key: </span><span class="si">{</span><span class="n">attribute</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, Attribute value: </span><span class="si">{</span><span class="n">attribute</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.add_account_attribute
+rucio.client.accountclient.AccountClient.delete_account_attribute</p>
+</details>
 
     </div>
 
@@ -4121,6 +4990,60 @@
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    True if successful.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.list_account_attributes
+rucio.client.accountclient.AccountClient.delete_account_attribute</p>
+</details>
+
     </div>
 
 </div>
@@ -4184,6 +5107,60 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    True if successful.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccountNotFound">AccountNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If account doesn't exist or does not have the attribute key.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.accountclient.AccountClient.list_account_attributes
+rucio.client.accountclient.AccountClient.add_account_attribute</p>
+</details>
 
     </div>
 
