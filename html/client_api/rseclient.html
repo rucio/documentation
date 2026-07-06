@@ -1827,7 +1827,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Returns details about the referred RSE.</p>
+        <p>Returns details about an RSE.</p>
 
 
 <table>
@@ -1844,7 +1844,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Name of the referred RSE</p>
+                <p>Name of the RSE</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1869,12 +1869,70 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>A dict containing all attributes of the referred RSE.</code>
+                    <code>Dictionary of settings and protocol attributes.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
                 
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Additional attributes can be added beyond the ones listed below by using &#34;RSEClient.add_rse_attribute&#34;</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>and read with &#34;RSEClient.list_rse_attributes&#34;.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p><strong><code>availability</code></strong>:
+    int: [Deprecated]</p>
+<p><strong><code>availability_delete</code></strong>:
+    bool: Can the replicas on the RSE be deleted?</p>
+<p><strong><code>availability_read</code></strong>:
+    bool: Can replicas on the RSE be read?</p>
+<p><strong><code>availability_write</code></strong>:
+    bool: Can the RSE be written to?</p>
+<p><strong><code>credentials</code></strong>:
+    Optional[str]: Crediental for an attached protocol (if any)</p>
+<p><strong><code>deterministic</code></strong>:
+    bool: Are the PFNs on the RSE set deteriminstically?</p>
+<p><strong><code>domain</code></strong>:
+    dict|list: Domains (lan/wan) the RSE can act on (and premissions, if dictionary).
+    Form of {"wan": {"read"...}, "lan": {...}} if dictionary, else ["wan", "lan"].</p>
+<p><strong><code>id</code></strong>:
+    str: ID of the RSE</p>
+<p><strong><code>lfn2pfn_algorithm</code></strong>:
+    Optional[str]: Algorithm for LFN to PFNs</p>
+<p><strong><code>protocols</code></strong>:
+    list[dict]: Describing the protocols used by the RSE for storage</p>
+<p><strong><code>qos_class</code></strong>:
+    Optional[str]: QoS Policy</p>
+<p><strong><code>rse</code></strong>:
+    str: Name of the RSE</p>
+<p><strong><code>rse_type</code></strong>:
+    str: Storage type of RSE, typically "DISK" or "TAPE"</p>
+<p><strong><code>sign_url</code></strong>:
+    Optional[str]: Signing service configuration, if configured.</p>
+<p><strong><code>staging_area</code></strong>:
+    bool: Whether the RSE is a staging area.</p>
+<p><strong><code>verify_checksum</code></strong>:
+    bool: Whether checksums are verified.</p>
+<p><strong><code>volatile</code></strong>:
+    bool: Whether the RSE is volatile.</p>
               </div>
             </td>
           </tr>
@@ -1906,6 +1964,29 @@
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Query an RSE via an RSE Expression and get it attributes of all RSEs that match</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_expression</span><span class="o">=</span><span class="s2">&quot;rse_type=DISK&quot;</span>
+<span class="n">possible_rses</span> <span class="o">=</span> <span class="p">[</span><span class="n">rse</span><span class="p">[</span><span class="s1">&#39;rse&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">rse</span> <span class="ow">in</span> <span class="n">rse_client</span><span class="o">.</span><span class="n">list_rses</span><span class="p">(</span><span class="n">rse_expression</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">rse</span> <span class="ow">in</span> <span class="n">possible_rses</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rse_client</span><span class="o">.</span><span class="n">get_rse</span><span class="p">(</span><span class="n">rse</span><span class="p">))</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.add_rse_attribute
+rucio.client.rseclient.RSEClient.update_rse
+rucio.client.rseclient.RSEClient.list_rses
+rucio.client.rseclient.RSEClient.list_rse_attributes</p>
+</details>
+
     </div>
 
 </div>
@@ -1923,7 +2004,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to create a new RSE.</p>
+        <p>Create a new RSE</p>
 
 
 <table>
@@ -2112,7 +2193,43 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Availability.</p>
+                <p>[Deprecated] integer availability bitmask.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>availability_read</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether replicas on the RSE can be read.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>availability_write</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether replicas can be written to the RSE.</p>
+              </div>
+              <p>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>availability_delete</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether replicas on the RSE can be deleted.</p>
               </div>
               <p>
               </p>
@@ -2133,7 +2250,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if RSE was created successfully else False</code>
+                    <code>    True if RSE was created successfully created.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -2166,9 +2283,56 @@
               </div>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="InvalidObject">InvalidObject</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the RSE name does not match the given schema.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccessDenied">AccessDenied</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the issuer cannot create the RSE.</p>
+              </div>
+            </td>
+          </tr>
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Create a new disk RSE and add an attribute</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyNewRSE&quot;</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">add_rse</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">rse_type</span><span class="o">=</span><span class="s2">&quot;DISK&quot;</span><span class="p">)</span>
+
+<span class="n">rse_client</span><span class="o">.</span><span class="n">add_rse_attribute</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;TIER&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;3&quot;</span><span class="p">)</span>  <span class="c1"># Custom organizational attribute</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.delete_rse
+rucio.client.rseclient.RSEClient.update_rse
+rucio.client.rseclient.RSEClient.add_protocol
+rucio.client.rseclient.RSEClient.list_rses</p>
+</details>
 
     </div>
 
@@ -2220,7 +2384,9 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>A dictionary with property (name, read, write, delete as keys).</p>
+                <p>Dictionary of properties to update. Format as
+{"name": "updated_value"}.
+Parameters are described in <code>rucio.client.rseclient.RSEClient.add_rse</code>.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2233,6 +2399,87 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>True if RSE was updated successfully.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccessDenied">AccessDenied</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the issuer cannot update the RSE.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSENotFound">RSENotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the RSE does not exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Correct the RSE type after an RSE has been made.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyNewRSE&quot;</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">add_rse</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">rse_type</span><span class="o">=</span><span class="s2">&quot;DISK&quot;</span><span class="p">)</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">update_rse</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">rse_type</span><span class="o">=</span><span class="s2">&quot;TAPE&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.delete_rse
+rucio.client.rseclient.RSEClient.add_rse
+rucio.client.rseclient.RSEClient.add_protocol</p>
+</details>
 
     </div>
 
@@ -2293,7 +2540,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>True if RSE was deleted successfully else False.</code>
+                    <code>True if RSE was deleted successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -2305,6 +2552,48 @@
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSENotFound">RSENotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the RSE was not found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSEOperationNotSupported">RSEOperationNotSupported</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the RSE is not empty.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.add_rse
+rucio.client.rseclient.RSEClient.update_rse</p>
+</details>
 
     </div>
 
@@ -2323,7 +2612,8 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to list all rucio locations(RSEs).</p>
+        <p>List all RSEs that match the given RSE Expression.
+RSE Expressions are constructed using attributes, settings, and the name of the RSE, using logical operators and wildcards.</p>
 
 
 <table>
@@ -2369,7 +2659,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>A list containing the names of all rucio locations.</code>
+                    <code>All RSE names matching the RSE expression, if given, otherwise all RSEs with their settings.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -2381,6 +2671,34 @@
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Print RSEs, either all on the instance or filtered by expression.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">rse</span> <span class="ow">in</span> <span class="n">rse_client</span><span class="o">.</span><span class="n">list_rses</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rse</span><span class="p">)</span>  <span class="c1"># Print all RSEs with settings</span>
+
+<span class="k">for</span> <span class="n">rse</span> <span class="ow">in</span> <span class="n">rse_client</span><span class="o">.</span><span class="n">list_rses</span><span class="p">(</span><span class="s2">&quot;rse_type=TAPE&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rse</span><span class="p">)</span> <span class="c1"># Print all RSEs of type &quot;TAPE&quot;.</span>
+    <span class="c1"># Prints with {&quot;rse&quot;: &lt;RSE_NAME&gt;}</span>
+
+<span class="k">for</span> <span class="n">rse</span> <span class="ow">in</span> <span class="n">rse_client</span><span class="o">.</span><span class="n">list_rses</span><span class="p">(</span><span class="s2">&quot;RSE_*&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rse</span><span class="p">)</span> <span class="c1"># Print all RSEs that have names starting with &quot;RSE_&quot;</span>
+
+<span class="k">for</span> <span class="n">rse</span> <span class="ow">in</span> <span class="n">rse_client</span><span class="o">.</span><span class="n">list_rses</span><span class="p">(</span><span class="s2">&quot;rse_type=DISK&amp;availability_read=True&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rse</span><span class="p">)</span> <span class="c1"># Print all RSEs that are of type &quot;DISK&quot; and have read availability set to True</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.get_rse</p>
+</details>
 
     </div>
 
@@ -2399,7 +2717,72 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to add a RSE attribute.</p>
+        <p>Add an RSE attribute.
+Attributes are key/value pairs that can be used in policies, constructing RSE expressions, or defining custom properties (such as LFN2PFN algorithms.)</p>
+
+
+<details class="-parameters" open>
+  <summary>Parameters</summary>
+  <p>rse:
+     The name of the RSE.
+ key:
+     The attribute key.
+ value:
+     The attribute value.</p>
+</details>
+
+<details class="-returns" open>
+  <summary>Returns</summary>
+  <p>True if RSE attribute was created successfully.</p>
+</details>
+
+<details class="-raises" open>
+  <summary>Raises</summary>
+  <p>Duplicate
+     If RSE attribute already exists.</p>
+</details>
+
+<details class="-examples" open>
+  <summary>Examples</summary>
+  <p>??? Example</p>
+<pre><code> Add an attribute
+
+ ```python
+ from rucio.client.client import Client
+
+ rse_client = Client()
+ rse_name="MyRSE"
+ rse_client.add_rse_attribute(rse_name, key="TIER", value="3")  # Custom organizational attribute
+
+ ```
+</code></pre>
+</details>
+
+<details class="-see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.delete_rse_attribute
+ rucio.client.rseclient.RSEClient.get_rse
+ rucio.client.rseclient.RSEClient.update_rse</p>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.client.rseclient.RSEClient.delete_rse_attribute" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">delete_rse_attribute</span>
+
+
+<a href="#rucio.client.rseclient.RSEClient.delete_rse_attribute" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_rse_attribute</span><span class="p">(</span><span class="n">rse</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Delete an RSE attribute.</p>
 
 
 <table>
@@ -2416,7 +2799,7 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The name of the RSE.</p>
+                <p>The RSE name.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2442,22 +2825,6 @@
               </p>
             </td>
           </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>value</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The attribute value.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="typing.Any">Any</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
       </tbody>
     </table>
 
@@ -2473,7 +2840,7 @@
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>True if RSE attribute was created successfully else False.</code>
+                    <code>True if RSE attribute was deleted successfully.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -2497,12 +2864,12 @@
           <tr class="doc-section-item">
             <td>
               <span class="doc-raises-annotation">
-                  <code><span title="Duplicate">Duplicate</span></code>
+                  <code><span title="RSEAttributeNotFound">RSEAttributeNotFound</span></code>
               </span>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
-                <p>If RSE attribute already exists.</p>
+                <p>If the attribute to delete was not found for the given RSE.</p>
               </div>
             </td>
           </tr>
@@ -2510,93 +2877,25 @@
     </table>
 
 
-    </div>
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Remove an attribute</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
 
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h5 id="rucio.client.rseclient.RSEClient.delete_rse_attribute" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">delete_rse_attribute</span>
-
-
-<a href="#rucio.client.rseclient.RSEClient.delete_rse_attribute" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_rse_attribute</span><span class="p">(</span><span class="n">rse</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">delete_rse_attribute</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;TIER&quot;</span><span class="p">)</span>
 </code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Sends the request to delete a RSE attribute.</p>
+</details>
 
 
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>key</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The attribute key.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code>True if RSE attribute was deleted successfully else False.</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.add_rse_attribute
+rucio.client.rseclient.RSEClient.list_rse_attributes
+rucio.client.rseclient.RSEClient.update_rse</p>
+</details>
 
     </div>
 
@@ -2615,60 +2914,48 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to get RSE attributes.</p>
+        <p>List all RSE attributes.</p>
 
 
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>rse</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The RSE name.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<details class="-parameters" open>
+  <summary>Parameters</summary>
+  <p>rse
+     The RSE name.</p>
+</details>
 
+<details class="-returns" open>
+  <summary>Returns</summary>
+  <p>A dict with the RSE attribute name/value pairs.
+ Attributes returned can be any attribute previously added to the RSE via <code>rucio.client.rseclient.RSEClient.add_rse_attribute</code>.</p>
+</details>
 
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code>A dict with the RSE attribute name/value pairs.</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+<details class="-raises" open>
+  <summary>Raises</summary>
+  <p>RSENotFound
+     RSE does not exist.</p>
+</details>
 
+<details class="-examples" open>
+  <summary>Examples</summary>
+  <p>??? Example
+     List all attributes of an RSE
+     <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+<span class="n">attributes</span> <span class="o">=</span> <span class="n">rse_client</span><span class="o">.</span><span class="n">list_rse_attributes</span><span class="p">(</span><span class="n">rse_name</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="o">&gt;</span> <span class="n">TIER</span><span class="p">:</span> <span class="mi">3</span>
+<span class="o">&gt;</span> <span class="n">TEST</span><span class="p">:</span> <span class="kc">True</span>
+</code></pre></div></p>
+</details>
+
+<details class="-see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.add_rse_attribute
+ rucio.client.rseclient.RSEClient.delete_rse_attribute</p>
+</details>
 
     </div>
 
@@ -2687,7 +2974,9 @@
 
     <div class="doc doc-contents ">
 
-        <p>Sends the request to create a new protocol for the given RSE.</p>
+        <p>Add a new protocol for an RSE.
+This is required to read/write data onto the RSE.</p>
+<p>Multiple protocols can be added to the same RSE, but they cannot have the same scheme, hostname, and port.</p>
 
 
 <table>
@@ -2720,16 +3009,25 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Attributes of the protocol. Supported are:
-- scheme: identifier of this protocol
-- hostname: hostname for this protocol (default = localhost)
-- port: port for this protocol (default = 0)
-- prefix: string used as a prefix for this protocol when generating the PFN (default = None)
-- impl: qualified name of the implementation class for this protocol (mandatory)
-- read: integer representing the priority of this protocol for read operations (default = -1)
-- write: integer representing the priority of this protocol for write operations (default = -1)
-- delete: integer representing the priority of this protocol for delete operations (default = -1)
-- extended_attributes: miscellaneous protocol specific information e.g. spacetoken for SRM (default = None)</p>
+                <p>Attributes of the protocol. Supported are:</p>
+<ul>
+<li>scheme: identifier of this protocol</li>
+<li>hostname: hostname for this protocol (default = localhost)</li>
+<li>port: port for this protocol (default = 0)</li>
+<li>prefix: string used as a prefix for this protocol when generating the PFN (default = None)</li>
+<li>impl: qualified name of the implementation class for this protocol (mandatory)</li>
+<li>domain: dict[Literal["lan", "wan"], dict] with the keys:<ul>
+<li>read: integer representing the priority of this protocol for read operations (default = -1)</li>
+<li>write: integer representing the priority of this protocol for write operations (default = -1)</li>
+<li>delete: integer representing the priority of this protocol for delete operations (default = -1)</li>
+<li>third_party_copy_read</li>
+<li>third_party_copy_write</li>
+</ul>
+</li>
+<li>extended_attributes: miscellaneous protocol specific information e.g. spacetoken for SRM (default = None)</li>
+</ul>
+<p>Extended attributes required for each protocol can be seen listed in the documentation for each protocol implementation
+(e.g. <code>rucio.rse.protocols.posix.Default</code> for the POSIX protocol).</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2802,7 +3100,7 @@
           <tr class="doc-section-item">
             <td>
               <span class="doc-raises-annotation">
-                  <code><span title="KeyNotFound">KeyNotFound</span></code>
+                  <code><span title="InvalidObject">InvalidObject</span></code>
               </span>
             </td>
             <td class="doc-raises-details">
@@ -2827,6 +3125,38 @@
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Adding a POSIX protocol to an RSE, suitable for testing</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+<span class="n">protocol_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;scheme&#39;</span><span class="p">:</span> <span class="s1">&#39;file&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hostname&#39;</span><span class="p">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;port&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;/path/posix_rse&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;impl&#39;</span><span class="p">:</span> <span class="s1">&#39;rucio.rse.protocols.posix.Default&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;domains&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;lan&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;read&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="s1">&#39;wan&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;read&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s1">&#39;third_party_copy_read&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;third_party_copy_write&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">add_protocol</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">protocol_params</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.get_rse
+rucio.client.rseclient.RSEClient.get_protocols
+rucio.client.rseclient.RSEClient.delete_protocols</p>
+</details>
+
     </div>
 
 </div>
@@ -2850,8 +3180,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Returns protocol information.
-Parameter combinations are: (operation OR default) XOR protocol.</p>
+        <p>Get protocol information for an RSE</p>
 
 
 <table>
@@ -2884,7 +3213,7 @@ Parameter combinations are: (operation OR default) XOR protocol.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The scope of the protocol. Supported are 'LAN', 'WAN', and 'ALL', by default 'ALL'.</p>
+                <p>The scope of the protocol.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2904,8 +3233,7 @@ Parameter combinations are: (operation OR default) XOR protocol.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The name of the requested operation (read, write, or delete).
-If None, all operations are queried, by default None.</p>
+                <p>The name of the requested operation. If None, all operations are queried.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2925,7 +3253,7 @@ If None, all operations are queried, by default None.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Indicates if only the default operations should be returned, by default False.</p>
+                <p>Only return the default protocol</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2945,7 +3273,7 @@ If None, all operations are queried, by default None.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The identifier of the requested protocol, by default None.</p>
+                <p>The identifier of the requested protocol.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2974,12 +3302,20 @@ If None, all operations are queried, by default None.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    A dict with details about each matching protocol.</code>
+                    <code>    A list of dicts with details about each matching protocol.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                
+                <p>Each protocol contains the following keys:
+- scheme [str]: identifier
+- hostname [str]: hostname
+- port [int]: port
+- prefix [str]: string used as a prefix for this protocol when generating the PFN
+- impl [str]: qualified name of the implementation class for this protocol
+- domains [dict]: dictionary with domain (lan/wan) as keys and permissions for operations as values
+- extended_attributes [Optional[dict]]: miscellaneous protocol specific information</p>
+<p>If only one protocol matches the query, a single dict is returned instead of a list.</p>
               </div>
             </td>
           </tr>
@@ -3034,6 +3370,30 @@ If None, all operations are queried, by default None.</p>
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Query different protocols that exist for MyRSE</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">get_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">)</span>  <span class="c1"># Get all protocols</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">get_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Get default protocol</span>
+<span class="c1"># Get protocols that can be used for read operations on wan domain</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">get_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">protocol_domain</span><span class="o">=</span><span class="s1">&#39;wan&#39;</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="s1">&#39;read&#39;</span><span class="p">)</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">get_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">)</span> <span class="c1"># Get protocol with file scheme</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.get_rse
+rucio.client.rseclient.RSEClient.add_protocol
+rucio.client.rseclient.RSEClient.delete_protocols</p>
+</details>
 
     </div>
 
@@ -3092,7 +3452,10 @@ The PFNs are generated for the RSE <em>regardless</em> of whether a replica exis
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>A list of LFN strings to translate to PFNs.</p>
+                <p>A list of LFN strings to translate to PFNs.
+LFNs are typically written as "scope:name", though the exact format can vary depending on
+the Rucio instance's implementation of ScopeExtraction.
+Contact your Rucio administrator if you are unsure about the expected format of LFNs for your instance.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -3108,7 +3471,7 @@ The PFNs are generated for the RSE <em>regardless</em> of whether a replica exis
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The scope of the protocol.</p>
+                <p>The scope of the protocol. (e.g., 'wan' or 'lan').</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -3129,7 +3492,7 @@ The PFNs are generated for the RSE <em>regardless</em> of whether a replica exis
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The name of the requested operation (read, write, or delete).
-If None, all operations are queried, by default None.</p>
+If None, 'write' is used by default.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -3239,6 +3602,20 @@ If None, all operations are queried, by default None.</p>
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+</details>
+<div class="highlight"><pre><span></span><code>    <span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+    <span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+    <span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+    <span class="n">lfns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;scope1:name1&quot;</span><span class="p">,</span> <span class="s2">&quot;scope2:name2&quot;</span><span class="p">]</span> <span class="c1"># Exact format depends on ScopeExtraction implimentation for your rucio instance</span>
+    <span class="n">pfns</span> <span class="o">=</span> <span class="n">rse_client</span><span class="o">.</span><span class="n">lfns2pfns</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">lfns</span><span class="p">)</span>  <span class="c1"># Get PFNs for the LFNs on MyRSE</span>
+    <span class="o">&gt;</span> <span class="p">{</span><span class="s2">&quot;scope1:name1&quot;</span><span class="p">:</span> <span class="s2">&quot;protocol://host:port/prefix/scope1/name1&quot;</span><span class="p">,</span>
+    <span class="o">&gt;</span>  <span class="s2">&quot;scope2:name2&quot;</span><span class="p">:</span> <span class="s2">&quot;protocol://host:port/prefix/scope2/name2&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+
     </div>
 
 </div>
@@ -3257,7 +3634,8 @@ If None, all operations are queried, by default None.</p>
     <div class="doc doc-contents ">
 
         <p>Deletes matching protocols from RSE. Protocols using the same identifier can be
-distinguished by hostname and port.</p>
+distinguished by hostname and port.
+If not hostname and port and not provided, all protocols with the same scheme will be deleted.</p>
 
 
 <table>
@@ -3416,6 +3794,34 @@ distinguished by hostname and port.</p>
     </table>
 
 
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Delete a specific protocol by providing scheme, hostname, and port</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+<span class="c1"># Only removes the protocol on host1:8443</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">delete_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;srm&#39;</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="s1">&#39;host1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8443</span><span class="p">)</span>
+</code></pre></div>
+<p>Delete all protocols with a specific scheme by providing only the scheme</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+<span class="c1"># Removes all SRM protocols, regardless of hostname and port</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">delete_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;srm&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.get_protocols
+rucio.client.rseclient.RSEClient.add_protocol</p>
+</details>
+
     </div>
 
 </div>
@@ -3435,8 +3841,11 @@ distinguished by hostname and port.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Updates matching protocols from RSE. Protocol using the same identifier can be
-distinguished by hostname and port.</p>
+        <p>Updates matching protocols from RSE.
+Protocols are uniquely defined by a combination of identifier, hostname, and port.
+If hostname and port are not provided, there must be a scheme without hostname and port.</p>
+<p>** Note ** - You cannot change the hostname and port of a protocol.
+To change this, the protocol must be deleted and re-made with the new hostname and port.</p>
 
 
 <table>
@@ -3485,7 +3894,11 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>A dict providing the new values of the protocol attributes. Keys must match column names in database.</p>
+                <p>A dict providing the new values of the protocol attributes. Keys must match column names in database.
+** domains <strong>: Dict with domain (lan/wan) as keys and permissions for operations as values. Example: {"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1}}
+** prefix </strong>: String used as a prefix for this protocol when generating the PFN.
+** impl <strong>: Qualified name of the implementation class for this protocol.
+** extended_attributes </strong>: Dict with protocol specific information</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -3598,18 +4011,6 @@ distinguished by hostname and port.</p>
           <tr class="doc-section-item">
             <td>
               <span class="doc-raises-annotation">
-                  <code><span title="KeyNotFound">KeyNotFound</span></code>
-              </span>
-            </td>
-            <td class="doc-raises-details">
-              <div class="doc-md-description">
-                <p>If invalid data was provided for update.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-              <span class="doc-raises-annotation">
                   <code><span title="AccessDenied">AccessDenied</span></code>
               </span>
             </td>
@@ -3622,6 +4023,35 @@ distinguished by hostname and port.</p>
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Update the prefix attribute of a protocol</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+
+<span class="n">rse_client</span><span class="o">.</span><span class="n">get_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;srm&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="p">[{</span><span class="s1">&#39;scheme&#39;</span><span class="p">:</span> <span class="s1">&#39;srm&#39;</span><span class="p">,</span> <span class="s1">&#39;hostname&#39;</span><span class="p">:</span> <span class="s1">&#39;host1&#39;</span><span class="p">,</span> <span class="s1">&#39;port&#39;</span><span class="p">:</span> <span class="mi">8443</span><span class="p">,</span> <span class="s1">&#39;prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;/old/prefix&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span>
+<span class="o">&gt;</span>  <span class="p">{</span><span class="s1">&#39;scheme&#39;</span><span class="p">:</span> <span class="s1">&#39;srm&#39;</span><span class="p">,</span> <span class="s1">&#39;hostname&#39;</span><span class="p">:</span> <span class="s1">&#39;host2&#39;</span><span class="p">,</span> <span class="s1">&#39;port&#39;</span><span class="p">:</span> <span class="mi">8443</span><span class="p">,</span> <span class="s1">&#39;prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;/old/prefix&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">}]</span>
+
+<span class="c1"># The hostname and ports must be supplied</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">update_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;srm&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;/new/prefix&#39;</span><span class="p">})</span>
+<span class="o">&gt;</span> <span class="n">rucio</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">RSEProtocolNotSupported</span><span class="p">:</span> <span class="n">RSE</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">requested</span> <span class="n">protocol</span><span class="o">.</span>
+<span class="o">&gt;</span> <span class="n">Details</span><span class="p">:</span> <span class="n">RSE</span> <span class="s1">&#39;MyRse&#39;</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">protocol</span> <span class="s1">&#39;srm&#39;</span> <span class="k">for</span> <span class="n">hostname</span> <span class="s1">&#39;None&#39;</span> <span class="n">on</span> <span class="n">port</span> <span class="s1">&#39;None&#39;</span>
+
+<span class="c1"># Supply hostname and port to correctly update protocols</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">update_protocols</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;srm&#39;</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="s2">&quot;host1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8443</span><span class="p">,</span>  <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;/new/prefix&#39;</span><span class="p">})</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.get_protocols
+rucio.client.rseclient.RSEClient.add_protocol</p>
+</details>
 
     </div>
 
@@ -3746,7 +4176,7 @@ distinguished by hostname and port.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>    True if successful.</code>
+                    <code>    True if successful, False if there are not protocols cannot be cleanly swapped</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -4107,7 +4537,8 @@ distinguished by hostname and port.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Set RSE usage information.</p>
+        <p>Set RSE usage information.
+Added to the history of the RSE usage, for monitoring and accounting.</p>
 
 
 <table>
@@ -4140,7 +4571,7 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The information source, e.g. srm.</p>
+                <p>The information source, any string used for accounting and documenting source of usage inforrmation</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4156,7 +4587,7 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The used space in bytes.</p>
+                <p>The used space in bytes</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4172,7 +4603,7 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The free space in bytes.</p>
+                <p>The free space in bytes</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4188,7 +4619,7 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The number of files.</p>
+                <p>The number of files, optional.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4217,7 +4648,7 @@ distinguished by hostname and port.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>True if successful.</code>
+                    <code>True if successful</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -4229,6 +4660,22 @@ distinguished by hostname and port.</p>
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Set RSE usage information</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">Client</span><span class="p">()</span><span class="o">.</span><span class="n">set_rse_usage</span><span class="p">(</span><span class="s2">&quot;MyRse&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;automated_script&quot;</span><span class="p">,</span> <span class="n">used</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span> <span class="n">free</span><span class="o">=</span><span class="mi">500000000</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.get_rse_usage
+rucio.client.rseclient.RSEClient.list_rse_usage_history</p>
+</details>
 
     </div>
 
@@ -4247,7 +4694,7 @@ distinguished by hostname and port.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Get RSE usage information.</p>
+        <p>Get RSE usage information as set by <code>RSEClient.set_rse_usage</code>. Will only show the most recent usage of a source.</p>
 
 
 <table>
@@ -4280,7 +4727,9 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>dictionary of attributes by which the results should be filtered</p>
+                <p>Optional filters to apply.
+    ** source ** [str]: Source of usage
+    ** per_account ** [bool]: Calculate usage by account</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4309,18 +4758,29 @@ distinguished by hostname and port.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>True if successful, otherwise false.</code>
+                    <code>List of dictionaries, containing the following:</code>
                 </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                
+                <p>** rse_id ** [str]: The RSE id
+** source ** [str]: Source of usage
+** used ** [int]: Used space in bytes
+** free ** [int]: Free space in bytes
+** files ** [int|None]: Number of files
+** updated_at ** [datetime.datetime]: Timestamp of the usage information</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.set_rse_usage
+rucio.client.rseclient.RSEClient.list_rse_usage_history</p>
+</details>
 
     </div>
 
@@ -4372,7 +4832,8 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>dictionary of attributes by which the results should be filtered</p>
+                <p>Optional filters to apply.
+    ** source ** [str]: Source of usage</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4401,7 +4862,24 @@ distinguished by hostname and port.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>list of dictionaries</code>
+                    <code>List of dictionaries, containing the following:</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>** rse_id ** [str]: The RSE id
+** source ** [str]: Source of usage
+** used ** [int]: Used space in bytes
+** free ** [int]: Free space in bytes
+** files ** [int|None]: Number of files
+** updated_at ** [datetime.datetime]: Timestamp of the usage information</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Will show all historical usage information for the RSE, including the current usage information as set by `RSEClient.set_rse_usage`</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -4413,6 +4891,12 @@ distinguished by hostname and port.</p>
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.set_rse_usage
+rucio.client.rseclient.RSEClient.list_rse_usage_history</p>
+</details>
 
     </div>
 
@@ -4431,7 +4915,10 @@ distinguished by hostname and port.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Set RSE limit information.</p>
+        <p>Set the limit for the amount of data that can be stored on the RSE.
+If an RSE limit with the same name already exists, it will be overwritten.</p>
+<p>The name "MaxSpaceAvailable" will be used to when selecting RSEs create replicas
+if multiple RSEs match rule requirements and have the avaiable quotas.</p>
 
 
 <table>
@@ -4480,7 +4967,7 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The feature value.</p>
+                <p>Limit given in bytes.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4517,6 +5004,24 @@ distinguished by hostname and port.</p>
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Set a limit for the amount of data that can be stored on an RSE
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_name</span><span class="o">=</span><span class="s2">&quot;MyRSE&quot;</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">set_rse_limits</span><span class="p">(</span><span class="n">rse_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MaxSpaceAvailable&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1000000000000</span><span class="p">)</span>  <span class="c1"># Set a limit of 1TB for the RSE</span>
+</code></pre></div></p>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.get_rse_limits
+rucio.client.rseclient.RSEClient.delete_rse_limits</p>
+</details>
 
     </div>
 
@@ -4577,7 +5082,7 @@ distinguished by hostname and port.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>An iterator of RSE limits as dicts with &#39;name&#39; and &#39;value&#39; as keys.</code>
+                    <code>Dictionaries with the name and value of each limit for the RSE.</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -4589,6 +5094,27 @@ distinguished by hostname and port.</p>
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Get RSE limits
+```python
+from rucio.client.client import Client
+rse_client = Client()
+rse_name="MyRSE"
+rse_client.get_rse_limits(rse_name)</p>
+<blockquote>
+<p>{"MaxSpaceAvailable": 1000000000000, "AnotherLimit": 500000000000}</p>
+</blockquote>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.set_rse_limits
+rucio.client.rseclient.RSEClient.delete_rse_limits</p>
+</details>
 
     </div>
 
@@ -4640,12 +5166,148 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The name of the limit.</p>
+                <p>The name of the limit, can be any limit made with <code>set_rse_limits</code>.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
                       <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>True if successful, will not fail if the limit did not exist.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSENotFound">RSENotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If the RSE doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.set_rse_limits
+rucio.client.rseclient.RSEClient.get_rse_limits</p>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="rucio.client.rseclient.RSEClient.add_distance" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">add_distance</span>
+
+
+<a href="#rucio.client.rseclient.RSEClient.add_distance" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">add_distance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Add a distance between two RSEs.
+Distances are used to deterimine paths between RSEs during transfers, a lower distance will be preferred over a higher one.</p>
+<p>RSEs must have distances between them for them to be used in multi-hop transfers.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>source</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The source RSE name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>destination</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The destination RSE name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>parameters</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Dicionary in the format {"distance": int}.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
                   </span>
               </p>
             </td>
@@ -4678,27 +5340,51 @@ distinguished by hostname and port.</p>
     </table>
 
 
-    </div>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="Duplicate">Duplicate</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If a distance between the RSEs already exists.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSENotFound">RSENotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If either of the RSEs doesn't exist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-</div>
 
-<div class="doc doc-object doc-function">
-
-
-<h5 id="rucio.client.rseclient.RSEClient.add_distance" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">add_distance</span>
-
-
-<a href="#rucio.client.rseclient.RSEClient.add_distance" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">add_distance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Add a src-dest distance.</p>
-<p>:param source: The source.
-:param destination: The destination.
-:param parameters: A dictionary with property.</p>
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Add a distance between two RSEs
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">add_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+</code></pre></div></p>
+</details>
 
 
     </div>
@@ -4718,7 +5404,8 @@ distinguished by hostname and port.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Update distances with the given RSE ids.</p>
+        <p>Update distances between RSEs.</p>
+<p>If the distance does not exist, it will not be created.</p>
 
 
 <table>
@@ -4767,7 +5454,7 @@ distinguished by hostname and port.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>A dictionary with property</p>
+                <p>Updated distance in the form {"distance": int}.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4780,6 +5467,47 @@ distinguished by hostname and port.</p>
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>True if successful.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Add a distance between two RSEs
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">add_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">update_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>  <span class="c1"># Update the distance to 20</span>
+</code></pre></div></p>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.add_distance</p>
+</details>
 
     </div>
 
@@ -4805,9 +5533,8 @@ distinguished by hostname and port.</p>
   <summary>Param</summary>
   <p>source :
     The source RSE.
-destination :</p>
-<pre><code>The destination RSE.
-</code></pre>
+destination :
+    The destination RSE.</p>
 </details>
 
 <table>
@@ -4826,7 +5553,15 @@ destination :</p>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                
+                <p>Each dictionary contains the following keys:
+** created_at ** [datetime.datetime]: Datetime when the distance was created.
+** updated_at ** [datetime.datetime]: Datetime when the distance was last updated.
+** src_rse_id ** [str]:  ID of the source RSE.
+** src_rse ** [str]: Name of source RSE.
+** dest_rse_id ** [str]: ID of the destination RSE.
+** dest_rse ** [str]: Name of destination RSE.
+** distance ** [int]: Value of distance between RSEs.
+** ranking ** [int]: Legacy name for distance, same value as distance.</p>
               </div>
             </td>
           </tr>
@@ -4852,6 +5587,7 @@ destination :</p>
     <div class="doc doc-contents ">
 
         <p>Delete distances with the given RSE ids.</p>
+<p>If both source-&gt;destination and destination-&gt;source distances exist, only the source-&gt;destination distance will be deleted.</p>
 
 
 <table>
@@ -4892,6 +5628,54 @@ destination :</p>
                       <code><span title="str">str</span></code>
                   </span>
               </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    True if successful.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RSENotFound">RSENotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>If either of the RSEs doesn't exist.</p>
+              </div>
             </td>
           </tr>
       </tbody>
