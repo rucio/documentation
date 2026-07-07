@@ -1513,6 +1513,7 @@ The private opendata host is the regular rucio server, while the public opendata
     <span class="n">include_metadata</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">include_doi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">include_record_id</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">include_download_urls</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">public</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -1527,6 +1528,7 @@ The private opendata host is the regular rucio server, while the public opendata
     include_metadata: If True, include extended metadata. Defaults to False.
     include_doi: If True, include DOI (Digital Object Identifier) information. Defaults to True.
     include_record_id: If True, include the record ID of the DID. Defaults to True.
+    include_download_urls: If True, include download URLs for the files. Defaults to False.
     public: If True, only return data if the DID is publicly accessible. Defaults to False.</p>
 <p>Returns:
     A dictionary containing metadata about the specified DID.

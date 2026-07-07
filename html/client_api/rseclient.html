@@ -5246,7 +5246,9 @@ rucio.client.rseclient.RSEClient.get_rse_limits</p>
 
 
 <a href="#rucio.client.rseclient.RSEClient.add_distance" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">add_distance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">add_distance</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -5308,6 +5310,26 @@ Distances are used to deterimine paths between RSEs during transfers, a lower di
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
                       <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>bidirectional</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If True, also adds the distance from dest to src.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
                   </span>
               </p>
             </td>
@@ -5399,7 +5421,9 @@ Distances are used to deterimine paths between RSEs during transfers, a lower di
 
 
 <a href="#rucio.client.rseclient.RSEClient.update_distance" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_distance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_distance</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -5460,6 +5484,26 @@ Distances are used to deterimine paths between RSEs during transfers, a lower di
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
                       <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>bidirectional</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If True, also updates the distance from dest to src.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
                   </span>
               </p>
             </td>
@@ -5581,13 +5625,12 @@ destination :
 
 
 <a href="#rucio.client.rseclient.RSEClient.delete_distance" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_distance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">delete_distance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
         <p>Delete distances with the given RSE ids.</p>
-<p>If both source-&gt;destination and destination-&gt;source distances exist, only the source-&gt;destination distance will be deleted.</p>
 
 
 <table>
@@ -5626,6 +5669,26 @@ destination :
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
                       <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>bidirectional</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>If True, also deletes the distance from dest to src.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="bool">bool</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
                   </span>
               </p>
             </td>

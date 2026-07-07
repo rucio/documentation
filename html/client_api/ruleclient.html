@@ -1517,7 +1517,9 @@
 
     <div class="doc doc-contents ">
 
-        <p>Add a replication rule.</p>
+        <p>Add a replication rule.
+A replication rule can be used to ensure availability of a replica at different RSEs,
+functionally submitting a transfer request.</p>
 
 
 <table>
@@ -1534,7 +1536,8 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The data identifier set.</p>
+                <p>The data identifier set. Format as
+[{"scope": scope, "name": did_name1}, {"scope": scope, "name": did_name2}, ...]</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1645,7 +1648,7 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Notification setting for the rule (Y, N, C). Default is 'N'.</p>
+                <p>Notification setting for the rule (Y [Yes], N [No], C [Close, notify when rule is closed.], P [Progress]). Default is 'N'.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -1903,6 +1906,134 @@ Default is 'DATASET'.</p>
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Rule ID. Can be used to check the status of the rule.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="InvalidRSEExpression">InvalidRSEExpression</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>The rse expression provided doesn't match any RSEs.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="DataIdentifierNotFound">DataIdentifierNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Requested DID does not exist or is otherwise specified incorrectly.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="InsufficentAccountLimit">InsufficentAccountLimit</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>The account used to create the rule does not have sufficent quota on the target RSE.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="DuplicateRule">DuplicateRule</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Rule already exists with the same DID, RSE, and number of copies.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="InsufficentTargetRSEs">InsufficentTargetRSEs</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>There are not enough RSEs that match the RSE expression to fulfil the 'copies' requirement</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="InvalidValueForKey">InvalidValueForKey</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Requested '0' or negative copies of a replica.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Add a rule to create a replica of the DID myscope:did at a local RSE named "LocalRSE".</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rule_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">add_replication_rule</span><span class="p">([{</span><span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="s2">&quot;myscope&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mydid&quot;</span><span class="p">}],</span> <span class="n">copies</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rse_expression</span><span class="o">=</span><span class="s2">&quot;LocalRSE)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rule_id</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.rseclient.RSEClient.list_rses
+rucio.client.replicaclient.ReplicaClient.list_replicas
+rucio.client.ruleclient.RuleClient.delete_replication_rule
+rucio.client.ruleclient.RuleClient.get_replication_rule</p>
+</details>
+
     </div>
 
 </div>
@@ -1920,7 +2051,7 @@ Default is 'DATASET'.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Deletes a replication rule and all associated locks.</p>
+        <p>Deletes a replication rule and all associated replica locks.</p>
 
 
 <table>
@@ -1987,7 +2118,7 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
-                
+                <p>Rule ID does not exist.</p>
               </div>
             </td>
           </tr>
@@ -1998,6 +2129,42 @@ Default is 'DATASET'.</p>
               </span>
             </td>
             <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Rule does not belong, to the user associated with the client, or user has insufficent permissions.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="UnsupportedOperation">UnsupportedOperation</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Rule is either locked, or is a parent of child rules with "delete_parent=False" set.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    True if rule is successfully deleted</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
               <div class="doc-md-description">
                 
               </div>
@@ -2079,6 +2246,107 @@ Default is 'DATASET'.</p>
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Dictionary of rule attributes.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>'id'
+    ID of the rule
+'scope'
+    DID scope
+'name'
+    DID name
+'did_type'
+    Type of the DID (FILE, DATASET, CONTAINER)
+'account'
+    Owner of the rule
+'rse_expression'
+    RSE Expression
+'copies'
+    Number of replica copies
+'grouping'
+    How replicas are grouped (ALL, DATASET, NONE)
+'lifetime'
+    The lifetime of the replication rules (in seconds)
+'locked'
+    If the rule is locked, it cannot be deleted
+'source_replica_expression'
+    RSE Expression for RSEs to be considered for source replicas
+'activity'
+    Transfer Activity to be passed to FTS
+'notify'
+    Notification setting for the rule (Y, N, C, P)
+'purge_replicas'
+    When the rule gets deleted purge the associated replicas immediately
+'ignore_availability'
+    Option to ignore the availability of RSEs
+'comment'
+    Comment about the rule
+'ask_approval'
+    Ask for approval of this replication rule
+'asynchronous'
+    Create rule asynchronously by judge-injector
+'delay_injection'
+    Delay the rule injection
+'priority'
+    Priority of the transfers
+'weight'
+    Weighting scheme to be used
+'meta'
+    Metadata as dictionary
+'state'
+    State of the replication rule (OK, REPLICATING, STUCK, SUSPENDED, WAITING_APPROVAL, INJECT)
+'error'
+    Any error raised when creating replicas for the rule.
+'created_at'
+    Rule creation date.
+'updated_at'
+    Last modified date of rule.
+'expires_at'
+    Expiration date of the rule
+'eol_at'
+    End of life date for the replicas
+'deleted_at'
+    Date when the rule was deleted
+'stuck_at'
+    Date when the rule entered STUCK state
+'child_rule_id'
+    ID of the child rule (if this rule was replaced)
+'subscription_id'
+    ID of the subscription that created this rule
+'split_container'
+    Whether the rule was split from a container rule
+'ignore_account_limit'
+    Whether account limits were ignored when creating the rule
+'notification'
+    Notification setting for the rule (YES, NO, CLOSE, PROGRESS)
+'locks_ok_cnt'
+    Number of locks in OK state
+'locks_replicating_cnt'
+    Number of locks in REPLICATING state
+'locks_stuck_cnt'
+    Number of locks in STUCK state
+'bytes'
+    Total bytes of the DID</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
     </div>
 
 </div>
@@ -2128,7 +2396,7 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Options dictionary.</p>
+                <p>Options dictionary. Options dictionary can contain any of the keys used to add a rule.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2158,6 +2426,42 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
+                <p>Rule ID was not found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="InputValidationError">InputValidationError</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>An invalid key was passed in "options".</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>True if the rule was sucessfully updated.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
                 
               </div>
             </td>
@@ -2165,6 +2469,24 @@ Default is 'DATASET'.</p>
       </tbody>
     </table>
 
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <details class="example">
+<summary>Example</summary>
+<p>Update a rule with a lifetime of 0, so the rule expires.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+<span class="n">rule_id</span> <span class="o">=</span> <span class="s2">&quot;Existing Rule ID&quot;</span>
+<span class="n">client</span><span class="o">.</span><span class="n">update_replication_rule</span><span class="p">(</span><span class="n">rule_id</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lifetime&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+</code></pre></div>
+</details>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.ruleclient.RuleClient.add_replication_rule
+rucio.client.ruleclient.RuleClient.reduce_replication_rule</p>
+</details>
 
     </div>
 
@@ -2185,6 +2507,8 @@ Default is 'DATASET'.</p>
 
     <div class="doc doc-contents ">
 
+        <p>Downgrade the number of replica copies a rule creates.
+Creates a new rule and deletes the old one.</p>
 
 
 <table>
@@ -2267,7 +2591,7 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
-                
+                <p>Rule ID does not exist</p>
               </div>
             </td>
           </tr>
@@ -2279,6 +2603,54 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
+                <p>The target rule is either not in an OK state, or requested copies is larger than current copies.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccessDenied">AccessDenied</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>User does not have sufficent premissions.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="InvalidRSEExpression">InvalidRSEExpression</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>The Expression (<rule ID rse expression>)(<exclude_expression>) does not resolve to RSEs.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>New rule ID.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
                 
               </div>
             </td>
@@ -2286,6 +2658,11 @@ Default is 'DATASET'.</p>
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.ruleclient.RuleClient.update_replication_rule</p>
+</details>
 
     </div>
 
@@ -2304,7 +2681,8 @@ Default is 'DATASET'.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Move a replication rule to another RSE and, once done, delete the original one.</p>
+        <p>Move a replication rule to another RSE and, once done, sets the lifetime of the original rule to 0.
+Creates the new rule as a child rule of the supplied rule.</p>
 
 
 <table>
@@ -2383,7 +2761,7 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
-                
+                <p>Rule ID does not exist.</p>
               </div>
             </td>
           </tr>
@@ -2395,6 +2773,42 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
+                <p>Rule already has a child rule.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="UnsupportedOperation">UnsupportedOperation</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>Key in override is invalid.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>New rule ID.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
                 
               </div>
             </td>
@@ -2402,6 +2816,12 @@ Default is 'DATASET'.</p>
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <p>rucio.client.ruleclient.RuleClient.update_replication_rule
+rucio.client.ruleclient.RuleClient.reduce_replication_rule</p>
+</details>
 
     </div>
 
@@ -2420,6 +2840,9 @@ Default is 'DATASET'.</p>
 
     <div class="doc doc-contents ">
 
+        <p>Admin tool used to approve pending rules.
+Rules with the "ask_approval" attribute can be approved this way.</p>
+<p>An email will be sent to the user who created the rule when the rule is approved.</p>
 
 
 <table>
@@ -2466,6 +2889,42 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
+                <p>Rule ID does not exist</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccessDenied">AccessDenied</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>User does not have premission to deny/approve rules.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>True if rule was successfully approved.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
                 
               </div>
             </td>
@@ -2473,6 +2932,12 @@ Default is 'DATASET'.</p>
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <pre><code>rucio.client.ruleclient.RuleClient.deny_replication_rule
+</code></pre>
+</details>
 
     </div>
 
@@ -2491,6 +2956,10 @@ Default is 'DATASET'.</p>
 
     <div class="doc doc-contents ">
 
+        <p>Admin tool used to deny and delete pending rules.
+Rules with the "ask_approval" attribute can be denied this way.</p>
+<p>When a rule is denied, a message is sent to the user who created
+the rule via the email listed on their account.</p>
 
 
 <table>
@@ -2557,6 +3026,42 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-raises-details">
               <div class="doc-md-description">
+                <p>Rule ID does not exist</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="AccessedDenied">AccessedDenied</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>User does not have premission to deny/approve rules.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>True if the rule is sucessfully denied.</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
                 
               </div>
             </td>
@@ -2564,6 +3069,12 @@ Default is 'DATASET'.</p>
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <pre><code>rucio.client.ruleclient.RuleClient.approve_replication_rule
+</code></pre>
+</details>
 
     </div>
 
@@ -2629,6 +3140,78 @@ Default is 'DATASET'.</p>
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>    Iterator of rule history dictionaries with the keys:</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>'rule_id'
+    ID of the rule
+'account'
+    Owner of the rule
+'rse_expression'
+    RSE Expression
+'created_at'
+    Rule creation date.
+'updated_at'
+    Last modified date of rule.
+'state'
+    State of the rule. R [Replicating], O [Ok], S [Stuck], U [Suspended], W [Waiting Approval], I [Injecting]
+'locks_ok_cnt'
+    Number of locks in OK state
+'locks_replicating_cnt'
+    Number of locks in REPLICATING state
+'locks_stuck_cnt'
+    Number of locks in STUCK state</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RuleNotFound">RuleNotFound</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>DID not found or no rules exist for the given scope and name.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <pre><code>rucio.client.ruleclient.RuleClient.list_replication_rules
+rucio.client.ruleclient.RuleClient.get_replication_rule
+</code></pre>
+</details>
+
     </div>
 
 </div>
@@ -2663,7 +3246,7 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The rule to be denied</p>
+                <p>The rule to examine</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2671,6 +3254,31 @@ Default is 'DATASET'.</p>
                       <code><span title="str">str</span></code>
                   </span>
               </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Dictionary with the following keys:</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>'rule_error': Error message from transfer error
+'transfers': List of ongoing transfer IDs</p>
+              </div>
             </td>
           </tr>
       </tbody>
@@ -2735,7 +3343,7 @@ Default is 'DATASET'.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The rule to be denied</p>
+                <p>Rule ID</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -2743,6 +3351,35 @@ Default is 'DATASET'.</p>
                       <code><span title="str">str</span></code>
                   </span>
               </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Iterator of dictionaries of replica information with the keys:</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>'scope': DID Scope
+'name': DID Name
+'rse_id': RSE ID
+'rse': RSE Name
+'state': State of replica
+'rule_id': Passed rule ID</p>
+              </div>
             </td>
           </tr>
       </tbody>
@@ -2772,6 +3409,13 @@ Default is 'DATASET'.</p>
       </tbody>
     </table>
 
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <pre><code>rucio.client.ruleclient.RuleClient.examine_replication_rule
+rucio.client.ruleclient.RuleClient.get_replication_rule
+</code></pre>
+</details>
 
     </div>
 
@@ -2803,13 +3447,22 @@ Default is 'DATASET'.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                <code>filers</code>
+                <code>filters</code>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>dictionary of attributes by which the rules should be filtered</p>
+                <p>dictionary of attributes by which the rules should be filtered.
+Filters can be any of the attributes in the return dictionary.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -2828,18 +3481,126 @@ Default is 'DATASET'.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code>True if successful, otherwise false.</code>
+                    <code>    Iterator of rule dictionaries with the keys:</code>
                 </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                
+                <p>'id'
+    ID of the rule
+'scope'
+    DID scope
+'name'
+    DID name
+'did_type'
+    Type of the DID (FILE, DATASET, CONTAINER)
+'account'
+    Owner of the rule
+'rse_expression'
+    RSE Expression
+'copies'
+    Number of replica copies
+'grouping'
+    How replicas are grouped (ALL, DATASET, NONE)
+'lifetime'
+    The lifetime of the replication rules (in seconds)
+'locked'
+    If the rule is locked, it cannot be deleted
+'source_replica_expression'
+    RSE Expression for RSEs to be considered for source replicas
+'activity'
+    Transfer Activity to be passed to FTS
+'notify'
+    Notification setting for the rule (Y, N, C, P)
+'purge_replicas'
+    When the rule gets deleted purge the associated replicas immediately
+'ignore_availability'
+    Option to ignore the availability of RSEs
+'comment'
+    Comment about the rule
+'ask_approval'
+    Ask for approval of this replication rule
+'asynchronous'
+    Create rule asynchronously by judge-injector
+'delay_injection'
+    Delay the rule injection
+'priority'
+    Priority of the transfers
+'weight'
+    Weighting scheme to be used
+'meta'
+    Metadata as dictionary
+'state'
+    State of the replication rule (OK, REPLICATING, STUCK, SUSPENDED, WAITING_APPROVAL, INJECT)
+'error'
+    Any error raised when creating replicas for the rule.
+'created_at'
+    Rule creation date.
+'updated_at'
+    Last modified date of rule.
+'expires_at'
+    Expiration date of the rule
+'eol_at'
+    End of life date for the replicas
+'deleted_at'
+    Date when the rule was deleted
+'stuck_at'
+    Date when the rule entered STUCK state
+'child_rule_id'
+    ID of the child rule (if this rule was replaced)
+'subscription_id'
+    ID of the subscription that created this rule
+'split_container'
+    Whether the rule was split from a container rule
+'ignore_account_limit'
+    Whether account limits were ignored when creating the rule
+'notification'
+    Notification setting for the rule (YES, NO, CLOSE, PROGRESS)
+'locks_ok_cnt'
+    Number of locks in OK state
+'locks_replicating_cnt'
+    Number of locks in REPLICATING state
+'locks_stuck_cnt'
+    Number of locks in STUCK state
+'bytes'
+    Total bytes of the DID</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
 
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><span title="RucioException">RucioException</span></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>An invalid key is passed as a filter.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="see-also" open>
+  <summary>See Also</summary>
+  <pre><code>rucio.client.ruleclient.RuleClient.add_replication_rule
+rucio.client.ruleclient.RuleClient.get_replication_rule
+</code></pre>
+</details>
 
     </div>
 
