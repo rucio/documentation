@@ -3024,7 +3024,7 @@ This is required to read/write data onto the RSE.</p>
 <li>third_party_copy_write</li>
 </ul>
 </li>
-<li>extended_attributes: miscellaneous protocol specific information e.g. spacetoken for SRM (default = None)</li>
+<li>extended_attributes: miscellaneous protocol specific information</li>
 </ul>
 <p>Extended attributes required for each protocol can be seen listed in the documentation for each protocol implementation
 (e.g. <code>rucio.rse.protocols.posix.Default</code> for the POSIX protocol).</p>
@@ -3512,7 +3512,7 @@ If None, 'write' is used by default.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The identifier of the requested protocol (gsiftp, https, davs, etc), by default None.</p>
+                <p>The identifier of the requested protocol (https, davs, etc), by default None.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4135,7 +4135,7 @@ rucio.client.rseclient.RSEClient.add_protocol</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The scheme of one of the two protocols to be swapped (e.g., 'srm').</p>
+                <p>The scheme of one of the two protocols to be swapped (e.g., 'http').</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -4571,7 +4571,7 @@ Added to the history of the RSE usage, for monitoring and accounting.</p>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The information source, any string used for accounting and documenting source of usage inforrmation</p>
+                <p>The information source, any string used for accounting and documenting source of usage inforrmation.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
