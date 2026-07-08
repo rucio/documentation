@@ -1,0 +1,114 @@
+name: Build Documentation
+
+on:
+  workflow_call:
+    inputs:
+      base-url:
+        description: 'Base URL for Docusaurus'
+        required: false
+        type: string
+        default: '/documentation'
+      pr-ref:
+        description: 'Git ref to checkout (for PR previews)'
+        required: false
+        type: string
+        default: ''
+    outputs:
+      artifact-name:
+        description: "Name of the uploaded build artifact"
+        value: ${{ jobs.build.outputs.artifact-name }}
+
+jobs:
+  check_markdown_syntax:
+    name: Check Markdown Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.pr-ref || github.ref }}
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+      - run: gem install mdl
+      - run: ./tools/check-docs.sh
+
+  check_file_names:
+    name: Check File Names
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.pr-ref || github.ref }}
+      - run: ./tools/check-file-names.sh
+
+  check_shell_scripts:
+    name: Check Shell Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.pr-ref || github.ref }}
+      - run: sudo apt-get install --yes shellcheck
+      - run: shellcheck **/*.sh
+
+  check_python_scripts:
+    name: Check Python Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.pr-ref || github.ref }}
+      - run: pip install -r tools/requirements.txt
+      - run: black --check .
+      - run: isort --profile black --filter-files --check .
+      - run: flake8 --config tools/.flake8
+      - run: mypy --ignore-missing-imports .
+
+  build:
+    name: Build
+    outputs:
+      artifact-name: documentation-artifacts
+    needs: [check_markdown_syntax, check_file_names, check_shell_scripts, check_python_scripts]
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.pr-ref || github.ref }}
+
+      - uses: actions/checkout@v6
+        with:
+          repository: rucio/rucio
+          ref: master
+          path: tools/run_in_docker/rucio
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies and build API docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 -m pip install -U pip setuptools
+          python3 -m pip install -U -r tools/requirements.txt
+          docker login https://docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+          ./tools/build_documentation.sh
+          docker logout https://docker.pkg.github.com
+
+      - name: Build Docusaurus site
+        working-directory: website
+        run: |
+          yarn install
+          yarn build
+        env:
+          BASE_URL: ${{ inputs.base-url }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-artifacts
+          path: website/build
+          retention-days: 7

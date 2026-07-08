@@ -1,0 +1,159 @@
+name: Deploy PR Preview
+
+on:
+  # Uses pull_request_target instead of pull_request to:
+  # 1. Access repository secrets (PREVIEW_TOKEN) for fork PRs
+  # 2. Deploy to target repository with write permissions
+  # Note: pull_request_target runs in base repo context, so we explicitly
+  # checkout PR head SHA to build the correct code
+  pull_request_target:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.event.action != 'closed'
+    uses: ./.github/workflows/_build_docs.yaml
+    secrets: inherit
+    permissions:
+      packages: read
+    with:
+      base-url: ${{ github.event_name == 'pull_request_target' && format('/documentation/pr-preview/pr-{0}', github.event.pull_request.number) || '/documentation' }}
+      pr-ref: ${{ github.event.pull_request.head.sha }}
+
+  deploy-preview:
+    name: Deploy Preview
+    needs: build
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          token: ${{ secrets.PREVIEW_TOKEN }}
+          persist-credentials: true
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact-name }}
+          path: website/build
+
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: website/build
+          repository-name: ${{ github.repository }}
+          branch: gh-pages
+          target-folder: pr-preview/pr-${{ github.event.pull_request.number }}
+          token: ${{ secrets.PREVIEW_TOKEN }}
+          clean: false
+          force: false
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PREVIEW_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const previewUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/pr-preview/pr-${prNumber}/`;
+
+            const comment = `## 🚀 Preview Deployed
+
+            Preview URL: ${previewUrl}
+
+            Built from commit: ${context.payload.pull_request.head.sha.substring(0, 7)}`;
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Preview Deployed')
+            );
+
+            // Update or create comment
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: comment
+              });
+            }
+
+  cleanup-preview:
+    name: Cleanup Preview
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository }}
+          ref: gh-pages
+          token: ${{ secrets.PREVIEW_TOKEN }}
+
+      - name: Remove preview directory
+        run: |
+          rm -rf pr-preview/pr-${{ github.event.pull_request.number }}
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Remove preview for PR #${{ github.event.pull_request.number }}" || echo "No changes to commit"
+          git push
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PREVIEW_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+
+            const comment = `## 🧹 Preview Removed
+
+            Preview has been removed because the PR was closed.`;
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Preview')
+            );
+
+            // Update existing comment
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: comment
+              });
+            }
