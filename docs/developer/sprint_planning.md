@@ -57,17 +57,6 @@ The following labels are available for size estimation:
 For **LARGE** and **XLARGE** issues it is mandatory to select/nominate a reviewer/co-author at the time of creation of the issue. This is to ensure
 that the approach and planned work is discussed already before the implementation is started.
 
-## Moderating a sprint
-Each sprint is moderated by one of the developers. This role rotates on a voluntary basis.
-
-The moderator is in charge of:
-- Beginning the sprint:
-    - Validating that the GitHub project board has been correctly populated
-- Providing brief status updates during the Rucio weekly meetings
-- Ending the sprint:
-    - Reviewing the retrospective comments left by the developers
-    - Validating that the GitHub project board has been correctly updated
-
 ## Participating in a sprint
 As a sprint participant, at the beginning of the sprint you should:
 - Respond to the initial sprint start thread with your availability (in days), and the issues with their estimates
