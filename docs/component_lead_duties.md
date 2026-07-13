@@ -48,4 +48,7 @@ should advise other contributors in their efforts.
 
 - Collaborate with and support the component lead in their duties;
    - For large components it is acceptable to agree on a partition of different work areas of a component assigned to the different deputies;
+- Stay up to date with the developments in your component, so that you can take over from the component lead at any time;
+   - This includes following the issues and pull requests of your component, being present on the Rucio Mattermost team, and regularly joining the weekly Rucio meeting;
 - Replace the component lead in their absence;
+   - This includes reviewing pull requests, reacting to issues of your component, and representing the component in the weekly Rucio meeting and in the release planning;
