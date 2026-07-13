@@ -5,7 +5,7 @@ sidebar_label: Component lead duties
 ---
 
 This guide should give prospective and current Rucio component leads a better understanding of what is expected from them in their role.
-Component leads, together with the project leader, form the Core Development team of Rucio. The current component leads and their deputies
+Component leads, together with the project leader, form the [Core Development team](./project_organisation.md) of Rucio. The current component leads and their deputies
 are listed on the [component leads](./component_leads.md) page. The main responsibility of a component lead
 is to take formal responsibility in planning and developing contributions for their respective component. They are the core experts and
 the point of contact in case of issues as well as to guide new developments within their components.
@@ -23,10 +23,10 @@ should advise other contributors in their efforts.
 - Take an active role in the Rucio project, be open to sharing your opinion on how your component, but also the wider Rucio project, should evolve;
    - Participate in the major release planning;
 - Regularly join the weekly Rucio meeting;
-- Be present on the Rucio Mattermost team;
+- Be present on the [Rucio Mattermost team](./mattermost.md);
 - Keep the documentation of your component accurate and up to date;
    - New features and behavioural changes should be reflected in the [project documentation](https://github.com/rucio/documentation) as part of the development effort, not as an afterthought;
-- Give advice and guide other developers in their contributions to Rucio, especially concerning your component;
+- Give advice and guide other developers in their [contributions to Rucio](./contributing.md), especially concerning your component;
 - Give advice to Rucio operators in their usage of Rucio, especially concerning areas of your component;
 - Actively participate in code reviews; be the default code reviewer of contributions to your component;
 - Participate in the [two-week sprints](./developer/sprint_planning.md);
@@ -35,7 +35,7 @@ should advise other contributors in their efforts.
    - Do not share any information about a vulnerability publicly before the advisory is formally published;
 - On GitHub
    - Actively read and react to GitHub notifications;
-   - Assign maintenance issues (to yourself, or if agreed to others) which fall into your component;
+   - Assign [maintenance issues](./developer/issue_management.md) (to yourself, or if agreed to others) which fall into your component;
    - Advise on feature requests or proposed developments of your component;
    - Close issues (if duplicate, unsuitable) of your component;
    - Comment on issues, especially the ones of your component;
