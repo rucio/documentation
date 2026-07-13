@@ -29,7 +29,7 @@ should advise other contributors in their efforts.
 - Give advice and guide other developers in their contributions to Rucio, especially concerning your component;
 - Give advice to Rucio operators in their usage of Rucio, especially concerning areas of your component;
 - Actively participate in code reviews; Be the default code reviewer of contributions to your component;
-- Participate in the bi-weekly sprints and volunteer for the role of sprint moderator;
+- Participate in the [bi-weekly sprints](./developer/sprint_planning.md);
 - Support the handling of security vulnerabilities according to the [Rucio security policy](https://github.com/rucio/rucio/security/policy);
    - You may be asked to help analyse and fix vulnerabilities affecting your component; Treat all information about a (possible) vulnerability confidentially, develop and review fixes in the private repositories rather than via the regular contribution process, and coordinate all actions with the project leader and the security component lead;
    - Do not share any information about a vulnerability publicly before the advisory is formally published;
