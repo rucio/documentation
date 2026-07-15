@@ -1,7 +1,7 @@
 Jinja2~=3.1.6
 MarkupSafe==3.0.3
 requests~=2.34.2
-mypy~=2.2
+mypy~=2.3
 black~=26.5.1
 isort~=8.0.1
 flake8~=7.3.0
