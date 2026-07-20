@@ -18,8 +18,7 @@ Wherever possible, we will give a deprecation warning of, at least, one year for
 
 | Feature                        | Note                                 | Removed in version / date |
 | ------------------------------ | ------------------------------------ | ------------------------- |
-| SRM and GridFTP protocol       |                                      | 41.0 LTS / 2026-Aug       |
-| Old CLI structure              | Structure needs to be stable in 41.0 | 42.0 / 2026-Nov           |
+| Old CLI structure              | New structure is stable since 41.0   | 42.0 / 2026-Nov           |
 | Old WebUI                      | Replaced by the (new) Rucio WebUI    | 43.0 / 2027-Mar           |
 | Temporary unavailable replicas |                                      | 43.0 / 2027-Mar           |
 | Support for MySQL              |                                      | 43.0 / 2027-Mar           |
