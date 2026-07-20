@@ -34,9 +34,9 @@ For differences between the versions of a Rucio client and a Rucio server we gua
 compatibility between a server and an older client up until the second LTS release line
 preceding the server.
 
-For example, a 40 Rucio server guarantees client support until the second LTS release line
+For example, a 41 Rucio server guarantees client support until the second LTS release line
 preceding its version, thus the 35 LTS release line. Therefore it guarantees support
-of clients of the 35, 36, 37, 38, 39, and 40 release lines.
+of clients of the 35, 36, 37, 38, 39, 40, and 41 release lines.
 
 A 33 Rucio server guarantees client support of the 1.29, 1.30, 1.31, 32, and 33 release
 lines, while a 32 server guarantees support of the 1.26, 1.27, 1.28, 1.29, 1.30, 1.31, and
@@ -51,10 +51,10 @@ server.
 | Version         | Code name                                 | Release date   | Supported until      |
 | --------------- | ----------------------------------------- | -------------- | -------------------- |
 | 42              | How to Train Your Donkey                  | _2026-11_      | _2027-03_            |
-| 41 LTS          | Donkémon                                  | _2026-07_      | _at least 2028-07_   |
-| **40**          | **Guardians of the Donkeyverse**          | **2026-04**    | _2026-07_            |
+| **41 LTS**      | **Donkémon**                              | **2026-07**    | _at least 2028-07_   |
+| 40              | Guardians of the Donkeyverse              | 2026-04        | 2026-07              |
 | 39              | Grand Theft Donkey                        | 2025-12        | 2026-04              |
-| **38 LTS**      | **Donkirk**                               | **2025-08**    | _at least 2027-08_   |
+| **38 LTS**      | **Donkirk**                               | **2025-08**    | **2027-08**          |
 | 37              | Dungeons & Donkeys                        | 2025-04        | 2025-08              |
 | 36              | Donkey Unchained                          | 2024-12        | 2025-04              |
 | **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | **2026-08**          |
@@ -125,7 +125,6 @@ two years.
 > in the WebUI project architecture and lack of feature completeness at that
 > time. Release 38 marks the first stable, feature-complete WebUI LTS release.
 >
-> **Jupyterlab Extension Note:** The Rucio Jupyerlab Extension started to follow
-> the LTS support period with the 40 Rucio release. Thus at the moment, there is
-> no LTS support given for the Jupyerlab Extension. The first Jupyerlab Extension
-> release covered by the LTS support period will be the 41 release.
+> **Jupyterlab Extension Note:** The Rucio Jupyterlab Extension started to follow
+> the LTS support period with the 40 Rucio release. The 41 release is the first
+> Jupyterlab Extension release covered by the LTS support period.
