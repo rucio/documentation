@@ -64,13 +64,7 @@ contributing (Creating code, documentation, etc.) to the project.
 
 * **Optional: Install Git Hooks**
 
-  The `prepare-commit-msg` hook can be installed by executing the script:
-
-  ```bash
-  ./tools/configure_git.sh
-  ```
-
-  Also, the [`pre-commit` python](https://pre-commit.com/) package is configured
+  The [`pre-commit` python](https://pre-commit.com/) package is configured
   for this repository. The `pre-commit` hook checks the syntax and format of the
   files before committing. This saves time in the development process, since
   minor errors are noticed before submission.
