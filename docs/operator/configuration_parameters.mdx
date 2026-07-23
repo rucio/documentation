@@ -287,8 +287,8 @@ Rucio will look for the config in the following locations -
     `/topic/rucio.events`.
   - **email_from**: Example: `Rucio <spamspamspam@cern.ch>`.
   - **email_test**: Example: `spamspamspam@cern.ch`.
-  - **smtp_host**: _(Optional)_ Default: `""`. If left empty, Hermes falls back to an unauthenticated, unencrypted local SMTP connection (`localhost:25`) and ignores `smtp_port`, TLS/SSL, and credential settings. Set this to enable a configured SMTP server with optional TLS/SSL and authentication.
-  - **smtp_port**: _(Optional)_ Default: `25`. Only used when `smtp_host` is set; ignored when `smtp_host` is empty (see above).
+  - **smtp_host**: _(Optional)_ The hostname of the SMTP server used to send emails. Set this to use a configured SMTP server with optional TLS/SSL and                authentication. Default: `""`; if left empty, Hermes falls back to an unauthenticated, unencrypted local SMTP connection (`localhost:25`) and ignores              `smtp_port`, TLS/SSL, and credential settings.
+  - **smtp_port**: _(Optional)_ Default: `25`. Only used when `smtp_host` is set. Port for SMTP server.
   - **nonssl_port**: _(Optional)_ Port of the broker if `use_ssl` is not set.
   - **password**: _(Optional)_ Password of the `username`. Mandatory if
     `use_ssl` is not set. No default.
