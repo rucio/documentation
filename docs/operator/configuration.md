@@ -29,7 +29,7 @@ is created, you need to create and attach an identity to this account:
       --email jdoe@blahblih.com --account jdoe
 ```
 
-The list of possible identity types is X509, GSS, USERPASS, SSH, OIDC:
+The list of possible identity types is X509, GSS, USERPASS, SSH, OIDC, OIDC_ALL:
 
 ```bash
   $ rucio-admin account list-identities jdoe
@@ -78,6 +78,21 @@ the `SSLOptions` directive looks like this:
 
 ```
 SSLOptions +StdEnvVars +LegacyDNStringFormat
+```
+
+### OIDC_ALL identity format
+
+OIDC_ALL identities are used to enable access to data without managing individual
+user. For example two experiments having a memorandum of understanding and sharing
+data while not keep track of each others users.
+
+It is configured using only the OIDC provider as the identity and all users having
+valid OIDC tokens will be mapped to one account.
+
+Example
+```bash
+  $ rucio account identity add --id 'ISS=https://iam-test.ch/' --type OIDC_ALL --email someone@iam-test.ch externaluser
+  Added new identity to account: ISS=https://iam-test.ch/-externaluser
 ```
 
 ## Creating scope
