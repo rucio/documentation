@@ -182,7 +182,29 @@ Different options are shown in figure and described below.
       password =
       ```
 
-2. Direct Delivery
+2. Kafka Messages
+
+     Hermes can deliver events to a Kafka topic, which can be consumed by a Kafka client.
+
+     Config for this is described below.
+     ```cfg
+     [hermes]
+     # List of services Hermes should send messages to.
+     services_list = kafka
+
+     [messaging-hermes-kafka]
+     # Kafka options
+     # Non-SSL port (used is use_ssl=False
+     nonssl_port = 9092
+     # Use SSL for Kafka connection
+     use_ssl = False
+     # Broker host name or DNS alias
+     brokers = kafka
+     # Destination topic
+     topic = hermestopic
+     ```
+
+3. Direct Delivery
 
      These options send events directly to storage or alerting systems, bypassing queues.
      Hermes can write events straight to Elasticsearch, OpenSearch, or InfluxDB. In addition can also deliver events via email which supports custom SMTP servers, credentials, and SSL/TLS.
@@ -197,8 +219,8 @@ Different options are shown in figure and described below.
 
       [hermes]
       # List of services Hermes should send messages to.
-      # Supported values: influx, elastic, email, activemq
-      services_list = elastic, influx, email, activemq
+      # Supported values: influx, elastic, email, activemq, kafka
+      services_list = elastic, influx, email, activemq, kafka
 
       # Toggle query behavior:
       # True  -> fetch bulk messages for each service individually
@@ -275,6 +297,8 @@ replace `event_type` with actual name that you want to inspect. We can also chec
 The final format of the message is determined by the destination service, as Hermes transforms the raw database message into the required wire protocol for external systems.
 
 - ActiveMQ (STOMP Message): The body is a streamlined JSON object containing only `event_type`, `payload`, and `created_at`. The message uses STOMP headers to set the event_type and flag the message as persistent.
+
+- Kakfa:  The body is a JSON object containing only `event_type`, `payload`, and `created_at`.
 
 - Elasticsearch / OpenSearch (Bulk API): Hermes sends the raw database JSON message (including `id` and `services`) as a document using Bulk API format (via a POST request).
 
