@@ -128,3 +128,29 @@ their issue and why.
   12- and 24-month thresholds, and revisit `wishlist` and `capacity-review-*`
   items whose review window has come due.
 * **Roadmap planning**: incorporates wishlist review as a standing input.
+
+## Message templates
+
+The following templates can be used when communicating a **Wishlist** or
+**Defer** decision back to the issue reporter. The `{...}` placeholders are
+filled in per issue.
+
+### Wishlist (label `wishlist`, close)
+
+```markdown
+Thank you for raising this. We have reviewed this issue as part of our regular issue review.
+
+We see value in this request, but we do not have the capacity to work on it within the next twelve months. {Optional: one or two sentences of issue-specific reasoning.}
+
+In line with our [issue management guideline](https://rucio.cern/documentation/developer/issue_management), we are labelling it `wishlist` and closing it. This does not mean it is forgotten: wishlist items are revisited regularly during component reviews and roadmap planning, and this issue can be re-opened and added back to the pipeline as soon as interest and capacity align.
+```
+
+### Defer (label `capacity-review-YY/QN`, keep open)
+
+```markdown
+Thank you for raising this. We have reviewed this issue as part of our regular issue review.
+
+There is interest in pursuing this, but we cannot schedule the work right now. {Optional: one or two sentences of issue-specific reasoning.}
+
+In line with our [issue management guideline](https://rucio.cern/documentation/developer/issue_management), we are labelling it `capacity-review-{YY/QN}` and keeping it open. It will be re-evaluated for capacity in {quarter, e.g. Q4 2026}.
+```
