@@ -198,7 +198,7 @@ def write_core_repo_section(fp: TextIO) -> None:
     if not issues:
         return
     fp.write(
-        "\nThe issues are grouped by their component labels; an issue with "
+        "\nIssues are grouped by component; an issue with "
         "several component labels appears in each group.\n"
     )
 
