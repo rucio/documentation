@@ -36,9 +36,9 @@ title: Wishlist Issues
 This page lists all issues of the [Rucio repositories](https://github.com/rucio)
 that have been closed with the `wishlist` label. As described in the
 [issue management guideline](issue_management.md), these are issues of
-potential value that are not planned for the next twelve months. They are
-Wishlisted issues are revisited regularly and can be re-opened when there is both interest and capacity from component leads.
-pipeline when interest and capacity align.
+potential value that are not planned for the next twelve months. Wishlisted
+issues are revisited regularly and can be re-opened when there is both interest
+and capacity from component leads.
 
 This list is refreshed automatically whenever the documentation is built. You
 can also view it
