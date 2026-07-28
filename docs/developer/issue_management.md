@@ -98,6 +98,9 @@ regularly as part of standing activities such as component issue reviews,
 roadmap planning, and similar review cycles. Any wishlist item can be re-opened
 and re-added to the pipeline when interest and capacity align.
 
+The current wishlist of the Rucio repositories is available on the
+[wishlist issues](wishlist_issues.md) page.
+
 ### Communication
 
 The state of the tracker must accurately reflect committed work. Every reporter

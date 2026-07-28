@@ -179,4 +179,7 @@ echo "[INFO] Generating Release Notes..."
 echo "[INFO] Generating Release Notes Index..."
 "${SCRIPT_DIR}/generate_release_notes_index.py"
 
+echo "[INFO] Generating Wishlist Issues..."
+"${SCRIPT_DIR}/generate_wishlist.py"
+
 echo "[INFO] build_documentation.sh complete."

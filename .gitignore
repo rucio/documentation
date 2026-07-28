@@ -5,6 +5,9 @@
 /docs/bin
 /docs/release-notes/
 
+# Exclude auto-generated files in /docs/
+/docs/developer/wishlist_issues.md
+
 # Exclude all directories in /tools/run_in_docker/
 /tools/run_in_docker/*/
 # And specifically also /tools/run_in_docker/rucio in case it is a symlink instead of a dir
