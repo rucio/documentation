@@ -131,9 +131,9 @@ their issue and why.
 
 ## Message templates
 
-The following templates can be used when communicating a **Wishlist** or
-**Defer** decision back to the issue reporter. The `{...}` placeholders are
-filled in per issue.
+The following templates can be used when communicating a **Wishlist**,
+**Defer**, or **Exception** decision back to the issue reporter. The `{...}`
+placeholders are filled in per issue.
 
 ### Wishlist (label `wishlist`, close)
 
@@ -153,4 +153,14 @@ Thank you for raising this. We have reviewed this issue as part of our regular i
 There is interest in pursuing this, but we cannot schedule the work right now. {Optional: one or two sentences of issue-specific reasoning.}
 
 In line with our [issue management guideline](https://rucio.cern/documentation/developer/issue_management), we are labelling it `capacity-review-{YY/QN}` and keeping it open. It will be re-evaluated for capacity in {quarter, e.g. Q4 2026}.
+```
+
+### Exception (keep open beyond the twelve-month horizon)
+
+```markdown
+Thank you for raising this. We have reviewed this issue as part of our regular issue review.
+
+This issue has been open for longer than the twelve-month delivery horizon, but we are making an exception and keeping it open. {Required: one or two sentences justifying the exception, e.g. work in progress, an external dependency, or an agreed schedule.}
+
+In line with our [issue management guideline](https://rucio.cern/documentation/developer/issue_management), such exceptions are granted case by case, and no issue remains open for longer than twenty-four months. By then this issue will be resolved, re-justified, or closed and labelled `wishlist`.
 ```
