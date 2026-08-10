@@ -129,7 +129,7 @@ Whatever route you go, you should have a `hostcert.pem` and a `hostkey.pem` file
 - Copy the SSL certificates to the `rucio/.vscode/certs` directory
 - Open VSCode. If you are using a remote VM, open the VSCode instance connected to your remote VM.
 - Go to `File` -> `Open Folder` and select the `rucio` folder
-- Edit the rucio/.vscode/docker-compose.yml and change the `RUCIO_HOST` environment variable for the rucio-dev container to `http://localhost` if you are using a local development environment or to the fqdn and port of your remote VM if you are using a remote development environment.
+- Edit the rucio/.vscode/docker-compose.yml and change the `RUCIO_HOST` environment variable for the rucio-dev container to `localhost` if you are using a local development environment or to the fqdn and port of your remote VM if you are using a remote development environment.
   ![RUCIO_HOST](/img/vscode/docker-compose-rucio-host.jpg)
 - Add the default url for webui in `rucio.cfg.template`, which is required to handle Cross Origin Requests (CORS) in the webui. Add the following line to the `[webui]` section of `rucio.cfg.template`:
   `      urls = <http://url-of-webui:port>
