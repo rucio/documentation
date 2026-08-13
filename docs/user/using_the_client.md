@@ -239,6 +239,37 @@ user's token saved in such file:
 auth_token_file_path = /path/to/token/file
 ```
 
+## Multi-RI configuration
+
+To enable the functionality a configuration is needed for each rucio server
+being accessed. The primary config file needs to have values for `multi_host_commands`
+and `multi_host_servers`. `multi_host_commands` should contain a comma separated file
+with commands that will be called on all servers and multi_host_commands should contain
+comma separated list of section names. The configuration should also contain a section
+with a value for `config_file`. The call will be repeated for using each of these
+configuration files. The path can be the path of the original config file.
+
+Example of a configuration file using multi-RI:
+
+```cfg
+[client]
+rucio_host = https://\<rucio_host\>:443
+auth_host = https://\<rucio_auth_host\>:443
+auth_type = oidc
+account = \<rucio_account_name\>
+oidc_audience = rucio
+oidc_scope = openid profile offline_access
+oidc_issuer = wlcg
+multi_host_commands = whoami, ping, list, download
+multi_host_servers = server 1, server 2
+
+[server 1]
+config_file = /opt/rucio/etc/rucio.cfg
+
+[server 2]
+config_file = /opt/rucio/etc/rucio_other_server.cfg
+```
+
 ## Querying basic information about RSEs
 
 You can query the list of available RSEs:
