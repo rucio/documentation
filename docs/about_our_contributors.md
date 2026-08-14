@@ -75,6 +75,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Luis Obis [luis.obis@cern.ch](mailto:luis.obis@cern.ch), 2025
 - Matti Jansson [karl.jansson@ucloouvain.be](mailto:karl.jansson@uclouvain.be), 2025
 - Riccardo Di Maio [riccardodimaio11@gmail.com](mailto:riccardodimaio11@gmail.com), 2024-2025
+- Oshika Jain [oshikajaing@gmail.com](mailto:oshikajaing@gmail.com), 2026
 
 # Organisations employing contributors
 
@@ -104,3 +105,4 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Universität Hamburg (Germany)
 - Brazilian Center for Research in Physics (Brazil)
 - Université Catholique de Louvain (Belgium)
+- Lakshmi Narain College of Technology (India)
