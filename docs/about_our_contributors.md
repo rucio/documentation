@@ -76,6 +76,7 @@ repository](https://github.com/rucio/documentation) before making a submission.
 - Matti Jansson [karl.jansson@ucloouvain.be](mailto:karl.jansson@uclouvain.be), 2025
 - Riccardo Di Maio [riccardodimaio11@gmail.com](mailto:riccardodimaio11@gmail.com), 2024-2025
 - Oshika Jain [oshikajaing@gmail.com](mailto:oshikajaing@gmail.com), 2026
+- Ganesh Sharma [ganeshsharmait@gmail.com](mailto:ganeshsharmait@gmail.com), 2026
 
 # Organisations employing contributors
 
