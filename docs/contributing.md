@@ -15,7 +15,7 @@ If you have questions, you can reach the core development team on our
 
 ## What should I know before I get started
 
-A contribution can be either be a **patch** or **feature**:
+A contribution can be either a **patch** or a **feature**:
 
 * **Patches** include bugfixes and minor changes to the code and are included in
   patches that are usually released every two weeks.
