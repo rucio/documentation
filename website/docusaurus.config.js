@@ -68,7 +68,7 @@ module.exports={
       },
       "items": [
         {
-          "to": "pathname:///html/client_api/accountclient.html",
+          "to": "pathname://html/client_api/accountclient.html",
           "label": "Python Client API",
           "position": "left"
         },
@@ -78,7 +78,7 @@ module.exports={
           "position": "left"
         },
         {
-          "to": "pathname:///html/rest_api_doc.html",
+          "to": "pathname://html/rest_api_doc.html",
           "label": "REST API",
           "position": "left"
         },
