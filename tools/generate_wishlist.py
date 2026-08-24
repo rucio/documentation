@@ -3,7 +3,18 @@ import os
 from collections import defaultdict
 from dataclasses import dataclass
 from itertools import count
-from typing import Any, Dict, FrozenSet, Iterator, List, Set, TextIO, Tuple, Type
+from typing import (
+    Any,
+    Dict,
+    FrozenSet,
+    Iterator,
+    List,
+    Optional,
+    Set,
+    TextIO,
+    Tuple,
+    Type,
+)
 
 import requests
 
@@ -38,7 +49,8 @@ that have been closed with the `wishlist` label. As described in the
 [issue management guideline](issue_management.md), these are issues of
 potential value that are not planned for the next twelve months. Wishlisted
 issues are revisited regularly and can be re-opened when there is both interest
-and capacity from component leads.
+and capacity from component leads. The *Wishlisted* column shows when the
+`wishlist` label was last added to an issue.
 
 This list is refreshed automatically whenever the documentation is built. You
 can also view it
@@ -51,16 +63,16 @@ class GitHubIssue:
     number: int
     title: str
     html_url: str
-    closed_at: str
+    wishlisted_at: str
     labels: Tuple[str, ...]
 
     @classmethod
     def from_github_issue_api_json_obj(
-        cls: "Type[GitHubIssue]", obj: Any
+        cls: "Type[GitHubIssue]", obj: Any, wishlisted_at: str
     ) -> "GitHubIssue":
         labels = tuple(label["name"] for label in obj["labels"])
         return cls(
-            obj["number"], obj["title"], obj["html_url"], obj["closed_at"], labels
+            obj["number"], obj["title"], obj["html_url"], wishlisted_at, labels
         )
 
 
@@ -109,6 +121,39 @@ def get_component_labels(owner: str, repo: str) -> FrozenSet[str]:
         page += 1
 
 
+def get_wishlisted_at(owner: str, repo: str, issue_number: int) -> Optional[str]:
+    """
+    Get the timestamp of the last addition of the wishlist label to an issue.
+
+    The label name is compared case-insensitively, matching the behaviour of
+    the label filter of the issues API.
+
+    :param owner: The owner of the GitHub repository.
+    :param repo: The GitHub repository name.
+    :param issue_number: The issue number.
+    :returns: The timestamp of the last wishlist labelling, or None if the
+        events of the issue do not record one.
+    """
+    labelled_at = None
+    for page in count(1):
+        request = requests.get(
+            f"https://api.github.com/repos/{owner}/{repo}"
+            f"/issues/{issue_number}/events",
+            params={"per_page": str(ITEMS_PER_PAGE), "page": str(page)},
+            headers=github_api_headers(),
+        )
+        assert request.status_code == 200, "The request should be successful!"
+
+        events = request.json()
+
+        for event in events:
+            if event["event"] == "labeled" and event["label"]["name"].lower() == LABEL:
+                labelled_at = event["created_at"]
+
+        if len(events) != ITEMS_PER_PAGE:
+            return labelled_at
+
+
 def iter_github_wishlist_issues(owner: str, repo: str) -> Iterator[GitHubIssue]:
     """
     Iterate the closed issues labelled wishlist in the given GitHub repository.
@@ -136,7 +181,11 @@ def iter_github_wishlist_issues(owner: str, repo: str) -> Iterator[GitHubIssue]:
             # The issues API also returns pull requests; skip them.
             if "pull_request" in issue:
                 continue
-            yield GitHubIssue.from_github_issue_api_json_obj(issue)
+            # Fall back to the closing date if the labelling is not recorded.
+            wishlisted_at = (
+                get_wishlisted_at(owner, repo, issue["number"]) or issue["closed_at"]
+            )
+            yield GitHubIssue.from_github_issue_api_json_obj(issue, wishlisted_at)
 
         if len(issues) != ITEMS_PER_PAGE:
             return
@@ -144,15 +193,15 @@ def iter_github_wishlist_issues(owner: str, repo: str) -> Iterator[GitHubIssue]:
 
 def get_sorted_wishlist_issues(owner: str, repo: str) -> List[GitHubIssue]:
     """
-    Get the closed wishlist issues of a repository, newest-closed first.
+    Get the closed wishlist issues of a repository, newest-wishlisted first.
 
     :param owner: The owner of the GitHub repository.
     :param repo: The GitHub repository name.
-    :returns: The closed wishlist issues, newest-closed first.
+    :returns: The closed wishlist issues, newest-wishlisted first.
     """
     return sorted(
         iter_github_wishlist_issues(owner, repo),
-        key=lambda issue: issue.closed_at,
+        key=lambda issue: issue.wishlisted_at,
         reverse=True,
     )
 
@@ -178,12 +227,14 @@ def write_issue_table(fp: TextIO, issues: List[GitHubIssue]) -> None:
     :param fp: The file to write to.
     :param issues: The issues to write.
     """
-    fp.write("| Issue | Title | Closed |\n")
-    fp.write("|-------|-------|--------|\n")
+    fp.write("| Issue | Title | Wishlisted |\n")
+    fp.write("|-------|-------|------------|\n")
     for issue in issues:
         title = issue.title.replace("|", "\\|")
-        closed_on = issue.closed_at[:10]
-        fp.write(f"| [#{issue.number}]({issue.html_url}) | {title} | {closed_on} |\n")
+        wishlisted_on = issue.wishlisted_at[:10]
+        fp.write(
+            f"| [#{issue.number}]({issue.html_url}) | {title} | {wishlisted_on} |\n"
+        )
 
 
 def write_core_repo_section(fp: TextIO) -> None:
