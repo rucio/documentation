@@ -71,9 +71,7 @@ class GitHubIssue:
         cls: "Type[GitHubIssue]", obj: Any, wishlisted_at: str
     ) -> "GitHubIssue":
         labels = tuple(label["name"] for label in obj["labels"])
-        return cls(
-            obj["number"], obj["title"], obj["html_url"], wishlisted_at, labels
-        )
+        return cls(obj["number"], obj["title"], obj["html_url"], wishlisted_at, labels)
 
 
 def github_api_headers() -> Dict[str, str]:
