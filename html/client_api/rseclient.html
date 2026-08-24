@@ -5220,7 +5220,7 @@ rucio.client.rseclient.RSEClient.get_rse_limits</p>
 
 <a href="#rucio.client.rseclient.RSEClient.add_distance" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">add_distance</span><span class="p">(</span>
-    <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -5273,16 +5273,16 @@ Distances are used to deterimine paths between RSEs during transfers, a lower di
           </tr>
           <tr class="doc-section-item">
             <td>
-                <code>parameters</code>
+                <code>distance</code>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Dicionary in the format {"distance": int}.</p>
+                <p>Distance between RSEs.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
+                      <code><span title="int">int</span></code>
                   </span>
               </p>
             </td>
@@ -5377,7 +5377,7 @@ Distances are used to deterimine paths between RSEs during transfers, a lower di
 <p>Add a distance between two RSEs
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
 <span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
-<span class="n">rse_client</span><span class="o">.</span><span class="n">add_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">add_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div></p>
 </details>
 
@@ -5395,7 +5395,7 @@ Distances are used to deterimine paths between RSEs during transfers, a lower di
 
 <a href="#rucio.client.rseclient.RSEClient.update_distance" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_distance</span><span class="p">(</span>
-    <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -5447,16 +5447,16 @@ Distances are used to deterimine paths between RSEs during transfers, a lower di
           </tr>
           <tr class="doc-section-item">
             <td>
-                <code>parameters</code>
+                <code>distance</code>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>Updated distance in the form {"distance": int}.</p>
+                <p>New distance between RSEs.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
+                      <code><span title="int">int</span></code>
                   </span>
               </p>
             </td>
@@ -5515,8 +5515,8 @@ Distances are used to deterimine paths between RSEs during transfers, a lower di
 <p>Add a distance between two RSEs
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rucio.client.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
 <span class="n">rse_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
-<span class="n">rse_client</span><span class="o">.</span><span class="n">add_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
-<span class="n">rse_client</span><span class="o">.</span><span class="n">update_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>  <span class="c1"># Update the distance to 20</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">add_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">rse_client</span><span class="o">.</span><span class="n">update_distance</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;RSE1&quot;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="s2">&quot;RSE2&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># Update the distance to 20</span>
 </code></pre></div></p>
 </details>
 
