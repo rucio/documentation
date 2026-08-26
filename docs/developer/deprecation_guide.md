@@ -10,6 +10,33 @@ When this has to be done, two key things need to be taken into consideration:
 
 For server-side changes this means keeping existing API endpoints in place, continuing to accept the arguments and value formats that older clients send, and redirecting old client functions to their replacements instead of removing them. A newer client may depend on new server functionality; where practical, it should still handle older servers gracefully, for example by giving a clear error when the server does not support a new argument.
 
+For example, when adding a new argument to an existing API call, the server must
+treat it as optional, since every client released before the change will not
+send it:
+
+✅ Give the new argument a server-side default that reproduces the old behaviour
+
+```diff
+class APIEndpoints():
+    ...
+    def post(self):
+        parameters = json_parameters()
++        # Older clients do not send `new_arg`; the default must keep the
++        # behaviour from before the argument existed
++        new_arg = param_get(parameters, 'new_arg', default=None)
+```
+
+❌ Do not make the new argument mandatory, requests from older clients would fail
+
+```diff
+class APIEndpoints():
+    ...
+    def post(self):
+        parameters = json_parameters()
++        # Raises a 400 error for every client that does not send `new_arg`
++        new_arg = param_get(parameters, 'new_arg')
+```
+
 * When a feature is planned to be deprecated, an issue to do so must be made and linked in code
 
 Calculate the release in which the functionality should be removed, and make a `TODO` comment with that release.
