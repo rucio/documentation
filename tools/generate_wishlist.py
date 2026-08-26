@@ -133,7 +133,8 @@ def get_wishlisted_at(owner: str, repo: str, issue_number: int) -> Optional[str]
         events of the issue do not record one.
     """
     labelled_at = None
-    for page in count(1):
+    page = 1
+    while True:
         request = requests.get(
             f"https://api.github.com/repos/{owner}/{repo}"
             f"/issues/{issue_number}/events",
@@ -150,6 +151,7 @@ def get_wishlisted_at(owner: str, repo: str, issue_number: int) -> Optional[str]
 
         if len(events) != ITEMS_PER_PAGE:
             return labelled_at
+        page += 1
 
 
 def iter_github_wishlist_issues(owner: str, repo: str) -> Iterator[GitHubIssue]:
