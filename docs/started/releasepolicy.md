@@ -57,7 +57,7 @@ server.
 | **38 LTS**      | **Donkirk**                               | **2025-08**    | **2027-08**          |
 | 37              | Dungeons & Donkeys                        | 2025-04        | 2025-08              |
 | 36              | Donkey Unchained                          | 2024-12        | 2025-04              |
-| **35 LTS**      | **Donkey and the Data Factory**           | **2024-07**    | **2026-08**          |
+| 35 LTS          | Donkey and the Data Factory               | 2024-07        | 2026-08              |
 | 34              | Donkey Potter and the Data Cache          | 2024-03        | 2024-07              |
 | 33              | Eternal Sunshine of the Donkey's Mind     | 2023-12        | 2024-03              |
 | 32 LTS          | The Good, The Bad and the Donkey          | 2023-08        | 2025-08              |
@@ -120,11 +120,6 @@ Thus, once a year a release line is designated a **Long-term Support** (LTS) rel
 line, which will be supported with **critical** and **security** patches for
 two years.
 
-> **WebUI Note:** Although Rucio 35 is an LTS release, the corresponding WebUI
-> release 35 is **not** designated as LTS. This is due to significant changes
-> in the WebUI project architecture and lack of feature completeness at that
-> time. Release 38 marks the first stable, feature-complete WebUI LTS release.
->
 > **Jupyterlab Extension Note:** The Rucio Jupyterlab Extension started to follow
 > the LTS support period with the 40 Rucio release. The 41 release is the first
 > Jupyterlab Extension release covered by the LTS support period.
