@@ -11,6 +11,9 @@
 	},
 	{
 	    "pattern": "https://www.ctao.org"
+	},
+	{
+		"pattern": "https://www.km3net.org"
 	}
     ],
 	"retryOn429": true,
