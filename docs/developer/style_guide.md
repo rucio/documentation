@@ -6,11 +6,11 @@ title: Style Guide
 **TL;DR**  - Install the provided pre-commits, follow their recommendations
 
 # General Style
-Rucio follows [flake8](https://flake8.pycqa.org/en/latest/user/index.html) style, ([with exclusions listed here](https://github.com/rucio/rucio/blob/6f87396ff372eff25224341987568792457c016a/pyproject.toml#L86)).
-To use them to lint your code, run:
+Rucio uses [`ruff`](https://github.com/astral-sh/ruff) as a linter to enforce style.
+It is recommended to use it as part of the pre-commit, but it can run standalone via:
 ```
-python{version} -m pip install flake8
-flake8 --extend-ignore {codes to ignore} /your/code/path
+python{version} -m pip install ruff
+ruff check /your/code/path
 ```
 
 ## Imports
@@ -248,7 +248,8 @@ stmt = update(
 ```
 
 # Pre-commits
-Rucio uses the [`flake8`](https://github.com/PyCQA/flake8) precommit as a linter, [`ruff`](https://github.com/astral-sh/ruff-pre-commit) as a formatter,
+Rucio uses multiple pre-commit hooks, including
+[`ruff`](https://github.com/astral-sh/ruff-pre-commit) as a formatter and linter,
 a custom whitespace remover, and a script to verify a uniform file-header format.
 Please use these before submitting a pull request.
 
@@ -259,6 +260,9 @@ Install it with the below commands.
 pip install pre-commit
 pre-commit install
 ```
+
+Rucio also runs these checks as part of its GitHub actions suite, and will mark a pull
+request as failing if the pre-commit's conditions are not met.
 
 # GitHub Actions
 Code style is checked during a pull request with a GitHub action.
