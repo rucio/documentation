@@ -511,7 +511,7 @@ is a setting already specified in the Configuration File.
 
 ## RSE settings
 The RSE settings are set separately using `rucio.RSEClient.update_rse` or `rucio rse update`, and specify RSE configuration used by the Rucio instance.
-Mutable settings are `deterministic`, `rse_type`, `staging_area`, `volatile`, `qos_class`, `availability_delete`, `availability_read`, `availability_write`, `city`, `country_name`, `latitude`, `longitude`, `region_code`, and `time_zone`.
+Mutable settings are `deterministic`, `rse_type`, `staging_area`, `volatile`, `availability_delete`, `availability_read`, `availability_write`, `city`, `country_name`, `latitude`, `longitude`, `region_code`, and `time_zone`.
 Geographic fields (`city`, `country_name`, `latitude`, `longitude`, `region_code`, `time_zone`) can also be set at RSE creation time via API parameters.
 Read more about RSEs [here](started/concepts/rucio_storage_element.md)
 and how to set them up [here](operator/configuration.md#creating-new-rses).
@@ -529,15 +529,14 @@ and how to set them up [here](operator/configuration.md#creating-new-rses).
 - **latitude**: Optional[Float]. Latitude coordinate of the RSE location. Used for geographic calculations. No default.
 - **longitude**: Optional[Float]. Longitude coordinate of the RSE location. Used for geographic calculations. No default.
 - **protocols**: List[RSEProtocolDict]. List of protocol configurations for accessing this RSE. Cannot be changed directly; use protocol-specific methods.
-- **qos_class**: Optional[String]. No functionality in modern Rucio. No default.
 - **region_code**: Optional[String]. Region code where the RSE is located (e.g., state or province). No default.
 - **rse**: String. The name of the Rucio Storage Element as given at creation time. Cannot be changed.
-- **rse_type**: String. Specify `DISK` or `TAPE` for control of [QoS](operator/qos_rse_config.md). Default: `DISK`.
+- **rse_type**: String. Specify `DISK` or `TAPE`. Default: `DISK`.
 - **sign_url**: Optional[String]. Enable cloud support for this storage element. No default.
 - **staging_area**: Boolean. Specify if this RSE is a disk buffer to a tertiary storage backend, subject to additional constraints (specifically a lifetime for rules on this RSE must be defined). Default: `False`.
 - **time_zone**: Optional[String]. Time zone of the RSE location (e.g., "Europe/Zurich"). No default.
 - **verify_checksum**: Boolean. Specifies if the RSE has support for checksum verification. Default: `True`.
-- **volatile**: Boolean. Specifies if the RSE is cache storage. Subject to volatile RSE restrictions detailed [here](https://rucio.github.io/documentation/operator/qos_rse_config). Default: `False`.
+- **volatile**: Boolean. Specifies if the RSE is cache storage. Default: `False`.
 
 The following fields are compatibility fields that may be present in the settings dictionary:
 - **protocol**: RSEProtocolDict. A single protocol configuration (for backward compatibility).
