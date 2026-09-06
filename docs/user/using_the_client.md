@@ -102,79 +102,116 @@ suspended_at : None
 deleted_at : None
 email      : root@abc.com
 ```
+# OpenID Connect (OIDC) authentication
 
-## Open ID Connect authentication examples
+Rucio supports authentication with JSON Web Tokens (JWT) issued by an OpenID Connect
+Identity Provider (IdP), following the OAuth 2.0 and WLCG token specifications.
 
-There are 3 CLI login methods. Two were introduced in order to avoid typing the
-password in the Rucio CLI. The default Identity Provider `(IdP)/issuer` is
-configured on the side of Rucio server. In case multiple IdPs are supported,
-user can specify which one he desires to use by `--oidc-issuer=\<IdP nickname\>`
-option (where IdP nickname is the key under which issuers are configured on
-Rucio server side in the *idpsecrets.json* file). In the following examples we
-assume that user does not want to use the rucio account name specified in the
-*rucio.cfg* file on the client side (if so `-a` parameter can be omitted).  If
-*auth_type* is specified to be "oidc" in the *rucio.cfg* file, `-S` can be
-omitted as well.  Furthermore, we use the same default issuer as configured on
-Rucio server side.
+The default IdP/issuer is configured on the Rucio server side. If the server supports
+multiple IdPs, you can select one with the `--oidc-issuer=<IdP nickname>` option, where
+the nickname is the key under which the issuer is configured in the server-side
+`idpsecrets.json` file.
 
-1. Login via user's browser + fetch code:
+In the examples below we assume you do not want to use the Rucio account name from your
+client-side `rucio.cfg` (otherwise the `--account` option can be omitted). If `auth_type = oidc`
+is set in `rucio.cfg`, the `--auth-strategy` option can be omitted as well. The examples also use the
+default issuer configured on the Rucio server.
 
-  ```bash
-  rucio -a=\<rucio_account_name\> -S=OIDC -v whoami
-  ```
+## CLI login methods
 
-1. Login via user's browser + polling Rucio auth server:
+Two interactive CLI login flows are available. Both are based on the OAuth 2.0
+authorization code flow and never require typing your IdP password into the CLI.
 
-  ```bash
-  rucio -a=\<rucio_account_name\> -S=OIDC --oidc-polling -v whoami
-  ```
+### 1. Login via browser + fetch code
 
-1. Automatic login:
-
-  ```bash
-  rucio -a=\<rucio_account_name\> \
-    -S=OIDC --oidc-user=\<idp_username\> \
-    --oidc-password=\<idp_password\> \
-    --oidc-auto \
-    -v \
-    whoami
-  ```
-
-We strongly discourage this approach, typing your password in CLI does not
-comply with OAuth2/OIDC standard !
-
-If Rucio Server is granted a user both valid access and refresh tokens, it is
-also possible to configure Rucio Client to ask Rucio Server for token
-refresh. Assuming user used one of the 3 CLI authentication methods above +
-requested offline_access in the scope, rucio.cfg file can be configured with the
-following parameters in the `[client]` section:
+You are given a URL to open in your browser. After logging in at the IdP, you copy the
+returned code back into the CLI:
 
 ```bash
+rucio --account <rucio_account_name> --auth-strategy OIDC -v whoami
+```
+
+### 2. Login via browser + polling the Rucio auth server
+
+Same as above, but instead of copying a code back, the Rucio client polls the Rucio
+auth server until the browser login completes:
+
+```bash
+rucio --account <rucio_account_name> --auth-strategy OIDC --oidc-polling -v whoami
+```
+
+## WLCG bearer token discovery
+
+The Rucio client also supports the [WLCG Bearer Token Discovery](https://zenodo.org/records/3937438)
+mechanism. This lets you authenticate with a token obtained by an external tool (e.g.
+`oidc-agent`, `htgettoken`) without going through the Rucio login flows at all.
+
+When `auth_type = oidc`, before falling back to its locally stored token (and before
+starting any interactive login), the client looks for a token in the following order:
+
+1. The `BEARER_TOKEN` environment variable (the token string itself).
+2. The file pointed to by the `BEARER_TOKEN_FILE` environment variable.
+3. `$XDG_RUNTIME_DIR/bt_u$ID`, if `XDG_RUNTIME_DIR` is set (where `$ID` is your
+   effective user ID, i.e. the output of `id -u`).
+4. `/tmp/bt_u$ID`.
+
+The first token found is presented to the Rucio server.
+
+A token obtained this way was not issued via the Rucio login mechanisms, so it must meet
+the same requirements as any externally issued token in order to be accepted:
+
+- The token `scope` claim contains at least the minimum scope (e.g. `openid profile`)
+  required by the Rucio auth server (configured in its `rucio.cfg`).
+- The same holds for the `aud` (audience) claim.
+- The token issuer is known to the Rucio authentication server.
+- The identity of the token (`SUB=<user sub claim>`, `ISS=<issuer url>`) is assigned to
+  an existing, pre-provisioned Rucio account.
+
+
+## Automatic token refresh
+
+If the Rucio server has been granted both a valid access token and a refresh token, the
+Rucio client can be configured to ask the server to refresh the token. This requires
+that you logged in with one of the CLI methods above **and** requested the
+`offline_access` scope. Configure the `[client]` section of `rucio.cfg`:
+
+```cfg
 [client]
 auth_oidc_refresh_active = true
 auth_oidc_refresh_before_exp = 20
 ```
 
-`auth_oidc_refresh_active` is false by default. If set to true, the Rucio Client
-will be following up token expiration timestamp. As soon as the current time
-gets to `auth_oidc_refresh_before_exp` minutes (20 min default) before token
-expiration, Rucio Client will ask Rucio Server for token refresh with every
-command. If the token has been refreshed in the recent 5 min already once, the
-same one will be returned (protection on the Rucio Server side). If the
-presented token has been refreshed automatically on the Rucio Server side by a
-oauth_manager daemon run, it will return this existing new token. If the
-presented token is invalid/expired/does not have refresh token in the DB, no
-refresh will be attempted.
+`auth_oidc_refresh_active` is `false` by default. If enabled, the client tracks the
+token expiration timestamp. Once the current time is within
+`auth_oidc_refresh_before_exp` minutes (default 20) of expiry, the client asks the
+server for a token refresh with every command. Server-side behaviour:
 
-Example of rucio.cfg file configuration with automatic token refresh:
+- If the token was already refreshed within the last 5 minutes, the same refreshed token
+  is returned (server-side protection).
+- If the presented token is invalid, expired, or has no refresh token in the database,
+  no refresh is attempted.
+
+You can control the maximum period (in hours) during which the server will refresh the
+token on your behalf with the `--oidc-refresh-lifetime` option at login time (default:
+96 hours). This option is only effective if `offline_access` is included in
+`--oidc-scope`, so that a refresh token is granted to Rucio:
+
+```bash
+rucio --account <rucio_account_name> \
+  --auth-strategy OIDC \
+  --oidc-scope "openid profile offline_access" \
+  --oidc-refresh-lifetime 24 \
+  -v whoami
+```
+
+Example of a full `rucio.cfg` client configuration with automatic token refresh:
 
 ```cfg
 [client]
-
-rucio_host = https://\<rucio_host\>:443
-auth_host = https://\<rucio_auth_host\>:443
+rucio_host = https://<rucio_host>:443
+auth_host = https://<rucio_auth_host>:443
 auth_type = oidc
-account = \<rucio_account_name\>
+account = <rucio_account_name>
 oidc_audience = rucio
 oidc_scope = openid profile offline_access
 oidc_issuer = wlcg
@@ -182,43 +219,51 @@ auth_oidc_refresh_active = true
 auth_oidc_refresh_before_exp = 20
 ```
 
-Then, you should be able to do simply:
+With this in place you can simply run:
 
 ```bash
 rucio -v whoami
 ```
 
-and follow the instruction for first log-in with your browser. New token will be
-requested before the current expires if a user types a rucio command within
-`auth_oidc_refresh_before_exp` minutes before the expiry.  Note: If user does
-not use Rucio Client within `auth_oidc_refresh_before_exp` minutes before token
-expires, it will be necessary to re-authenticate asking for a new offline_access
+and follow the instructions for the first browser login. A new token is requested
+before the current one expires, provided you run a Rucio command within
+`auth_oidc_refresh_before_exp` minutes of expiry (there is no background refresh).
+
+:::note
+If you do not use the Rucio client within `auth_oidc_refresh_before_exp` minutes before
+the token expires, you will need to re-authenticate and request a new `offline_access`
 token.
+:::
 
-If a user wishes to authenticate with Rucio using a JSON web token not issued
-via the Rucio login mechanisms (CLI, WebUI), one has to make sure that:
+## Using externally issued tokens
 
-- The token scope claim is no less than the minimum scope (e.g. 'openid
-  profile') required by the Rucio Auth server (configured there in the rucio.cfg
-  file).
-- same as above is true for the use of audience claim
-- token issuer is known to Rucio Authentication server
-- the identity of the token (`SUB=\<user sub claim\>, ISS=\<issuer url\>`) is
-  assigned to an existing Rucio account (pre-provisioned)
+If you wish to authenticate with a JWT that was not issued via the Rucio login
+mechanisms (CLI, WebUI) — including tokens picked up via WLCG token discovery — make
+sure that:
 
-If so, one can directly present the token to the Rucio REST endpoint in the
-`X-Rucio-Auth-Token` header, e.g.:
+- The token `scope` claim contains at least the minimum scope (e.g. `openid profile`)
+  required by the Rucio auth server (configured in its `rucio.cfg`).
+- The same holds for the `aud` (audience) claim.
+- The token issuer is known to the Rucio authentication server.
+- The identity of the token (`SUB=<user sub claim>`, `ISS=<issuer url>`) is assigned to
+  an existing, pre-provisioned Rucio account.
+
+Such a token can also be presented directly to the Rucio REST API in the
+`X-Rucio-Auth-Token` header:
 
 ```python
-python
 import requests
-s=requests.session()
-your_token=\<your JWT access token string\>
-headers={'X-Rucio-Auth-Token': your_token}
-address='https://\<Rucio Auth Server Name\>/accounts/guenther'
-result=s.get(address, headers=headers, verify=False)
-result.text
-u'{
+
+s = requests.session()
+your_token = "<your JWT access token string>"
+headers = {"X-Rucio-Auth-Token": your_token}
+address = "https://<Rucio Auth Server Name>/accounts/guenther"
+result = s.get(address, headers=headers, verify=False)
+print(result.text)
+```
+
+```json
+{
   "status": "ACTIVE",
   "account": "guenther",
   "account_type": "USER",
@@ -227,17 +272,22 @@ u'{
   "updated_at": "2019-11-13T13:01:58",
   "deleted_at": null,
   "email": "jaroslav.guenther@gmail.com"
-}'
+}
 ```
 
-There is also an option to specify a `auth_token_file_path` in the `client`
-section of the rucio.cfg file. Rucio Client will then store and search for
-user's token saved in such file:
+## Token file location
+
+By default the Rucio client stores its token in a file under a per-account token
+directory. You can override this with `auth_token_file_path` in the `[client]` section
+of `rucio.cfg`; the client will then store and look for the token in that file:
 
 ```cfg
 [client]
 auth_token_file_path = /path/to/token/file
 ```
+
+Note that tokens found via WLCG token discovery (environment variables or `bt_u$ID`
+files) take precedence over the token stored in this file.
 
 ## Querying basic information about RSEs
 
