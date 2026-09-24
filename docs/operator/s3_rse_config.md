@@ -17,23 +17,19 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
 
 ### How to Setup an S3 RSE
 
-1. Create the RSE. Upon executing `rucio-admin rse info <RSE>` command one should     have the following indicative result for the protocols section:
+1. Create the RSE. Upon executing `rucio rse show <RSE>` command one should have the following indicative result for the protocols section:
 
     ```bash
-                                    .
-                                    .
     Protocols:
     ==========
     https
         domains: '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan":..}'
         extended_attributes: None
-        hostname: <S3_HOSTNAME>
-        impl: rucio.rse.protocols.gfal.Default
+        hostname: $S3_HOSTNAME
+        impl: rucio.rse.protocols.gfal.NoRename  # Renaming with signed URLs (currently) breaks URLs
         port: 443
-        prefix: <PATH> # bucket name in case of path-style URLs
+        prefix: $PATH  # bucket name in case of path-style URLs
         scheme: https
-                                    .
-                                    .
     ```
 
 2. Set the following RSE attributes:
@@ -43,15 +39,15 @@ There are two ways in which one can employ [FTS3](https://fts3-docs.web.cern.ch/
     skip_upload_stat: True
     verify_checksum: False
     strict_copy: True
-    s3_url_style: path(default)|host
+    s3_url_style: path  # or: host
     ```
 
-3. Deploy the S3 configuration to the Rucio servers by creating a `<release-name-servers>-rse-accounts` containing the following:
+3. Deploy the S3 configuration to the Rucio servers by modifying rse-accounts like the following:
 
     ```bash
     # vim /opt/rucio/etc/rse-accounts.cfg
     {
-        "f4dc2967e329vdf5a73c154eb8d9ffae": {  #rse_id
+        "f4dc2967e329vdf5a73c154eb8d9ffae": {  # rse_id
                 "access_key": "...",
                 "secret_key": "...",
                 "signature_version": "s3v4",   # must be s3v4
