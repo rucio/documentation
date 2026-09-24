@@ -426,3 +426,286 @@ $ rucio list-file-replicas test:mynewdataset
 | test  | file4 | 10.486 MB | 65786e49 | XRD3: root://xrd3:1096//rucio/... |
 +-------+-------+-----------+----------+-----------------------------------+
 ```
+
+# Configuring S3 Storage and Multi-Hop Transfers in Rucio
+
+This tutorial covers how to register S3-compatible storage (MinIO) as Rucio Storage Elements (RSEs), configure credentials for both Rucio and FTS, and set up RSE distances to enable multi-hop transfers between S3 and XRootD endpoints.
+
+The examples use a Docker Compose playground environment with two MinIO instances (MINIO1, MINIO2) and three XRootD servers (XRD1, XRD2, XRD3). The commands assume you already have a rucio instance with an admin account.
+
+## Enabling HTTPS on XRD3 for Multi-Hop
+
+XRD3 acts as the intermediate hop between S3 and XRootD storage. To allow it to communicate with S3 backends, add an HTTPS protocol entry to the XRD3 RSE:
+
+```bash
+rucio rse protocol add XRD3 \
+  --host xrd3 \
+  --scheme https \
+  --prefix //rucio \
+  --port 1096 \
+  --impl rucio.rse.protocols.gfal.Default \
+  --domain-json '{"wan": {"read": 2, "write": 2, "delete": 2, "third_party_copy_read": 2, "third_party_copy_write": 2}, "lan": {"read": 2, "write": 2, "delete": 2}}'
+```
+
+The priority values (`"read": 2` etc.) ensure that the existing XRootD protocol remains preferred for direct transfers, while HTTPS is available for multi-hop routing.
+
+## Creating Buckets on MinIO
+
+Before registering MinIO instances as RSEs, create the `rucio` bucket on each. This uses the MinIO Client (`mc`) from within each MinIO container:
+
+```bash
+# On MINIO1
+export MC_INSECURE=true
+mc alias set local https://localhost:9001 admin password
+mc mb local/rucio
+
+# On MINIO2
+export MC_INSECURE=true
+mc alias set local https://localhost:9002 admin password
+mc mb local/rucio
+```
+
+## Registering MinIO RSEs
+
+Register both MinIO instances as RSEs with S3 protocol configuration. The `gfal.NoRename` implementation is used because S3 does not support server-side rename operations.
+Each RSE is configured with the following attributes:
+
+- `sign_url`: enables S3 presigned URL generation for this RSE.
+- `s3_url_style`: uses path-style S3 URLs, which are suitable for the local MinIO endpoints.
+- `verify_checksum`: disables checksum verification for this local demonstration setup.
+- `skip_upload_stat`: avoids relying on an upload stat call for the S3 endpoint.
+- `strict_copy`: enables stricter transfer handling for this RSE.
+- `fts`: points Rucio to the FTS endpoint used for third-party transfers.
+
+```bash
+for i in 1 2; do
+  RSE="MINIO${i}"
+  HOST="minio${i}"
+  PORT="900${i}"
+  rucio rse add "${RSE}"
+  rucio rse protocol add "${RSE}" \
+    --host "${HOST}" \
+    --port "${PORT}" \
+    --scheme https \
+    --prefix /rucio/ \
+    --impl rucio.rse.protocols.gfal.NoRename \
+    --domain-json '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy_read": 1, "third_party_copy_write": 1}}'
+  rucio rse attribute add "${RSE}" --key sign_url --value s3
+  rucio rse attribute add "${RSE}" --key s3_url_style --value path
+  rucio rse attribute add "${RSE}" --key verify_checksum --value False
+  rucio rse attribute add "${RSE}" --key skip_upload_stat --value True
+  rucio rse attribute add "${RSE}" --key strict_copy --value True
+  rucio rse attribute add "${RSE}" --key fts --value https://fts:8446
+  rucio account limit add root --rse "${RSE}" --bytes infinity
+done
+```
+
+### Setting RSE Credentials
+
+Rucio needs S3 credentials to generate presigned URLs for transfers. These are stored in `rse-accounts.cfg`, keyed by RSE ID:
+```bash
+ID1=$(rucio rse show MINIO1 | grep '^  id:' | awk '{print $2}')
+ID2=$(rucio rse show MINIO2 | grep '^  id:' | awk '{print $2}')
+cat >/opt/rucio/etc/rse-accounts.cfg <<JSON
+{
+  "$ID1": {
+    "access_key": "admin",
+    "secret_key": "password",
+    "signature_version": "s3v4",
+    "region": "us-east-1"
+  },
+  "$ID2": {
+    "access_key": "admin",
+    "secret_key": "password",
+    "signature_version": "s3v4",
+    "region": "us-east-1"
+  }
+}
+JSON
+```
+The resulting configuration can be inspected with:
+```console
+$ cat /opt/rucio/etc/rse-accounts.cfg
+{
+  "<MINIO1_RSE_ID>": {
+    "access_key": "admin",
+    "secret_key": "password",
+    "signature_version": "s3v4",
+    "region": "us-east-1"
+  },
+  "<MINIO2_RSE_ID>": {
+    "access_key": "admin",
+    "secret_key": "password",
+    "signature_version": "s3v4",
+    "region": "us-east-1"
+  }
+}
+```
+
+### Configuring RSE Distances for Multi-Hop
+
+RSE distances establish transfer paths between RSEs. Setting a distance of 1 between the source and an intermediate will ensure the intermediate transfer will always be preferred over longer direct transfers.
+
+```mermaid
+graph TD
+    MINIO[MINIO RSE]
+    XRD1[XRD1 RSE]
+    XRD2[XRD2 RSE]
+    XRD3[XRD3 RSE]
+    MINIO -.->|distance=1| XRD3
+    XRD3 -.->|distance=1| XRD1
+    XRD3 -.->|distance=1| XRD2
+```
+
+```bash
+rucio rse distance add XRD3 MINIO1 --distance 1
+rucio rse distance add XRD3 MINIO2 --distance 1
+rucio rse distance add MINIO1 XRD3 --distance 1
+rucio rse distance add MINIO2 XRD3 --distance 1
+```
+
+## Registering S3 Credentials in FTS
+
+FTS (File Transfer Service) executes the actual data movement and needs its own S3 credentials to authenticate against MinIO. Register each storage endpoint and associate credentials via the FTS REST API:
+
+```bash
+# Register MINIO1 storage and credentials
+curl \
+  --cert /etc/grid-security/hostcert.pem \
+  --key /etc/grid-security/hostkey.pem \
+  --capath /etc/grid-security/certificates \
+  https://fts:8446/config/cloud_storage \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d '{"storage_name":"S3:minio1"}'
+
+curl \
+  --cert /etc/grid-security/hostcert.pem \
+  --key /etc/grid-security/hostkey.pem \
+  --capath /etc/grid-security/certificates \
+  https://fts:8446/config/cloud_storage \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d '{"user_dn":"/CN=Rucio User","storage_name":"S3:minio1","access_token":"admin","access_token_secret":"password"}'
+
+# Register MINIO2 storage and credentials
+curl \
+  --cert /etc/grid-security/hostcert.pem \
+  --key /etc/grid-security/hostkey.pem \
+  --capath /etc/grid-security/certificates \
+  https://fts:8446/config/cloud_storage \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d '{"storage_name":"S3:minio2"}'
+
+curl \
+  --cert /etc/grid-security/hostcert.pem \
+  --key /etc/grid-security/hostkey.pem \
+  --capath /etc/grid-security/certificates \
+  https://fts:8446/config/cloud_storage \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d '{"user_dn":"/CN=Rucio User","storage_name":"S3:minio2","access_token":"admin","access_token_secret":"password"}'
+```
+
+GFAL2 also requires S3 credentials for the transfer agent. Write the following to `/etc/gfal2.d/s3.conf` on the FTS host:
+
+```ini
+[S3:MINIO1]
+ACCESS_KEY=admin
+SECRET_KEY=password
+REGION=us-east-1
+ALTERNATE=true
+
+[S3:MINIO2]
+ACCESS_KEY=admin
+SECRET_KEY=password
+REGION=us-east-1
+ALTERNATE=true
+```
+
+The `ALTERNATE=true` setting enables path-style S3 URLs, which is required for MinIO.
+
+## Verifying the Setup
+
+To confirm the configuration is working, upload test files to each MinIO RSE and create a replication rule targeting an XRootD endpoint. The transfer will route through XRD3 as the intermediate hop.
+
+Upload test files and attach them to a dataset:
+
+```bash
+dd if=/dev/urandom of=file5 bs=10M count=1
+dd if=/dev/urandom of=file6 bs=10M count=1
+
+rucio upload --rse MINIO1 --scope test file5
+rucio upload --rse MINIO2 --scope test file6
+
+rucio did add --type dataset test:dataset9
+rucio did content add -to test:dataset9 test:file5 test:file6
+```
+
+Create a replication rule to trigger a transfer from MinIO to XRD1. Since there is no direct link, Rucio will route the transfer via XRD3:
+
+```bash
+rucio rule add test:dataset9 --copies 1 --rses XRD1
+```
+
+Monitor the rule status with:
+
+```bash
+rucio rule list --account root
+```
+## RustFS: Validating Storage Portability
+
+RustFS can be used as an alternative S3-compatible backend for the same workflow.
+To evaluate the portability of the workflow, the testbed was additionally deployed against
+RustFS. The transition required only minimal configuration changes, confirming that the
+Rucio integration is largely independent of the underlying storage backend.
+
+### Starting RustFS
+
+Generate a self-signed TLS certificate and add RustFS to the stack as a Docker Compose override service, mounting the certificate into the container:
+
+```yaml
+services:
+  rustfs:
+    image: rustfs/rustfs:latest
+    hostname: rustfs
+    environment:
+      RUSTFS_ACCESS_KEY: admin
+      RUSTFS_SECRET_KEY: password
+      RUSTFS_DOMAIN: ""        # enforce path-style URLs
+    command: server --address :9003 --certs-dir /certs /data
+    ports:
+      - "9003:9003"
+```
+
+### Trusting the Certificate
+
+After the containers are running, inject the self-signed certificate into the Rucio CA bundle. Without this, GFAL2 rejects the certificate on upload.
+
+```bash
+docker cp rustfs/public.crt \
+  dev-rucio-1:/etc/pki/ca-trust/source/anchors/rustfs.pem
+docker exec dev-rucio-1 update-ca-trust
+```
+
+### Registering the RSE
+
+The RSE is registered similarly to MinIO, using `--scheme https` and the same set of S3 attributes:
+
+```bash
+rucio rse add RUSTFS_EU
+rucio rse protocol add RUSTFS_EU \
+  --host rustfs --port 9003 --scheme https --prefix /rucio/ \
+  --impl rucio.rse.protocols.gfal.NoRename \
+  --domain-json '{"lan": {"read": 1, "write": 1, "delete": 1},
+                  "wan": {"read": 1, "write": 1, "delete": 1,
+                          "third_party_copy_read": 1, "third_party_copy_write": 1}}'
+rucio rse attribute add RUSTFS_EU --key sign_url         --value s3
+rucio rse attribute add RUSTFS_EU --key s3_url_style     --value path
+rucio rse attribute add RUSTFS_EU --key verify_checksum  --value False
+rucio rse attribute add RUSTFS_EU --key skip_upload_stat --value True
+rucio rse attribute add RUSTFS_EU --key fts              --value https://fts:8446
+```
+
+Add credentials to `rse-accounts.cfg` and register the FTS cloud-storage entry and GFAL2 `s3.conf` section following the same pattern as for MinIO, replacing the hostname with `rustfs`.
