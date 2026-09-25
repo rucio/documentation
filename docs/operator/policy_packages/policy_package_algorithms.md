@@ -84,7 +84,7 @@ class ATLASScopeExtractionAlgorithm(rucio.common.utils.ScopeExtractionAlgorithms
         cls.register('atlas', cls.extract_scope_atlas)
 
     @staticmethod
-    def extract_scope_atlas(did: str, scopes: Optional['Sequence[str]']) -> 'Sequence[str]':
+    def extract_scope_atlas(did: str) -> 'Sequence[str]':
         # Try to extract the scope from the DSN
         if did.find(':') > -1:
             if len(did.split(':')) > 2:
@@ -104,6 +104,10 @@ class ATLASScopeExtractionAlgorithm(rucio.common.utils.ScopeExtractionAlgorithms
 
 ATLASScopeExtractionAlgorithm._module_init_()
 ```
+
+*Note: the scopes argument passed to the scope extraction algorithms
+was removed in Rucio 42. Please update your policy packages
+accordingly.*
 
 ## Registering a custom algorithm in your policy package
 
