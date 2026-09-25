@@ -241,7 +241,7 @@ auth_token_file_path = /path/to/token/file
 
 ## Multi host configuration
 
-Some setups may want to call two Rucio servers in parallel. This could be two experiments wanting to share data stored in similar way. 
+Some setups may want to call two Rucio servers in parallel. This could be two experiments wanting to share data stored in similar way.
 
 To enable the functionality a configuration is needed for each rucio server
 being accessed. The primary config file needs to have values for `multi_host_commands`
