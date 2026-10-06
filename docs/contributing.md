@@ -108,11 +108,14 @@ git commit -m "feat(Transfers): Group bulk transfers by authentication method" -
 ```
 
 Add additional explanations to the body of the commit, such as motivation for
-certain decisions and background information. [Here are some general rules.](https://cbea.ms/git-commit/).
+certain decisions and background information. [Here are some general rules](https://cbea.ms/git-commit/).
 
 Using multiple commits is encouraged as long as they achieve an independent,
 well-defined, change and are well-described. Otherwise multiple commits should
 be squashed.
+When a pull request covers many components or types, use multiple commits.
+For example, if a refactor is used to improve the quality of a feature, a commit with the `refactor`
+isolated should included alongside the `feat` commit.
 
 #### **Conventional Commits**
 
@@ -321,6 +324,9 @@ The format of the pull request title must be:
 ```bash
 <component>: <short_change_message> #<issue number>
 ```
+
+If your pull request was created with AI assistance, please disclose this in the pull request description, as required by the [AI Policy](./developer/ai_policy.md).
+It is also encouraged to disclose the particular model used, if applicable.
 
 ### 5. Watch the Pull Request for reviews
 
