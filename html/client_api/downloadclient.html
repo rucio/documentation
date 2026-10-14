@@ -1444,8 +1444,8 @@
 <a href="#rucio.client.downloadclient.BaseExtractionTool" class="headerlink" title="Permanent link">&para;</a></h3>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">BaseExtractionTool</span><span class="p">(</span>
     <span class="n">program_name</span><span class="p">,</span>
-    <span class="n">useability_check_args</span><span class="p">,</span>
-    <span class="n">extract_args</span><span class="p">,</span>
+    <span class="n">usability_check_args</span><span class="p">,</span>
+    <span class="n">build_extract_args</span><span class="p">,</span>
     <span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -1483,32 +1483,33 @@
           </tr>
           <tr class="doc-section-item">
             <td>
-                <code>useability_check_args</code>
+                <code>usability_check_args</code>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>the arguments of the extraction program to test if it's installed, e.g., --version</p>
+                <p>the arguments of the extraction program to test if it's installed, e.g., (--version, )</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
+                      <code><span title="collections.abc.Sequence">Sequence</span>[<span title="str">str</span>]</code>
                   </span>
               </p>
             </td>
           </tr>
           <tr class="doc-section-item">
             <td>
-                <code>extract_args</code>
+                <code>build_extract_args</code>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>the arguments that will be passed to the program for extraction</p>
+                <p>function to return the arguments that will be passed to the program for extraction
+receives the arguments like try_extraction: (archive_file_path, file_to_extract, dest_dir_path)</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="str">str</span></code>
+                      <code><span title="collections.abc.Callable">Callable</span>[[<span title="str">str</span>, <span title="str">str</span>, <span title="str">str</span>], <span title="collections.abc.Sequence">Sequence</span>[<span title="str">str</span>]]</code>
                   </span>
               </p>
             </td>
