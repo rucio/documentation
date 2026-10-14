@@ -236,7 +236,9 @@ Sometimes it's unclear which type to use. Consider the **intent** and **impact**
 
 #### **Breaking Changes**
 
-Commits that introduce breaking API or behavioral changes must use `!` after the type/scope in the header and include a corresponding `BREAKING CHANGE` footer.
+According to the release policy, Rucio versions within one release line are expected to be backwards compatible.
+Furthermore, the Rucio server must guarantee compatibility with even older versions of the Rucio client.
+To assist identifying breaking changes, such commits must use `!` after the type/scope in the header and include a corresponding `BREAKING CHANGE` footer.
 
 **Format:**
 ```
@@ -258,6 +260,30 @@ for all core functions. Callers must explicitly pass session=<session>
 instead of relying on positional arguments or default values.
 Closes: #5947
 ```
+
+Below is an indicative list of areas that should be considered for breaking changes:
+
+* Database
+  * Schema changes
+* Interfaces
+  * CLI commands and command-line arguments
+  * Python client API
+  * REST API
+  * Interface for policy packages
+  * Functional RSE attributes
+  * Configuration files and options
+  * Environment variables
+  * Daemon command-line arguments
+* Functionality
+  * High-level features
+  * Extensive and significant rewrites
+
+:::note
+
+The *introduction* of a new command-line option, API, etc. is fine, provided that the default behaviour remains the same.
+It is the *change* or *removal* that typically affects compatibility.
+
+:::
 
 #### **Git Trailers**
 
