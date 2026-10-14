@@ -8,7 +8,7 @@ yq e -i '.docs_dir = "/auto_generated/client_api"' mkdocs.yml
 yq e -i '.site_name = "Rucio Python Client Documentation"' mkdocs.yml
 yq -i '.plugins[2].mkdocstrings.handlers.python.options.docstring_style = "numpy"' mkdocs.yml
 
-pip install --upgrade mkdocs mkdocs-gen-files mkdocstrings-python mkdocs-material
+pip install --upgrade mkdocs mkdocs-gen-files mkdocstrings-python mkdocs-material mkdocstrings "pymdown-extensions<12.2"
 mkdir -p /auto_generated/client_api
 
 python3 generate_client_api_pages.py

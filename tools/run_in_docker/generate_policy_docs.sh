@@ -19,7 +19,7 @@ function mkdocs_build {
 
 echo "Setting up for mkdoc site generation..."
 
-pip install --upgrade mkdocs mkdocs-gen-files mkdocstrings-python mkdocs-material
+pip install --upgrade mkdocs mkdocs-gen-files mkdocstrings-python mkdocs-material mkdocstrings "pymdown-extensions<12.2"
 python3 generate_policy_pages.py
 
 mkdocs_build "rse_policies" "RSE Policy"
