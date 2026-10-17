@@ -43,7 +43,7 @@ username = your-username
 password = your-password
 
 # Port to use when NOT using SSL (i.e., use_ssl = False)
-nonssl_port = 61613
+
 
 # Port to use when using SSL (i.e., use_ssl = True)
 port = 61617
