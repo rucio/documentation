@@ -110,6 +110,48 @@ There is an exclusive Rucio endpoint for public Open Data called `opendata_publi
 For production deployments we recommend a dedicated Rucio server with only the `opendata_public` enabled, as this server instance is able to process unauthenticated requests.
 If this server is accessible to other services related to Open Data such as the Open Data Portal, it can provide updated information related to the Open Data DIDs registered in Rucio.
 
+## Public download endpoint
+
+Public Open Data DIDs resolving to a single file can be downloaded through
+the public download endpoint without authentication:
+
+```text
+GET /opendata/public/download/<scope>/<did>
+```
+
+The endpoint resolves the requested DID to a downloadable file and returns
+a `307 Temporary Redirect` to a tokenized HTTP(S) storage URL.
+
+Only `http` and `https` replicas are considered by this endpoint. If multiple
+HTTP(S) download URLs are available, HTTPS is preferred over HTTP.
+
+The endpoint represents a single downloadable file, so the DID must resolve
+to exactly one file. Multi-file datasets should instead use the existing
+Open Data metadata endpoint to retrieve the individual files and their
+corresponding download URLs.
+
+For example:
+
+```shell
+curl -i \
+  "https://<rucio-host>/opendata/public/download/<scope>/<did>"
+```
+
+A successful response contains the selected download URL in the `Location`
+header:
+
+```text
+HTTP/1.1 307 Temporary Redirect
+Location: https://<storage-endpoint>/<path>?authz=<token>
+```
+
+If the DID resolves to zero or multiple files, or if no usable HTTP(S)
+download URL is available, the endpoint returns `400`.
+
+If the DID is not available as public Open Data, the endpoint returns `403`.
+
+Other backend failures return `500`.
+
 ## REST API
 
 The [REST API for Open Data](https://rucio.cern.ch/documentation/html/rest_api_doc.html#tag/open_data) is available as part of the Rucio REST API documentation.
