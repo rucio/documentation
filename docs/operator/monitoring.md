@@ -174,7 +174,7 @@ Different options are shown in figure and described below.
       # Virtual host, optional
       broker_virtual_host = /
       # Non-SSL port (used if use_ssl=False)
-      
+
       # SSL port (used if use_ssl=True)
       port = 61614
       # ActiveMQ username/password (used if use_ssl=False)
