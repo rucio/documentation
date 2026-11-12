@@ -34,10 +34,12 @@ formed URLs and the standard HTTP methods:
 - DELETE to remove
 
 We require that all requests are done over SSL. The API supports JSON
-formats. Rucio uses [OAuth](http://oauth.net/) to authenticate all API
-requests. The method is to get an authentication token, and use it for the rest
-of the requests. Descriptions of the actions you may perform on each resource
-can be found below.
+formats. Most Rucio REST API requests require an authentication token,
+provided through the `X-Rucio-Auth-Token` header.
+
+The Open Data Public endpoints (`GET /opendata/public/dids` and
+`GET /opendata/public/dids/{scope}/{name}`) do not require a Rucio
+authentication token.
 
 ### Date format
 
@@ -149,4 +151,20 @@ with application.test_request_context():
                 file=__import__("sys").stderr,
             )
             raise e
+tags = list(
+    dict.fromkeys(
+        tag
+        for path in spec.to_dict()["paths"].values()
+        for operation in path.values()
+        if isinstance(operation, dict)
+        for tag in operation.get("tags", [])
+    )
+)
+
+if "Open Data" in tags and "Open Data Public" in tags:
+    tags.remove("Open Data Public")
+    tags.insert(tags.index("Open Data") + 1, "Open Data Public")
+
+for tag in tags:
+    spec.tag({"name": tag})
 print(spec.to_yaml())
