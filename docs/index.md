@@ -47,7 +47,6 @@ to install a server or some quick tips for working with the administrative
 CLI. Take a deep dive, but not before you ensure you've read through the
 pre-requisites section under each of the topics!
 
-- [Setting up a Rucio demo environment](operator/setting_up_demo.md)
 - [Installing Rucio Server](/operator/installing_server)
 - [Installing Rucio Daemons](operator/installing_daemons.md)
 - [Monitoring](operator/monitoring.md)
@@ -61,6 +60,7 @@ Developer documentation will help you get started. Peruse some common REST API &
 Client API references that are directly derived from Rucio's python
 libraries. We also have a contribution guide for those who wish to pitch in.
 
+- [Setting up a Rucio developer environment](developer/setting_up_dev_env.md)
 - [Client API Documentation](pathname:///html/client_api/accountclient.html)
 - [REST API Documentation](pathname:///html/rest_api_doc.html)
 - [Contributing guide](contributing)
