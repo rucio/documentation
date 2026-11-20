@@ -71,34 +71,27 @@ You can now run Storybook using `npm run storybook`.
 
 ## Connecting to a Rucio instance
 
-When testing the full WebUI stack, it will be necessary to connect to a Rucio
-backend. This can be done by running a Rucio instance locally.
+When testing the full WebUI stack, connect it to a Rucio server started with
+the `storage` profile. Follow
+[Setting up a Rucio developer environment](../setting_up_dev_env.md#using-the-environment-including-storage),
+including `tools/run_tests.sh -ir`, so the instance has RSEs and test data.
 
-We begin by starting all the Docker containers required.
-1. Start the dev container as described above.
-2. Clone Rucio from the [Github Repository](https://github.com/rucio/rucio)
-3. Open the folder in VS Code.
-4. Open the editor commands and run `Docker Compose Up` and select
-  `docker-compose-storage.yml`.
+1. Start the WebUI dev container as described above.
+2. Clone Rucio from the [GitHub repository](https://github.com/rucio/rucio) and
+   start it with the `storage` profile.
 
-:::note
+Connect the WebUI dev container to the Rucio Compose network:
 
-Starting the docker containers using `docker-compose-storage.yml` will also
-create several RSEs, DIDs, etc. on the Rucio instance which are quite helpful
-when running tests.
+1. Find the dev container name with `docker ps`. It is the container whose name
+   does not contain `rucio`.
+2. Connect it with `docker network connect ruciodevnetwork <container name>`.
+   `ruciodevnetwork` is the default network name from
+   `etc/docker/dev/docker-compose.yml`. Override it by setting
+   `RUCIO_NETWORK_NAME` before starting Compose.
 
-:::
+In `.env.development.local` at the root of the WebUI repository, set
+`RUCIO_AUTH_HOST` and `RUCIO_HOST` to the Rucio container. By default this is
+`https://dev-rucio-1:443`.
 
-We must now connect the dev container to the Rucio container network.
-1. Figure out the docker name of the dev container. Run `docker ps` and search
-  for name which does not contain the string `rucio`
-2. Connect using `docker network connect dev_default <container name>`.
-   `dev_default` is the name of the network shared by the docker containers spun
-   up using `docker-compose-storage.yml` from earlier.
-
-Finally, we must change the `RUCIO_AUTH_HOST` and `RUCIO_HOST` in the
-`.env.development.local` file at the root level of the WebUI repository to point
-to the Rucio container. By default, this should be `https://dev-rucio-1:443`.
-
-Test the setup by logging in using the credentials username `ddmlab`/ password
-`secret`/ account `root` under the VO `Default`.
+Test the setup by logging in with username `ddmlab`, password `secret`, account
+`root`, under the VO `Default`.
