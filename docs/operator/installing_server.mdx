@@ -304,7 +304,13 @@ Example:
 }
 ```
 
-### Configuring Rucio Server for OIDC based authentication
+### Configuring Rucio Server and Rucio Daemons for OIDC based authentication
+
+:::info
+If Rucio server and Rucio daemons are not running on the same machine or don't share their `rucio
+.cfg` file, the following configuration must be added to at least the Rucio server and the Rucio
+conveyor daemons.
+:::
 
 Enable OIDC in `rucio.cfg`:
 
@@ -344,6 +350,36 @@ rucio account identity add --account rucio_user_account \
 - `5b5e5d37-926b-4b42-8a98-a0b4b28baf18` is subject claim of user and `https://wlcg.cloud.cnaf.infn.it/` is issuer url of IdP.
 - The format of `id` has single space after the comma, so be mindful of that.
   :::
+
+### Testing Rucio integration with the OIDC issuer
+
+Before trying to use OIDC in production, it is recommended to validate the OIDC configuration on the
+`conveyor-submitter` machine or container. To do this, connect to the machine or container and
+execute the following command:
+
+```
+python3 <<EOF
+import logging
+from rucio.core.oidc import request_token
+
+logging.basicConfig(level=logging.DEBUG)
+audience = "your.fts.api.fqdn"
+for scope in ["fts", "storage.create:/xxx", "storage.modify:/xxx", "storage.read:/xxx" ]:
+    print(f"Requesting a token with audience '{audience}' and scope '{scope}'...")
+    token = request_token(audience=audience, scope=scope, use_cache=False)
+    print(f"Token={token}")
+EOF
+```
+
+The script will test the ability for Rucio to get request successfully a token with the main scopes
+needed by FTS and an audience set to the FTS server. If it works, you see the token obtained for
+each scope else an error message should be displayed helping to identify the issue.
+
+:::tip
+If you get an error, you should check the Rucio client parameters on the OIDC issuer. Errors
+generally come from a misconfiguration on this side.
+:::
+
 
 ### Enabling OIDC for Transfers & Deletions
 
