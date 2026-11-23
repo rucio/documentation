@@ -3901,6 +3901,49 @@ length/bytes calculation. If not set, the size will not be computed dynamically.
     </table>
 
 
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code>Dictionary with DID attributes</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>'scope'
+    Scope name.
+'name'
+    DID name.
+'type'
+    DID type. Either Dataset, Container, or File.
+'account'
+    Account that owns the DID.
+'open'
+    If other DIDs can be attached to this DID.
+'monotonic'
+    If the DID is montonic.
+'expired_at'
+    If a DID has a lifetime, when that lifetime expires. Can be none.
+'length'
+    For collection type DIDs, number of files within the DID.
+'bytes'
+    If collection, number of bytes within the collection. Otherwise, the size of the file.
+'accessed_at'
+    Last time the DID was accessed.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
     </div>
 
 </div>

@@ -396,17 +396,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rucio.transfertool.globus.GlobusTransferTool.submit_one" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        submit_one
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rucio.transfertool.globus.GlobusTransferTool.submit" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -451,23 +440,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Functions:">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rucio.transfertool.globus.bulk_group_transfers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        bulk_group_transfers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -551,17 +523,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rucio.transfertool.globus.GlobusTransferTool.submit_one" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        submit_one
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rucio.transfertool.globus.GlobusTransferTool.submit" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -606,23 +567,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Functions:">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rucio.transfertool.globus.bulk_group_transfers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        bulk_group_transfers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -717,6 +661,10 @@
                 <p>The external host where the transfertool API is running</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -743,99 +691,6 @@
 
 
 <h4 id="rucio.transfertool.globus.GlobusTransferTool-functions">Methods:<a href="#rucio.transfertool.globus.GlobusTransferTool-functions" class="headerlink" title="Permanent link">&para;</a></h4>
-
-<div class="doc doc-object doc-function">
-
-
-<h5 id="rucio.transfertool.globus.GlobusTransferTool.submit_one" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">submit_one</span>
-
-
-<a href="#rucio.transfertool.globus.GlobusTransferTool.submit_one" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">submit_one</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Submit transfers to globus API</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>files</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>List of dictionaries describing the file transfers.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>job_params</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Dictionary containing key/value pairs, for all transfers.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>timeout</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Timeout in seconds.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>None</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>Globus transfer identifier.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    </div>
-
-</div>
 
 <div class="doc doc-object doc-function">
 
@@ -870,6 +725,10 @@
                 <p>List of dictionaries describing the file transfers.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Iterable">Iterable</span>[<span title="rucio.core.request.DirectTransfer">DirectTransfer</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -882,6 +741,10 @@
                 <p>Not used by Globus Transfsertool</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -894,6 +757,10 @@
                 <p>Timeout in seconds.</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="typing.Optional">Optional</span>[<span title="int">int</span>]</code>
+                  </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>None</code>
@@ -915,6 +782,9 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="str">str</span></code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -963,6 +833,10 @@
                 <p>dictionary {external_id1: {request_id1: request1, ...}, ...}</p>
               </div>
               <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+                  </span>
               </p>
             </td>
           </tr>
@@ -980,6 +854,9 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="rucio.transfertool.globus.GlobusTransferStatusReport">GlobusTransferStatusReport</span>]]</code>
+                </span>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
@@ -1003,105 +880,6 @@
 
 </div>
 <h2 id="rucio.transfertool.globus-functions">Functions:<a href="#rucio.transfertool.globus-functions" class="headerlink" title="Permanent link">&para;</a></h2>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="rucio.transfertool.globus.bulk_group_transfers" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">bulk_group_transfers</span>
-
-
-<a href="#rucio.transfertool.globus.bulk_group_transfers" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">bulk_group_transfers</span><span class="p">(</span>
-    <span class="n">transfer_paths</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span> <span class="n">group_bulk</span><span class="o">=</span><span class="mi">200</span>
-<span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Group transfers in bulk based on certain criteria</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">PARAMETER</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>transfer_paths</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>List of (potentially multihop) transfer paths to group. Each path is a list of single-hop transfers.</p>
-              </div>
-              <p>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>policy</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Policy to use to group.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>&#39;single&#39;</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>group_bulk</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Bulk sizes.</p>
-              </div>
-              <p>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>200</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>List of transfer groups</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    </div>
-
-</div>
 
 
 
