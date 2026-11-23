@@ -5,7 +5,7 @@ title: Testing FTS and the conveyor
 
 ## Test setup
 To test FTS and the Conveyor, you should start the development environment, including the Rucio server and the FTS server;
-see [Setting up a Rucio demo environment](operator/setting_up_demo.md) for more information.
+see [Setting up a Rucio developer environment](../setting_up_dev_env.md#using-the-environment-including-storage) for more information.
 
 The required profiles are `storage` (for the FTS and XRD containers) and `iam` (for the token-related Conveyor tests).
 Make sure to pass `--file etc/docker/dev/docker-compose.ports.yml` if you want to access the FTS Web Monitoring UI (see below).
