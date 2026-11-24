@@ -79,7 +79,7 @@ A JSON object may be added as Open Data metadata
 rucio opendata did update $DID --meta '{"key":"value"}'
 ```
 
-This Open Data metadata will be available in the `show` command and in the
+This Open Data metadata is available through the `show` command using the `--meta` flag.
 
 ## Public Open Data
 
@@ -111,11 +111,15 @@ For production deployments we recommend a dedicated Rucio server with only the `
 If this server is accessible to other services related to Open Data such as the Open Data Portal, it can provide updated information related to the Open Data DIDs registered in Rucio.
 
 ## REST API
+The Open Data REST API provides two sets of endpoints:
 
-The [REST API for Open Data](https://rucio.cern.ch/documentation/html/rest_api_doc.html#tag/open_data) is available as part of the Rucio REST API documentation.
+- **Open Data** (`/opendata`): authenticated endpoints for managing Open Data DIDs.
+- **Open Data Public** (`/opendata/public`): read-only endpoints that do not require an authentication token and only expose public Open Data DIDs. This can be used to establish synchronization between Rucio and a third party app such as an Open Data Portal.
 
-The most important feature is that users are able to send requests to the public Open Data endpoint without any kind of authentication.
-This can be used to establish synchronization between Rucio and a third party app such as an Open Data Portal.
+The Open Data REST APIs are documented in the Rucio REST API reference:
+
+- [Open Data](https://rucio.github.io/documentation/html/rest_api_doc.html#/open-data)
+- [Open Data Public](https://rucio.github.io/documentation/html/rest_api_doc.html#/open-data-public)
 
 ## Open Data replication rules
 
