@@ -27,10 +27,15 @@ by a new one.
 
 ## Deprecation watchlist
 
-| Feature                        | Note                                 | Removed in version / date |
-| ------------------------------ | ------------------------------------ | ------------------------- |
-| Old CLI structure              | New structure is stable since 41.0   | 42.0 / 2026-Nov           |
-| Old WebUI                      | Replaced by the (new) Rucio WebUI    | 43.0 / 2027-Mar           |
-| Temporary unavailable replicas |                                      | 43.0 / 2027-Mar           |
-| Support for MySQL              |                                      | 43.0 / 2027-Mar           |
-| Follower daemon                |                                      | 43.0 / 2027-Mar           |
+| Feature                           | Note                                 | Removed in version / date |
+| --------------------------------- | ------------------------------------ | ------------------------- |
+| Old CLI structure                 | New structure is stable since 41.0   | 42.0 / 2026-Nov           |
+| Old WebUI                         | Replaced by the (new) Rucio WebUI    | 43.0 / 2027-Mar           |
+| Temporary unavailable replicas    |                                      | 43.0 / 2027-Mar           |
+| Support for MySQL                 |                                      | 43.0 / 2027-Mar           |
+| Follower daemon                   |                                      | 43.0 / 2027-Mar           |
+| Volatile RSEs                     | Including cache-consumer             | 43.0 / 2027-Mar           |
+| Bittorrent Transfertool           |                                      | 43.0 / 2027-Mar           |
+| aria2c support                    |                                      | 44.0 / 2027-Jul           |
+| Deterministic fts job submission  |                                      | 44.0 / 2027-Jul           |
+| Multi VO mode                     |                                      | 44.0 / 2027-Jul           |
